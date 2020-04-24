@@ -216,14 +216,18 @@ class applyController extends Controller
     {
          
 
-          $token = $request->input('g-recaptcha-response');
+          // $token = $request->input('g-recaptcha-response');
+          $token = true ; 
           if ($token){
             $hariini = Carbon::now()->format('dmY');
 
             $cv = $request->file('cv');
-            $namecv = 'Applier_CV_'.$request->name."_".$hariini.'.'.$cv->getClientOriginalExtension();
+            $extension = $cv->getClientOriginalExtension(); 
+
+            $namecv = 'Applier_CV_'.$request->name."_".$hariini.'.'.$extension;
   
             $pp = $request->file('filepp');
+            
             $namepp = 'Applier_Portofolio_'.$request->name."_".$hariini.'.'.$pp->getClientOriginalExtension();
             $coba = str_split($request->phone);
             if($coba[0]==='0'){
