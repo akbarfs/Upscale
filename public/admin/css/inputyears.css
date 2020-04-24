@@ -1,0 +1,34 @@
+	.ydiv {
+	border:solid 1px;
+	width:200px;
+	height:150px;
+	background-color:#D8D8D8;
+	display:none;
+	position:absolute;
+	top:40px;
+	}
+
+	.ybutton {
+
+    border: none;
+    width:35px;
+	height:35px;
+    background-color:#D8D8D8;
+	font-size:100%;
+	}
+
+	.yhr {
+	background-color:black;
+	color:black;
+	height:1px">
+	}
+
+	.ytext {
+	border:none;
+	text-align:center;
+	width:118px;
+	font-size:100%;
+	background-color:#D8D8D8;
+	font-weight:bold;
+
+	}
