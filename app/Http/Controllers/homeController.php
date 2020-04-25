@@ -131,4 +131,10 @@ use App\Models\Bootcamp;
         }
         // echo "<br>a";
     }
+
+    public function start_project()
+    {
+        // echo "Load OK";
+        return view ('project');
+    }
 }

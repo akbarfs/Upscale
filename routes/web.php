@@ -332,11 +332,11 @@ Route::group(['prefix'=>'admin'], function(){
         // Route::post('/updatelocation','MasterDataLocationController@update')->name('location.update');
         // Route::post('/deletelocation/{id}','MasterDataLocationController@destroy')->name('location.destroy');
        // Route::get('/restorelocation/{id}','MasterDataLocationController@restore')->name('location.restore');
-	   Route::resource('mentor','mentorController');
-	   Route::post('/addmentor','mentorController@storementor')->name('mentor.store');
-	   Route::get('/editmentor/{id}','mentorController@editmentor')->name('mentor.edit');
-	   Route::put('/updatementor/{id}','mentorController@updatementor')->name('mentor.update');
-	   Route::post('/deletementor/{id}','mentorController@deletementor')->name('mentor.delete');
+		Route::resource('mentor','mentorController');
+		Route::post('/addmentor','mentorController@storementor')->name('mentor.store');
+		Route::get('/editmentor/{id}','mentorController@editmentor')->name('mentor.edit');
+		Route::put('/updatementor/{id}','mentorController@updatementor')->name('mentor.update');
+		Route::post('/deletementor/{id}','mentorController@deletementor')->name('mentor.delete');
 	});
 
 });
@@ -449,6 +449,7 @@ Route::get('/reference', 'ReferenceController@index')->name('reference');
 Route::get('/referral', 'ReferralController@index')->name('referral');
 Route::get('/success', 'SuccessController@index')->name('successapply');
 
+Route::get('/start-project', 'HomeController@start_project')->name('start-project');
 
 
 Route::get('/cek_import_talent', 'talentController@cek_import_talent')->name('cek_imp_talent');
