@@ -111,7 +111,7 @@
                 </ul>
                 <div class="menu-right">
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs" href="{{url('/login'.date('dmY'))}}">Login / Register</a>
+                        <a class="btn btn-border btn-login btn-xs" href="{{url('/login')}}">Login / Register</a>
                         <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a>
                     </div>
                 </div>

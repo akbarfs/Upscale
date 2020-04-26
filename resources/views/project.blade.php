@@ -97,7 +97,6 @@
     {
         $(".nav-next:not(:last)").click(function()
         {
-            // $("#message").hide();
             $(this).parent().hide();
             $(this).closest('.step').next().show();
             $("#answer").focus();
