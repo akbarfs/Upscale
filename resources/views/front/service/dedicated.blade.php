@@ -3,42 +3,49 @@
 @section('content')
 
 <main>
-    <section class="section-base" style="padding-bottom: 100px">
+    <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-4.jpg')}}">
         <div class="container">
-            <div class="row align-items-center" data-anima="fade-in" data-time="1000">
-                <div class="col-lg-6">
-                    <hr class="space-lg" />
-                    <h1 style="line-height: 52px">
-                        <!-- Kemudahan rekrutment <br />ada di genggaman anda. -->
-                        Hire Talent On-Demand<br>
-                        <div style="font-size: 32px">Just focus on scaling your business, let us do the "Talent things".</div>
-                    </h1>
-                    <p>
-                        <!-- Toptal is an exclusive network of the top freelance software developers, designers, finance experts, product managers, and project managers in the world. Top companies hire Toptal freelancers for their most important projects. -->
-
-                        Hire dari exlusive network kami. Beranggotakan berbagai talent di bidang software developer, designer, finance, product manager, project manager dan lain-lain. Sesuaikan kebutuhan anda baik Fulltime, Head Hunter, Freelance atau Fix project.
-
-                    </p>
-                    <a href="#" class="btn btn-sm text-bold btn-circle shadow-1 full-width-sm">Request Quotation</a><span class="space-sm"></span>
-                    <a href="#" class="btn-text active hidden-sm">Are You Talent ?</a>
-                    <hr class="space-xs" />
+            <hr class="space-lg" />
+            <h1 data-anima="fade-in" data-time="1000">
+                Membutuhkan tambahan team ?<br />
+                <span style="font-size: 35px">Kami dapat membantu anda menemukan talent yang tepat dan membantu mengelolanya.</span>
+            </h1>
+            <hr class="space-sm" />
+            <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com" data-anima="fade-in" data-time="1000">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <input id="name" name="name" placeholder="Eame and surname" type="text" class="input-text" required>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-sm" type="submit">Request Penawaran</button>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <hr class="space" />
-                    <img class="margin-23 margin-md-23" src="{{url('template/upscale/media/photo-1.png')}}" alt="" />
+                <div class="form-checkbox">
+                    <input type="checkbox" id="check" name="check" value="check" required>
+                    <label for="check">You accept the terms of service and the privacy policy</label>
                 </div>
-            </div>
+                <div class="success-box">
+                    <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
+                </div>
+                <div class="error-box">
+                    <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
+                </div>
+            </form>
+            <hr class="space-lg" />
         </div>
     </section>
 
     <section id="features" class="section-base section-color section-top-overflow">
-        <div class="container" style="padding-top: 0">
+        <div class="container" style="padding-top: 0 ;">
             <div class="grid-list" data-columns="4" data-columns-md="2" data-columns-xs="1">
                 <div class="grid-box">
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Fulltime</h2>
+                                <h2>Fulltime Onsite</h2>
                                 <p>
                                     Lorem ipsum dolor sitamet consecte.
                                 </p>
@@ -48,7 +55,7 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Freelance</h2>
+                                <h2>Fulltime Remote</h2>
                                 <p>
                                     Lorem ipsum dolor sitamet consecte.
                                 </p>
@@ -58,7 +65,7 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Head Hunter</h2>
+                                <h2>Freelance Onsite</h2>
                                 <p>
                                     Lorem ipsum dolor sitamet consecte.
                                 </p>
@@ -68,7 +75,7 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Fix Project</h2>
+                                <h2>Freelance Remote</h2>
                                 <p>
                                     Lorem ipsum dolor sitamet consecte.
                                 </p>
@@ -82,9 +89,8 @@
         </div>
     </section>
 
-
     <section class="section-base section-color section-top-overflow">
-        <div class="container" style="padding-top: 0">
+        <div class="container" style="padding-top: 0 ; padding-bottom: 0">
             <ul class="slider" data-options="type:carousel,arrows:false,nav:false,perView:5,perViewMd:3,perViewXs:2,gap:80">
                 <li>
                     <img src="{{url('template/upscale/media/logos/logo-7.png')}}" alt="" />
@@ -105,43 +111,6 @@
                     <img src="{{url('template/upscale/media/logos/logo-3.png')}}" alt="" />
                 </li>
             </ul>
-        </div>
-    </section>
-
-    <section class="section-image light" style="background-image:url(template/upscale/media/bg.svg)">
-        <div class="container">
-            <div class="row" data-anima="fade-bottom" data-time="1000">
-                <div class="col-lg-6">
-                    <h2>Ingin mendapatkan quotation?</h2>
-                    <p>
-                        Silahkan masukan email anda atau nomor telephone anda agar kami dapat menghubungi anda
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <p>Type your email / phone number</p>
-                                <input id="email" name="email" placeholder="" type="email" class="input-text" required>
-                            </div>
-                            <div class="col-lg-4">
-                                <p></p>
-                                <button class="btn btn-sm" type="submit">Submit</button>
-                            </div>
-                        </div>
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="check" name="check" value="check" required>
-                            <label for="check">You accept the terms of service and the privacy policy</label>
-                        </div>
-                        <div class="success-box">
-                            <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
-                        </div>
-                        <div class="error-box">
-                            <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -360,43 +329,6 @@
         </div>
     </section>
 
-    <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-6.jpg')}}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2>Ingin mendapatkan quotation?</h2>
-                    <hr class="space-xs" />
-                    <p>Silahkan masukan email anda atau nomor telephone anda agar kami dapat menghubungi anda </p>
-                </div>
-                <div class="col-lg-6">
-                    <form action="themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <p>Type your email</p>
-                                <input id="email2" name="email2" placeholder="" type="email" class="input-text" required>
-                            </div>
-                            <div class="col-lg-4">
-                                <p></p>
-                                <button class="btn btn-sm" type="submit">Subscribe</button>
-                            </div>
-                        </div>
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="check2" name="check2" value="check" required>
-                            <label for="check">You accept the terms of service and the privacy policy</label>
-                        </div>
-                        <div class="success-box">
-                            <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
-                        </div>
-                        <div class="error-box">
-                            <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <section id="pricing" class="section-base section-bottom-layer">
         <div class="container" data-anima="fade-bottom" data-time="1000">
 
@@ -549,7 +481,7 @@
                     </div>
                     <div class="col-lg-4 order-md-first">
                         <h2>
-                            Apply for the job <br />before it is too late.
+                            Masukan data anda<br />untuk request proposal
                         </h2>
                         <hr class="space-sm" />
                         <ul class="text-list text-list-bold">
@@ -585,7 +517,7 @@
             <hr class="space-lg visible-md" />
         </div>
     </section>
-
 </main>
+
 
 @endsection

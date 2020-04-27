@@ -1247,7 +1247,7 @@ nav .btn {
 }
 
 .dropdown > ul, .dropdown-submenu > ul {
-    min-width: 180px;
+    min-width: 200px;
 }
 
 nav.scroll-menu, nav:not(.menu-transparent) {

@@ -17,15 +17,29 @@
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/media-box.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/skin.css')}}">
     <link rel="icon" href="{{url('template/upscale/media/upscale.ico')}}">
+    <!-- <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 </head>
 <body>
     <div id="preloader"></div>
-    <nav class="menu-classic menu-transparent menu-fixed menu-one-page align-right" data-menu-anima="fade-bottom" data-scroll-detect="true">
+    
+    <?php $light_menu = array('ecosystem','dedicated-team','help-business','help-talent','index','home'); $request = $routeName = Route::currentRouteName();  ?>
+
+    <nav class="menu-classic menu-transparent menu-fixed menu-one-page align-right 
+                 @if ( in_array($request,$light_menu) ) light  @endif
+
+                " data-menu-anima="fade-bottom" data-scroll-detect="true">
         <div class="container">
             <div class="menu-brand" style="padding: 10px 0 ">
-                <a href="#">
-                    <img class="logo-default" src="{{url('template/upscale/media/logo.jpg')}}" alt="logo" />
-                    <img class="logo-retina" src="{{url('template/upscale/media/logo.jpg')}}" alt="logo" />
+                <a href="{{url('/')}}">
+                    
+                    @if ( in_array($routeName,$light_menu) )
+                        <img class="logo-default" src="{{url('template/upscale/media/logo-white.png')}}" alt="logo" />
+                    <img class="logo-retina" src="{{url('template/upscale/media/logo-white.png')}}" alt="logo" />
+                    @else
+                        <img class="logo-default" src="{{url('template/upscale/media/logo.jpg')}}" alt="logo" />
+                        <img class="logo-retina" src="{{url('template/upscale/media/logo.jpg')}}" alt="logo" />
+                    @endif
                 </a>
             </div>
             <i class="menu-btn"></i>
@@ -35,28 +49,26 @@
                     <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>
                         <ul>
-                            <li class="dropdown-submenu">
-                                <a href="{{url('/')}}">Hire Fulltime</a>
+                            <!-- <li class="dropdown-submenu">
+                                <a href="{{url('/')}}">Extended Team</a>
                                 <ul>
-                                    <li><a href="#">Onsite</a></li>
-                                    <li><a href="#">Remote</a></li>
+                                    <li><a href="#">Fulltime</a></li>
+                                    <li><a href="#">Freelance</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="{{url('/')}}">Hire Freelance</a></li>
-                            <li><a href="{{url('/')}}">Head Hunter</a></li>
-                            <li><a href="{{url('/')}}">Quick Project</a></li>
+                            </li> -->
+                            <li><a href="{{url('/dedicated-team')}}">Dedicated Team</a></li>
+                            <li><a href="{{url('/dedicated-team')}}">Quick Project</a></li>
+                            <li><a href="{{url('/dedicated-team')}}">Head Hunter</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="{{url('/')}}">Who We Help</a>
                         <ul>
-                            <li><a href="{{url('/')}}">Coorporate</a></li>
-                            <li><a href="{{url('/')}}">Digital Agency</a></li>
-                            <li><a href="{{url('/')}}">SME ( UKM )</a></li>
-                            <li><a href="{{url('/')}}">Talent</a></li>
+                            <li><a href="{{url('/help-business')}}">Business</a></li>
+                            <li><a href="{{url('/help-talent')}}">Talent</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Ecosystem</a></li>
+                    <li><a href="{{url('/ecosystem')}}">Ecosystem</a></li>
                     <li class="dropdown">
                         <a href="#">Other</a>
                         <ul>
@@ -108,12 +120,25 @@
                         </ul>
                     </li>
                 </ul>
+                
+
                 <div class="menu-right">
+                    <ul class="lan-menu">
+                        <li class="dropdown">
+                            <a href="#"><img src="{{url('template/upscale/media//en.png')}}" alt="" />EN </a>
+                            <ul>
+                                <li><a href="#"><img src="{{url('template/upscale/media/it.png')}}" alt="" />IT</a></li>
+                                <li><a href="#"><img src="{{url('template/upscale/media/es.png')}}" alt="" />ES</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs" href="#">Login / Register</a>
+                        <a class="btn btn-border btn-login btn-xs" href="#">Login</a>
                         <a class="btn btn-border btn-xs btn-circle" href="#">Start Project</a>
                     </div>
                 </div>
+
+
                 <div class="clear"></div>
             </div>
         </div>

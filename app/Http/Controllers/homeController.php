@@ -10,25 +10,32 @@ use App\Models\Joblo;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Bootcamp;
+use Route ; 
 
 
-    class homeController extends Controller
+class homeController extends Controller
 {
     public function index()
     {
         $categories = "";
 
         // return view('homebase', compact('categories'));
-        return view('home', compact('categories'));
+        return view('front.home2');
     }
     
-    public function beta()
+    public function ecosystem()
     {
-        $categories = "";
+        return view("front.ecosystem") ;
+    }
 
-        return view('homebeta', compact('categories'));
+    public function dedicated()
+    {
+        return view("front.service.dedicated") ;
     }
     
+    public function helpBusiness() {return view("front.help.business"); }
+    public function helpTalent() {return view("front.help.talent"); }
+
     public function contact()
     {
         $categories = "";

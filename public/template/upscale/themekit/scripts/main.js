@@ -308,7 +308,7 @@ function isScrollView(t) {
                 $(this).parent().toggleClass("active");
             });
             $(body).on("mouseenter", "nav[data-menu-anima] .menu-cnt > ul > li > a,nav[data-menu-anima] .lan-menu > li > a", function () {
-                $(this).parent().find(" > ul, > .mega-menu").css("opacity", 0).showAnima($("nav").data("menu-anima"), null, 250);
+                $(this).parent().find(" > ul, > .mega-menu").css("opacity", 0).showAnima($("nav").data("menu-anima"), null, 100);
             });
             $(body).on("mouseenter", ".menu-subline .menu-cnt > ul li", function () {
                 $(nav).find(".subline-bar ul").removeClass("active").eq($(this).index()).addClass("active");
