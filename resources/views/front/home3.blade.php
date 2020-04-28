@@ -33,7 +33,7 @@
         </div>
     </section>
 
-    <section id="features" class="section-base section-color section-top-overflow">
+    <section id="features" class="section-base section-color section-top-overflow" style="background: #37517E">
         <div class="container" style="padding-top: 0">
             <div class="grid-list" data-columns="4" data-columns-md="2" data-columns-xs="1">
                 <div class="grid-box">
@@ -42,7 +42,7 @@
                             <div class="caption">
                                 <h2>Fulltime</h2>
                                 <p>
-                                    Lorem ipsum dolor sitamet consecte.
+                                    Hire as your outsource fulltime employee
                                 </p>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                             <div class="caption">
                                 <h2>Freelance</h2>
                                 <p>
-                                    Lorem ipsum dolor sitamet consecte.
+                                    Hire as your freelance (Part Time) employee
                                 </p>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <div class="caption">
                                 <h2>Head Hunter</h2>
                                 <p>
-                                    Lorem ipsum dolor sitamet consecte.
+                                    Hire as your fulltime employee
                                 </p>
                             </div>
                         </div>
@@ -70,9 +70,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Fix Project</h2>
+                                <h2>Project Base</h2>
                                 <p>
-                                    Lorem ipsum dolor sitamet consecte.
+                                    Choose Talent / Vendor for your sub contractor 
                                 </p>
                             </div>
                         </div>
@@ -85,73 +85,38 @@
     </section>
 
 
-    <section class="section-base section-color section-top-overflow">
+    <section class="section-base section-color section-top-overflow" style="background: #37517E">
         <div class="container" style="padding-top: 0">
             <ul class="slider" data-options="type:carousel,arrows:false,nav:false,perView:5,perViewMd:3,perViewXs:2,gap:80">
                 <li>
-                    <img src="{{url('template/upscale/media/logos/logo-7.png')}}" alt="" />
+                    <img src="{{url('template/upscale/media/logos/white/logo-1.png')}}" alt="" />
                 </li>
                 <li>
-                    <img src="{{url('template/upscale/media/logos/logo-6.png')}}" alt="" />
+                    <img src="{{url('template/upscale/media/logos/white/logo-2.png')}}" alt="" />
                 </li>
                 <li>
-                    <img src="{{url('template/upscale/media/logos/logo-4.png')}}" alt="" />
+                    <img src="{{url('template/upscale/media/logos/white/logo-3.png')}}" alt="" />
                 </li>
                 <li>
-                    <img src="{{url('template/upscale/media/logos/logo-1.png')}}" alt="" />
+                    <img src="{{url('template/upscale/media/logos/white/logo-4.png')}}" alt="" />
                 </li>
                 <li>
-                    <img src="{{url('template/upscale/media/logos/logo-5.png')}}" alt="" />
+                    <img src="{{url('template/upscale/media/logos/white/logo-5.png')}}" alt="" />
                 </li>
                 <li>
-                    <img src="{{url('template/upscale/media/logos/logo-3.png')}}" alt="" />
+                    <img src="{{url('template/upscale/media/logos/white/logo-6.png')}}" alt="" />
                 </li>
             </ul>
         </div>
     </section>
 
-    <section class="section-image light" style="background-image:url(template/upscale/media/bg.svg)">
-        <div class="container">
-            <div class="row" data-anima="fade-bottom" data-time="1000">
-                <div class="col-lg-6">
-                    <h2>Ingin mendapatkan quotation?</h2>
-                    <p>
-                        Silahkan masukan email anda atau nomor telephone anda agar kami dapat menghubungi anda
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <p>Type your email / phone number</p>
-                                <input id="email" name="email" placeholder="" type="email" class="input-text" required>
-                            </div>
-                            <div class="col-lg-4">
-                                <p></p>
-                                <button class="btn btn-sm" type="submit">Submit</button>
-                            </div>
-                        </div>
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="check" name="check" value="check" required>
-                            <label for="check">You accept the terms of service and the privacy policy</label>
-                        </div>
-                        <div class="success-box">
-                            <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
-                        </div>
-                        <div class="error-box">
-                            <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="features" class="section-base section-color align-center section-bottom-layer-2">
         <div class="container">
-            <h2 class="align-center" data-anima="fade-bottom" data-time="1000">Pastikan Remote Worker anda produktif.</h2>
+            <h2 class="align-center" data-anima="fade-bottom" data-time="1000" style="margin: 0 auto; max-width: 900px">
+                Selain talent onsite, kami juga menyediakan talent remote yang dapat dipastikan produktifasnya secara realtime.
+            </h2>
             <p class="align-center width-650" data-anima="fade-bottom" data-time="1000">
-                Dengan menggunakan aplikasi yang kami sediakan, anda dapat memonitor tingkat produktifitas talent secara realtime.
+                Kami memiliki beberapa framework untuk talent anda, baik yang bekerja secara remote atau secara onsite
             </p>
             <hr class="space" />
             <img src="{{url('template/upscale/media/devices.png')}}" alt="" />
@@ -165,13 +130,13 @@
                 <div class="col-lg-4">
                     <h3>Jam mulai kerja</h3>
                     <p>
-                        Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempore fugiata nulla paria mesta.
+                        Anda dapat mengetahui waktu mulai kerja tiap talent setiap harinya
                     </p>
                 </div>
                 <div class="col-lg-4">
                     <h3>Lama bekerja</h3>
                     <p>
-                        Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempore fugiata nulla paria mesta.
+                        Monitoring lama waktu bekerja setiap hari
                     </p>
                 </div>
                 <div class="col-lg-4">

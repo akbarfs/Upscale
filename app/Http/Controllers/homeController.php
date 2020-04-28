@@ -20,7 +20,7 @@ class homeController extends Controller
         $categories = "";
 
         // return view('homebase', compact('categories'));
-        return view('front.home2');
+        return view('front.home3');
     }
     
     public function ecosystem() {return view("front.ecosystem") ; }
@@ -28,6 +28,7 @@ class homeController extends Controller
     public function helpBusiness() {return view("front.help.business"); }
     public function helpTalent() {return view("front.help.talent"); }
     public function faq() {return view("front.other.faq"); }
+    public function about() {return view("front.other.about"); }
 
     public function contact()
     {
