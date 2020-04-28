@@ -19,8 +19,8 @@
                         Hire dari exlusive network kami. Beranggotakan berbagai talent di bidang software developer, designer, finance, product manager, project manager dan lain-lain. Sesuaikan kebutuhan anda baik Fulltime, Head Hunter, Freelance atau Fix project. Baik <b>Onsite</b> maupun <b>Remote</b>
 
                     </p>
-                    <a href="#" class="btn btn-sm text-bold btn-circle shadow-1 full-width-sm">Request Quotation</a><span class="space-sm"></span>
-                    <a href="#" class="btn-text active hidden-sm">Are You Talent ?</a>
+                    <a data-toggle="modal" data-target=".startProject" class="btn btn-sm text-bold btn-circle shadow-1 full-width-sm start_project">Request Quotation</a><span class="space-sm"></span>
+                    <a data-toggle="modal" data-target=".startProject" class="btn-text active hidden-sm start_project">Are You Talent ?</a>
                     <hr class="space-xs" />
                 </div>
                 <div class="col-lg-6">

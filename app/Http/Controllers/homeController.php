@@ -132,4 +132,10 @@ class homeController extends Controller
         }
         // echo "<br>a";
     }
+
+    public function start_project()
+    {
+        // echo "Load OK";
+        return view ('project');
+    }
 }
