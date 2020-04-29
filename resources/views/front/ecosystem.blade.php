@@ -1,6 +1,4 @@
-@extends('layouts.template',['logo'=>'transparent'])
-
-@section("menu_class",'menu-transparent light')
+@extends('layouts.template')
 
 @section('content')
 
