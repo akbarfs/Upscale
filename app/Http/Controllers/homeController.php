@@ -20,7 +20,7 @@ class homeController extends Controller
         $categories = "";
 
         // return view('homebase', compact('categories'));
-        return view('front.home2');
+        return view('front.home3');
     }
     
     public function ecosystem() {return view("front.ecosystem") ; }
