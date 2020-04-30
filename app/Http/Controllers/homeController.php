@@ -131,4 +131,9 @@ class homeController extends Controller
         }
         // echo "<br>a";
     }
+
+    public function startProject()
+    {
+        return view('project');
+    }
 }

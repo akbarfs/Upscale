@@ -99,17 +99,19 @@
         {
             $(this).parent().hide();
             $(this).closest('.step').next().show();
-            $("#answer").focus();
+            return false ; 
         });
         $(".nav-prev").click (function()
         {
             $(this).parent().hide();
-            $(this).closest('.step').prev().show();
+            $(this).closest('.step').next().show();
+            return false ;
         });
         $(".nav-next:last").click(function()
         {
             $(this).parent().hide();
             $(this).closest('.step').next().show();
+            return false ; 
         })
     });
 </script>
