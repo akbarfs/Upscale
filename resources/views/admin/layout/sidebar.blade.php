@@ -32,12 +32,20 @@
                     <li title="Job List">
                         <a href="{{route('index.jobs')}}"> <i class="menu-icon fa fa-th-list"></i> Job List</a>
                     </li>
-                     <li class="menu-item-has-children dropdown" title="Setting Career">
+                    <li class="menu-item-has-children dropdown" title="Setting Career">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa fa-gears"></i> Setting Career</a>
-                         <ul class="sub-menu children dropdown-menu">
+                        <ul class="sub-menu children dropdown-menu">
                             <li title="Substep Job Apply"><i class=""></i><a href="{{ route('substeps.getsubsteps') }}"> Substep Job Apply</a></li>
                             <li title="Location Jobs"><i class=""></i><a href="{{ route('jobs.all') }}"> Location Jobs</a></li>
                             <li title="Job Category"><i class=""></i><a href=""> Job Category</a></li>
+                        </ul>
+                    </li>
+                    <h3 class="menu-title">Questions & Answer</h3><!-- /.menu-title -->                    
+                    <li class="menu-item-has-children dropdown" title="Setting Questions">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa fa-gears"></i> Setting Question</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li title="Substep Job Apply"><i class=""></i><a href="{{ route('question.create') }}"> Question</a></li>
+                            <li title="Location Jobs"><i class=""></i><a href="{{ route('jobs.all') }}"> Location Jobs</a></li>
                         </ul>
                     </li>
                     <h3 class="menu-title">TALENT</h3>
@@ -55,14 +63,14 @@
                     </li>
                     <li class="menu-item-has-children dropdown" title="Setting Talent">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa fa-gears"></i> Setting Talent</a>
-                         <ul class="sub-menu children dropdown-menu">
+                        <ul class="sub-menu children dropdown-menu">
                             <li title="Substep Talent"><i class=""></i><a href=""> Substep Talent</a></li>
                         </ul>
                     </li>
                     <h3 class="menu-title">COMPANY</h3>
-                     <li class="menu-item-has-children dropdown" title="Company List">
+                    <li class="menu-item-has-children dropdown" title="Company List">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa-institution"></i> Company List</a>
-                         <ul class="sub-menu children dropdown-menu">
+                        <ul class="sub-menu children dropdown-menu">
                             <li title="Company"><i class=""></i><a href="{{route('companies.index')}}"> Company</a></li>
                             <!--<li><i class=""></i><a href="">Company Job Position</a></li>-->
                             <li title="Company Request"><i class=""></i><a href="{{route('companies.companyrequest')}}"> Company Request</a></li>
@@ -74,7 +82,7 @@
                     <h3 class="menu-title">BOOTCAMP</h3>
                     <li class="menu-item-has-children dropdown" title="Bootcamp Public">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa-graduation-cap"></i> Bootcamp Public</a>
-                         <ul class="sub-menu children dropdown-menu">
+                        <ul class="sub-menu children dropdown-menu">
                             <li title="Bootcamp Event"><i class=""></i><a href="{{route('bootcamp.index')}}"> Bootcamp Event</a></li>
                             <li title="Bootcamp Master Data"><i class=""></i><a href="{{ route('bmaster.index') }}"> Bootcamp Master Data</a></li>
                             <li title="Master Data Class"><i class=""></i><a href="{{ route('class.index') }}"> Master Data Class</a></li>

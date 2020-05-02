@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <script src="{{url('template/upscale/themekit/scripts/jquery.min.js')}}"></script>
     <script src="{{url('template/upscale/themekit/scripts/main.js')}}"></script>
+    <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/bootstrap-grid.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/style.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/css/tooltip.css')}}">
@@ -28,9 +29,9 @@
 
     <nav class="menu-classic menu-fixed menu-one-page align-right 
 
-                 @if ( in_array($request,$light_menu) ) light  @endif
+                @if ( in_array($request,$light_menu) ) light  @endif
 
-                 @if ( $routeName != 'faq') menu-transparent @endif
+                @if ( $routeName != 'faq') menu-transparent @endif
 
                 " data-menu-anima="fade-bottom" data-scroll-detect="true">
         <div class="container">
@@ -134,7 +135,7 @@
                     </ul> -->
                     <div class="menu-custom-area">
                         <a class="btn btn-border btn-login btn-xs" href="#">Login</a>
-                        <a class="btn btn-border btn-xs btn-circle" data-toggle="modal" data-target=".startProject">Start Project</a>
+                        <a class="btn btn-border btn-xs btn-circle startProject" data-toggle="modal" data-target="#startProject">Start Project</a>
                     </div>
                 </div>
 
@@ -214,10 +215,11 @@
         <script src="{{url('template/upscale/themekit/scripts/contact-form/contact-form.js')}}"></script>
         <script src="{{url('template/upscale/themekit/scripts/progress.js')}}"></script>
         <script src="{{url('template/upscale/media/custom.js')}}"></script>
+        <script src="{{url('js/bootstrap.min.js')}}"></script>
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade startProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade startProject" id="startProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -227,7 +229,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="tes"></div>
+                    <div id="question"></div>
                 </div>
                 <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -239,9 +241,9 @@
     <script>
         $(document).ready(function()
         {
-            $(".start_project").click(function()
+            $(".startProject").click(function()
             {
-                $('#tes').load("http://127.0.0.1:8000/start-project");
+                $('#question').load("{{url('/startProject')}}");
             });
         });
     </script>

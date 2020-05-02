@@ -345,12 +345,12 @@ Route::group(['middleware'=>'cek'],function(){
 	        // Route::get('/editlocation/{id}','MasterDataLocationController@edit')->name('location.edit');
 	        // Route::post('/updatelocation','MasterDataLocationController@update')->name('location.update');
 	        // Route::post('/deletelocation/{id}','MasterDataLocationController@destroy')->name('location.destroy');
-	       // Route::get('/restorelocation/{id}','MasterDataLocationController@restore')->name('location.restore');
-		   Route::resource('mentor','mentorController');
-		   Route::post('/addmentor','mentorController@storementor')->name('mentor.store');
-		   Route::get('/editmentor/{id}','mentorController@editmentor')->name('mentor.edit');
-		   Route::put('/updatementor/{id}','mentorController@updatementor')->name('mentor.update');
-		   Route::post('/deletementor/{id}','mentorController@deletementor')->name('mentor.delete');
+	       	// Route::get('/restorelocation/{id}','MasterDataLocationController@restore')->name('location.restore');
+			Route::resource('mentor','mentorController');
+			Route::post('/addmentor','mentorController@storementor')->name('mentor.store');
+			Route::get('/editmentor/{id}','mentorController@editmentor')->name('mentor.edit');
+			Route::put('/updatementor/{id}','mentorController@updatementor')->name('mentor.update');
+			Route::post('/deletementor/{id}','mentorController@deletementor')->name('mentor.delete');
 		});
 
 	});
@@ -358,6 +358,13 @@ Route::group(['middleware'=>'cek'],function(){
     Route::get('admin/jobsapply/interview/downloadReportTalent/{id}', 'InterviewController@downloadrt')->name('downloadrt');
 
     Route::get('/admin/talent/portfoliodetail/{id}','talentController@portfoliodetailya')->name('portfolio.talentdetailya');
+
+	Route::group(['prefix'=>'question'], function(){
+		Route::get('/create', 'questionController@create')->name('question.create');
+		Route::post('/store', 'questionController@store')->name('question.store');
+
+	}); 
+
 });
 
 Route::get('/admin/attend', 'attendController@index')->name('attend.index');
@@ -430,6 +437,7 @@ Route::group(['prefix'=>'admin/bootcamp'], function(){
 	Route::get('/editalumni/{id}', 'bootcampController@editAlumni')->name('alumni.edit');
 	Route::put('/updatealumni/{id}','bootcampController@upAlumni')->name('alumni.update');
 	Route::get('/alumni/move', 'bootcampController@move')->name('alumni.move');
+
 });
 
 Route::get('/deletealumni/', 'bootcampController@delAlumni')->name('alumni.delete');
@@ -470,3 +478,6 @@ Route::get('/cek_import_jobsapply', 'talentController@cek_import_jobsapply')->na
 
 
 $this->post('register', 'Auth\RegisterController@register');
+
+
+Route::get('/startProject', 'HomeController@startProject')->name('startProject');
