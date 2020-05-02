@@ -88,27 +88,27 @@
     <section class="section-base section-color section-top-overflow" style="background: #37517E">
         <div class="container" style="padding-top: 0">
             <ul class="slider" data-options="type:carousel,arrows:false,nav:false,perView:5,perViewMd:3,perViewXs:2,gap:80">
-                <li  class="tooltip">
+                <li  class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-1.png')}}" alt=""  />
                     <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li class="tooltip">
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-2.png')}}" alt="" />
                     <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li class="tooltip">
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-3.png')}}" alt="" />
                     <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li class="tooltip">
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-4.png')}}" alt="" />
                     <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li class="tooltip">
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-5.png')}}" alt="" />
                     <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li class="tooltip">
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-6.png')}}" alt="" />
                     <span class="tooltiptext">Our member experience</span>
                 </li>

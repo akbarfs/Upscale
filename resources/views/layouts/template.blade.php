@@ -134,8 +134,8 @@
                         </li>
                     </ul> -->
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs" href="#">Login</a>
-                        <a class="btn btn-border btn-xs btn-circle startProject" data-toggle="modal" data-target="#startProject">Start Project</a>
+                        <a class="btn btn-border btn-login btn-xs light" href="#">Login</a>
+                        <a class="btn btn-border btn-xs btn-circle startProject light" data-toggle="modal" data-target="#startProject">Start Project</a>
                     </div>
                 </div>
 
