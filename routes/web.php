@@ -480,4 +480,4 @@ Route::get('/cek_import_jobsapply', 'talentController@cek_import_jobsapply')->na
 $this->post('register', 'Auth\RegisterController@register');
 
 
-Route::get('/startProject', 'HomeController@startProject')->name('startProject');
+Route::get('/startproject', 'homeController@startProject')->name('startProject');
