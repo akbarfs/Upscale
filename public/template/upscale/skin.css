@@ -483,8 +483,8 @@ i.icon-check-gray {
 }
 
 .table-price tbody tr td:first-child, .table-price thead tr:first-child th:first-child {
-    min-width: 50%;
-    width: 50%;
+    min-width: 40%;
+    width: 40%;
     text-align: left;
 }
 

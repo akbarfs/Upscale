@@ -25,6 +25,7 @@ class homeController extends Controller
     
     public function ecosystem() {return view("front.ecosystem") ; }
     public function dedicated() {return view("front.service.dedicated") ; }
+    public function headhunter() {return view("front.service.headhunter") ; }
     public function helpBusiness() {return view("front.help.business"); }
     public function helpTalent() {return view("front.help.talent"); }
     public function faq() {return view("front.other.faq"); }

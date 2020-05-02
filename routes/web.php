@@ -22,6 +22,7 @@ Route::get('/home', 'homeController@index')->name('home');
 Route::get('/talent-register', 'homeController@apply')->name('talent-register');
 Route::get('/ecosystem', 'homeController@ecosystem')->name('ecosystem');
 Route::get('/dedicated-team', 'homeController@dedicated')->name('dedicated-team');
+Route::get('/headhunter', 'homeController@headhunter')->name('headhunter');
 Route::get('/help-business', 'homeController@helpBusiness')->name('help-business');
 Route::get('/help-talent', 'homeController@helpTalent')->name('help-talent');
 Route::get('/faq', 'homeController@faq')->name('faq');

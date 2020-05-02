@@ -1,48 +1,49 @@
-@extends('layouts.template',['logo'=>'transparent'])
-
-@section("menu_class",'menu-transparent light')
+@extends('layouts.template')
 
 @section('content')
 
 <main>
-    <section class="section-video light">
-        <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-2.jpg')}}">
-            <source src="{{url('template/upscale/media/cowork-black.mp4')}}" type="video/mp4">
-        </video>
-        <div class="container" style="padding-bottom: 100px;">
+    <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-4.jpg')}}">
+        <div class="container">
             <hr class="space-lg" />
-            <div class="row align-items-center" data-anima="fade-in" data-time="1000">
-                <div class="col-lg-8" style="font-size: 25px">
-                    <h1>
-                        Hire Talent On-Demand.
-                    </h1>
-                    
-                    <h2 style="font-size: 35px">Just focus on scaling your business<br> let us do the "Talent things".</h2>
-
-                    <p style="font-size: 20px">
-                        Hire dari exlusive network kami. Beranggotakan berbagai talent di bidang software developer, designer, finance, product manager, project manager dan lain-lain. Sesuaikan kebutuhan anda baik Fulltime, Head Hunter, Freelance atau Fix project. Baik Onsite maupun Remote
-                    </p>
-                        
+            <h1 data-anima="fade-in" data-time="1000">
+                Membutuhkan talent untuk jadi karyawan ?<br />
+                <span style="font-size: 35px">Kami dapat membantu anda menemukan talent yang tepat.</span>
+            </h1>
+            <hr class="space-sm" />
+            <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com" data-anima="fade-in" data-time="1000">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <input id="name" name="name" placeholder="Eame and surname" type="text" class="input-text" required>
+                    </div>
+                    <div class="col-lg-4">
+                        <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-sm" type="submit">Request Penawaran</button>
+                    </div>
                 </div>
-                <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="#" class="btn btn-circle btn-sm">Request Quotation</a>
-                    <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
+                <div class="success-box">
+                    <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
                 </div>
-            </div>
+                <div class="error-box">
+                    <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
+                </div>
+            </form>
             <hr class="space-lg" />
         </div>
     </section>
 
-    <section id="features" class="section-base section-color section-top-overflow" style="background: #37517E">
-        <div class="container" style="padding-top: 0">
+    <section id="features" class="section-base section-color section-top-overflow">
+        <div class="container" style="padding-top: 0 ;">
             <div class="grid-list" data-columns="4" data-columns-md="2" data-columns-xs="1">
                 <div class="grid-box">
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Fulltime</h2>
+                                <h2>Low Cost</h2>
                                 <p>
-                                    Hire as your outsource fulltime employee
+                                    Biaya terjangkau
                                 </p>
                             </div>
                         </div>
@@ -50,9 +51,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Freelance</h2>
+                                <h2>Fulltime Remote</h2>
                                 <p>
-                                    Hire as your freelance (Part Time) employee
+                                    Outsource remote in our coworkspace/WFH
                                 </p>
                             </div>
                         </div>
@@ -60,9 +61,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Head Hunter</h2>
+                                <h2>Freelance Onsite</h2>
                                 <p>
-                                    Hire as your fulltime employee
+                                    Work as Part Time in your office
                                 </p>
                             </div>
                         </div>
@@ -70,9 +71,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Project Base</h2>
+                                <h2>Freelance Remote</h2>
                                 <p>
-                                    Get Talent / Vendor for your sub contractor 
+                                    Work as Part Time in our coworkspace/WFH
                                 </p>
                             </div>
                         </div>
@@ -84,74 +85,25 @@
         </div>
     </section>
 
-
-    <section class="section-base section-color section-top-overflow" style="background: #37517E">
-        <div class="container" style="padding-top: 0">
+    <section class="section-base section-color section-top-overflow">
+        <div class="container" style="padding-top: 0 ; padding-bottom: 0">
             <ul class="slider" data-options="type:carousel,arrows:false,nav:false,perView:5,perViewMd:3,perViewXs:2,gap:80">
-                <li  class="tooltip">
-                    <img src="{{url('template/upscale/media/logos/white/logo-1.png')}}" alt=""  />
-                    <span class="tooltiptext">Our member experience</span>
+                <li>
+                    <img src="{{url('template/upscale/media/logos/logo-6.png')}}" alt="" />
                 </li>
-                <li class="tooltip">
-                    <img src="{{url('template/upscale/media/logos/white/logo-2.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
+                <li>
+                    <img src="{{url('template/upscale/media/logos/logo-4.png')}}" alt="" />
                 </li>
-                <li class="tooltip">
-                    <img src="{{url('template/upscale/media/logos/white/logo-3.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
+                <li>
+                    <img src="{{url('template/upscale/media/logos/logo-1.png')}}" alt="" />
                 </li>
-                <li class="tooltip">
-                    <img src="{{url('template/upscale/media/logos/white/logo-4.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
+                <li>
+                    <img src="{{url('template/upscale/media/logos/logo-5.png')}}" alt="" />
                 </li>
-                <li class="tooltip">
-                    <img src="{{url('template/upscale/media/logos/white/logo-5.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
-                </li>
-                <li class="tooltip">
-                    <img src="{{url('template/upscale/media/logos/white/logo-6.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
+                <li>
+                    <img src="{{url('template/upscale/media/logos/logo-3.png')}}" alt="" />
                 </li>
             </ul>
-        </div>
-    </section>
-
-    <section id="features" class="section-base section-color align-center section-bottom-layer-2">
-        <div class="container">
-            <h2 class="align-center" data-anima="fade-bottom" data-time="1000" style="margin: 0 auto; max-width: 900px">
-                Selain talent onsite, kami juga menyediakan talent remote yang dapat dipastikan produktifasnya secara realtime.
-            </h2>
-            <p class="align-center width-650" data-anima="fade-bottom" data-time="1000">
-                Kami memiliki framework kerja yang dapat digunakan untuk talent anda, baik yang bekerja secara remote atau secara onsite
-            </p>
-            <hr class="space" />
-            <img src="{{url('template/upscale/media/devices.png')}}" alt="" />
-        </div>
-    </section>
-
-    <section class="section-base no-padding-top align-center">
-        <div class="container">
-            <hr class="space" />
-            <div class="row">
-                <div class="col-lg-4">
-                    <h3>Aman & Terjamin </h3>
-                    <p>
-                        Upscale menjadi penjamin dan penengah antara talent & perusahaan
-                    </p>
-                </div>
-                <div class="col-lg-4">
-                    <h3>Space & Management</h3>
-                    <p>
-                        Dapat membantu mengelola talent beserta workspace & fasilitas 
-                    </p>
-                </div>
-                <div class="col-lg-4">
-                    <h3>Cost Efisien</h3>
-                    <p>
-                        Membantu anda untuk mengefisiensi pengeluaran sesuai dengan kebutuhan
-                    </p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -542,6 +494,8 @@
         </div>
     </section>
 
+    
 </main>
+
 
 @endsection

@@ -5,7 +5,7 @@
 <header class="header-image ken-burn-center light" data-parallax="true" data-natural-height="600" data-natural-width="1920" data-bleed="0" data-image-src="{{url('template/upscale/media/devc.jpg')}}" data-offset="0">
     <div class="container">
         <h1>About Our Community & Ecosystem</h1>
-        <h2>Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua eprehenderite exercita.</h2>
+        <h2>Ayo bergabung untuk meningkatkan kualitas industri indonesia.</h2>
         <!-- <ol class="breadcrumb">
             <li><a href="index-2.html">Home</a></li>
             <li><a href="#">Pages</a></li>
@@ -42,17 +42,17 @@
             </div>
         </section>
 
-        <section class="section-base section-bottom-layer">
-            <div class="container">
+        <section class="section-base">
+            <div class="container" style="padding-bottom: 0">
                 <hr class="space" />
                 <div class="row">
                     <div class="col-lg-6">
                         <h1>Join Our Community</h1>
                         <p>
-                            We’re fixing the internet’s apps showcase problem. So we have to find the right humans to make that happen.
-                            If that’s you, awesome. Come join us on this increidible and long journey.
+                            Visi kami adalah membangun ecosystem yang dapat mendukung semua pelaku industri, baik talent, perusahaan, universitas, 
+                            komunitas dan semua pihak lain yang dapat mendukung visi kami. Ayo bergabung untuk meningkatkan kualitas industri indonesia
                         </p>
-                        <a href="#" class="btn btn-border btn-circle btn-sm">See open jobs</a>
+                        <a href="#" class="btn btn-border btn-circle btn-sm">Join Community</a>
                     </div>
                     <div class="col-lg-6">
                         <hr class="space-sm visible-md" />
@@ -64,17 +64,17 @@
                                     </a>
                                 </div>
                                 <div class="grid-item">
-                                    <a class="img-box" href="{{url('template/upscale/media/music/image-11.jpg')}}">
-                                        <img src="{{url('template/upscale/media/music/image-13.jpg')}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="grid-item">
-                                    <a class="img-box" href="{{url('template/upscale/media/music/image-7.jpg')}}">
-                                        <img src="{{url('template/upscale/media/music/image-3.jpg')}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="grid-item">
                                     <a class="img-box" href="{{url('template/upscale/media/music/image-5.jpg')}}">
+                                        <img src="{{url('template/upscale/media/music/image-5.jpg')}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="grid-item">
+                                    <a class="img-box" href="{{url('template/upscale/media/music/image11.jpg')}}">
+                                        <img src="{{url('template/upscale/media/music/image-11.jpg')}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="grid-item">
+                                    <a class="img-box" href="{{url('template/upscale/media/music/image-1.jpg')}}">
                                         <img src="{{url('template/upscale/media/music/image-1.jpg')}}" alt="">
                                     </a>
                                 </div>
@@ -87,37 +87,33 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <h2>
-                            Share
+                            Share & Learn
                         </h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                            Utenim ad minim veniam quis nostrud exercitation ullamco laboris .
+                            Dengan bergabung dengan upscale, talent mendapatkan akses platform edukasi yang kami kembangkan, baik sebagai mentor maupun sebagai siswa.
                         </p>
                     </div>
                     <div class="col-lg-4">
                         <h2>
-                            Learn
+                            Expand Network
                         </h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                            Utenim ad minim veniam quis nostrud exercitation ullamco laboris .
+                            Perluas pertemananmu diberbagai bidang kemampuan dan diberbagai regional. Ikuti event-event khusus upscale yang akan dilakukan berkala. 
                         </p>
                     </div>
                     <div class="col-lg-4">
                         <h2>
-                            Make Money
+                            Get jobs & Make Money
                         </h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                            Utenim ad minim veniam quis nostrud exercitation ullamco laboris .
+                            Mulai bangun pipeline karirmu dengan Upscale. Daftarkan diri anda, lengkapi profile, ikuti assessment & dapatkan karir / pekerjaan yang sesuai harapan anda.
                         </p>
                     </div>
                 </div>
                 <hr class="space-lg" />
-                <h2 class="align-center">Our Network in many regional</h2>
+                <h2 class="align-center">Our Partnership in many regional</h2>
                 <p class="align-center width-650">
-                    Lorem ipsum dolor sit amet no sea takimata sanctus est Lorem ipsum dolor sit amete
-                    sare nostrud exercitation ullamco sea takiquis nostrud exercitatio.
+                    Kami secara aktif akan terus mengembangkan komunitas dan network kami dengan berbagai pihak. Nantikan kami hadir di kota anda.
                 </p>
                 <hr class="space" />
                 <div class="row">
@@ -126,71 +122,94 @@
                     </div>
                     <div class="col-lg-3">
                         <ul class="icon-list icon-circle align-right align-left-md">
-                            <li>Jakarta, Indonesia</li>
-                            <li>Bandung, Indonesia</li>
                             <li>Yogyakarta, Indonesia</li>
-                            <li>Malang, Indonesia</li>
-                            <li>Bali, Indonesia</li>
-                            <li>Surabaya, Indonesia</li>
-                            <li>Tangerang, Indonesia</li>
-                            <li>Semarang, Indonesia</li>
-                            <li>Solo, Indonesia</li>
-                            <li>Bogor, Indonesia</li>
+                            <li>Jakarta, soon</li>
+                            <li>Bandung, soon</li>
+                            <li>Malang, soon</li>
+                            <li>Bali, soon</li>
+                            <li>Surabaya, soon</li>
+                            <li>Tangerang, soon</li>
+                            <li>Semarang, soon</li>
+                            <li>Solo, soon</li>
+                            <li>Bogor, soon</li>
                         </ul>
                     </div>
                 </div>
-                <hr class="space-lg" />
+                <!--<hr class="space-lg" />
                 <h2>
-                    Currently open roles.
+                    Currently open roles urgently.
                 </h2>
                 <hr class="space" />
                 <ul class="text-list text-list-side boxed-area">
                     <li>
-                        <h3>Software Engineer</h3>
+                        <h3>Web Developer</h3>
                         <p>
-                            Placeat orci commodo, amet quo rem architecto possimus, accumsa.
+                            2 Years work experience, 1 year development experience with javascript & PHP, good english, work well under pressure.
                         </p>
-                        <div>Dublin, Ireland</div>
+                        <div>Yogyakarta, Remote</div>
                     </li>
                     <li>
-                        <h3>Community Manager</h3>
+                        <h3>Back End Engginer</h3>
                         <p>
-                            Placeat orci commodo, amet quo exercitation ullamco labori rem architecto possimus, accumsa.
+                            2+ years in writing GO, Prior experience developing inMicroservice, good english, work well under tight deadlines. 
                         </p>
-                        <div>Dublin, Ireland</div>
+                        <div>Yogyakarta, Remote</div>
                     </li>
                     <li>
-                        <h3>Sales supervisor</h3>
+                        <h3>Quality Assurance</h3>
                         <p>
-                            Placeat orci commodo, amet quo rem architecto possimus exercitation ullamco accumsa.
+                            3+ yers of software testing, Ability to design test cases documentation, experience intesting APIs, experience testing tools such as Postman, katalon, cypress, slenium, Gatling, etc. Comfortable with programming languages such as javascript, golang, Phyton etc. 
                         </p>
-                        <div>Dublin, Ireland</div>
+                        <div>Yogyakarta, Remote</div>
                     </li>
                     <li>
-                        <h3>React Developer</h3>
+                        <h3>Quality Assurance Manual</h3>
                         <p>
-                            Placeat orci commodo, amet quo rem architecto possimus, accumsa.
+                            2+ years experience as QA, experience in testing web-based projects, strong interest and experience in play games, experience testing APIs
                         </p>
-                        <div>Dublin, Ireland</div>
+                        <div>Yogyakarta, Remote</div>
                     </li>
+                    <li>
+                        <h3>Data Analyst</h3>
+                        <p>
+                            2 Yers work experience, Familiar with SQL, Basic scripting skill in phyton, good english, work well under pressure
+                        </p>
+                        <div>Yogyakarta, Remote</div>
+                    </li>
+                    <li>
+                        <h3>UI/UX Designer</h3>
+                        <p>
+                            3+ years working as UI/UX designer, good knowledge html,css, javascript, obsessed with good user-centered design practices
+                        </p>
+                        <div>Yogyakarta, Remote</div>
+                    </li>
+                    
                 </ul>
-                <hr class="space" />   <hr class="space-xs" />
-                <h3>Financial department manager</h3>
+                <hr class="space" />   <hr class="space-xs" /> -->
+                
+                <hr class="space" />
+
+                <h2 align="center">
+                    Currently open roles urgently.
+                </h2>
+                <hr class="space" />
+
+
+                <h3>Web Developer</h3>
                 <hr class="space-sm" />
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="row">
                             <div class="col-lg-8">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                                    2 years work experience, 1 year development experience with Javascript, 1 year development experience with PHP, Good English communication skills and client servicing experiences, Work well under pressure and tight deadlines
                                 </p>
                             </div>
                             <div class="col-lg-4">
                                 <ul class="icon-list icon-circle">
-                                    <li>Knowledge of blockchain</li>
-                                    <li>Team communication</li>
-                                    <li>Experience in Android apps</li>
+                                    <li>Fulltime Jobs</li>
+                                    <li>Remote/onsite</li>
+                                    <li>Contract 6 month</li>
                                 </ul>
                             </div>
                         </div>
@@ -203,7 +222,7 @@
                                             <i class="lnr lnr-users"></i>
                                             <div class="caption">
                                                 <h3 class="text-sm">Availability</h3>
-                                                <p>1 people</p>
+                                                <p>2 people</p>
                                             </div>
                                         </div>
                                     </td>
@@ -212,7 +231,7 @@
                                             <i class="lnr lnr-book"></i>
                                             <div class="caption">
                                                 <h3 class="text-sm">Experience</h3>
-                                                <p>Min 5 years</p>
+                                                <p>Min 2 years</p>
                                             </div>
                                         </div>
                                     </td>
@@ -220,8 +239,8 @@
                                         <div class="icon-box icon-box-left">
                                             <i class="lnr-graduation-hat lnr"></i>
                                             <div class="caption">
-                                                <h3 class="text-sm">Graduation</h3>
-                                                <p>Required</p>
+                                                <h3 class="text-sm">Min. Graduation</h3>
+                                                <p>none</p>
                                             </div>
                                         </div>
                                     </td>
@@ -235,23 +254,23 @@
                         <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                     </div>
                 </div>
+
                 <hr />
-                <h3>Financial department manager</h3>
+                <h3>UI/UX Designer</h3>
                 <hr class="space-sm" />
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="row">
                             <div class="col-lg-8">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                                    3+ years working as a UI/UX designer, Good knowledge and ability to implement the vision using HTML, CSS, Javascript, Experienced at driving a user experience from start-to-finish that delivers results, connects emotionally., Obsessed with good user-centered design practices and have an eye for detail.
                                 </p>
                             </div>
                             <div class="col-lg-4">
                                 <ul class="icon-list icon-circle">
-                                    <li>Knowledge of blockchain</li>
-                                    <li>Team communication</li>
-                                    <li>Experience in Android apps</li>
+                                    <li>Fulltime Jobs</li>
+                                    <li>Remote/onsite</li>
+                                    <li>Contract 6 month</li>
                                 </ul>
                             </div>
                         </div>
@@ -264,7 +283,7 @@
                                             <i class="lnr lnr-users"></i>
                                             <div class="caption">
                                                 <h3 class="text-sm">Availability</h3>
-                                                <p>1 people</p>
+                                                <p>2 people</p>
                                             </div>
                                         </div>
                                     </td>
@@ -273,7 +292,7 @@
                                             <i class="lnr lnr-book"></i>
                                             <div class="caption">
                                                 <h3 class="text-sm">Experience</h3>
-                                                <p>Min 5 years</p>
+                                                <p>Min 3 years</p>
                                             </div>
                                         </div>
                                     </td>
@@ -281,8 +300,8 @@
                                         <div class="icon-box icon-box-left">
                                             <i class="lnr-graduation-hat lnr"></i>
                                             <div class="caption">
-                                                <h3 class="text-sm">Graduation</h3>
-                                                <p>Required</p>
+                                                <h3 class="text-sm">Min. Graduation</h3>
+                                                <p>none</p>
                                             </div>
                                         </div>
                                     </td>
@@ -296,92 +315,203 @@
                         <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="section-base section-color no-padding-bottom section-top-overflow">
-            <div class="container">
-                <div class="boxed-area">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax" method="post" data-email="example@domain.com">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <input id="name" name="name" placeholder="Name" type="text" class="input-text" required>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input id="surname" name="surname" placeholder="Surname" type="text" class="input-text" required>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="town" name="town" placeholder="Town" type="text" class="input-text" required>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="state" name="state" placeholder="State" type="text" class="input-text" required>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="address" name="address" placeholder="Address" type="text" class="input-text" required>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <input id="zip" name="zip" placeholder="Zip Code" type="text" class="input-text" required>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input id="phone" name="phone" placeholder="Phone" type="text" class="input-text" required>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
-                                    </div>
-                                </div>
-                                <textarea id="messagge" name="messagge" class="input-textarea" placeholder="Write something ..." required></textarea>
-                                <div class="form-checkbox">
-                                    <input type="checkbox" id="check" name="check" value="check" required>
-                                    <label for="check">You accept the terms of service and the privacy policy</label>
-                                </div>
-                                <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
-                                <div class="success-box">
-                                    <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
-                                </div>
-                                <div class="error-box">
-                                    <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
-                                </div>
-                            </form>
+
+
+
+                <hr />
+                <h3>Quality Assurance (Manual)</h3>
+                <hr class="space-sm" />
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <p>
+                                    2+ years experience as a Quality Assurance, Experience in testing web-based projects, Strong interest and experience in playing video games, Experience in designing test plan and test cases documentation, Good English communication skills both written and verbal, able to explain defects and provide steps to reproduce clearly, Experience in testing APIs (REST API preferred), Ability to work with clients on tight deadlines and fluid requirements
+                                </p>
+                            </div>
+                            <div class="col-lg-4">
+                                <ul class="icon-list icon-circle">
+                                    <li>Fulltime Jobs</li>
+                                    <li>Remote/onsite</li>
+                                    <li>Contract 6 month</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-lg-4 order-md-first">
-                            <h2>
-                                Apply for the job <br />before it is too late.
-                            </h2>
-                            <hr class="space-sm" />
-                            <ul class="text-list text-list-bold">
-                                <li><b>Headquarter</b><p>Millennium Tower</p></li>
-                                <li><b>Location</b><p>Mountain View, California</p></li>
-                                <li><b>Phone</b><p>+2 22255566</p></li>
-                                <li><b>Email</b><p>info@business.com</p></li>
-                            </ul>
-                            <hr class="space-sm" />
-                            <ul class="accordion-list">
-                                <li>
-                                    <a href="#">Salary and holidays policy</a>
-                                    <div class="content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                            Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">Assistence and support</a>
-                                    <div class="content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                            Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <hr class="space space-40" />
+                        <table class="table table-grid table-border no-padding-y align-left table-full-sm">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr lnr-users"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Availability</h3>
+                                                <p>2 people</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr lnr-book"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Experience</h3>
+                                                <p>Min 2 years</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr-graduation-hat lnr"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Min. Graduation</h3>
+                                                <p>none</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="#" class="btn btn-sm btn-circle full-width">Apply now</a>
+                        <hr class="space-xs" />
+                        <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                     </div>
                 </div>
-                <hr class="space-lg visible-md" />
+
+
+
+                <hr />
+                <h3>Backend Engineer (Go)</h3>
+                <hr class="space-sm" />
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <p>
+                                    2+ years in writing GO, Prior experience developing microservices in the cloud using G, Ability to write scalable Go code adhering to the best practice, Solid security best practice, Strong computer science and engineering backgroun, Forward thinking and up to date on current and emerging architecture pattern.
+                                </p>
+                            </div>
+                            <div class="col-lg-4">
+                                <ul class="icon-list icon-circle">
+                                    <li>Fulltime Jobs</li>
+                                    <li>Remote/onsite</li>
+                                    <li>Contract 6 month</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr class="space space-40" />
+                        <table class="table table-grid table-border no-padding-y align-left table-full-sm">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr lnr-users"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Availability</h3>
+                                                <p>2 people</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr lnr-book"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Experience</h3>
+                                                <p>Min 2 years</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr-graduation-hat lnr"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Min. Graduation</h3>
+                                                <p>none</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="#" class="btn btn-sm btn-circle full-width">Apply now</a>
+                        <hr class="space-xs" />
+                        <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
+                    </div>
+                </div>
+
+                <div style=" text-align:center; background: #fff;height: 300px;position: relative;width: 100%;margin-top: -300px; background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,1) 53%, rgba(255,255,255,0) 100%);">
+                
+                    <div><a href="#" class="btn btn-sm btn-circle full-width" style="margin-top: 150px;width: 300px;">load more</a> </div> 
+
+                </div>
+
+                <!-- <hr />
+                <h3>Data Analyst</h3>
+                <hr class="space-sm" />
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <p>
+                                    2 years work experience, Familiar with SQL, writing and optimizing queries, Basic scripting skill in Python, Good English communication skills, and client servicing experience, Work well under pressure and tight deadlines, Nice-to-have previous experience in data analytics
+                                </p>
+                            </div>
+                            <div class="col-lg-4">
+                                <ul class="icon-list icon-circle">
+                                    <li>Fulltime Jobs</li>
+                                    <li>Remote/onsite</li>
+                                    <li>Contract 6 month</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr class="space space-40" />
+                        <table class="table table-grid table-border no-padding-y align-left table-full-sm">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr lnr-users"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Availability</h3>
+                                                <p>2 people</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr lnr-book"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Experience</h3>
+                                                <p>Min 2 years</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="icon-box icon-box-left">
+                                            <i class="lnr-graduation-hat lnr"></i>
+                                            <div class="caption">
+                                                <h3 class="text-sm">Min. Graduation</h3>
+                                                <p>none</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="#" class="btn btn-sm btn-circle full-width">Apply now</a>
+                        <hr class="space-xs" />
+                        <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
+                    </div>
+                </div> -->
+
             </div>
         </section>
+        
     </main>
 
 @endsection

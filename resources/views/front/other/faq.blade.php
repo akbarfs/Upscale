@@ -7,164 +7,105 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <h3>General questions</h3>
+                    <h3>Untuk Perusahaan / Pengusaha</h3>
                     <hr class="space-sm">
                     <ul class="accordion-list">
                         <li>
-                            <a href="#">Do you provide product support ?</a>
+                            <a href="#">Siapakah kami ?</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Kami adalah perusahaan yang berfokus pada solusi penyedia talent / tenaga kerja.
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#">How can I but accessories and repairing tools for my items ?</a>
+                            <a href="#">Siapakah yang membutuhkan kami ?</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Semua perusahaan yang membutuhkan talent ( tenaga kerja ), baik sebagai karyawan fulltime, freelance, secara onsite ( dikantor anda ) atau secara remote ( from home / tempat lainya )
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#"> Who do I need to contact to get support ?</a>
+                            <a href="#"> Skala perusahaan yang cocok menggunakan Upscale ?</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Service kami cocok untuk segala level perusahaan, baik UKM, Startup maupun corporate
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#"> Which currencies do you accept and how can I pay ?</a>
+                            <a href="#">Bagaimana cara request talent / tenaga kerja ? </a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Silahkan hubungi kami ke nomor 087-888-666-531, baik whatsapp atau telephone
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#">  What is the product for businesses ? </a>
+                            <a href="#">  Apakah kelebihan / keunikan Upscale dibanding perusahaan lain </a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Perusahaan kami memiliki ecosystem yang berkembang pesat, dengan kerjasama dengan berbagai pihak kami memiliki total database talent pool lebih dari puluhan ribu talent. 
                                 </p>
                             </div>
                         </li>
                     </ul>
                     <hr class="space">
-                    <h3>Technological issues</h3>
+                    <h3>Untuk Talent</h3>
                     <hr class="space-sm">
                     <ul class="accordion-list">
                         <li>
-                            <a href="#">Is your product work with Linux and Windows ?</a>
+                            <a href="#">Bagaimana cara mendaftar Upscale ?</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Bisa klik tombol login / register di kanan atas website ini , atau klik ke halaman "<a href="{{url('help-talent')}}" target="_blank">for talent</a>"
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#"> Is the kernel updated ?</a>
+                            <a href="#">Apa manfaat bergabung ke upscale?</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Selain mendapatkan tawaran pekerjaan, anda dapat memperluas network kamu agar banyak peluang yang mungkin bisa anda dapatkan.
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#"> What tools do I need to dismount the product ?</a>
+                            <a href="#">Bagaimana status pekerja bagi talent yang mendapatkan pekerjaan?</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Status pekerja ada beberapa macam, ada yang sebagai karyawan upscale, ada yang berstatus sebagai pegawai internal client kami. Tergantung kesepakatan dari client dan talent itu sendiri.
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#">Does the warranty apply to used items ?</a>
+                            <a href="#">Apakah saya bisa mendapatkan side project dari Upscale?</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Ya, tentu saja. Meskipun anda saat ini sudah bekerja, namun kami bisa membantu anda mendapatkan pekerjaan sampingan. Namun pastikan tidak mengganggu pekerjaan ya.
                                 </p>
                             </div>
                         </li>
                     </ul>
                     <hr class="space">
-                    <h3>Financial issues</h3>
-                    <hr class="space-sm">
-                    <ul class="accordion-list">
-                        <li>
-                            <a href="#">Can I pay monthly with rates ?</a>
-                            <div class="content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#">Do you apply extra charges for payments by bank transfer ?</a>
-                            <div class="content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#">How much do I need to wait after the payment ?</a>
-                            <div class="content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#">What do I do if the payment is unsucceful ?</a>
-                            <div class="content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#">Are cryptcurrencies like Bitcoin and Ethereum accepted ?</a>
-                            <div class="content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
+                    
+
+
                 </div>
                 <div class="col-lg-4">
                     <hr class="space visible-md" />
                     <div class="fixed-area" data-offset="80">
-                        <h2>Request support.</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dol liqua.
-                        </p>
-                        <a href="#" class="btn-text">Contacts page</a>
-                        <hr class="space">
+                        <h2>Contact Us.</h2>
+                        <hr class="space-sm">
                         <ul class="text-list text-list-bold">
-                            <li><b>Headquarter</b><p>Millennium Tower</p></li>
-                            <li><b>Location</b><p>Mountain View CA 94043</p></li>
-                            <li><b>Phone</b><p>+2 22255566</p></li>
-                            <li><b>Email</b><p>info@business.com</p></li>
-                            <li><b>Sales email</b><p>sales@business.com</p></li>
+                            <li><b>Headquarter</b><p>Upscale coworkspace</p></li>
+                            <li><b>Location</b><p>Maguwoharjo, Yogyakarta</p></li>
+                            <li><b>Phone</b><p>087-888-666-531</p></li>
+                            <li><b>Email</b><p>elvon.indonesia@gmail.com</p></li>
+                            <!-- <li><b>Sales email</b><p>sales@business.com</p></li> -->
                         </ul>
-                        <hr class="space">
+                        <hr class="space-sm">
                         <div class="icon-links icon-social social-colors">
                             <a class="facebook"><i class="icon-facebook"></i></a>
                             <a class="twitter"><i class="icon-twitter"></i></a>
