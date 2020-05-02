@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\Question;
 
 class questionController extends Controller
 {
@@ -22,7 +26,14 @@ class questionController extends Controller
         //     'type'=>$request->type,
         //     'answer' => $answer // var txt =  imam batch 5
         // ];                                          // txt.slice(" ") => [imam,batch,5]
+        // dd($request->all());
 
-        dd($request->all());
+        Question::create ([
+            'type_question' => $request->type_question,
+            'question' => $request->question,
+            'description' => $request->description,
+            'type' => $request->type
+        ]);
+        return redirect('/admin/question/create');
     }
 }
