@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Question;
+use App\Inquery;
+use App\InqueryOption;
 
 class questionController extends Controller
 {
@@ -17,23 +18,21 @@ class questionController extends Controller
 
     public function store(Request $request)
     {
-        // $answer=$request->answer;
-        // $answer=explode(' ',$answer);
-        // $data = [
-        //     'question_id'=>$request->question_id,
-        //     'question'=>$request->question,
-        //     'description'=>$request->description,
-        //     'type'=>$request->type,
-        //     'answer' => $answer // var txt =  imam batch 5
-        // ];                                          // txt.slice(" ") => [imam,batch,5]
-        // dd($request->all());
-
-        Question::create ([
+        $id = Inquery::create ([
             'type_question' => $request->type_question,
             'question' => $request->question,
-            'description' => $request->description,
-            'type' => $request->type
+            'description' => $request->description, 
+            'type_option' => $request->type_option
         ]);
-        return redirect('/admin/question/create');
+        
+        $array = $request->option; 
+        foreach($array as $data)
+        {
+            InqueryOption::create ([
+                'inquery_id' => $id->id,
+                'option' => $data,
+            ]);
+        }
+        return redirect('question/create');
     }
 }
