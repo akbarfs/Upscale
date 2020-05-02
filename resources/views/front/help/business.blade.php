@@ -27,9 +27,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                     Service kami cocok untuk membantu berbagai skala perusahaan
                     <ul>
                         <li>Enterprise Corporation</li>
+                        <li>Startup Company</li>
                         <li>E-commerce</li>
                         <li>Small-business</li>
-                        <li>Startup Company</li>
                     </ul>
                         
                 </div>
@@ -49,22 +49,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
             <div class="row">
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-side-icon">
-                        <i class="lnr lnr-users"></i>
-                        <div class="caption">
-                            <h2>Paths tracking</h2>
-                            <p>
-                                Lorem ipsum dolor sitamet consectetur adipisicino mae.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="cnt-box cnt-box-side-icon">
                         <i class="lnr lnr-user"></i>
                         <div class="caption">
-                            <h2>Music player</h2>
+                            <h2>Help find talent</h2>
                             <p>
-                                Lorem ipsum dolor sitamete consectetur adipi elito.
+                                Kami membantu anda dalam mencari talent yang tepat
                             </p>
                         </div>
                     </div>
@@ -73,9 +62,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                     <div class="cnt-box cnt-box-side-icon">
                         <i class="lnr lnr-users"></i>
                         <div class="caption">
-                            <h2>Secure access</h2>
+                            <h2>Help resource management</h2>
                             <p>
-                                Lorem ipsum dolor sitamete are consecte elito ippocrito.
+                               Kami membantu anda dalam mengatur talent anda
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cnt-box cnt-box-side-icon">
+                        <i class="lnr lnr-diamond"></i>
+                        <div class="caption">
+                            <h2>Help setup office</h2>
+                            <p>
+                                Membantu anda setup office di regional tertentu
                             </p>
                         </div>
                     </div>
@@ -89,16 +89,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
             <div class="row row-fit-lg">
                 <div class="col-lg-3">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                        Utenim ad minim venia. Duis aute irure dolor in reprehenderite in voluptate velit esse cillum dolore eurtclo
-                        mertiso mortaccio della troia fugiat nulla pariature artolo.
+                        <!-- 
+                        Access to additional talent pools and flexible scaling are critical for businesses that want to innovate and succeed with their software products. Even if you have a clear project roadmap and a strong core team, extra development capabilities will help you reach your milestones faster. -->
+
+                        Dapatkan akses database talent kami untuk membantu scaling up perusaahaan anda dengan cara yang flexible. Hal ini sangat krusial bagi bisnis yang ingin berinovasi dengan cepat dan tepat. Terlebih apabila anda memiliki roadmap project yang baik dan strategi yang tepat 
                     </p>
                 </div>
                 <div class="col-lg-3">
                     <p>
-                        Escolo ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempore dolor in reprehenderite in voluptate.
-                        Utenim ad minim venia. Duis aute irure dolor in reprehenderite in voluptate velit esse cillum dolore eurtclo
-                        mertiso mortaccio della troia fugiat nulla paratiro.
+                        <!-- Since 2002, N-iX has helped companies across the globe augment their software development teams with top IT talent. With an internal pool of 1,000 tech experts and a strong employer brand, we can quickly find the right specialists to boost your project. -->
+
+                        Sejak tahun 2009, telah membantu banyak perusahaan untuk mewujudkan harapan dengan mencarikan talent atau vendor yang tepat. Dengan database talent pool kami yang jumlahnya lebih dari 5000 talent, kami dapat membantu anda mewujudkan visi anda
                     </p>
                 </div>
                 <div class="col-lg-6">
@@ -110,18 +111,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                 </a>
                             </div>
                             <div class="grid-item">
-                                <a class="img-box" href="{{url('template/upscale/media/music/image-11.jpg')}}">
-                                    <img src="{{url('template/upscale/media/music/image-13.jpg')}}" alt="">
+                                <a class="img-box" href="{{url('template/upscale/media/music/image-1.jpg')}}">
+                                    <img src="{{url('template/upscale/media/music/image-1.jpg')}}" alt="">
                                 </a>
                             </div>
                             <div class="grid-item">
-                                <a class="img-box" href="{{url('template/upscale/media/music/image-7.jpg')}}">
+                                <a class="img-box" href="{{url('template/upscale/media/music/image-3.jpg')}}">
                                     <img src="{{url('template/upscale/media/music/image-3.jpg')}}" alt="">
                                 </a>
                             </div>
                             <div class="grid-item">
-                                <a class="img-box" href="{{url('template/upscale/media/music/image-5.jpg')}}">
-                                    <img src="{{url('template/upscale/media/music/image-1.jpg')}}" alt="">
+                                <a class="img-box" href="{{url('template/upscale/media/music/image-13.jpg')}}">
+                                    <img src="{{url('template/upscale/media/music/image-13.jpg')}}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -134,9 +135,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
     <section class="section-base section-color">
         <div class="container" style="padding-top: 0">
             <ul class="slider" data-options="type:carousel,arrows:false,nav:false,perView:5,perViewMd:3,perViewXs:2,gap:80">
-                <li>
-                    <img src="{{url('template/upscale/media/logos/logo-7.png')}}" alt="" />
-                </li>
                 <li>
                     <img src="{{url('template/upscale/media/logos/logo-6.png')}}" alt="" />
                 </li>
@@ -159,29 +157,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
     <section class="section-base">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="cnt-box cnt-box-top">
-                        <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-11.jpg')}}" alt="" /></a>
-                        <div class="caption">
-                            <h2>The Factory Company</h2>
-                            <span class="extra-field">Small business</span>
-                            <p>
-                                Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempore.
-                            </p>
-                            <a class="btn-text" href="#">Read story</a>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-top">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-9.jpg')}}" alt="" /></a>
                         <div class="caption">
-                            <h2>Dimitri Vanilla</h2>
-                            <span class="extra-field">Self employer</span>
+                            <h2>Krafthaus, Coorporate management</h2>
+                            <span class="extra-field">Digital Agencies</span>
                             <p>
-                                Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempore.
+                                Sejak tahun 2012 talent kami dipercaya oleh perusahaan Australia sebagai Managing Director untuk mengelola cabang di Indonesia
                             </p>
-                            <a class="btn-text" href="#">Read story</a>
+                            <a class="btn-text" href="#">Arief Widyananda</a>
                         </div>
                     </div>
                 </div>
@@ -189,30 +175,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                     <div class="cnt-box cnt-box-top">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-10.jpg')}}" alt="" /></a>
                         <div class="caption">
-                            <h2>Traders Corporate</h2>
-                            <span class="extra-field">Public company</span>
+                            <h2>Cakap, Dedicated Office & Team</h2>
+                            <span class="extra-field">Startup Education</span>
                             <p>
-                                Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempore.
+                                Sejak tahun 2015 s/d 2020 membantu Cakap mendapatkan belasan programer & mengelola development office di jogja.
                             </p>
-                            <a class="btn-text" href="#">Read story</a>
+                            <a class="btn-text" href="#">Dodi Prakoso Wibowo</a>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-4">
+                    <div class="cnt-box cnt-box-top">
+                        <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-11.jpg')}}" alt="" /></a>
+                        <div class="caption">
+                            <h2>HOS, Digital Transformation</h2>
+                            <span class="extra-field">UKM, E-Commerce</span>
+                            <p>
+                                Partner Vendor kami telah banyak membantu UKM untuk mentransformasi usaha retailnya menerapkan transformasi digital O2O.
+                            </p>
+                            <a class="btn-text" href="#">Sistemtoko.com</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <hr class="space-lg" />
             <div class="row">
                 <div class="col-lg-6">
                     <img class="margin-23" src="{{url('template/upscale/media/customers-2.png')}}" alt="" />
                     <hr class="space-sm" />
-                    <h3>Circlebot Alphabet Division</h3>
+                    <h3>Arutala, Coorporate management</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
+                        Salah satu member dari network kami, dipercaya menjadi CEO untuk mewujudkan visi Arutala, perusahaan AR/VR yang berfokus operational excellence dan improved customer experiences
                     </p>
-                    <a href="#" class="btn-text">Read this story</a>
+                    <a href="#" class="btn-text">Indra Haryadi</a>
                 </div>
                 <div class="col-lg-6">
                     <hr class="space-xs" />
-                    <h2>More stories from our<br />best costumers around the world.</h2>
+                    <h2>More stories from our<br />member community around indonesia.</h2>
                     <hr class="space-sm" />
                     <div class="grid-list" data-columns="1">
                         <div class="grid-box">
@@ -220,11 +221,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                 <div class="cnt-box cnt-box-side ">
                                     <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-12.jpg')}}" alt="" /></a>
                                     <div class="caption">
-                                        <h2>Richard Scally</h2>
+                                        <h2>JDV, Incubator Manager</h2>
                                         <p>
-                                            Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmo.
+                                            Salah satu member kami berpengalaman membantu Telkom dalam mengelola Jogja Digital Valley as coworking space & Incubator
                                         </p>
-                                        <a href="#" class="btn-text">Read this story</a>
+                                        <a href="#" class="btn-text">Saga Iqranegara</a>
                                     </div>
                                 </div>
                             </div>
@@ -232,9 +233,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                 <div class="cnt-box cnt-box-side ">
                                     <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-13.jpg')}}" alt="" /></a>
                                     <div class="caption">
-                                        <h2>Bluecircle</h2>
+                                        <h2>Koinwork, supply programmers </h2>
                                         <p>
-                                            Lorem ipsum dolor sitamet consectetur adipisicing elito sed do tempo.
+                                           Kami telah membantu Koinwork untuk menambah team programmer
                                         </p>
                                         <a href="#" class="btn-text">Read this story</a>
                                     </div>
@@ -245,10 +246,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                 </div>
             </div>
             <hr class="space-lg" />
-            <h2 class="align-center">Simple cheap plans for everyone.</h2>
+            <h2 class="align-center">Simple & an affordable price plans for everyone.</h2>
             <p class="align-center width-650">
-                Lorem ipsum dolor sit amet no sea takimata sanctus est lorem ipsum dolor sit amete
-                sare nostrud exercitation ullamco sea takiquis nostrud exercitatio.
+                Paket harga dengan konsep yang sederhana & terjangkau untuk semua orang. Baik skala Coorporate, startup sampai dengan UKM
             </p>
             <hr class="space" />
             <table class="table table-grid table-border align-center table-full-sm no-padding-y">
@@ -257,46 +257,46 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                         <td>
                             <div class="counter counter-vertical counter-icon align-center">
                                 <div>
-                                    <h3>Monthly activations</h3>
+                                    <h3>Talent Pool ( partnership )</h3>
                                     <div class="value">
-                                        <span class="text-md" data-to="29" data-speed="3000" data-unit="%">29</span>
+                                        <span class="text-md" data-to="100000" data-speed="3000" data-unit="+">100.000</span>
                                         <span></span>
                                     </div>
                                 </div>
                             </div>
                             <hr class="space-xs" />
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipis ulla pariatur.
+                                didapat dari partnership, community, universitas dan lain-lain
                             </p>
                         </td>
                         <td>
                             <div class="counter counter-vertical counter-icon align-center">
                                 <div>
-                                    <h3>Conversations</h3>
+                                    <h3>Talent Database ( member )</h3>
                                     <div class="value">
-                                        <span class="text-md" data-to="30000" data-speed="3000" data-unit="+">30000</span>
+                                        <span class="text-md" data-to="7000" data-speed="3000" data-unit="+">7.000</span>
                                         <span></span>
                                     </div>
                                 </div>
                             </div>
                             <hr class="space-xs" />
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipis ulla pariatur.
+                                Kami memiliki database talent lebih dari 7.000 kontak
                             </p>
                         </td>
                         <td>
                             <div class="counter counter-vertical counter-icon align-center">
                                 <div>
-                                    <h3>Revenues increase</h3>
+                                    <h3>Talent Deliver</h3>
                                     <div class="value">
-                                        <span class="text-md" data-to="5" data-speed="3000" data-unit="x">5</span>
+                                        <span class="text-md" data-to="100" data-speed="3000" data-unit="+">5</span>
                                         <span></span>
                                     </div>
                                 </div>
                             </div>
                             <hr class="space-xs" />
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipis ulla pariatur.
+                                Sejak tahun 2009 kami telah mengelola / men-deliver ratusan talent
                             </p>
                         </td>
                     </tr>

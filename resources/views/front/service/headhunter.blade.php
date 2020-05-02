@@ -7,8 +7,8 @@
         <div class="container">
             <hr class="space-lg" />
             <h1 data-anima="fade-in" data-time="1000">
-                Membutuhkan tambahan team ?<br />
-                <span style="font-size: 35px">Kami dapat membantu anda menemukan talent yang tepat dan membantu mengelolanya.</span>
+                Membutuhkan talent untuk jadi karyawan ?<br />
+                <span style="font-size: 35px">Kami dapat membantu anda menemukan talent yang tepat.</span>
             </h1>
             <hr class="space-sm" />
             <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com" data-anima="fade-in" data-time="1000">
@@ -41,9 +41,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Fulltime Onsite</h2>
+                                <h2>Low Cost</h2>
                                 <p>
-                                    Outsource fulltime in your office
+                                    Biaya terjangkau
                                 </p>
                             </div>
                         </div>
@@ -104,45 +104,6 @@
                     <img src="{{url('template/upscale/media/logos/logo-3.png')}}" alt="" />
                 </li>
             </ul>
-        </div>
-    </section>
-
-    <section id="features" class="section-base section-color align-center section-bottom-layer-2">
-        <div class="container">
-            <h2 class="align-center" data-anima="fade-bottom" data-time="1000" style="margin: 0 auto; max-width: 900px">
-                Selain talent onsite, kami juga menyediakan talent remote yang dapat dipastikan produktifasnya secara realtime.
-            </h2>
-            <p class="align-center width-650" data-anima="fade-bottom" data-time="1000">
-                Kami memiliki framework kerja yang dapat digunakan untuk talent anda, baik yang bekerja secara remote atau secara onsite
-            </p>
-            <hr class="space" />
-            <img src="{{url('template/upscale/media/devices.png')}}" alt="" />
-        </div>
-    </section>
-
-    <section class="section-base no-padding-top align-center">
-        <div class="container">
-            <hr class="space" />
-            <div class="row">
-                <div class="col-lg-4">
-                    <h3>Aman & Terjamin </h3>
-                    <p>
-                        Upscale menjadi penjamin dan penengah antara talent & perusahaan
-                    </p>
-                </div>
-                <div class="col-lg-4">
-                    <h3>Space & Management</h3>
-                    <p>
-                        Dapat membantu mengelola talent beserta workspace & fasilitas 
-                    </p>
-                </div>
-                <div class="col-lg-4">
-                    <h3>Cost Efisien</h3>
-                    <p>
-                        Membantu anda untuk mengefisiensi pengeluaran sesuai dengan kebutuhan
-                    </p>
-                </div>
-            </div>
         </div>
     </section>
 

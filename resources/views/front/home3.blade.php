@@ -72,7 +72,7 @@
                             <div class="caption">
                                 <h2>Project Base</h2>
                                 <p>
-                                    Choose Talent / Vendor for your sub contractor 
+                                    Get Talent / Vendor for your sub contractor 
                                 </p>
                             </div>
                         </div>
@@ -88,23 +88,29 @@
     <section class="section-base section-color section-top-overflow" style="background: #37517E">
         <div class="container" style="padding-top: 0">
             <ul class="slider" data-options="type:carousel,arrows:false,nav:false,perView:5,perViewMd:3,perViewXs:2,gap:80">
-                <li>
-                    <img src="{{url('template/upscale/media/logos/white/logo-1.png')}}" alt="" />
+                <li  class="tooltipx">
+                    <img src="{{url('template/upscale/media/logos/white/logo-1.png')}}" alt=""  />
+                    <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li>
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-2.png')}}" alt="" />
+                    <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li>
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-3.png')}}" alt="" />
+                    <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li>
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-4.png')}}" alt="" />
+                    <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li>
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-5.png')}}" alt="" />
+                    <span class="tooltiptext">Our member experience</span>
                 </li>
-                <li>
+                <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-6.png')}}" alt="" />
+                    <span class="tooltiptext">Our member experience</span>
                 </li>
             </ul>
         </div>
@@ -116,7 +122,7 @@
                 Selain talent onsite, kami juga menyediakan talent remote yang dapat dipastikan produktifasnya secara realtime.
             </h2>
             <p class="align-center width-650" data-anima="fade-bottom" data-time="1000">
-                Kami memiliki beberapa framework untuk talent anda, baik yang bekerja secara remote atau secara onsite
+                Kami memiliki framework kerja yang dapat digunakan untuk talent anda, baik yang bekerja secara remote atau secara onsite
             </p>
             <hr class="space" />
             <img src="{{url('template/upscale/media/devices.png')}}" alt="" />
@@ -128,21 +134,21 @@
             <hr class="space" />
             <div class="row">
                 <div class="col-lg-4">
-                    <h3>Jam mulai kerja</h3>
+                    <h3>Aman & Terjamin </h3>
                     <p>
-                        Anda dapat mengetahui waktu mulai kerja tiap talent setiap harinya
+                        Upscale menjadi penjamin dan penengah antara talent & perusahaan
                     </p>
                 </div>
                 <div class="col-lg-4">
-                    <h3>Lama bekerja</h3>
+                    <h3>Space & Management</h3>
                     <p>
-                        Monitoring lama waktu bekerja setiap hari
+                        Dapat membantu mengelola talent beserta workspace & fasilitas 
                     </p>
                 </div>
                 <div class="col-lg-4">
-                    <h3>Tingkat produktifitas</h3>
+                    <h3>Cost Efisien</h3>
                     <p>
-                        Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempore fugiata nulla paria mesta.
+                        Membantu anda untuk mengefisiensi pengeluaran sesuai dengan kebutuhan
                     </p>
                 </div>
             </div>
@@ -155,16 +161,15 @@
                 <div class="col-lg-6">
                     <h2>How we works ?<br />you name it we do it.</h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                        Utenim ad minim veniam quis nostrud exercit  aliquip d minim veniam quis nostrud exercit ex ea commodo consequata elitsed do eiusmo dolore.
+                       Konsultasikan visi dan ekspektasi terhadap bisnis / plan anda. Kami akan membantu mendapatkan talent yang tepat dari ecosystem upscale untuk membantu mewujudkan plan anda. Kami akan pastikan talent yang kami tawarkan sedekat mungkin dengan yang anda harapkan
                     </p>
                     <hr class="space-sm" />
                     <div class="counter counter-horizontal counter-icon">
                         <div>
-                            <h3>Order your food in less than </h3>
+                            <h3>Ekspektasi waktu konsultasi</h3>
                             <div class="value text-lg">
-                                <span data-to="90" data-speed="5000">90</span>
-                                <span class="text-md">Seconds</span>
+                                <span data-to="60" data-speed="1000">0</span>
+                                <span class="text-md">Minutes</span>
                             </div>
                         </div>
                     </div>
@@ -177,7 +182,7 @@
                                 <h3>Share your business vision</h3>
                                 <div>
                                     <p>
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Agar kami dapat mengerti & dapat membantu anda dalam menentukan pemilihan talent yang tepat
                                     </p>
                                 </div>
                             </div>
@@ -188,7 +193,7 @@
                                 <h3>We find talents & assessment</h3>
                                 <div>
                                     <p>
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Kami carikan dari network kami & melakukan assassment untuk memastikan talent memiliki skill yang sesuai
                                     </p>
                                 </div>
                             </div>
@@ -199,7 +204,7 @@
                                 <h3>We Bring the list to You</h3>
                                 <div>
                                     <p>
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Kami akan memberikan laporan hasil dari assessment kami ke anda agar anda dapat memastikan sendiri secara langsung
                                     </p>
                                 </div>
                             </div>
@@ -216,24 +221,23 @@
                 <div class="col-lg-6 col-md-6">
                     <h2>You can assessment by yourself !<br />lets interview & test the talent.</h2>
                     <p>
-                        Lorem ipsum dolor sit amet no sea takimata sanctus est Lorem ipsum dolor sit amete
-                        sare nostrudente exercitation ullamco sea takiquis nostrud exercitatio.
+                        Kami memberikan anda kebebasan untuk memastikan langsung kandidat yang telah lolos dari assessment kami. Sehingga anda lebih yakin dalam memperkerjakan talent yang anda pilih
                     </p>
                     <hr class="space" />
                     <ul class="text-list text-list-image">
                         <li>
                             <img src="{{url('template/upscale/media/photo/square-1.png')}}" alt="" />
                             <div class="content">
-                                <h3>Slow battery usage and high performance</h3>
-                                <p>Placeat orci commodo, amet quo rem architecto possimus.</p>
+                                <h3>Interview langsung menggunakan media online</h3>
+                                <p>Zoom, Whatsapp, atau media lainya.</p>
                                 <div></div>
                             </div>
                         </li>
                         <li>
                             <img src="{{url('template/upscale/media/photo/square-2.png')}}" alt="" />
                             <div class="content">
-                                <h3>Snapchat style filters with a plus</h3>
-                                <p>Placeat orci commodo, amet quo rem architecto possimuse arte.</p>
+                                <h3>Pengujian menggunakan dengan challange</h3>
+                                <p>Live test code, logic test atau cara lainya.</p>
                                 <div></div>
                             </div>
                         </li>
@@ -248,18 +252,6 @@
                         <li>
                             <img src="{{url('template/upscale/media/phone-screen-8.png')}}" alt="" />
                         </li>
-                        <li>
-                            <img src="{{url('template/upscale/media/phone-screen-9.png')}}" alt="" />
-                        </li>
-                        <li>
-                            <img src="{{url('template/upscale/media/phone-screen-4.png')}}" alt="" />
-                        </li>
-                        <li>
-                            <img src="{{url('template/upscale/media/phone-screen-5.png')}}" alt="" />
-                        </li>
-                        <li>
-                            <img src="{{url('template/upscale/media/phone-screen-6.png')}}" alt="" />
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -270,18 +262,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>Sudah memilih talent ?<br />ok lets we execute your idea.</h2>
+                    <h2>Mendapat talent yang cocok ?<br />ok lets we execute your idea.</h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                        Utenim ad minim veniam quis nostrud exercit  aliquip d minim veniam quis nostrud exercit ex ea commodo consequata elitsed do eiusmo dolore.
+                        Setelah anda yakin dengan talent terpilih, Apabila anda memilih jenis kontrak remote outsource, kami juga dapat membantu anda mengelola beberapa hal seperti coworkspace, absensi, timeline, task, kpi dll
                     </p>
                     <hr class="space-sm" />
                     <div class="counter counter-horizontal counter-icon">
                         <div>
-                            <h3>Order your food in less than </h3>
+                            <h3>Estimasi pencarian talent </h3>
                             <div class="value text-lg">
-                                <span data-to="90" data-speed="5000">90</span>
-                                <span class="text-md">Seconds</span>
+                                <span data-to="14" data-speed="1000">2</span>
+                                <span class="text-md">days</span>
                             </div>
                         </div>
                     </div>
@@ -294,7 +285,7 @@
                                 <h3>Choose Talent & contract </h3>
                                 <div>
                                     <p>
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Pilih kandidat dan type service yang anda inginkan apakah onsite / remote, fulltime / freelance, outsource / hiring
                                     </p>
                                 </div>
                             </div>
@@ -305,7 +296,7 @@
                                 <h3>Execute</h3>
                                 <div>
                                     <p>
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Kami juga dapat membantu anda mengelola beberapa hal seperti coworkspace, absensi, perijinan, timeline, task, kpi dll
                                     </p>
                                 </div>
                             </div>
@@ -313,10 +304,10 @@
                         <div class="step-item">
                             <span>6</span>
                             <div class="content">
-                                <h3>Deliver!</h3>
+                                <h3>Deliver! </h3>
                                 <div>
                                     <p>
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        We are done here. Good Luck & Success !
                                     </p>
                                 </div>
                             </div>
@@ -327,7 +318,7 @@
         </div>
     </section>
 
-    <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-6.jpg')}}">
+    <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-4.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -369,27 +360,31 @@
 
             <div class="row">
                 <div class="col-lg-4">
-                    <h2>Get the most aggressive prices on the market.</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet no sea takimata sanctus est Lorem ipsumo.
-                    </p>
+                    <h2>Recruitment Type.</h2>
+                    <p>Tentukan tipe rekrutmen anda. Pilihan fasilitas tidak bersifat wajib, sehingga masih dapat disesuaikan kembali sesuai kebutuhan. </p>
                     <hr class="space-sm" />
                     <ul class="accordion-list">
                         <li>
-                            <a href="#">Refunds and money back policy</a>
+                            <a href="#">Dedicated Team</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Menyediakan resource talent baik onsite / remote, Fulltime / partime, outsource / karyawan internal
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#">Assistence and support</a>
+                            <a href="#">Head Hunter</a>
                             <div class="content">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                    Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
+                                    Menyediakan fasilitas pencarian talent untuk dijadikan karyawan internal
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Project Base</a>
+                            <div class="content">
+                                <p>
+                                    Menyediakan fasilitas pencarian vendor untuk menjadi sub-contractor project anda tanpa perlu mengetahui komposisi tim
                                 </p>
                             </div>
                         </li>
@@ -399,54 +394,66 @@
                     <table class="table table-border table-price">
                         <thead>
                             <tr>
-                                <th>Features</th>
-                                <th>Personal</th>
-                                <th>Commercial</th>
-                                <th>Enterprise</th>
+                                <th>Pilihan Fasilitas yang disediakan</th>
+                                <th>Dedicated Team</th>
+                                <th>Head Hunter</th>
+                                <th>Project base</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Suggestions related to your interests</td>
+                                <td>Talent Hunt</td>
+                                <td><i class="icon-check"></i></td> <!---icon-check-gray-->
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>CoWork Space</td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Remote Worker</td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Onsite Worker</td>
                                 <td><i class="icon-check"></i></td>
                                 <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Resource Operational & Management</td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>HR Manager</td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>IT Consultant</td>
+                                <td><i class="icon-check"></i></td>
+                                <td></td>
                                 <td><i class="icon-check"></i></td>
                             </tr>
                             <tr>
-                                <td>Listen on all devices</td>
+                                <td>Resource Tax and Legal</td>
                                 <td><i class="icon-check"></i></td>
-                                <td><i class="icon-check"></i></td>
-                                <td><i class="icon-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Upload up to 50.000 songs</td>
-                                <td><i class="icon-check-gray"></i></td>
-                                <td><i class="icon-check"></i></td>
+                                <td></td>
                                 <td><i class="icon-check"></i></td>
                             </tr>
                             <tr>
-                                <td>Radio based on sentiments and more</td>
-                                <td><i class="icon-check-gray"></i></td>
+                                <td>Share Project Risk & Responsibilty</td>
+                                <td></td>
+                                <td></td>
                                 <td><i class="icon-check"></i></td>
-                                <td><i class="icon-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Switch to another song whenever you want</td>
-                                <td><i class="icon-check-gray"></i></td>
-                                <td><i class="icon-check-gray"></i></td>
-                                <td><i class="icon-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Music download and offline playing</td>
-                                <td><i class="icon-check-gray"></i></td>
-                                <td><i class="icon-check-gray"></i></td>
-                                <td><i class="icon-check"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Price per month</td>
-                                <td><b>$19</b></td>
-                                <td><b>$39</b></td>
-                                <td><b>$99</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -475,23 +482,8 @@
                     <div class="col-lg-8">
                         <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax" method="post" data-email="example@domain.com">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <input id="name" name="name" placeholder="Name" type="text" class="input-text" required>
-                                </div>
-                                <div class="col-lg-6">
-                                    <input id="surname" name="surname" placeholder="Surname" type="text" class="input-text" required>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input id="town" name="town" placeholder="Town" type="text" class="input-text" required>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input id="state" name="state" placeholder="State" type="text" class="input-text" required>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input id="address" name="address" placeholder="Address" type="text" class="input-text" required>
-                                </div>
-                                <div class="col-lg-3">
-                                    <input id="zip" name="zip" placeholder="Zip Code" type="text" class="input-text" required>
                                 </div>
                                 <div class="col-lg-6">
                                     <input id="phone" name="phone" placeholder="Phone" type="text" class="input-text" required>
@@ -501,10 +493,7 @@
                                 </div>
                             </div>
                             <textarea id="messagge" name="messagge" class="input-textarea" placeholder="Write something ..." required></textarea>
-                            <div class="form-checkbox">
-                                <input type="checkbox" id="check" name="check" value="check" required>
-                                <label for="check">You accept the terms of service and the privacy policy</label>
-                            </div>
+                            
                             <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
                             <div class="success-box">
                                 <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
@@ -516,17 +505,17 @@
                     </div>
                     <div class="col-lg-4 order-md-first">
                         <h2>
-                            Apply for the job <br />before it is too late.
+                            Request Quotation. <br />
                         </h2>
                         <hr class="space-sm" />
                         <ul class="text-list text-list-bold">
-                            <li><b>Headquarter</b><p>Millennium Tower</p></li>
-                            <li><b>Location</b><p>Mountain View, California</p></li>
-                            <li><b>Phone</b><p>+2 22255566</p></li>
-                            <li><b>Email</b><p>info@business.com</p></li>
+                            <li><b>Headquarter</b><p>Upscale Basecamp</p></li>
+                            <li><b>Location</b><p>Yogyakarta, Indonesia</p></li>
+                            <li><b>Phone</b><p>087888666531</p></li>
+                            <li><b>Email</b><p>elvron.indonesia@gmail.com</p></li>
                         </ul>
                         <hr class="space-sm" />
-                        <ul class="accordion-list">
+                        <!-- <ul class="accordion-list">
                             <li>
                                 <a href="#">Salary and holidays policy</a>
                                 <div class="content">
@@ -545,7 +534,7 @@
                                     </p>
                                 </div>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>

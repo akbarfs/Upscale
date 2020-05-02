@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/bootstrap-grid.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('template/upscale/css/tooltip.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/glide.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/content-box.css')}}">
@@ -24,7 +25,7 @@
 <body>
     <div id="preloader"></div>
     
-    <?php $light_menu = array('ecosystem','dedicated-team','help-business','help-talent','index','home','faq'); $request = $routeName = Route::currentRouteName();  ?>
+    <?php $light_menu = array('ecosystem','dedicated-team','help-business','help-talent','index','home','faq','headhunter'); $request = $routeName = Route::currentRouteName();  ?>
 
     <nav class="menu-classic menu-fixed menu-one-page align-right 
 
@@ -50,21 +51,17 @@
             <div class="menu-cnt">
                 <ul>
                     <li> <a href="{{url('')}}">Home</a></li>
-                    <li class="dropdown">
+                    <li> <a href="{{url('help-business')}}">For Bussiness</a></li>
+                    <li> <a href="{{url('help-talent')}}">For Talent</a></li>
+                    <li> <a href="{{url('faq')}}">F.A.Q</a></li>
+                    <!-- <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>
                         <ul>
-                            <!-- <li class="dropdown-submenu">
-                                <a href="{{url('/')}}">Extended Team</a>
-                                <ul>
-                                    <li><a href="#">Fulltime</a></li>
-                                    <li><a href="#">Freelance</a></li>
-                                </ul>
-                            </li> -->
                             <li><a href="{{url('/dedicated-team')}}">Dedicated Team</a></li>
-                            <li><a href="{{url('/dedicated-team')}}">Quick Project</a></li>
-                            <li><a href="{{url('/dedicated-team')}}">Head Hunter</a></li>
+                            <li><a href="{{url('/headhunter')}}">Head Hunter</a></li>
+                            <li><a href="{{url('/dedicated-team')}}">Project Base</a></li>
                         </ul>
-                    </li>
+                    </li> 
                     <li class="dropdown">
                         <a href="{{url('/')}}">Who We Help</a>
                         <ul>
@@ -78,7 +75,7 @@
                         <ul>
                             <li><a href="{{url('/')}}#how">About Us</a></li>
                             <li><a href="{{url('/faq')}}#how">F.A.Q</a></li>
-                            <!-- <li class="dropdown-submenu">
+                            <li class="dropdown-submenu">
                                 <a href="#">Sites</a>
                                 <ul>
                                     <li><a href="index-saas.html">Saas</a></li>
@@ -120,14 +117,14 @@
                                     <li><a href="contacts-2.html">Contacts two</a></li>
                                     <li><a href="contacts-3.html">Contacts three</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
                         </ul>
                     </li>
-                </ul>
+                </ul> -->
                 
 
                 <div class="menu-right">
-                    <ul class="lan-menu">
+                    <!-- <ul class="lan-menu">
                         <li class="dropdown">
                             <a href="#"><img src="{{url('template/upscale/media//en.png')}}" alt="" />EN </a>
                             <ul>
@@ -135,10 +132,10 @@
                                 <li><a href="#"><img src="{{url('template/upscale/media/es.png')}}" alt="" />ES</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul> -->
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs" href="#">Login</a>
-                        <a class="btn btn-border btn-xs btn-circle startProject" data-toggle="modal" data-target="#startProject">Start Project</a>
+                        <a class="btn btn-border btn-login btn-xs light" href="#">Login</a>
+                        <a class="btn btn-border btn-xs btn-circle startProject light" data-toggle="modal" data-target="#startProject">Start Project</a>
                     </div>
                 </div>
 
@@ -153,56 +150,41 @@
         <div class="container" style="padding-top: 180px">
             <div class="row">
                 <div class="col-lg-3">
-                    <h4>Company and team</h4>
+                    <h4>Our Service</h4>
                     <div class="menu-inner menu-inner-vertical">
                         <ul>
                             <li>
-                                <a href="#">Company details and team</a>
+                                <a href="#">Dedicated Team</a>
                             </li>
                             <li>
-                                <a href="#">News and blog</a>
+                                <a href="#">Head Hunter</a>
                             </li>
                             <li>
-                                <a href="#">Press area</a>
-                            </li>
-                            <li>
-                                <a href="#">Affiliates and marketing</a>
+                                <a href="#">Project base</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <h4>Help and support</h4>
+                    <h4>Who We Help</h4>
                     <div class="menu-inner menu-inner-vertical">
                         <ul>
                             <li>
-                                <a href="#">Help centre</a>
+                                <a href="{{url('help-business')}}">Bussiness</a>
                             </li>
                             <li>
-                                <a href="#">Feedbacks</a>
-                            </li>
-                            <li>
-                                <a href="#">Request new features</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact us</a>
+                                <a href="{{url('help-talent')}}">Talent</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <h4>Learn more</h4>
+                    <h4>Other</h4>
                     <div class="menu-inner menu-inner-vertical">
                         <ul>
-                            <li>
-                                <a href="#">Apps stores</a>
-                            </li>
-                            <li>
-                                <a href="#">Partners</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy and terms</a>
-                            </li>
+                            <!-- <li> <a href="#">About Us</a> </li> -->
+                            <li> <a href="{{url('faq')}}">F.A.Q</a> </li>
+                            <li> <a href="#">Login / Register</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -220,8 +202,8 @@
         </div>
         <div class="footer-bar">
             <div class="container">
-                <span>© Codrop LTD 2019. Codrop is a powerful Landing Page App Template built with <a target="_blank" href="https://themekit.dev/code/">Themekit</a> by the <a target="_blank" href="https://schiocco.com/">Schiocco</a> Team. </span>
-                <span><img src="{{url('template/upscale/media/logo-light.svg')}}" alt="" /></span>
+                <span>© Upscale LTD 2020. </span>
+                <span><img src="{{url('template/upscale/media/logo-white.png')}}" alt="" /></span>
             </div>
         </div>
         <link rel="stylesheet" href="{{url('template/upscale/themekit/media/icons/iconsmind/line-icons.min.css')}}">
@@ -261,7 +243,7 @@
         {
             $(".startProject").click(function()
             {
-                $('#question').load("{{url('/startProject')}}");
+                $('#question').load("{{url('/startproject')}}");
             });
         });
     </script>
