@@ -133,8 +133,8 @@
                         </li>
                     </ul> -->
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs light" href="#">Login</a>
-                        <a class="btn btn-border btn-xs btn-circle light" href="#">Start Project</a>
+                        <a class="btn btn-border btn-login btn-xs" href="#">Login</a>
+                        <a class="btn btn-border btn-xs btn-circle" data-toggle="modal" data-target=".startProject">Start Project</a>
                     </div>
                 </div>
 
@@ -215,6 +215,36 @@
         <script src="{{url('template/upscale/themekit/scripts/progress.js')}}"></script>
         <script src="{{url('template/upscale/media/custom.js')}}"></script>
     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade startProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="tes"></div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary mt-1">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function()
+        {
+            $(".start_project").click(function()
+            {
+                $('#tes').load("http://127.0.0.1:8000/start-project");
+            });
+        });
+    </script>
 </body>
 
 </html>
