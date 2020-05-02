@@ -92,6 +92,7 @@
                                     </div>
                                 </div>                                                           
                             </div>
+                
                             <!-- <span class="temporary"></span> -->
                             <div class="col-md-12 form-group answer_value px-4"  style="display:none">
                                 <label class="form-control-label mb-2"><strong>Answer Value</strong></label>
@@ -138,26 +139,25 @@
         CKEDITOR.replace( 'texteditor2' );
     });
 
-    // $('#type_answer').on('change', function()
-    // {
-    //     var selected = $(this).val();
-    //     if(selected != '0' && selected != 'essay')
-    //     {
-    //         $('.answer').show();            
-    //         $('#answer').val(selected);
-    //     }
-    //     else
-    //     {
-    //         $('.answer').hide();
-    //         $('.answer_value').hide();
-    //     }
-    // });
+    $('#type_answer').on('change', function()
+    {
+        var selected = $(this).val();
+        if(selected != '0' && selected != 'essay')
+        {
+            $('.answer').show();
+        }
+        else
+        {
+            $('.answer').hide();
+            $('.answer_value').hide();
+        }
+    });
 
     var count=1;
     $('#add').on('click', function()
     {        
         var answer = $('#answer').val();
-        document.getElementById("myTable").insertRow(-1).innerHTML = "<td>"+ (count++) +"</td><td><input type='text' class='form-control' value='"+answer+"'></td><td><button type='button' class='remove_answer'>Delete</button></td>";
+        document.getElementById("myTable").insertRow(-1).innerHTML = "<td>"+ (count++) +"</td><td><input type='text' class='form-control' name='answer[]' value='"+answer+"'></td><td><button type='button' class='remove_answer'>Delete</button></td>";
         $('#answer').val('');
         $('.answer_value').show();
         $('.value').on('click', '.edit_answer', function(e)
