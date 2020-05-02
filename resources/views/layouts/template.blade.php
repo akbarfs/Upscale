@@ -243,7 +243,7 @@
         {
             $(".startProject").click(function()
             {
-                $('#question').load("{{url('/startProject')}}");
+                $('#question').load("{{url('/startproject')}}");
             });
         });
     </script>
