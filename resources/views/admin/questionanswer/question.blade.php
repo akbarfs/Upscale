@@ -80,7 +80,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 row answer" style="display:none">
+                                <div class="form-group col-md-6 row answer">
                                     <div class="col-md-3">
                                         <label class="form-control-label"><strong>Answer Option</strong></label>
                                     </div>
@@ -138,32 +138,39 @@
         CKEDITOR.replace( 'texteditor2' );
     });
 
-    $('#type_answer').on('change', function()
-    {
-        var selected = $(this).val();
-        if(selected != '0' && selected != 'essay')
-        {
-            $('.answer').show();            
-            $('#answer').val(selected);
-        }
-        else
-        {
-            $('.answer').hide();
-        }
-    });
+    // $('#type_answer').on('change', function()
+    // {
+    //     var selected = $(this).val();
+    //     if(selected != '0' && selected != 'essay')
+    //     {
+    //         $('.answer').show();            
+    //         $('#answer').val(selected);
+    //     }
+    //     else
+    //     {
+    //         $('.answer').hide();
+    //         $('.answer_value').hide();
+    //     }
+    // });
 
     var count=1;
     $('#add').on('click', function()
     {        
         var answer = $('#answer').val();
-        document.getElementById("myTable").insertRow(-1).innerHTML = "<td>"+ (count++) +"</td><td>"+answer+"</td><td>Edit <button type='button' class='remove_answer'>Delete</button></td>";
+        document.getElementById("myTable").insertRow(-1).innerHTML = "<td>"+ (count++) +"</td><td><input type='text' class='form-control' value='"+answer+"'></td><td><button type='button' class='remove_answer'>Delete</button></td>";
         $('#answer').val('');
         $('.answer_value').show();
+        $('.value').on('click', '.edit_answer', function(e)
+        {
+            $('#answer').val(answer);
+            e.preventDefault();
+            $(this).parent().parent().remove();
+        });
         $('.value').on('click', '.remove_answer', function(e)
         {
             e.preventDefault();
             $(this).parent().parent().remove();
-        });
+        }); 
     });
 
     $(document).on('click', '#save', function()

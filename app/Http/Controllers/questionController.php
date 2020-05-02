@@ -23,6 +23,6 @@ class questionController extends Controller
         //     'answer' => $answer // var txt =  imam batch 5
         // ];                                          // txt.slice(" ") => [imam,batch,5]
 
-        dd($request);
+        dd($request->all());
     }
 }
