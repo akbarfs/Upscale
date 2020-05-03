@@ -328,7 +328,7 @@
                 </div>
                 <div class="col-lg-6">
                     <form action="themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com">
-                        <div class="row">
+                        <div class="row" style="width: 100%">
                             <div class="col-lg-8">
                                 <p>Type your email</p>
                                 <input id="email2" name="email2" placeholder="" type="email" class="input-text" required>

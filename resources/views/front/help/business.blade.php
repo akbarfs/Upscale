@@ -35,7 +35,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                 </div>
                 <div class="col-lg-6 align-right align-left-md" data-anima="fade-in" data-time="1000">
                     <a href="#" class="btn btn-circle btn-sm">Start Project</a>
-                    <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a>
+                    <a href="#" class="btn btn-circle btn-border light btn-sm" style="margin-top: 0">Start Hiring</a>
                 </div>
             </div>
             <hr class="space-lg" />

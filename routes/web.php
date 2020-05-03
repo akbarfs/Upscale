@@ -365,30 +365,7 @@ Route::group(['middleware'=>'cek'],function(){
 
 	}); 
 
-});
-
-Route::get('/admin/attend', 'attendController@index')->name('attend.index');
-Route::post('/admin/uploadlog', 'attendController@uploadlog')->name('attend.uploadlog');
-Route::post('/admin/dopermit', 'attendController@dopermit')->name('attend.dopermit');
-// Route::get('/public/interview/{id}', 'attendController@interview')->name('attend.interview');
-Route::get('/interview', 'attendController@interview')->name('attend.interview');
-
-
-Route::get('/home-beta', 'homeController@beta')->name('homebeta');
-Route::get('/home-contact', 'homeController@contact')->name('homecontact');
-Route::get('/filter', 'homeController@filter')->name('filter');
-Route::get('/browse/filter', 'BrowseController@filterbrowse')->name('filterbrowse');
-Route::get('/detaillp/{id}', 'homeController@detailLP')->name('detaillp');
-Route::get('/detaillp', 'homeController@detailLP')->name('detaillp');
-Route::get('/bootcamp', 'bootcampController@index')->name('bootcamp');
-Route::get('/bootcamp/{id}', 'bootcampController@detail');
-Route::get('/information', 'homeController@info')->name('info');
-Route::get('/info-detail', 'homeController@lp')->name('lp');
-Route::get('/search/bootcamp', 'homeController@search')->name('search.bootcamp');
-
-Route::post('store', 'bootcampController@store')->name('bootcamp.store');
-
-Route::group(['prefix'=>'admin/bootcamp'], function(){
+	Route::group(['prefix'=>'bootcamp'], function(){
 
 	Route::get('/class', 'bootcampController@getIndex')->name('class.index');
 	Route::post('/class', 'bootcampController@postIndex')->name('class.postindex');
@@ -440,8 +417,33 @@ Route::group(['prefix'=>'admin/bootcamp'], function(){
 
 });
 
-Route::get('/deletealumni/', 'bootcampController@delAlumni')->name('alumni.delete');
+});
 
+Route::get('/admin/attend', 'attendController@index')->name('attend.index');
+Route::post('/admin/uploadlog', 'attendController@uploadlog')->name('attend.uploadlog');
+Route::post('/admin/dopermit', 'attendController@dopermit')->name('attend.dopermit');
+// Route::get('/public/interview/{id}', 'attendController@interview')->name('attend.interview');
+Route::get('/interview', 'attendController@interview')->name('attend.interview');
+
+
+Route::get('/jobs', 'homeController@jobs')->name('jobs');
+Route::get('/home-beta', 'homeController@beta')->name('homebeta');
+Route::get('/home-contact', 'homeController@contact')->name('homecontact');
+Route::get('/filter', 'homeController@filter')->name('filter');
+Route::get('/browse/filter', 'BrowseController@filterbrowse')->name('filterbrowse');
+Route::get('/detaillp/{id}', 'homeController@detailLP')->name('detaillp');
+Route::get('/detaillp', 'homeController@detailLP')->name('detaillp');
+Route::get('/bootcamp', 'bootcampController@index')->name('bootcamp');
+Route::get('/bootcamp/{id}', 'bootcampController@detail');
+Route::get('/information', 'homeController@info')->name('info');
+Route::get('/info-detail', 'homeController@lp')->name('lp');
+Route::get('/search/bootcamp', 'homeController@search')->name('search.bootcamp');
+
+Route::post('store', 'bootcampController@store')->name('bootcamp.store');
+
+
+
+Route::get('/deletealumni/', 'bootcampController@delAlumni')->name('alumni.delete');
 
 
 
@@ -458,7 +460,7 @@ Route::get('/move/tofile', 'talentController@tofile')->name('tofile');
 
 Route::get('/detail/{id}', 'homeController@detail')->name('detail');
 
-
+Route::get('/jobs', 'homeController@apply')->name('homapply');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/move', 'homeController@move')->name('move');
 Route::get('/contact', 'ContactController@index')->name('contact');
