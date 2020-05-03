@@ -477,7 +477,7 @@ Route::get('/success', 'SuccessController@index')->name('successapply');
 Route::get('/cek_import_talent', 'talentController@cek_import_talent')->name('cek_imp_talent');
 Route::get('/cek_import_jobsapply', 'talentController@cek_import_jobsapply')->name('cek_imp_jobsapply');
 
-
+Route::get('debug','homeController@debug');
 
 
 
