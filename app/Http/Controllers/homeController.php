@@ -15,6 +15,29 @@ use Route ;
 
 class homeController extends Controller
 {
+
+    public function debug()
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/city",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array( "key: b319d10f3c8258f34a2ad6890144f994" ),
+        ));
+        $response = curl_exec($curl);
+        $err      = curl_error($curl);
+        curl_close($curl);
+        
+       
+        $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
+        var_dump($arrayResponse); 
+    }
     public function index()
     {
         $categories = "";
@@ -44,6 +67,19 @@ class homeController extends Controller
     }
     
     public function apply()
+    {
+        $categories = Category::all();
+        $locations  = Location::all();
+        $bootcamps  = Bootcamp::all(); 
+        $jobs       = Job::orderBy('jobs_active','asc')
+                      ->orderBy('jobs_urgent', 'asc')
+                      ->orderBy('jobs_created_date','asc')
+                      ->paginate(6);
+
+        return view('career.home-new', compact('bootcamps', 'jobs', 'categories', 'locations'));
+    }
+
+    public function applyOld()
     {
         $categories = Category::all();
         $locations  = Location::all();

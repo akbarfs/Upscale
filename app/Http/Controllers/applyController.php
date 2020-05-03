@@ -218,48 +218,66 @@ class applyController extends Controller
 
           // $token = $request->input('g-recaptcha-response');
           $token = true ; 
-          if ($token){
+          if ($token)
+          {
+            
             $hariini = Carbon::now()->format('dmY');
 
             $cv = $request->file('cv');
-            $extension = $cv->getClientOriginalExtension(); 
-
-            $namecv = 'Applier_CV_'.$request->name."_".$hariini.'.'.$extension;
+            if ($cv)
+            {
+                $extension = $cv->getClientOriginalExtension(); 
+                $namecv = 'Applier_CV_'.$request->name."_".$hariini.'.'.$extension;
+                $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
+            }
+            
   
             $pp = $request->file('filepp');
-            
-            $namepp = 'Applier_Portofolio_'.$request->name."_".$hariini.'.'.$pp->getClientOriginalExtension();
-            $coba = str_split($request->phone);
-            if($coba[0]==='0'){
-                $patternzero ='/^\0?\d\s?/m';
-                $hilang0 = preg_replace($patternzero,'',$request->phone);
-                $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
+            if ( $pp )
+            {
+                $namepp = 'Applier_Portofolio_'.$request->name."_".$hariini.'.'.$pp->getClientOriginalExtension();
                 $path2 = $pp->storeAs('public/Portfolio',$namepp);
-                $req = $request;
-                $this->saveapply($req,$id,$hilang0,$namecv,$namepp);
-              //   dd('Ini Hilang 0');
-  
-            }else{
-                $pattern='/^\+?\d.\s?/m';
-                $hilang = preg_replace($pattern,'',$request->phone);
-                $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
-                $path2 = $pp->storeAs('public/Portfolio',$namepp);
-                $req = $request;
-                $this->saveapply($req,$id,$hilang,$namecv,$namepp);
-              //   dd('Ini Hilang');
             }
+            
+
+            $coba = str_split($request->phone);
+
+            if($coba[0]==='0')
+            {
+                $patternzero ='/^\0?\d\s?/m';
+                $phone = preg_replace($patternzero,'',$request->phone);
+            }
+            else
+            {
+                $pattern='/^\+?\d.\s?/m';
+                $phone = preg_replace($pattern,'',$request->phone);    
+            }
+
+            $req = $request;
+            $this->saveapply($req,$id,$phone,$namecv,$namepp);
+
             return redirect(route('successapply'));
-          } else {
+          } 
+          else 
+          {
             return redirect()->back()->with(['failed' => 'Selesaikan Captcha']);
           }
     }
 
-    private function saveapply($request,$id,$nophone,$namecv,$namepp){
+    private function saveapply($request,$id,$nophone,$namecv,$namepp)
+    {
+    
         $now = Carbon::now('Asia/Jakarta');
+        
         if($request->type == 'internship')
-      { $periode = $request->input('range'); }
-      else
-      { $periode = NULL; }
+        { 
+          $periode = $request->input('range'); 
+        }
+        else
+        { 
+
+          $periode = NULL; 
+        }
 
         $apply                          = Job::where('jobs_id', '=', $id)->first();
         $talent                         = new Talent;

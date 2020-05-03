@@ -426,7 +426,6 @@ Route::post('/admin/dopermit', 'attendController@dopermit')->name('attend.doperm
 Route::get('/interview', 'attendController@interview')->name('attend.interview');
 
 
-Route::get('/jobs', 'homeController@jobs')->name('jobs');
 Route::get('/home-beta', 'homeController@beta')->name('homebeta');
 Route::get('/home-contact', 'homeController@contact')->name('homecontact');
 Route::get('/filter', 'homeController@filter')->name('filter');
@@ -450,17 +449,20 @@ Route::get('/deletealumni/', 'bootcampController@delAlumni')->name('alumni.delet
 // Route::get('/skill', 'skillController@index')->name('index');
 // Route::post('/skill', 'skillController@skill')->name('skill');
 
-Route::get('/apply/{id}', 'applyController@index')->name('apply');
 Route::get('/applyin/{id}', 'applyController@in')->name('applyin');
 Route::get('/applyink/{id}', 'applyController@inkeep')->name('applyink');
-Route::post('/apply/store/{id}', 'applyController@store')->name('store');
 Route::post('/apply/storein/{id}', 'applyController@storein')->name('storein');
 Route::post('/apply/storeinkeep/{id}', 'applyController@storeinkeep')->name('storeink');
 Route::get('/move/tofile', 'talentController@tofile')->name('tofile');
 
-Route::get('/detail/{id}', 'homeController@detail')->name('detail');
 
 Route::get('/jobs', 'homeController@apply')->name('homapply');
+Route::get('/jobs-old', 'homeController@applyOld')->name('homapply');
+Route::get('/jobs/{id}', 'homeController@detail')->name('detail');
+Route::get('/jobs/apply/{id}', 'applyController@index')->name('apply');
+Route::post('/apply/store/{id}', 'applyController@store')->name('store');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/move', 'homeController@move')->name('move');
 Route::get('/contact', 'ContactController@index')->name('contact');
@@ -475,7 +477,7 @@ Route::get('/success', 'SuccessController@index')->name('successapply');
 Route::get('/cek_import_talent', 'talentController@cek_import_talent')->name('cek_imp_talent');
 Route::get('/cek_import_jobsapply', 'talentController@cek_import_jobsapply')->name('cek_imp_jobsapply');
 
-
+Route::get('debug','homeController@debug');
 
 
 

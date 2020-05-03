@@ -209,6 +209,11 @@ class createtalentController extends Controller
         curl_close($curl);
         
         $listKota      = array();
+
+        if (!$response){
+            $response = config('app.json_city');
+        }   
+        
         $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
         $tempListKota  = $arrayResponse['rajaongkir']['results']; // ambil array yang dibutuhin aja, disini resultnya aja
 

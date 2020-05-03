@@ -424,6 +424,10 @@ class talentController extends Controller
         $response = curl_exec($curl);
         $err      = curl_error($curl);
         curl_close($curl);
+
+        if (!$response){
+            $response = config('app.json_city');
+        }   
         
         $listKota      = array();
         $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
@@ -461,6 +465,12 @@ class talentController extends Controller
         curl_close($curl2);
         $listprovinsi = array();
         // $listKota = array(); //udah dicomment gak dipakai
+
+        if ( !$response2)
+        {
+            $response2 = config('app.json_province'); 
+        }
+
         $arrRespon = json_decode($response2,true);
         $tempRespon = $arrRespon['rajaongkir']['results'];
         foreach($tempRespon as $value){
@@ -621,7 +631,11 @@ class talentController extends Controller
             else { $answer_ui[$v->tq_id] = "-"; }
           }
           
-          
+            $answer_pm = isset($answer_pm) ? $answer_pm : null ; 
+            $answer_qa = isset($answer_qa) ? $answer_qa : null ; 
+            $answer_fe = isset($answer_fe) ? $answer_fe : null ; 
+            $answer_ui = isset($answer_ui) ? $answer_ui : null ; 
+            $answer_ios = isset($answer_ios) ? $answer_ios : null ; 
 
             return view('admin.detailTalent',
                 compact('last_update_skill','jobs','company',
