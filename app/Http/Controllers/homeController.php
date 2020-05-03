@@ -53,6 +53,19 @@ class homeController extends Controller
                       ->orderBy('jobs_created_date','asc')
                       ->paginate(6);
 
+        return view('career.home-new', compact('bootcamps', 'jobs', 'categories', 'locations'));
+    }
+
+    public function applyOld()
+    {
+        $categories = Category::all();
+        $locations  = Location::all();
+        $bootcamps  = Bootcamp::all(); 
+        $jobs       = Job::orderBy('jobs_active','asc')
+                      ->orderBy('jobs_urgent', 'asc')
+                      ->orderBy('jobs_created_date','asc')
+                      ->paginate(6);
+
         return view('career.home', compact('bootcamps', 'jobs', 'categories', 'locations'));
     }
 

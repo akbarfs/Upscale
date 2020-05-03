@@ -1,6 +1,9 @@
-@extends("layouts.template")
+@extends('layouts.template',['logo'=>'transparent'])
 
-@section("content")
+@section("menu_class",'light')
+
+@section('content')
+
 
 <main>
     <section class="section-base">

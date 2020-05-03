@@ -115,19 +115,6 @@
                                 <label style="font-size: .85714286em; font-weight: 300;">Periode</label>
                                 <input id="range" type="text" class="form-control" name="range" placeholder="Periode" >
                             </div>
-                           
-                            <div class="col-md-12">
-                                <label>Upload Your CV<span style="color: red;">
-                                        *</span></label>
-                                <label style="font-size: .85714286em; font-weight: 300;">Format nama file:
-                                    Name_JobPosition
-                                    Accepted file formats: pdf, doc, docx (500 KB Max)</label>
-                                <input type="file" accept=".pdf" name="cv" id="cv" class="form-control-file validate-required form-control">
-                            </div>
-
-                            <div style="font-size: 20px ; padding: 10px">Upload Portofolio</div>
-                            <div style="padding: 10px ; margin-bottom: 20px">Silahkan pilih , upload menggunakan upload file atau menggunakan link</div>
-
                             <div class="col-md-12">
                                 <label>Link Portofolio<span style="color: red;">
                                         *</span></label>
@@ -144,7 +131,18 @@
                                     repository etc)</label>
                                 <input type="file" name="filepp" id="filepp" accept=".pdf" class="form-control-file form-control">
                             </div>
-
+                            <div class="col-md-12">
+                                <label>Upload Your CV<span style="color: red;">
+                                        *</span></label>
+                                <label style="font-size: .85714286em; font-weight: 300;">Format nama file:
+                                    Name_JobPosition
+                                    Accepted file formats: pdf, doc, docx (500 KB Max)</label>
+                                <input type="file" accept=".pdf" name="cv" id="cv" class="form-control-file validate-required form-control">
+                            </div>
+                            <div class="col-md-12">
+                                <p>Kamu akan diinterview oleh Admissions Consultant untuk tahap selanjutnya. Pilih
+                                    kesediaan jadwal kamu untuk melakukan interview di kantor Suit Career. *</p>
+                            </div>
                             <!-- <div class="col-md-4">
                                 <label style="font-size: .85714286em; font-weight: 300;">Punya Kode Referral?</label>
                                 <input type="text" name="referral">
@@ -193,7 +191,7 @@
                                 </div>
                             </div>
                              -->
-                            <!-- <div class="col-md-12 g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div> -->
+                            <div class="col-md-12 g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
                             <!-- @if($errors->has('g-recaptcha-response'))
                             <span class="invalid-feedback" style="display:block">
                                 <strong>{{$errors->first('g-recaptcha-response')}}</strong>

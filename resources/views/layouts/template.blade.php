@@ -25,20 +25,13 @@
 <body>
     <div id="preloader"></div>
     
-    <?php $light_menu = array('ecosystem','dedicated-team','help-business','help-talent','index','home','faq','headhunter'); $request = $routeName = Route::currentRouteName();  ?>
 
-    <nav class="menu-classic menu-fixed menu-one-page align-right 
-
-                @if ( in_array($request,$light_menu) ) light  @endif
-
-                @if ( $routeName != 'faq') menu-transparent @endif
-
-                " data-menu-anima="fade-bottom" data-scroll-detect="true">
+    <nav class="menu-classic menu-fixed menu-one-page align-right @yield('menu_class')" data-menu-anima="fade-bottom" data-scroll-detect="true">
         <div class="container">
             <div class="menu-brand" style="padding: 10px 0 ">
                 <a href="{{url('/')}}">
                     
-                    @if ( in_array($routeName,$light_menu) )
+                    @if ( isset($logo) && $logo == 'transparent' )
                         <img class="logo-default" src="{{url('template/upscale/media/logo-white.png')}}" alt="logo" />
                     <img class="logo-retina" src="{{url('template/upscale/media/logo-white.png')}}" alt="logo" />
                     @else
@@ -53,6 +46,7 @@
                     <li> <a href="{{url('')}}">Home</a></li>
                     <li> <a href="{{url('help-business')}}">For Bussiness</a></li>
                     <li> <a href="{{url('help-talent')}}">For Talent</a></li>
+                    <li> <a href="{{url('jobs')}}">Jobs</a></li>
                     <li> <a href="{{url('faq')}}">F.A.Q</a></li>
                     <!-- <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>

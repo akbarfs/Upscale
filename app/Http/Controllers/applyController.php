@@ -227,9 +227,12 @@ class applyController extends Controller
             $namecv = 'Applier_CV_'.$request->name."_".$hariini.'.'.$extension;
   
             $pp = $request->file('filepp');
+
+            //dd($pp);
             
             $namepp = 'Applier_Portofolio_'.$request->name."_".$hariini.'.'.$pp->getClientOriginalExtension();
             $coba = str_split($request->phone);
+
             if($coba[0]==='0'){
                 $patternzero ='/^\0?\d\s?/m';
                 $hilang0 = preg_replace($patternzero,'',$request->phone);
