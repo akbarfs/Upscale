@@ -27,7 +27,7 @@
     <div class="animated fadeIn">
         <form id="job-form" action="{{ route('question.store') }}" method="post" enctype="multipart/form-data" >
             {{csrf_field()}}
-            <input type="hidden" name="question_id">            
+            <input type="hidden" name="id">            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -41,7 +41,7 @@
                                     <label class="form-control-label"><strong>Type Question</strong></label>
                                 </div>
                                 <div class="col-md-5">
-                                    <select class="custom-select mr-sm-2" name="type_question">
+                                    <select class="custom-select mr-sm-2" id="type_question" name="type_question">
                                         <option value="0">Choose...</option>
                                         <option value="test">Test</option>
                                         <option value="interview">Interview</option>
@@ -69,10 +69,10 @@
                             <div class="row">
                                 <div class="form-group col-md-6 px-4">
                                     <div class="col-md-3">
-                                        <label class="form-control-label"><strong>Type Answer</strong></label>
+                                        <label class="form-control-label"><strong>Type Option</strong></label>
                                     </div>
                                     <div class="col-md-8">
-                                        <select class="custom-select mr-sm-2" id="type_answer" name="type">
+                                        <select class="custom-select mr-sm-2" id="type_option" name="type_option">
                                             <option value="0">Choose...</option>
                                             <option value="essay">Essay</option>
                                             <option value="multiple_choice">Multiple Choice</option>
@@ -80,27 +80,26 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-6 row answer">
+                                <div class="form-group col-md-6 row option" style="display:none">
                                     <div class="col-md-3">
-                                        <label class="form-control-label"><strong>Answer Option</strong></label>
+                                        <label class="form-control-label"><strong>Option Value</strong></label>
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="text" class="form-control" id="answer">
+                                        <input type="text" class="form-control" id="option">
                                     </div>
                                     <div class="col-md-1">
                                         <button type="button" class="btn btn-primary" id="add">Add</button>
                                     </div>
                                 </div>                                                           
                             </div>
-                
                             <!-- <span class="temporary"></span> -->
-                            <div class="col-md-12 form-group answer_value px-4"  style="display:none">
-                                <label class="form-control-label mb-2"><strong>Answer Value</strong></label>
+                            <div class="col-md-12 form-group option_value px-4"  style="display:none">
+                                <label class="form-control-label mb-2"><strong>Option Value</strong></label>
                                 <table class="table table-hover" id="myTable">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Answer</th>
+                                            <th scope="col">Option</th>
                                             <th scope="col">Config</th>
                                         </tr>
                                     </thead>
@@ -139,34 +138,34 @@
         CKEDITOR.replace( 'texteditor2' );
     });
 
-    $('#type_answer').on('change', function()
+    $('#type_option').on('change', function()
     {
         var selected = $(this).val();
         if(selected != '0' && selected != 'essay')
         {
-            $('.answer').show();
+            $('.option').show();
         }
         else
         {
-            $('.answer').hide();
-            $('.answer_value').hide();
+            $('.option').hide();
+            $('.option_value').hide();
         }
     });
 
     var count=1;
     $('#add').on('click', function()
     {        
-        var answer = $('#answer').val();
-        document.getElementById("myTable").insertRow(-1).innerHTML = "<td>"+ (count++) +"</td><td><input type='text' class='form-control' name='answer[]' value='"+answer+"'></td><td><button type='button' class='remove_answer'>Delete</button></td>";
-        $('#answer').val('');
-        $('.answer_value').show();
-        $('.value').on('click', '.edit_answer', function(e)
+        var option = $('#option').val();
+        document.getElementById("myTable").insertRow(-1).innerHTML = "<td>"+ (count++) +"</td><td><input type='text' class='form-control' name='option[]' value='"+option+"'></td><td><button type='button' class='remove_option'>Delete</button></td>";
+        $('#option').val('');
+        $('.option_value').show();
+        $('.value').on('click', '.edit_option', function(e)
         {
-            $('#answer').val(answer);
+            $('#option').val(option);
             e.preventDefault();
             $(this).parent().parent().remove();
         });
-        $('.value').on('click', '.remove_answer', function(e)
+        $('.value').on('click', '.remove_option', function(e)
         {
             e.preventDefault();
             $(this).parent().parent().remove();
@@ -177,7 +176,9 @@
     {
         var texteditor1     = CKEDITOR.instances['texteditor1'].getData();
         var texteditor2     = CKEDITOR.instances['texteditor2'].getData();
-        var type            = $('#type');
+        var typequestion    = $('#type_question');
+        var typeoption      = $('#type_option');
+        var value           = $('.value');
 
         if(texteditor1 == '' || texteditor2 == '')
         {
@@ -185,7 +186,7 @@
             center.focus();
             return false;
         }
-        if (type.val()=='0' )
+        if (typequestion.val()=='0' || typeoption.val()=='0')
         {
             swal('Please fill out project question field','');
             center.focus();

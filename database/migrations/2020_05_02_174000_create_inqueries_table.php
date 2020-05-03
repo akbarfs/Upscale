@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjectQuestion extends Migration
+class CreateInqueriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateProjectQuestion extends Migration
      */
     public function up()
     {
-        Schema::create('project_questions', function (Blueprint $table) {
-            $table->increments('question_id');
+        Schema::create('inqueries', function (Blueprint $table) {
+            $table->increments('id');
+            $table->enum('type_question', ['test', 'quisioner', 'interview']);
             $table->string('question',255);
             $table->text('description');
-            $table->enum('type', ['essay', 'multiple_choice', 'check_list']);
+            $table->enum('type_answer', ['essay', 'multiple_choice', 'check_list']);
             $table->integer('sort');
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ class CreateProjectQuestion extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_questions');
+        Schema::dropIfExists('inqueries');
     }
 }
