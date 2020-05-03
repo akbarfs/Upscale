@@ -135,7 +135,7 @@
                     </ul> -->
                     <div class="menu-custom-area">
                         <a class="btn btn-border btn-login btn-xs light" href="#">Login</a>
-                        <a class="btn btn-border btn-xs btn-circle startProject light" data-toggle="modal" data-target="#startProject">Start Project</a>
+                        <a class="btn btn-border btn-xs btn-circle start_project light" data-toggle="modal" data-target=".startProject">Start Project</a>
                     </div>
                 </div>
 
@@ -219,7 +219,7 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade startProject" id="startProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade startProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -241,7 +241,7 @@
     <script>
         $(document).ready(function()
         {
-            $(".startProject").click(function()
+            $(".start_project").click(function()
             {
                 $('#question').load("{{url('/startproject')}}");
             });
