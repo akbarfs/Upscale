@@ -1,7 +1,9 @@
-@extends('layouts.hf')
+@extends('layouts.template',['logo'=>'transparent'])
+
+@section("menu_class",'light')
 
 @section('content')
-
+<main style="min-height: 800px">
     <section id="contact" class="section_c" style="margin-top: 100px;">
         <div class="container">
             <!-- <div class="row text-center" style="margin: 0 80px 80px 80px;">
@@ -16,7 +18,6 @@
                     <div class="boxed boxed--border">
                         <div class="row">
                             <div class="col-md-12"></div>
-                                <img src="{{ asset('public/career/images/sand.png') }}" width="100px" style="margin-left: 215px;">
                                 <div class="row text-center" style="margin: 0 40px 0 40px;">
                                     <div class="col-md-12">
                                         <h2>Terimakasih Telah Mendaftar</h2>
@@ -30,4 +31,5 @@
                 <div class="col-md-3"></div>
             </div>
     </section>
+</main>
 @endsection

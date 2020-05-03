@@ -21,6 +21,9 @@
     <link rel="icon" href="{{url('template/upscale/media/upscale.ico')}}">
     <!-- <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script> -->
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    @yield('top-asset')
+
 </head>
 <body>
     <div id="preloader"></div>
@@ -232,6 +235,10 @@
             </div>
         </div>
     </div>
+
+    @yield("bottom-asset")
+    @stack('scripts')
+    
     <script>
         $(document).ready(function()
         {
