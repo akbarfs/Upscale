@@ -36,6 +36,12 @@ class homeController extends Controller
 
         return view('homecontact', compact('categories'));
     }
+
+    public function jobs()
+    {
+        $categories = ""; 
+        return view("home1",compact('categories'));
+    }
     
     public function apply()
     {
@@ -135,6 +141,6 @@ class homeController extends Controller
 
     public function startProject()
     {
-        return view('project');
+        return view('front.project');
     }
 }

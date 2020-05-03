@@ -2,6 +2,8 @@
 <section class="mx-5">
     <form action="" method="POST">
         <input type="hidden" name="class_id" value="1">
+
+
         <div align="left" style="font-size: 16px; " class="step">
             <h1 style="font-size: 24px; font-weight: bold ; margin-top:10px">Hai Kak !</h1>
             <p>Kami bermaksud untuk memfollowup pendaftaran / pertanyaan - pertanyaan anda , kami minta waktu sebentar untuk interview lewat form ini ya kak..</p>
@@ -26,11 +28,12 @@
                 </div>
             </div>
             <hr style="margin-top: 20px">
-            <a class="btn big-btn bg-primary flat-btn float-btn navigate nav-next mt-n5" style="cursor: pointer; float: right;">
+            <a class="nav-next btn btn-sm btn-circle" style="cursor: pointer; float: right;">
                 Next<i class="fa fa-angle-right"></i>
             </a>
             <div style="clear: both;"></div>
         </div>
+
 
         <div align="left" style="font-size: 16px;  display:none " class="step">
             <h1 style="font-size: 24px; font-weight: bold ; margin-top:10px">Apaibila tidak lolos seleksi beasiswa apakah bersedia dialihkan ke kelas regular ?</h1>
@@ -45,7 +48,7 @@
             <a class="btn big-btn bg-primary flat-btn float-btn navigate nav-prev mt-n5" style="float: left;">
                 Kembali
             </a>
-            <a class="btn big-btn bg-primary flat-btn float-btn navigate nav-next mt-n5" style="cursor: pointer; float: right;">
+            <a class="nav-next btn btn-sm btn-circle" style="cursor: pointer; float: right;">
                 Next<i class="fa fa-angle-right"></i>
             </a>
             <div style="clear: both;"></div>
@@ -82,7 +85,7 @@
                 </div>
             </div>
             <hr style="margin-top: 20px">
-            <a class="btn big-btn bg-primary flat-btn float-btn navigate nav-prev" style="float: left;">
+            <a class="btn btn-sm btn-circle nav-prev" style="float: left;">
                 Kembali
             </a>             
             <!-- <a class="btn big-btn bg-primary flat-btn float-btn navigate nav-next" style="cursor: pointer; float: right;">
@@ -90,6 +93,8 @@
             </a> -->
             <div style="clear: both;"></div>
         </div>
+
+
     </form>
 </section>
 <script>
@@ -99,17 +104,18 @@
         {
             $(this).parent().hide();
             $(this).closest('.step').next().show();
-            $("#answer").focus();
+            
         });
-        $(".nav-prev").click (function()
+        $(".nav-prev").click(function()
         {
             $(this).parent().hide();
-            $(this).closest('.step').prev().show();
+            $(this).parent().prev().show();
         });
         $(".nav-next:last").click(function()
         {
             $(this).parent().hide();
             $(this).closest('.step').next().show();
+            
         })
     });
 </script>

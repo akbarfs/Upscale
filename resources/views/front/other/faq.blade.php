@@ -102,7 +102,7 @@
                             <li><b>Headquarter</b><p>Upscale coworkspace</p></li>
                             <li><b>Location</b><p>Maguwoharjo, Yogyakarta</p></li>
                             <li><b>Phone</b><p>087-888-666-531</p></li>
-                            <li><b>Email</b><p>elvon.indonesia@gmail.com</p></li>
+                            <li><b>Email</b><p>elvron.indonesia@gmail.com</p></li>
                             <!-- <li><b>Sales email</b><p>sales@business.com</p></li> -->
                         </ul>
                         <hr class="space-sm">
