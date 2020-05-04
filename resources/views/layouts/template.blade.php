@@ -53,8 +53,8 @@
                 <a href="{{url('/')}}">
                     
                     @if ( isset($logo) && $logo == 'transparent' )
-                        <img class="logo-default" src="{{url('template/upscale/media/logo-white.png')}}" alt="logo" />
-                    <img class="logo-retina" src="{{url('template/upscale/media/logo-white.png')}}" alt="logo" />
+                        <img class="logo-default" src="{{url('template/upscale/media/logo-transparent.png')}}" alt="logo" />
+                    <img class="logo-retina" src="{{url('template/upscale/media/logo-transparent.png')}}" alt="logo" />
                     @else
                         <img class="logo-default" src="{{url('template/upscale/media/logo.jpg')}}" alt="logo" />
                         <img class="logo-retina" src="{{url('template/upscale/media/logo.jpg')}}" alt="logo" />
@@ -219,7 +219,7 @@
         <div class="footer-bar">
             <div class="container">
                 <span>© Upscale LTD 2020. </span>
-                <span><img src="{{url('template/upscale/media/logo-white.png')}}" alt="" /></span>
+                <span><img src="{{url('template/upscale/media/logo-transparent.png')}}" alt="" /></span>
             </div>
         </div>
         <link rel="stylesheet" href="{{url('template/upscale/themekit/media/icons/iconsmind/line-icons.min.css')}}">
