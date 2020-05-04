@@ -26,6 +26,24 @@
 
 </head>
 <body>
+    
+    <style>
+        @media only screen and (max-width:990px){
+        
+        }
+
+        @media only screen and (max-width:767px){
+            
+            
+        }
+
+        @media only screen and (max-width:480px){
+            .menu-right { float: left !important }
+            .btn-border.light:not(:hover){ color: rgb(71, 178, 228) !important ; border-color: rgb(71, 178, 228) !important ; margin: 20px; }
+
+        }
+    </style>
+
     <div id="preloader"></div>
     
 
