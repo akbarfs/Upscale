@@ -56,7 +56,7 @@
 
                         {{ $job->jobs_desc_short }}
 
-                        @if ( $job->jobs_urgent ) <span class="urgent">Urgent</span> @endif
+                        @if ( $job->jobs_urgent =='urgent' ) <span class="urgent">Urgent</span> @endif
 
                     </p>
                     <!-- <div>Dublin, Ireland</div> -->

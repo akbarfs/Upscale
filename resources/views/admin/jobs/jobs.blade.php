@@ -81,6 +81,7 @@
                                         <tr>
                                             <th></th>
                                             <th>Position</th>
+                                            <th>urgent</th>
                                             <th>Type</th>
                                             <th>Location</th>
                                             <th>Category</th>
@@ -94,6 +95,7 @@
                                         <tr>
                                             <td><center><input type="checkbox" name="a_checkbox[]" class="checkbox" value="{{$a->jobs_id}}"/></center></td>
                                             <td>{{$a->jobs_title}}</td>
+                                            <td>{{$a->jobs_urgent}}</td>
                                             <td>{{$a->jobs_type_time}}</td>
                                             <td>{{$a->location_name}}</td>
                                             <td>{{$a->categories_name}}</td>
