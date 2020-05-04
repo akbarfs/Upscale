@@ -52,7 +52,7 @@
 						@endphp
 
                         <!-- {{ $job->jobs_type_time }},  -->
-                        {{ $joblo->location_name }} -  
+                        @if ( $joblo->location_name ) {{ $joblo->location_name }} - @endif
 
                         {{ $job->jobs_desc_short }}
 
