@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInqueryOptionsTable extends Migration
+class CreateInquiriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateInqueryOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inquery_options', function (Blueprint $table) {
+        Schema::create('inquiries', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('inquery_id');
-            $table->foreign('inquery_id')->references('id')->on('inqueries')->onDelete('cascade');
-            $table->string('option',255);
+            $table->string('package_inquiry',255);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateInqueryOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inquery_options');
+        Schema::dropIfExists('inquiries');
     }
 }

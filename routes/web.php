@@ -359,9 +359,14 @@ Route::group(['middleware'=>'cek'],function(){
 
     Route::get('/admin/talent/portfoliodetail/{id}','talentController@portfoliodetailya')->name('portfolio.talentdetailya');
 
-	Route::group(['prefix'=>'question'], function(){
-		Route::get('/create', 'questionController@create')->name('question.create');
-		Route::post('/store', 'questionController@store')->name('question.store');
+	Route::group(['prefix'=>'inquiry'], function(){
+		Route::get('/', 'questionController@inquiry')->name('inquiry');
+		Route::post('/storeInquiry', 'questionController@storeInquiry')->name('inquiry.storeInquiry');
+		Route::delete('/destroyInquiry{id}','questionController@destroyInquiry')->name('inquiry.destroyInquiry');
+		Route::get('create', 'questionController@create')->name('inquiry.create');
+		Route::get('create/{id}', 'questionController@create')->name('inquiry.create');
+		Route::post('/storeQuestion', 'questionController@storeQuestion')->name('inquiry.storeQuestion');
+		Route::delete('/destroyQuestion{id}','questionController@destroyQuestion')->name('inquiry.destroyQuestion');
 
 	}); 
 

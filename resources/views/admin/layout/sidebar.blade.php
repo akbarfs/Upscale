@@ -44,7 +44,7 @@
                     <li class="menu-item-has-children dropdown" title="Setting Questions">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="menu-icon fa fa fa-gears"></i> Setting Question</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li title="Substep Job Apply"><i class=""></i><a href="{{ route('question.create') }}"> Question</a></li>
+                            <li title="Substep Job Apply"><i class=""></i><a href="{{ route('inquiry') }}"> Question</a></li>
                             <li title="Location Jobs"><i class=""></i><a href="{{ route('jobs.all') }}"> Location Jobs</a></li>
                         </ul>
                     </li>
