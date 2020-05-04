@@ -11,7 +11,7 @@
             <source src="{{url('template/upscale/media/talent.mp4')}}" type="video/mp4">
         </video>
         <div class="container" style="padding-bottom: 100px;">
-            <hr class="space-lg" />
+            <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" style="font-size: 25px">
                     <h1>
@@ -33,7 +33,7 @@
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
             </div>
-            <hr class="space-lg" />
+            <hr class="space-lg hidden-sm" />
         </div>
     </section>
 

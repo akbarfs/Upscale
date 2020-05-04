@@ -6,6 +6,21 @@
 
 	<style>
 		h3 a:hover { text-decoration: none; }
+		.wrap-apply { float: right; }
+
+		@media only screen and (max-width:990px){
+        
+	    }
+
+	    @media only screen and (max-width:767px){
+	        
+	        
+	    }
+
+	    @media only screen and (max-width:480px){
+	        .wrap-apply { float: none }
+	    }
+
 	</style>
 
 	<section class="section-base">
@@ -39,7 +54,7 @@
 
                     </p>
                     <!-- <div>Dublin, Ireland</div> -->
-                    <div style="float: right;">
+                    <div class="wrap-apply" >
                     	<a href="{{ url('jobs/'.$job->jobs_id) }}" target="_blank" class="btn btn-xs btn-circle" style="float: right ; margin-top: 5px">Apply now</a>
                     </div>
                     <div style="clear: both"></div>

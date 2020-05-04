@@ -4,13 +4,33 @@
 
 @section('content')
 
+<style>
+    
+    @media only screen and (max-width:990px){
+        .grid-list{ padding-top: 30px }
+        #features .container { padding-bottom:0 }
+    }
+
+    @media only screen and (max-width:767px){
+        .grid-list{ padding-top: 30px }
+        #features .container { padding-bottom:0 }
+        
+    }
+
+    @media only screen and (max-width:480px){
+        .grid-list{ padding-top: 30px }
+        #features .container { padding-bottom:0 }
+    }
+
+</style>
+
 <main>
     <section class="section-video light">
         <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-2.jpg')}}">
             <source src="{{url('template/upscale/media/cowork-black.mp4')}}" type="video/mp4">
         </video>
         <div class="container" style="padding-bottom: 100px;">
-            <hr class="space-lg" />
+            <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" style="font-size: 25px">
                     <h1>
@@ -29,14 +49,17 @@
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
             </div>
-            <hr class="space-lg" />
+            <hr class="space-lg hidden-sm" />
         </div>
     </section>
 
     <section id="features" class="section-base section-color section-top-overflow" style="background: #37517E">
         <div class="container" style="padding-top: 0">
             <div class="grid-list" data-columns="4" data-columns-md="2" data-columns-xs="1">
+
+                
                 <div class="grid-box">
+
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">

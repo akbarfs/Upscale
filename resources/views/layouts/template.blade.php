@@ -144,7 +144,7 @@
     </nav>
     @yield('content')
     <i class="scroll-top-btn scroll-top show"></i>
-    <footer class="footer light">
+    <footer id="footer-bottom" class="footer light">
         <div class="container" style="padding-top: 180px">
             <div class="row">
                 <div class="col-lg-3">

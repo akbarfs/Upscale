@@ -4,6 +4,24 @@
 
 @section('content')
 
+<style>
+    
+    #start-hiring { margin-top: 15px }
+    @media only screen and (max-width:990px){
+        
+    }
+
+    @media only screen and (max-width:767px){
+        
+        
+    }
+
+    @media only screen and (max-width:480px){
+        
+    }
+
+</style>
+
 <main>
     <section class="section-video light">
         <!-- <div style="top: 0;right: 0;left: 0;position: absolute;width: 100%;z-index: 1;height: 100%;background: #000;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+3,000000+100&0.37+26,0.37+26,1+96 */
@@ -19,7 +37,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
             <source src="{{url('template/upscale/media/office.mp4')}}" type="video/mp4">
         </video>
         <div class="container" style="padding-bottom: 100px;">
-            <hr class="space-lg" />
+            <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-6" style="font-size: 25px">
                     <h1>
@@ -36,11 +54,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                         
                 </div>
                 <div class="col-lg-6 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=hi, kami ingin request talent" class="btn btn-circle btn-sm" target="_blank">Start Hiring</a>
-                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=hi, kami ingin memulai project" class="btn btn-circle btn-border light btn-sm" target="_blank" style="margin-top: 0">Start Project</a>
+                    <a id="start-hiring" href="https://api.whatsapp.com/send?phone=6287888666531&text=hi, kami ingin request talent" class="btn btn-circle btn-sm" target="_blank">Start Hiring</a>
+                    <a id="start-project" href="https://api.whatsapp.com/send?phone=6287888666531&text=hi, kami ingin memulai project" class="btn btn-circle btn-border light btn-sm" target="_blank">Start Project</a>
                 </div>
             </div>
-            <hr class="space-lg" />
+            <hr class="space-lg space hidden-sm" />
         </div>
     </section>
 
