@@ -131,8 +131,9 @@
                         </li>
                     </ul> -->
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs light" href="#">Login</a>
-                        <a class="btn btn-border btn-xs btn-circle startProject light" data-toggle="modal" data-target="#startProject">Start Project</a>
+                        <!-- <a class="btn btn-border btn-login btn-xs light" href="#">Login</a> -->
+                        <!-- <a class="btn btn-border btn-xs btn-circle startProject light" data-toggle="modal" data-target="#startProject">Start Project</a> -->
+                        <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
                     </div>
                 </div>
 

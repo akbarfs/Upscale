@@ -25,7 +25,7 @@
                         
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="#" class="btn btn-circle btn-sm">Request Quotation</a>
+                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">Request Quotation</a>
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
             </div>
@@ -327,26 +327,17 @@
                     <p>Silahkan masukan email anda atau nomor telephone anda agar kami dapat menghubungi anda </p>
                 </div>
                 <div class="col-lg-6">
-                    <form action="themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax form-inline" method="post" data-email="example@domain.com">
+                    <form action="https://api.whatsapp.com/send" class="form-box form-inline" method="get" data-email="example@domain.com">
                         <div class="row" style="width: 100%">
                             <div class="col-lg-8">
-                                <p>Type your email</p>
-                                <input id="email2" name="email2" placeholder="" type="email" class="input-text" required>
+                                <p>Type your message     :</p>
+                                <input name="phone" type="text" hidden="hidden" value="6287888666531">
+                                <input name="text" placeholder="" type="text" class="input-text" required>
                             </div>
                             <div class="col-lg-4">
                                 <p></p>
-                                <button class="btn btn-sm" type="submit">Subscribe</button>
+                                <button class="btn btn-sm" type="submit">Contact Us</button>
                             </div>
-                        </div>
-                        <div class="form-checkbox">
-                            <input type="checkbox" id="check2" name="check2" value="check" required>
-                            <label for="check">You accept the terms of service and the privacy policy</label>
-                        </div>
-                        <div class="success-box">
-                            <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
-                        </div>
-                        <div class="error-box">
-                            <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
                         </div>
                     </form>
                 </div>
@@ -474,13 +465,14 @@
 
         </div>
     </section>
-
+    
+   
     <section class="section-base section-color no-padding-bottom section-top-overflow">
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
                     <div class="col-lg-8">
-                        <form action="https://templates.themekit.dev/codrop/themekit/scripts/contact-form/contact-form.php" class="form-box form-ajax" method="post" data-email="example@domain.com">
+                        <form id="form-complete" action="https://api.whatsapp.com/send" class="form-box" method="get" data-email="example@domain.com">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <input id="name" name="name" placeholder="Name" type="text" class="input-text" required>
@@ -492,15 +484,15 @@
                                     <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
                                 </div>
                             </div>
-                            <textarea id="messagge" name="messagge" class="input-textarea" placeholder="Write something ..." required></textarea>
+                            <textarea id="messagge" name="text" class="input-textarea" placeholder="Write something ..." required></textarea>
                             
                             <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
-                            <div class="success-box">
+                            <!-- <div class="success-box">
                                 <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
                             </div>
                             <div class="error-box">
                                 <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                     <div class="col-lg-4 order-md-first">
@@ -515,32 +507,29 @@
                             <li><b>Email</b><p>elvron.indonesia@gmail.com</p></li>
                         </ul>
                         <hr class="space-sm" />
-                        <!-- <ul class="accordion-list">
-                            <li>
-                                <a href="#">Salary and holidays policy</a>
-                                <div class="content">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                        Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                    </p>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">Assistence and support</a>
-                                <div class="content">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
-                                        Utenim ad minim veniam quis nostrud exercitation ullamco laboris.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul> -->
                     </div>
                 </div>
             </div>
             <hr class="space-lg visible-md" />
         </div>
     </section>
+    
+    <script>
+        $(document).ready(function()
+        {
+            $("#form-complete").submit(function()
+            {
+                var name = $(this).find('input[name="name"]').val();
+                var phone = $(this).find('input[name="phone"]').val();
+                var email = $(this).find('input[name="email"]').val();
+                var text = $(this).find('textarea[name="text"]').val();
+                var url = "?phone=6287888666531&text=Hi, saya "+name+" ("+phone+" "+email+") : "+text ; 
+                alert(url) ; 
+                window.location.replace("https://api.whatsapp.com/send?"+url);
+                return false ;
+            });
+        });
+    </script>
 
 </main>
 

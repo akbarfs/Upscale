@@ -29,7 +29,7 @@
                         
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="#" class="btn btn-circle btn-sm">Join Community</a>
+                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=hi, saya ingin bergabung" target="_blank" class="btn btn-circle btn-sm">Join Community</a>
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
             </div>
@@ -284,7 +284,7 @@
                     </table>
                 </div>
                 <div class="col-lg-3">
-                    <a href="#" class="btn btn-sm full-width btn-circle">Apply now</a>
+                    <a href="{{url('/jobs')}}" class="btn btn-sm full-width btn-circle">Apply now</a>
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
@@ -345,7 +345,7 @@
                     </table>
                 </div>
                 <div class="col-lg-3">
-                    <a href="#" class="btn btn-sm btn-circle full-width">Apply now</a>
+                    <a href="{{url('/jobs')}}" class="btn btn-sm btn-circle full-width">Apply now</a>
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
@@ -408,7 +408,7 @@
                     </table>
                 </div>
                 <div class="col-lg-3">
-                    <a href="#" class="btn btn-sm btn-circle full-width">Apply now</a>
+                    <a href="{{url('/jobs')}}" class="btn btn-sm btn-circle full-width">Apply now</a>
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
@@ -471,7 +471,7 @@
                     </table>
                 </div>
                 <div class="col-lg-3">
-                    <a href="#" class="btn btn-sm btn-circle full-width">Apply now</a>
+                    <a href="{{url('/jobs')}}" class="btn btn-sm btn-circle full-width">Apply now</a>
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
@@ -479,7 +479,7 @@
 
             <div style=" text-align:center; background: #fff;height: 300px;position: relative;width: 100%;margin-top: -300px; background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,1) 53%, rgba(255,255,255,0) 100%);">
             
-                <div><a href="#" class="btn btn-sm btn-circle full-width" style="margin-top: 150px;width: 300px;">load more</a> </div> 
+                <div><a href="{{url('jobs')}}" class="btn btn-sm btn-circle full-width" style="margin-top: 150px;width: 300px;">load more</a> </div> 
 
             </div>
 

@@ -74,7 +74,7 @@ class homeController extends Controller
         $jobs       = Job::orderBy('jobs_active','asc')
                       ->orderBy('jobs_urgent', 'asc')
                       ->orderBy('jobs_created_date','asc')
-                      ->paginate(6);
+                      ->paginate(20);
 
         return view('career.home-new', compact('bootcamps', 'jobs', 'categories', 'locations'));
     }
