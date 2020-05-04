@@ -51,6 +51,9 @@
 	        												->first();
 						@endphp
 
+                        <!-- {{ $job->jobs_type_time }},  -->
+                        {{ $joblo->location_name }} -  
+
                         {{ $job->jobs_desc_short }}
 
                         @if ( $job->jobs_urgent ) <span class="urgent">Urgent</span> @endif
