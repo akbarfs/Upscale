@@ -42,8 +42,8 @@
 
                         <label for="select" class=" form-control-label">Urgent Hiring</label>
                             <select name="jobs_urgent" id="urgent" class="form-control">
-                                <option {{$job->jobs_urgent == 'urgent' ? 'selected':'' }} value="Fulltime">Urgent</option>
-                                <option  {{$job->jobs_urgent == 'noturgent' ? 'selected':'' }} value="Parttime">Not Urgent</option>
+                                <option {{$job->jobs_urgent == 'urgent' ? 'selected':'' }} value="urgent">Urgent</option>
+                                <option  {{$job->jobs_urgent == 'noturgent' || $job->jobs_urgent == '' ? 'selected':'' }} value="noturgent">Not Urgent</option>
                             </select>
 
                         <label for="select" class=" form-control-label">Job type</label>
@@ -58,11 +58,16 @@
 
                           <select name="position-level" id="position-level" class="form-control">
 
-                            <option value="CEO/GM/Director/Senior Manager">CEO/GM/Director/Senior Manager</option>
+                            <option value="">- select -</option>
+                            <option value="Fulltime/Partime, Remote/Onsite">Fulltime/Partime, Remote/Onsite</option>
+                            <option value="Fulltime Remote Only">Fulltime Remote Only</option>
+                            <option value="Fulltime Onsite Only">Fulltime Onsite Only</option>
+                            <option value="Project Base">Project Base</option>
+                            <!-- <option value="CEO/GM/Director/Senior Manager">CEO/GM/Director/Senior Manager</option>
                             <option value="Manager/Assistant Manager">Manager/Assistant Manager</option>
                             <option value="Supervisor/Coordinator">Supervisor/Coordinator</option>
-                            <option value="Staff (non-management & non-supervisor)">Staff (non-management & non-supervisor)</option>
-                            <option value="Less Than 1 year of experience">Less Than 1 year of experience</option>
+                            <option value="Staff non management & non supervisor">Staff (non-management & non-supervisor)</option>
+                            <option value="Less Than 1 year of experience">Less Than 1 year of experience</option> -->
                           </select>
                           <label for="select" class=" form-control-label">Jobs Status</label>
                           <select name="status" id="status" class="form-control">
@@ -92,16 +97,15 @@
                           </select>
                           <label for="select" class=" form-control-label">Years of Experience</label>
 
-                              <select name="yoe" id="yoe" class="form-control">
-                                
-                                <option value="">No Experience</option>
-                                <option value="1 Year of Experience ">1 Year of Experience</option> 
-                                <option value="2 Years of Experience ">2 Years of Experience</option> 
-                                <option value="3 Years of Experience ">3 Years of Experience</option> 
-                                <option value="4 Years of Experience ">4 Years of Experience</option> 
-                                <option value="5 Years of Experience ">5 Years of Experience</option> 
-                                <option value="6 Years of Experience ">6 Years of Experience</option> 
-                              </select>
+                            <select name="yoe" id="yoe" class="form-control">
+                              
+                              <option value="">No Experience</option>
+                              <option value="Min 1 Year">Min 1 Year</option> 
+                              <option value="Min 2 Years">Min 2 Years</option> 
+                              <option value="Min 3 Years">Min 3 Years</option> 
+                              <option value="Min 4 Years">Min 4 Years</option> 
+                              <option value="More than 5 Years">More than 5 Years</option> 
+                            </select>
 
 
                     </div>
@@ -174,24 +178,37 @@
 @push('script')
 
 <script>
-      $(document).on('change', '#yoe', function(){
-        $('input[name="short"]').val($('#yoe').val() + "(" + $('#position-level').val() + ")");
+    
+    $(document).on('change', '#yoe', function(){
+        $('input[name="short"]').val($('#yoe').val() + " - " + $('#position-level').val());
     });
 
     $(document).on('change', '#position-level', function(){
-        $('input[name="short"]').val($('#yoe').val() + "(" + $('#position-level').val() + ")");
+        $('input[name="short"]').val($('#yoe').val() + " - " + $('#position-level').val());
     });
 
   $(document).ready(function(){
-    var string = "{{$job->jobs_desc_short}}";
-    var split = string.split("(");
-    var hasil = split[1].split(")");
-    if(split[0] == '')
-     $("#yoe").prepend("<option disabled selected>No Experience</option>");
-    else 
-     $("#yoe").prepend("<option disabled selected>" + split[0] + "</option>");
     
-     $("#position-level").prepend("<option disabled selected>" + hasil[0] + "</option>");
+    var string = "{{$job->jobs_desc_short}}";
+    var split = string.split(" - ");
+    // var hasil = split[1].split(" - ");
+
+    if(split[0] == '')
+    {
+      // $("#yoe").prepend("<option disabled selected>No Experience</option>");
+      
+    }
+    else
+    {
+        console.log(split[1]);
+        $("#yoe option[value='"+split[0]+"']").attr("selected","selected");
+        $("#position-level option[value='"+split[1]+"']").attr("selected","selected");
+    } 
+    
+    // $("#yoe").prepend("<option disabled selected>" + split[0] + "</option>");
+    // $("#position-level").prepend("<option disabled selected>" + hasil[0] + "</option>");
+
+
   });
   $(function(){
 

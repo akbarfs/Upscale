@@ -31,7 +31,7 @@
 
                     <hr class="space-sm">
                     
-                    
+                    {!!$job->jobs_desc_center!!}
                     {!!$job->jobs_desc_left!!}
                     
 

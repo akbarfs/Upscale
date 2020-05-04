@@ -8,6 +8,8 @@
 		h3 a:hover { text-decoration: none; }
 		.wrap-apply { float: right; }
 
+		.urgent {background: #ff9e9e; font-size: 14px; padding: 5px 10px; color: #fff; border-radius: 21px;}
+
 		@media only screen and (max-width:990px){
         
 	    }
@@ -50,7 +52,8 @@
 						@endphp
 
                         {{ $job->jobs_desc_short }}
-                        <!-- {{ $job->jobs_type_time }}, {{ $joblo->location_name }} -->
+
+                        @if ( $job->jobs_urgent ) <span class="urgent">Urgent</span> @endif
 
                     </p>
                     <!-- <div>Dublin, Ireland</div> -->

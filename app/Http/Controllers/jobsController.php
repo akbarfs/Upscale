@@ -195,7 +195,7 @@ class jobsController extends Controller
       $jobca->jobca_category_id= $request->jobca_category_id;
       $jobca->update();
 
-      return redirect('/admin/jobs');
+      return back();
 
     }
 
