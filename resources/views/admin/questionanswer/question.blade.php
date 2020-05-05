@@ -132,7 +132,6 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Package Inqueries</th>
                                         <th scope="col">Question</th>
                                         <th scope="col">Type Option</th>
                                         <th scope="col">Option</th>
@@ -140,14 +139,19 @@
                                     </tr>
                                 </thead>
                                 <?php $no=1; ?>
-                                @foreach ($question as $data)
+                                @foreach ($inquiry->get_questions as $data)
                                 <tbody>
                                     <tr>
                                         <th scope="row" class="number">{{$no++}}</th>
-                                        <td class="text-capitalize">{{$data->package_inquiry}}</td>
                                         <td class="text-capitalize">{!!$data->question!!}</td>
                                         <td class="text-capitalize">{{$data->type_option}}</td>
-                                        <td class="text-capitalize">{{$data->option}}</td>
+                                        <td class="text-capitalize">
+
+                                            @foreach ( $data->get_options as $op )
+                                                {{$op->option}} ,
+                                            @endforeach 
+                                        
+                                        </td>
                                         <td class="row">
                                             <a href="#" data-toggle="modal" data-target="#modal-edit-company" type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>&nbsp;
                                             <form id="delete-form" action="{{ url('inquiry/destroyQuestion'.$data->id) }}" method="post">

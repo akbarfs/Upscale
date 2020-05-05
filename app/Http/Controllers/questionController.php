@@ -35,13 +35,8 @@ class questionController extends Controller
 
     public function create($id)
     {
-        $inquiry = Inquiry::find($id);
-        $question = DB::table('inquiries')
-        ->join('inquiry_questions', 'inquiries.id', '=', 'inquiry_questions.inquiry_id')
-        ->join('inquiry_q_options', 'inquiry_questions.id', '=', 'inquiry_q_options.question_id')
-        ->select('package_inquiry','question','description','type_option','option','inquiry_questions.id')
-        ->get();
-        return view('admin.questionanswer.question',compact('inquiry','question'));
+        $inquiry = Inquiry::find($id); // id 1 
+        return view('admin.questionanswer.question',compact('inquiry'));
     }
 
     public function storeQuestion(Request $request)
