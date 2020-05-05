@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,23 +29,53 @@ class LoginController extends Controller
         $password = $request->password;
         // $level = DB::table('users')->where('username', '=' ,$username)->pluck('level');
         // $level = $level[0];
+
         $data = DB::table('users')->where('username',$username)->first();
-        if($data!=NULL){
-            if($data->level == 'admin'){
-                if(Hash::check($password, $data->password)){
-                    Session::put('username',$data->username);
-                    Session::put('level',$data->level);
-                    Session::put('login',TRUE);
-                    return redirect()->route('dashboard');
+
+        if ($data != NULL) {
+            if ($data->role == 'talent') {
+                if (Hash::check($password, $data->password)) {
+                    dd('talent');
                 }else{
-                    return redirect()->back()->withErrors(['Username or password is invalid']);
+                    dd('password invalid');
                 }
-            }else{
-                return redirect('user/dashboard');
+
+            }else if ($data->role == 'client') {
+                if (Hash::check($password, $data->password)) {
+                    dd('client'); 
+                }else{
+                    dd('password invalid');
+                }
+
+            }else if ($data->role == 'cowork') {
+                if (Hash::check($password, $data->password)) {
+                    dd('cowork');    
+                }else{
+                    dd('password invalid');
+                }
             }
+
         }else{
-            return redirect()->back()->withErrors(['Username or password is invalid']);
+            return redirect()->back()->withErrors(['Username or password is invalid']);            
         }
+
+
+        // if($data!=NULL){
+        //     if($data->level == 'admin'){
+        //         if(Hash::check($password, $data->password)){
+        //             Session::put('username',$data->username);
+        //             Session::put('level',$data->level);
+        //             Session::put('login',TRUE);
+        //             return redirect()->route('dashboard');
+        //         }else{
+        //             return redirect()->back()->withErrors(['Username or password is invalid']);
+        //         }
+        //     }else{
+        //         return redirect('user/dashboard');
+        //     }
+        // }else{
+        //     return redirect()->back()->withErrors(['Username or password is invalid']);
+        // }
         // if (Auth::attempt(['username'=> $username,'password'=> $password,]))
         // {
         //     $level = DB::table('users')->where('username', '=' ,$username)->pluck('level');
