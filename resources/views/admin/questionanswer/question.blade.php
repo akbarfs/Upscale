@@ -151,7 +151,7 @@
                                                 {{$op->option}} ,
                                             @endforeach                                         
                                         </td>
-                                        <td class="text-capitalize">{{$data->id}}</td>
+                                        <td class="text-capitalize">{{$data->sort}}</td>
                                         <!-- <td>
                                             <i class="fa fa-chevron-up"></i>
                                             <i class="fa fa-chevron-down"></i>

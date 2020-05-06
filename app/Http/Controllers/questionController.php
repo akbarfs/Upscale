@@ -41,7 +41,8 @@ class questionController extends Controller
 
     public function storeQuestion(Request $request)
     {
-        $cek = InquiryQuestion::latest('sort')->first();
+        $id=$request->inquiry_id;
+        $cek = InquiryQuestion::latest('sort')->where('inquiry_id', $id)->first();
         if ($cek == null)
         { $sort = 0; }
         else
@@ -63,6 +64,12 @@ class questionController extends Controller
             ]);
         }
         return redirect()->back();
+        // dd($cek);
+    }
+
+    public function sortQuestion( Requesr $request)
+    {
+
     }
 
     public function destroyQuestion($id)
