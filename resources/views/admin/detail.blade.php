@@ -188,11 +188,33 @@
                     <aside class="profile-nav alt">
                         <section class="card">
                             <div class="card-header">
-                                    <strong class="card-title mb-3">Curriculum Vitae</strong>
+
+                                    <!-- get file in talent -->
+                                    <?php  
+
+                                        $talent = DB::table("talent")->where("talent_id",$all->jobs_apply_talent_id)->first() ; 
+
+                                    ?>
+
+                                    <strong class="card-title mb-3">Curriculum Vitae : {{$talent->talent_cv_update }}</strong>
                                 </div>
                             <div class="card-body">
+                                    <iframe src="{{asset('storage/Curriculum Vitae/'.$talent->talent_cv_update)}}" style="height:1000px;width:100%"></iframe>
+                            </div>
 
-                                    <iframe src="{{asset('storage/Curriculum Vitae/'.$all->jobs_apply_cv)}}" style="height:1000px;width:100%"></iframe>
+                        </section>
+                    </aside>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-porto" role="tabpanel" aria-labelledby="v-pills-porto-tab">
+                    <aside class="porto-nav alt">
+                        <section class="card">
+                            <div class="card-header">
+
+                                    <strong class="card-title mb-3">Curriculum Vitae : {{$talent->portfolio_update }}</strong>
+                            </div>
+                            <div class="card-body">
+                                    <iframe src="{{asset('storage/Portfolio/'.$talent->portfolio_update)}}" style="height:1000px;width:100%"></iframe>
                             </div>
 
                         </section>
@@ -206,7 +228,8 @@
                                     <strong class="card-title mb-3">Report Talent</strong>
                                 </div>
                             <div class="card-body">
-                                    <object data="{{"data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64,".$all->jobs_apply_report_talent}}" style="height:1000px;width:100%"></object>
+                                    <object data='{{"data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64,".$all->jobs_apply_report_talent}}' 
+                                        style="height:1000px;width:100%"></object>
                                 <!-- <iframe src='https://view.officeapps.live.com/op/embed.aspx?src={{"data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64,".$all->jobs_apply_report_talent}}' width='100%' height='600px' frameborder='0'> -->
                             </div>
 
@@ -237,15 +260,23 @@
                             </div>
                             <div class="card-body">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    
                                     <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
+                                    
                                     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Curriculum Vitae</a>
+
+                                    <a class="nav-link" id="v-pills-porto-tab" data-toggle="pill" href="#v-pills-porto" role="tab" aria-controls="v-pills-porto" aria-selected="false">
+                                    Portofolio</a>
+
                                     <a  @if(empty($all->jobs_apply_portofolio_file)) style="display: none;" @endif class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Portofolio</a>
                                     @if($all->jobs_apply_status == 'interview' && $interview->interview_schedule_status != "not-scheduled")
                                         <a class="nav-link" id="report-interview" aria-selected="false"  href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Report Interview</a>
                                     @elseif($all->jobs_apply_status != 'report')
                                         <a class="nav-link"  data-toggle="modal" data-target="#myModal" role="tab" aria-controls="v-pills-profile" aria-selected="false" href="#">Jadwalkan Interview</a>
                                     @endif
+                                    
                                     <a class="nav-link tambah-catatan"  data-toggle="modal" data-target="#modal-tambah-catatan" role="tab" aria-controls="v-pills-profile" aria-selected="false" href="#">Tambahkan Catatan</a>
+
                                 </div>
                             </div>
                         </div>

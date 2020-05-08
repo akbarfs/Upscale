@@ -59,7 +59,13 @@
                                         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
                                         <a class="nav-link " id="v-pills-education-tab" data-toggle="pill" href="#v-pills-education" role="tab" aria-controls="v-pills-home" aria-selected="true">Education</a>
                                         <a class="nav-link" id="v-pills-cv-tab" data-toggle="pill" href="#v-pills-cv" role="tab" aria-controls="v-pills-profile" aria-selected="false">Curriculum Vitae</a>
+                                        
+                                        <a class="nav-link" id="v-pills-cv-tab" data-toggle="pill" href="#v-pills-porto" role="tab" aria-controls="v-pills-porto" aria-selected="false">Porto Pdf</a>
+                                        
                                         <a class="nav-link" id="v-pills-cv2-tab" data-toggle="pill" href="#v-pills-cv2" role="tab" aria-controls="v-pills-profile" aria-selected="false">Curriculum Vitae2</a>
+
+                                        
+                                        
                                         <a class="nav-link" id="v-pills-portfolio-tab" data-toggle="pill" href="#v-pills-portfolio" role="tab" aria-controls="v-pills-profile" aria-selected="false">Portfolio</a>
                                         <a class="nav-link" id="v-pills-experience-tab" data-toggle="pill" href="#v-pills-experience" role="tab" aria-controls="v-pills-profile" aria-selected="false">Work Experience</a>
                                         <a class="nav-link " id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-home" aria-selected="true">Certification</a>
@@ -1435,15 +1441,32 @@
                     <aside class="profile-nav alt">
                         <section class="card">
                             <div class="card-header">
-                                    <strong class="card-title mb-3">Curiculum Vitae</strong>
+                                    <strong class="card-title mb-3">Curiculum Vitae : {{$all->talent_cv_update}}</strong>
                                 </div>
                             <div class="card-body">
                             @if($all->talent_cv_update!=NULL)
-                            <iframe src="{{asset('storage/app/public/Curriculum Vitae/'.$all->talent_cv_update)}}" style="height:1000px;width:100%"></iframe>
+                            <iframe src="{{asset('storage/Curriculum Vitae/'.$all->talent_cv_update)}}" style="height:1000px;width:100%"></iframe>
 
                             @else
                             <object data="{{"data:application/pdf;base64," .$all->talent_cv}}" style="height:1000px;width:100%"></object>
                             @endif
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-porto" role="tabpanel" aria-labelledby="v-pills-porto-tab">
+                    <aside class="profile-nav alt">
+                        <section class="card">
+                            <div class="card-header">
+                                    <strong class="card-title mb-3">Curiculum Vitae : {{$all->portfolio_update}}</strong>
+                                </div>
+                            <div class="card-body">
+                                @if($all->portfolio_update !=NULL)
+                                    <iframe src="{{asset('storage/Portfolio/'.$all->portfolio_update)}}" style="height:1000px;width:100%"></iframe>
+                                @else
+                                    tidak upload porto
+                                @endif
                             </div>
                         </section>
                     </aside>
@@ -1457,7 +1480,11 @@
                                     <strong class="card-title mb-3">Curiculum Vitae</strong>
                                 </div>
                             <div class="card-body">
-                                <object data="{{"data:application/pdf;base64,".$all->talent_cv}}" style="height:1000px;width:100%"></object>
+                                @if (isset($all->talent_cv))
+                                    <object data="{{"data:application/pdf;base64,".$all->talent_cv}}" style="height:1000px;width:100%"></object>
+                                @else
+                                    kosong
+                                @endif 
                             </div>
                             
                         </section>

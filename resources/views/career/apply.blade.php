@@ -3,9 +3,11 @@
 @section("menu_class",'light')
 
 @section("top-asset")
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/daterangepicker.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="/resources/demos/style.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @endsection
 
 @section('bottom-asset')
@@ -13,8 +15,7 @@
     <script type="text/javascript" src="{{ asset('js/sweetalert2.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/validator.js') }}"></script>
     <script type="text/javascript" src="{{asset('js/momment.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
     <script>
         $('#loc').multiselect({
             columns: 1,
@@ -51,12 +52,14 @@
             margin-top: 20px;
         }
         .form-control { height: unset; }
+
+
     </style>
     <section id="daftar" class="section" style="margin-top: 100px;">
         <div class="container" style="padding-top: 0">
             <div class="row text-center" style="">
                 <div class="col-md-12">
-                    <h2>{{$apply->jobs_title}}'s Form</h2>
+                    <h2>Join Our Exclusive Network</h2>
                 </div>
             </div>
             <div class="row ">
@@ -71,7 +74,7 @@
                                 <input id="inputname" type="text" name="name" class="validate-required form-control" placeholder="Nama Lengkap" required="">
                             </div>
                             <div class="col-md-4">
-                                <label >Nomor Telepon (Whatsapp/Telegram)<span
+                                <label>Whatsapp/Telegram<span
                                         style="color: red;">
                                         *</span></label>
                                 <input id="phone" type="number" name="phone" placeholder="+62" class="validate-required form-control" required="">
@@ -89,7 +92,7 @@
                             <div class="col-md-4">
                                 <label >Tanggal Lahir<span
                                         style="color: red;"> *</span></label>
-                                <input type="text" id="tgl" name="tgl" placeholder="dd/mm/yyyy" class="form-control">
+                                <input type="text" id="tgl" name="tgl" placeholder="tahun-bulan-tanggal" class="form-control" autocomplete="off">
                                 <!-- <input type="date" name="tgl" required="" class="form-control"> -->
                             </div> 
                             <div class="col-md-4">
@@ -104,8 +107,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label >Pilih Job Type yang kamu
-                                    inginkan<span style="color: red;">
+                                <label >Pilih Prioritas type pekerjaan<span style="color: red;">
                                         *</span></label>
                                         <div>
                                         <select id="job-type" class="form-control" name="type" required="" title="Select Job Type" onchange="jobType()">
@@ -117,7 +119,7 @@
                                         
                             </div>
                             <div class="col-md-4">
-                                <label >Pilih Job Lokasi
+                                <label >Pilih Lokasi Pekerjaan  
                                     <span style="color: red;">*</span></label>
                                         <div>
                                         <select id="location" name="jobs_location" required="" title="Select Job Location" class="form-control">
@@ -133,13 +135,12 @@
                                 <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="es" type="text" name="es" class="form-control" placeholder="Your expected salary">
                             </div>
                             <div class="col-md-6">
-                                <label >Kota Sekarang<span
-                                        style="color: red;"> *</span></label>
+                                <label >Kota Sekarang<span style="color: red;"> *</span></label>
                                 <input type="text" id="address" name="address" class="form-control" placeholder="Tempat Tinggal Sekarang" required="">
                             </div> 
+                            
                             <div class="col-md-6">
-                                <label >Darimana kamu mengetahui Job
-                                    Vacancy ini?</label>
+                                <label >Kamu tau dari mana ?</label>
 
                                 <div class="input-select">
                                     <select id="info" name="info" class="form-control">
@@ -150,9 +151,49 @@
                                             <option value="Bursa Kerja">Bursa Kerja</option>
                                             <option value="Referensi Teman">Referensi Teman</option>
                                             <option value="Alumni">Alumni</option>
+                                            <option value="Alumni">Lainya</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <script>
+                                $(document).ready(function()
+                                {
+                                    $("#kerja").change(function()
+                                    {
+                                        if ( $(this).val() == 'ya')
+                                        {
+                                            $("#div_ready").hide() ; 
+                                            $("#div_selesai_kontrak").show() ; 
+                                        }
+                                        else
+                                        {
+                                            $("#div_ready").show() ; 
+                                            $("#div_selesai_kontrak").hide() ;   
+                                        }
+                                    }); 
+                                });
+                            </script>
+
+                            <div class="col-md-6">
+                                <label>Apakah saat ini sedang terikat kontrak kerja ?</label>
+                                <select class="form-control" name="kerja" id="kerja">
+                                    <option value="tidak">tidak</option>
+                                    <option value="ya">ya</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6" id="div_ready">
+                                <label>Siap kerja tanggal berapa ? <span style="color: red;"> *</span></label>
+                                <input type="text" id="ready_mulai" name="ready_mulai" placeholder="tahun-bulan-tanggal" class="form-control tgl">
+                            </div>
+
+                            <div class="col-md-6" id="div_selesai_kontrak"  style="display: none">
+                                <label>Selesai kontrak tanggal berapa ? <span style="color: red;"> *</span></label>
+                                <input type="text" id="ready_pindah" name="ready_pindah" placeholder="tahun-bulan-tanggal" class="form-control tgl">
+                            </div>
+
+
                             <div style="display: none;" id="campus" class="col-md-12">
                                 <label >Campus/University</label>
                                 <input id="campus" type="text" class="form-control" name="campus" placeholder="Your Campus or University" >
@@ -168,9 +209,7 @@
                            
                             <div class="col-md-12">
                                 <label>Upload Your CV <span style="color: red;"> *</span></label>
-                                <label >Format nama file:
-                                    Name_JobPosition
-                                    Accepted file formats: pdf, doc, docx (500 KB Max)</label>
+                                <label> (pdf max 500kb) </label>
                                 <input type="file" accept=".pdf" name="cv" id="cv" class="form-control-file validate-required form-control">
                             </div>
                             
@@ -187,7 +226,7 @@
 
 
                             <div class="col-md-12">
-                                <label>Upload portofolio <span style="color: red;"> *</span></label>
+                                <label>Upload portofolio</label>
                                 <input type="file" name="filepp" id="filepp" accept=".pdf" class="form-control-file form-control">
                             </div>
 
@@ -343,10 +382,29 @@
         }
     });
 
+    function doSomeValidation(date)
+    {
+
+    }
+
 
      $(function() {
-       $('#tgl').datetimepicker({
-        'format' : "DD/MM/YYYY",
+       $('#tgl').datepicker({
+          dateFormat: 'yy-mm-dd',
+          onSelect: function() {
+            doSomeValidation($(this).getDate());
+          }
+        });
+     });
+
+
+
+     $(function() {
+       $('.tgl').datepicker({
+          dateFormat: 'yy-mm-dd',
+          onSelect: function() {
+            doSomeValidation($(this).getDate());
+          }
         });
      });
 
@@ -370,6 +428,7 @@
 		var pp           = $('#pp');
 		var filepp       = $('#filepp');
 		var es           = $('#es');
+
 		mailformat       = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
          
         
@@ -413,10 +472,30 @@
         //     kolom_kosong.push('true');
         // }
 
-         if(filepp.val() == ''){
+        /*if(filepp.val() == ''){
             swal('Upload file Portofolio','');
             pp.focus();
             kolom_kosong.push('true');
+        }*/
+
+        if ( $("#kerja").val() == 'ya' )
+        {
+            if ( $("#ready_pindah").val() == '' )
+            {
+                swal('tolong isi informasi tanggal selesai kontrak','');
+                $("#ready_pindah").focus();
+                kolom_kosong.push('true');
+            }
+        }
+        else
+        {
+            if ( $("#ready_mulai").val() == '' )
+            {
+
+                swal('tolong isi informasi tanggal siap kerja','');
+                $("#ready_pindah").focus();
+                kolom_kosong.push('true');
+            }
         }
 
         

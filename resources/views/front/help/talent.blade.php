@@ -29,7 +29,7 @@
                         
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=hi, saya ingin bergabung" target="_blank" class="btn btn-circle btn-sm">Join Community</a>
+                    <a href="{{url('jobs')}}" class="btn btn-circle btn-sm">Join Community</a>
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
             </div>
@@ -89,7 +89,7 @@
                         Visi kami adalah membangun ecosystem yang dapat mendukung semua pelaku industri, baik talent, perusahaan, universitas, 
                         komunitas dan semua pihak lain yang dapat mendukung visi kami. Ayo bergabung untuk meningkatkan kualitas industri indonesia
                     </p>
-                    <a href="#" class="btn btn-border btn-circle btn-sm">Join Community</a>
+                    <a href="{{url('jobs')}}" class="btn btn-border btn-circle btn-sm">Join Community</a>
                 </div>
                 <div class="col-lg-6">
                     <hr class="space-sm visible-md" />
@@ -179,21 +179,20 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-6 talent">
+                <div class="col-lg-6 talent">
                     <div class="cnt-box cnt-box-side boxed">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/users/pp.jpg')}}" alt="" /></a>
                         <div class="caption">
-                            <h2 style="margin-bottom: 0">Dodi Prakoso Wibowo</h2>
-                            <div class="extra-field">Founder PT Erporate Solusi Global</div>
+                            <h2 style="margin-bottom: 0">Fakhrus Syakirin Ramadhan</h2>
+                            <div class="extra-field">Founder Pola Kreatif</div>
                             <p>
-                                Berawal tahun 2007 sebagai <b style="color: #4ab5e6; text-decoration: underline;">remote project manager & freelance programer</b>,  
-                                2012 founding Imedia, tahun 2016 mendapatkan kepercayaan dan investasi dari client untuk membangun software house
-                                & talent solution
+                               Berawal dari tahun 2014 sebagai <b style="color: #4ab5e6; text-decoration: underline;">freelance UI UX</b>.
+                                berlanjut ke <b style="color: #4ab5e6; text-decoration: underline;">fulltime programmer IOS & Android </b>, setelah memiliki skill, pengalaman dan network dari ecosystem kami, tahun 2019 berhasil menjalankan agency sendiri, Pola Kreatif
                             </p>
                         </div>
                     </div>
-                </div> -->
-                <div class="col-lg-6 talent">
+                </div>
+                <!-- <div class="col-lg-6 talent">
                     <div class="cnt-box cnt-box-side boxed">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/users/user-3.jpg')}}" alt="" /></a>
                         <div class="caption">
@@ -206,7 +205,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <hr class="space-lg" />

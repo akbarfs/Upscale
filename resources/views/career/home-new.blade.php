@@ -33,7 +33,7 @@
             <hr class="space-lg" />
 
             <h2 align="center">
-                Expertise Available!
+                Join Now , choose your Expertise !
             </h2>
             <p class="align-center width-650">
                 Bergabung dengan eksklusif network kami. Kembangkan Karir, Skill & Network kamu bersama Upscale. Kami secara aktif akan mencarikan kamu peluang yang lebih baik

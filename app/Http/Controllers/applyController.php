@@ -227,15 +227,16 @@ class applyController extends Controller
             if ($cv)
             {
                 $extension = $cv->getClientOriginalExtension(); 
-                $namecv = 'Applier_CV_'.$request->name."_".$hariini.'.'.$extension;
+                $namecv = 'cv-'.$request->name."_".uniqid().'.'.$extension;
                 $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
             }
             
   
+            $namepp = '';
             $pp = $request->file('filepp');
             if ( $pp )
             {
-                $namepp = 'Applier_Portofolio_'.$request->name."_".$hariini.'.'.$pp->getClientOriginalExtension();
+                $namepp = 'porto-'.$request->name."_".uniqid().'.'.$pp->getClientOriginalExtension();
                 $path2 = $pp->storeAs('public/Portfolio',$namepp);
             }
             
@@ -291,12 +292,22 @@ class applyController extends Controller
         $talent->talent_address         = $request->input('address');
         $talent->talent_salary          = $request->input('es');
         $talent->talent_cv_update       = $namecv;
-        $talent->talent_portfolio       = $request->input('pp');
-        $talent->talent_portofolio_file = $namepp;
+        $talent->portfolio_update       = $namepp;
+        // $talent->talent_portfolio       = $request->input('pp');
         $talent->talent_campus          = $request->input('campus');
         $talent->talent_skill           = $request->input('skill');
         $talent->talent_status          = 'worker';
         $talent->talent_location_id     = 12;
+        
+        if ( $request->input('kerja') == 'ya')
+        {
+            $talent->talent_date_ready      = $request->ready_pindah;
+        }
+        else
+        {
+            $talent->talent_date_ready      = $request->ready_mulai;
+        }
+        
         $talent->tcreated_date          = $now;
         $talent->save();
 
@@ -315,9 +326,6 @@ class applyController extends Controller
         $data->jobs_apply_birth_date      = $request->input('tgl');
         $data->jobs_apply_current_address = $request->input('address');
         $data->jobs_apply_location        = $request->input('jobs_location');
-        $talent->talent_cv_update         = $namecv;
-        $talent->talent_portfolio         = $request->input('pp');
-        $talent->talent_portofolio_file   = $namepp;
         $data->jobs_apply_information     = $request->input('info');
         // $data->jobs_apply_image        = base64_encode($imageStr);
         $data->jobs_apply_campus          = $request->input('campus');
