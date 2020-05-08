@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Upscale.id, Scaling Up your business with right talent</title>
+    <title>@if ( isset($title) ) {{$title}} @else Upscale.id, Scaling Up your business with right talent @endif </title>
     <meta name="description" content="">
     <script src="{{url('template/upscale/themekit/scripts/jquery.min.js')}}"></script>
     <script src="{{url('template/upscale/themekit/scripts/main.js')}}"></script>

@@ -23,6 +23,8 @@
 	        .wrap-apply { float: none }
 	    }
 
+	    .reg:hover { color:#fff; }
+
 	</style>
 
 	<section class="section-base">
@@ -31,8 +33,11 @@
             <hr class="space-lg" />
 
             <h2 align="center">
-                Currently open roles urgently.
+                Expertise Available!
             </h2>
+            <p class="align-center width-650">
+                Bergabung dengan eksklusif network kami. Kembangkan Karir, Skill & Network kamu bersama Upscale. Kami secara aktif akan mencarikan kamu peluang yang lebih baik
+            </p>
 			
 			<hr class="space-sm" />
 
@@ -61,7 +66,7 @@
                     </p>
                     <!-- <div>Dublin, Ireland</div> -->
                     <div class="wrap-apply" >
-                    	<a href="{{ url('jobs/'.$job->jobs_id) }}" target="_blank" class="btn btn-xs btn-circle" style="float: right ; margin-top: 5px">Apply now</a>
+                    	<a href="{{ url('jobs/'.$job->jobs_id) }}" target="_blank" class="btn btn-xs btn-circle reg" style="float: right ; margin-top: 5px">Join</a>
                     </div>
                     <div style="clear: both"></div>
                 </li>

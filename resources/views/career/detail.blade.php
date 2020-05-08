@@ -47,7 +47,7 @@
                         <div class="btn-spaced-group">
                             <a href="{{ url('jobs/apply/'.$job->jobs_id) }}" class="see-more-link" data-function="business">
                             <button type="button" class="btn btn-lg btn-primary">
-                                Apply Now
+                                Join Now
                             </button>
                             </a>
                         </div>

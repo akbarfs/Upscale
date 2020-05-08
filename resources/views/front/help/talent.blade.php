@@ -1,4 +1,4 @@
-@extends('layouts.template',['logo'=>'transparent'])
+@extends('layouts.template',['logo'=>'transparent','title'=>'Scaling Up Karir, Skill & Networkmu bersama komunitas eksklusif network upscale'])
 
 @section("menu_class",'menu-transparent light')
 
@@ -154,6 +154,9 @@
     <section class="section-base">
         <div class="container" style="padding-bottom: 0">
             
+            <style>
+                .talent { margin-top: 20px }
+            </style>
 
             <div class="row">
                 <div class="col-lg-12" align="center">
@@ -162,7 +165,7 @@
             </div>
             <hr class="space-sm" />
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 talent">
                     <div class="cnt-box cnt-box-side boxed">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/users/user-1.jpg')}}" alt="" /></a>
                         <div class="caption">
@@ -176,7 +179,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6 talent">
+                    <div class="cnt-box cnt-box-side boxed">
+                        <a href="#" class="img-box"><img src="{{url('template/upscale/media/users/pp.jpg')}}" alt="" /></a>
+                        <div class="caption">
+                            <h2 style="margin-bottom: 0">Dodi Prakoso Wibowo</h2>
+                            <div class="extra-field">Founder PT Erporate Solusi Global</div>
+                            <p>
+                                Berawal tahun 2007 sebagai <b style="color: #4ab5e6; text-decoration: underline;">remote project manager & freelance programer</b>,  
+                                2012 founding Imedia, tahun 2016 mendapatkan kepercayaan dan investasi dari client untuk membangun software house
+                                & talent solution
+                            </p>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-lg-6 talent">
                     <div class="cnt-box cnt-box-side boxed">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/users/user-3.jpg')}}" alt="" /></a>
                         <div class="caption">
