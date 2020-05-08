@@ -25,8 +25,8 @@
 
 <div class="content mt-3">
     <div class="animated fadeIn">
-        <form id="job-form" action="{{ route('question.store') }}" method="post" enctype="multipart/form-data" >
-            {{csrf_field()}}
+        <form id="save-form" action="{{ route('inquiry.storeQuestion') }}" method="post" enctype="multipart/form-data" >
+            @csrf
             <input type="hidden" name="id">            
             <div class="row">
                 <div class="col-lg-12">
@@ -34,22 +34,18 @@
                         <div class="card-header">
                             <strong>Project Question</strong>
                         </div>
-                        <div class="card-body card-block">
-                            
+                        <div class="card-body card-block">                            
                             <div class="form-group col-md-12 mt-4">
                                 <div class="col-md-2">
                                     <label class="form-control-label"><strong>Type Question</strong></label>
                                 </div>
                                 <div class="col-md-5">
-                                    <select class="custom-select mr-sm-2" id="type_question" name="type_question">
-                                        <option value="0">Choose...</option>
-                                        <option value="test">Test</option>
-                                        <option value="interview">Interview</option>
-                                        <option value="quisioner">Quisioner</option>
+                                    <select class="custom-select mr-sm-2 text-capitalize" id="inquiry_id" name="inquiry_id">
+                                        <!-- <option value="0">Choose...</option> -->
+                                            <option value="{{$inquiry->id}}">{{$inquiry->package_inquiry}}</option>
                                     </select>
                                 </div>
                             </div>
-
                             <div class="row form-group px-4">
                                 <div class="col-12 col-md-12">
                                     <label class="form-control-label"><strong>Question</strong></label>
@@ -109,9 +105,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
-
-
                         </div>
                         <div class="card-footer">
                             <div class="pull-right">
@@ -122,6 +115,62 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<a href="{{url('inquiry')}}" class="btn btn-info" role="button">Link Button</a>
+<div class="content mt-3">
+    <div class="animated fadeIn">                    
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Question List</strong>
+                    </div>
+                    <div class="card-body card-block">                            
+                        <div class="form-group col-md-12 mt-4">
+                            <table class="table table-lg table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Question</th>
+                                        <th scope="col">Type Option</th>
+                                        <th scope="col">Option</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <?php $no=1; ?>
+                                @foreach ($inquiry->get_questions as $data)
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="number">{{$no++}}</th>
+                                        <td class="text-capitalize">{!!$data->question!!}</td>
+                                        <td class="text-capitalize">{{$data->type_option}}</td>
+                                        <td class="text-capitalize">
+
+                                            @foreach ( $data->get_options as $op )
+                                                {{$op->option}} ,
+                                            @endforeach 
+                                        
+                                        </td>
+                                        <td class="row">
+                                            <a href="#" data-toggle="modal" data-target="#modal-edit-company" type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>&nbsp;
+                                            <form id="delete-form" action="{{ url('inquiry/destroyQuestion'.$data->id) }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger btn-md " value="delete" id="delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>  
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
 </div>
 <!-- /#right-panel -->
@@ -137,18 +186,30 @@
         CKEDITOR.replace( 'texteditor1' );
         CKEDITOR.replace( 'texteditor2' );
     });
+    
+    $(window).on('load', function()
+    {   
+        $('select[name="type_option"]:first').val('essay')
+        document.getElementById("option").innerHTML = "<input type='text' class='form-control' name='option[]' value='essay' id='x'>";
+    });
 
-    $('#type_option').on('change', function()
+    $('#type_option').on('click', function()
     {
         var selected = $(this).val();
-        if(selected != '0' && selected != 'essay')
+        // if(selected == 'essay')
+        // {
+        //     $('.option').hide();
+        // }
+        if(selected == 'multiple_choice' || selected == 'check_list')
         {
+            $( "#x" ).prop( "disabled", true );
             $('.option').show();
+            $('#option').val('');
         }
-        else
+        if(selected == '0')
         {
             $('.option').hide();
-            $('.option_value').hide();
+            $('#option').val('');
         }
     });
 
@@ -176,7 +237,7 @@
     {
         var texteditor1     = CKEDITOR.instances['texteditor1'].getData();
         var texteditor2     = CKEDITOR.instances['texteditor2'].getData();
-        var typequestion    = $('#type_question');
+        var typequestion    = $('#inquiry_id');
         var typeoption      = $('#type_option');
         var value           = $('.value');
 
@@ -207,10 +268,30 @@
                 {
                     if (result.value) 
                     {
-                        $('#job-form').submit();
+                        $('#save-form').submit();
                     }
                 });
         }
+    });
+
+    $(document).on('click', '#delete', function()
+    {
+        swal({
+                title: 'Delete Question?',
+                text: '',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel',
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true
+            }).then((result) => 
+            {
+                if (result.value) 
+                {
+                    // $('#delete-form').submit();
+                }
+            });
     });
 </script>
 
