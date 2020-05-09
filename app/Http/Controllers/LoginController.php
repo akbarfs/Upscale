@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,43 @@ class LoginController extends Controller
         // {
         //     return redirect()->back()->withErrors(['Username or password is invalid']);
         // }
+    }
+
+    public function doLogin(Request $request)
+    {
+        $username = $request->username;
+        $password = $request->password;
+       
+        $data = DB::table('users')->where('username',$username)->first();
+
+        if($data!=NULL)
+        {
+            if ( Hash::check($password, $data->password) )
+            {
+                Session::put('username',$data->username);
+                Session::put('level',$data->level);
+                Session::put('login',TRUE);
+
+                if ($data->level =='talent')
+                {
+                    return redirect()->route('talent.dashboard');
+                }
+                else if ($data->level == 'client')
+                {
+                    return redirect()->route('client');
+                }
+                else if ($data->level == 'cowork')
+                {
+                    return redirect()->route('cowork');
+                }
+            }
+
+            return redirect()->back()->withErrors(['Username or password is invalid']);
+        }
+        else
+        {
+            return redirect()->back()->withErrors(['Username or password is invalid']);
+        }
     }
 
     public function logout()

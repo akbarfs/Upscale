@@ -44,6 +44,113 @@
         }
     </style>
 
+{{-- Modal Login --}}
+
+<div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login Here</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    <form action="{{url('login/member')}}" method="post">
+        @csrf
+          <div class="modal-body">
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input type="text" name="username" class="form-control nameTest" id="Name" placeholder="Type Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" name="password" class="form-control passwordTest" id="Password" placeholder="Type Your Password">
+                </div>
+          </div>
+          <div class="modal-footer">
+            <div class="row">
+                <!-- <div class="col-md-9 float-right">
+                  <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div>
+                </div> -->
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary" id="login">Login</button>
+                </div>
+            </div>
+        </div>
+      </form>
+    </div>
+   </div>
+  </div>
+</div>
+
+
+
+{{-- Modal register --}}
+<div class="modal fade" id="ModalRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalRegister">Register Here</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form action="/register/process" method="post">
+          @csrf
+
+          <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" name="username" class="form-control" id="Name" placeholder="Your Name">
+          </div>
+
+          <div class="form-group">
+            <label for="Addres"> Addres </label>
+            <input type="text" name="addres" class="form-control" id="Addres" placeholder="Your Addres">
+          </div>
+
+          <div class="form-group">
+            <label for="Email">Email address</label>
+            <input type="email" name="email" class="form-control" id="Email" placeholder="Your Email">
+          </div>
+
+          <div class="form-group">
+            <label for="Number">Phone Number</label>
+            <input type="text" name="phone_number" class="form-control" id="Number" placeholder="+62 888 xxx">
+          </div>
+
+          <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" name="password" class="form-control" id="Password" placeholder="Your Password">
+          </div>
+
+          <div class="form-group">
+            <label for="Password2">Confirm Password</label>
+            <input type="password" name="password2" class="form-control" id="Password2" placeholder="Retype Your Password">
+          </div>
+          <label for="select">You Are</label>
+          <select class="custom-select" name="role">
+              <option selected>Open this select menu</option>
+              <option  value="Talent">Talent</option>
+              <option  value="Client">Client</option>
+              <option  value="Cowork">Cowork</option>
+          </select>
+      </div>
+      <div class="modal-footer">
+        
+          <div class="">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+
+        </form>
+    </div>
+  </div>
+  </div>
+</div>
+
+
     <div id="preloader"></div>
     
 
@@ -137,21 +244,14 @@
                     </li>
                 </ul> -->
                 
-
+        </ul>
+            </li>
+                </ul>
+                {{-- menambahkan login link --}}
                 <div class="menu-right">
-                    <!-- <ul class="lan-menu">
-                        <li class="dropdown">
-                            <a href="#"><img src="{{url('template/upscale/media//en.png')}}" alt="" />EN </a>
-                            <ul>
-                                <li><a href="#"><img src="{{url('template/upscale/media/it.png')}}" alt="" />IT</a></li>
-                                <li><a href="#"><img src="{{url('template/upscale/media/es.png')}}" alt="" />ES</a></li>
-                            </ul>
-                        </li>
-                    </ul> -->
                     <div class="menu-custom-area">
-                        <!-- <a class="btn btn-border btn-login btn-xs light" href="#">Login</a> -->
-                        <!-- <a class="btn btn-border btn-xs btn-circle startProject light" data-toggle="modal" data-target="#startProject">Start Project</a> -->
-                        <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
+                        <a class="btn btn-border btn-login btn-xs" data-target="#ModalLogin" data-toggle="modal" >Login</a>
+                        <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a>
                     </div>
                 </div>
 
@@ -235,7 +335,7 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade" id="startProject" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade startProject" id="startProject" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
