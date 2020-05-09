@@ -63,19 +63,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Fulltime</h2>
+                                <h2>Dedicated Team</h2>
                                 <p>
                                     Hire as your outsource fulltime employee
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="cnt-box cnt-box-top-icon boxed">
-                            <div class="caption">
-                                <h2>Freelance</h2>
-                                <p>
-                                    Hire as your freelance (Part Time) employee
                                 </p>
                             </div>
                         </div>
@@ -86,6 +76,16 @@
                                 <h2>Head Hunter</h2>
                                 <p>
                                     Hire as your fulltime employee
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="cnt-box cnt-box-top-icon boxed">
+                            <div class="caption">
+                                <h2>Freelance</h2>
+                                <p>
+                                    Hire as your freelance (Part Time) employee
                                 </p>
                             </div>
                         </div>
