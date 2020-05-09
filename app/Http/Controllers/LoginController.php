@@ -29,16 +29,7 @@ class LoginController extends Controller
         $password = $request->password;
         // $level = DB::table('users')->where('username', '=' ,$username)->pluck('level');
         // $level = $level[0];
-
-        // $data = DB::table('users')->where('username',$username)->first();
-
-        // if ($data != NULL) {
-            
-        // }else{
-        //     return redirect()->back()->withErrors(['Username or password is invalid']);            
-        // }
-
-
+        $data = DB::table('users')->where('username',$username)->first();
         if($data!=NULL){
             if($data->level == 'admin'){
                 if(Hash::check($password, $data->password)){
@@ -50,32 +41,7 @@ class LoginController extends Controller
                     return redirect()->back()->withErrors(['Username or password is invalid']);
                 }
             }else{
-                
-                if ($data->level == 'talent') {
-                    if (Hash::check($password, $data->password)) {
-                        dd('talent');
-                    }else{
-                        dd('password invalid');
-                }
-
-                }else if ($data->level == 'client') {
-                    if (Hash::check($password, $data->password)) {
-                        dd('client'); 
-                    }else{
-                        dd('password invalid');
-                }
-
-                }else if ($data->level == 'cowork') {
-                    if (Hash::check($password, $data->password)) {
-                        dd('cowork');    
-                    }else{
-                        dd('password invalid');
-                }else{
-                    dd('password or username invalid');
-                }
-            }
-
-
+                return redirect('user/dashboard');
             }
         }else{
             return redirect()->back()->withErrors(['Username or password is invalid']);
@@ -100,6 +66,43 @@ class LoginController extends Controller
         // {
         //     return redirect()->back()->withErrors(['Username or password is invalid']);
         // }
+    }
+
+    public function doLogin(Request $request)
+    {
+        $username = $request->username;
+        $password = $request->password;
+       
+        $data = DB::table('users')->where('username',$username)->first();
+
+        if($data!=NULL)
+        {
+            if ( Hash::check($password, $data->password) )
+            {
+                Session::put('username',$data->username);
+                Session::put('level',$data->level);
+                Session::put('login',TRUE);
+
+                if ($data->level =='talent')
+                {
+                    return redirect()->route('talent.dashboard');
+                }
+                else if ($data->level == 'client')
+                {
+                    return redirect()->route('client');
+                }
+                else if ($data->level == 'cowork')
+                {
+                    return redirect()->route('cowork');
+                }
+            }
+
+            return redirect()->back()->withErrors(['Username or password is invalid']);
+        }
+        else
+        {
+            return redirect()->back()->withErrors(['Username or password is invalid']);
+        }
     }
 
     public function logout()

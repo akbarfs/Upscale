@@ -56,7 +56,7 @@
         </button>
       </div>
 
-    <form action="{{url('login/process')}}" method="post">
+    <form action="{{url('login/member')}}" method="post">
         @csrf
           <div class="modal-body">
                 <div class="form-group">
@@ -70,12 +70,10 @@
           </div>
           <div class="modal-footer">
             <div class="row">
-                <div class="col-md-9 float-right">
-                  <div class="menu-custom-area">
-                    Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a>
-                  </div>
-                </div>
-                <div class="col-md-2">
+                <!-- <div class="col-md-9 float-right">
+                  <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div>
+                </div> -->
+                <div class="col-md-12">
                     <button type="submit" class="btn btn-primary" id="login">Login</button>
                 </div>
             </div>
