@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,49 @@ class LoginController extends Controller
         // {
         //     return redirect()->back()->withErrors(['Username or password is invalid']);
         // }
+    }
+
+    public function doLogin(Request $request)
+    {
+        $email      = $request->email;
+        $password   = $request->password;
+       
+        $data = DB::table('users')->where('email',$email)->first();
+
+        if($data!=NULL)
+        {
+            if ( Hash::check($password, $data->password) )
+            {
+                Session::put('email',$data->email);
+                Session::put('level',$data->level);
+                Session::put('login',TRUE);
+
+                // if ($data->level =='talent')
+                // {
+                //     return redirect()->route('talent.dashboard');
+                // }
+                // else if ($data->level == 'client')
+                // {
+                //     return redirect()->route('client');
+                // }
+                // else if ($data->level == 'cowork')
+                // {
+                //     return redirect()->route('cowork');
+                // }
+
+                return response()->json(array("level"=>$data->level,"status"=>1));
+            }
+            else
+            {
+                return response()->json(array("message"=>"Login gagal, silahkan ulangi lagi","status"=>0));
+            }
+
+            // return redirect()->back()->withErrors(['Username or password is invalid']);
+        }
+        else
+        {
+            return response()->json(array("message"=>"Login gagal, silahkan ulangi lagi","status"=>0));
+        }
     }
 
     public function logout()

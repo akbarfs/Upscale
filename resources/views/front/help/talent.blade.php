@@ -4,6 +4,25 @@
 
 @section('content')
 
+<style>
+
+    #desc-talent { font-size: 20px; }
+    .desc-list-talent { line-height: 1.5em; }
+    @media only screen and (max-width:990px){
+        
+    }
+
+    @media only screen and (max-width:767px){
+       
+        
+    }
+
+    @media only screen and (max-width:480px){
+        #desc-talent { font-size: 18px; }
+    }
+</style>
+
+
 <main>
     <section class="section-video light">
         <div style="top: 0;right: 0;left: 0;position: absolute;width: 100%;z-index: 1;height: 100%;background: #000; opacity: 0.7"></div>
@@ -13,23 +32,23 @@
         <div class="container" style="padding-bottom: 100px;">
             <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
-                <div class="col-lg-8" style="font-size: 25px">
+                <div class="col-lg-8" id="desc-talent">
                     <h1>
                         Scaling Up Your Skill & Networks.
                     </h1>
                     
                     Bergabung dan dapatkan banyak manfaat di ecosystem kami
-                    <ul>
+                    <ul class="desc-list-talent" style="padding-top: 15px">
                         <li>Get Jobs / Project </li>
-                        <li>Access to Coworking Space</li>
-                        <li>Acces to Education Class</li>
                         <li>Get Exponensial Opportunity</li>
                         <li>Constructive Community</li>
+                        <li>Access to Coworking Space</li>
+                        <li>Access to Education Class</li>
                     </ul>
                         
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="{{url('jobs')}}" class="btn btn-circle btn-sm">Join Community</a>
+                    <a href="{{url('jobs')}}" class="btn btn-circle btn-sm" data-target="#ModalRegister" data-toggle="modal" onClick="$('#register-role').val('talent');$('.info').hide()">Join Community</a>
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
             </div>

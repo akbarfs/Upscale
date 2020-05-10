@@ -33,16 +33,240 @@
         }
 
         @media only screen and (max-width:767px){
-            
+            [class*=col-]:not([class*=col-sm]) + [class*=col-]:not([class*=col-sm]) {
+                margin-top: 0 !important;
+            }
             
         }
 
         @media only screen and (max-width:480px){
             .menu-right { float: left !important }
             .btn-border.light:not(:hover){ color: rgb(71, 178, 228) !important ; border-color: rgb(71, 178, 228) !important ; margin: 20px; }
-
+            .btn-login { margin-left: 0 !important; border-left: none !important }
         }
     </style>
+
+{{-- Modal Login --}}
+
+<div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login Dashboard</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <script>
+            $(document).ready(function()
+            {
+                $("#login-form").submit(function()
+                {
+                    $(".modal-body").animate({ scrollTop: 0 }, 500);
+                    $(".info").html("loading...").show();
+
+                    url = $(this).attr("action") ; 
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: $(this).serialize(),
+                        success: function(data)
+                        {
+                            if ( data.status )
+                            {   
+                                $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil login");
+                                $('#login-form').trigger("reset");
+                            }
+                            else
+                            {
+                                $(".info").removeClass("alert-success").addClass("alert-warning").html(data.message);
+                            }
+                        },
+                        error: function(data){
+                            
+                            var data = $.parseJSON(data.responseText);
+                            $(".info").removeClass("alert-success").addClass("alert-warning").html("");
+
+                            $.each(data.errors, function(index, value) {
+                               $.each(value, function(i, e) {
+                                    $(".info").append(e+"<br>");
+                               });
+                            });
+
+                        }
+                    });
+
+
+                    return false ;
+                });
+            });
+        </script>
+        <form action="{{url('login/member')}}" method="post" id="login-form">
+            @csrf
+            <div class="info alert alert-warning" style="display: none"></div>
+              <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4"><label for="Name">email</label></div>
+                            <div class="col-lg-8"><input type="text" name="email" class="form-control nameTest" id="email" placeholder="Type Your Name"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4"><label for="Password">Password</label></div>
+                            <div class="col-lg-8"><input type="password" name="password" class="form-control passwordTest" id="Password" placeholder="Type Your Password"></div>
+                        </div>
+                    </div>
+              </div>
+              <div class="modal-footer" style="display: block;">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right;">
+                        <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
+                        <div style="margin-right: 20px;margin-bottom: 10px;float: left;">Forget Password ? <a href="#">click</a></div>
+                        <button type="submit" class="btn btn-primary" id="login">Login</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+   </div>
+  </div>
+</div>
+
+
+
+{{-- Modal register --}}
+<div class="modal fade" id="ModalRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalRegister">Register Here</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <script>
+            $(document).ready(function()
+            {
+                $("#register-talent").submit(function()
+                {
+                    $(".modal-body").animate({ scrollTop: 0 }, 500);
+                    $(".info").html("loading...").show();
+
+                    url = $(this).attr("action") ; 
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: $(this).serialize(),
+                        success: function(data)
+                        {
+                            if ( data.status )
+                            {   
+                                $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar");
+                                $('#register-talent').trigger("reset");
+                            }
+                        },
+                        error: function(data){
+                            
+                            var data = $.parseJSON(data.responseText);
+                            $(".info").removeClass("alert-success").addClass("alert-warning").html("");
+
+                            $.each(data.errors, function(index, value) {
+                               $.each(value, function(i, e) {
+                                    $(".info").append(e+"<br>");
+                               });
+                            });
+
+                        }
+                    });
+
+
+                    return false ;
+                });
+            });
+        </script>
+        
+        <form action="/register/member" method="post" id="register-talent">
+            
+            @csrf
+            
+            <div class="info alert alert-warning" style="display: none"></div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">Nama</label></div>
+                    <div class="col-md-8"><input type="text" name="name" class="form-control" id="Name" placeholder="Your Name"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">Username</label></div>
+                    <div class="col-md-8"><input type="text" name="username" class="form-control" id="Name" placeholder="username"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Email">Email address</label></div>
+                    <div class="col-md-8"><input type="email" name="email" class="form-control" id="Email" placeholder="Your Email"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Number">Phone Number</label></div>
+                    <div class="col-md-8"><input type="number" name="phone_number" class="form-control" id="Number" placeholder=" 0888 xxx"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password">Password</label></div>
+                    <div class="col-md-8"><input type="password" name="password" class="form-control" id="Password" placeholder="Your Password"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password2">Confirm Password</label></div>
+                    <div class="col-md-8"><input type="password" name="password_confirmation" class="form-control" id="Password2" placeholder="Retype Your Password"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="select">You Are</label></div>
+                    <div class="col-md-8">
+                        <select class="custom-select" name="role" id="register-role">
+                          <option> - select -</option>
+                          <option  value="talent">Talent</option>
+                          <!-- <option  value="client">Client</option> -->
+                          <!-- <option  value="coworkspace">Cowork</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+
+      </div>
+      <div class="modal-footer">
+        
+          <div class="">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+
+        </form>
+    </div>
+  </div>
+  </div>
+</div>
+
 
     <div id="preloader"></div>
     
@@ -137,21 +361,16 @@
                     </li>
                 </ul> -->
                 
-
+        </ul>
+            </li>
+                </ul>
+                {{-- menambahkan login link --}}
                 <div class="menu-right">
-                    <!-- <ul class="lan-menu">
-                        <li class="dropdown">
-                            <a href="#"><img src="{{url('template/upscale/media//en.png')}}" alt="" />EN </a>
-                            <ul>
-                                <li><a href="#"><img src="{{url('template/upscale/media/it.png')}}" alt="" />IT</a></li>
-                                <li><a href="#"><img src="{{url('template/upscale/media/es.png')}}" alt="" />ES</a></li>
-                            </ul>
-                        </li>
-                    </ul> -->
                     <div class="menu-custom-area">
-                        <!-- <a class="btn btn-border btn-login btn-xs light" href="#">Login</a> -->
-                        <!-- <a class="btn btn-border btn-xs btn-circle startProject light" data-toggle="modal" data-target="#startProject">Start Project</a> -->
+                        <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                        <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
+
                     </div>
                 </div>
 
@@ -235,7 +454,7 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade" id="startProject" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade startProject" id="startProject" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -31,9 +31,16 @@ Route::get('/faq', 'homeController@faq')->name('faq');
 
 Route::get('/login'.date("dmY"), 'LoginController@index')->name('login');
 Route::post('/login/process', 'LoginController@processLogin')->name('process.login');
+Route::post('/login/member', 'LoginController@doLogin')->name('process.login.member');
 
 Route::get('/register', 'RegisterController@index')->name('register');
+Route::post('/register/member', 'RegisterController@doRegister')->name('register.member');
 Route::get('/logout', 'LoginController@logout')->name('logout');
+
+Route::get("/talent/dashboard",function()
+{
+	echo "masuk talent"; 
+})->name('talent.dashboard');
 
 Route::group(['middleware'=>'cek'],function(){
 

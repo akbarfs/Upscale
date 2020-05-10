@@ -27,7 +27,7 @@
     <div class="animated fadeIn">
         <form id="save-form" action="{{ route('inquiry.storeQuestion') }}" method="post" enctype="multipart/form-data" >
             @csrf
-            <input type="hidden" name="id">            
+            <input type="hidden" name="id">      
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -135,6 +135,7 @@
                                         <th scope="col">Question</th>
                                         <th scope="col">Type Option</th>
                                         <th scope="col">Option</th>
+                                        <th scope="col">Sort</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -146,18 +147,21 @@
                                         <td class="text-capitalize">{!!$data->question!!}</td>
                                         <td class="text-capitalize">{{$data->type_option}}</td>
                                         <td class="text-capitalize">
-
                                             @foreach ( $data->get_options as $op )
                                                 {{$op->option}} ,
-                                            @endforeach 
-                                        
+                                            @endforeach                                         
                                         </td>
+                                        <td class="text-capitalize">{{$data->sort}}</td>
+                                        <!-- <td>
+                                            <i class="fa fa-chevron-up"></i>
+                                            <i class="fa fa-chevron-down"></i>
+                                        </td> -->
                                         <td class="row">
-                                            <a href="#" data-toggle="modal" data-target="#modal-edit-company" type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>&nbsp;
+                                            <!-- <a href="#" data-toggle="modal" data-target="#modal-edit-company" type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>&nbsp; -->
                                             <form id="delete-form" action="{{ url('inquiry/destroyQuestion'.$data->id) }}" method="post">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="btn btn-danger btn-md " value="delete" id="delete">
+                                                <button class="btn btn-danger btn-md" type="button" value="delete" id="delete">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>  
@@ -190,7 +194,7 @@
     $(window).on('load', function()
     {   
         $('select[name="type_option"]:first').val('essay')
-        document.getElementById("option").innerHTML = "<input type='text' class='form-control' name='option[]' value='essay' id='x'>";
+        document.getElementById("option").innerHTML = "<input type='text' class='form-control' name='option[]' value='-' id='x'>";
     });
 
     $('#type_option').on('click', function()
@@ -289,7 +293,7 @@
             {
                 if (result.value) 
                 {
-                    // $('#delete-form').submit();
+                    $('#delete-form').submit();
                 }
             });
     });
