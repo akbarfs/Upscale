@@ -33,14 +33,16 @@
         }
 
         @media only screen and (max-width:767px){
-            
+            [class*=col-]:not([class*=col-sm]) + [class*=col-]:not([class*=col-sm]) {
+                margin-top: 0 !important;
+            }
             
         }
 
         @media only screen and (max-width:480px){
             .menu-right { float: left !important }
             .btn-border.light:not(:hover){ color: rgb(71, 178, 228) !important ; border-color: rgb(71, 178, 228) !important ; margin: 20px; }
-
+            .btn-login { margin-left: 0 !important; border-left: none !important }
         }
     </style>
 
@@ -50,7 +52,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login Here</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Login Dashboard</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -60,20 +62,23 @@
         @csrf
           <div class="modal-body">
                 <div class="form-group">
-                    <label for="Name">Name</label>
-                    <input type="text" name="username" class="form-control nameTest" id="Name" placeholder="Type Your Name">
+                    <div class="row">
+                        <div class="col-lg-4"><label for="Name">Name</label></div>
+                        <div class="col-lg-8"><input type="text" name="username" class="form-control nameTest" id="Name" placeholder="Type Your Name"></div>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="Password">Password</label>
-                    <input type="password" name="password" class="form-control passwordTest" id="Password" placeholder="Type Your Password">
+                    <div class="row">
+                        <div class="col-lg-4"><label for="Password">Password</label></div>
+                        <div class="col-lg-8"><input type="password" name="password" class="form-control passwordTest" id="Password" placeholder="Type Your Password"></div>
+                    </div>
                 </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer" style="display: block;">
             <div class="row">
-                <!-- <div class="col-md-9 float-right">
-                  <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div>
-                </div> -->
-                <div class="col-md-12">
+                <div class="col-md-12" style="text-align: right;">
+                    <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
+                    <div style="margin-right: 20px;margin-bottom: 10px;float: left;">Forget Password ? <a href="#">click</a></div>
                     <button type="submit" class="btn btn-primary" id="login">Login</button>
                 </div>
             </div>
@@ -98,45 +103,60 @@
       </div>
       <div class="modal-body">
         
-        <form action="/register/process" method="post">
-          @csrf
+        <form action="/register/member" method="post">
+            
+            @csrf
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">Name</label></div>
+                    <div class="col-md-8"><input type="text" name="username" class="form-control" id="Name" placeholder="Your Name"></div>
+                </div>
+            </div>
 
-          <div class="form-group">
-            <label for="Name">Name</label>
-            <input type="text" name="username" class="form-control" id="Name" placeholder="Your Name">
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Email">Email address</label></div>
+                    <div class="col-md-8"><input type="email" name="email" class="form-control" id="Email" placeholder="Your Email"></div>
+                </div>
+            </div>
 
-          <div class="form-group">
-            <label for="Addres"> Addres </label>
-            <input type="text" name="addres" class="form-control" id="Addres" placeholder="Your Addres">
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Number">Phone Number</label></div>
+                    <div class="col-md-8"><input type="text" name="phone_number" class="form-control" id="Number" placeholder="+62 888 xxx"></div>
+                </div>
+            </div>
 
-          <div class="form-group">
-            <label for="Email">Email address</label>
-            <input type="email" name="email" class="form-control" id="Email" placeholder="Your Email">
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password">Password</label></div>
+                    <div class="col-md-8"><input type="password" name="password" class="form-control" id="Password" placeholder="Your Password"></div>
+                </div>
+            </div>
 
-          <div class="form-group">
-            <label for="Number">Phone Number</label>
-            <input type="text" name="phone_number" class="form-control" id="Number" placeholder="+62 888 xxx">
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password2">Confirm Password</label></div>
+                    <div class="col-md-8"><input type="password" name="password2" class="form-control" id="Password2" placeholder="Retype Your Password"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="select">You Are</label></div>
+                    <div class="col-md-8">
+                        <select class="custom-select" name="role" id="register-role">
+                          <option selected>Open this select menu</option>
+                          <option  value="talent">Talent</option>
+                          <option  value="client">Client</option>
+                          <!-- <option  value="coworkspace">Cowork</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
 
-          <div class="form-group">
-            <label for="Password">Password</label>
-            <input type="password" name="password" class="form-control" id="Password" placeholder="Your Password">
-          </div>
-
-          <div class="form-group">
-            <label for="Password2">Confirm Password</label>
-            <input type="password" name="password2" class="form-control" id="Password2" placeholder="Retype Your Password">
-          </div>
-          <label for="select">You Are</label>
-          <select class="custom-select" name="role">
-              <option selected>Open this select menu</option>
-              <option  value="Talent">Talent</option>
-              <option  value="Client">Client</option>
-              <option  value="Cowork">Cowork</option>
-          </select>
       </div>
       <div class="modal-footer">
         
@@ -250,8 +270,10 @@
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs" data-target="#ModalLogin" data-toggle="modal" >Login</a>
-                        <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a>
+                        <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" >Login</a>
+                        <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
+                        <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
+
                     </div>
                 </div>
 

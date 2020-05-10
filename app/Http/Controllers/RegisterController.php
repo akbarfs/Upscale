@@ -19,11 +19,10 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function create(Request $request){
+    public function doRegister(Request $request){
 
     	$this->validate ($request,[
     		'name'         => 'required|min:3|string',
-    		'addres'       => 'required|string|min:6|max:20',
             'email'        => 'required|string|email|unique:users',
             'password'     => 'required|min:6|',
             'phone_number' => 'required|',
@@ -34,7 +33,6 @@ class RegisterController extends Controller
 
     	$data = [
     		'name'         => $request->name,
-    		'addres'       => $request->addres,
     		'email'        => $request->email,
     		'password'     => Hash::make($request["password"]),
     		'phone_number' => $request->phone_number,

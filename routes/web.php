@@ -34,6 +34,7 @@ Route::post('/login/process', 'LoginController@processLogin')->name('process.log
 Route::post('/login/member', 'LoginController@doLogin')->name('process.login.member');
 
 Route::get('/register', 'RegisterController@index')->name('register');
+Route::post('/register/member', 'RegisterController@doRegister')->name('register.member');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::get("/talent/dashboard",function()
