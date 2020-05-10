@@ -14,6 +14,9 @@ class UpdateUserLevel extends Migration
     public function up()
     {
         DB::statement("ALTER TABLE users CHANGE COLUMN level level ENUM('admin', 'user', 'talent','client','cowork') NOT NULL DEFAULT 'user'");
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('email')->after("username");
+        });
     }
 
     /**
@@ -24,5 +27,8 @@ class UpdateUserLevel extends Migration
     public function down()
     {
         DB::statement("ALTER TABLE users CHANGE COLUMN level level ENUM('admin', 'user') NOT NULL DEFAULT 'user'");
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('email');
+        });
     }
 }

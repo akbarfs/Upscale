@@ -70,38 +70,44 @@ class LoginController extends Controller
 
     public function doLogin(Request $request)
     {
-        $username = $request->username;
-        $password = $request->password;
+        $email      = $request->email;
+        $password   = $request->password;
        
-        $data = DB::table('users')->where('username',$username)->first();
+        $data = DB::table('users')->where('email',$email)->first();
 
         if($data!=NULL)
         {
             if ( Hash::check($password, $data->password) )
             {
-                Session::put('username',$data->username);
+                Session::put('email',$data->email);
                 Session::put('level',$data->level);
                 Session::put('login',TRUE);
 
-                if ($data->level =='talent')
-                {
-                    return redirect()->route('talent.dashboard');
-                }
-                else if ($data->level == 'client')
-                {
-                    return redirect()->route('client');
-                }
-                else if ($data->level == 'cowork')
-                {
-                    return redirect()->route('cowork');
-                }
+                // if ($data->level =='talent')
+                // {
+                //     return redirect()->route('talent.dashboard');
+                // }
+                // else if ($data->level == 'client')
+                // {
+                //     return redirect()->route('client');
+                // }
+                // else if ($data->level == 'cowork')
+                // {
+                //     return redirect()->route('cowork');
+                // }
+
+                return response()->json(array("level"=>$data->level,"status"=>1));
+            }
+            else
+            {
+                return response()->json(array("message"=>"Login gagal, silahkan ulangi lagi","status"=>0));
             }
 
-            return redirect()->back()->withErrors(['Username or password is invalid']);
+            // return redirect()->back()->withErrors(['Username or password is invalid']);
         }
         else
         {
-            return redirect()->back()->withErrors(['Username or password is invalid']);
+            return response()->json(array("message"=>"Login gagal, silahkan ulangi lagi","status"=>0));
         }
     }
 

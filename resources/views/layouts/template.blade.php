@@ -51,39 +51,86 @@
 <div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Login Dashboard</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
 
-    <form action="{{url('login/member')}}" method="post">
-        @csrf
-          <div class="modal-body">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-lg-4"><label for="Name">Name</label></div>
-                        <div class="col-lg-8"><input type="text" name="username" class="form-control nameTest" id="Name" placeholder="Type Your Name"></div>
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login Dashboard</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <script>
+            $(document).ready(function()
+            {
+                $("#login-form").submit(function()
+                {
+                    $(".modal-body").animate({ scrollTop: 0 }, 500);
+                    $(".info").html("loading...").show();
+
+                    url = $(this).attr("action") ; 
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: $(this).serialize(),
+                        success: function(data)
+                        {
+                            if ( data.status )
+                            {   
+                                $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil login");
+                                $('#login-form').trigger("reset");
+                            }
+                            else
+                            {
+                                $(".info").removeClass("alert-success").addClass("alert-warning").html(data.message);
+                            }
+                        },
+                        error: function(data){
+                            
+                            var data = $.parseJSON(data.responseText);
+                            $(".info").removeClass("alert-success").addClass("alert-warning").html("");
+
+                            $.each(data.errors, function(index, value) {
+                               $.each(value, function(i, e) {
+                                    $(".info").append(e+"<br>");
+                               });
+                            });
+
+                        }
+                    });
+
+
+                    return false ;
+                });
+            });
+        </script>
+        <form action="{{url('login/member')}}" method="post" id="login-form">
+            @csrf
+            <div class="info alert alert-warning" style="display: none"></div>
+              <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4"><label for="Name">email</label></div>
+                            <div class="col-lg-8"><input type="text" name="email" class="form-control nameTest" id="email" placeholder="Type Your Name"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-lg-4"><label for="Password">Password</label></div>
-                        <div class="col-lg-8"><input type="password" name="password" class="form-control passwordTest" id="Password" placeholder="Type Your Password"></div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4"><label for="Password">Password</label></div>
+                            <div class="col-lg-8"><input type="password" name="password" class="form-control passwordTest" id="Password" placeholder="Type Your Password"></div>
+                        </div>
                     </div>
-                </div>
-          </div>
-          <div class="modal-footer" style="display: block;">
-            <div class="row">
-                <div class="col-md-12" style="text-align: right;">
-                    <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
-                    <div style="margin-right: 20px;margin-bottom: 10px;float: left;">Forget Password ? <a href="#">click</a></div>
-                    <button type="submit" class="btn btn-primary" id="login">Login</button>
+              </div>
+              <div class="modal-footer" style="display: block;">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right;">
+                        <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
+                        <div style="margin-right: 20px;margin-bottom: 10px;float: left;">Forget Password ? <a href="#">click</a></div>
+                        <button type="submit" class="btn btn-primary" id="login">Login</button>
+                    </div>
                 </div>
             </div>
-        </div>
-      </form>
+        </form>
+
     </div>
    </div>
   </div>
@@ -102,15 +149,65 @@
         </button>
       </div>
       <div class="modal-body">
+
+        <script>
+            $(document).ready(function()
+            {
+                $("#register-talent").submit(function()
+                {
+                    $(".modal-body").animate({ scrollTop: 0 }, 500);
+                    $(".info").html("loading...").show();
+
+                    url = $(this).attr("action") ; 
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: $(this).serialize(),
+                        success: function(data)
+                        {
+                            if ( data.status )
+                            {   
+                                $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar");
+                                $('#register-talent').trigger("reset");
+                            }
+                        },
+                        error: function(data){
+                            
+                            var data = $.parseJSON(data.responseText);
+                            $(".info").removeClass("alert-success").addClass("alert-warning").html("");
+
+                            $.each(data.errors, function(index, value) {
+                               $.each(value, function(i, e) {
+                                    $(".info").append(e+"<br>");
+                               });
+                            });
+
+                        }
+                    });
+
+
+                    return false ;
+                });
+            });
+        </script>
         
-        <form action="/register/member" method="post">
+        <form action="/register/member" method="post" id="register-talent">
             
             @csrf
             
+            <div class="info alert alert-warning" style="display: none"></div>
+
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-4"><label for="Name">Name</label></div>
-                    <div class="col-md-8"><input type="text" name="username" class="form-control" id="Name" placeholder="Your Name"></div>
+                    <div class="col-md-4"><label for="Name">Nama</label></div>
+                    <div class="col-md-8"><input type="text" name="name" class="form-control" id="Name" placeholder="Your Name"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">Username</label></div>
+                    <div class="col-md-8"><input type="text" name="username" class="form-control" id="Name" placeholder="username"></div>
                 </div>
             </div>
 
@@ -124,7 +221,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4"><label for="Number">Phone Number</label></div>
-                    <div class="col-md-8"><input type="text" name="phone_number" class="form-control" id="Number" placeholder="+62 888 xxx"></div>
+                    <div class="col-md-8"><input type="number" name="phone_number" class="form-control" id="Number" placeholder=" 0888 xxx"></div>
                 </div>
             </div>
 
@@ -138,7 +235,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4"><label for="Password2">Confirm Password</label></div>
-                    <div class="col-md-8"><input type="password" name="password2" class="form-control" id="Password2" placeholder="Retype Your Password"></div>
+                    <div class="col-md-8"><input type="password" name="password_confirmation" class="form-control" id="Password2" placeholder="Retype Your Password"></div>
                 </div>
             </div>
             
@@ -147,9 +244,9 @@
                     <div class="col-md-4"><label for="select">You Are</label></div>
                     <div class="col-md-8">
                         <select class="custom-select" name="role" id="register-role">
-                          <option selected>Open this select menu</option>
+                          <option> - select -</option>
                           <option  value="talent">Talent</option>
-                          <option  value="client">Client</option>
+                          <!-- <option  value="client">Client</option> -->
                           <!-- <option  value="coworkspace">Cowork</option> -->
                         </select>
                     </div>
@@ -270,7 +367,7 @@
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" >Login</a>
+                        <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
 
