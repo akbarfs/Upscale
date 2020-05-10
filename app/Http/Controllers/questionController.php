@@ -35,17 +35,24 @@ class questionController extends Controller
 
     public function create($id)
     {
-        $inquiry = Inquiry::find($id); // id 1 
+        $inquiry = Inquiry::find($id);
         return view('admin.questionanswer.question',compact('inquiry'));
     }
 
     public function storeQuestion(Request $request)
     {
+        $id=$request->inquiry_id;
+        $cek = InquiryQuestion::latest('sort')->where('inquiry_id', $id)->first();
+        if ($cek == null)
+        { $sort = 0; }
+        else
+        { $sort= $cek->sort; }
         $id = InquiryQuestion::create ([
             'inquiry_id' => $request->inquiry_id,
             'question' => $request->question,
             'description' => $request->description, 
-            'type_option' => $request->type_option
+            'type_option' => $request->type_option,
+            'sort' => $sort+1
         ]);
         
         $array = $request->option;
@@ -57,6 +64,12 @@ class questionController extends Controller
             ]);
         }
         return redirect()->back();
+        // dd($cek);
+    }
+
+    public function sortQuestion( Requesr $request)
+    {
+
     }
 
     public function destroyQuestion($id)
