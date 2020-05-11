@@ -130,7 +130,7 @@
                                 valueDelimiter: ',',
                                 onItemSelect: function($item, itemModel) {
                                     $(".fstChoiceRemove").html("x");
-                                    $(".fstQueryInput").focus(); 
+                                    // $(".fstQueryInput").focus(); 
                                 },
 
                             });
