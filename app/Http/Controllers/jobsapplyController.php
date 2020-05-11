@@ -786,7 +786,7 @@ class jobsapplyController extends Controller
     }
     
     public function notify(){
-      Mail::to('adeputrans@gmail.com')->send(new progressMail);
+      Mail::to('elvron.indonesia@gmail.com')->send(new progressMail);
       dd(Mail::failures());
     }
 

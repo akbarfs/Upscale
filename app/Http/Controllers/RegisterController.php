@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Session ; 
 
 class RegisterController extends Controller
 {
@@ -35,7 +36,7 @@ class RegisterController extends Controller
 
     	$data = [
     		'name'         => $request->name,
-            'username'        => $request->username,
+            'username'     => $request->username,
     		'email'        => $request->email,
     		'password'     => Hash::make($request["password"]),
     		'phone_number' => $request->phone_number,
@@ -43,6 +44,12 @@ class RegisterController extends Controller
     	];
 
         $result = User::create($data);
+        
+        Session::put('user_id',$result->id);
+        Session::put('username',$request->username);
+        Session::put('email',$request->email);
+        Session::put('level',$request->level);
+        Session::put('login',TRUE);
 
         return response()->json(array("message"=>"success","status"=>1));
     }

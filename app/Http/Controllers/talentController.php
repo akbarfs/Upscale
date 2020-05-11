@@ -2051,7 +2051,7 @@ return response()->json($cp);
      }
 
     public function notify(){
-      Mail::to('hrd@erporate.com')->send(new progressMail);
+      Mail::to('elvron.indonesia@gmail.com')->send(new progressMail);
       dd(Mail::failures());
     }
     

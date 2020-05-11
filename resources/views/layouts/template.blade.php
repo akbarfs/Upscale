@@ -78,6 +78,15 @@
                             {   
                                 $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil login");
                                 $('#login-form').trigger("reset");
+                                //redirect halaman member
+                                if ( data.level == 'talent')
+                                {
+                                    window.location.href = "{{url('talent/dashboard')}}";
+                                }
+                                else if ( data.level == 'client')
+                                {
+                                    window.location.href = "{{url('client/dashboard')}}";   
+                                }
                             }
                             else
                             {
@@ -367,7 +376,13 @@
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
                     <div class="menu-custom-area">
-                        <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+
+                        @if(!Session::has('login'))
+                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                        @else
+                            <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a>
+                            <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                        @endif
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
 

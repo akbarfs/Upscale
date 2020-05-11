@@ -48,7 +48,9 @@
                         
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="{{url('jobs')}}" class="btn btn-circle btn-sm" data-target="#ModalRegister" data-toggle="modal" onClick="$('#register-role').val('talent');$('.info').hide()">Join Community</a>
+                    @if(!Session::has('login'))
+                        <a href="{{url('jobs')}}" class="btn btn-circle btn-sm" data-target="#ModalRegister" data-toggle="modal" onClick="$('#register-role').val('talent');$('.info').hide()">Join Community</a>
+                    @endif
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
             </div>

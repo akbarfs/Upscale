@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function talent()
+    {
+        return $this->hasOne("App\Models\Talent");
+    }
 }

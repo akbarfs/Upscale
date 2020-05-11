@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckTalent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,10 +38,14 @@ Route::get('/register', 'RegisterController@index')->name('register');
 Route::post('/register/member', 'RegisterController@doRegister')->name('register.member');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
-Route::get("/talent/dashboard",function()
+Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 {
-	echo "masuk talent"; 
-})->name('talent.dashboard');
+	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
+	Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
+}); 
+
+Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
+
 
 Route::group(['middleware'=>'cek'],function(){
 

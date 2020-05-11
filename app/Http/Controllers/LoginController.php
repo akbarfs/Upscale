@@ -79,6 +79,8 @@ class LoginController extends Controller
         {
             if ( Hash::check($password, $data->password) )
             {
+                Session::put('user_id',$data->id);
+                Session::put('username',$data->email);
                 Session::put('email',$data->email);
                 Session::put('level',$data->level);
                 Session::put('login',TRUE);
