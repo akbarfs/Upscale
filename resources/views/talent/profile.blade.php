@@ -8,6 +8,7 @@
     body > header.boxed-page-header {
         height: 300px ;
     }
+    .fstElement { min-width: 400px; }
     section.boxed-page:before {
     }
 
@@ -23,7 +24,7 @@
 
     @media only screen and (max-width:480px)
     {
-        
+        .fstElement { min-width: 300px; }
     }
 </style>
 
@@ -116,18 +117,47 @@
                     <hr style="margin: 20px 0">
 
                     <h4>Add Skill</h4>
-                        
-                    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/start/jquery-ui.css" />
+                    
+                    <script src="{{url('template/upscale/js/tag.js')}}"></script>
+                    <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
+
                     <script>
                         
+                        $(document).ready(function()
+                        {
+                            $('.tagsInput').fastselect({
+
+                                valueDelimiter: ',',
+                                onItemSelect: function($item, itemModel) {
+                                    $(".fstChoiceRemove").html("x");
+                                    $(".fstQueryInput").focus(); 
+                                },
+
+                            });
+                            
+                        });
                         
                     </script>
 
+                    <style>
+                        .fstControls { width: !important; font-size: 14px }
+                    </style>
+
                     <div class="form-group" style="margin-top: 10px">
                         <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" name="name" class="form-control tag" autocomplete="off">
-                            </div>
+
+                            <input
+                            type="text"
+                            onItemSelect="setClose()"
+                            multiple
+                            class="tagsInput"
+                            value=""
+                            data-user-option-allowed="true"
+                            data-url="{{url('talent/json/skill')}}"
+                            data-load-once="true"
+                            name="language"/>
+
+                            <!-- <div class="col-md-12"> <input type="text" name="name" class="form-control tag" autocomplete="off"> </div> -->
                             <!-- <div class="col-md-6">
                                 <select name="level" class="input-select">
                                     <option value="junior">junior</option>
@@ -137,7 +167,7 @@
                             </div> -->
                         </div>
                     </div>
-
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                     
               </div>
               <div class="modal-footer">

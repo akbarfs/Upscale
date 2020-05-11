@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Session; 
 use App\Talent ; 
+use App\Models\Skill ; 
 
 class MemberController extends Controller
 {
@@ -20,9 +21,11 @@ class MemberController extends Controller
 
     public function json_skill()
     {
-        $json[] = array('id'=>1,'label'=>"codeigniter","value"=>"codeigniter");
-        $json[] = array('id'=>2,'label'=>"laravel","value"=>"laravel");
-        return response()->json($json) ; 
+        // $json[] = array('id'=>2,'label'=>"laravel","value"=>"laravel");
+
+        $skill = Skill::all('skill_name as text','skill_name as value') ; 
+
+        return response()->json($skill) ; 
     }
 
     public function doLogout()
