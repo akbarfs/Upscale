@@ -23,11 +23,11 @@ class applyController extends Controller
     public function index($id)
     {
         $skill     = Skill::all();
-        $bootcamps = Bootcamp::all();
+        // $bootcamps = Bootcamp::all();
         $location  = Location::all();
         $apply     = Job::where('jobs_id', '=', $id)->first();
 
-    	  return view('career/apply', compact('skill','apply','bootcamps', 'location'));
+    	  return view('career/apply', compact('skill','apply', 'location'));
     }
 
     public function in($id)

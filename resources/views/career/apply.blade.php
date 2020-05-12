@@ -5,7 +5,7 @@
 @section("top-asset")
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <link rel="stylesheet" href="/resources/demos/style.css">
+      <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 @endsection
@@ -391,6 +391,9 @@
      $(function() {
        $('#tgl').datepicker({
           dateFormat: 'yy-mm-dd',
+          changeMonth: true,
+      changeYear: true,
+      yearRange: "1970:2015",
           onSelect: function() {
             doSomeValidation($(this).getDate());
           }

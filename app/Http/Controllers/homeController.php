@@ -70,13 +70,13 @@ class homeController extends Controller
     {
         $categories = Category::all();
         $locations  = Location::all();
-        $bootcamps  = Bootcamp::all(); 
+        // $bootcamps  = Bootcamp::all(); 
         $jobs       = Job::orderBy('jobs_active','asc')
                       ->orderBy('jobs_urgent', 'asc')
                       ->orderBy('jobs_title','asc')
                       ->paginate(20);
 
-        return view('career.home-new', compact('bootcamps', 'jobs', 'categories', 'locations'));
+        return view('career.home-new', compact('jobs', 'categories', 'locations'));
     }
 
     public function applyOld()
@@ -139,11 +139,11 @@ class homeController extends Controller
 
     public function detail($id)
     {
-        $bootcamps  = Bootcamp::all(); 
+        // $bootcamps  = Bootcamp::all(); 
         $job = Job::where('jobs_id','=', $id)->first();
         $date = $job->jobs_created_date->diffForHumans();
 
-        return view('career/detail', compact('job','bootcamps', 'date'));
+        return view('career/detail', compact('job','date'));
     }
 
     public function info()

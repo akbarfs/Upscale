@@ -19,11 +19,22 @@ class MemberController extends Controller
     	return view("talent.profile",compact('user','talent'));
     }
 
-    public function json_skill()
+    public function json_skill(Request $request)
     {
         // $json[] = array('id'=>2,'label'=>"laravel","value"=>"laravel");
+        
+        $skill = Skill::select('skill_name as text','skill_name as value') ; 
 
-        $skill = Skill::all('skill_name as text','skill_name as value') ; 
+        if ($request->cat_id > 0)
+        {
+            $skill->where("skill_sc_id",$request->cat_id);
+        }
+        else if ( $request->cat_id == 'other')
+        {
+            $skill->where("skill_sc_id","!=",1);
+            $skill->where("skill_sc_id","!=",2);
+        }
+        $skill  = $skill->get() ;
 
         return response()->json($skill) ; 
     }

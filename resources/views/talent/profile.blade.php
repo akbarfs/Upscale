@@ -2,6 +2,33 @@
 
 @section("menu_class",'menu-transparent light')
 
+@section("top-asset")
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="/resources/demos/style.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@endsection
+
+@section('bottom-asset')
+    <script type="text/javascript" src="{{ asset('js/sweetalert2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/validator.js') }}"></script>
+    <script type="text/javascript" src="{{asset('js/momment.js')}}"></script>
+    <script type="text/javascript">
+        $(function() {
+           $('#tgl_lahir').datepicker({
+              dateFormat: 'yy-mm-dd',
+              changeMonth: true,
+                changeYear: true,
+                yearRange: "1970:2015",
+              onSelect: function() {
+                doSomeValidation($(this).getDate());
+              }
+            });
+         });
+    </script>
+@endsection
+
 @section('content')
 
 <style>
@@ -30,6 +57,7 @@
         .modal-footer { padding: 0; }
         .scroll-top-btn  { display: none !important }
         .update { font-size: 10px  }
+        .o { margin-top: 5px !important}
     }
 </style>
 
@@ -119,9 +147,32 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4"><label for="Name">Gender</label></div>
+                            <div class="col-md-8">
+                                <select class="custom-select">
+                                    <option value="male">Laki-laki</option>
+                                    <option value="femalae">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4"><label for="Name">Tgl lahir</label></div>
+                            <div class="col-md-8">
+                                <input type="text" name="tgl_lahir" class="form-control" id="tgl_lahir" placeholder="DD/MM/YYYY" value="">
+                            </div>
+                        </div>
+                    </div>
+
                     <hr style="margin: 20px 0">
 
-                    <h4>Add Skill</h4>
+                    
                     
                     <script src="{{url('template/upscale/js/tag.js')}}"></script>
                     <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
@@ -146,19 +197,33 @@
 
                     <style>
                         .fstControls { width: !important; font-size: 14px }
+                        .btn + .btn { margin-top: 0; } 
+
                     </style>
 
-                    <div class="form-group" style="margin-top: 10px">
+                    <div style="font-size: 18px ; font-weight: bold">
+                        Apakah anda memiliki Skill Web Development ?
+                    </div>
+
+                    <div style="margin-top: 10px;" id="web_option">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#web').show();$('#web_option').hide();setTimeout(function(){ $('#web .fstQueryInput').focus(); }, 100);">Ya</a>
+                        <a href="#" class="btn btn-sm o"
+                        onClick="$('#web_option').html('tidak')">Tidak</a>
+                    </div> 
+
+
+                    <div class="form-group" id="web" style="margin-top: 10px ; display: none">
                         <div class="row">
 
                             <input
                             type="text"
                             onItemSelect="setClose()"
                             multiple
-                            class="tagsInput"
+                            class="tagsInput web_input"
                             value=""
                             data-user-option-allowed="true"
-                            data-url="{{url('talent/json/skill')}}"
+                            data-url="{{url('talent/json/skill?cat_id=1')}}"
                             data-load-once="true"
                             name="language"/>
 
@@ -172,7 +237,157 @@
                             </div> -->
                         </div>
                     </div>
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    
+                    <hr style="margin: 20px 0">
+
+                    <div style="font-size: 18px ; font-weight: bold ;">
+                        Apakah anda memiliki Skill Mobile Development ?
+                    </div>
+
+                    <div style="margin-top: 10px;" id="mobile_option">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#mobile').show();$('#mobile_option').hide();setTimeout(function(){ $('#mobile .fstQueryInput').focus(); }, 100);">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#mobile_option').html('tidak')">Tidak</a>
+                    </div> 
+
+
+                    <div class="form-group" id="mobile" style="margin-top: 10px ; display: none">
+                        <div class="row">
+                            <input
+                            type="text"
+                            onItemSelect="setClose()"
+                            multiple
+                            class="tagsInput"
+                            value=""
+                            data-user-option-allowed="true"
+                            data-url="{{url('talent/json/skill?cat_id=2')}}"
+                            data-load-once="true"
+                            name="language"/>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 20px 0">
+
+                    <div style="font-size: 18px ; font-weight: bold ;">
+                        Apakah anda memiliki keahlian lain ?
+                    </div>
+
+                    <div style="margin-top: 10px;" id="other_option">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#other').show();$('#other_option').hide();setTimeout(function(){ $('#other .fstQueryInput').focus(); }, 100);">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#other_option').html('tidak')">Tidak</a>
+                    </div> 
+
+
+                    <div class="form-group" id="other" style="margin-top: 10px ; display: none">
+                        <div class="row">
+                            <input
+                            type="text"
+                            onItemSelect="setClose()"
+                            multiple
+                            class="tagsInput"
+                            value=""
+                            data-user-option-allowed="true"
+                            data-url="{{url('talent/json/skill?cat_id=other')}}"
+                            data-load-once="true"
+                            name="language"/>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 20px 0">
+
+                    <script type="text/javascript" src="{{ asset('js/autoNumeric.js') }}"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $('.rp').autoNumeric('init', {aSep:'.', aDec:',', mDec:'0'});
+                        });
+                    </script>
+
+                    <div style="font-size: 18px ; font-weight: bold ;">
+                        Apakah anda bersedia menerima project freelance ? 
+                    </div>
+                    <div class="row" style="padding: 0 15px">
+                        Project Kami ada 2 jenis, 
+                        <ul>
+                            <li>Perjam : berdasar total jam pengerjaan , menggunakan aplikasi screen tracking dan time tracking</li>
+                            <li>Fix Project : berdasar fix total project & deadline. tidak menggunakan tracking</li>
+                        </ul>
+                    </div>
+                    <div>Apakah anda bersedia menerima project berbasis jam ?</div>
+                    <div style="margin-top: 10px;" id="freelance_option">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#freelance').show();$('#freelance_option').hide()">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#freelance_option').html('tidak')">Tidak</a>
+                    </div> 
+                    <div class="form-group" id="freelance" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-4"><label for="Name">Rate / Jam ?</label></div>
+                            <div class="col-md-8">
+                                <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="freelance_rate" class="form-control rp" placeholder="Your expected salary" value="50000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 10px">Apakah anda bersedia menerima fix project  ?</div>
+                    <div style="margin-top: 10px;" id="freelance_fix_option">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#freelance_fix').show();$('#freelance_fix_option').hide()">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#freelance_fix_option').html('tidak')">Tidak</a>
+                    </div> 
+                    <div class="form-group" id="freelance_fix" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-4"><label for="Name">Minimum Range</label></div>
+                            <div class="col-md-8">
+                                <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="freelance_rate" class="form-control rp" placeholder="Your expected salary" value="500000">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-md-4"><label for="Name">Maximum Range</label></div>
+                            <div class="col-md-8">
+                                <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="freelance_rate" class="form-control rp" placeholder="Your expected salary" value="50000000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 20px 0">
+
+                    <div style="font-size: 18px ; font-weight: bold ;">
+                        Apakah anda menyediakan jasa konsultasi dengan bayaran / jam ? 
+                    </div>
+                    <div style="margin-top: 10px;" id="konsultasi_rate">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#konsultasi').show();$('#konsultasi_rate').hide()">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#konsultasi_rate').html('tidak')">Tidak</a>
+                    </div> 
+                    <div class="form-group" id="konsultasi" style="display: none; margin-top: 20px">
+                        <div class="row">
+                            <div class="col-md-4"><label for="Name">Rate / Jam ?</label></div>
+                            <div class="col-md-8">
+                                <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="konsultasi_rate" class="form-control rp" placeholder="Your expected salary" value="50000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 20px 0">
+
+                    <div style="font-size: 18px ; font-weight: bold ;">
+                        Apakah anda bersedia apabila kami menawarkan jadi pengajar di platform edukasi kami ? 
+                    </div>
+                    <div style="margin-top: 10px;" id="ngajar_rate">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#ngajar').show();$('#ngajar_rate').hide()">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#ngajar_rate').html('tidak')">Tidak</a>
+                    </div> 
+                    <div class="form-group" id="ngajar" style="display: none; margin-top: 20px">
+                        <div class="row">
+                            <div class="col-md-4"><label for="Name">Rate / Jam ?</label></div>
+                            <div class="col-md-8">
+                                <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="ngajar_rate" class="form-control rp" placeholder="Your expected salary" value="50000">
+                            </div>
+                        </div>
+                    </div>
+
+
                     
               </div>
               <div class="modal-footer">

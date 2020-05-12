@@ -11,7 +11,7 @@ use App\Models\Joblo;
 use App\Models\Job;
 use App\Models\Category;
 use App\Models\Location;
-use App\Models\Bootcamp;
+// use App\Models\Bootcamp;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 use Image;

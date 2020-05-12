@@ -104,14 +104,18 @@
 }
 
 .fstResultItem {
-	display: block;
-    padding: 0 10px;
+	    display: block;
+    padding: 5px 10px;
     margin: 0;
     cursor: pointer;
+    float: left;
+    background: #bdf0ff;
+    margin: 5px;
 }
 
 .fstResultItem.fstUserOption {
-	color: #707070
+	    background: #6f6f6f;
+    color: #fff;
 }
 
 .fstResultItem.fstFocused {
