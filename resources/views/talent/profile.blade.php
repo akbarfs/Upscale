@@ -8,7 +8,8 @@
     body > header.boxed-page-header {
         height: 300px ;
     }
-    .fstElement { min-width: 400px; }
+    .fstElement { min-width: 455px; }
+    .fstControls { padding: 0 }
     section.boxed-page:before {
     }
 
@@ -24,13 +25,17 @@
 
     @media only screen and (max-width:480px)
     {
-        .fstElement { min-width: 300px; }
+        .fstElement { min-width: 300px; width: 93% }
+        .modal-header {padding: 5px;}
+        .modal-footer { padding: 0; }
+        .scroll-top-btn  { display: none !important }
+        .update { font-size: 10px  }
     }
 </style>
 
 <header class="header-image ken-burn-center align-center light boxed-page-header" data-parallax="true" data-natural-height="600" data-natural-width="1920" data-bleed="0" data-image-src="{{url('template/upscale/media/wide-3.jpg')}}" data-offset="0">
         <div class="container">
-            <h1>Hi {{$talent->talent_name}}, Set your profile</h1>
+            <h1>Hi {{$user->name}}, Set your profile</h1>
             <!-- <h2>October 15, 2019</h2> 
             <ol class="breadcrumb" style="background: unset;">
                 <li><a href="index-2.html">Home</a></li>
@@ -73,7 +78,7 @@
           <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalRegister">Hi, {{$talent->talent_name}}</h5>
+                <h5 class="modal-title" id="exampleModalRegister">Hi, {{$user->name}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -173,7 +178,7 @@
               <div class="modal-footer">
                 
                   <div class="">
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary update">UPDATE</button>
                   </div>
 
                 </form>
