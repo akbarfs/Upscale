@@ -28,7 +28,11 @@
     }
 
     .fstElement { min-width: 455px; }
-    .fstControls { padding: 0 }
+
+    .fstControls { width: !important; font-size: 14px; padding: 0 }
+
+    .o { margin-top: 0px !important}
+
     section.boxed-page:before {
     }
 
@@ -81,7 +85,7 @@
                 data: $('#talent-update-profile').serialize(),
                 success: function(data)
                 {
-                    $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil update profile");
+                    $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil melakukan pendaftaran");
                     $('#login-form').trigger("reset");
                 },
                 error: function(data){
@@ -211,11 +215,6 @@
                 
             </script>
 
-            <style>
-                .fstControls { width: !important; font-size: 14px }
-                .btn + .btn { margin-top: 0; } 
-
-            </style>
 
             <div style="font-size: 18px ; font-weight: bold">
                 Apakah anda memiliki Skill Web Development ?
