@@ -20,6 +20,7 @@
     @media only screen and (max-width:480px){
         .grid-list{ padding-top: 30px }
         #features .container { padding-bottom:0 }
+        
     }
 
 </style>
@@ -39,14 +40,23 @@
                     
                     <h2 style="font-size: 35px">Just focus on scaling your business<br> let us do the "Talent things".</h2>
 
-                    <p style="font-size: 20px">
+                    <p style="font-size: 20px; margin-bottom: 20px">
                         Hire dari exlusive network kami. Beranggotakan berbagai talent di bidang software developer, designer, finance, product manager, project manager dan lain-lain. Sesuaikan kebutuhan anda baik Fulltime, Head Hunter, Freelance atau Fix project. Baik Onsite maupun Remote
                     </p>
                         
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">Request Quotation</a>
-                    <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
+                    
+                    <!-- <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">For Bussiness</a> -->
+                    
+                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">
+                        Request Quotation
+                    </a>
+
+                    <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin-top: 0">
+                        For Talent
+                    </a>
+
                 </div>
             </div>
             <hr class="space-lg hidden-sm" />

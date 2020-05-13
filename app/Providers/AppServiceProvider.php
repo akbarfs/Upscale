@@ -26,6 +26,33 @@ class AppServiceProvider extends ServiceProvider
             return "No Tlpn harus diawali dengan 0";
         });
 
+        Validator::extend('format_rp', function($attribute, $value, $parameters)
+        {
+            if ( $value == "" ) return true ; 
+            $ex = explode("Rp. ",$value);
+            if ( count($ex) == 2 )
+            {
+                $int = (int)$ex[1] ;
+                if ( $int > 0 )
+                {
+                    return true ; 
+                }
+                else
+                {
+                    return false ; 
+                }    
+            }
+            else
+            {
+                return false ; 
+            }
+            
+        });
+
+        Validator::replacer('format_rp', function ($message, $attribute, $rule, $parameters) {
+            return $attribute." : Format rupiah tidak sesuai";
+        });
+
     }
 
     /**

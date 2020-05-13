@@ -2,6 +2,7 @@
 
 @section("menu_class",'menu-transparent light')
 
+
 @section('content')
 
 <style>
@@ -49,7 +50,12 @@
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
                     @if(!Session::has('login'))
-                        <a href="{{url('jobs')}}" class="btn btn-circle btn-sm" data-target="#ModalRegister" data-toggle="modal" onClick="$('#register-role').val('talent');$('.info').hide()">Join Community</a>
+                        <!-- <a href="{{url('jobs')}}" class="btn btn-circle btn-sm" data-target="#ModalRegister" data-toggle="modal" onClick="$('#register-role').val('talent');$('.info').hide()">Join Community</a> -->
+
+                        <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin-top: 0">
+                            Join Community
+                        </a>
+
                     @endif
                     <!-- <a href="#" class="btn btn-circle btn-border light btn-sm">Start Hiring</a> -->
                 </div>
@@ -110,7 +116,11 @@
                         Visi kami adalah membangun ecosystem yang dapat mendukung semua pelaku industri, baik talent, perusahaan, universitas, 
                         komunitas dan semua pihak lain yang dapat mendukung visi kami. Ayo bergabung untuk meningkatkan kualitas industri indonesia
                     </p>
-                    <a href="{{url('jobs')}}" class="btn btn-border btn-circle btn-sm">Join Community</a>
+                    
+                    <a href="#" class="btn btn-circle btn-border btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin-top: 20px">
+                        Join Community
+                    </a>
+
                 </div>
                 <div class="col-lg-6">
                     <hr class="space-sm visible-md" />
@@ -526,5 +536,6 @@
 
 
 </main>
+
 
 @endsection 

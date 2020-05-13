@@ -29,19 +29,22 @@ Route::get('/help-talent', 'homeController@helpTalent')->name('help-talent');
 Route::get('/faq', 'homeController@faq')->name('faq');
 
 
-
+// LOGIN ADMIN
 Route::get('/login'.date("dmY"), 'LoginController@index')->name('login');
 Route::post('/login/process', 'LoginController@processLogin')->name('process.login');
-Route::post('/login/member', 'LoginController@doLogin')->name('process.login.member');
 
-Route::get('/register', 'RegisterController@index')->name('register');
-Route::post('/register/member', 'RegisterController@doRegister')->name('register.member');
+// LOGIN MEMBER
+Route::post('/login/member', 'LoginController@doLogin')->name('process.login.member');
 Route::get('/logout', 'LoginController@logout')->name('logout');
+
+// REGISTER TALENT
+Route::get('/register/talent', 'MemberController@loadRegisterTalent')->name('load.register.talent');
+Route::post('/register/talent', 'MemberController@registerTalent')->name('post.register.talent');
+Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
 
 Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 {
 	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
-	Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
 }); 
 
 Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	

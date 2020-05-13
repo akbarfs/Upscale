@@ -22,6 +22,9 @@
     <!-- <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script> -->
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     @yield('top-asset')
 
 </head>
@@ -41,7 +44,11 @@
 
         @media only screen and (max-width:480px){
             .menu-right { float: left !important }
-            .btn-border.light:not(:hover){ color: rgb(71, 178, 228) !important ; border-color: rgb(71, 178, 228) !important ; margin: 20px; }
+            .btn-border.light:not(:hover)
+            { 
+                color: rgb(71, 178, 228) !important ; 
+                border-color: rgb(71, 178, 228) !important ; margin: 20px; 
+            }
             .btn-login { margin-left: 0 !important; border-left: none !important }
         }
     </style>
@@ -209,14 +216,14 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4"><label for="Name">Nama</label></div>
-                    <div class="col-md-8"><input type="text" name="name" class="form-control" id="Name" placeholder="Your Name"></div>
+                    <div class="col-md-8"><input type="text" name="name" class="form-control" placeholder="Your Name"></div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4"><label for="Name">Username</label></div>
-                    <div class="col-md-8"><input type="text" name="username" class="form-control" id="Name" placeholder="username"></div>
+                    <div class="col-md-8"><input type="text" name="username" class="form-control" placeholder="username"></div>
                 </div>
             </div>
 
@@ -468,7 +475,7 @@
         <script src="{{url('js/bootstrap.min.js')}}"></script>
     </footer>
 
-    <!-- Modal -->
+    <!-- Modal Start Project-->
     <div class="modal fade startProject" id="startProject" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
@@ -489,9 +496,6 @@
         </div>
     </div>
 
-    @yield("bottom-asset")
-    @stack('scripts')
-    
     <script>
         $(document).ready(function()
         {
@@ -501,6 +505,32 @@
             });
         });
     </script>
+
+    <!-- START REGISTER TALENT -->
+
+    <style type="text/css"> .loading { padding: 20px; } </style>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $(".join_community").click(function() {
+                $(".loadRegTalent").html("<div class='loading'>loading..</div>").load("{{url('register/talent')}}");
+            }) ;
+        }); 
+    </script>
+
+    <div class="modal fade" id="registerTalent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content loadRegTalent">
+          
+        </div>
+      </div>
+    </div>
+
+
+    @yield("bottom-asset")
+    @stack('scripts')
+    
+    
 </body>
 
 </html>
