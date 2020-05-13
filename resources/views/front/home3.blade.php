@@ -6,6 +6,9 @@
 
 <style>
     
+    .btn + .btn {
+        margin-top: 0;
+    }
     @media only screen and (max-width:990px){
         .grid-list{ padding-top: 30px }
         #features .container { padding-bottom:0 }
@@ -20,7 +23,7 @@
     @media only screen and (max-width:480px){
         .grid-list{ padding-top: 30px }
         #features .container { padding-bottom:0 }
-        
+        .join_community { margin-top: 10px; }
     }
 
 </style>
@@ -53,7 +56,7 @@
                         Request Quotation
                     </a>
 
-                    <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin-top: 0">
+                    <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal">
                         For Talent
                     </a>
 
