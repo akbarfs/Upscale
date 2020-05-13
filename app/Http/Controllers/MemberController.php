@@ -38,12 +38,12 @@ class MemberController extends Controller
             // 'skill_1' => '',
             // 'skill_2' => '',
             // 'skill_2' => '',
-            'fulltime_rate' => 'sometimes|format_rp',
-            'freelance_hour' => 'sometimes|format_rp',
-            'freelance_min' => 'sometimes|format_rp',
-            'freelance_max' => 'sometimes|format_rp',
-            'konsultasi_rate' => 'sometimes|format_rp',
-            'ngajar_rate' => 'sometimes|format_rp',
+            'fulltime_rate' => 'sometimes|integer',
+            'freelance_hour' => 'sometimes|integer',
+            'freelance_min' => 'sometimes|integer',
+            'freelance_max' => 'sometimes|integer',
+            'konsultasi_rate' => 'sometimes|integer',
+            'ngajar_rate' => 'sometimes|integer',
         ]);
 
         //PROSES INSERT DATABASE USER
