@@ -46,7 +46,6 @@
     {
         .fstElement { min-width: 300px; width: 93% }
         .modal-header {padding: 5px;}
-        .modal-footer { padding: 0; }
         .scroll-top-btn  { display: none !important }
         .update { font-size: 10px  }
         .o { margin-top: 5px !important}
@@ -422,7 +421,7 @@
 
             </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="padding: 0">
         
           
         <button type="submit" class="btn btn-primary registerTalent">REGISTER</button>

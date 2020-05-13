@@ -6,6 +6,10 @@
 
 <style>
     
+    .slide-title1 { font-size: 35px }
+    .slide-title2 { font-size: 35px }
+    .slide-title3 { font-size: 20px }
+
 
     @media only screen and (max-width:990px){
         .grid-list{ padding-top: 30px }
@@ -19,6 +23,10 @@
     }
 
     @media only screen and (max-width:480px){
+        .slide-title1 { font-size: 27px }
+        .slide-title2 { font-size: 25px !important }
+        .slide-title3 { font-size: 18px }
+
         .grid-list{ padding-top: 30px }
         #features .container { padding-bottom:0 }
         .join_community { margin-top: 10px; }
@@ -35,13 +43,15 @@
             <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" style="font-size: 25px">
-                    <h1>
+                    <h1 class="slide slide-title1">
                         Hire Talent On-Demand.
                     </h1>
                     
-                    <h2 style="font-size: 35px">Just focus on scaling your business<br> let us do the "Talent things".</h2>
+                    <h2 class="slide-title2">
+                        Just focus on scaling your business<br> let us do the "Talent things".
+                    </h2>
 
-                    <p style="font-size: 20px; margin-bottom: 20px">
+                    <p class="slide-title3" style="margin-bottom: 20px">
                         Hire dari exlusive network kami. Beranggotakan berbagai talent di bidang software developer, designer, finance, product manager, project manager dan lain-lain. Sesuaikan kebutuhan anda baik Fulltime, Head Hunter, Freelance atau Fix project. Baik Onsite maupun Remote
                     </p>
                         
