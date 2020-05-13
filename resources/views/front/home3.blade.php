@@ -6,9 +6,7 @@
 
 <style>
     
-    .btn + .btn {
-        margin-top: 0;
-    }
+
     @media only screen and (max-width:990px){
         .grid-list{ padding-top: 30px }
         #features .container { padding-bottom:0 }
@@ -52,7 +50,7 @@
                     
                     <!-- <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">For Bussiness</a> -->
                     
-                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">
+                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px">
                         Request Quotation
                     </a>
 
