@@ -521,7 +521,7 @@
     </script>
 
     <div class="modal fade" id="registerTalent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-dialog modal-dialog-scrollable" style="height: 100%" role="document">
         <div class="modal-content loadRegTalent">
           
         </div>

@@ -25,6 +25,21 @@ class MemberController extends Controller
         return view("front.register_talent"); 
     }
 
+    public function regTalentStep1(Request $request)
+    {
+        $this->validate ($request,[
+            'name'         => 'required|min:3|max:25|string',
+            'username'     => 'required|min:3|max:20|string|unique:users,username',
+            'email'        => 'required|string|email|unique:users,email',
+            'password'     => 'required|min:6|confirmed',
+            'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
+            'gender' => 'required',
+            'tgl_lahir' => 'required'
+        ]); 
+
+        return response()->json(array("message"=>"success","status"=>1));
+    }
+
     public function registerTalent(Request $request)
     {
         $this->validate ($request,[
@@ -38,12 +53,12 @@ class MemberController extends Controller
             // 'skill_1' => '',
             // 'skill_2' => '',
             // 'skill_2' => '',
-            'fulltime_rate' => 'sometimes|integer',
-            'freelance_hour' => 'sometimes|integer',
-            'freelance_min' => 'sometimes|integer',
-            'freelance_max' => 'sometimes|integer',
-            'konsultasi_rate' => 'sometimes|integer',
-            'ngajar_rate' => 'sometimes|integer',
+            'fulltime_rate' => 'sometimes|format_rp',
+            'freelance_hour' => 'sometimes|format_rp',
+            'freelance_min' => 'sometimes|format_rp',
+            'freelance_max' => 'sometimes|format_rp',
+            'konsultasi_rate' => 'sometimes|format_rp',
+            'ngajar_rate' => 'sometimes|format_rp',
         ]);
 
         //PROSES INSERT DATABASE USER

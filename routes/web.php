@@ -39,6 +39,7 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 // REGISTER TALENT
 Route::get('/register/talent', 'MemberController@loadRegisterTalent')->name('load.register.talent');
+Route::post('/register/talent/step1', 'MemberController@regTalentStep1')->name('reg.talent.step1');
 Route::post('/register/talent', 'MemberController@registerTalent')->name('post.register.talent');
 Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
 
