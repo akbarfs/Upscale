@@ -54,7 +54,7 @@
                         Request Quotation
                     </a>
 
-                    <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal">
+                    <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="border-color: #fff !important; color: #fff !important;">
                         For Talent
                     </a>
 
