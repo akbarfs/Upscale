@@ -114,11 +114,14 @@
                 $(".registerTalent").show() ; 
                 $(".next_question").hide() ; 
                 $(".question_box").addClass("show_box");
+                $(".modal-body").animate({ scrollTop: 0 }, 500);
+                $(".info").removeClass("alert-success").addClass("alert-warning").html("silahkan cek semua jawaban anda sebelum registrasi").show();
             }
             else
             {
                 $(next).addClass("show_box");
                 $(".show_box:first").removeClass("show_box");
+
             }
             
             
