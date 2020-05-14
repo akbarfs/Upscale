@@ -192,6 +192,7 @@
                     $('#login-form').trigger("reset");
                     $(".modal-footer").hide(); 
                     $(".question_box").removeClass('show_box'); 
+                    // location.reload();
                 },
                 error: function(data){
                     
@@ -362,6 +363,10 @@
                                     <option value="senior">senior</option>
                                 </select>
                             </div> -->
+                            <div class="fstLoading"></div>
+                            <div style="padding: 15px">
+                                Silahkan input skill anda atau anda bisa memilih dari opsi yang tersedia
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -391,16 +396,81 @@
                             data-url="{{url('json/skill?cat_id=2')}}"
                             data-load-once="true"
                             name="skill_2"/>
+                            <div class="fstLoading"></div>
+                            <div style="padding: 15px">
+                                Silahkan input skill anda atau anda bisa memilih dari opsi yang tersedia
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="question_box">
+                    <div style="font-size: 18px ; font-weight: bold ;">
+                        Apakah anda memiliki Skill Desktop Development ?
+                    </div>
+
+                    <div style="margin-top: 10px;" id="desktop_option">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#desktop').show();$('#desktop_option').hide();setTimeout(function(){ $('#desktop .fstQueryInput').focus(); }, 100);">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#desktop_option').html('tidak')">Tidak</a>
+                    </div> 
 
 
+                    <div class="form-group" id="desktop" style="margin-top: 10px ; display: none">
+                        <div class="row">
+                            <input
+                            type="text"
+                            onItemSelect="setClose()"
+                            multiple
+                            class="tagsInput"
+                            value=""
+                            data-user-option-allowed="true"
+                            data-url="{{url('json/skill?cat_id=4')}}"
+                            data-load-once="true"
+                            name="skill_4"/>
+                            <div class="fstLoading"></div>
+                            <div style="padding: 15px">
+                                Silahkan input skill anda atau anda bisa memilih dari opsi yang tersedia
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="question_box">
                     <div style="font-size: 18px ; font-weight: bold ;">
-                        Apakah anda memiliki keahlian lain ?
+                        Apakah anda memiliki pengalaman di posisi managerial ?
+                    </div>
+
+                    <div style="margin-top: 10px;" id="management_option">
+                        <a href="#" class="btn btn-sm" 
+                        onClick="$('#management').show();$('#management_option').hide();setTimeout(function(){ $('#management .fstQueryInput').focus(); }, 100);">Ya</a>
+                        <a href="#" class="btn btn-sm o" onclick="$('#management_option').html('tidak')">Tidak</a>
+                    </div> 
+
+
+                    <div class="form-group" id="management" style="margin-top: 10px ; display: none">
+                        <div class="row">
+                            <input
+                            type="text"
+                            onItemSelect="setClose()"
+                            multiple
+                            class="tagsInput"
+                            value=""
+                            data-user-option-allowed="true"
+                            data-url="{{url('json/skill?cat_id=5')}}"
+                            data-load-once="true"
+                            name="skill_5"/>
+                            <div class="fstLoading"></div>
+                            <div style="padding: 15px">
+                                Silahkan input skill anda atau anda bisa memilih dari opsi yang tersedia
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question_box">
+                    <div style="font-size: 18px ; font-weight: bold ;">
+                        Apakah anda memiliki keahlian lainya ?
                     </div>
 
                     <div style="margin-top: 10px;" id="other_option">
@@ -419,13 +489,16 @@
                             class="tagsInput"
                             value=""
                             data-user-option-allowed="true"
-                            data-url="{{url('json/skill?cat_id=other')}}"
+                            data-url="{{url('json/skill?cat_id=3')}}"
                             data-load-once="true"
-                            name="skill_2"/>
+                            name="skill_3"/>
+                            <div class="fstLoading"></div>
+                            <div style="padding: 15px">
+                                Silahkan input skill anda atau anda bisa memilih dari opsi yang tersedia
+                            </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="question_box">
                     <div style="font-size: 18px ; font-weight: bold ;">

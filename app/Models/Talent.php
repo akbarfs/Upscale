@@ -9,7 +9,9 @@ class Talent extends Model
    	protected $table = 'talent';
     protected static $tablename = 'talent';
 	protected $primaryKey = 'talent_id';
-	protected $fillable = [	'talent_name', 
+	protected $fillable = [	
+							'user_id',
+							'talent_name', 
 							'talent_phone', 
 							'talent_email',
 							'talent_gender', 
@@ -25,6 +27,11 @@ class Talent extends Model
 							'talent_status', 
 							'talent_location_id',
 							'cv_talent_update',
+							'talent_freelance_hour',
+			                'talent_project_min',
+			                'talent_project_max',
+			                'talent_konsultasi_rate',
+			                'talent_ngajar_rate',
 							'portofolio_update'];
 	public $timestamps = false;
 

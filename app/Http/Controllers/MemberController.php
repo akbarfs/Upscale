@@ -7,7 +7,9 @@ use App\User;
 use Session; 
 use App\Models\Talent ; 
 use App\Models\Skill ; 
+use App\Models\SkillTalent ;  
 use Illuminate\Support\Facades\Hash;
+use Log ; 
 
 class MemberController extends Controller
 {
@@ -86,26 +88,65 @@ class MemberController extends Controller
                 'talent_location_id'=>12,
                 'talent_gender' => $request->gender,
                 'talent_birth_date' => $request->tgl_lahir,
-                'talent_salary' => $request->fulltime_rate,
-                'talent_freelance_hour' => $request->freelance_hour,
-                'talent_project_min' => $request->freelance_min,
-                'talent_project_max' => $request->freelance_max,
-                'talent_konsultasi_rate' => $request->konsultasi_rate,
-                'talent_ngajar_rate' => $request->ngajar_rate,
+                'talent_salary' =>  preg_replace('/[^0-9]/', '', $request->fulltime_rate),
+                'talent_freelance_hour' =>  preg_replace('/[^0-9]/', '', $request->freelance_hour),
+                'talent_project_min' =>  preg_replace('/[^0-9]/', '', $request->freelance_min),
+                'talent_project_max' =>  preg_replace('/[^0-9]/', '', $request->freelance_max),
+                'talent_konsultasi_rate' =>  preg_replace('/[^0-9]/', '', $request->konsultasi_rate),
+                'talent_ngajar_rate' =>  preg_replace('/[^0-9]/', '', $request->ngajar_rate),
         ];
         
-        Talent::create($data); 
+        //Log::info($data) ; 
 
-        // Session::put('user_id',$result->id);
-        // Session::put('username',$request->username);
-        // Session::put('email',$request->email);
-        // Session::put('level',$request->level);
-        // Session::put('login',TRUE);
+        $talent = Talent::create($data); 
 
+        // proses insert skill
+        $skill_1 = explode(",",$request->skill_1);
+        $this->_insertSkill($skill_1,1,$talent->talent_id); 
+
+        $skill_2 = explode(",",$request->skill_2);
+        $this->_insertSkill($skill_2,2,$talent->talent_id); 
+
+        $skill_3 = explode(",",$request->skill_3);
+        $this->_insertSkill($skill_3,3,$talent->talent_id); 
+
+        $skill_4 = explode(",",$request->skill_4);
+        $this->_insertSkill($skill_4,4,$talent->talent_id); 
+
+        $skill_5 = explode(",",$request->skill_5);
+        $this->_insertSkill($skill_5,5,$talent->talent_id); 
+
+        Session::put('user_id',$result->id);
+        Session::put('username',$request->username);
+        Session::put('email',$request->email);
+        Session::put('level',$request->level);
+        Session::put('login',TRUE);
 
         return response()->json(array("message"=>"success","status"=>1));
     }
 
+    public function _insertSkill($array,$cat,$talent_id)
+    {
+        foreach($array as $row)
+        {
+            //get skill id 
+            $skill = Skill::where("skill_name",$row)->first() ; 
+            // Log::info($skill); 
+
+            if ( !$skill )
+            {
+                $skill = Skill::create(array('skill_name'=>$row,'skill_sc_id'=>$cat));
+            }
+
+            $insert_skill = array(
+                                'st_talent_id'=> $talent_id,
+                                'st_skill_id'=> $skill->skill_id,
+                                'st_skill_verified'=> 'NO',
+                                'st_input_admin'=> 'NO',
+                            );
+            SkillTalent::insert($insert_skill);
+        }
+    }
     public function updateProfile(Request $request)
     {
         $this->validate ($request,[
