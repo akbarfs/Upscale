@@ -53,7 +53,7 @@
         .scroll-top-btn  { display: none !important }
         .update { font-size: 10px  }
         .o { margin-top: 5px !important}
-        .registerTalent , .back { font-size: 10px; margin: 5px; }
+        /*.registerTalent , .back { font-size: 10px; margin: 5px; }*/
     }
     .ui-datepicker-trigger {} 
     .question_box { padding: 10px 0; display: none }
@@ -158,7 +158,8 @@
                 success: function(data)
                 {
                     next() ;
-                    $(".info").removeClass("alert-warning").addClass("alert-success").html("Silahkan jawab beberapa pertanyaan ini untuk menyelesaikan pendaftaran"); 
+                    $(".info").hide() ; 
+                    // $(".info").removeClass("alert-warning").addClass("alert-success").html("Silahkan jawab beberapa pertanyaan ini untuk menyelesaikan pendaftaran"); 
                 },
                 error: function(data){
                     
@@ -190,7 +191,7 @@
                     $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil melakukan pendaftaran");
                     $('#login-form').trigger("reset");
                     $(".modal-footer").hide(); 
-                    $(".question_box").hide() ; 
+                    $(".question_box").removeClass('show_box'); 
                 },
                 error: function(data){
                     
@@ -548,8 +549,7 @@
             }
             .back { background: gray }
         </style>
-        <a class="btn btn-primary back" style="float: left; display: none">Back</a>
-
+        <!-- <a class="btn btn-primary back" style="float: left; display: none">Back</a> -->
         <a type="submit" class="btn btn-primary next">REGISTER</a>
         <a type="submit" class="btn btn-primary next_question" style="display: none">next</a>
         <a type="submit" class="btn btn-primary registerTalent" style="display: none; display: #000">Submit Registration?</a>
