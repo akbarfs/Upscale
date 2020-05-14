@@ -195,7 +195,7 @@
                     $('#login-form').trigger("reset");
                     $(".modal-footer").hide(); 
                     $(".question_box").removeClass('show_box'); 
-                    // location.reload();
+                    location.reload();
                 },
                 error: function(data){
                     
