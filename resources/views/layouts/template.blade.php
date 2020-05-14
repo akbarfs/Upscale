@@ -32,7 +32,7 @@
     
     <style>
 
-        
+        .minht {min-height: 550px;}
         @media only screen and (max-width:990px){
         
         }
@@ -52,6 +52,7 @@
                 border-color: rgb(71, 178, 228) !important ; margin: 20px; 
             }
             .btn-login { margin-left: 0 !important; border-left: none !important }
+            .minht { height: 100% }
         }
     </style>
 
@@ -306,11 +307,11 @@
             <i class="menu-btn"></i>
             <div class="menu-cnt">
                 <ul>
-                    <li> <a href="{{url('')}}">Home</a></li>
-                    <li> <a href="{{url('help-business')}}">For Bussiness</a></li>
-                    <li> <a href="{{url('help-talent')}}">For Talent</a></li>
-                    <li> <a href="{{url('jobs')}}">Jobs</a></li>
-                    <li> <a href="{{url('faq')}}">F.A.Q</a></li>
+                    <li> <a href="{{url('').param()}}">Home</a></li>
+                    <li> <a href="{{url('help-business').param()}}">For Bussiness</a></li>
+                    <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
+                    <li> <a href="{{url('jobs').param()}}">Jobs</a></li>
+                    <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
                     <!-- <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>
                         <ul>
@@ -384,12 +385,26 @@
                 </ul>
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
+                    <ul class="lan-menu">
+                        <li class="dropdown">
+                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'id')
+                                <a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID </a>
+                            @else
+                                <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN </a>
+                            @endif
+
+                            <ul>
+                                <li><a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN</a></li>
+                                <li><a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <div class="menu-custom-area">
 
                         @if(!Session::has('login'))
                             <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
                         @else
-                            <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a>
+                            <!-- <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a> -->
                             <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
                         @endif
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
@@ -522,7 +537,7 @@
     </script>
 
     <div class="modal fade" id="registerTalent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-scrollable" style="height: 100%" role="document">
+      <div class="modal-dialog modal-dialog-scrollable minht" role="document">
         <div class="modal-content loadRegTalent">
           
         </div>

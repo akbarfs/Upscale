@@ -44,11 +44,17 @@
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" style="font-size: 25px">
                     <h1 class="slide slide-title1">
-                        Hire Talent On-Demand.
+                         {{lang('Hire Talent On-Demand.','Rekrut Talent Flexible')}}
                     </h1>
                     
                     <h2 class="slide-title2">
-                        Just focus on scaling your business<br> let us do the "Talent things".
+                        {!!lang(
+                            
+                            'Just focus on scaling your business<br> let us do the "Talent things"',
+
+                            'Fokuskan pada pengembangan bisnis anda<br> Biarkan kami menghandle urusan "talent"'
+
+                        )!!}.
                     </h2>
 
                     <p class="slide-title3" style="margin-bottom: 20px">
