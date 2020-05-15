@@ -53,6 +53,8 @@
             }
             .btn-login { margin-left: 0 !important; border-left: none !important }
             .minht { height: 100% }
+            .lan-menu { margin-top: 0 !important; }
+            .menu-right { margin-top: 0 !important; }
         }
     </style>
 
@@ -91,7 +93,8 @@
                                 //redirect halaman member
                                 if ( data.level == 'talent')
                                 {
-                                    window.location.href = "{{url('talent/dashboard')}}";
+                                    // window.location.href = "{{url('talent/dashboard')}}";
+                                    location.reload();
                                 }
                                 else if ( data.level == 'client')
                                 {
@@ -141,9 +144,14 @@
               </div>
               <div class="modal-footer" style="display: block;">
                 <div class="row">
-                    <div class="col-md-12" style="text-align: right;">
+                    <div class="col-md-12" style="text-align: right; margin-top: 0">
                         <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
-                        <div style="margin-right: 20px;margin-bottom: 10px;float: left;">Forget Password ? <a href="#">click</a></div>
+                        <div style="margin-right: 20px;margin-bottom: 10px;float: left;">
+                            Register as talent ? 
+                            <a href="#" class="join_community" data-target="#registerTalent" data-toggle="modal">
+                                Click
+                            </a>
+                        </div>
                         <button type="submit" class="btn btn-primary" id="login">Login</button>
                     </div>
                 </div>

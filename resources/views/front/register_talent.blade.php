@@ -55,9 +55,11 @@
         .o { margin-top: 5px !important}
         /*.registerTalent , .back { font-size: 10px; margin: 5px; }*/
     }
-    .ui-datepicker-trigger {} 
+    .ui-datepicker-trigger {    background: #47b2e4; color: #fff; border: none; border-radius: 10px; padding: 0px 10px;}
+
     .question_box { padding: 10px 0; display: none }
     .show_box { display: block !important; }
+    .info_tgl_lahir , .info_tgl_ready { float: left; margin-right: 10px; }
 </style>
 
 <script>
@@ -80,9 +82,26 @@
             });
          });
 
+        $(function() {
+           $('.tgl_ready').datepicker(
+           {
+                showOn: "button",
+                buttonText: "set date",
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "2020:2030",
+                onSelect: function() 
+                {
+                    $(".info_tgl_ready").html($(this).val());
+                    // doSomeValidation($(this).getDate());
+                }
+            });
+         });
+
         $(".back").click(function()
         {
-            $(".info").hide() ;
+            $(".info_reg_talent").hide() ;
             $(".modal-body").animate({ scrollTop: 0 }, 500);
             $(this).hide();
             $(".registerTalent").hide();
@@ -115,7 +134,7 @@
                 $(".next_question").hide() ; 
                 $(".question_box").addClass("show_box");
                 $(".modal-body").animate({ scrollTop: 0 }, 500);
-                $(".info").removeClass("alert-success").addClass("alert-warning").html("silahkan cek semua jawaban anda sebelum registrasi").show();
+                $(".info_reg_talent").removeClass("alert-success").addClass("alert-warning").html("silahkan cek semua jawaban anda sebelum registrasi").show();
             }
             else
             {
@@ -138,7 +157,7 @@
         $(".next").click(function()
         {
             $(".modal-body").animate({ scrollTop: 0 }, 500);
-            $(".info").html("loading...").show();
+            $(".info_reg_talent").html("loading...").show();
 
             url = "{{url('register/talent/step1')}}";
 
@@ -152,6 +171,7 @@
                 phone_number : $('#talent-update-profile').find('[name=phone_number]').val(),
                 gender : $('#talent-update-profile').find('[name=gender]').val(),
                 tgl_lahir : $('#talent-update-profile').find('[name=tgl_lahir]').val(),
+                tempat_lahir : $('#talent-update-profile').find('[name=tempat_lahir]').val(),
             }
 
             $.ajax({
@@ -161,17 +181,17 @@
                 success: function(data)
                 {
                     next() ;
-                    $(".info").hide() ; 
-                    // $(".info").removeClass("alert-warning").addClass("alert-success").html("Silahkan jawab beberapa pertanyaan ini untuk menyelesaikan pendaftaran"); 
+                    $(".info_reg_talent").hide() ; 
+                    // $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("Silahkan jawab beberapa pertanyaan ini untuk menyelesaikan pendaftaran"); 
                 },
                 error: function(data){
                     
                     var data = $.parseJSON(data.responseText);
-                    $(".info").removeClass("alert-success").addClass("alert-warning").html("");
+                    $(".info_reg_talent").removeClass("alert-success").addClass("alert-warning").html("");
 
                     $.each(data.errors, function(index, value) {
                        $.each(value, function(i, e) {
-                            $(".info").append(e+"<br>");
+                            $(".info_reg_talent").append(e+"<br>");
                        });
                     });
 
@@ -182,7 +202,7 @@
         $(".registerTalent").click(function()
         {
             $(".modal-body").animate({ scrollTop: 0 }, 500);
-            $(".info").html("loading...").show();
+            $(".info_reg_talent").html("loading...").show();
 
             url = "{{url('register/talent')}}";
             $.ajax({
@@ -191,7 +211,7 @@
                 data: $('#talent-update-profile').serialize(),
                 success: function(data)
                 {
-                    $(".info").removeClass("alert-warning").addClass("alert-success").html("berhasil melakukan pendaftaran");
+                    $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("berhasil melakukan pendaftaran");
                     $('#login-form').trigger("reset");
                     $(".modal-footer").hide(); 
                     $(".question_box").removeClass('show_box'); 
@@ -200,11 +220,11 @@
                 error: function(data){
                     
                     var data = $.parseJSON(data.responseText);
-                    $(".info").removeClass("alert-success").addClass("alert-warning").html("");
+                    $(".info_reg_talent").removeClass("alert-success").addClass("alert-warning").html("");
 
                     $.each(data.errors, function(index, value) {
                        $.each(value, function(i, e) {
-                            $(".info").append(e+"<br>");
+                            $(".info_reg_talent").append(e+"<br>");
                        });
                     });
 
@@ -232,7 +252,7 @@
             
             @csrf
             
-            <div class="info alert alert-warning" style="display: none"></div>
+            <div class="info_reg_talent alert alert-warning" style="display: none"></div>
 
             <div id="register_main">
                 <div class="form-group">
@@ -272,6 +292,13 @@
 
                 <div class="form-group">
                     <div class="row">
+                        <div class="col-md-4"><label for="Name">Tempat Lahir</label></div>
+                        <div class="col-md-8"><input type="text" name="tempat_lahir" class="form-control" placeholder="Your Name"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
                         <div class="col-md-4"><label for="Name">Tgl lahir</label></div>
                         <div class="col-md-8">
                             <span class="info_tgl_lahir"></span>
@@ -293,7 +320,7 @@
                         <div class="col-md-8">
                             <select class="custom-select" name="gender">
                                 <option value="male">Laki-laki</option>
-                                <option value="femalae">Perempuan</option>
+                                <option value="female">Perempuan</option>
                             </select>
                         </div>
                     </div>
@@ -508,14 +535,83 @@
                         Apabila kami menawarkan lowongan fulltime, berapa ekspektasi salary anda ? 
                     </div>
                     
-                    <div class="form-group" id="fulltime" style="margin-top: 20px">
+                    <div class="form-group" style="margin-top: 20px">
                         <div class="row">
-                            <div class="col-md-4"><label for="Name">Rate / Jam ?</label></div>
-                            <div class="col-md-8">
+                            <div class="col-md-6"><label for="Name">Salary / month</label></div>
+                            <div class="col-md-6">
                                 <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="fulltime_rate" class="form-control rp" placeholder="silahkan ketik angka" value="">
                             </div>
                         </div>
                     </div>
+
+                    <hr style="margin: 20px 0">
+
+                    <div class="form-group" style="margin-top: 20px">
+                        <div class="row">
+                            <div class="col-md-6"><label for="Name">Status Kerja saat ini</label></div>
+                            <div class="col-md-6">
+
+                                <script type="text/javascript">
+                                    $(document).ready(function()
+                                    {
+                                        $("#av").change(function()
+                                        {
+                                            var av = $(this).val();
+                                            if ( av == 'yes') 
+                                            {
+                                                $(".ready").html('Selesai kontrak tanggal ?');
+                                            }
+                                            else
+                                            {
+                                                $(".ready").html('Ready kerja tanggal berapa ?');
+                                            }
+                                        });
+                                    }); 
+                                </script>
+                                
+                                <select class="custom-select" name="talent_available" id="av">
+                                    <option value="no">Tidak terikat kontrak</option>
+                                    <option value="yes">Sedang terikat kontrak kerja</option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="ready">Ready Kerja tanggal berapa?</label>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info_tgl_ready"></div>
+                                <input type="hidden" name="talent_date_ready" class="form-control tgl_ready" placeholder="DD/MM/YYYY">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="margin-top: 20px">
+                        <div class="row">
+                            <div class="col-md-6"><label for="Name">Prefer kerja di kota ?</label></div>
+                            <div class="col-md-6">
+                                <input type="text" name="talent_prefered_location" class="form-control" placeholder="Ex : Jakarta" value="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="Name">Kota Sekarang tinggal ?</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="talent_address" class="form-control" 
+                                placeholder="Ex : Yogyakarta" value="">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="question_box">
@@ -550,9 +646,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="question_box">
+                    
+                    <hr style="margin: 20px 0">
+                    
                     <div style="margin-top: 10px">Bersedia menerima fix project  ?</div>
                     <div style="margin-top: 10px;" id="freelance_fix_option">
                         <a href="#" class="btn btn-sm" 

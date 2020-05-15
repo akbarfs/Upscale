@@ -44,7 +44,7 @@
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" style="font-size: 25px">
                     <h1 class="slide slide-title1">
-                         {{lang('Hire Talent On-Demand.','Rekrut Talent Flexible')}}
+                         {{lang('Hire Talent On-Demand.','Rekrut Talent Berkualitas')}}
                     </h1>
                     
                     <h2 class="slide-title2">

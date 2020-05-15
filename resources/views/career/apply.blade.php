@@ -5,9 +5,7 @@
 @section("top-asset")
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
 @endsection
 
 @section('bottom-asset')
@@ -47,19 +45,18 @@
 <main>
     <style>
         .input-select { padding: 0; border: none }
-        .col-md-12, .col-md-6, .col-md-4
-        {
-            margin-top: 20px;
-        }
+        /*.col-md-12, .col-md-6, .col-md-4 {margin-top: 20px; }*/
         .form-control { height: unset; }
-
-
+        .margin-top { margin-top: 20px; }
     </style>
     <section id="daftar" class="section" style="margin-top: 100px;">
         <div class="container" style="padding-top: 0">
             <div class="row text-center" style="">
                 <div class="col-md-12">
                     <h2>Join Our Exclusive Network</h2>
+                    <div style="font-size: 30px">
+                        {{ $apply->jobs_title }}
+                    </div>
                 </div>
             </div>
             <div class="row ">
@@ -67,46 +64,51 @@
                     <div class="boxed boxed--border">
                         <form class="row mx-0" id="form-apply" data-toggle="validator" method="POST" action="{{url('apply/store/'.$apply->jobs_id)}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                            <div class="col-md-4">
-                                <label >Nama<span
-                                        style="color: red;">
-                                        *</span></label>
-                                <input id="inputname" type="text" name="name" class="validate-required form-control" placeholder="Nama Lengkap" required="">
+                            <div class="col-md-4 margin-top">
+                                <label >Nama<span style="color: red;"> *</span></label>
+                                <input id="inputname" type="text" name="name" class="validate-required form-control" placeholder="Nama Lengkap" required="" value="{{@$user->talent->talent_name}}" readonly="readonly">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 margin-top">
                                 <label>Whatsapp/Telegram<span
                                         style="color: red;">
                                         *</span></label>
-                                <input id="phone" type="number" name="phone" placeholder="+62" class="validate-required form-control" required="">
+                                <input id="phone" type="number" name="phone" placeholder="+62" class="validate-required form-control" required="" value="{{@$user->talent->talent_phone}}" readonly="readonly">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 margin-top">
                                 <label >Email<span style="color: red;">
                                         *</span></label>
-                                <input type="email" name="email" class="validate-required form-control" placeholder="Email Anda" required="">
+                                <input type="email" name="email" class="validate-required form-control" placeholder="Email Anda" required="" value="{{@$user->talent->talent_email}}" readonly="readonly">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 margin-top">
                                 <label >Tempat Lahir<span
                                         style="color: red;"> *</span></label>
-                                <input id="place" type="text" name="place" class="form-control" placeholder="Tempat Lahir" required="">
+                                <input id="place" type="text" name="place" class="form-control" placeholder="Tempat Lahir" required="" value="{{@$user->talent->talent_place_of_birth}}" readonly="readonly">
                             </div> 
-                            <div class="col-md-4">
+                            <div class="col-md-4 margin-top">
                                 <label >Tanggal Lahir<span
                                         style="color: red;"> *</span></label>
-                                <input type="text" id="tgl" name="tgl" placeholder="tahun-bulan-tanggal" class="form-control" autocomplete="off">
+                                <input type="text" name="tgl" placeholder="tahun-bulan-tanggal" class="form-control" autocomplete="off"
+                                value="{{@$user->talent->talent_birth_date}}" readonly="readonly">
                                 <!-- <input type="date" name="tgl" required="" class="form-control"> -->
                             </div> 
-                            <div class="col-md-4">
+                            <div class="col-md-4 margin-top">
                                 <label >Jenis Kelamin<span
                                         style="color: red;"> *</span></label>
                                 <div class="input-select">
-                                    <select id="gender" class="form-control validate-required" name="gender" required="">
+                                    <select id="gender" class="form-control validate-required" name="gender" required="" @if( isset($user) && $user->talent->talent_gender ) readonly="readonly" @endif>
                                         <option value="">Pilih</option>
-                                        <option value="Laki-laki">Laki-laki</option>
-                                        <option value="Perempuan">Perempuan</option>
+                                        <option value="Laki-laki" 
+                                        @if ( isset($user) && $user->talent->talent_gender=='male') 
+                                        selected="selected" 
+                                        @endif >Laki-laki</option>
+                                        <option value="Perempuan" 
+                                        @if ( isset($user) && $user->talent->talent_gender=='female') 
+                                        selected="selected" 
+                                        @endif>Perempuan</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 margin-top">
                                 <label >Pilih Prioritas type pekerjaan<span style="color: red;">
                                         *</span></label>
                                         <div>
@@ -118,8 +120,8 @@
                                         </div>
                                         
                             </div>
-                            <div class="col-md-4">
-                                <label >Pilih Lokasi Pekerjaan  
+                            <div class="col-md-4 margin-top">
+                                <label >Pilih Lokasi Bekerja  
                                     <span style="color: red;">*</span></label>
                                         <div>
                                         <select id="location" name="jobs_location" required="" title="Select Job Location" class="form-control">
@@ -130,16 +132,20 @@
                                         </div>
                                         
                             </div>
-                            <div id="salary" class="col-md-4">
+                            <div id="salary" class="col-md-4 margin-top">
                                 <label >Gaji yang Kamu Inginkan</label>
-                                <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="es" type="text" name="es" class="form-control" placeholder="Your expected salary">
+                                <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="es" type="text" name="es" class="form-control" placeholder="Your expected salary"
+                                value="{{@$user->talent->talent_salary}}">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 margin-top">
+
+
                                 <label >Kota Sekarang<span style="color: red;"> *</span></label>
-                                <input type="text" id="address" name="address" class="form-control" placeholder="Tempat Tinggal Sekarang" required="">
+                                <input type="text" id="address" name="address" class="form-control" placeholder="Tempat Tinggal Sekarang" required=""
+                                value="{{@$user->talent->talent_address}}">
                             </div> 
                             
-                            <div class="col-md-6">
+                            <div class="col-md-6 margin-top">
                                 <label >Kamu tau dari mana ?</label>
 
                                 <div class="input-select">
@@ -175,22 +181,41 @@
                                 });
                             </script>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 margin-top">
                                 <label>Apakah saat ini sedang terikat kontrak kerja ?</label>
                                 <select class="form-control" name="kerja" id="kerja">
-                                    <option value="tidak">tidak</option>
-                                    <option value="ya">ya</option>
+                                    <option value="tidak"
+                                    @if ( isset($user) && $user->talent->talent_available == 'yes' ) 
+                                    selected
+                                    @endif
+                                    >tidak</option>
+                                    <option value="ya"
+                                    @if ( isset($user) && $user->talent->talent_available == 'no' ) 
+                                    selected
+                                    @endif
+                                    >ya</option>
                                 </select>
                             </div>
 
-                            <div class="col-md-6" id="div_ready">
+                            
+
+                            <div class="col-md-6 margin-top" id="div_ready"
+                            @if (!isset($user) || isset($user) && $user->talent->talent_available == 'no' )
+                            style="display: none"
+                            @endif>
                                 <label>Siap kerja tanggal berapa ? <span style="color: red;"> *</span></label>
-                                <input type="text" id="ready_mulai" name="ready_mulai" placeholder="tahun-bulan-tanggal" class="form-control tgl">
+                                <input type="text" id="ready_mulai" name="ready_mulai" placeholder="tahun-bulan-tanggal" class="form-control tgl"
+                                value="{{@$user->talent->talent_date_ready}}">
                             </div>
 
-                            <div class="col-md-6" id="div_selesai_kontrak"  style="display: none">
+
+                            <div class="col-md-6 margin-top" id="div_selesai_kontrak" 
+                            @if ( isset($user) && $user->talent->talent_available == 'yes')
+                            style="display: none"
+                            @endif>
                                 <label>Selesai kontrak tanggal berapa ? <span style="color: red;"> *</span></label>
-                                <input type="text" id="ready_pindah" name="ready_pindah" placeholder="tahun-bulan-tanggal" class="form-control tgl">
+                                <input type="text" id="ready_pindah" name="ready_pindah" placeholder="tahun-bulan-tanggal" class="form-control tgl"
+                                value="{{@$user->talent->talent_date_ready}}">
                             </div>
 
 
@@ -207,14 +232,14 @@
                                 <input id="range" type="text" class="form-control" name="range" placeholder="Periode" >
                             </div>
                            
-                            <div class="col-md-12">
+                            <div class="col-md-12 margin-top">
                                 <label>Upload Your CV <span style="color: red;"> *</span></label>
                                 <label> (pdf max 500kb) </label>
                                 <input type="file" accept=".pdf" name="cv" id="cv" class="form-control-file validate-required form-control">
                             </div>
                             
                             <!-- <div style="padding: 10px ; margin-bottom: 20px">Silahkan pilih , upload menggunakan upload file atau menggunakan link</div>
-                            <div class="col-md-12" id="pp">
+                            <div class="col-md-12 margin-top" id="pp">
                                 <label>Link Portofolio<span style="color: red;">
                                         *</span></label>
                                 <label >Upload Your Portofolio
@@ -225,7 +250,7 @@
                             </div> -->
 
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 margin-top">
                                 <label>Upload portofolio</label>
                                 <input type="file" name="filepp" id="filepp" accept=".pdf" class="form-control-file form-control">
                             </div>

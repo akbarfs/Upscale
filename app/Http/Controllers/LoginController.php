@@ -33,6 +33,7 @@ class LoginController extends Controller
         if($data!=NULL){
             if($data->level == 'admin'){
                 if(Hash::check($password, $data->password)){
+                    Session::put("user_id",$data->id); 
                     Session::put('username',$data->username);
                     Session::put('level',$data->level);
                     Session::put('login',TRUE);

@@ -17,17 +17,26 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use App\Rules\Captcha;
+use Session ; 
+use App\User ; 
 
 class applyController extends Controller
 {
     public function index($id)
     {
+        $user = null ; 
+        if ( Session::has("login"))
+        {
+            $user_id   = Session::get("user_id");
+            $user   = User::find($user_id); 
+        }
+
         $skill     = Skill::all();
         // $bootcamps = Bootcamp::all();
         $location  = Location::all();
         $apply     = Job::where('jobs_id', '=', $id)->first();
 
-    	  return view('career/apply', compact('skill','apply', 'location'));
+    	  return view('career/apply', compact('skill','apply', 'location','user'));
     }
 
     public function in($id)
@@ -215,6 +224,10 @@ class applyController extends Controller
     public function store(Request $request, $id)
     {
          
+         if ( !Session::get("login"))
+         {
+            return back() ;
+         }
 
           // $token = $request->input('g-recaptcha-response');
           $token = true ; 

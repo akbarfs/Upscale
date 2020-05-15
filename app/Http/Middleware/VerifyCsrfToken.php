@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'admin/jobsapply/interview/uploadReportTalent/*',
-        '/register/talent/step1'
+        '/register/talent/step1',
+        '/register/talent',
     ];
 }
