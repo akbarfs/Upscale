@@ -22,10 +22,7 @@
       color: #c5c5c5 !important;
     }
 
-    .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus 
-    {
-        background: #add2ec !important;
-    }
+    
 
     .fstElement { min-width: 455px; }
 

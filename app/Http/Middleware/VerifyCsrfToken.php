@@ -15,5 +15,6 @@ class VerifyCsrfToken extends Middleware
         'admin/jobsapply/interview/uploadReportTalent/*',
         '/register/talent/step1',
         '/register/talent',
+        '/login/member',
     ];
 }

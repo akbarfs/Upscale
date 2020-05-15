@@ -95,7 +95,7 @@ class MemberController extends Controller
                 'talent_salary'=>$request->fulltime_rate,
                 'talent_location_id'=>12,
                 'talent_gender' => $request->gender,
-                'talent_place_of_birth' => $request->talent_place_of_birth,
+                'talent_place_of_birth' => $request->tempat_lahir,
                 'talent_birth_date' => $request->tgl_lahir,
                 'talent_salary' =>  preg_replace('/[^0-9]/', '', $request->fulltime_rate),
 

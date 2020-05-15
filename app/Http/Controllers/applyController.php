@@ -283,6 +283,33 @@ class applyController extends Controller
     
         $now = Carbon::now('Asia/Jakarta');
         
+        
+        $user_id = Session::get("user_id"); 
+        $user = User::find($user_id) ; 
+        $talent_id = $user->talent->talent_id ;
+
+        //update talent terbaru
+        $updateTalent = Talent::where("talent_id",$talent_id)->first(); 
+        
+        $updateTalent->talent_cv_update       = $namecv;
+        $updateTalent->portfolio_update       = $namepp;
+        $updateTalent->talent_location_id     = 12;
+        
+        if ( $request->input('kerja') == 'ya')
+        {
+            $updateTalent->talent_date_ready  = $request->ready_pindah;
+        }
+        else
+        {
+            $updateTalent->talent_date_ready  = $request->ready_mulai;
+        }
+
+        $updateTalent->update();
+
+
+        $data                             = new Job_apply;
+        $apply                            = Job::where('jobs_id', '=', $id)->first();
+
         if($request->type == 'internship')
         { 
           $periode = $request->input('range'); 
@@ -293,42 +320,8 @@ class applyController extends Controller
           $periode = NULL; 
         }
 
-        $apply                          = Job::where('jobs_id', '=', $id)->first();
-        $talent                         = new Talent;
-        $talent->user_id                = Session::get("user_id"); 
-        $talent->talent_name            = $request->input('name');
-        $talent->talent_condition       = 'unprocess';
-        $talent->talent_phone           = $nophone;
-        $talent->talent_email           = $request->input('email');
-        $talent->talent_gender          = $request->input('gender');
-        $talent->talent_place_of_birth  = $request->input('place');
-        $talent->talent_birth_date      = $request->input('tgl');
-        $talent->talent_address         = $request->input('address');
-        $talent->talent_salary          = $request->input('es');
-        $talent->talent_cv_update       = $namecv;
-        $talent->portfolio_update       = $namepp;
-        // $talent->talent_portfolio       = $request->input('pp');
-        $talent->talent_campus          = $request->input('campus');
-        $talent->talent_skill           = $request->input('skill');
-        $talent->talent_status          = 'worker';
-        $talent->talent_location_id     = 12;
-        
-        if ( $request->input('kerja') == 'ya')
-        {
-            $talent->talent_date_ready      = $request->ready_pindah;
-        }
-        else
-        {
-            $talent->talent_date_ready      = $request->ready_mulai;
-        }
-        
-        $talent->tcreated_date          = $now;
-        $talent->save();
-
-        $id = $talent->talent_id;
-        $data                             = new Job_apply;
         $data->jobs_apply_jobs_id         = $apply->jobs_id;
-        $data->jobs_apply_talent_id       = $id;
+        $data->jobs_apply_talent_id       = $talent_id;
         $data->jobs_apply_type_time       = $request->input('type');
         $data->jobs_apply_created_date    = Carbon::now();
         $data->jobs_apply_status          = 'unprocess';

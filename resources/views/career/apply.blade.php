@@ -493,7 +493,7 @@
       changeYear: true,
       yearRange: "1970:2015",
           onSelect: function() {
-            doSomeValidation($(this).getDate());
+            // doSomeValidation($(this).getDate());
           }
         });
      });
