@@ -48,7 +48,78 @@
         /*.col-md-12, .col-md-6, .col-md-4 {margin-top: 20px; }*/
         .form-control { height: unset; }
         .margin-top { margin-top: 20px; }
+        .log_box 
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            padding: 20px;
+            background: #fff;
+            text-align: center; 
+        }
+        .log_box .btn { color: #fff }
+        .log_box .btn:hover { color: #fff }
+        .black 
+        {
+            background: #000;
+            position: absolute;
+            width: 100%;
+            height: calc( 100% + 160px );
+            z-index: 1;
+            opacity: 0.7;
+            margin-top: -50px;
+        }
+
+        @media only screen and (max-width:990px){
+        
+        }
+
+        @media only screen and (max-width:767px){
+            
+            
+        }
+
+        @media only screen and (max-width:480px){
+            .log_box
+            {
+                top: unset; 
+                left: unset;
+                transform: unset;
+                margin: 20px; 
+            }
+
+            @if ( !Session::has('login'))
+                body { overflow: hidden; }
+            @endif
+        }
+
     </style>
+
+    @if ( !Session::has("login"))
+        <div class="log_box">
+            <H2>Anda harus login terlebih dahulu</H2>
+            <br>
+
+            <a class="btn btn-login" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()">Login</a>
+            
+            &nbsp 
+
+            or 
+
+            &nbsp
+            
+            <a href="#" class="btn join_community" data-target="#registerTalent" style="margin: 0" 
+            data-toggle="modal">
+                Register
+            </a>
+
+        </div>
+
+        <div class="black"> </div>
+    @endif
+
     <section id="daftar" class="section" style="margin-top: 100px;">
         <div class="container" style="padding-top: 0">
             <div class="row text-center" style="">
@@ -325,7 +396,9 @@
                                     APPLY
                                 </button> -->
                                 <br>
-                                <input type="button" value="Apply" id="apply" class="btn btn--primary" style="background: #4AB3FF; color: #fff; width: 100%">
+                                @if ( Session::has("login"))
+                                    <input type="button" value="Apply" id="apply" class="btn btn--primary" style="background: #4AB3FF; color: #fff; width: 100%">
+                                @endif
                             </div>
                         </form>
                     </div>

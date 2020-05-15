@@ -224,7 +224,7 @@ class applyController extends Controller
     public function store(Request $request, $id)
     {
          
-         if ( !Session::get("login"))
+         if ( !Session::get("user_id"))
          {
             return back() ;
          }
@@ -295,6 +295,7 @@ class applyController extends Controller
 
         $apply                          = Job::where('jobs_id', '=', $id)->first();
         $talent                         = new Talent;
+        $talent->user_id                = Session::get("user_id"); 
         $talent->talent_name            = $request->input('name');
         $talent->talent_condition       = 'unprocess';
         $talent->talent_phone           = $nophone;

@@ -58,9 +58,9 @@ class MemberController extends Controller
             // 'skill_2' => '',
             // 'skill_2' => '',
             'fulltime_rate' => 'sometimes|format_rp',
-            'talent_address' => 'sometimes|min:3|max:25|',
-            'talent_prefered_location' => 'sometimes|min:3|max:25|',
-            'talent_date_ready' => 'sometimes|string',
+            // 'talent_address' => 'sometimes|min:3|max:25|',
+            // 'talent_prefered_location' => 'sometimes|min:3|max:25|',
+            // 'talent_date_ready' => 'sometimes|string',
             'talent_available' => 'sometimes|string',
 
 
