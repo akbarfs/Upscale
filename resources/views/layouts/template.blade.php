@@ -308,10 +308,10 @@
             <div class="menu-cnt">
                 <ul>
                     <li> <a href="{{url('').param()}}">Home</a></li>
-                    <li> <a href="{{url('help-business').param()}}">For Bussiness</a></li>
+                    <li> <a href="{{url('help-business').param()}}">Success Story</a></li>
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
-                    <li> <a href="{{url('jobs').param()}}">Jobs</a></li>
                     <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
+                    <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li>
                     <!-- <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>
                         <ul>
@@ -385,6 +385,17 @@
                 </ul>
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
+                    <div class="menu-custom-area">
+
+                        @if(!Session::has('login'))
+                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                        @else
+                            <!-- <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a> -->
+                            <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                        @endif
+                        <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
+
+                    </div>
                     <ul class="lan-menu">
                         <li class="dropdown">
                             @if ( isset($_GET['lang']) && $_GET['lang'] == 'id')
@@ -399,18 +410,6 @@
                             </ul>
                         </li>
                     </ul>
-                    <div class="menu-custom-area">
-
-                        @if(!Session::has('login'))
-                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
-                        @else
-                            <!-- <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a> -->
-                            <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
-                        @endif
-                        <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
-                        <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
-
-                    </div>
                 </div>
 
 
