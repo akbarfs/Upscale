@@ -93,6 +93,11 @@
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "2020:2030",
+                beforeShow: function () {
+                  setTimeout(function () {
+                      $('.ui-datepicker').css('top', 100);
+                  }, 0);
+                },
                 onSelect: function() 
                 {
                     $(".info_tgl_ready").html($(this).val());
