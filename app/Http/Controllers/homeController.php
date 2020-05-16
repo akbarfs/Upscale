@@ -143,7 +143,7 @@ class homeController extends Controller
         $job = Job::where('jobs_id','=', $id)->first();
         $date = $job->jobs_created_date->diffForHumans();
 
-        return view('career/detail', compact('job','date'));
+        return view('career/detail', compact('job','date','id'));
     }
 
     public function info()

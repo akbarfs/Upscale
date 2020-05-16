@@ -38,6 +38,7 @@
             background: #add2ec !important;
         }
 
+
         .minht {min-height: 550px;}
         @media only screen and (max-width:990px){
         
@@ -80,6 +81,18 @@
         <script>
             $(document).ready(function()
             {
+
+                $("a").click(function()
+                {
+                    redirect =  $(this).data("redirect");
+                    // if ( redirect != undefined)
+                    // {
+                    //     // action = $("#login-form").attr("action"); 
+                    //     // action = action+"?redirect="+redirect;
+                    //     // // $("#login-form").attr("action",action);
+                    // }
+                });
+
                 $("#login-form").submit(function()
                 {
                     $(".modal-body").animate({ scrollTop: 0 }, 500);
@@ -99,8 +112,16 @@
                                 //redirect halaman member
                                 if ( data.level == 'talent')
                                 {
-                                    // window.location.href = "{{url('talent/dashboard')}}";
-                                    location.reload();
+                                    if ( redirect != undefined)
+                                    {
+                                        window.location.href = redirect ; 
+                                    }
+                                    else
+                                    {
+                                        // window.location.href = "{{url('talent/dashboard')}}";
+                                        location.reload();
+                                    }
+                                    
                                 }
                                 else if ( data.level == 'client')
                                 {
@@ -154,7 +175,7 @@
                         <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
                         <div style="margin-right: 20px;margin-bottom: 10px;float: left;">
                             Register as talent ? 
-                            <a href="#" class="join_community" data-target="#registerTalent" data-toggle="modal">
+                            <a href="#" class="join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal">
                                 Click
                             </a>
                         </div>
@@ -416,7 +437,7 @@
                     <div class="menu-custom-area">
 
                         @if(!Session::has('login'))
-                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()">Login</a>
                         @else
                             <!-- <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a> -->
                             <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>

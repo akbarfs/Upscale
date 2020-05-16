@@ -112,7 +112,7 @@
             
             <a href="#" class="btn join_community" data-target="#registerTalent" style="margin: 0" 
             data-toggle="modal">
-                Register
+                Register & Apply Job
             </a>
 
         </div>

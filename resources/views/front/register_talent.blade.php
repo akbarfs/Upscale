@@ -212,7 +212,16 @@
                     $('#login-form').trigger("reset");
                     $(".modal-footer").hide(); 
                     $(".question_box").removeClass('show_box'); 
-                    location.reload();
+                    
+
+                    if ( redirect != undefined)
+                    {
+                        window.location.href = redirect ; 
+                    }
+                    else
+                    {
+                        location.reload();
+                    }
                 },
                 error: function(data){
                     
