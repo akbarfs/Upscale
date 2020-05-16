@@ -71,48 +71,51 @@
             </div>
         </div>
     </section>    
+
+    <div class="modal fade" id="mustLogin" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you have an account ?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    
+                    <style type="text/css">
+                        .btn:hover { color: #fff }
+                    </style>
+
+                    <a href="#" class="btn join_community" data-target="#registerTalent" 
+                    data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}'>
+                        Register & Apply Job
+                    </a> 
+                    
+                    &nbsp
+
+                    or 
+
+                    &nbsp
+
+                    <a class="btn login-apply" data-target="#ModalLogin" data-toggle="modal" 
+                    style="color: #fff;margin: 0" data-dismiss="modal" 
+                    data-redirect='{{url("jobs/apply/".$id)}}'>
+                        Login & Apply Job
+                    </a>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 </main>
 
-<div class="modal fade" id="mustLogin" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
 
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Are you have an account ?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        
-        <div class="modal-body">
-            
-            <style type="text/css">
-                .btn:hover { color: #fff }
-            </style>
-
-            <a href="#" class="btn join_community" data-target="#registerTalent" 
-            data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}'>
-                Register & Apply Job
-            </a> 
-            
-            &nbsp
-
-            or 
-
-            &nbsp
-
-            <a class="btn login-apply" data-target="#ModalLogin" data-toggle="modal" 
-            style="color: #fff;margin: 0" data-dismiss="modal" 
-            data-redirect='{{url("jobs/apply/".$id)}}'>
-                Login & Apply Job
-            </a>
-            
-        </div>
-
-    </div>
-   </div>
-  </div>
-</div>
 
 
 <script src="{{url('template/upscale/themekit/scripts/sticky-kit.min.js')}}"></script>

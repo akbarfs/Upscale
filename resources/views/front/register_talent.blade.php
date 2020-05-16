@@ -62,6 +62,13 @@
 <script>
     $(document).ready(function()
     {
+        $(".ui-datepicker-trigger").on("click",function()
+        {
+            alert("tes") ; 
+            // setTimeout($("#ui-datepicker-div").css("top","100px"),500);
+            
+        });
+
         $(function() {
            $('#tgl_lahir').datepicker(
            {
@@ -71,6 +78,10 @@
                 changeMonth: true,
                 changeYear: true,
                 yearRange: "1970:2015",
+                onShow: function () { 
+                    alert("Tes") ;
+                    $("#ui-datepicker-div").css("top","100px");
+                },
                 onSelect: function() 
                 {
                     $(".info_tgl_lahir").html($(this).val());
