@@ -57,6 +57,8 @@
             background: #add2ec !important;
         }
 
+        .modal { z-index: 100000000000 !important ; }
+
 
         .minht {min-height: 550px;}
         @media only screen and (max-width:990px){
