@@ -25,11 +25,17 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <!-- Start of HubSpot Embed Code -->
+      <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7727872.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
     @yield('top-asset')
 
 </head>
 <body>
-    
+    <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7727872.js"></script>
+<!-- End of HubSpot Embed Code -->
     <style>
 
         <!-- widget date picker -->
