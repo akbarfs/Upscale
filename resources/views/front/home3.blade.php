@@ -66,7 +66,7 @@
                     
                     <!-- <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">For Bussiness</a> -->
                     
-                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px">
+                    <a href="#" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px" onClick="Tawk_API.maximize();">
                         Request Quotation
                     </a>
 

@@ -36,15 +36,22 @@
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/5ebfe22d967ae56c521a60eb/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5ebfe22d967ae56c521a60eb/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+
+        //Example
+
+        // Tawk_API.onLoad = function(){
+        //     Tawk_API.maximize();
+        // };
+
     </script>
     <!--End of Tawk.to Script-->
 
@@ -464,7 +471,8 @@
                             <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
                         @endif
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
-                        <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
+                        <a class="btn btn-border btn-xs btn-circle light" href="#" 
+                        target="_blank" onClick="Tawk_API.maximize();">Contact Us</a>
 
                     </div>
                 </div>
