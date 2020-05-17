@@ -44,21 +44,24 @@
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" style="font-size: 25px">
                     <h1 class="slide slide-title1">
-                         {{lang('Hire on-demand Talent.','Rekruit on-demand Talent.')}}
+                         {{lang('Hire On-Demand Talent.','Hire On-Demand Talent.')}}
                     </h1>
                     
                     <h2 class="slide-title2">
                         {!!lang(
                             
-                            'Just focus on scaling your business<br> let us do the "Talent things"',
+                            'Just focus on scaling your business and let us do the "Talent" things.',
 
-                            'Fokuskan pada pengembangan bisnis anda<br> Biarkan kami menghandle urusan "talent"'
+                            'Fokuskan pada pengembangan bisnis Anda dan biarkan kami mengerjakan urusan "Talent".'
 
-                        )!!}.
+                        )!!}
                     </h2>
 
                     <p class="slide-title3" style="margin-bottom: 20px">
-                        Hire dari exlusive network kami. Beranggotakan berbagai talent di bidang software developer, designer, finance, product manager, project manager dan lain-lain. Sesuaikan kebutuhan anda baik Fulltime, Head Hunter, Freelance atau Fix project. Baik Onsite maupun Remote
+                    {!!lang(
+                        'Hire software developers, designers, product manager, finance or administrative team from our exclusive networks. Our talents are available for both on-site or work remotely from our office.<br /><br />Choose from the Full-time or Freelance contract based on your business need.',
+                        'Hire software developers, designers, product manager, finance, atau administraif team dari eksklusif network kami. Talent kami bisa bekerja secara remote maupun on-site.<br /><br />Kontrak full-time maupun freelance yang disesuaikan dengan kebutuhan bisnis Anda.'
+                    )!!}
                     </p>
                         
                 </div>
@@ -69,11 +72,6 @@
                     <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px">
                         Request Quotation
                     </a>
-
-                    <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="border-color: #fff !important; color: #fff !important;">
-                        For Talent
-                    </a>
-
                 </div>
             </div>
             <hr class="space-lg hidden-sm" />
@@ -92,7 +90,17 @@
                             <div class="caption">
                                 <h2>Dedicated Team</h2>
                                 <p>
-                                    Hire as your outsource fulltime employee
+                                    {{lang('Hire a talented team to help scale up your business.','Hire talent yang akan membantu mengembangkan bisnis Anda')}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="cnt-box cnt-box-top-icon boxed">
+                            <div class="caption">
+                                <h2>Freelance Team</h2>
+                                <p>
+                                    Part-time team that work based on the man-hour rate.
                                 </p>
                             </div>
                         </div>
@@ -102,7 +110,7 @@
                             <div class="caption">
                                 <h2>Head Hunter</h2>
                                 <p>
-                                    Hire as your fulltime employee
+                                    Make your recruitment process hassle-free.
                                 </p>
                             </div>
                         </div>
@@ -110,19 +118,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Freelance</h2>
+                                <h2>Project-Based</h2>
                                 <p>
-                                    Hire as your freelance (Part Time) employee
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="cnt-box cnt-box-top-icon boxed">
-                            <div class="caption">
-                                <h2>Project Base</h2>
-                                <p>
-                                    Get Talent / Vendor for your sub contractor 
+                                    A legacy project-based team to finish up your project.
                                 </p>
                             </div>
                         </div>
@@ -169,10 +167,10 @@
     <section id="features" class="section-base section-color align-center section-bottom-layer-2">
         <div class="container">
             <h2 class="align-center" data-anima="fade-bottom" data-time="1000" style="margin: 0 auto; max-width: 900px">
-                Selain talent onsite, kami juga menyediakan talent remote yang dapat dipastikan produktifasnya secara realtime.
+                Seriously, just focus on scaling up your business.
             </h2>
             <p class="align-center width-650" data-anima="fade-bottom" data-time="1000">
-                Kami memiliki framework kerja yang dapat digunakan untuk talent anda, baik yang bekerja secara remote atau secara onsite
+                We will handle the tax regulation, legal, and management. We have a proven working framework and tools to ensure team collaboration with real-time productivity monitoring.
             </p>
             <hr class="space" />
             <img src="{{url('template/upscale/media/devices.png')}}" alt="" />
@@ -184,39 +182,105 @@
             <hr class="space" />
             <div class="row">
                 <div class="col-lg-4">
-                    <h3>Aman & Terjamin </h3>
+                    <h3>Fast Recruitment Process</h3>
                     <p>
-                        Upscale menjadi penjamin dan penengah antara talent & perusahaan
+                        Let us hear your needs, and your talents will be ready within 14 days.
                     </p>
                 </div>
                 <div class="col-lg-4">
-                    <h3>Space & Management</h3>
+                    <h3>Take Control of Your Talent</h3>
                     <p>
-                        Dapat membantu mengelola talent beserta workspace & fasilitas 
+                        You will receive a periodic report and check our real-time monitoring tool anytime.
                     </p>
                 </div>
                 <div class="col-lg-4">
-                    <h3>Cost Efisien</h3>
+                    <h3>Cost-Efficient</h3>
                     <p>
-                        Membantu anda untuk mengefisiensi pengeluaran sesuai dengan kebutuhan
+                        No need to spend on the office space and unproductive team.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="how" class="section-base section-color">
+    <section id="counter" class="section-base section-color">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="align-center">Which department do you need right now?</h2>
+                    <p class="align-center width-650">
+                        Our talent includes but not limited to Software Developer, Quality Assurance, Graphic Designer, UX Designer, Product Manager, Finance, Data Entry, etc who are so motivated, discipline, and passionate about technology and productivity.
+                    </p>
+                    <hr class="space" />
+                    <table class="table table-grid table-border align-center table-full-sm no-padding-y">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="counter counter-vertical counter-icon align-center">
+                                        <div>
+                                            <h3>Talent Pool</h3>
+                                            <div class="value">
+                                                <span class="text-md" data-to="100000" data-speed="3000" data-unit="+">100.000</span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="space-xs" />
+                                    <p>
+                                        The talent pool from partnership, community, and universities.
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="counter counter-vertical counter-icon align-center">
+                                        <div>
+                                            <h3>Talent Hired</h3>
+                                            <div class="value">
+                                                <span class="text-md" data-to="7000" data-speed="3000" data-unit="+">700</span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="space-xs" />
+                                    <p>
+                                        Productive talent hired and working with our clients.
+                                    </p>
+                                </td>
+                                <td>
+                                    <div class="counter counter-vertical counter-icon align-center">
+                                        <div>
+                                            <h3>Happy Clients</h3>
+                                            <div class="value">
+                                                <span class="text-md" data-to="100" data-speed="3000" data-unit="+">5</span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="space-xs" />
+                                    <p>
+                                        Since 2009, UpScale has been trusted by a hundred companies.
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr class="space-sm" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how" class="section-base">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>How we works ?<br />you name it we do it.</h2>
+                    <h2>How do we work?<br />We will work your way.</h2>
                     <p>
-                       Konsultasikan visi dan ekspektasi terhadap bisnis / plan anda. Kami akan membantu mendapatkan talent yang tepat dari ecosystem upscale untuk membantu mewujudkan plan anda. Kami akan pastikan talent yang kami tawarkan sedekat mungkin dengan yang anda harapkan
+                        A short consultation with our business specialist will help us understand your business needs and your talent qualification. We will make sure our list of talent will be the best-matched for your needs.
                     </p>
                     <hr class="space-sm" />
                     <div class="counter counter-horizontal counter-icon">
                         <div>
-                            <h3>Ekspektasi waktu konsultasi</h3>
+                            <h3>Estimated Consultation Time</h3>
                             <div class="value text-lg">
                                 <span data-to="60" data-speed="1000">0</span>
                                 <span class="text-md">Minutes</span>
@@ -229,10 +293,10 @@
                         <div class="step-item">
                             <span>1</span>
                             <div class="content">
-                                <h3>Share your business vision</h3>
+                                <h3>Share your Business Needs</h3>
                                 <div>
                                     <p>
-                                        Agar kami dapat mengerti & dapat membantu anda dalam menentukan pemilihan talent yang tepat
+                                        Our business analyst will help you to determine your talent qualification.
                                     </p>
                                 </div>
                             </div>
@@ -240,10 +304,10 @@
                         <div class="step-item">
                             <span>2</span>
                             <div class="content">
-                                <h3>We find talents & assessment</h3>
+                                <h3>Talent Assessment</h3>
                                 <div>
                                     <p>
-                                        Kami carikan dari network kami & melakukan assassment untuk memastikan talent memiliki skill yang sesuai
+                                        We looking for the best-matched candidate, we will conduct an interview, psychological test, and online technical test.
                                     </p>
                                 </div>
                             </div>
@@ -251,113 +315,10 @@
                         <div class="step-item">
                             <span>3</span>
                             <div class="content">
-                                <h3>We Bring the list to You</h3>
+                                <h3>Choose Your Talent</h3>
                                 <div>
                                     <p>
-                                        Kami akan memberikan laporan hasil dari assessment kami ke anda agar anda dapat memastikan sendiri secara langsung
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container" style="padding-top: 50px ; padding-bottom: 50px">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <h2>You can assessment by yourself !<br />lets interview & test the talent.</h2>
-                    <p>
-                        Kami memberikan anda kebebasan untuk memastikan langsung kandidat yang telah lolos dari assessment kami. Sehingga anda lebih yakin dalam memperkerjakan talent yang anda pilih
-                    </p>
-                    <hr class="space" />
-                    <ul class="text-list text-list-image">
-                        <li>
-                            <img src="{{url('template/upscale/media/photo/square-1.png')}}" alt="" />
-                            <div class="content">
-                                <h3>Interview langsung menggunakan media online</h3>
-                                <p>Zoom, Whatsapp, atau media lainya.</p>
-                                <div></div>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="{{url('template/upscale/media/photo/square-2.png')}}" alt="" />
-                            <div class="content">
-                                <h3>Pengujian menggunakan dengan challange</h3>
-                                <p>Live test code, logic test atau cara lainya.</p>
-                                <div></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 col-md-6 align-center">
-                    <hr class="space-sm visible-sm" />
-                    <ul class="slider slider-side" data-options="type:slider,arrows:false,nav:true,autoplay:3000,controls:out">
-                        <li>
-                            <img src="{{url('template/upscale/media/phone-screen-7.png')}}" alt="" />
-                        </li>
-                        <li>
-                            <img src="{{url('template/upscale/media/phone-screen-8.png')}}" alt="" />
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="usage" class="section-base section-color">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2>Mendapat talent yang cocok ?<br />ok lets we execute your idea.</h2>
-                    <p>
-                        Setelah anda yakin dengan talent terpilih, Apabila anda memilih jenis kontrak remote outsource, kami juga dapat membantu anda mengelola beberapa hal seperti coworkspace, absensi, timeline, task, kpi dll
-                    </p>
-                    <hr class="space-sm" />
-                    <div class="counter counter-horizontal counter-icon">
-                        <div>
-                            <h3>Estimasi pencarian talent </h3>
-                            <div class="value text-lg">
-                                <span data-to="14" data-speed="1000">2</span>
-                                <span class="text-md">days</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="box-steps box-steps-vertical">
-                        <div class="step-item">
-                            <span>4</span>
-                            <div class="content">
-                                <h3>Choose Talent & contract </h3>
-                                <div>
-                                    <p>
-                                        Pilih kandidat dan type service yang anda inginkan apakah onsite / remote, fulltime / freelance, outsource / hiring
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step-item">
-                            <span>5</span>
-                            <div class="content">
-                                <h3>Execute</h3>
-                                <div>
-                                    <p>
-                                        Kami juga dapat membantu anda mengelola beberapa hal seperti coworkspace, absensi, perijinan, timeline, task, kpi dll
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="step-item">
-                            <span>6</span>
-                            <div class="content">
-                                <h3>Deliver! </h3>
-                                <div>
-                                    <p>
-                                        We are done here. Good Luck & Success !
+                                        Your internal assessment based on our best-matched candidates.
                                     </p>
                                 </div>
                             </div>
@@ -371,45 +332,92 @@
     <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-4.jpg')}}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <h2>Ingin mendapatkan quotation?</h2>
+                <div class="col-lg-12">
+                    <h2>Ready for a quick consultation?</h2>
                     <hr class="space-xs" />
-                    <p>Silahkan masukan email anda atau nomor telephone anda agar kami dapat menghubungi anda </p>
-                </div>
-                <div class="col-lg-6">
-                    <form action="https://api.whatsapp.com/send" class="form-box form-inline" method="get" data-email="example@domain.com">
-                        <div class="row" style="width: 100%">
-                            <div class="col-lg-8">
-                                <p>Type your message     :</p>
-                                <input name="phone" type="text" hidden="hidden" value="6287888666531">
-                                <input name="text" placeholder="" type="text" class="input-text" required>
-                            </div>
-                            <div class="col-lg-4">
-                                <p></p>
-                                <button class="btn btn-sm" type="submit">Contact Us</button>
-                            </div>
-                        </div>
-                    </form>
+                    <p>Our business analyst always ready to hear your business needs, for FREE.</p>
+                    <button class="btn btn-sm" type="submit">Schedule a Call</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="usage" class="section-base section-color">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>You got your best-matched talent,<br/> We still here to support you</h2>
+                    <p>
+                        Whenever you're ready to choose our best-matched talent, we will be ready to prepare the HR stuff like online attendance, contract, tax regulation etc.
+                        <br/><br/>
+                        Our business consultant will also ready to support your management or project consultation like project timeframe, finance, KPI building, etc.
+                    </p>
+                    <hr class="space-sm" />
+                    <div class="counter counter-horizontal counter-icon">
+                        <div>
+                            <h3>Estimated Talent Matching</h3>
+                            <div class="value text-lg">
+                                <span data-to="14" data-speed="1000">2</span>
+                                <span class="text-md">days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="box-steps box-steps-vertical">
+                        <div class="step-item">
+                            <span>4</span>
+                            <div class="content">
+                                <h3>Paperwork</h3>
+                                <div>
+                                    <p>
+                                        Will finish up all of the contract and other preparation here.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span>5</span>
+                            <div class="content">
+                                <h3>Talent Ready to Work</h3>
+                                <div>
+                                    <p>
+                                        Your talent is ready to add value to your business.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span>6</span>
+                            <div class="content">
+                                <h3>Support</h3>
+                                <div>
+                                    <p>
+                                        Don't worry we will provide both HR and Project support during our contract like attendance, timeline, building KPI, etc.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="pricing" class="section-base section-bottom-layer">
         <div class="container" data-anima="fade-bottom" data-time="1000">
 
             <div class="row">
                 <div class="col-lg-4">
-                    <h2>Recruitment Type.</h2>
-                    <p>Tentukan tipe rekrutmen anda. Pilihan fasilitas tidak bersifat wajib, sehingga masih dapat disesuaikan kembali sesuai kebutuhan. </p>
+                    <h2>Still not sure which services you should choose?</h2>
+                    <p>This list of services will help you to decide.<br /><br />Don't worry if you don't need some of our services, all services are customizable based on your needs.</p>
                     <hr class="space-sm" />
                     <ul class="accordion-list">
                         <li>
-                            <a href="#">Dedicated Team</a>
+                            <a href="#">Dedicated Team / Freelance Team</a>
                             <div class="content">
                                 <p>
-                                    Menyediakan resource talent baik onsite / remote, Fulltime / partime, outsource / karyawan internal
+                                    Find the best-matched talent for your needs. The talent is available to works on-site or remotely, both full-Time or freelance.
                                 </p>
                             </div>
                         </li>
@@ -417,15 +425,15 @@
                             <a href="#">Head Hunter</a>
                             <div class="content">
                                 <p>
-                                    Menyediakan fasilitas pencarian talent untuk dijadikan karyawan internal
+                                    Find the best-matched talent for your needs. The talent will work as your internal team under your contract and company regulation.
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#">Project Base</a>
+                            <a href="#">Project-Based</a>
                             <div class="content">
                                 <p>
-                                    Menyediakan fasilitas pencarian vendor untuk menjadi sub-contractor project anda tanpa perlu mengetahui komposisi tim
+                                    Find the best-matched team or vendor for your project.
                                 </p>
                             </div>
                         </li>
@@ -435,7 +443,7 @@
                     <table class="table table-border table-price">
                         <thead>
                             <tr>
-                                <th>Pilihan Fasilitas yang disediakan</th>
+                                <th>Services</th>
                                 <th>Dedicated Team</th>
                                 <th>Head Hunter</th>
                                 <th>Project base</th>
@@ -455,15 +463,9 @@
                                 <td><i class="icon-close"></i></td>
                             </tr>
                             <tr>
-                                <td>Remote Worker</td>
+                                <td>Remote Worker / On-Site Worker</td>
                                 <td><i class="icon-check"></i></td>
                                 <td><i class="icon-close"></i></td>
-                                <td><i class="icon-close"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Onsite Worker</td>
-                                <td><i class="icon-check"></i></td>
-                                <td><i class="icon-check"></i></td>
                                 <td><i class="icon-close"></i></td>
                             </tr>
                             <tr>
@@ -491,7 +493,7 @@
                                 <td><i class="icon-check"></i></td>
                             </tr>
                             <tr>
-                                <td>Share Project Risk & Responsibilty</td>
+                                <td>Shared Project Risk & Responsibilty</td>
                                 <td></td>
                                 <td></td>
                                 <td><i class="icon-check"></i></td>
@@ -521,7 +523,9 @@
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
+                        <h2>Request Quotation.</h2>
+                        <hr class="space-sm" />
                         <form id="form-complete" action="https://api.whatsapp.com/send" class="form-box" method="get" data-email="example@domain.com">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -534,9 +538,9 @@
                                     <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
                                 </div>
                             </div>
-                            <textarea id="messagge" name="text" class="input-textarea" placeholder="Write something ..." required></textarea>
+                            <textarea id="messagge" name="text" class="input-textarea" placeholder="What is your business needs?" required></textarea>
                             
-                            <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
+                            <button class="btn btn-sm btn-circle" type="submit">Send Request</button>
                             <!-- <div class="success-box">
                                 <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
                             </div>
@@ -544,19 +548,6 @@
                                 <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
                             </div> -->
                         </form>
-                    </div>
-                    <div class="col-lg-4 order-md-first">
-                        <h2>
-                            Request Quotation. <br />
-                        </h2>
-                        <hr class="space-sm" />
-                        <ul class="text-list text-list-bold">
-                            <li><b>Headquarter</b><p>Upscale Basecamp</p></li>
-                            <li><b>Location</b><p>Yogyakarta, Indonesia</p></li>
-                            <li><b>Phone</b><p>087888666531</p></li>
-                            <li><b>Email</b><p>elvron.indonesia@gmail.com</p></li>
-                        </ul>
-                        <hr class="space-sm" />
                     </div>
                 </div>
             </div>

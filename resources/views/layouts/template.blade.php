@@ -423,7 +423,7 @@
         <div class="container" style="padding-top: 180px">
             <div class="row">
                 <div class="col-lg-3">
-                    <h4>Our Service</h4>
+                    <h4>Our Services</h4>
                     <div class="menu-inner menu-inner-vertical">
                         <ul>
                             <li>
@@ -439,43 +439,41 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <h4>Who We Help</h4>
+                    <h4>For Talent</h4>
                     <div class="menu-inner menu-inner-vertical">
                         <ul>
                             <li>
-                                <a href="{{url('help-business')}}">Bussiness</a>
+                                <a href="{{url('help-talent')}}">Why Join as Talent?</a>
                             </li>
                             <li>
-                                <a href="{{url('help-talent')}}">Talent</a>
+                                <a href="{{url('jobs')}}">Job Opportunities</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <h4>Other</h4>
-                    <div class="menu-inner menu-inner-vertical">
-                        <ul>
-                            <!-- <li> <a href="#">About Us</a> </li> -->
-                            <li> <a href="{{url('faq')}}">F.A.Q</a> </li>
-                            <li> <a href="#">Login / Register</a> </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <h4>Follow us</h4>
-                    <div class="icon-links icon-social icon-links-grid social-colors">
-                        <a class="facebook"><i class="icon-facebook"></i></a>
-                        <a class="twitter"><i class="icon-twitter"></i></a>
-                        <a class="linkedin"><i class="icon-linkedin"></i></a>
-                        <a class="youtube"><i class="icon-youtube"></i></a>
-                        <a class="instagram"><i class="icon-instagram"></i></a>
-                    </div>
+                <div class="col-lg-6">
+                    <h4>UpScale</h4>
+                    <hr class="space-sm" />
+                    <table class='table table-borderless table-sm light'>
+                        <tr>
+                            <td width='100'><b>Location</b></td>
+                            <td>Jln. Ringroad Utara No 34 Maguwoharjo Yogyakarta, Indonesia</td>
+                        </tr>
+                        <tr>
+                            <td><b>Phone</b></td>
+                            <td>+6287888666531</td>
+                        </tr>
+                        <tr>
+                            <td><b>Email</b></td>
+                            <td>sales@upscale.id</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
         <div class="footer-bar">
             <div class="container">
-                <span>© Upscale LTD 2020. </span>
+                <span>© UpScale 2020. Member of PT Talenta Sinergi Group</span>
                 <span><img src="{{url('template/upscale/media/logo-transparent.png')}}" alt="" /></span>
             </div>
         </div>
