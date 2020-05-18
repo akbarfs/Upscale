@@ -308,7 +308,7 @@
             <div class="menu-cnt">
                 <ul>
                     <li> <a href="{{url('').param()}}">Home</a></li>
-                    <li> <a href="{{url('help-business').param()}}">Success Story</a></li>
+                    <li> <a href="{{url('help-business').param()}}">Our Networks</a></li>
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
                     <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
                     <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li>
