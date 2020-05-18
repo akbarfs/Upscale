@@ -422,35 +422,6 @@
     <footer id="footer-bottom" class="footer light">
         <div class="container" style="padding-top: 180px">
             <div class="row">
-                <div class="col-lg-3">
-                    <h4>Our Services</h4>
-                    <div class="menu-inner menu-inner-vertical">
-                        <ul>
-                            <li>
-                                <a href="#">Dedicated Team</a>
-                            </li>
-                            <li>
-                                <a href="#">Head Hunter</a>
-                            </li>
-                            <li>
-                                <a href="#">Project base</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <h4>For Talent</h4>
-                    <div class="menu-inner menu-inner-vertical">
-                        <ul>
-                            <li>
-                                <a href="{{url('help-talent')}}">Why Join as Talent?</a>
-                            </li>
-                            <li>
-                                <a href="{{url('jobs')}}">Job Opportunities</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="col-lg-6">
                     <h4>UpScale</h4>
                     <hr class="space-sm" />
@@ -468,6 +439,22 @@
                             <td>sales@upscale.id</td>
                         </tr>
                     </table>
+                </div>
+                <div class="col-lg-3">
+                    
+                </div>
+                <div class="col-lg-3">
+                    <h4>For Talent</h4>
+                    <div class="menu-inner menu-inner-vertical">
+                        <ul>
+                            <li>
+                                <a href="{{url('help-talent')}}">Why Join as Talent?</a>
+                            </li>
+                            <li>
+                                <a href="{{url('jobs')}}">Job Opportunities</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

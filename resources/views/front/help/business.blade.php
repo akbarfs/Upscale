@@ -112,22 +112,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                 <div class="col-lg-6">
                     <div class="grid-list list-gallery grid-wall-1" data-lightbox-anima="fade-top" data-columns="2">
                         <div class="grid-box">
-                            <div class="grid-item">
+                            <div class="grid-item" style="animation: none">
                                 <a class="img-box" href="media/music/image-15.jpg">
                                     <img src="{{url('template/upscale/media/music/image-15.jpg')}}" alt="">
                                 </a>
                             </div>
-                            <div class="grid-item">
+                            <div class="grid-item" style="animation: none">
                                 <a class="img-box" href="{{url('template/upscale/media/music/image-1.jpg')}}">
                                     <img src="{{url('template/upscale/media/music/image-1.jpg')}}" alt="">
                                 </a>
                             </div>
-                            <div class="grid-item">
+                            <div class="grid-item" style="animation: none">
                                 <a class="img-box" href="{{url('template/upscale/media/music/image-3.jpg')}}">
                                     <img src="{{url('template/upscale/media/music/image-3.jpg')}}" alt="">
                                 </a>
                             </div>
-                            <div class="grid-item">
+                            <div class="grid-item" style="animation: none">
                                 <a class="img-box" href="{{url('template/upscale/media/music/image-13.jpg')}}">
                                     <img src="{{url('template/upscale/media/music/image-13.jpg')}}" alt="">
                                 </a>
@@ -170,7 +170,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-9.jpg')}}" alt="" /></a>
                         <div class="caption">
                             <h2>Krafthaus, Corporate Management</h2>
-                            <span class="extra-field">Digital Agency</span>
+                            <span class="extra-field" style="animation: none">Digital Agency</span>
                             <p>
                                 Our experienced member has been trusted by Australian Company as a Managing Director to handle Indonesia's branch office.
                             </p>
@@ -183,7 +183,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-10.jpg')}}" alt="" /></a>
                         <div class="caption">
                             <h2>Cakap, Dedicated Office & Team</h2>
-                            <span class="extra-field">Startup Education</span>
+                            <span class="extra-field" style="animation: none">Startup Education</span>
                             <p>
                                 We're helping Cakap since 2015 to find their best software developer and manage their development office in Yogyakarta, Indonesia.
                             </p>
@@ -197,7 +197,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-11.jpg')}}" alt="" /></a>
                         <div class="caption">
                             <h2>HOS, Digital Transformation</h2>
-                            <span class="extra-field">Small Business, E-Commerce</span>
+                            <span class="extra-field" style="animation: none">Small Business, E-Commerce</span>
                             <p>
                                 Our partner vendor has been helping small businesses to transform their retail store and implementing the digital transformation.
                             </p>

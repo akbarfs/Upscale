@@ -66,10 +66,7 @@
                         
                 </div>
                 <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    
-                    <!-- <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">For Bussiness</a> -->
-                    
-                    <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px">
+                    <a href="#quotation" class="btn btn-circle btn-sm" style="margin-top: 15px">
                         Request Quotation
                     </a>
                 </div>
@@ -173,7 +170,7 @@
                 We will handle the tax regulation, legal, and management. We have a proven working framework and tools to ensure team collaboration with real-time productivity monitoring.
             </p>
             <hr class="space" />
-            <img src="{{url('template/upscale/media/devices.png')}}" alt="" />
+            <img src="{{url('template/upscale/media/devices.png')}}" alt="" style="animation: none"/>
         </div>
     </section>
 
@@ -336,7 +333,7 @@
                     <h2>Ready for a quick consultation?</h2>
                     <hr class="space-xs" />
                     <p>Our business analyst always ready to hear your business needs, for FREE.</p>
-                    <button class="btn btn-sm" type="submit">Schedule a Call</button>
+                    <a class='btn btn-sm' href="#quotation">Schedule a Call</a>
                 </div>
             </div>
         </div>
@@ -519,7 +516,7 @@
     </section>
     
    
-    <section class="section-base section-color no-padding-bottom section-top-overflow">
+    <section id='quotation' class="section-base section-color no-padding-bottom section-top-overflow">
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
