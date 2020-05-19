@@ -72,6 +72,13 @@
                     <a href="#" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px" onClick="Tawk_API.maximize();">
                         Request Quotation
                     </a>
+
+                    @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
+                        <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="border-color: #fff !important; color: #fff !important;">
+                            Join as Talent
+                        </a>
+                    @endif
+
                 </div>
             </div>
             <hr class="space-lg hidden-sm" />
