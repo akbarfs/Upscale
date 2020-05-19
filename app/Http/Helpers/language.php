@@ -2,13 +2,13 @@
 
 	function lang($english,$indo)
 	{
-		if (isset($_GET['lang']) && $_GET['lang'] =='id')
+		if (isset($_GET['lang']) && $_GET['lang'] =='en')
 		{
-			return $indo  ;
+			return $english ;
 		}
 		else
 		{
-			return $english ;
+			return $indo  ;
 		}
 	}
 
