@@ -362,24 +362,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
-                <div class="col-lg-12">
-                        <h2>Request Quotation.</h2>
-                        <hr class="space-sm" />
+                    <div class="col-lg-8">
                         <form id="form-complete" action="https://api.whatsapp.com/send" class="form-box" method="get" data-email="example@domain.com">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <input id="name" name="name" placeholder="{{lang('Name','Nama')}}" type="text" class="input-text" required>
+                                    <input id="name" name="name" placeholder="Name" type="text" class="input-text" required="">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="phone" name="phone" placeholder="{{lang('Phone Number','No Telepon')}}" type="text" class="input-text" required>
+                                    <input id="phone" name="phone" placeholder="Phone" type="text" class="input-text" required="">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
+                                    <input id="email" name="email" placeholder="Email" type="email" class="input-text" required="">
                                 </div>
                             </div>
-                            <textarea id="messagge" name="text" class="input-textarea" placeholder="{{lang('What is your business needs?','Apa kebutuhan bisnis Anda?')}}" required></textarea>
+                            <textarea id="messagge" name="text" class="input-textarea" placeholder="Write something ..." required=""></textarea>
                             
-                            <button class="btn btn-sm btn-circle" type="submit">Send Request</button>
+                            <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
                             <!-- <div class="success-box">
                                 <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
                             </div>
@@ -388,11 +386,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                             </div> -->
                         </form>
                     </div>
+                    <div class="col-lg-4 order-md-first">
+                        <h2>
+                            {{lang('Ready for a quick consultation?','Ingin Konsultasi Kebutuhan Anda?')}} <br>
+                        </h2>
+                        <hr class="space-sm">
+                        <div>
+                            {{lang('Our business analyst will help you to determine your talent qualification.','Bisnis analis kami akan membantu Anda dalam menentukan kualifikasi talent.')}}
+
+                            <hr class="space-sm">
+                            <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531<br>
+                            <img src="{{url('template/upscale/media/en.png')}}"/> +61 3 9010 6067
+                        </div>
+                        <hr class="space-sm">
+                    </div>
                 </div>
             </div>
-            <hr class="space-lg visible-md" />
+            <hr class="space-lg visible-md">
         </div>
     </section>
+    
 </main>
 
 @endsection 

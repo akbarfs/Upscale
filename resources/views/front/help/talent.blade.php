@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-side-icon">
-                        <i class="lnr lnr-user"></i>
+                        <i class="lnr lnr-rocket"></i>
                         <div class="caption">
                             <h2>Skill Improvement</h2>
                             <p>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-side-icon">
-                        <i class="lnr lnr-users"></i>
+                        <i class="lnr lnr-list"></i>
                         <div class="caption">
                             <h2>Know your Rights</h2>
                             <p>

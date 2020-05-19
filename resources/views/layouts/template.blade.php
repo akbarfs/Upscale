@@ -90,8 +90,8 @@
 
 
         .minht {min-height: 550px;}
-        @media only screen and (max-width:990px){
-        
+        @media only screen and (max-width:1200px){
+            .m { display: none !important }
         }
 
         @media only screen and (max-width:767px){
@@ -397,8 +397,8 @@
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
 
                     @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
-                        <li> <a href="{{url('jobs')}}">Jobs</a></li>
-                        <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
+                        <li class="m"> <a href="{{url('jobs')}}">Jobs</a></li>
+                        <li class="m"> <a href="{{url('faq').param()}}">F.A.Q</a></li>
                     @endif
                     <!-- <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li> -->
                     <!-- <li class="dropdown">
