@@ -44,7 +44,7 @@
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-6" style="font-size: 25px">
                     <h1 class="slide slide-title1">
-                         {{lang('Hire On-Demand Talent.','Hire On-Demand Talent.')}}
+                         {{lang('Hire On-Demand Talent.','Hire Talent On-Demand.')}}
                     </h1>
                     
                     <h2 class="slide-title2">
@@ -52,7 +52,7 @@
                             
                             'Just focus on scaling your business and let us do the "Talent" things.',
 
-                            'Fokuskan pada pengembangan bisnis Anda dan biarkan kami mengerjakan urusan "Talent".'
+                            'Kami membantu mengerjakan semua urusan "talent", agar anda dapat fokus pada pengembangan bisnis.'
 
                         )!!}
                     </h2>
@@ -97,7 +97,7 @@
                             <div class="caption">
                                 <h2>Dedicated Team</h2>
                                 <p>
-                                    {{lang('Hire a talented team to help scale up your business.','Hire talent yang akan membantu mengembangkan bisnis Anda.')}}
+                                    {{lang('Hire a talented team to help scale up your business.','Hire talent sebagai karyawan outsource.')}}
                                 </p>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="caption">
                                 <h2>Freelance Team</h2>
                                 <p>
-                                    {{lang('Part-time team that work based on the man-hour rate.','Hire freelance talent yang akan bekerja dengan sistem man-hour.')}}
+                                    {{lang('Part-time team that work based on the man-hour rate.','Hire talent freelance berbasis man-hour.')}}
                                 </p>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             <div class="caption">
                                 <h2>Head Hunter</h2>
                                 <p>
-                                    {{lang('Make your recruitment process faster and hassle-free.','Serahkan proses recruitment pada kami agar lebih cepat dan mudah.')}}
+                                    {{lang('Make your recruitment process faster and hassle-free.','Hire talent sebagai karyawan internal anda.')}}
                                 </p>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             <div class="caption">
                                 <h2>Project-Based</h2>
                                 <p>
-                                    {{lang('A legacy project-based team to finish up your project.','Pencarian vendor untuk menyelesaikan project Anda.')}}
+                                    {{lang('A legacy project-based team to finish up your project.','Hire vendor / freelance berbasis project.')}}
                                 </p>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
     <section id="features" class="section-base section-color align-center section-bottom-layer-2">
         <div class="container">
             <h2 class="align-center" data-anima="fade-bottom" data-time="1000" style="margin: 0 auto; max-width: 900px">
-                {{lang('Seriously, just focus on scaling up your business.','Fokuskan perhatian pada bisnis Anda.')}}
+                {{lang('Seriously, just focus on scaling up your business.','Fokuskan perhatian pada strategi pengembangan bisnis Anda.')}}
             </h2>
             <p class="align-center width-650" data-anima="fade-bottom" data-time="1000">
                 {{lang(
@@ -192,13 +192,13 @@
             <hr class="space" />
             <div class="row">
                 <div class="col-lg-4">
-                    <h3>{{lang('Fast Recruitment Process','Proses Recruitment yang Cepat')}}</h3>
+                    <h3>{{lang('Fast Recruitment Process','Kecepatan Rekrutmen')}}</h3>
                     <p>
                         {{lang('Let us hear your needs, and your talents will be ready within 14 days.','Setelah kami mengetahui kebutuhan bisnis Anda, talent akan ready dalam waktu 14 hari.')}}
                     </p>
                 </div>
                 <div class="col-lg-4">
-                    <h3>{{lang('Take Control of Your Talent','Miliki kontrol penuh terhadap talent')}}</h3>
+                    <h3>{{lang('Take Control of Your Talent','Kontrol Penuh')}}</h3>
                     <p>
                         {{lang('You will receive a periodic report and check our real-time monitoring tool anytime.','Anda akan mendapatkan report berkala dan dapat login dalam sistem real-time monitoring kami.')}}
                     </p>
@@ -288,7 +288,7 @@
                 <div class="col-lg-6">
                     <h2>{!!lang(
                         'How do we work?<br /> We will work your way.'
-                        ,'Bagaimana Kami bekerja?<br /> Kami bekerja sesuai dengan kebutuhan bisnis Anda'
+                        ,'Bagaimana prosedur kami ?<br /> Kami bekerja sesuai dengan kebutuhan bisnis Anda'
                         )!!}</h2>
                     <p>
                         {{lang(
@@ -301,7 +301,7 @@
                         <div>
                             <h3>{{lang('Estimated Consultation Time','Perkiraan waktu untuk konsultasi')}}</h3>
                             <div class="value text-lg">
-                                <span data-to="60" data-speed="1000">0</span>
+                                <span data-to="30" data-speed="1000">0</span>
                                 <span class="text-md">{{lang('Minutes','Menit')}}</span>
                             </div>
                         </div>
@@ -348,14 +348,26 @@
         </div>
     </section>
 
+    
     <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-4.jpg')}}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2>{{lang('Ready for a quick consultation?','Ingin mengkonsultasikan kebutuhan Anda sekarang?')}}</h2>
-                    <hr class="space-xs" />
+                <div class="col-lg-8">
+                    <h2>{{lang('Ready for a quick consultation?','Ingin Konsultasi Kebutuhan Anda?')}}</h2>
+                    <hr class="space-xs">
                     <p>{{lang('Our business analyst always ready to hear your business needs, for FREE.','Bisnis analis kami selalu siap untuk mendengar kebutuhan bisnis Anda, secara GRATIS.')}}</p>
-                    <a class='btn btn-sm' href="#quotation">{{lang('Schedule a Call','Hubungi kami sekarang')}}</a>
+                </div>
+                <div class="col-lg-4">
+                    <form action="#" class="form-box form-inline" method="get" data-email="example@domain.com">
+                        <div class="row" style="width: 100%">
+                            <div class="col-lg-12">
+                                <p></p>
+                                <a class="btn btn-sm" onClick="Tawk_API.maximize();">
+                                    {{lang('Schedule a Call','Hubungi kami sekarang')}}
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -365,19 +377,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>{!!lang(
-                            'You got your best-matched talent,<br/> We still here to support you',
-                            'Setelah Anda mendapatkan talent terbaik,<br /> Kami tetap mensupport kebutuhan bisnis Anda'
+                    {!!lang(
+                            '<h2>You got your best-matched talent,<br/> We still here to support you</h2>',
+                            '<h2>Setelah Anda mendapatkan talent terbaik, Kami tetap mensupport kebutuhan bisnis Anda</h2>'
                         )!!}
-                    </h2>
+                    
                     <p>
                         {!!lang(
+                            
                             'Whenever you\'re ready to choose our best-matched talent, we will be ready to prepare the HR stuff like online attendance, contract, tax regulation etc.
                             <br/><br/>
                             Our business consultant will also ready to support your management or project consultation like project timeframe, finance, KPI building, etc.',
-                            'Setelah Anda memilih talent terbaik untuk Anda, kami akan segera mempersiapkan semua dokumen-dokumen HR seperti kontrak dan perpajakan.
-                            <br/><br/>
-                            Bisnis konsultan kami juga siap untuk berkonsultasi seputar managemen maupun project seperti timeline, finance, KPI building, dll.'
+
+                            'Setelah Anda mednapatkan talent, kami segera mempersiapkan semua dokume HR seperti kontrak dan perpajakan.
+                            Kami juga mengelola seputar managemen seperti timeline, finance, KPI building, dll.'
                         )!!}
                     </p>
                     <hr class="space-sm" />
@@ -399,7 +412,7 @@
                                 <h3>Paperwork</h3>
                                 <div>
                                     <p>
-                                        {{lang('Will finish up all of the contract and other preparation here.','Persiapan kontrak, pembuatan akun real-time monitoring, dll.')}}
+                                        {{lang('Will finish up all of the contract and other preparation here.','Persiapan kontrak, pembuatan akun real-time monitoring agar kedepan anda dapat memastikan produktifitas talent, dll.')}}
                                     </p>
                                 </div>
                             </div>
@@ -421,7 +434,14 @@
                                 <h3>Support</h3>
                                 <div>
                                     <p>
-                                        {{lang('Don\'t worry we will provide both HR and Project support during our contract like attendance, timeline, building KPI, etc.','Kami akan memberikan support untuk HR dan Project selama kontrak berjalan')}}
+                                        {{
+                                            lang(
+                                            
+                                            'Don\'t worry we will provide both HR and Project support during our contract like attendance, timeline, building KPI, etc.',
+
+                                            'Kami juga dapat membantu anda mengelola beberapa hal seperti coworkspace, absensi, perijinan, timeline, task, KPI dll'
+
+                                            )}}
                                     </p>
                                 </div>
                             </div>
@@ -433,7 +453,7 @@
     </section>
 
     <section id="pricing" class="section-base section-bottom-layer">
-        <div class="container" data-anima="fade-bottom" data-time="1000">
+        <div class="container">
 
             <div class="row">
                 <div class="col-lg-4">
@@ -549,30 +569,28 @@
 
         </div>
     </section>
-    
-   
-    <section id='quotation' class="section-base section-color no-padding-bottom section-top-overflow">
+
+
+    <section class="section-base section-color no-padding-bottom section-top-overflow">
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Request Quotation.</h2>
-                        <hr class="space-sm" />
+                    <div class="col-lg-8">
                         <form id="form-complete" action="https://api.whatsapp.com/send" class="form-box" method="get" data-email="example@domain.com">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <input id="name" name="name" placeholder="{{lang('Name','Nama')}}" type="text" class="input-text" required>
+                                    <input id="name" name="name" placeholder="Name" type="text" class="input-text" required="">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="phone" name="phone" placeholder="{{lang('Phone Number','No Telepon')}}" type="text" class="input-text" required>
+                                    <input id="phone" name="phone" placeholder="Phone" type="text" class="input-text" required="">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
+                                    <input id="email" name="email" placeholder="Email" type="email" class="input-text" required="">
                                 </div>
                             </div>
-                            <textarea id="messagge" name="text" class="input-textarea" placeholder="{{lang('What is your business needs?','Apa kebutuhan bisnis Anda?')}}" required></textarea>
+                            <textarea id="messagge" name="text" class="input-textarea" placeholder="Write something ..." required=""></textarea>
                             
-                            <button class="btn btn-sm btn-circle" type="submit">Send Request</button>
+                            <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
                             <!-- <div class="success-box">
                                 <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
                             </div>
@@ -581,9 +599,23 @@
                             </div> -->
                         </form>
                     </div>
+                    <div class="col-lg-4 order-md-first">
+                        <h2>
+                            {{lang('Ready for a quick consultation?','Ingin Konsultasi Kebutuhan Anda?')}} <br>
+                        </h2>
+                        <hr class="space-sm">
+                        <div>
+                            {{lang('Our business analyst will help you to determine your talent qualification.','Bisnis analis kami akan membantu Anda dalam menentukan kualifikasi talent.')}}
+
+                            <hr class="space-sm">
+                            <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531<br>
+                            <img src="{{url('template/upscale/media/en.png')}}"/> +61 3 9010 6067
+                        </div>
+                        <hr class="space-sm">
+                    </div>
                 </div>
             </div>
-            <hr class="space-lg visible-md" />
+            <hr class="space-lg visible-md">
         </div>
     </section>
     

@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-side-icon">
-                        <i class="lnr lnr-user"></i>
+                        <i class="lnr lnr-rocket"></i>
                         <div class="caption">
                             <h2>Skill Improvement</h2>
                             <p>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-side-icon">
-                        <i class="lnr lnr-users"></i>
+                        <i class="lnr lnr-list"></i>
                         <div class="caption">
                             <h2>Know your Rights</h2>
                             <p>
@@ -201,6 +201,7 @@
                 .talent { margin-top: 20px }
             </style>
 
+
             <div class="row">
                 <div class="col-lg-12" align="center">
                     <h2>{{lang('Get your opportunity and be like them.','Dapatkan opportunity dan jadilah seperti mereka.')}}</h2>
@@ -259,6 +260,7 @@
                 </div> -->
             </div>
 
+            @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
             <hr class="space-lg" />
             <h2 class="align-center">Our Partnership in many regional</h2>
             <p class="align-center width-650">
@@ -284,6 +286,7 @@
                     </ul>
                 </div>
             </div>
+            @endif
 
             <hr class="space" />
 
