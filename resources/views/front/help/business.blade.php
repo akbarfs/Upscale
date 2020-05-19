@@ -41,11 +41,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-6" style="font-size: 25px">
                     <h1>
-                        We have the best networks.
+                        {{lang('We have the best networks.','Scaling Up Your Business')}}
                     </h1>
                     
                     <p class="slide-title3" style="margin-bottom: 20px">
-                        From partnership, universities and IT communities that will help you to Scale Up your business.
+                        {!!lang(
+                            'From partnership, universities and IT communities that will help you to Scale Up your business.',
+                            'Service kami cocok untuk membantu berbagai skala perusahaan
+                            <ul>
+                                <li>Enterprise Corporation</li>
+                                <li>Startup Company</li>
+                                <li>E-commerce</li>
+                                <li>Small-business</li>
+                            </ul>'
+                        )!!}
                     </p>
                         
                 </div>
@@ -101,12 +110,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
             <div class="row row-fit-lg">
                 <div class="col-lg-3">
                     <p>
-                        Get access to our talent database to help scale up your business. Hiring a best-matched talent and flexible scaling is a crucial business that wants to innovate. Even if you have a clear project roadmap, adding talent capabilities will help you to reach your target faster.
+                        {{lang(
+                            'Get access to our talent database to help scale up your business. Hiring a best-matched talent and flexible scaling is a crucial business that wants to innovate. Even if you have a clear project roadmap, adding talent capabilities will help you to reach your target faster.',
+                            'Dapatkan akses database talent kami untuk membantu scaling up perusaahaan anda dengan cara yang flexible. Hal ini sangat krusial bagi bisnis yang ingin berinovasi dengan cepat dan tepat. Terlebih apabila anda memiliki roadmap project yang baik dan strategi yang tepat'
+                        )}}
+
+
                     </p>
                 </div>
                 <div class="col-lg-3">
                     <p>
-                        Since 2009, UpScale has helped a hundred companies with our dedicated talent or vendor for their project. With the 5000+ talent database, we're here to support your business needs and quickly find the best-matched talent to boost your project.
+                        {{lang(
+                            'Since 2009, UpScale has helped a hundred companies with our dedicated talent or vendor for their project. With the 5000+ talent database, we\'re here to support your business needs and quickly find the best-matched talent to boost your project.',
+                            'Sejak tahun 2009, telah membantu banyak perusahaan untuk mewujudkan harapan dengan mencarikan talent atau vendor yang tepat. Dengan database talent pool kami yang jumlahnya lebih dari 5000 talent, kami dapat membantu anda mewujudkan visi anda'
+                        )}}
                     </p>
                 </div>
                 <div class="col-lg-6">
@@ -172,7 +189,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                             <h2>Krafthaus, Corporate Management</h2>
                             <span class="extra-field" style="animation: none">Digital Agency</span>
                             <p>
-                                Our experienced member has been trusted by Australian Company as a Managing Director to handle Indonesia's branch office.
+                                {{lang(
+                                    'Our experienced member has been trusted by Australian Company as a Managing Director to handle Indonesia\'s branch office.',
+                                    'Sejak tahun 2012 talent kami dipercaya oleh perusahaan Australia sebagai Managing Director untuk mengelola cabang di Indonesia'
+                                )}}
                             </p>
                             <a class="btn-text" href="#">Arief Widyananda</a>
                         </div>
@@ -185,7 +205,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                             <h2>Cakap, Dedicated Office & Team</h2>
                             <span class="extra-field" style="animation: none">Startup Education</span>
                             <p>
-                                We're helping Cakap since 2015 to find their best software developer and manage their development office in Yogyakarta, Indonesia.
+                                {{lang(
+                                    'We\'re helping Cakap since 2015 to find their best software developer and manage their development office in Yogyakarta, Indonesia.',
+                                    'Sejak tahun 2015 s/d 2020 membantu Cakap mendapatkan belasan programer & mengelola development office di jogja.'
+                                )}}
                             </p>
                             <a class="btn-text" href="#">Dodi Prakoso Wibowo</a>
                         </div>
@@ -199,7 +222,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                             <h2>HOS, Digital Transformation</h2>
                             <span class="extra-field" style="animation: none">Small Business, E-Commerce</span>
                             <p>
-                                Our partner vendor has been helping small businesses to transform their retail store and implementing the digital transformation.
+                                {{lang(
+                                    'Our partner vendor has been helping small businesses to transform their retail store and implementing the digital transformation.',
+                                    'Partner Vendor kami telah banyak membantu UKM untuk mentransformasi usaha retailnya menerapkan transformasi digital O2O.'
+                                )}}
                             </p>
                             <a class="btn-text" href="#">Sistemtoko.com</a>
                         </div>
@@ -214,7 +240,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                     <hr class="space-sm" />
                     <h3>Arutala, Corporate Management</h3>
                     <p>
-                    One of our network members become a CEO for Arutala, an AR/VR tech company that focuses on operational excellence and improved customer experiences.
+                        {{lang(
+                            'One of our network members become a CEO for Arutala, an AR/VR tech company that focuses on operational excellence and improved customer experiences.',
+                            'Salah satu member dari network kami, dipercaya menjadi CEO untuk mewujudkan visi Arutala, perusahaan AR/VR yang berfokus operational excellence dan improved customer experiences'
+                        )}}
                     </p>
                     <a href="#" class="btn-text">Indra Haryadi</a>
                 </div>
@@ -230,7 +259,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                     <div class="caption">
                                         <h2>JDV, Incubator Manager</h2>
                                         <p>
-                                        One of our experienced members helps Telkom to handle Jogja Digital Valley as Coworking Space & Incubator Manager.
+                                        {{lang(
+                                            'One of our experienced members helps Telkom to handle Jogja Digital Valley as Coworking Space & Incubator Manager.',
+                                            'Salah satu member kami berpengalaman membantu Telkom dalam mengelola Jogja Digital Valley as coworking space & Incubator.'
+                                        )}}
                                         </p>
                                         <a href="#" class="btn-text">Saga Iqranegara</a>
                                     </div>
@@ -242,7 +274,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                     <div class="caption">
                                         <h2>Koinworks, Head Hunter</h2>
                                         <p>
-                                           We're helping Koinworks to help them to find their best-matched software developers.
+                                        {{lang(
+                                           'We\'re helping Koinworks to help them to find their best-matched software developers.',
+                                           'Kami telah membantu Koinwork untuk menambah team programmer'
+                                        )}}
                                         </p>
                                         <a href="#" class="btn-text">Read this story</a>
                                     </div>
@@ -259,9 +294,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="align-center">Ready to Scale Up your business with us?</h2>
+                    <h2 class="align-center">{{lang('Ready to Scale Up your business with us?','Simple & an affordable price plans for everyone')}}</h2>
                     <p class="align-center width-650">
-                        Our talent includes but not limited to Software Developer, Quality Assurance, Graphic Designer, UX Designer, Product Manager, Finance, Data Entry, etc who are so motivated, discipline, and passionate about technology and productivity.
+                        {{lang(
+                            'Our talent includes but not limited to Software Developer, Quality Assurance, Graphic Designer, UX Designer, Product Manager, Finance, Data Entry, etc who are so motivated, discipline, and passionate about technology and productivity.',
+                            'Paket harga dengan konsep yang sederhana & terjangkau untuk semua orang. Baik skala Coorporate, startup sampai dengan UKM'
+                        )}}
                     </p>
                     <hr class="space" />
                     <table class="table table-grid table-border align-center table-full-sm no-padding-y">
@@ -279,13 +317,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                     </div>
                                     <hr class="space-xs" />
                                     <p>
-                                        The talent pool from partnership, community, and universities.
+                                        {{lang('The talent pool from partnership, community, and universities.','Talent pool dari partnership, komunitas, dan universitas.')}}
                                     </p>
                                 </td>
                                 <td>
                                     <div class="counter counter-vertical counter-icon align-center">
                                         <div>
-                                            <h3>Talent Hired</h3>
+                                            <h3>{{lang('Talent Hired','Talent Tersalurkan')}}</h3>
                                             <div class="value">
                                                 <span class="text-md" data-to="7000" data-speed="3000" data-unit="+">700</span>
                                                 <span></span>
@@ -294,7 +332,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                     </div>
                                     <hr class="space-xs" />
                                     <p>
-                                        Productive talent hired and working with our clients.
+                                        {{lang('Productive talent hired and working with our clients.','Talent tersalurkan dan bekerja untuk client kami.')}}
                                     </p>
                                 </td>
                                 <td>
@@ -309,7 +347,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                     </div>
                                     <hr class="space-xs" />
                                     <p>
-                                        Since 2009, UpScale has been trusted by a hundred companies.
+                                        {{lang('Since 2009, UpScale has been trusted by a hundred companies.','Sejak tahun 2009, UpScale telah dipercaya oleh ratusan perusahaan')}}
                                     </p>
                                 </td>
                             </tr>
@@ -324,22 +362,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
-                    <div class="col-lg-12">
+                <div class="col-lg-12">
                         <h2>Request Quotation.</h2>
                         <hr class="space-sm" />
                         <form id="form-complete" action="https://api.whatsapp.com/send" class="form-box" method="get" data-email="example@domain.com">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <input id="name" name="name" placeholder="Name" type="text" class="input-text" required>
+                                    <input id="name" name="name" placeholder="{{lang('Name','Nama')}}" type="text" class="input-text" required>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="phone" name="phone" placeholder="Phone" type="text" class="input-text" required>
+                                    <input id="phone" name="phone" placeholder="{{lang('Phone Number','No Telepon')}}" type="text" class="input-text" required>
                                 </div>
                                 <div class="col-lg-6">
                                     <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
                                 </div>
                             </div>
-                            <textarea id="messagge" name="text" class="input-textarea" placeholder="What is your business needs?" required></textarea>
+                            <textarea id="messagge" name="text" class="input-textarea" placeholder="{{lang('What is your business needs?','Apa kebutuhan bisnis Anda?')}}" required></textarea>
                             
                             <button class="btn btn-sm btn-circle" type="submit">Send Request</button>
                             <!-- <div class="success-box">

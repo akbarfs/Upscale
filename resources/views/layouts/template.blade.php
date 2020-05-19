@@ -308,7 +308,7 @@
             <div class="menu-cnt">
                 <ul>
                     <li> <a href="{{url('').param()}}">Home</a></li>
-                    <li> <a href="{{url('help-business').param()}}">Our Networks</a></li>
+                    <li> <a href="{{url('help-business').param()}}">For Business</a></li>
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
                     <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
                     <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li>
@@ -432,7 +432,11 @@
                         </tr>
                         <tr>
                             <td><b>Phone</b></td>
-                            <td>+6287888666531</td>
+                            <td>ID: +62 87 888 666 531</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>AU: +61 3 9010 6067</td>
                         </tr>
                         <tr>
                             <td><b>Email</b></td>
