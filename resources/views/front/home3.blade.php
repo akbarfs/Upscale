@@ -44,7 +44,7 @@
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-6" style="font-size: 25px">
                     <h1 class="slide slide-title1">
-                         {{lang('Hire On-Demand Talent.','Hire On-Demand Talent.')}}
+                         {{lang('Hire On-Demand Talent.','Hire Talent On-Demand.')}}
                     </h1>
                     
                     <h2 class="slide-title2">
@@ -52,7 +52,7 @@
                             
                             'Just focus on scaling your business and let us do the "Talent" things.',
 
-                            'Fokuskan pada pengembangan bisnis Anda dan biarkan kami mengerjakan urusan "Talent".'
+                            'Kami membantu mengerjakan semua urusan "talent", agar anda dapat fokus pada pengembangan bisnis.'
 
                         )!!}
                     </h2>
@@ -97,7 +97,7 @@
                             <div class="caption">
                                 <h2>Dedicated Team</h2>
                                 <p>
-                                    {{lang('Hire a talented team to help scale up your business.','Hire talent yang akan membantu mengembangkan bisnis Anda.')}}
+                                    {{lang('Hire a talented team to help scale up your business.','Hire talent sebagai karyawan outsource.')}}
                                 </p>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="caption">
                                 <h2>Freelance Team</h2>
                                 <p>
-                                    {{lang('Part-time team that work based on the man-hour rate.','Hire freelance talent yang akan bekerja dengan sistem man-hour.')}}
+                                    {{lang('Part-time team that work based on the man-hour rate.','Hire talent freelance berbasis man-hour.')}}
                                 </p>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             <div class="caption">
                                 <h2>Head Hunter</h2>
                                 <p>
-                                    {{lang('Make your recruitment process faster and hassle-free.','Serahkan proses recruitment pada kami agar lebih cepat dan mudah.')}}
+                                    {{lang('Make your recruitment process faster and hassle-free.','Hire talent sebagai karyawan internal anda.')}}
                                 </p>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             <div class="caption">
                                 <h2>Project-Based</h2>
                                 <p>
-                                    {{lang('A legacy project-based team to finish up your project.','Pencarian vendor untuk menyelesaikan project Anda.')}}
+                                    {{lang('A legacy project-based team to finish up your project.','Hire vendor / freelance berbasis project.')}}
                                 </p>
                             </div>
                         </div>
@@ -192,13 +192,13 @@
             <hr class="space" />
             <div class="row">
                 <div class="col-lg-4">
-                    <h3>{{lang('Fast Recruitment Process','Proses Recruitment yang Cepat')}}</h3>
+                    <h3>{{lang('Fast Recruitment Process','Kecepatan Rekrutmen')}}</h3>
                     <p>
                         {{lang('Let us hear your needs, and your talents will be ready within 14 days.','Setelah kami mengetahui kebutuhan bisnis Anda, talent akan ready dalam waktu 14 hari.')}}
                     </p>
                 </div>
                 <div class="col-lg-4">
-                    <h3>{{lang('Take Control of Your Talent','Miliki kontrol penuh terhadap talent')}}</h3>
+                    <h3>{{lang('Take Control of Your Talent','Kontrol Penuh')}}</h3>
                     <p>
                         {{lang('You will receive a periodic report and check our real-time monitoring tool anytime.','Anda akan mendapatkan report berkala dan dapat login dalam sistem real-time monitoring kami.')}}
                     </p>
@@ -365,19 +365,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>{!!lang(
-                            'You got your best-matched talent,<br/> We still here to support you',
-                            'Setelah Anda mendapatkan talent terbaik,<br /> Kami tetap mensupport kebutuhan bisnis Anda'
+                    {!!lang(
+                            '<h2>You got your best-matched talent,<br/> We still here to support you</h2>',
+                            '<h2>Setelah Anda mendapatkan talent terbaik, Kami tetap mensupport kebutuhan bisnis Anda</h2>'
                         )!!}
-                    </h2>
+                    
                     <p>
                         {!!lang(
+                            
                             'Whenever you\'re ready to choose our best-matched talent, we will be ready to prepare the HR stuff like online attendance, contract, tax regulation etc.
                             <br/><br/>
                             Our business consultant will also ready to support your management or project consultation like project timeframe, finance, KPI building, etc.',
-                            'Setelah Anda memilih talent terbaik untuk Anda, kami akan segera mempersiapkan semua dokumen-dokumen HR seperti kontrak dan perpajakan.
-                            <br/><br/>
-                            Bisnis konsultan kami juga siap untuk berkonsultasi seputar managemen maupun project seperti timeline, finance, KPI building, dll.'
+
+                            'Setelah Anda mednapatkan talent, kami segera mempersiapkan semua dokume HR seperti kontrak dan perpajakan.
+                            Kami juga mengelola seputar managemen seperti timeline, finance, KPI building, dll.'
                         )!!}
                     </p>
                     <hr class="space-sm" />
@@ -399,7 +400,7 @@
                                 <h3>Paperwork</h3>
                                 <div>
                                     <p>
-                                        {{lang('Will finish up all of the contract and other preparation here.','Persiapan kontrak, pembuatan akun real-time monitoring, dll.')}}
+                                        {{lang('Will finish up all of the contract and other preparation here.','Persiapan kontrak, pembuatan akun real-time monitoring agar kedepan anda dapat memastikan produktifitas talent, dll.')}}
                                     </p>
                                 </div>
                             </div>
@@ -421,7 +422,14 @@
                                 <h3>Support</h3>
                                 <div>
                                     <p>
-                                        {{lang('Don\'t worry we will provide both HR and Project support during our contract like attendance, timeline, building KPI, etc.','Kami akan memberikan support untuk HR dan Project selama kontrak berjalan')}}
+                                        {{
+                                            lang(
+                                            
+                                            'Don\'t worry we will provide both HR and Project support during our contract like attendance, timeline, building KPI, etc.',
+
+                                            'Kami juga dapat membantu anda mengelola beberapa hal seperti coworkspace, absensi, perijinan, timeline, task, KPI dll'
+
+                                            )}}
                                     </p>
                                 </div>
                             </div>
