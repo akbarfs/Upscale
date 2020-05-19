@@ -174,7 +174,7 @@
     <section id="features" class="section-base section-color align-center section-bottom-layer-2">
         <div class="container">
             <h2 class="align-center" data-anima="fade-bottom" data-time="1000" style="margin: 0 auto; max-width: 900px">
-                {{lang('Seriously, just focus on scaling up your business.','Fokuskan perhatian pada bisnis Anda.')}}
+                {{lang('Seriously, just focus on scaling up your business.','Fokuskan perhatian pada strategi pengembangan bisnis Anda.')}}
             </h2>
             <p class="align-center width-650" data-anima="fade-bottom" data-time="1000">
                 {{lang(
@@ -288,7 +288,7 @@
                 <div class="col-lg-6">
                     <h2>{!!lang(
                         'How do we work?<br /> We will work your way.'
-                        ,'Bagaimana Kami bekerja?<br /> Kami bekerja sesuai dengan kebutuhan bisnis Anda'
+                        ,'Bagaimana prosedur kami ?<br /> Kami bekerja sesuai dengan kebutuhan bisnis Anda'
                         )!!}</h2>
                     <p>
                         {{lang(
@@ -301,7 +301,7 @@
                         <div>
                             <h3>{{lang('Estimated Consultation Time','Perkiraan waktu untuk konsultasi')}}</h3>
                             <div class="value text-lg">
-                                <span data-to="60" data-speed="1000">0</span>
+                                <span data-to="30" data-speed="1000">0</span>
                                 <span class="text-md">{{lang('Minutes','Menit')}}</span>
                             </div>
                         </div>
@@ -348,14 +348,26 @@
         </div>
     </section>
 
+    
     <section class="section-image light ken-burn-center" data-parallax="scroll" data-image-src="{{url('template/upscale/media/hd-4.jpg')}}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2>{{lang('Ready for a quick consultation?','Ingin mengkonsultasikan kebutuhan Anda sekarang?')}}</h2>
-                    <hr class="space-xs" />
+                <div class="col-lg-8">
+                    <h2>{{lang('Ready for a quick consultation?','Ingin Konsultasi Kebutuhan Anda?')}}</h2>
+                    <hr class="space-xs">
                     <p>{{lang('Our business analyst always ready to hear your business needs, for FREE.','Bisnis analis kami selalu siap untuk mendengar kebutuhan bisnis Anda, secara GRATIS.')}}</p>
-                    <a class='btn btn-sm' href="#quotation">{{lang('Schedule a Call','Hubungi kami sekarang')}}</a>
+                </div>
+                <div class="col-lg-4">
+                    <form action="#" class="form-box form-inline" method="get" data-email="example@domain.com">
+                        <div class="row" style="width: 100%">
+                            <div class="col-lg-12">
+                                <p></p>
+                                <a class="btn btn-sm" onClick="Tawk_API.maximize();">
+                                    {{lang('Schedule a Call','Hubungi kami sekarang')}}
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -441,7 +453,7 @@
     </section>
 
     <section id="pricing" class="section-base section-bottom-layer">
-        <div class="container" data-anima="fade-bottom" data-time="1000">
+        <div class="container">
 
             <div class="row">
                 <div class="col-lg-4">
@@ -557,30 +569,28 @@
 
         </div>
     </section>
-    
-   
-    <section id='quotation' class="section-base section-color no-padding-bottom section-top-overflow">
+
+
+    <section class="section-base section-color no-padding-bottom section-top-overflow">
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Request Quotation.</h2>
-                        <hr class="space-sm" />
+                    <div class="col-lg-8">
                         <form id="form-complete" action="https://api.whatsapp.com/send" class="form-box" method="get" data-email="example@domain.com">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <input id="name" name="name" placeholder="{{lang('Name','Nama')}}" type="text" class="input-text" required>
+                                    <input id="name" name="name" placeholder="Name" type="text" class="input-text" required="">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="phone" name="phone" placeholder="{{lang('Phone Number','No Telepon')}}" type="text" class="input-text" required>
+                                    <input id="phone" name="phone" placeholder="Phone" type="text" class="input-text" required="">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input id="email" name="email" placeholder="Email" type="email" class="input-text" required>
+                                    <input id="email" name="email" placeholder="Email" type="email" class="input-text" required="">
                                 </div>
                             </div>
-                            <textarea id="messagge" name="text" class="input-textarea" placeholder="{{lang('What is your business needs?','Apa kebutuhan bisnis Anda?')}}" required></textarea>
+                            <textarea id="messagge" name="text" class="input-textarea" placeholder="Write something ..." required=""></textarea>
                             
-                            <button class="btn btn-sm btn-circle" type="submit">Send Request</button>
+                            <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
                             <!-- <div class="success-box">
                                 <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
                             </div>
@@ -589,9 +599,23 @@
                             </div> -->
                         </form>
                     </div>
+                    <div class="col-lg-4 order-md-first">
+                        <h2>
+                            {{lang('Ready for a quick consultation?','Ingin Konsultasi Kebutuhan Anda?')}} <br>
+                        </h2>
+                        <hr class="space-sm">
+                        <div>
+                            {{lang('Our business analyst will help you to determine your talent qualification.','Bisnis analis kami akan membantu Anda dalam menentukan kualifikasi talent.')}}
+
+                            <hr class="space-sm">
+                            <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531<br>
+                            <img src="{{url('template/upscale/media/en.png')}}"/> +61 3 9010 6067
+                        </div>
+                        <hr class="space-sm">
+                    </div>
                 </div>
             </div>
-            <hr class="space-lg visible-md" />
+            <hr class="space-lg visible-md">
         </div>
     </section>
     

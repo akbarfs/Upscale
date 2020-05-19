@@ -397,7 +397,8 @@
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
 
                     @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
-                    <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
+                        <li> <a href="{{url('jobs')}}">Jobs</a></li>
+                        <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
                     @endif
                     <!-- <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li> -->
                     <!-- <li class="dropdown">
@@ -493,12 +494,12 @@
                     <div class="menu-custom-area">
 
                         @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
-                        @if(!Session::has('login'))
-                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
-                        @else
-                            
-                            <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
-                        @endif
+                            @if(!Session::has('login'))
+                                <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                            @else
+                                
+                                <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                            @endif
                         @endif
 
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
@@ -528,11 +529,11 @@
                         </tr>
                         <tr>
                             <td><b>Phone</b></td>
-                            <td>ID: +62 87 888 666 531</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>AU: +61 3 9010 6067</td>
+                            <td>
+                                <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531
+                                &nbsp
+                                <img src="{{url('template/upscale/media/en.png')}}"/> +61 3 9010 6067
+                            </td>
                         </tr>
                         <tr>
                             <td><b>Email</b></td>
@@ -550,9 +551,8 @@
                             <li>
                                 <a href="{{url('help-talent')}}">Why Join as Talent?</a>
                             </li>
-                            <li>
-                                <a href="{{url('jobs')}}">Job Opportunities</a>
-                            </li>
+                            <li> <a href="{{url('jobs')}}">Job Opportunities</a> </li>
+                            <li> <a class="join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal">Register as Talent</a> </li>
                         </ul>
                     </div>
                 </div>

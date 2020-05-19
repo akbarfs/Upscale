@@ -201,6 +201,7 @@
                 .talent { margin-top: 20px }
             </style>
 
+
             <div class="row">
                 <div class="col-lg-12" align="center">
                     <h2>{{lang('Get your opportunity and be like them.','Dapatkan opportunity dan jadilah seperti mereka.')}}</h2>
@@ -259,6 +260,7 @@
                 </div> -->
             </div>
 
+            @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
             <hr class="space-lg" />
             <h2 class="align-center">Our Partnership in many regional</h2>
             <p class="align-center width-650">
@@ -284,6 +286,7 @@
                     </ul>
                 </div>
             </div>
+            @endif
 
             <hr class="space" />
 
