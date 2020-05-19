@@ -473,16 +473,7 @@
                 </ul>
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
-                    <!-- <div class="menu-custom-area">
-
-                        @if(!Session::has('login'))
-                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
-                        @else
-                            
-                            <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
-                        @endif
-
-                    </div> -->
+                    
                     <ul class="lan-menu">
                         <li class="dropdown">
                             @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
@@ -500,6 +491,15 @@
                         </li>
                     </ul>
                     <div class="menu-custom-area">
+
+                        @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
+                        @if(!Session::has('login'))
+                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                        @else
+                            
+                            <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                        @endif
+                        @endif
 
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="#" 
