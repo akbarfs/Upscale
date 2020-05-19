@@ -36,7 +36,8 @@ class MemberController extends Controller
             'password'     => 'required|min:6|confirmed',
             'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
             'gender' => 'required',
-            'tgl_lahir' => 'required'
+            'tgl_lahir' => 'required',
+            'tempat_lahir' => 'required|min:3|max:25',
         ]); 
 
         return response()->json(array("message"=>"success","status"=>1));
@@ -52,10 +53,17 @@ class MemberController extends Controller
             'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
             'gender' => 'required',
             'tgl_lahir' => 'required',
+            'tempat_lahir' => 'required',
             // 'skill_1' => '',
             // 'skill_2' => '',
             // 'skill_2' => '',
             'fulltime_rate' => 'sometimes|format_rp',
+            // 'talent_address' => 'sometimes|min:3|max:25|',
+            // 'talent_prefered_location' => 'sometimes|min:3|max:25|',
+            // 'talent_date_ready' => 'sometimes|string',
+            'talent_available' => 'sometimes|string',
+
+
             'freelance_hour' => 'sometimes|format_rp',
             'freelance_min' => 'sometimes|format_rp',
             'freelance_max' => 'sometimes|format_rp',
@@ -87,8 +95,15 @@ class MemberController extends Controller
                 'talent_salary'=>$request->fulltime_rate,
                 'talent_location_id'=>12,
                 'talent_gender' => $request->gender,
+                'talent_place_of_birth' => $request->tempat_lahir,
                 'talent_birth_date' => $request->tgl_lahir,
                 'talent_salary' =>  preg_replace('/[^0-9]/', '', $request->fulltime_rate),
+
+                'talent_address' => $request->talent_address,
+                'talent_prefered_location' => $request->talent_prefered_location,
+                'talent_date_ready' => $request->talent_date_ready,
+                'talent_available' => $request->talent_available,
+
                 'talent_freelance_hour' =>  preg_replace('/[^0-9]/', '', $request->freelance_hour),
                 'talent_project_min' =>  preg_replace('/[^0-9]/', '', $request->freelance_min),
                 'talent_project_max' =>  preg_replace('/[^0-9]/', '', $request->freelance_max),

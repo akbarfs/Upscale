@@ -330,7 +330,7 @@ class talentController extends Controller
 
     public function all() {
     	$data = DB::table('talent')->select('talent_id','talent_address', 'talent_apply', 'talent_created_date', 'talent_name','talent_phone','talent_email','talent_gender','talent_condition', 'talent_date_ready', 'talent_available')
-    							   ->orderBy('talent_name','asc')->get();
+    							   ->orderBy('talent_id','DESC')->get();
 
       return Datatables::of($data)
       // ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_condition}}"/></center')
@@ -1083,7 +1083,7 @@ return response()->json($cp);
                         //  ->leftjoin('company','company_id','=','request.request_company_id')
                          ->where('talent_condition','quarantine')
                          ->groupby('talent_name')
-                         ->orderBy('talent_created_date','asc')->get();
+                         ->orderBy('talent_id','desc')->get();
    
 
 

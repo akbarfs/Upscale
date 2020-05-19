@@ -25,12 +25,69 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <!-- Start of HubSpot Embed Code -->
+     <!--  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7727872.js"></script> -->
+    <!-- End of HubSpot Embed Code -->
+
     @yield('top-asset')
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167086272-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-167086272-1');
+    </script>
+
+    <!-- Hotjar Tracking Code for www.upscale.id -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:1817737,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
 
 </head>
 <body>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5ebfe22d967ae56c521a60eb/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+
+        //Example
+
+        // Tawk_API.onLoad = function(){
+        //     Tawk_API.maximize();
+        // };
+
+    </script>
+    <!--End of Tawk.to Script-->
+
     
     <style>
+
+        <!-- widget date picker -->
+        .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus 
+        {
+            background: #add2ec !important;
+        }
+
+        .modal { z-index: 100000000000 !important ; }
+
 
         .minht {min-height: 550px;}
         @media only screen and (max-width:990px){
@@ -38,7 +95,7 @@
         }
 
         @media only screen and (max-width:767px){
-            [class*=col-]:not([class*=col-sm]) + [class*=col-]:not([class*=col-sm]) {
+            .modal-body [class*=col-]:not([class*=col-sm]) + [class*=col-]:not([class*=col-sm]) {
                 margin-top: 0 !important;
             }
             
@@ -53,6 +110,8 @@
             }
             .btn-login { margin-left: 0 !important; border-left: none !important }
             .minht { height: 100% }
+            .lan-menu { margin-top: 0 !important; }
+            .menu-right { margin-top: 0 !important; }
         }
     </style>
 
@@ -72,6 +131,18 @@
         <script>
             $(document).ready(function()
             {
+
+                $("a").click(function()
+                {
+                    redirect =  $(this).data("redirect");
+                    // if ( redirect != undefined)
+                    // {
+                    //     // action = $("#login-form").attr("action"); 
+                    //     // action = action+"?redirect="+redirect;
+                    //     // // $("#login-form").attr("action",action);
+                    // }
+                });
+
                 $("#login-form").submit(function()
                 {
                     $(".modal-body").animate({ scrollTop: 0 }, 500);
@@ -91,7 +162,16 @@
                                 //redirect halaman member
                                 if ( data.level == 'talent')
                                 {
-                                    window.location.href = "{{url('talent/dashboard')}}";
+                                    if ( redirect != undefined)
+                                    {
+                                        window.location.href = redirect ; 
+                                    }
+                                    else
+                                    {
+                                        // window.location.href = "{{url('talent/dashboard')}}";
+                                        location.reload();
+                                    }
+                                    
                                 }
                                 else if ( data.level == 'client')
                                 {
@@ -141,9 +221,14 @@
               </div>
               <div class="modal-footer" style="display: block;">
                 <div class="row">
-                    <div class="col-md-12" style="text-align: right;">
+                    <div class="col-md-12" style="text-align: right; margin-top: 0">
                         <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
-                        <div style="margin-right: 20px;margin-bottom: 10px;float: left;">Forget Password ? <a href="#">click</a></div>
+                        <div style="margin-right: 20px;margin-bottom: 10px;float: left;">
+                            Register as talent ? 
+                            <a href="#" class="join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal">
+                                Click
+                            </a>
+                        </div>
                         <button type="submit" class="btn btn-primary" id="login">Login</button>
                     </div>
                 </div>
@@ -310,8 +395,11 @@
                     <li> <a href="{{url('').param()}}">Home</a></li>
                     <li> <a href="{{url('help-business').param()}}">For Business</a></li>
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
+
+                    @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
                     <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
-                    <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li>
+                    @endif
+                    <!-- <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li> -->
                     <!-- <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>
                         <ul>
@@ -385,31 +473,39 @@
                 </ul>
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
-                    <div class="menu-custom-area">
+                    <!-- <div class="menu-custom-area">
 
                         @if(!Session::has('login'))
                             <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
                         @else
-                            <!-- <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a> -->
+                            
                             <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
                         @endif
-                        <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
 
-                    </div>
+                    </div> -->
                     <ul class="lan-menu">
                         <li class="dropdown">
-                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'id')
-                                <a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID </a>
-                            @else
+                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
                                 <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN </a>
+                            @else
+                                <a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID </a>
                             @endif
 
                             <ul>
-                                <li><a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN</a></li>
                                 <li><a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID</a></li>
+                                
+                                <li><a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN</a></li>
+                                
                             </ul>
                         </li>
                     </ul>
+                    <div class="menu-custom-area">
+
+                        <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
+                        <a class="btn btn-border btn-xs btn-circle light" href="#" 
+                        target="_blank" onClick="Tawk_API.maximize();">Contact Us</a>
+
+                    </div>
                 </div>
 
 
@@ -418,7 +514,7 @@
         </div>
     </nav>
     @yield('content')
-    <i class="scroll-top-btn scroll-top show"></i>
+    <!-- <i class="scroll-top-btn scroll-top show"></i> -->
     <footer id="footer-bottom" class="footer light">
         <div class="container" style="padding-top: 180px">
             <div class="row">

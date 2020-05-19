@@ -13,22 +13,10 @@
                 </div>
             </div> -->
             <div class="row ">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div class="boxed boxed--border">
-                        <div class="row">
-                            <div class="col-md-12"></div>
-                                <div class="row text-center" style="margin: 0 40px 0 40px;">
-                                    <div class="col-md-12">
-                                        <h2>Terimakasih Telah Mendaftar</h2>
-                                        <p style="margin-top: 10px;font-family: Arial;font-style: normal;font-weight: normal;font-size: 18px;text-align: center;">Mohon tunggu balasan dari kami melalui email.</p>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
+                <div class="col-md-12" align="center">
+                    <h2>Terimakasih Telah Mendaftar</h2>
+                    <p style="margin-top: 10px;font-family: Arial;font-style: normal;font-weight: normal;font-size: 18px;text-align: center;">Mohon tunggu balasan dari kami melalui email.</p>
                 </div>
-                </div>
-                <div class="col-md-3"></div>
             </div>
     </section>
 </main>

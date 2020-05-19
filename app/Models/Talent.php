@@ -32,7 +32,12 @@ class Talent extends Model
 			                'talent_project_max',
 			                'talent_konsultasi_rate',
 			                'talent_ngajar_rate',
-							'portofolio_update'];
+							'portofolio_update',
+							'talent_address',
+			                'talent_prefered_location',
+			                'talent_date_ready',
+			                'talent_available'
+						];
 	public $timestamps = false;
 
 	protected $dates = ['talent_created_date'];

@@ -42,7 +42,7 @@
         <div class="container" style="padding-bottom: 100px;">
             <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
-                <div class="col-lg-8" style="font-size: 25px">
+                <div class="col-lg-6" style="font-size: 25px">
                     <h1 class="slide slide-title1">
                          {{lang('Hire On-Demand Talent.','Hire On-Demand Talent.')}}
                     </h1>
@@ -65,8 +65,11 @@
                     </p>
                         
                 </div>
-                <div class="col-lg-4 align-right align-left-md" data-anima="fade-in" data-time="1000">
-                    <a href="#quotation" class="btn btn-circle btn-sm" style="margin-top: 15px">
+                <div class="col-lg-6 align-center align-center-md" data-anima="fade-in" data-time="1000">
+                    
+                    <!-- <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">For Bussiness</a> -->
+                    
+                    <a href="#" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px" onClick="Tawk_API.maximize();">
                         Request Quotation
                     </a>
                 </div>
