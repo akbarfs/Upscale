@@ -575,9 +575,12 @@
         {
             $("#form-inquiry").submit(function()
             {
-                data = $(this).serializeArray(); 
-                // console.log(data) ; return false ; 
-                $.post($(this).attr('action'),{data},function()
+                
+                var name = $(this).find('input[name="name"]').val(); 
+                var phone = $(this).find('input[name="phone"]').val(); 
+                var email = $(this).find('input[name="email"]').val(); 
+                var message = $(this).find('#messagge').val(); 
+                $.post($(this).attr('action'),{name:name,phone:phone,email:email,message:message},function()
                 {
                     $(".success-box").show();
                 });

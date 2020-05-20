@@ -185,6 +185,7 @@ class homeController extends Controller
 
     public function sendInquiry(Request $request)
     {
+        // dd($request->all());
         // $data['data'] = 'testing'; 
         // Mail::to($data)->send(new progressMail($data));
         $name = $request->name; 
