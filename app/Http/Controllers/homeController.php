@@ -183,16 +183,16 @@ class homeController extends Controller
         return view('front.project');
     }
 
-    public function sendInquiry()
+    public function sendInquiry(Request $request)
     {
         // $data['data'] = 'testing'; 
         // Mail::to($data)->send(new progressMail($data));
         $name = $request->name; 
         $email = $request->name; 
         $message = $request->message; 
-        $to_email = 'ddxhomestudio@gmail.com';
-        $subject = 'The Subject of the message';
-        $message = 'Name'.$name. "email" .$email. "message:" .$message.".";
+        $to_email = 'sales@upscale.id';
+        $subject = 'New Contact';
+        $message = 'Name'.$name. ". email" .$email. ". message:" .$message.".";
         $headers = 'From: noreply@upscale.id'; //optional
         mail($to_email,$subject,$message,$headers);
     }
