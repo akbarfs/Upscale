@@ -185,7 +185,15 @@ class homeController extends Controller
 
     public function sendInquiry()
     {
-        $data['data'] = 'testing'; 
-        Mail::to($data)->send(new progressMail($data));
+        // $data['data'] = 'testing'; 
+        // Mail::to($data)->send(new progressMail($data));
+        $name = $request->name; 
+        $email = $request->name; 
+        $message = $request->message; 
+        $to_email = 'ddxhomestudio@gmail.com';
+        $subject = 'The Subject of the message';
+        $message = 'Name'.$name. "email" .$email. "message:" .$message.".";
+        $headers = 'From: noreply@upscale.id'; //optional
+        mail($to_email,$subject,$message,$headers);
     }
 }

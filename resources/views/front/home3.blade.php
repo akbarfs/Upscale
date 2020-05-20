@@ -575,7 +575,7 @@
         {
             $("#form-inquiry").submit(function()
             {
-                data = $(this).serialize(); 
+                data = $(this).serializeArray(); 
                 // console.log(data) ; return false ; 
                 $.post($(this).attr('action'),{data},function()
                 {
