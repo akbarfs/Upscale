@@ -194,7 +194,7 @@ class homeController extends Controller
         $phone = $request->phone ; 
         $to_email = 'sales@upscale.id';
         $subject = 'Contact '.$name.' email '.$email;
-        $message = 'Name '.$name. ". email " .$email. ". message: " .$message.". Phone ".$phone;
+        $message = 'Name '.$name. ", " .$email. ". message: " .$message.". Phone ".$phone;
         $headers = 'From: noreply@upscale.id'; //optional
         mail($to_email,$subject,$message,$headers);
     }
