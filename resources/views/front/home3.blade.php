@@ -570,13 +570,31 @@
         </div>
     </section>
 
-
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $("#form-inquiry").submit(function()
+            {
+                data = $(this).serialize(); 
+                // console.log(data) ; return false ; 
+                $.post($(this).attr('action'),{data},function()
+                {
+                    $(".success-box").show();
+                });
+                return false ;
+            }); 
+        });
+    </script>
     <section class="section-base section-color no-padding-bottom section-top-overflow">
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
                     <div class="col-lg-8">
-                        <form id="form-complete" action="https://api.whatsapp.com/send" class="form-box" method="get" data-email="example@domain.com">
+                        <div class="success-box" style="background: none; padding: 0; display: none;">
+                            <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
+                        </div>
+                        <form id="form-inquiry" action="{{url('send-inquiry')}}" class="form-box" 
+                        method="post" data-email="example@domain.com">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <input id="name" name="name" placeholder="Name" type="text" class="input-text" required="">
@@ -588,13 +606,11 @@
                                     <input id="email" name="email" placeholder="Email" type="email" class="input-text" required="">
                                 </div>
                             </div>
-                            <textarea id="messagge" name="text" class="input-textarea" placeholder="Write something ..." required=""></textarea>
+                            <textarea id="messagge" name="message" class="input-textarea" placeholder="Write something ..." required=""></textarea>
                             
                             <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
-                            <!-- <div class="success-box">
-                                <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
-                            </div>
-                            <div class="error-box">
+                            
+                            <!-- <div class="error-box">
                                 <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
                             </div> -->
                         </form>

@@ -11,6 +11,9 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Bootcamp;
 use Route ; 
+use App\Mail\progressMail;
+use Illuminate\Support\Facades\Mail;
+
 
 
 class homeController extends Controller
@@ -178,5 +181,11 @@ class homeController extends Controller
     public function startProject()
     {
         return view('front.project');
+    }
+
+    public function sendInquiry()
+    {
+        $data['data'] = 'testing'; 
+        Mail::to($data)->send(new progressMail($data));
     }
 }

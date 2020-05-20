@@ -16,5 +16,6 @@ class VerifyCsrfToken extends Middleware
         '/register/talent/step1',
         '/register/talent',
         '/login/member',
+        '/send-inquiry'
     ];
 }
