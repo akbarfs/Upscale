@@ -189,7 +189,7 @@ class homeController extends Controller
         // $data['data'] = 'testing'; 
         // Mail::to($data)->send(new progressMail($data));
         $name = $request->name; 
-        $email = $request->name; 
+        $email = $request->email; 
         $message = $request->message; 
         $phone = $request->phone ; 
         $to_email = 'sales@upscale.id';
