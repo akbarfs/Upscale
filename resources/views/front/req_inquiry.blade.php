@@ -88,7 +88,7 @@
     .question_box label {display: unset;}
     .question_box {}
     .next-inquiry { margin-bottom: 20px; }
-    .success-inquiry{background: #cfffbf; color: #000; padding: 10px 20px; border-radius: 10px; font-size: 18px; font-weight: 200;}
+    .success-inquiry{background: #dae7ff; color: #000; padding: 10px 20px; border-radius: 5px; font-size: 18px; font-weight: 200;}
 </style>
 
 <script>
@@ -127,6 +127,7 @@
 
         $(".submit-inquiry").click(function()
         {
+            $(".inr").animate({ scrollTop: 0 }, 500);
             call_when = $('[name="call_when"]:checked').val(); 
             call_jam = $('[name="call_jam"]').val(); 
             call_date = $('[name="call_date"]').val(); 
@@ -140,6 +141,8 @@
                 }
             }
             
+            $(".infoinquiry").show().html("<div class='success-inquiry'>loading...</div>");
+
             log = $("#forminquiry").serialize();
             
             $.ajax({
