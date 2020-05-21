@@ -139,9 +139,11 @@
                     return false ; 
                 }
             }
+            
+            log = $("#forminquiry").serialize();
 
             $(".wrap-inquiry").html("loading...");
-            log = $("#forminquiry").serialize();
+            
             $.ajax({
                 url: "{{url('send-inquiry')}}",
                 type: 'POST',
