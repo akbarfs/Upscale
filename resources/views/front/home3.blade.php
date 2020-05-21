@@ -485,7 +485,7 @@
         </div>
     </section>
 
-    <section id="pricing" class="section-base section-bottom-layer">
+    <section id="pricing" class="section-base">
         <div class="container">
 
             <div class="row">
@@ -604,7 +604,7 @@
     </section>
 
     
-    <section class="section-base section-color no-padding-bottom section-top-overflow">
+    <!-- <section class="section-base section-color no-padding-bottom section-top-overflow">
         <div class="container">
             <div class="boxed-area">
                 <div class="row">
@@ -629,9 +629,6 @@
                             
                             <button class="btn btn-sm btn-circle" type="submit">Send inquiry</button>
                             
-                            <!-- <div class="error-box">
-                                <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
-                            </div> -->
                         </form>
                     </div>
                     <div class="col-lg-4 order-md-first">
@@ -652,7 +649,7 @@
             </div>
             <hr class="space-lg visible-md">
         </div>
-    </section>
+    </section> -->
     
     <script type="text/javascript">
         

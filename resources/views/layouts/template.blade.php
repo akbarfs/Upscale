@@ -517,7 +517,7 @@
     @yield('content')
     <!-- <i class="scroll-top-btn scroll-top show"></i> -->
     <footer id="footer-bottom" class="footer light">
-        <div class="container" style="padding-top: 180px">
+        <div class="container footerpadding">
             <div class="row">
                 <div class="col-lg-6">
                     <h4>UpScale</h4>
