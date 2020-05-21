@@ -99,6 +99,8 @@
         next = $(".show_box").closest('.question_box').next();
         $(next).addClass("show_box");
         $(".show_box:first").removeClass("show_box");
+
+        $(".inr").animate({ scrollTop: 0 }, 500);
     }
 
     $(document).ready(function()
