@@ -395,11 +395,8 @@
                     <li> <a href="{{url('').param()}}">Home</a></li>
                     <li> <a href="{{url('help-business').param()}}">For Business</a></li>
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
-
-                    @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
-                        <li class="m"> <a href="{{url('jobs')}}">Jobs</a></li>
-                        <li class="m"> <a href="{{url('faq').param()}}">F.A.Q</a></li>
-                    @endif
+                    <li class="m"> <a href="{{url('jobs')}}">Jobs</a></li>
+                    <li class="m"> <a href="{{url('faq').param()}}">F.A.Q</a></li>
                     <!-- <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li> -->
                     <!-- <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>
@@ -532,7 +529,7 @@
                             <td>
                                 <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531
                                 &nbsp
-                                <img src="{{url('template/upscale/media/en.png')}}"/> +61 3 9010 6067
+                                <img src="{{url('template/upscale/media/au.png')}}"/> +61 3 9010 6067
                             </td>
                         </tr>
                         <tr>
