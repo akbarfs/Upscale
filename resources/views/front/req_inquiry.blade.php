@@ -141,8 +141,6 @@
             }
             
             log = $("#forminquiry").serialize();
-
-            $(".wrap-inquiry").html("loading...");
             
             $.ajax({
                 url: "{{url('send-inquiry')}}",
