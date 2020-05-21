@@ -9,11 +9,12 @@
     .slide-title1 { font-size: 35px }
     .slide-title2 { font-size: 35px }
     .slide-title3 { font-size: 20px }
-
+    .boxIn { height: 100% }
 
     @media only screen and (max-width:990px){
         .grid-list{ padding-top: 30px }
         #features .container { padding-bottom:0 }
+
     }
 
     @media only screen and (max-width:767px){
@@ -26,7 +27,7 @@
         .slide-title1 { font-size: 27px }
         .slide-title2 { font-size: 25px !important }
         .slide-title3 { font-size: 18px }
-
+        .boxIn { height: unset; }
         .grid-list{ padding-top: 30px }
         #features .container { padding-bottom:0 }
         .join_community { margin-top: 10px; }
@@ -35,6 +36,35 @@
 </style>
 
 <main>
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            function loadInquiry()
+            {
+                $(".req-inquiry-modal").html("<div class='loading'>loading..</div>").load("{{url('load-inquiry-form').param()}}");
+            }
+
+            @if (isset($_GET['inquiry']) && $_GET['inquiry']=='open')
+                $(".req-inquiry").click();
+                loadInquiry();
+            @endif
+
+            $(".req-inquiry").click(function() {
+                loadInquiry();
+            });
+        });
+    </script>
+    <div class="modal fade" id="req-inquiry" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-scrollable minht boxIn" role="document"
+      style="max-width: unset; margin: 10px ;">
+        <div class="modal-content req-inquiry-modal">
+            loading...
+        </div>
+      </div>
+    </div>
+
+
     <section class="section-video light">
         <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-2.jpg')}}">
             <source src="{{url('template/upscale/media/cowork-black.mp4')}}" type="video/mp4">
@@ -69,7 +99,10 @@
                     
                     <!-- <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale, kami ingin request quotation" target="_blank" class="btn btn-circle btn-sm">For Bussiness</a> -->
                     
-                    <a href="#" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px" onClick="Tawk_API.maximize();">
+                    <!-- <a href="#" target="_blank" class="btn btn-circle btn-sm" style="margin-top: 15px" onClick="Tawk_API.maximize();"> -->
+
+                    <a href="#" target="_blank" class="btn btn-circle btn-sm req-inquiry" 
+                    style="margin-top: 15px" data-target="#req-inquiry" data-toggle="modal">
                         Request Quotation
                     </a>
 
@@ -570,24 +603,7 @@
         </div>
     </section>
 
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-            $("#form-inquiry").submit(function()
-            {
-                
-                var name = $(this).find('input[name="name"]').val(); 
-                var phone = $(this).find('input[name="phone"]').val(); 
-                var email = $(this).find('input[name="email"]').val(); 
-                var message = $(this).find('#messagge').val(); 
-                $.post($(this).attr('action'),{name:name,phone:phone,email:email,message:message},function()
-                {
-                    $(".success-box").show();
-                });
-                return false ;
-            }); 
-        });
-    </script>
+    
     <section class="section-base section-color no-padding-bottom section-top-overflow">
         <div class="container">
             <div class="boxed-area">
@@ -638,9 +654,25 @@
         </div>
     </section>
     
-    <script>
+    <script type="text/javascript">
+        
+
         $(document).ready(function()
         {
+            $("#form-inquiry").submit(function()
+            {
+                
+                var name = $(this).find('input[name="name"]').val(); 
+                var phone = $(this).find('input[name="phone"]').val(); 
+                var email = $(this).find('input[name="email"]').val(); 
+                var message = $(this).find('#messagge').val(); 
+                $.post($(this).attr('action'),{name:name,phone:phone,email:email,message:message},function()
+                {
+                    $(".success-box").show();
+                });
+                return false ;
+            }); 
+
             $("#form-complete").submit(function()
             {
                 var name = $(this).find('input[name="name"]').val();

@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/', 'homeController@index')->name('index');
 Route::get('/home', 'homeController@index')->name('home');
 Route::get('/talent-register', 'homeController@apply')->name('talent-register');
+Route::get('/load-inquiry-form', 'homeController@loadInquiry')->name('load-inquiry-form');
 Route::get('/ecosystem', 'homeController@ecosystem')->name('ecosystem');
 Route::get('/dedicated-team', 'homeController@dedicated')->name('dedicated-team');
 Route::get('/headhunter', 'homeController@headhunter')->name('headhunter');

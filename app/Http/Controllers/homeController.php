@@ -185,17 +185,33 @@ class homeController extends Controller
 
     public function sendInquiry(Request $request)
     {
-        // dd($request->all());
+        //dd($request->all());
         // $data['data'] = 'testing'; 
         // Mail::to($data)->send(new progressMail($data));
-        $name = $request->name; 
-        $email = $request->email; 
-        $message = $request->message; 
+        $message = array() ; 
+
+        $jenis_skill = $request->position ; 
+        $message['jenis_talent'] = implode(", ",$jenis_skill);
+
+        foreach ( $request->all() as $k=>$v)
+        {
+            $message[$k]=$v ;
+        }
+
+
+        $name = $request->company_name; 
+        $email = $request->company_name; 
+        $message = $message; 
         $phone = $request->phone ; 
         $to_email = 'sales@upscale.id';
         $subject = 'Contact '.$name.' email '.$email;
-        $message = 'Name '.$name. ", " .$email. ". message: " .$message.". Phone ".$phone;
+        $message = $message ; 
         $headers = 'From: noreply@upscale.id'; //optional
         mail($to_email,$subject,$message,$headers);
+    }
+
+    public function loadInquiry()
+    {
+        return view("front.req_inquiry");
     }
 }

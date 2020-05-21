@@ -504,7 +504,7 @@
 
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="#" 
-                        target="_blank" onClick="Tawk_API.maximize();">Contact Us</a>
+                        target="_blank" onClick="Tawk_API.maximize();">Live Chat</a>
 
                     </div>
                 </div>
