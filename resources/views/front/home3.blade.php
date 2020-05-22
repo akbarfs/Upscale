@@ -100,7 +100,7 @@
                     <p class="slide-title3" style="margin-bottom: 20px">
                     {!!lang(
                         'Hire software developers, designers, product manager, finance or administrative team from our exclusive networks. Our talents are available for both on-site or work remotely from our office.<br /><br />Choose from the Full-time or Freelance contract based on your business need.',
-                        'Hire software developers, designers, product manager, finance, atau administraif team dari eksklusif network kami. Talent kami bisa bekerja secara remote maupun on-site.<br /><br />Kontrak full-time maupun freelance yang disesuaikan dengan kebutuhan bisnis Anda.'
+                        'Hire software developers, designers, product manager, finance, atau administratif team dari eksklusif network kami. Talent kami bisa bekerja secara remote maupun on-site.<br /><br />Kontrak full-time maupun freelance yang disesuaikan dengan kebutuhan bisnis Anda.'
                     )!!}
                     </p>
                         
