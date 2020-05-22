@@ -11,6 +11,9 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Bootcamp;
 use Route ; 
+use App\Mail\progressMail;
+use Illuminate\Support\Facades\Mail;
+
 
 
 class homeController extends Controller
@@ -114,16 +117,16 @@ class homeController extends Controller
 
     public function filter(Request $request)
     {
-    	$categories = Category::all();
+        $categories = Category::all();
         $locations  = Location::all();
         $bootcamps  = Bootcamp::all(); 
         
-    	$cat = $request->input('cat');
-    	$loc= $request->input('loc');
+        $cat = $request->input('cat');
+        $loc= $request->input('loc');
         $type= $request->input('type');
-    	$job = Job::all();
+        $job = Job::all();
         $jobca = Jobca::all();
-    	$jobs = Job::whereHas('jobca', function($q) use($cat)
+        $jobs = Job::whereHas('jobca', function($q) use($cat)
         {
             return $q->where('jobca_category_id', $cat);
         })
@@ -134,7 +137,7 @@ class homeController extends Controller
         ->orWhere('jobs_type_time', $type)->paginate(10);
         
 
-    	return view('home', compact('jobs','categories', 'locations', 'bootcamps'));
+        return view('home', compact('jobs','categories', 'locations', 'bootcamps'));
     }
 
     public function detail($id)
@@ -178,5 +181,41 @@ class homeController extends Controller
     public function startProject()
     {
         return view('front.project');
+    }
+
+    public function sendInquiry(Request $request)
+    {
+        //dd($request->all());
+        // $data['data'] = 'testing'; 
+        // Mail::to($data)->send(new progressMail($data));
+        $message = array() ; 
+
+        $jenis_skill = $request->position ; 
+        $message = implode(", ",$jenis_skill);
+        $message = "Position : ".$message."\r\n\r\n";
+        foreach ( $request->all() as $k=>$v)
+        {
+            if ( !is_array($v))
+            {
+                $message = $message."".$k." : ".$v."\r\n\r\n" ;
+            }
+            
+        }
+
+
+        $name = $request->company_name; 
+        $email = $request->company_name; 
+        $message = $message; 
+        $phone = $request->phone ; 
+        $to_email = 'sales@upscale.id';
+        $subject = 'Contact '.$name.' email '.$email;
+        $message = $message ; 
+        $headers = 'From: noreply@upscale.id'; //optional
+        mail($to_email,$subject,$message,$headers);
+    }
+
+    public function loadInquiry()
+    {
+        return view("front.req_inquiry");
     }
 }
