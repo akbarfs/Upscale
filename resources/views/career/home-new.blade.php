@@ -33,10 +33,13 @@
             <hr class="space-lg" />
 
             <h2 align="center">
-                Join Now , choose your Expertise !
+                {{lang('Join Now and Build Your Career!','Join Now , choose your Expertise !')}}
             </h2>
             <p class="align-center width-650">
-                Bergabung dengan eksklusif network kami. Kembangkan Karir, Skill & Network kamu bersama Upscale. Kami secara aktif akan mencarikan kamu peluang yang lebih baik
+                {!!lang(
+					'Join our exclusive networks and scale up your skill and career with UpScale. We will actively find your best-matched opportunities for you.',
+					'Bergabung dengan eksklusif network kami. Kembangkan Karir, Skill & Network kamu bersama Upscale. Kami secara aktif akan mencarikan kamu peluang yang lebih baik'
+				)!!}
             </p>
 			
 			<hr class="space-sm" />
