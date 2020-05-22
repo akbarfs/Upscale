@@ -176,16 +176,30 @@
         <form id="forminquiry" method="post" action="{{url('/submit-request-inquiry')}}" name="fif">
             <div class="wrap-inquiry">
 
-                <div style="text-align: justify;" class="infoinquiry">
-                    {{lang(
+                <div style="text-align: justify;" class="infoinquiry"> </div>
+
+
+                <div class="question_box show_box">
+
+                    <div class="judulqb" style="text-align: justify; font-weight: 100">
+                        {{lang(
                             
                             'Thanks for your interest in hiring through UpScale. Before we get started, we’d like to ask a few questions to better understand your business needs.',
 
                             'Terimakasih sudah tertarik untuk melakukan hiring talent melalui upscale ! sebelum kita mulai, kami ingin mengajukan beberapa pertanyaan agar dapat lebih memahami kebutuhan bisnis anda.'
 
                             )}}
+                    </div>
+                    <div style="margin-top: 10px">
+                        <a class="btn btn-primary next-inquiry" style="color: #fff;float: right;"
+                        onClick="lanjut()">
+                            Next
+                        </a>
+                    </div>
+
                 </div>
-                <div class="question_box show_box">
+
+                <div class="question_box">
 
                     <div class="judulqb">
                         {{lang(
@@ -534,7 +548,7 @@
                     <label>
                         <div class="option_cat">
                             <div class="checkbox">
-                                <input type="radio" class="jumlah_talent" name="jumlah_talent"
+                                <input type="radio" class="jumlah_talent radionext" name="jumlah_talent"
                                 value="1 talent"> 
                             </div>
                             <div class="op-desc">

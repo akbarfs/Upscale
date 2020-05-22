@@ -350,7 +350,7 @@
                     </table>
                 </div>
                 <div class="col-lg-3">
-                    <a href="{{url('/jobs')}}" class="btn btn-sm full-width btn-circle">Apply now</a>
+                    <a href="{{url('/jobs').param()}}" class="btn btn-sm full-width btn-circle">Apply now</a>
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
@@ -545,7 +545,7 @@
 
             <div style=" text-align:center; background: #fff;height: 300px;position: relative;width: 100%;margin-top: -300px; background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,1) 53%, rgba(255,255,255,0) 100%);">
             
-                <div><a href="{{url('jobs')}}" class="btn btn-sm btn-circle full-width" style="margin-top: 150px;width: 300px;">Show All Opportunities</a> </div> 
+                <div><a href="{{url('jobs').param()}}" class="btn btn-sm btn-circle full-width" style="margin-top: 150px;width: 300px;">Show All Opportunities</a> </div> 
 
             </div>
 
