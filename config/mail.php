@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.erporate.com'),
+    'host' => env('MAIL_HOST', 'mail.upscale.id'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hrd@erporate.com'),
-        'name' => env('MAIL_FROM_NAME', 'HRD - Career Erporate'),
+        'address' => env('MAIL_FROM_ADDRESS', 'sales@upscale.id'),
+        'name' => env('MAIL_FROM_NAME', 'Upscale Sales'),
     ],
 
     /*

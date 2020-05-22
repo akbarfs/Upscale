@@ -501,7 +501,7 @@
 
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="#" 
-                        target="_blank" onClick="Tawk_API.maximize();">Contact Us</a>
+                        target="_blank" onClick="Tawk_API.maximize();">Live Chat</a>
 
                     </div>
                 </div>
@@ -514,7 +514,7 @@
     @yield('content')
     <!-- <i class="scroll-top-btn scroll-top show"></i> -->
     <footer id="footer-bottom" class="footer light">
-        <div class="container" style="padding-top: 180px">
+        <div class="container footerpadding">
             <div class="row">
                 <div class="col-lg-6">
                     <h4>UpScale</h4>
