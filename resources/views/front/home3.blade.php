@@ -130,7 +130,7 @@
                             <div class="caption">
                                 <h2>Dedicated Team</h2>
                                 <p>
-                                    {{lang('Hire a talented team to help scale up your business.','Hire talent sebagai karyawan outsource.')}}
+                                    {{lang('Hire an outsource talented team to help scale up your business.','Hire talent sebagai karyawan outsource.')}}
                                 </p>
                             </div>
                         </div>
@@ -178,27 +178,21 @@
             <ul class="slider" data-options="type:carousel,arrows:false,nav:false,perView:5,perViewMd:3,perViewXs:2,gap:80">
                 <li  class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-1.png')}}" alt=""  />
-                    <span class="tooltiptext">Our member experience</span>
                 </li>
                 <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-2.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
                 </li>
                 <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-3.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
                 </li>
                 <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-4.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
                 </li>
                 <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-5.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
                 </li>
                 <li class="tooltipx">
                     <img src="{{url('template/upscale/media/logos/white/logo-6.png')}}" alt="" />
-                    <span class="tooltiptext">Our member experience</span>
                 </li>
             </ul>
         </div>
@@ -641,7 +635,7 @@
 
                             <hr class="space-sm">
                             <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531<br>
-                            <img src="{{url('template/upscale/media/en.png')}}"/> +61 3 9010 6067
+                            <img src="{{url('template/upscale/media/au.png')}}"/> +61 3 9010 6067
                         </div>
                         <hr class="space-sm">
                     </div>
