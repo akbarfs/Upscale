@@ -298,8 +298,14 @@
                                 value="new idea"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">New idea or project</div>
-                                <div class="op-dd">Build new startup, new product, new business</div>
+                                <div class="op-title">
+                                    {{lang('New idea or project','Ide atau Project Baru')}}
+                                </div>
+                                <div class="op-dd">
+                                    {{lang('Build new startup, new product, new business',
+                                            'Membangung bisnis startup, product baru, bisnis baru')}}
+                                    
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -312,8 +318,13 @@
                                 value="Existing project need more resource"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Existing project that needs more resources</div>
-                                <div class="op-dd">If your business already running and need more development</div>
+                                <div class="op-title">
+                                    {{lang('Existing project that needs more resources','Project berjalan, membutuhkan talant tambahan')}}
+                                </div>
+                                <div class="op-dd">
+                                    {{lang('If your business already running and need more development'
+                                    ,'project yang sedang berjalan dan membutuhkan pengembangan lebih lanjut')}}
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -326,8 +337,13 @@
                                 value="Ongoing assistance or consultation"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Ongoing assistance or consultation</div>
-                                <div class="op-dd">If you need a someone to helping you as consultant or coach</div>
+                                <div class="op-title">
+                                    {{lang('Ongoing assistance or consultation','Coach atau konsultan')}}
+                                </div>
+                                <div class="op-dd">
+                                    {{lang('If you need a someone to helping you as consultant or coach'
+                                    ,'apabila anda membutuhkan seseorang yang membantu anda sebagai konsultan atau coach')}}
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -340,8 +356,12 @@
                                 value="None of the above"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">None of the above</div>
-                                <div class="op-dd">I'm just looking to learn more about Upscale</div>
+                                <div class="op-title">
+                                    {{lang('None of the above','tidak ada dalam pilihan diatas')}}
+                                </div>
+                                <div class="op-dd">
+                                    {{lang("I'm just looking to learn more about Upscale","saya hanya sedang mempelajari tentang Upscale")}}
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -402,7 +422,7 @@
                                 value="kurang dari 1 bulan"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">kurang dari 1 bulan</div>
+                                <div class="op-title">{{lang('less than 1 month','kurang dari 1 bulan')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -415,7 +435,8 @@
                                 value="1 sampai 6 bulan"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">1 sampai 6 bulan</div>
+                                <div class="op-title">
+                                    {{lang('1 - 6 months','1 sampai 6 bulan')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -428,7 +449,7 @@
                                 value="6 sampai 12 bulan"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">6 sampai 12 bulan</div>
+                                <div class="op-title">{{lang('6 - 12 months','6 sampai 12 bulan')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -441,7 +462,7 @@
                                 value="lebih dari 1 tahun"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">lebih dari 1 tahun</div>
+                                <div class="op-title">{{lang('more than 1 months','lebih dari 1 tahun')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -454,7 +475,9 @@
                                 value="Saya belum menentukan"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Saya belum menentukan</div>
+                                <div class="op-title">
+                                    {{lang("I'll decide later","Saya akan tentukan nanti")}}
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -515,7 +538,7 @@
                                 value="1 talent"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">1 talent </div>
+                                <div class="op-title">{{lang('1 talent','1 talent')}} </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -528,7 +551,8 @@
                                 value="lebih dari 1 talent dalam 1 divisi"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">lebih dari 1 talent dalam 1 divisi</div>
+                                <div class="op-title">
+                                    {{lang('more than 1 talent in 1 division','lebih dari 1 talent dalam 1 divisi')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -542,7 +566,10 @@
                             </div>
                             <div class="op-desc">
                                 <div class="op-title">
-                                    {{lang('A cross-functional team (developers, designers, project managers)','berbagai divisi (developer, designer, project manager')}}
+                                    {{lang('A cross-functional team','berbagai divisi')}}
+                                </div>
+                                <div class="op-dd">
+                                    developer, designer, project manager'
                                 </div>
                             </div>
                             <div style="clear: both;"></div>
@@ -556,7 +583,7 @@
                                 value="Belum menentukan"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Belum menentukan</div>
+                                <div class="op-title">{{lang("i'll decide later",'Belum menentukan')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -617,7 +644,12 @@
                                 value="Full time (40 or more hrs/week)"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Full time (40 or more hrs/week)</div>
+                                <div class="op-title">
+                                    {{lang('Full time','Full time')}}
+                                </div>
+                                <div class="op-dd">
+                                    {{lang('40 or more hrs/week','40 atau lebih jam/minggu')}}
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -630,7 +662,12 @@
                                 value="Part time (Less than 40 hrs/week)"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Part time (Less than 40 hrs/week)</div>
+                                <div class="op-title">
+                                    {{lang('Part time','Part Time')}}
+                                </div>
+                                <div class="op-dd">
+                                    {{lang('Less than 40 hrs/week','kurang dari 40 jam/minggu')}}
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -750,7 +787,7 @@
 
                             <div style="clear: both;"></div>
                             <div style="padding: 15px">
-                                Silahkan ketik atau bisa memilih dari opsi yang tersedia
+                                {{lang('Please type or can choose from the available options','Silahkan ketik atau bisa memilih dari opsi yang tersedia')}}
                             </div>
                         </div>
                     </div>
@@ -786,7 +823,7 @@
                                 value="less than 10"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Less than 10</div>
+                                <div class="op-title">{{lang('Less than 10','kurang dari 10')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -838,7 +875,7 @@
                                 value="More than 1000"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">More than 1000</div>
+                                <div class="op-title">{{lang('More than 1000','kurang dari 1000')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -899,7 +936,7 @@
                                 value="Immediately"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Immediately</div>
+                                <div class="op-title">{{lang('Immediately','secepatnya')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -912,7 +949,7 @@
                                 value="In 1 to 2 weeks"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">In 1 to 2 weeks</div>
+                                <div class="op-title">{{lang('In 1 to 2 weeks','1 sampai 2 minggu kedepan')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -925,7 +962,7 @@
                                 value="More than 2 weeks from now"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">More than 2 weeks from now</div>
+                                <div class="op-title">{{lang('More than 2 weeks from now','lebih dari 2 minggu dari sekarang')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -938,7 +975,9 @@
                                 value="I'll decide later"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">I'll decide later</div>
+                                <div class="op-title">
+                                    {{lang("I'll decide later","Akan saya tentukan nanti")}}
+                                </div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -999,7 +1038,7 @@
                                 value="yes"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">Yes</div>
+                                <div class="op-title">{{lang('Yes','Ya')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -1012,7 +1051,7 @@
                                 value="no"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">No</div>
+                                <div class="op-title">{{lang('No','Tidak')}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -1025,7 +1064,7 @@
                                 value="not sure"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">I’m not sure</div>
+                                <div class="op-title">{{lang("I’m not sure","saya tidak yakin")}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
@@ -1108,7 +1147,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4">
-                                    Company Name / website
+                                    {{lang('Company Name / website','Nama perusahaan / website')}}
                                 </div>
                                 <div class="col-md-8 col-sm-12">
                                     <input type="text" class="form-control" name="company_name">
@@ -1120,7 +1159,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4">
-                                    Company Email
+                                    {{lang('Company Email','Email')}}
                                 </div>
                                 <div class="col-md-8 col-sm-12">
                                     <input type="text" class="form-control" name="company_email">
@@ -1132,7 +1171,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4">
-                                    Phone Number
+                                    {{lang('Phone Number','No Telephone')}}
                                 </div>
                                 <div class="col-md-8 col-sm-12">
                                     <input type="text" class="form-control" name="company_number">
@@ -1141,7 +1180,7 @@
                         </div>
 
                         <div>
-                            By completing signup, you are agreeing to Upscale's Terms of Service, Privacy Policy, and Cookie Policy.
+                            {{lang("By completing signup, you are agreeing to be Upscale's partnership so we can keep inform you about our talent","dengan submit form ini, anda setuju untuk menjadi partnership Upscale sehingga kami dapat mengirimkan informasi seputar talent yang kami tawarkan")}}
                         </div>
                     
                     </div>
@@ -1186,13 +1225,18 @@
                     <div class="judulqb"> Let’s get started! </div>
 
                     <div style="margin-bottom: 20px">
-                        A Upscale talent specialist will call you to discuss the scope of your project, talent preferences (e.g. required skills, rate, time zone), and determine your job specifications. Then we’ll find and send you the best matches for your job from our expert-vetted talent network. After the interview, make a contract, Pay only when found the talent.
+                        {{lang(
+                                "A Upscale talent specialist will call you to discuss the scope of your project, talent preferences (e.g. required skills, rate, time zone), and determine your job specifications. Then we’ll find and send you the best matches for your job from our expert-vetted talent network. After the interview, make a contract, Pay only when found the talent.",
+                                'Spesialis Talent kami akan segera menghubungi anda untuk mendiskusikan ruang lingkup project, referensi talent dan deskripsi pekerjaan. Kemudian kami akan menemukan dan mengirimkan Anda talent yang paling cocok untuk pekerjaan Anda dari jaringan talenta eklusif kami. Setelah interview, menentukan yang paling cocok lalu membuat kontrak, Bayar hanya ketika anda menemukan talent yang cocok.'
+                        )}}
                     </div>     
 
                    
                     <div>
                         
-                        <div class="judulqb"> Kapan anda ingin dihubungi ?</div>
+                        <div class="judulqb"> 
+                            {{lang('When would you like to connect?','Kapan anda ingin dihubungi ?')}}
+                        </div>
 
                         <label>
                             <div class="option_cat">
@@ -1200,7 +1244,7 @@
                                     <input type="radio" name="call_when" class="call" value="call_now" checked="checked"> 
                                 </div>
                                 <div class="op-desc">
-                                    <div class="op-title">Sekarang</div>
+                                    <div class="op-title">{{lang('Now','Sekarang')}}</div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>
@@ -1212,7 +1256,7 @@
                                     <input type="radio" name="call_when" class="call" value="call_leter"> 
                                 </div>
                                 <div class="op-desc">
-                                    <div class="op-title">Lain Waktu</div>
+                                    <div class="op-title">{{lang('Later','Lain Waktu')}}</div>
                                 </div>
                                 <div style="clear: both;"></div>
                             </div>
@@ -1238,7 +1282,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        Pilih Tanggal 
+                                        {{lang('Choose Date','Pilih Tanggal')}} 
                                     </div>
                                     <div class="col-md-8 col-sm-12">
                                         <?php 
@@ -1268,7 +1312,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        Pilih Jam 
+                                        {{lang('choose time','Pilih Jam')}} 
                                     </div>
                                     <div class="col-md-8 col-sm-12">
                                         <select class="call_jam custom-select" name="call_jam">
