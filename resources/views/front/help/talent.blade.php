@@ -38,13 +38,13 @@
                         Scaling Up Your Skill & Networks.
                     </h1>
                     
-                    Bergabung dan dapatkan banyak manfaat di ecosystem kami
+                    Join and get the following benefits:
                     <ul class="desc-list-talent" style="padding-top: 15px">
-                        <li>Get Jobs / Project </li>
-                        <li>Get Exponensial Opportunity</li>
+                        <li>Land on your Dream Jobs and Project</li>
+                        <li>Exponential Opportunity</li>
                         <li>Constructive Community</li>
-                        <li>Access to Coworking Space</li>
-                        <li>Access to Education Class</li>
+                        <li>Access to Our Coworking Space Network</li>
+                        <li>Access to Our Education Class Network</li>
                     </ul>
                         
                 </div>
@@ -73,31 +73,31 @@
                     <div class="cnt-box cnt-box-side-icon">
                         <i class="lnr lnr-heart"></i>
                         <div class="caption">
-                            <h2>Get the dream jobs</h2>
+                            <h2>Get the Dream Jobs</h2>
                             <p>
-                                Membantu talent mendapatkan karir yang sesuai
+                            Helps talent to get the best-matched company and career.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-side-icon">
-                        <i class="lnr lnr-user"></i>
+                        <i class="lnr lnr-rocket"></i>
                         <div class="caption">
-                            <h2>Help improve skill</h2>
+                            <h2>Skill Improvement</h2>
                             <p>
-                                Mendapat akses kelas yang sedang berjalan secara gratis
+                                FREE access to our educational classes.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-side-icon">
-                        <i class="lnr lnr-users"></i>
+                        <i class="lnr lnr-list"></i>
                         <div class="caption">
-                            <h2>Ensure Rights</h2>
+                            <h2>Know your Rights</h2>
                             <p>
-                                Membantu talent untuk mendapatkan hak yang dijanjikan 
+                            Helps talent to get their rights based on company rules and regulation.
                             </p>
                         </div>
                     </div>
@@ -113,8 +113,11 @@
                 <div class="col-lg-6">
                     <h1>Join Our Community</h1>
                     <p>
-                        Visi kami adalah membangun ecosystem yang dapat mendukung semua pelaku industri, baik talent, perusahaan, universitas, 
-                        komunitas dan semua pihak lain yang dapat mendukung visi kami. Ayo bergabung untuk meningkatkan kualitas industri indonesia
+                        {{lang(
+                            'Our vision is to build an ecosystem that will helps all of business, talent, company, universities, and community. Let\'s join our community to boost the international creative industry.',
+                            'Visi kami adalah membangun ecosystem yang dapat mendukung semua pelaku industri, baik talent, perusahaan, universitas, 
+                        komunitas dan semua pihak lain yang dapat mendukung visi kami. Ayo bergabung untuk meningkatkan kualitas industri indonesia'
+                        )}}
                     </p>
                     
                     <a href="#" class="btn btn-circle btn-border btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin-top: 20px">
@@ -157,23 +160,32 @@
                         Share & Learn
                     </h2>
                     <p>
-                        Dengan bergabung dengan upscale, talent mendapatkan akses platform edukasi yang kami kembangkan, baik sebagai mentor maupun sebagai siswa.
+                        {{lang(
+                            'By joining UpScale, talent will have access to our education platform (on progress) as a mentor or as a student.',
+                            'Dengan bergabung dengan upscale, talent mendapatkan akses platform edukasi yang kami kembangkan, baik sebagai mentor maupun sebagai siswa.'
+                        )}}
                     </p>
                 </div>
                 <div class="col-lg-4">
                     <h2>
-                        Expand Network
+                        Expand Your Network
                     </h2>
                     <p>
-                        Perluas pertemananmu diberbagai bidang kemampuan dan diberbagai regional. Ikuti event-event khusus upscale yang akan dilakukan berkala. 
+                        {{lang(
+                            'Expand your network on the multi-talent community and join our periodic dedicated event just for UpScale member.',
+                            'Perluas pertemananmu diberbagai bidang kemampuan dan diberbagai regional. Ikuti event-event khusus upscale yang akan dilakukan berkala.'
+                        )}}
                     </p>
                 </div>
                 <div class="col-lg-4">
                     <h2>
-                        Get jobs & Make Money
+                        Get Hired & Make Money
                     </h2>
                     <p>
-                        Mulai bangun pipeline karirmu dengan Upscale. Daftarkan diri anda, lengkapi profile, ikuti assessment & dapatkan karir / pekerjaan yang sesuai harapan anda.
+                        {{lang(
+                            'Start planning your career path with UpScale. Complete your profile, join our internal assessment and land on your dream job.',
+                            'Mulai bangun pipeline karirmu dengan Upscale. Daftarkan diri anda, lengkapi profile, ikuti assessment & dapatkan karir / pekerjaan yang sesuai harapan anda.'
+                        )}}
                     </p>
                 </div>
             </div>
@@ -189,9 +201,10 @@
                 .talent { margin-top: 20px }
             </style>
 
+
             <div class="row">
                 <div class="col-lg-12" align="center">
-                    <h2>Dapatkan opportunity dan jadilah seperti mereka.</h2>
+                    <h2>{{lang('Get your opportunity and be like them.','Dapatkan opportunity dan jadilah seperti mereka.')}}</h2>
                 </div>
             </div>
             <hr class="space-sm" />
@@ -203,9 +216,13 @@
                             <h2 style="margin-bottom: 0">Arief Widyananda</h2>
                             <div class="extra-field">Managing Director Krafthaus</div>
                             <p>
-                                Berawal dari tahun 2011 sebagai 
+                                {!!lang(
+                                    'Starts from 2011 as a remote software developer, Arief is now working as Managing Director at Krafthaus, an Australian Digital Agency in Yogyakarta. Start with 3 people, this company now scaling up to 30 team members.',
+                                    'Berawal dari tahun 2011 sebagai 
                                 <b style="color: #4ab5e6; text-decoration: underline;">remote programer</b>, 
-                                tahun 2012 dipercaya menjadi Managing Director Krafthaus, Digital Agency dari Australia cabang Yogyakarta, semula hanya 3 orang team, kini jumlah team lebih dari 30 orang.
+                                tahun 2012 dipercaya menjadi Managing Director Krafthaus, Digital Agency dari Australia cabang Yogyakarta, semula hanya 3 orang team, kini jumlah team lebih dari 30 orang.'
+                                )!!}
+                                
                             </p>
                         </div>
                     </div>
@@ -217,8 +234,12 @@
                             <h2 style="margin-bottom: 0">Fakhrus Syakirin Ramadhan</h2>
                             <div class="extra-field">Founder Pola Kreatif</div>
                             <p>
-                               Berawal dari tahun 2014 sebagai <b style="color: #4ab5e6; text-decoration: underline;">freelance UI UX</b>.
-                                berlanjut ke <b style="color: #4ab5e6; text-decoration: underline;">fulltime programmer IOS & Android </b>, setelah memiliki skill, pengalaman dan network dari ecosystem kami, tahun 2019 berhasil menjalankan agency sendiri, Pola Kreatif
+                                {!!lang(
+                                    'Starts from 2014 as freelance UI/UX, and continue the career as full-time Mobile Developer, after got the skill, experience, and network from our ecosystem, he started his agency, Pola Kreatif in 2019.',
+                                    'Berawal dari tahun 2014 sebagai <b style="color: #4ab5e6; text-decoration: underline;">freelance UI UX</b>.
+                                berlanjut ke <b style="color: #4ab5e6; text-decoration: underline;">fulltime programmer IOS & Android </b>, setelah memiliki skill, pengalaman dan network dari ecosystem kami, tahun 2019 berhasil menjalankan agency sendiri, Pola Kreatif'
+                                )!!}
+                                
                             </p>
                         </div>
                     </div>
@@ -239,6 +260,7 @@
                 </div> -->
             </div>
 
+            @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
             <hr class="space-lg" />
             <h2 class="align-center">Our Partnership in many regional</h2>
             <p class="align-center width-650">
@@ -264,10 +286,7 @@
                     </ul>
                 </div>
             </div>
-
-
-            
-
+            @endif
 
             <hr class="space" />
 

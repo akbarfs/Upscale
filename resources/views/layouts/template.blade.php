@@ -25,10 +25,58 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <!-- Start of HubSpot Embed Code -->
+     <!--  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7727872.js"></script> -->
+    <!-- End of HubSpot Embed Code -->
+
     @yield('top-asset')
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167086272-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-167086272-1');
+    </script>
+
+    <!-- Hotjar Tracking Code for www.upscale.id -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:1817737,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
 
 </head>
 <body>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5ebfe22d967ae56c521a60eb/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+
+        //Example
+
+        // Tawk_API.onLoad = function(){
+        //     Tawk_API.maximize();
+        // };
+
+    </script>
+    <!--End of Tawk.to Script-->
+
     
     <style>
 
@@ -38,10 +86,12 @@
             background: #add2ec !important;
         }
 
+        .modal { z-index: 100000000000 !important ; }
+
 
         .minht {min-height: 550px;}
-        @media only screen and (max-width:990px){
-        
+        @media only screen and (max-width:1200px){
+            .m { display: none !important }
         }
 
         @media only screen and (max-width:767px){
@@ -343,10 +393,14 @@
             <div class="menu-cnt">
                 <ul>
                     <li> <a href="{{url('').param()}}">Home</a></li>
-                    <li> <a href="{{url('help-business').param()}}">For Bussiness</a></li>
+                    <li> <a href="{{url('help-business').param()}}">For Business</a></li>
                     <li> <a href="{{url('help-talent').param()}}">For Talent</a></li>
-                    <li> <a href="{{url('jobs').param()}}">Jobs</a></li>
-                    <li> <a href="{{url('faq').param()}}">F.A.Q</a></li>
+
+                    @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
+                        <li class="m"> <a href="{{url('jobs')}}">Jobs</a></li>
+                        <li class="m"> <a href="{{url('faq').param()}}">F.A.Q</a></li>
+                    @endif
+                    <!-- <li> <a href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale">Contact Us</a></li> -->
                     <!-- <li class="dropdown">
                         <a href="{{url('/')}}">Service</a>
                         <ul>
@@ -420,30 +474,37 @@
                 </ul>
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
+                    
                     <ul class="lan-menu">
                         <li class="dropdown">
-                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'id')
-                                <a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID </a>
-                            @else
+                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
                                 <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN </a>
+                            @else
+                                <a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID </a>
                             @endif
 
                             <ul>
-                                <li><a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN</a></li>
                                 <li><a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID</a></li>
+                                
+                                <li><a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN</a></li>
+                                
                             </ul>
                         </li>
                     </ul>
                     <div class="menu-custom-area">
 
-                        @if(!Session::has('login'))
-                            <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()">Login</a>
-                        @else
-                            <!-- <a class="btn btn-login btn-xs light" href="{{url('talent/dashboard')}}">Dashboard</a> -->
-                            <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                        @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
+                            @if(!Session::has('login'))
+                                <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                            @else
+                                
+                                <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                            @endif
                         @endif
+
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
-                        <a class="btn btn-border btn-xs btn-circle light" href="https://api.whatsapp.com/send?phone=6287888666531&text=Hi Upscale" target="_blank">Contact Us</a>
+                        <a class="btn btn-border btn-xs btn-circle light" href="#" 
+                        target="_blank" onClick="Tawk_API.maximize();">Live Chat</a>
 
                     </div>
                 </div>
@@ -454,64 +515,52 @@
         </div>
     </nav>
     @yield('content')
-    <i class="scroll-top-btn scroll-top show"></i>
+    <!-- <i class="scroll-top-btn scroll-top show"></i> -->
     <footer id="footer-bottom" class="footer light">
-        <div class="container" style="padding-top: 180px">
+        <div class="container footerpadding">
             <div class="row">
+                <div class="col-lg-6">
+                    <h4>UpScale</h4>
+                    <hr class="space-sm" />
+                    <table class='table table-borderless table-sm light'>
+                        <tr>
+                            <td width='100'><b>Location</b></td>
+                            <td>Jln. Ringroad Utara No 34 Maguwoharjo Yogyakarta, Indonesia</td>
+                        </tr>
+                        <tr>
+                            <td><b>Phone</b></td>
+                            <td>
+                                <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531
+                                &nbsp
+                                <img src="{{url('template/upscale/media/en.png')}}"/> +61 3 9010 6067
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Email</b></td>
+                            <td>sales@upscale.id</td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="col-lg-3">
-                    <h4>Our Service</h4>
+                    
+                </div>
+                <div class="col-lg-3">
+                    <h4>For Talent</h4>
                     <div class="menu-inner menu-inner-vertical">
                         <ul>
                             <li>
-                                <a href="#">Dedicated Team</a>
+                                <a href="{{url('help-talent')}}">Why Join as Talent?</a>
                             </li>
-                            <li>
-                                <a href="#">Head Hunter</a>
-                            </li>
-                            <li>
-                                <a href="#">Project base</a>
-                            </li>
+                            <li> <a href="{{url('jobs')}}">Job Opportunities</a> </li>
+                            <li> <a class="join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal">Register as Talent</a> </li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <h4>Who We Help</h4>
-                    <div class="menu-inner menu-inner-vertical">
-                        <ul>
-                            <li>
-                                <a href="{{url('help-business')}}">Bussiness</a>
-                            </li>
-                            <li>
-                                <a href="{{url('help-talent')}}">Talent</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <h4>Other</h4>
-                    <div class="menu-inner menu-inner-vertical">
-                        <ul>
-                            <!-- <li> <a href="#">About Us</a> </li> -->
-                            <li> <a href="{{url('faq')}}">F.A.Q</a> </li>
-                            <li> <a href="#">Login / Register</a> </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <h4>Follow us</h4>
-                    <div class="icon-links icon-social icon-links-grid social-colors">
-                        <a class="facebook"><i class="icon-facebook"></i></a>
-                        <a class="twitter"><i class="icon-twitter"></i></a>
-                        <a class="linkedin"><i class="icon-linkedin"></i></a>
-                        <a class="youtube"><i class="icon-youtube"></i></a>
-                        <a class="instagram"><i class="icon-instagram"></i></a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer-bar">
             <div class="container">
-                <span>© Upscale LTD 2020. </span>
+                <span>© UpScale 2020. Member of PT Talenta Sinergi Group</span>
                 <span><img src="{{url('template/upscale/media/logo-transparent.png')}}" alt="" /></span>
             </div>
         </div>
