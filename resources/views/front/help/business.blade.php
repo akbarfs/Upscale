@@ -7,6 +7,7 @@
 <style>
     
     #start-hiring { margin-top: 15px }
+    /*.footerpadding {padding-top: 180px !important}*/
     @media only screen and (max-width:990px){
         
     }
@@ -358,8 +359,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
         </div>
     </section>
 
-    <section class="section-base section-color no-padding-bottom section-top-overflow">
-        <div class="container">
+    <section class="section-base section-color">
+        <div class="container" style="padding-top: 0">
             <div class="boxed-area">
                 <div class="row">
                     <div class="col-lg-8">
