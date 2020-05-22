@@ -319,7 +319,7 @@
                             </div>
                             <div class="op-desc">
                                 <div class="op-title">
-                                    {{lang('Existing project that needs more resources','Project berjalan, membutuhkan talant tambahan')}}
+                                    {{lang('Existing project that needs more resources','Project berjalan, membutuhkan talent tambahan')}}
                                 </div>
                                 <div class="op-dd">
                                     {{lang('If your business already running and need more development'
@@ -569,7 +569,7 @@
                                     {{lang('A cross-functional team','berbagai divisi')}}
                                 </div>
                                 <div class="op-dd">
-                                    developer, designer, project manager'
+                                    developer, designer, project manager
                                 </div>
                             </div>
                             <div style="clear: both;"></div>
@@ -682,7 +682,7 @@
                             </div>
                             <div class="op-desc">
                                 <div class="op-title">
-                                    {{lang("Hourly","perjam")}}
+                                    {{lang("Hourly","Perjam")}}
                                 </div>
                             </div>
                             <div style="clear: both;"></div>
@@ -696,7 +696,7 @@
                                 value="belum menentukan"> 
                             </div>
                             <div class="op-desc">
-                                <div class="op-title">{{lang("I'll decide later","belum menentukan")}}</div>
+                                <div class="op-title">{{lang("I'll decide later","Belum menentukan")}}</div>
                             </div>
                             <div style="clear: both;"></div>
                         </div>
