@@ -57,7 +57,7 @@
 <body>
 
 
-    @if ( $_GET['lang'] == 'id')
+    @if ( isset($_GET['lang']) && $_GET['lang'] == 'id')
     <!--Start of Tawk.to Script-->
 
     <!-- widget indonesia -->
