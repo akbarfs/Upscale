@@ -57,9 +57,24 @@
 <body>
 
 
-    @if ( isset($_GET['lang']) && $_GET['lang'] == 'id')
-    <!--Start of Tawk.to Script-->
+    @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
+    
+    <!--Start of Tawk.to Script - ENGLISH -->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5ec74952c75cbf1769ee460a/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
+    @else
+    
     <!-- widget indonesia -->
     <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -79,20 +94,7 @@
         // };
 
     </script>
-    @else
-    <!--Start of Tawk.to Script - ENGLISH -->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/5ec74952c75cbf1769ee460a/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
+
     @endif
     <!--End of Tawk.to Script-->
 
