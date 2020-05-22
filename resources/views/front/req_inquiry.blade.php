@@ -1297,7 +1297,9 @@
                                         ?>
                                         <select class="call_date custom-select" name="call_date">
                                             <option value="">-select-</option>
-                                            <option value="<?php echo $satu ?>">Besok</option>
+                                            <option value="<?php echo $satu ?>">
+                                                {{lang('tomorrow','Besok')}}
+                                            </option>
                                             <option value="<?php echo $dua ?>"><?php echo $dua ?></option>
                                             <option value="<?php echo $tiga ?>"><?php echo $tiga ?></option>
                                             <option value="<?php echo $empat ?>"><?php echo $empat ?></option>
