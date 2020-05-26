@@ -92,7 +92,7 @@
                             
                             'Just focus on scaling your business and let us do the "Talent" things.',
 
-                            'Kami membantu mengerjakan semua urusan "talent", agar anda dapat fokus pada pengembangan bisnis.'
+                            'Kami membantu meng-handle semua urusan "talent", agar anda dapat fokus pada pengembangan bisnis.'
 
                         )!!}
                     </h2>
