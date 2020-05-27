@@ -13,7 +13,8 @@ use App\Models\Bootcamp;
 use Route ; 
 use App\Mail\progressMail;
 use Illuminate\Support\Facades\Mail;
-
+use App\CrmCompany ;
+use App\CrmCompanyEmail ;
 
 
 class homeController extends Controller
@@ -41,9 +42,25 @@ class homeController extends Controller
         $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
         var_dump($arrayResponse); 
     }
-    public function index()
+    public function index(Request $request)
     {
         $categories = "";
+
+        //check email 
+        if ( isset($request->email) )
+        {
+            $email = CrmCompanyEmail::where('email_name',$request->email);
+            if ($email->count())
+            {
+                //update email 
+                $email = $email->first() ; 
+                $email->email_validation = 1; 
+                $email->email_last_response = date("Y-m-d H:i:s"); 
+                $email->email_last_req_inquiry = date("Y-m-d H:i:s"); 
+                $email->email_last_source = "email ".$request->utm_content;
+                $email->save() ;  
+            }
+        }
 
         // return view('homebase', compact('categories'));
         return view('front.home3');
@@ -216,6 +233,7 @@ class homeController extends Controller
 
     public function loadInquiry()
     {
+
         return view("front.req_inquiry");
     }
 }
