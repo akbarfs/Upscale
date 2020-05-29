@@ -42,6 +42,31 @@ class homeController extends Controller
         $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
         var_dump($arrayResponse); 
     }
+
+    function track(Request $request)
+    {
+        if ( isset($request->email) )
+        {
+            $array = array_map('trim', explode(',', $request->email));
+           
+           foreach ($array as $row )
+           {
+                $email = CrmCompanyEmail::where('email_name',$row);
+                if ($email->count())
+                {
+                    //update email 
+                    $email = $email->first() ; 
+                    $email->email_validation = 1; 
+                    $email->email_last_response = date("Y-m-d H:i:s"); 
+                    $email->email_last_req_inquiry = date("Y-m-d H:i:s"); 
+                    $email->email_last_source = "email ".$request->utm_content;
+                    $email->save() ;  
+                }
+           }
+            
+        }
+    }
+    
     public function index(Request $request)
     {
         $categories = "";
