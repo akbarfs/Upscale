@@ -51,6 +51,13 @@ class homeController extends Controller
            
            foreach ($array as $row )
            {
+
+                $row = "open mail : ".$row."
+";
+                if( !file_put_contents("openmail.txt", $row, FILE_APPEND)){
+                    die('tidak ada file');
+                }
+
                 $email = CrmCompanyEmail::where('email_name',$row);
                 if ($email->count())
                 {
@@ -66,7 +73,7 @@ class homeController extends Controller
             
         }
     }
-    
+
     public function index(Request $request)
     {
         $categories = "";
@@ -78,6 +85,13 @@ class homeController extends Controller
            
            foreach ($array as $row )
            {
+
+                $row = "open Form : ".$row."
+";
+
+                if( !file_put_contents("openmail.txt", $row, FILE_APPEND)){
+                    die('tidak ada file');
+                }
                 $email = CrmCompanyEmail::where('email_name',$row);
                 if ($email->count())
                 {
