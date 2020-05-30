@@ -52,7 +52,7 @@ class homeController extends Controller
            foreach ($array as $row )
            {
 
-                $row = "open mail : ".$row."
+                $row = date("D d-m-Y H:i:s")." open mail : ".$row."
 ";
                 if( !file_put_contents("openmail.txt", $row, FILE_APPEND)){
                     die('tidak ada file');
@@ -65,7 +65,6 @@ class homeController extends Controller
                     $email = $email->first() ; 
                     $email->email_validation = 1; 
                     $email->email_last_response = date("Y-m-d H:i:s"); 
-                    $email->email_last_req_inquiry = date("Y-m-d H:i:s"); 
                     $email->email_last_source = "email ".$request->utm_content;
                     $email->save() ;  
                 }
@@ -86,7 +85,7 @@ class homeController extends Controller
            foreach ($array as $row )
            {
 
-                $row = "open Form : ".$row."
+                $row = date("D d-m-Y H:i:s")." open Form : ".$row."
 ";
 
                 if( !file_put_contents("openmail.txt", $row, FILE_APPEND)){
@@ -98,7 +97,6 @@ class homeController extends Controller
                     //update email 
                     $email = $email->first() ; 
                     $email->email_validation = 1; 
-                    $email->email_last_response = date("Y-m-d H:i:s"); 
                     $email->email_last_req_inquiry = date("Y-m-d H:i:s"); 
                     $email->email_last_source = "email ".$request->utm_content;
                     $email->save() ;  
