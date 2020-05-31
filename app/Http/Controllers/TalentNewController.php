@@ -10,26 +10,6 @@ use App\Models\Talent;
 
 class TalentNewController extends Controller
 {
-    public function showData(){
-        $data = DB::table('talent')->simplePaginate(20);
-        $no = 1;
-            $output ='';
-            foreach ($data as $talent ) {
-                $output .= '
-                            <tr>
-                             <td>'.$no++.'</td>
-                             <td>'.$talent->talent_name.'</td>
-                             <td>'.$talent->talent_address.'</td>
-                             <td>'.$talent->talent_skill.'</td>
-                             <td>'.$talent->talent_created_date.'</td>
-                             <td>'.$talent->talent_phone.'</td>
-                             <td>'.'<a href="" >Details</a> || <a href="">Substeps</a>'.'</td>
-                            </tr>
-                            ';
-            }
-            echo $output;
-                            
-    }
 
     public function show(){
     	 // $data = Talent::paginate(20);
@@ -79,16 +59,21 @@ class TalentNewController extends Controller
         {
             if ($condition=='all') 
             {
-                    $data = DB::table('talent')
-                            ->get();
-                        return $this->showData();
+                    $data = DB::table('talent');
             }
             else if($condition=='quarantine')
             {
                 $data = DB::table('talent')
-                            ->where("talent_condition","LIKE","%$condition%")
-                            ->get();    
-                $no = 1;
+                            ->where("talent_condition","LIKE","%$condition%");
+                                      
+            }
+            else if($condition == 'assign'){
+                $data = DB::table('talent')
+                            ->where("talent_condition","LIKE","%$condition%");
+            }
+            
+            $data = $data->get(); 
+            $no = 1;
             $output ='';
             foreach ($data as $talent ) {
                 $output .= '
@@ -103,12 +88,7 @@ class TalentNewController extends Controller
                             </tr>
                             ';
             }
-            echo $output;      
-            }
-            else if($condition == 'assign'){
-                return "not found data";
-            }
-            
+            echo $output;
                       
         }
 
@@ -121,36 +101,17 @@ class TalentNewController extends Controller
     	   $keyword = $request->keyword;
            $condition = $request->condition;
 
-    	// $data = DB::table('talent')->where([
-    	// 	["talent_name","LIKE","%".$keyword."%"],
-    	// 	["talent_condition","LIKE","%".$keyword."%"],
-    	// 	["talent_email","LIKE","%".$keyword."%"],
-    	// ])->get();
-
-    	// $data = DB::table('talent')
-    	// 		->where("talent_name","LIKE","%$keyword%")
-     //            ->orWhere("talent_phone","LIKE","%$keyword%")
-     //            ->orWhere("talent_email","LIKE","%$keyword%")
-     //            ->get();
-
                 if (isset($keyword)) 
                 {
                    $data = DB::table('talent')
                             ->where("talent_name","LIKE","%$keyword%")
                             ->orWhere("talent_phone","LIKE","%$keyword%")
                             ->orWhere("talent_email","LIKE","%$keyword%")
-                            ->orWhere("talent_address","LIKE","%$keyword%")
-                            ->get();                 
+                            ->orWhere("talent_address","LIKE","%$keyword%");                 
                 }              
 
-    			//->orWhere("talent_condition","LIKE","%$keyword%")
-                //->orWhere("talent_created_date","LIKE","%$keyword%")
-    			//->orWhere("talent_address","LIKE","%$keyword%")
-    			//->orWhere("talent_skill","LIKE","%$keyword%")
-    			//->orWhere("talent_skill","LIKE","%$keyword%")
-                //->orWhere("talent_available","LIKE","$select")
-
-
+    			
+            $data = $data->get();
     	    $no = 1;
             $output ='';
     	    foreach ($data as $talent ) {
@@ -168,32 +129,8 @@ class TalentNewController extends Controller
     	    }
             echo $output;
     	    // return response()->json($data);
-         //    $query = DB::getQueryLog();
-         //    dd(end($query));
+            // $query = DB::getQueryLog();
+         
     }
 
-    public function filter(Request $request){
-        // DB::enableQueryLog();
-        $filter = $request->filter;
-        $data   = DB::table('talent')
-        ->where("talent_available","LIKE","%$filter%")->get();
-        // $query = DB::getQueryLog();
-        // dd(end($query));
-        $no = 1;
-            $output ='';
-            foreach ($data as $talent ) {
-                $output .= '
-                            <tr>
-                             <td>'.$no++.'</td>
-                             <td>'.$talent->talent_name.'</td>
-                             <td>'.$talent->talent_address.'</td>
-                             <td>'.$talent->talent_skill.'</td>
-                             <td>'.$talent->talent_created_date.'</td>
-                             <td>'.$talent->talent_phone.'</td>
-                             <td>'.'<a href="" >Details</a> || <a href="">Substeps</a>'.'</td>
-                            </tr>
-                            ';
-            }
-            echo $output;
-    }
 }
