@@ -17,7 +17,13 @@ use App\Http\Middleware\CheckTalent;
 // });
 
 Auth::routes();
-
+// adi
+Route::get('talent/test','TalentNewController@show');
+Route::get('talent/test/search','TalentNewController@search');
+Route::get('talent/test/filter','TalentNewController@filter');
+Route::get('talent/test/paginate_data','TalentNewController@paginate_data');
+Route::get('talent/test/condition','TalentNewController@condition');
+//end of adi
 Route::get('/', 'homeController@index')->name('index');
 Route::get('/home', 'homeController@index')->name('home');
 Route::get('/talent-register', 'homeController@apply')->name('talent-register');
