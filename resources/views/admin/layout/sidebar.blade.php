@@ -49,7 +49,13 @@
                         </ul>
                     </li>
                     <h3 class="menu-title">TALENT</h3>
-                    <li title="Talent List">
+                    {{-- Adi --}}
+                    <li title="Talent List New">
+                        <a href="{{route('talent.list')}}"> <i class="menu-icon fa fa-user-o"></i> Talent List New</a>
+                    </li>
+                    {{-- end of Adi --}}
+
+                     <li title="Talent List">
                         <a href="{{route('talent.index')}}"> <i class="menu-icon fa fa-user-o"></i> Talent List</a>
                     </li>
                     <li title="Talent Create">

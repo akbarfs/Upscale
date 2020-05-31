@@ -83,7 +83,7 @@
 								<div class="col-md-4">
 									<select class="custom-select">
 									  <option selected disabled="">Ready</option>
-									  <option value="this_moth" name="select">This month</option>
+									  <option value="this_month" name="select">This month</option>
 									  <option value="reminder" name="select">Reminder</option>
 								   </select>	
 								</div>
@@ -127,7 +127,7 @@
 			function loadAjax(val){
 				$("#container").html("loading..");
 				$.ajax({
- 					url:'/talent/test/condition?data='+val,
+ 					url:'/admin/talent/list/condition?data='+val,
  					method:"GET",
  					success:function(data){
  						$("#container").html(data);
@@ -151,7 +151,7 @@
 
 			function loadTable(page,select="male")
 			{
-				var base_url = '/talent/test/paginate_data?page='+page+"&select="+select; 
+				var base_url = '/admin/talent/list/paginate_data?page='+page+"&select="+select; 
 
 				$.ajax({
  					url:base_url,
@@ -181,7 +181,7 @@
 				var no = 1;
 				$('.spinner-border').show();
 				$.ajax({	
-					url:'/talent/test/search?keyword='+keyword, 
+					url:'/admin/talent/list/search?keyword='+keyword, 
 
 					method:'GET',
 					success:function(data){

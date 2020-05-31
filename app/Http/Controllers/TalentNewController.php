@@ -13,7 +13,7 @@ class TalentNewController extends Controller
 
     public function show(){
     	 // $data = Talent::paginate(20);
-         $data = Talent::simplePaginate(20); 
+         $data = Talent::paginate(20); 
 
     	return view('admin.TalentNew',compact('data'));
     }
@@ -47,7 +47,7 @@ class TalentNewController extends Controller
             }    
 
             
-            $data = $data->simplePaginate(20);
+            $data = $data->paginate(20);
             return view('paginate.Talent_data',compact('data'))->render();
         }
     }
@@ -70,6 +70,9 @@ class TalentNewController extends Controller
             else if($condition == 'assign'){
                 $data = DB::table('talent')
                             ->where("talent_condition","LIKE","%$condition%");
+                if ($data->count() == null) {
+                    echo "not found data";
+                }
             }
             
             $data = $data->get(); 
