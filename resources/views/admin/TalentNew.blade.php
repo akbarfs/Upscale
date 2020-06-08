@@ -91,7 +91,10 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<button class="form-control btn-primary"> Move To Qurantine </button>
+									<!-- Button trigger modal -->
+									<button type="button" class="btn-primary form-control" data-toggle="modal" data-target="#exampleModal">
+									  More Search
+									</button>
 								</div>
 							</div>
 						</div>				
@@ -110,12 +113,66 @@
 	@include('paginate.Talent_data')
 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="form-group">
+	      	<label for="datepicker">Ready</label>
+	        <input type="text" class="form-control" name="datepicker" id="datepicker">
+	    </div>
+	    <label for="salary">Salary</label>
+	    <div class="row" id="salary">
+	      	<div class="col">
+		        <input type="text" class="form-control" name="min" id="min" placeholder="min">
+		    </div>
+		    <div class="col">
+		        <input type="text" class="form-control" name="max" id="max" placeholder="max">
+		    </div>
+	    </div>
+	    <br>
+	    <div class="form-group">
+	    	<label for="cv">Upload CV</label>
+	    	<select class="form-control" id="cv">
+			  <option selected disabled="">Select</option>
+			  <option value="yes" name="select">Yes</option>
+			  <option value="no" name="select">No</option>
+		   </select>
+	    </div>
+
+	    <div class="form-group">
+	    	<label for="cv">Portofolio Update</label>
+	    	<select class="form-control" id="cv" name="Portofolio">
+			  <option selected disabled="">Select</option>
+			  <option value="all" >All</option>
+			  <option value="yes" >Yes</option>
+			  <option value="no" >No</option>
+		   </select>
+	    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
  
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+			//mengambil data tanggal
+			$( "#datepicker" ).datepicker();
 			$('.spinner-border').hide();
 
 			$('.nav-item').on("click",function(event){
@@ -169,8 +226,9 @@
 
 			$('.custom-select').change(function(){
 				var select = $(this).children("option:selected").val();
-				//alert(select);
+				$('.spinner-border').show();
 				 loadTable(1,select);
+
 				
 			});
 			$('#Search').on('click',function(){

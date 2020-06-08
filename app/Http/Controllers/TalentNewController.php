@@ -31,11 +31,11 @@ class TalentNewController extends Controller
             }// for skill
             else if( $request->select == 'all' || $request->select == 'yes' || $request->select == 'no')
             {
-                $data = Talent::where("talent_skill","LIKE","%".$request->select."%");
-                if ($data->count() == 0) {
-                    echo "Not found data";
-                }
                 
+                if ($request->select == 'all') {
+                     $data = Talent::where("talent_skill");
+                }
+                $data = Talent::where("talent_skill","LIKE","%".$request->select."%");
             }
             else if( $request->select == "new")
             {
