@@ -45,7 +45,7 @@ class homeController extends Controller
 
     function track(Request $request)
     {
-        if ( isset($request->email) )
+        if ( isset($request->email) && $request->email != "{{Email Address}}")
         {
             $array = array_map('trim', explode(',', $request->email));
            

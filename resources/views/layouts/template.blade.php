@@ -40,6 +40,9 @@
 
       gtag('config', 'UA-167086272-1');
     </script>
+    <!-- Start of HubSpot Embed Code -->
+      <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7846563.js"></script>
+    <!-- End of HubSpot Embed Code -->
 
     <!-- Hotjar Tracking Code for www.upscale.id -->
     <script>
