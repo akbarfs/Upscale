@@ -17,7 +17,13 @@ use App\Http\Middleware\CheckTalent;
 // });
 
 Auth::routes();
-
+// adi
+// Route::get('talent/test','TalentNewController@show');
+// Route::get('talent/test/search','TalentNewController@search');
+// Route::get('talent/test/filter','TalentNewController@filter');
+// Route::get('talent/test/paginate_data','TalentNewController@paginate_data');
+Route::get('talent/test/condition','TalentNewController@condition');
+//end of adi
 Route::get('/', 'homeController@index')->name('index');
 Route::get('/home', 'homeController@index')->name('home');
 Route::get('/talent-register', 'homeController@apply')->name('talent-register');
@@ -264,7 +270,17 @@ Route::group(['middleware'=>'cek'],function(){
 		});
 
 		Route::group(['prefix'=>'talent'], function(){
+			// adi
+			Route::get('/list','TalentNewController@show')->name('talent.list');
+			Route::get('/list/condition','TalentNewController@condition');
+			Route::get('/list/search','TalentNewController@search');
+			Route::get('/list/filter','TalentNewController@filter');
+			Route::get('/list/paginate_data','TalentNewController@paginate_data');
+			//end adi
+
+
 			Route::get('/', 'talentController@index')->name('talent.index');
+
 			//Route Talent List
 	// 		Route::get('/', 'talentController@talent_list')->name('talent.listall');
 			// Route::get('/request', 'companyController@request')->name('talent.request');
