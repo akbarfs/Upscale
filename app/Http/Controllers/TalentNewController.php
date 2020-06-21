@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Talent;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class TalentNewController extends Controller
 {
 
@@ -38,6 +40,11 @@ class TalentNewController extends Controller
             if ( $request->status_member == "non-member" )
             {
                 $data->where("users.email","=",null);
+            }
+
+            if ( $request->skill == "on" )
+            {
+                
             }
 
             $data->orderBy("talent_id","DESC");

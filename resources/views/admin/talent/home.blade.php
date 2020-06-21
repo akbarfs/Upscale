@@ -120,7 +120,7 @@
                                 data-url="{{url('json/skill')}}"
                                 data-load-once="true"
                                 placeholder="skill"
-                                name="skill_1"/>
+                                name="skill"/>
 							</div>
 
 
