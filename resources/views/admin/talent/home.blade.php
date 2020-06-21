@@ -77,11 +77,67 @@
 							<div class="col-md-2">
 								<input type="text" class="form-control" placeholder="phone" name="talent_phone">
 							</div>
-							<div class="col-md-2">
-								<div class="form-group">
-									<div class="input-group-append">
-									    <button class="btn btn-outline-primary" type="submit" id="search">Search</button>
-									 </div>
+
+							@push('script')
+    
+							<script src="{{url('template/upscale/js/tag.js')}}"></script>
+		                    <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
+
+		                    <script>
+		                        
+		                        $(document).ready(function()
+		                        {
+		                            $('.tagsInput').fastselect({
+
+		                                valueDelimiter: ',',
+		                                onItemSelect: function($item, itemModel) {
+		                                    $(".fstChoiceRemove").html("x");
+		                                    // $(".fstQueryInput").focus(); 
+		                                },
+
+		                            });
+		                            
+		                        });
+		                        
+		                    </script>
+
+							@endpush
+
+
+							<style type="text/css">
+								.fstQueryInput  { padding: 0 }
+								.fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
+								.fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
+							</style>
+							<div>
+								<input
+                                type="text"
+                                onItemSelect="setClose()"
+                                multiple
+                                class="tagsInput form-control"
+                                value=""
+                                data-user-option-allowed="true"
+                                data-url="{{url('json/skill')}}"
+                                data-load-once="true"
+                                placeholder="skill"
+                                name="skill_1"/>
+							</div>
+
+
+
+						</div>
+							
+						<div class="row" style="margin-top: 10px">
+							
+							<div class="col-md-12">
+								<div style="padding: 10px;">
+									show : 	
+									<input type="checkbox" name="contact" checked="checked"> Contact &nbsp
+									<input type="checkbox" name="skill" checked="checked"> Skill &nbsp
+									<input type="checkbox" name="date_ready" checked="checked"> Date Ready &nbsp
+									<input type="checkbox" name="created" checked="checked"> Created &nbsp
+
+									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
 							</div>
 						</div>
@@ -137,6 +193,7 @@
 			//klik pagination , diambil urlnya langsung di load ajax
 			$(document).on("click",".page-link",function(event)
  			{
+ 				$( "body" ).scrollTop( 0 );
  				var url = $(this).attr("href");
  				loadTable(url);
  				event.preventDefault(); //ini biar ga keredirect ke halaman lain 
