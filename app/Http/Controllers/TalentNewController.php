@@ -8,132 +8,51 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Talent;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class TalentNewController extends Controller
 {
 
-    public function show(){
-    	 // $data = Talent::paginate(20);
-         $data = Talent::paginate(20); 
-
-    	return view('admin.TalentNew',compact('data'));
+    public function show()
+    {
+    	
+    	return view('admin.talent.home');
     }
 
-    public function paginate_data(Request $request){
-        if ($request->ajax()) {
-            // $data = Talent::paginate(20);
-            // $data = $data->simplePaginate(20);
+    public function paginate_data(Request $request)
+    {
+        // if ($request->ajax()) {
 
-            // for gender
-            if ( $request->select == 'male' || $request->select == 'female')
+            $data = Talent::select(DB::raw("*, users.email as member_email"));
+
+            $data->join("users","talent.user_id","=","users.id","LEFT");
+
+            if ( $request->talent_name ) {$data->where("talent_name","LIKE","%".$request->talent_name."%"); }
+            if ( $request->talent_phone ) {$data->where("talent_phone","LIKE","%".$request->talent_phone."%"); }
+            if ( $request->talent_email ) {$data->where("talent_email","LIKE","%".$request->talent_email."%"); }
+            if ( $request->talent_address ) {$data->where("talent_address","LIKE","%".$request->talent_address."%"); }
+
+            if ( $request->status_member == "member" )
             {
-                $data = Talent::where("talent_gender","LIKE","%".$request->select."%");
+                $data->where("users.email","!=","");
+            }
+
+            if ( $request->status_member == "non-member" )
+            {
+                $data->where("users.email","=",null);
+            }
+
+            if ( $request->skill == "on" )
+            {
                 
-            }// for skill
-            else if( $request->select == 'all' || $request->select == 'yes' || $request->select == 'no')
-            {
-                
-                if ($request->select == 'all') {
-                     $data = Talent::where("talent_skill");
-                }
-                $data = Talent::where("talent_skill","LIKE","%".$request->select."%");
             }
-            else if( $request->select == "new")
-            {
-                $data = Talent::orderBy("talent_created_date","DESC");
-            }
-            else if( $request->select == "old")
-            {
-                $data = Talent::orderBy("talent_created_date","ASC");
-            }    
 
-            
-            $data = $data->paginate(20);
-            return view('paginate.Talent_data',compact('data'))->render();
-        }
-    }
+            $data->orderBy("talent_id","DESC");
 
-    public function condition(Request $request){
-        $condition = $request->data;
+            $data = $data->paginate(10);
 
-        if (isset($condition)) 
-        {
-            if ($condition=='all') 
-            {
-                    $data = DB::table('talent');
-            }
-            else if($condition=='quarantine')
-            {
-                $data = DB::table('talent')
-                            ->where("talent_condition","LIKE","%$condition%");
-                                      
-            }
-            else if($condition == 'assign'){
-                $data = DB::table('talent')
-                            ->where("talent_condition","LIKE","%$condition%");
-                if ($data->count() == null) {
-                    echo "not found data";
-                }
-            }
-            
-            $data = $data->get(); 
-            $no = 1;
-            $output ='';
-            foreach ($data as $talent ) {
-                $output .= '
-                            <tr>
-                             <td>'.$no++.'</td>
-                             <td>'.$talent->talent_name.'</td>
-                             <td>'.$talent->talent_address.'</td>
-                             <td>'.$talent->talent_skill.'</td>
-                             <td>'.$talent->talent_created_date.'</td>
-                             <td>'.$talent->talent_phone.'</td>
-                             <td>'.'<a href="" >Details</a> || <a href="">Substeps</a>'.'</td>
-                            </tr>
-                            ';
-            }
-            echo $output;
-                      
-        }
-
-    }
-
-
-    public function search(Request $request){
-        // DB::enableQueryLog();
-           
-    	   $keyword = $request->keyword;
-           $condition = $request->condition;
-
-                if (isset($keyword)) 
-                {
-                   $data = DB::table('talent')
-                            ->where("talent_name","LIKE","%$keyword%")
-                            ->orWhere("talent_phone","LIKE","%$keyword%")
-                            ->orWhere("talent_email","LIKE","%$keyword%")
-                            ->orWhere("talent_address","LIKE","%$keyword%");                 
-                }              
-
-    			
-            $data = $data->get();
-    	    $no = 1;
-            $output ='';
-    	    foreach ($data as $talent ) {
-    	    	$output .= '
-                            <tr>
-                             <td>'.$no++.'</td>
-                             <td>'.$talent->talent_name.'</td>
-                             <td>'.$talent->talent_address.'</td>
-                             <td>'.$talent->talent_skill.'</td>
-                             <td>'.$talent->talent_created_date.'</td>
-                             <td>'.$talent->talent_phone.'</td>
-                             <td>'.'<a href="" >Details</a> || <a href="">Substeps</a>'.'</td>
-                            </tr>
-                            ';
-    	    }
-            echo $output;
-    	    // return response()->json($data);
-            // $query = DB::getQueryLog();
-         
+            return view('admin.talent.table',compact('data'))->render();
+        // }
     }
 
 }

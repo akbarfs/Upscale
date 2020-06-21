@@ -36,18 +36,23 @@ class Talent extends Model
 							'talent_address',
 			                'talent_prefered_location',
 			                'talent_date_ready',
-			                'talent_available'
+			                'talent_available',
+			                'talent_focus',
+							'talent_start_career',
+							'talent_english',
+							'talent_level',
+							'talent_international'
 						];
 	public $timestamps = false;
 
 	protected $dates = ['talent_created_date'];
 
-	 public function talent_skill()
+	public function talent_skill()
 	{	
-		return $this->hasMany('App\Models\SkillTalent', 'id_talent');
+		return $this->hasMany('App\Models\SkillTalent' ,'st_talent_id','talent_id');
 	}
 
-	 	public function jobs_apply()
+	public function jobs_apply()
 	{	
 		return $this->hasMany('App\Models\Job_apply', 'jobs_apply_talent_id', 'talent_id');
 	}

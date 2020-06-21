@@ -33,46 +33,11 @@
         .join_community { margin-top: 10px; }
     }
 
-    .loadmiddle {
-        padding: 20px;
-        text-align: center;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        position: absolute;
-    }
-    .loadmiddle img { width: 50px; }
+    
 
 </style>
 
 <main>
-
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-            function loadInquiry()
-            {
-                $(".req-inquiry-modal").html("<div class='loading loadmiddle'><img src='{{url('template/upscale/media/loading.gif')}}'><br>Please wait.. </div>").load("{{url('load-inquiry-form').param()}}");
-            }
-
-            @if (isset($_GET['inquiry']) && $_GET['inquiry']=='open')
-                $(".req-inquiry").click();
-                loadInquiry();
-            @endif
-
-            $(".req-inquiry").click(function() {
-                loadInquiry();
-            });
-        });
-    </script>
-    <div class="modal fade" id="req-inquiry" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-scrollable minht boxIn" role="document"
-      style="max-width: unset; margin: 10px ;">
-        <div class="modal-content req-inquiry-modal">
-            loading...
-        </div>
-      </div>
-    </div>
 
 
     <section class="section-video light">

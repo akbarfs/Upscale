@@ -270,6 +270,8 @@ Route::group(['middleware'=>'cek'],function(){
 		});
 
 		Route::group(['prefix'=>'talent'], function(){
+
+			
 			// adi
 			Route::get('/list','TalentNewController@show')->name('talent.list');
 			Route::get('/list/condition','TalentNewController@condition');
