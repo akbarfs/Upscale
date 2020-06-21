@@ -31,14 +31,9 @@
 				<div class="card-header">
 					<nav>
 		              <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
-		                <a class="nav-item nav-link" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="false" name="condition" value="all"><strong>All</strong>
-		                </a>
-		                <a class="nav-item nav-link" data-toggle="tab" href="#quarantine" role="tab" aria-controls="nav-profile" aria-selected="false" name="condition" value="quarantine"><strong>Quarantine</strong>
-		                    <span class="badge badge-primary">99</span>
-		                </a>
-		                <a class="nav-item nav-link active show" data-toggle="tab" href="#assign" role="tab" aria-controls="nav-profile" aria-selected="true" name="condition" value="assign"><strong>Assign</strong>
-		                    <span class="badge badge-primary">25</span>
-		                </a>
+		                <a class="nav-item nav-link active" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="false" name="condition" value="all"><strong>All</strong> </a>
+		                <a class="nav-item nav-link" data-toggle="tab" href="#quarantine" role="tab" aria-controls="nav-profile" aria-selected="false" name="condition" value="quarantine"><strong>Quarantine</strong> <span class="badge badge-primary">99</span> </a>
+		                <a class="nav-item nav-link show" data-toggle="tab" href="#assign" role="tab" aria-controls="nav-profile" aria-selected="true" name="condition" value="assign"><strong>Assign</strong> <span class="badge badge-primary">25</span> </a>
 		              </div>
 		            </nav>
 				</div>
@@ -110,7 +105,7 @@
 	<div class="spinner-border text-primary" role="status">
   		<span class="sr-only">Loading...</span>
 	</div>
-	@include('paginate.Talent_data')
+	@include('admin.talent.table')
 
 </div>
 

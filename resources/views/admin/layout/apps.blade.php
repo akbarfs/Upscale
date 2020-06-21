@@ -158,7 +158,7 @@
         </style>
     <!-- </head> --> 
 </head>
-<body class="open" style="padding-right:0; border-collapse: collapse;">
+<body style="padding-right:0; border-collapse: collapse;">
     @include('admin.layout.sidebar')
 
     <div id="right-panel" class="right-panel">

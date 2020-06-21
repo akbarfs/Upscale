@@ -83,6 +83,15 @@ class MemberController extends Controller
 
         $result = User::create($user);
 
+        if ( isset($request->karir_tahun) && isset($request->karir_bulan) )
+        {
+            $start_career = $request->karir_tahun."-".$request->karir_bulan."-01"; 
+        }
+        else
+        {
+            $start_career = '0000-00-00'; 
+        }
+
         //PROSES INSERT DATABASE TALENT
         $data = [
                 'user_id'  =>$result->id,
@@ -109,6 +118,11 @@ class MemberController extends Controller
                 'talent_project_max' =>  preg_replace('/[^0-9]/', '', $request->freelance_max),
                 'talent_konsultasi_rate' =>  preg_replace('/[^0-9]/', '', $request->konsultasi_rate),
                 'talent_ngajar_rate' =>  preg_replace('/[^0-9]/', '', $request->ngajar_rate),
+
+                'talent_international' => $request->talent_international,
+                'talent_start_career'   => $start_career,
+                "talent_level"=>$request->talent_level,
+                "talent_focus"=>$request->talent_focus
         ];
         
         //Log::info($data) ; 

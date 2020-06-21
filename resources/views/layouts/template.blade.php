@@ -630,21 +630,75 @@
 
     <!-- START REGISTER TALENT -->
 
-    <style type="text/css"> .loading { padding: 20px; } </style>
+    <style type="text/css"> 
+    .loading { padding: 20px; } 
+    .loadmiddle {
+        padding: 20px;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+    }
+    .loadmiddle img { width: 50px; }
+    </style>
     <script type="text/javascript">
         $(document).ready(function()
         {
+            function regMember()
+            {
+
+                $(".loadRegTalent").html("<div class='loading loadmiddle'><img src='{{url('template/upscale/media/loading.gif')}}'><br>Please wait.. </div>").load("{{url('register/talent')}}");
+            }
+
             $(".join_community").click(function() {
-                $(".loadRegTalent").html("<div class='loading'>loading..</div>").load("{{url('register/talent')}}");
-            }) ;
+                regMember();
+            });
+
+            @if (isset($_GET['reg']) && $_GET['reg']=='open')
+                $('#registerTalent').modal('show');
+                regMember();
+            @endif
 
         }); 
     </script>
 
+    <style type="text/css">
+        .boxIn { height: 100% }
+    </style>
     <div class="modal fade" id="registerTalent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-scrollable minht" role="document">
+      <div class="modal-dialog modal-dialog-scrollable minht boxIn" role="document" style="max-width: unset; margin: 10px;">
         <div class="modal-content loadRegTalent">
           
+        </div>
+      </div>
+    </div>
+
+    <!-- REQUEST QUOTATION -->
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            function loadInquiry()
+            {
+                $(".req-inquiry-modal").html("<div class='loading loadmiddle'><img src='{{url('template/upscale/media/loading.gif')}}'><br>Please wait.. </div>").load("{{url('load-inquiry-form').param()}}");
+            }
+
+            @if (isset($_GET['inquiry']) && $_GET['inquiry']=='open')
+                // $(".req-inquiry").click();
+                $("#req-inquiry").modal("show");
+                loadInquiry();
+            @endif
+
+            $(".req-inquiry").click(function() {
+                loadInquiry();
+            });
+        });
+    </script>
+    <div class="modal fade" id="req-inquiry" tabindex="-1" role="dialog" aria-labelledby="exampleModalLogin" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-dialog-scrollable minht boxIn" role="document"
+      style="max-width: unset; margin: 10px ;">
+        <div class="modal-content req-inquiry-modal">
+            loading...
         </div>
       </div>
     </div>
