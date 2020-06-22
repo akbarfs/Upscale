@@ -124,10 +124,8 @@ class MemberController extends Controller
                 "talent_level"=>$request->talent_level,
                 "talent_focus"=>$request->talent_focus
         ];
-        
-        //Log::info($data) ; 
 
-        $talent = Talent::create($data); 
+        $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 
 
         // proses insert skill
         $skill_1 = explode(",",$request->skill_1);
@@ -158,22 +156,31 @@ class MemberController extends Controller
     {
         foreach($array as $row)
         {
-            //get skill id 
-            $skill = Skill::where("skill_name",$row)->first() ; 
-            // Log::info($skill); 
-
-            if ( !$skill )
+            if ($row != "")
             {
-                $skill = Skill::create(array('skill_name'=>$row,'skill_sc_id'=>$cat));
-            }
+                //get skill id 
+                $skill = Skill::where("skill_name",$row)->first() ; 
 
-            $insert_skill = array(
-                                'st_talent_id'=> $talent_id,
-                                'st_skill_id'=> $skill->skill_id,
-                                'st_skill_verified'=> 'NO',
-                                'st_input_admin'=> 'NO',
-                            );
-            SkillTalent::insert($insert_skill);
+                //klo ga di table list ada buat baru 
+                if ( !$skill )
+                {
+                    $skill = Skill::create(array('skill_name'=>$row,'skill_sc_id'=>$cat));
+                }
+
+                //nambahin
+                $insert_skill = array(
+                                    'st_talent_id'=> $talent_id,
+                                    'st_skill_id'=> $skill->skill_id,
+                                    'st_skill_verified'=> 'NO',
+                                    'st_input_admin'=> 'NO',
+                                );
+
+                SkillTalent::updateOrCreate([
+                                                'st_talent_id'=> $talent_id,
+                                                'st_skill_id'=> $skill->skill_id
+                                            ],$insert_skill);
+            }
+            
         }
     }
     public function updateProfile(Request $request)
@@ -226,6 +233,7 @@ class MemberController extends Controller
             $skill->where("skill_sc_id","!=",1);
             $skill->where("skill_sc_id","!=",2);
         }
+        $skill->where('status','enable');
         $skill  = $skill->get() ;
 
         return response()->json($skill) ; 

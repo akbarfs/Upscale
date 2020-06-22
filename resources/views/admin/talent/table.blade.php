@@ -42,7 +42,7 @@
 		  @endif
 
 		  @if (Request::input('skill') )
-		  <td style="width: 400px">
+		  <td style="max-width: 400px">
 		  	@foreach ( $talent->talent_skill()->get() as $row ) 
 		  		<?php 
 		  			

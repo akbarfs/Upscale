@@ -42,10 +42,7 @@ class TalentNewController extends Controller
                 $data->where("users.email","=",null);
             }
 
-            if ( $request->skill == "on" )
-            {
-                
-            }
+            
 
             $data->orderBy("talent_id","DESC");
 

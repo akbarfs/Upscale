@@ -175,6 +175,8 @@
 
 				$('#loading').show();
 				$("#pembungkus").html('');
+
+				
 				$.ajax({
  					url:url+"&"+param,
  					method:"GET",
@@ -191,8 +193,7 @@
 			loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
 
 			//klik pagination , diambil urlnya langsung di load ajax
-			$(document).on("click",".page-link",function(event)
- 			{
+			$(document).on("click",".page-link",function(event) {
  				$( "body" ).scrollTop( 0 );
  				var url = $(this).attr("href");
  				loadTable(url);
