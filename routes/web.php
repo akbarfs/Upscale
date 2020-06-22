@@ -527,3 +527,6 @@ $this->post('register', 'Auth\RegisterController@register');
 
 
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
+
+//MEMBER PROFILE
+Route::get('/profile/{id}','MemberController@CV');
