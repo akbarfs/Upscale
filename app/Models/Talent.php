@@ -35,13 +35,16 @@ class Talent extends Model
 							'portofolio_update',
 							'talent_address',
 			                'talent_prefered_location',
+			                'talent_prefered_city',
 			                'talent_date_ready',
 			                'talent_available',
 			                'talent_focus',
 							'talent_start_career',
 							'talent_english',
 							'talent_level',
-							'talent_international'
+							'talent_international',
+							'talent_onsite_jakarta',
+							'talent_remote'
 						];
 	public $timestamps = false;
 

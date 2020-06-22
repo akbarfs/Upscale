@@ -38,13 +38,14 @@
                         Scaling Up Your Skill & Networks.
                     </h1>
                     
-                    Join and get the following benefits:
+                    Bergabung dan dabatkan beberapa manfaat:
                     <ul class="desc-list-talent" style="padding-top: 15px">
-                        <li>Land on your Dream Jobs and Project</li>
-                        <li>Exponential Opportunity</li>
-                        <li>Constructive Community</li>
-                        <li>Access to Our Coworking Space Network</li>
-                        <li>Access to Our Education Class Network</li>
+                        <li>Karir di perusahaan idaman</li>
+                        <li>Project as a freelance</li>
+                        <li>Pasif Income</li>
+                        <li>Free Education (ISA)</li>
+                        <li>Consultant senior programer</li>
+                        <li>International Remote Worker</li>
                     </ul>
                         
                 </div>

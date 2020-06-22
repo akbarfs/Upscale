@@ -29,16 +29,16 @@ class MemberController extends Controller
 
     public function regTalentStep1(Request $request)
     {
-        $this->validate ($request,[
-            'name'         => 'required|min:3|max:25|string',
-            'username'     => 'required|min:3|max:20|string|unique:users,username',
-            'email'        => 'required|string|email|unique:users,email',
-            'password'     => 'required|min:6|confirmed',
-            'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
-            'gender' => 'required',
-            'tgl_lahir' => 'required',
-            'tempat_lahir' => 'required|min:3|max:25',
-        ]); 
+        // $this->validate ($request,[
+        //     'name'         => 'required|min:3|max:25|string',
+        //     'username'     => 'required|min:3|max:20|string|unique:users,username',
+        //     'email'        => 'required|string|email|unique:users,email',
+        //     'password'     => 'required|min:6|confirmed',
+        //     'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
+        //     'gender' => 'required',
+        //     'tgl_lahir' => 'required',
+        //     'tempat_lahir' => 'required|min:3|max:25',
+        // ]); 
 
         return response()->json(array("message"=>"success","status"=>1));
     }
@@ -109,7 +109,7 @@ class MemberController extends Controller
                 'talent_salary' =>  preg_replace('/[^0-9]/', '', $request->fulltime_rate),
 
                 'talent_address' => $request->talent_address,
-                'talent_prefered_location' => $request->talent_prefered_location,
+                'talent_prefered_city' => $request->talent_prefered_city,
                 'talent_date_ready' => $request->talent_date_ready,
                 'talent_available' => $request->talent_available,
 
@@ -122,7 +122,10 @@ class MemberController extends Controller
                 'talent_international' => $request->talent_international,
                 'talent_start_career'   => $start_career,
                 "talent_level"=>$request->talent_level,
-                "talent_focus"=>$request->talent_focus
+                "talent_focus"=>$request->talent_focus,
+
+                "talent_onsite_jakarta" => $request->talent_onsite_jakarta,
+                "talent_remote" => $request->talent_remote,
         ];
 
         $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 

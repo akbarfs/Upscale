@@ -804,6 +804,7 @@
                                     </script>
                                     
                                     <select class="custom-select" name="talent_available" id="av">
+                                        <option value="-- pilih --">Tidak terikat kontrak</option>
                                         <option value="no">Tidak terikat kontrak</option>
                                         <option value="yes">Sedang terikat kontrak kerja</option>
                                     </select>
@@ -824,16 +825,6 @@
                             </div>
                         </div>
 
-
-                        <div class="form-group" style="margin-top: 20px">
-                            <div class="row">
-                                <div class="col-md-6"><label for="Name">Prefer kerja di kota ?</label></div>
-                                <div class="col-md-6">
-                                    <input type="text" name="talent_prefered_location" class="form-control" placeholder="Ex : Jakarta" value="">
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group" style="margin-top: 20px">
                             <div class="row">
                                 <div class="col-md-6">
@@ -845,6 +836,78 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group" style="margin-top: 20px">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="Name">Bersedia onsite diluar kota ?</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <script type="text/javascript">
+                                        $(document).ready(function()
+                                        {
+                                            $("#luar_kota_option").change(function()
+                                            {
+                                                var av = $(this).val();
+                                                if ( av == 'yes') 
+                                                {
+                                                    $(".luar_kota").show();
+                                                }
+                                                else
+                                                {
+                                                    $(".luar_kota").hide();
+                                                }
+                                            });
+                                        }); 
+                                    </script>
+                                    
+                                    <select class="custom-select" id="luar_kota_option">
+                                        <option value="">-- pilih --</option>
+                                        <option value="yes">Bersedia</option>
+                                        <option value="no">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group luar_kota" style="margin-top: 20px; display: none">
+                            <div class="row">
+                                <div class="col-md-6"><label for="Name">Bersedia di jakarta / sekitar ?</label></div>
+                                <div class="col-md-6">
+                                    <select class="custom-select" name="talent_onsite_jakarta">
+                                        <option value="">-- pilih --</option>
+                                        <option value="yes">Bersedia</option>
+                                        <option value="no">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group luar_kota" style="margin-top: 20px; display: none">
+                            <div class="row">
+                                <div class="col-md-6"><label for="Name">Prefer kerja di kota ?</label></div>
+                                <div class="col-md-6">
+                                    <input type="text" name="talent_prefered_city" class="form-control" placeholder="Ex : Yogyakarta, Bandung" value="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr style="margin:0">
+                        <div class="form-group" style="margin-top: 20px;">
+                            <div class="row">
+                                <div class="col-md-6"><label for="Name">Apakah bersedia bekerja secara remote ?</label></div>
+                                <div class="col-md-6">
+                                    <select class="custom-select" name="talent_remote">
+                                        <option value="">-- pilih --</option>
+                                        <option value="yes">Bersedia</option>
+                                        <option value="no">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        
                     </div>
 
                     <!-- project freelance -->
@@ -1024,6 +1087,8 @@
                             </div>
                         </div>
                     </div>
+
+
 
                     <!-- international -->
                     <div class="question_box">
