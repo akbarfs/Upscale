@@ -67,6 +67,18 @@ Route::group(['middleware'=>'cek'],function(){
 	// 	Route::get('/dashboard', 'userController@index')->name('user.dashboard');
 	// });
 
+/////////////////////////////
+
+
+	//Membuat edit profil
+Route::get("/editBasicProfile", "EditController@editBasic");
+Route::get("/editEducation", "EditController@editEducation");
+Route::get("/editWork", "EditController@editWork");
+
+
+////////////////////////////
+
+
 	Route::get('/blast', 'jobsapplyController@blast_show')->name('blast');
 
 	Route::group(['prefix'=>'admin'], function(){

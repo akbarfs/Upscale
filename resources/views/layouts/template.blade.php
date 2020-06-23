@@ -56,6 +56,44 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 
+<style type="text/css">
+.dropbtn {
+  background-color: #626662;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #b5b0b0;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e8d;}
+
+</style>
+
 </head>
 <body>
 
@@ -518,8 +556,15 @@
                             @if(!Session::has('login'))
                                 <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
                             @else
-                                
-                                <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                         <!--   <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a> -->
+                         <div class="dropdown">
+                             <button class="dropbtn">Hello, </button>
+                             <div class="dropdown-content">
+                             <a  href="">Profile</a>
+                             <a  href="{{url('member/logout')}}">Logout</a>
+                        </div>
+                        </div>
+    
                             @endif
                         @endif
 
