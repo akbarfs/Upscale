@@ -19,6 +19,16 @@ class TalentNewController extends Controller
     	return view('admin.talent.home');
     }
 
+    function mail($id)
+    {
+        return view("admin.talent.mail");
+    }
+
+    function mailSend()
+    {
+        echo "coba send email lewat sini"; 
+    }
+
     public function paginate_data(Request $request)
     {
         // if ($request->ajax()) {

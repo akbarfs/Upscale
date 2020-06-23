@@ -278,6 +278,8 @@ Route::group(['middleware'=>'cek'],function(){
 			Route::get('/list/search','TalentNewController@search');
 			Route::get('/list/filter','TalentNewController@filter');
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
+			Route::get('/mail/{id}','TalentNewController@mail');
+			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			//end adi
 
 
