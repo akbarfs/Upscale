@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\UpscaleEmail;
 use App\Models\Talent;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -26,6 +28,32 @@ class TalentNewController extends Controller
 
     function mailSend()
     {
+        $recipients = [
+            "dodi@upscale.id",
+            "upscale.campaign13@gmail.com",
+			"upscale.campaign14@gmail.com",
+			"upscale.campaign15@gmail.com",
+			"upscale.campaign16@gmail.com",
+			"upscale.campaign17@gmail.com",
+			"upscale.campaign18@gmail.com",
+			"upscale.campaign19@gmail.com",
+			"upscale.campaign20@gmail.com",
+			"upscale.campaign21@gmail.com",
+			"upscale.campaign22@gmail.com",
+			"upscale.campaign23@gmail.com",
+			"upscale.campaign24@gmail.com",
+			"upscale.campaign25@gmail.com",
+			"upscale.campaign26@gmail.com",
+			"upscale.campaign27@gmail.com",
+			"upscale.campaign28@gmail.com",
+			"upscale.campaign29@gmail.com",
+			"upscale.campaign30@gmail.com",
+			"upscale.campaign31@gmail.com",
+			"upscale.campaign32@gmail.com",
+			"upscale.campaign33@gmail.com"
+        ];
+        Mail::to($recipients)->send(new UpscaleEmail());
+
         echo "coba send email lewat sini"; 
     }
 
