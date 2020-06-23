@@ -58,6 +58,7 @@
 
 				<div class="card-body">
 
+				
 					<form style="margin:0; padding: 0" method="post" action="" id="form-search">
 						<div class="row">
 							<div class="col-md-2">
@@ -147,6 +148,10 @@
 	</div>
 </div>
 
+
+<a href="/admin/talent/list/export_excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+
+
 <div id="loading" align="center">
 	<div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
 		<span class="sr-only">Loading...</span>
@@ -175,8 +180,8 @@
 
 				$('#loading').show();
 				$("#pembungkus").html('');
-
-				
+				// export_url = "{{url('talent/export')}}&"+param;
+				// alert(export_url);
 				$.ajax({
  					url:url+"&"+param,
  					method:"GET",

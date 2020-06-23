@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Talent;
 
+use App\Exports\TalentExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Http\Controllers\Controller;
+
 use Illuminate\Database\Eloquent\Builder;
 
 class TalentNewController extends Controller
@@ -60,6 +66,10 @@ class TalentNewController extends Controller
 
             return view('admin.talent.table',compact('data'))->render();
         // }
+    }
+
+    public function export_excel(){
+        return Excel::download(new TalentExport, 'talent.xlsx');
     }
 
 }
