@@ -141,7 +141,7 @@
 								</div>
 
 								<!-- link insert new talent -->
-								<a href="#" >Tambah Talent</a>
+								<a href="list/insert">Tambah Talent</a>
 							</div>
 
 							

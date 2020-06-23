@@ -281,6 +281,7 @@ Route::group(['middleware'=>'cek'],function(){
 			Route::get('/mail/{id}','TalentNewController@mail');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 
+			Route::get('/list/insert', 'TalentNewController@insert');
 			
 			//end adi
 
