@@ -1,6 +1,8 @@
 <style type="text/css">
 	.badge { cursor: pointer; }
 </style>
+
+<button class="btn btn-outline-primary" type="submit" id="search" style="right" >Tambah Talent</button>
 <table class="table table-striped">
 	<thead>
 		<tr>
