@@ -35,10 +35,10 @@
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" id="desc-talent">
                     <h1>
-                        Scaling Up Your Skill & Networks.
+                        Upgrade kemampuan dan networkmu.
                     </h1>
                     
-                    Bergabung dan dabatkan beberapa manfaat:
+                    Bergabung dan dapatkan beberapa manfaat:
                     <ul class="desc-list-talent" style="padding-top: 15px">
                         <li>Karir di perusahaan idaman</li>
                         <li>Project as a freelance</li>
