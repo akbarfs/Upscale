@@ -3,7 +3,6 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="description" content="Blvck - Personal vCard & Resume Template">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <link rel="stylesheet" type="text/css" href="{{ asset('/cv/bootstrap/css/bootstrap.min.css') }}"  media="all">
@@ -14,7 +13,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
-    
 
     <script type="text/javascript" src="{{ asset('/cv/jquery-1.12.3.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/jquery.onepage-scroll.min.js')}}"></script>
@@ -26,7 +24,18 @@
     <script type="text/javascript" src="{{ asset('/cv/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/custom.js')}}"></script>
     <script type="text/javascript" src="{ {asset('/cv/smoothscroll.min.js')}}"></script>
+	
+	<style>
+    
+    #start-hiring { margin-top: 15px }
+    @media only screen and (max-width:990px){
+    }
+    @media only screen and (max-width:767px){        
+    }
+    @media only screen and (max-width:480px){   
+    }
 
+</style>
 
 
 </head>   
@@ -43,13 +52,13 @@
         </div>
         
         <div class="avatar">
-			<img src="{{ asset('public/img/my-pic.jpg') }}" alt="avatar">
+		<img src="{{url('template/upscale/media/images.jpg')}}" alt="avatar">
         </div>
         
         <div class="name">
         @if($talent)
 			<h1>{{ $talent->talent_name }}</h1>
-            <span>{{ $talent->talent_skill }}</span>
+            <span>{{ $talent->talent_focus}}</span>
             @endif
         </div>
 
@@ -67,7 +76,6 @@
 			<ul class="navigation">
 				
 				<li><a href="#about">About Me</a></li>
-				<li><a href="#experience">Expereince</a></li>
 				<li><a href="#education">Education</a></li>
 				<li><a href="#works">Works</a></li>
 				<li><a href="#contact">Contact</a></li>
@@ -88,7 +96,7 @@
                 </a>
             </div>
 
-            <div class="intro">
+            <div class="intro" id="about" >
                  @if($talent)
 				<p>Hello, My name is {{ $talent->talent_name }}. Lorem ipsum dolor sit amet, usu sumo dicant vulputate in. Quando fabellas adipiscing nam an. An vis congue oporteat, no eros facer suavitate eos. An debet affert aliquid ius. Veritus placerat est ea, est ne nominavi suscipit maluisset.</p>
 				<ul class="info">
@@ -100,86 +108,129 @@
             @endif
             </div>
 
-            <div class="skills">
+            <div class="skills" > 
 				<div class="row">
                 @if($talent)
 					<div class="col-md-6 col-sm-6 col-xs-12 item">
 						<div class="skill-info clearfix">
 							<h3 class="pull-left">{{ $talent->talent_skill }}</h3>
-							<span class="pull-right"></span>
+							<span class="pull-right">90%</span>
 						</div>
 						<div class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="90"
 							aria-valuemin="0" aria-valuemax="100" style="width:90%">
 							</div>
                         </div>
-                    </div>
+					</div>
+					
+					<div class="col-md-6 col-sm-6 col-xs-12 item">
+						<div class="skill-info clearfix">
+							<h3 class="pull-left">{{ $talent->talent_skill }}</h3>
+							<span class="pull-right">90%</span>
+						</div>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="90"
+							aria-valuemin="0" aria-valuemax="100" style="width:90%">
+							</div>
+                        </div>
+					</div>
+
+					<div class="col-md-6 col-sm-6 col-xs-12 item">
+						<div class="skill-info clearfix">
+							<h3 class="pull-left">{{ $talent->talent_skill }}</h3>
+							<span class="pull-right">90%</span>
+						</div>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="90"
+							aria-valuemin="0" aria-valuemax="100" style="width:90%">
+							</div>
+                        </div>
+					</div>
+
+					<div class="col-md-6 col-sm-6 col-xs-12 item">
+						<div class="skill-info clearfix">
+							<h3 class="pull-left">{{ $talent->talent_skill }}</h3>
+							<span class="pull-right">90%</span>
+						</div>
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="90"
+							aria-valuemin="0" aria-valuemax="100" style="width:90%">
+							</div>
+                        </div>
+					</div>
                 @endif
              </div>
         </section>
         
-        <section id="experience" class="resume">
+        <section id="education" class="resume">
 			<div class="section-header">
 				<h2>Education</h2>
 			</div>
 
+			@if($talent)
 			<div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="top-item resume-item">
-						
+						<h2>{{ $talent->talent_campus }}</h2>
+						<span>JANUARY, 2007</span>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
 					</div>
-                </div>
+				</div>
+			@endif
         </section>
-
+		
         <section id="works" class="works clearfix">
 			
 			<div class="section-header">
 				<h2>Portfolio</h2>
 			</div>
-
-			<div class="control">
-				<ul>
-					<li class="active"><a class="filter" data-filter="all">All Projects</a></li>
-					<li><a class="filter" data-filter="1">Logo</a></li>
-					<li><a class="filter" data-filter="2">Vector</a></li>
-					<li><a class="filter" data-filter="3">Audio</a></li>
-					<li><a class="filter" data-filter="4">Video</a></li>
-				</ul>
-			</div>
-
+			@if($talent)
             <div class="item-outer row clearfix">
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1" data-sort="value">
+				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" >
 					<div class="item">
-						<a href="assets/images/work1.jpg" class="work-image">
+						<a href="{{url('template/upscale/media/work1.jpg')}}"  class="work-image">
 							<div class="title">
 								<div class="inner">
-									<h2>Project Name</h2>
+									<h2>{{ $talent->talent_portfolio }}</h2>
 									<span>View Details</span>
 								</div>
 							</div>
 						</a>
 						<div class="overlay"></div>
+						<img src="{{url('template/upscale/media/work1.jpg')}}"  alt="portfolio">
 					</div>
-                </div>
-
-        </section>
-
-        <section id="testimonials" class="testimonials">
-			<div class="section-header">
-				<h2>Testimonials</h2>
-            </div>
-            <div class="testimonial-carousel">
-
-				<div class="item">
-					<div class="row">
-						<div class="col-md-2 col-sm-2 hidden-xs">
-							<div class="thumb">
+				</div>
+				
+				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" >
+					<div class="item">
+						<a href="{{url('template/upscale/media/work1.jpg')}}" class="work-image">
+							<div class="title">
+								<div class="inner">
+									<h2>{{ $talent->talent_portfolio }}</h2>
+									<span>View Details</span>
+								</div>
 							</div>
-						</div>
-						<div class="text col-md-10 col-sm-10 col-xs-12">
-						</div>
+						</a>
+						<div class="overlay"></div>
+						<img src="{{url('template/upscale/media/work1.jpg')}}" alt="portfolio">
 					</div>
-                </div>
+				</div>
+
+				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item">
+					<div class="item">
+						<a href="{{url('template/upscale/media/work1.jpg')}}" class="work-image">
+							<div class="title">
+								<div class="inner">
+									<h2>{{ $talent->talent_portfolio }}</h2>
+									<span>View Details</span>
+								</div>
+							</div>
+						</a>
+						<div class="overlay"></div>
+						<img src="{{url('template/upscale/media/work1.jpg')}}" alt="portfolio">
+					</div>
+				</div>
+				@endif
         </section>
 
         <section id="contact" class="contact">	
