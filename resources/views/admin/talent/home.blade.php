@@ -140,7 +140,8 @@
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
 
-								<button class="btn btn-outline-primary" type="submit" id="search" style="right" >Tambah Talent</button>
+								<!-- link insert new talent -->
+								<a href="#" >Tambah Talent</a>
 							</div>
 
 							

@@ -280,6 +280,8 @@ Route::group(['middleware'=>'cek'],function(){
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
+
+			
 			//end adi
 
 
