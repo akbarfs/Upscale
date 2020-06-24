@@ -45,6 +45,8 @@
             <input type="text" class="form-control" id="alamat" placeholder="">
         </div>
 
+
+        <div class="form-group">
         @push('script')
     
               <script src="{{url('template/upscale/js/tag.js')}}"></script>
@@ -89,6 +91,9 @@
                                 placeholder="skill"
                                 name="skill"/>
                             </div>
+              </div>
+
+              
                            
                             <div class="form-group">
                                 <label for="phone">Phone Number / WA</label>
