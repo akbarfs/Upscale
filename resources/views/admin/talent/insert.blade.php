@@ -46,7 +46,7 @@
         </div>
 
 
-        <div class="form-group">
+        
         @push('script')
     
               <script src="{{url('template/upscale/js/tag.js')}}"></script>
@@ -78,7 +78,7 @@
                 .fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
                 .fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
               </style>
-              <div>
+              <div class="form-group">
                 <input
                                 type="text"
                                 onItemSelect="setClose()"
@@ -88,10 +88,10 @@
                                 data-user-option-allowed="true"
                                 data-url="{{url('json/skill')}}"
                                 data-load-once="true"
-                                placeholder="skill"
+                                placeholder="Skill"
                                 name="skill"/>
-                            </div>
               </div>
+              
 
               
                            
