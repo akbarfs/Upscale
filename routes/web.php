@@ -69,11 +69,19 @@ Route::group(['middleware'=>'cek'],function(){
 
 /////////////////////////////
 
+Route::get("/editbasicprofile", "MemberController@editBasic");
+Route::get("/editeducation", "MemberController@editEducation");
+Route::get("/editwork", "MemberController@editWork");
+Route::get("/editskill", "MemberController@editSkill");
+Route::get("/editcv", "MemberController@editCv");
+
 
 	//Membuat edit profil
-Route::get("/editBasicProfile", "EditController@editBasic");
-Route::get("/editEducation", "EditController@editEducation");
-Route::get("/editWork", "EditController@editWork");
+//Route::get("/editBasicProfile", "EditController@editBasic");
+//Route::get("/editEducation", "EditController@editEducation");
+//Route::get("/editWork", "EditController@editWork");
+//Route::get("/editskill", "EditController@editSkill");
+//Route::get("/editcv", "EditController@editCv");
 
 
 ////////////////////////////

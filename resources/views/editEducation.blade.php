@@ -1,35 +1,44 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-        <title>Edit EDUCATIONAL BACKGROUND</title>
-        <style>
+@extends('layouts.template',['logo'=>'transparent'])
 
-        </style>
+@section("menu_class",'light')
 
-    </head>
-    <body>
+@section('content')
 
-    </br>
-   <p >
-    <img class="" src="tambah.png" style="float:right;" alt="Card image" height="25px" width="25px">
+</br>
+</br>
+</br>
+
+<main>
+<div class="container" align="left">
+            
+            <div class="card-body">
+                <br/>
+                <h4>
+    <img class="" src="tambah.png" style="float:right;" style="bold" alt="Card image" height="25px" width="25px">
     EDUCATIONAL BACKGROUND 
-    </p>
- 
-    </br>
+    </h4>
+
         <div class="container">
             <div class="card mt-5">
                 <div class="card-body">
                     <br/>
                     <br/>
                     <form action="/action_page.php">
-     <img class="" src="hapus.png" style="float:right;" alt="Card image" height="25px" width="25px">     
-  <label for="fname">UNIVERSITY:</label>
-  <input type="text" id="fname" name="fname"><br><br>
+     <img class="" src="hapus.png" style="float:right;" alt="Card image" height="25px" width="25px">   
+     <form action="/register/member" method="post" id="register-talent">
+            
+            @csrf
+            
+            <div class="info alert alert-warning" style="display: none"></div>
 
-  <label for="lname">Starting Year:</label>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">UNIVERSITY</label></div>
+                    <div class="col-md-8"><input type="text" name="name" class="form-control" placeholder="Your Name"></div>
+                </div>
+            </div>
+
+            <label for="lname">Starting Year:</label>
   <select id="degree" name="degree">
   <option value="Degree">2017</option>
   <option value="bachelor">2018</option>
@@ -41,16 +50,35 @@
   <option >2020</option>
   </select><br><br>
 
-  <label for="lname">DEGREE:</label>
-  <select id="degree" name="degree">
-  <option value="Degree">Degree</option>
-  <option value="bachelor">Bachelor</option>
-  </select><br><br>
-  <label for="lname">MAJOR:</label>
-  <input type="text" id="lname" name="lname"><br><br>
-  <label for="lname">GPA:</label>
-  <input type="text" id="lname" name="lname"><br><br>
-  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="select">DEGREE</label></div>
+                    <div class="col-md-8">
+                        <select class="custom-select" name="role" id="register-role">
+                          <option> Bachelor</option>
+                          <option  value="talent">1</option>
+                         <option  value="client">2</option> 
+                          <!-- <option  value="coworkspace">Cowork</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Email">MAJOR</label></div>
+                    <div class="col-md-8"><input type="email" name="email" class="form-control" id="Email" placeholder="Informatics"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">GPA</label></div>
+                    <div class="col-md-8"><input type="text" name="username" class="form-control" placeholder="0.00"></div>
+                </div>
+            </div>
+
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
   <label for="vehicle1"> I'm still studying here </label><br>
   
 </form>
@@ -58,9 +86,13 @@
                 </div>
             </div>
         </div>
+        </div>
 
         <div class="form-group" align="right" padding=25px;>
          <input type="submit" class="btn btn-success" value="SAVE">
         </div>
-    </body>
-</html>
+
+
+</main>
+
+<script src="{{url('template/upscale/themekit/scripts/sticky-kit.min.js')}}"></script>

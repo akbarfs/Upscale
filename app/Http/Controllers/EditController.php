@@ -23,4 +23,13 @@ class EditController extends Controller
     {
         return view('editWork');
     }
+
+    public function editSkill()
+    {
+        return view('editSkill');
+    }
+    public function editCv()
+    {
+        return view('editCv');
+    }
 }

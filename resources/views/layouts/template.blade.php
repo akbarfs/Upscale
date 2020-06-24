@@ -550,24 +550,28 @@
                             </ul>
                         </li>
                     </ul>
-                    <div class="menu-custom-area">
 
-                        @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
-                            @if(!Session::has('login'))
-                                <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                    <div class="menu-right">
+                    
+                    <ul class="lan-menu">
+                        <li class="dropdown">
+                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
+                                <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/profile.png')}}" alt="" />Hello,  </a>
                             @else
-                         <!--   <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a> -->
-                         <div class="dropdown">
-                             <button class="dropbtn">Hello, </button>
-                             <div class="dropdown-content">
-                             <a  href="">Profile</a>
-                             <a  href="{{url('member/logout')}}">Logout</a>
-                        </div>
-                        </div>
-    
+                                <a href="{{Request::url()}}?lang=id">Hello, </a>
                             @endif
-                        @endif
 
+                            <ul>
+                                <li><a href="">Profile</a></li>
+                                
+                                <li><a  href="{{url('member/logout')}}">Logout</a></li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+  
+                             <!--<a  href="{{url('member/logout')}}">Logout</a> -->
+                   
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="#" 
                         target="_blank" onClick="Tawk_API.maximize();">Live Chat</a>

@@ -1,165 +1,134 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-        <title>Edit Basic Profile</title>
-    </head>
-    <body>
-    
-        <div class="container" align="left">
+@extends('layouts.template',['logo'=>'transparent'])
+
+@section("menu_class",'light')
+
+@section('content')
+
+</br>
+</br>
+</br>
+
+
+<main>
+
+<div class="container" align="left">
             
-                <div class="card-body">
-                    <br/>
-                    <h4>BASIC PROFILE</h4>
-                    <br/>
+            <div class="card-body">
+                <br/>
+                <h4>BASIC PROFILE</h4>
+                <br/>
 
-                    <div class="container" align="center">
-  <div class="card" style="width:200px" align="center">
-    <img class="card-img-top" src="profile.png" alt="Card image" style="width:100%">
-    <div class="card-body">
-      <a href="#" class="btn btn-primary">UPLOAD</a>
-    </div>
-  </div>
-  <br>
+                <div class="container" align="center">
+<div class="card" style="width:250px" align="center">
+<img class="card-img-top" src="profile.png" alt="Card image" style="width:100%">
+<div class="card-body">
+  <form action="/action_page.php">
+  <input type="file" id="myFile" name="filename"  style="width:220px">
+</form>
 </div>
-                    
+</div>
+<br>
+</div>
 
-                    <form method="post" >
 
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}
+<form action="/register/member" method="post" id="register-talent">
+            
+            @csrf
+            
+            <div class="info alert alert-warning" style="display: none"></div>
 
-                        <div class="form-group">
-                            <label>NAME</label>
-                            <input type="text" name="id" class="form-control" placeholder="">
-
-                            @if($errors->has('id'))
-                                <div class="text-danger">
-                                    {{ $errors->first('id')}}
-                                </div>
-                            @endif
-
-                        </div>
-
-                        <div class="form-group">
-                            <label>EMAIL</label>
-                            <input name="judul" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('judul'))
-                                <div class="text-danger">
-                                    {{ $errors->first('judul')}}
-                                </div>
-                            @endif
-
-                        </div>
-                        <div class="form-group">
-                            <label>ADDRESS</label>
-                            <input name="penulis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('penulis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('penulis')}}
-                                </div>
-                            @endif
-
-                        </div>
-                        <div class="form-group">
-                            <label>GENDER</label>
-                            <input name="penerbit" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('penerbit'))
-                                <div class="text-danger">
-                                    {{ $errors->first('penerbit')}}
-                                </div>
-                            @endif
-
-                        </div>
-                        <div class="form-group">
-                            <label>DATE OF BIRTH</label>
-                            <input name="jenis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('jenis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('jenis')}}
-                                </div>
-                            @endif
-
-                        </div>
-                        <div class="form-group">
-                            <label>PHONE</label>
-                            <input name="jenis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('jenis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('jenis')}}
-                                </div>
-                            @endif
-
-                        </div> <div class="form-group">
-                            <label>WEBSITE</label>
-                            <input name="jenis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('jenis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('jenis')}}
-                                </div>
-                            @endif
-
-                        </div> <div class="form-group">
-                            <label>LINKEDIN</label>
-                            <input name="jenis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('jenis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('jenis')}}
-                                </div>
-                            @endif
-
-                        </div>
-                        <div class="form-group">
-                            <label>FACEBOOK</label>
-                            <input name="jenis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('jenis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('jenis')}}
-                                </div>
-                            @endif
-
-                        </div>
-                        <div class="form-group">
-                            <label>INSTAGRAM</label>
-                            <input name="jenis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('jenis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('jenis')}}
-                                </div>
-                            @endif
-
-                        </div>
-                        <div class="form-group">
-                            <label>TWITTER</label>
-                            <input name="jenis" class="form-control" placeholder="" ></input>
-
-                             @if($errors->has('jenis'))
-                                <div class="text-danger">
-                                    {{ $errors->first('jenis')}}
-                                </div>
-                            @endif
-
-                        </div>
-
-                        <div class="form-group" align="right">
-                            <input type="submit" class="btn btn-success" value="SAVE">
-                        </div>
-
-                    </form>
-
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">NAME</label></div>
+                    <div class="col-md-8"><input type="text" name="name" class="form-control" placeholder="Your Name"></div>
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Email">EMAIL</label></div>
+                    <div class="col-md-8"><input type="email" name="email" class="form-control" id="Email" placeholder="Your Email"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Name">ADDRESS</label></div>
+                    <div class="col-md-8"><input type="text" name="username" class="form-control" placeholder="Your Address"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="select">GENDER</label></div>
+                    <div class="col-md-8">
+                        <select class="custom-select" name="role" id="register-role">
+                          <option> - select -</option>
+                          <option  value="talent">Female</option>
+                         <option  value="client">Male</option> 
+                          <!-- <option  value="coworkspace">Cowork</option> -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Number">PHONE</label></div>
+                    <div class="col-md-8"><input type="number" name="phone_number" class="form-control" id="Number" placeholder=" 0888 xxx"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password">WEBSITE</label></div>
+                    <div class="col-md-8"><input type="password" name="password" class="form-control" id="Password" placeholder="Your Website"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password2">LINKEDIN</label></div>
+                    <div class="col-md-8"><input type="password" name="password_confirmation" class="form-control" id="Password2" placeholder="Youre Linkedin"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password2">FACEBOOK</label></div>
+                    <div class="col-md-8"><input type="password" name="password_confirmation" class="form-control" id="Password2" placeholder="Youre Facebook"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password2">INSTAGRAM</label></div>
+                    <div class="col-md-8"><input type="password" name="password_confirmation" class="form-control" id="Password2" placeholder="Your Instagram"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="Password2">TWITTER</label></div>
+                    <div class="col-md-8"><input type="password" name="password_confirmation" class="form-control" id="Password2" placeholder="Your Twitter"></div>
+                </div>
+            </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        
+          <div class="">
+            <button type="submit" class="btn btn-primary">SAVE</button>
+          </div>
+
+        </form>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+</main>
