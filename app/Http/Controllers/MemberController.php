@@ -251,7 +251,7 @@ class MemberController extends Controller
 
     public function CV($talent_id)
     {
-        $talent = DB::table('talent')->where('talent_id',$talent_id)->first();      
+        $talent = Talent::where('talent_id',$talent_id)->first();      
         return view('CV',['talent' => $talent]);
     }
     
