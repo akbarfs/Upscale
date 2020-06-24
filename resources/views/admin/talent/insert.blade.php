@@ -1,70 +1,38 @@
-@extends('layouts.template',['logo'=>'transparent','title'=>'Scaling Up Karir, Skill & Networkmu bersama komunitas eksklusif network upscale'])
-
-@section("menu_class",'menu-transparent light')
-
+@extends('admin.layout.apps')
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 @section('content')
 
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Talent</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li><a href="">Dashboard</a></li>
+                    <li class="active">Talent</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert New Talent</title>
+        <div class="card-body">
 
-    <style>
-    body > header.boxed-page-header {
-        height: 300px ;
-    }
-
-    ::-webkit-input-placeholder { /* Edge */
-      color: #c5c5c5 !important;
-    }
-
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: #c5c5c5 !important;
-    }
-
-    ::placeholder {
-      color: #c5c5c5 !important;
-    }
-
-    .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus 
-    {
-        background: #add2ec !important;
-    }
-
-    .fstElement { min-width: 455px; }
-    .fstControls { padding: 0 }
-    section.boxed-page:before {
-    }
-
-    @media only screen and (max-width:990px)
-    {
-        
-    }
-
-    @media only screen and (max-width:767px)
-    {
-        
-    }
-
-    @media only screen and (max-width:480px)
-    {
-        .fstElement { min-width: 300px; width: 93% }
-        .modal-header {padding: 5px;}
-        .modal-footer { padding: 0; }
-        .scroll-top-btn  { display: none !important }
-        .update { font-size: 10px  }
-        .o { margin-top: 5px !important}
-    }
-</style>
-</head>
-<body>
-        <h2>Buat Talent Baru</h2>
-    <form>
-        <div class="form-group">
+          <form style="margin:0; padding: 0" method="post" action="" id="form-search">
+            <div class="form-group">
           <label for="nama">Nama</label>
           <input type="text" class="form-control" id="nama" placeholder="">
         </div>
@@ -79,37 +47,37 @@
 
         @push('script')
     
-							<script src="{{url('template/upscale/js/tag.js')}}"></script>
-		                    <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
+              <script src="{{url('template/upscale/js/tag.js')}}"></script>
+                        <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
 
-		                    <script>
-		                        
-		                        $(document).ready(function()
-		                        {
-		                            $('.tagsInput').fastselect({
+                        <script>
+                            
+                            $(document).ready(function()
+                            {
+                                $('.tagsInput').fastselect({
 
-		                                valueDelimiter: ',',
-		                                onItemSelect: function($item, itemModel) {
-		                                    $(".fstChoiceRemove").html("x");
-		                                    // $(".fstQueryInput").focus(); 
-		                                },
+                                    valueDelimiter: ',',
+                                    onItemSelect: function($item, itemModel) {
+                                        $(".fstChoiceRemove").html("x");
+                                        // $(".fstQueryInput").focus(); 
+                                    },
 
-		                            });
-		                            
-		                        });
-		                        
-		                    </script>
+                                });
+                                
+                            });
+                            
+                        </script>
 
-							@endpush
+              @endpush
 
 
-							<style type="text/css">
-								.fstQueryInput  { padding: 0 }
-								.fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
-								.fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
-							</style>
-							<div>
-								<input
+              <style type="text/css">
+                .fstQueryInput  { padding: 0 }
+                .fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
+                .fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
+              </style>
+              <div>
+                <input
                                 type="text"
                                 onItemSelect="setClose()"
                                 multiple
@@ -153,12 +121,86 @@
                               <button type="submit" class="btn btn-danger">Tambah Talent</button>
                             </div>
                           </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
 
-    </form>
-</body>
-</html>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+
+    $(document).ready(function()
+    {
+      //mengambil data tanggal
+      $( "#datepicker" ).datepicker();
+
+      //function load table
+      function loadTable(url)
+      {
+        var param = $("#form-search").serialize();
+
+        $('#loading').show();
+        $("#pembungkus").html('');
+
+        
+        $.ajax({
+          url:url+"&"+param,
+          method:"GET",
+          success:function(data)
+          {
+            $('#loading').hide();
+            $("#pembungkus").html(data);
+          }
+        });
+      }
+
+      
+      //load pertama kali
+      loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
+
+      //klik pagination , diambil urlnya langsung di load ajax
+      $(document).on("click",".page-link",function(event) {
+        $( "body" ).scrollTop( 0 );
+        var url = $(this).attr("href");
+        loadTable(url);
+        event.preventDefault(); //ini biar ga keredirect ke halaman lain 
+      });
+
+      //search 
+      $("#form-search").submit(function()
+      { 
+        loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
+        return false;
+      });
+
+      //klikk all / non-member / member 
+      $("#non-member").click(function() 
+      {
+        $("select[name='status_member']").val("non-member");
+        $("#form-search").submit();
+      });
+
+      $("#member").click(function() 
+      {
+        $("select[name='status_member']").val("member");
+        $("#form-search").submit();
+      });
+
+      $("#all").click(function() 
+      {
+        $("select[name='status_member']").val("all");
+        $("#form-search").submit();
+      });
+
+
+    });
+  </script>
 
 @endsection

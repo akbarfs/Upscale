@@ -141,11 +141,11 @@
 								</div>
 
 								<!-- link insert new talent -->
-								<a href="list/insert">Tambah Talent</a>
+
 							</div>
-
-							
-
+							<div class="col-md-12 float-right">
+								<a href="list/insert">Tambah Talent</a>
+						    </div>
 						</div>
 					</form>
 			</div>
