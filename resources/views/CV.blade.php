@@ -65,15 +65,14 @@
 			<ul>
 				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
 				<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
 			</ul>
         </div>
         
         <nav class="main-nav">
 			<ul class="navigation">
-				
 				<li><a href="#about">About Me</a></li>
 				<li><a href="#experience">Expereince</a></li>
 				<li><a href="#education">Education</a></li>
@@ -92,7 +91,7 @@
             <div class="section-header">
              <h2>About Me</h2>
                 <a href="#" class="resume-download" data-toggle="tooltip" data-placement="bottom" title="Download">
-                <i class="fa fa-download" aria-hidden="true"> </i>  Download Resume
+                <i class="fa fa-download" aria-hidden="true"> </i> Download Resume
                 </a>
             </div>
 
@@ -158,8 +157,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="top-item resume-item">
 						<h2>{{ $row->edu_name }}</h2>
+						<h6>{{ $row->edu_level }}</h6>
 						<span>{{ $row->edu_datestart }} - {{ $row->edu_dateend }} </span>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit maxime laborum sequi, magni earum quo soluta sint velit numquam, ipsum illum! Nostrum possimus illo architecto praesentium ut aliquam dolorem.</p>
 					</div>
 				</div>
 			@endforeach	
@@ -179,7 +178,7 @@
 							<div class="title">
 								<div class="inner">
 									<h2>{{ $row->portfolio_name }}</h2>
-									<span>View Details</span>
+									<span>{{ $row->portfolio_tech}}</span>
 								</div>
 							</div>
 						</a>
@@ -201,6 +200,7 @@
                         <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Your Name" required>
                     </div>
                 </div>
+				
                 <div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="form-group">
 							<input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Your Email" required>
