@@ -68,7 +68,8 @@ class TalentNewController extends Controller
         // }
     }
 
-    public function export_excel(){
+    public function export_excel()
+    {
         return Excel::download(new TalentExport, 'talent.xlsx');
     }
 
