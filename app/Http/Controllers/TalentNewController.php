@@ -66,4 +66,50 @@ class TalentNewController extends Controller
         return view('admin.talent.insert');
     }
 
+    public function insertData(Request $request){
+
+
+        DB::table('talent')->insert([
+            'talent_name' => $request->nama,
+            'talent_email' => $request->email,
+            'talent_gender' => $request->gender,
+            'talent_address' => $request->alamat,
+            'talent_phone' => $request->phone,
+            'talent_birth_date' => $request->birthdate,
+            'talent_place_of_birth' => $request->birthplace,
+            'talent_martial_status' => $request->martialstatus,
+            'talent_current_address' => $request->currentaddress,
+            'talent_condition' => $request->condition,
+            'talent_skill' => $request->skill,
+            'talent_salary' => $request->salary,
+            'talent_focus' => $request->focus,
+            'talent_start_career' => $request->startcareer,
+            'talent_level' => $request->level,
+            'talent_latest_salary' => $request->latestsalary,
+            'talent_prefered_location' => $request->preflocation,
+            'talent_status' => $request->status,
+            'talent_onsite_jakarta' => $request->onsite,
+            'talent_remote' => $request->remote,
+            'talent_available' => $request->available,
+            'talent_apply' => $request->apply,
+            'talent_international' => $request->international,
+            'talent_location_id' => $request->locationid,
+            'talent_freelance_hour' => $request->freelancehour,
+            'talent_project_min' => $request->projectmin,
+            'talent_project_max' => $request->projectmax,
+            'talent_konsultasi_rate' => $request->konsulrate,
+            'talent_ngajar_rate' => $request->tutorrate,
+        ]);
+
+
+        return view('admin.talent.home');
+    }
+
+    public function deleteData(Request $request){
+
+        ##Delete function disini yah.
+        
+        return view('admin.talent.home');
+    }
+
 }
