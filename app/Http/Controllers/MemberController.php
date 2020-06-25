@@ -125,6 +125,7 @@ class MemberController extends Controller
                 "talent_focus"=>$request->talent_focus,
 
                 "talent_onsite_jakarta" => $request->talent_onsite_jakarta ? $request->talent_onsite_jakarta : "" ,
+                "talent_onsite_jogja" => $request->talent_onsite_jogja ? $request->talent_onsite_jogja : "" ,
                 "talent_remote" => $request->talent_remote ? $request->talent_remote : "",
         ];
 

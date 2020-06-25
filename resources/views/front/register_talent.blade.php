@@ -882,6 +882,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group luar_kota" style="margin-top: 20px; display: none">
+                            <div class="row">
+                                <div class="col-md-6"><label for="Name">Bersedia di Jogja ?</label></div>
+                                <div class="col-md-6">
+                                    <select class="custom-select" name="talent_onsite_jogja">
+                                        <option value="">-- pilih --</option>
+                                        <option value="yes">Bersedia</option>
+                                        <option value="no">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <div class="form-group luar_kota" style="margin-top: 20px; display: none">

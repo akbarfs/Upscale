@@ -42,6 +42,10 @@ class TalentNewController extends Controller
             if ( $request->talent_email ) {$data->where("talent_email","LIKE","%".$request->talent_email."%"); }
             if ( $request->talent_address ) {$data->where("talent_address","LIKE","%".$request->talent_address."%"); }
 
+            if ( $request->talent_onsite_jogja ) {$data->where("talent_onsite_jogja",$request->talent_onsite_jogja); }
+
+            if ( $request->talnet_onsite_jakarta ) {$data->where("talnet_onsite_jakarta",$request->talnet_onsite_jakarta); }
+
             if ( $request->status_member == "member" )
             {
                 $data->where("users.email","!=","");

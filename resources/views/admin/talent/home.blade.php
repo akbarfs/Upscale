@@ -78,6 +78,23 @@
 								<input type="text" class="form-control" placeholder="phone" name="talent_phone">
 							</div>
 
+							<div class="col-md-2">
+								<select class="custom-select" name="talent_onsite_jogja">
+								  <option value="">-- pilih --</option>
+								  <option value="unset">unset</option>
+								  <option value="yes">yes</option>
+								  <option value="no">no</option>
+							   </select>
+							</div>
+
+							<div class="col-md-2">
+								<select class="custom-select" name="talent_onsite_jakarta">
+								  <option value="">-- pilih --</option>
+								  <option value="unset">unset</option>
+								  <option value="yes">yes</option>
+								  <option value="no">no</option>
+							   </select>
+							</div>
 							@push('script')
     
 							<script src="{{url('template/upscale/js/tag.js')}}"></script>
@@ -109,7 +126,7 @@
 								.fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
 								.fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
 							</style>
-							<div>
+							<div style="margin: 10px;">
 								<input
                                 type="text"
                                 onItemSelect="setClose()"
@@ -136,7 +153,9 @@
 									<input type="checkbox" name="skill" checked="checked"> Skill &nbsp
 									<input type="checkbox" name="date_ready" checked="checked"> Date Ready &nbsp
 									<input type="checkbox" name="created" checked="checked"> Created &nbsp
-
+									<input type="checkbox" name="ready_jogja"> 
+									ready jogja &nbsp
+									<input type="checkbox" name="ready_jakarta"> ready jakarta &nbsp
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
 							</div>
