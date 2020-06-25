@@ -101,7 +101,7 @@
 		  			<i class="fa fa-user-o"></i>
 		  		</a>
 
-		  		<a href="https://api.whatsapp.com/send?phone=6287888666531&amp;text=Halo {{$talent->talent_name}}, Perkenalkan saya Arief dari Tim HR Upscale.id, Mohon maaf sebelumnya saya menghubungi secara langsung via WA ini. Kami ingin menginformasikan bahwa saat ini kami memiliki banyak kebutuhan untuk beberapa posisi di Web %20%26%20 Mobile Development. Jika tertarik baik dalam waktu saat ini atau untuk beberapa bulan kedepan saat available cari kerja, apakah bersedia untuk kami minta beberapa informasi terkait skills, portofolio, kapan available kerjanya serta berapa gaji yang diinginkan. Terimakasih" type="button" target="_blank" class="btn btn-success btn-sm"><i class=" fa fa-whatsapp"></i></a>
+		  		<a href="https://api.whatsapp.com/send?phone={{$talent->talent_phone}}&amp;text=Halo {{$talent->talent_name}}, perkenalkan saya Dodi dari upscale.id" type="button" target="_blank" class="btn btn-success btn-sm"><i class=" fa fa-whatsapp"></i></a>
 
 		  		<a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}" 
 		  		class="btn btn-sm btn-primary" target="_blank">
