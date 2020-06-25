@@ -100,3 +100,4 @@
 </main>
 
 <script src="{{url('template/upscale/themekit/scripts/sticky-kit.min.js')}}"></script>
+@endsection
