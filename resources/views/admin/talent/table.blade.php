@@ -84,6 +84,10 @@
 		  		class="btn btn-sm btn-primary" target="_blank">
 		  			<i class="fa fa-envelope"></i>
 		  		</a>
+		  		<a onclick="return confirm('Are you sure to delete this?')" href="#"
+				  	class="btn btn-sm btn-danger" target="_blank">
+					  	<i class="fa fa-trash"></i>
+				</a>
 		  </td>
 		</tr>
 		@endforeach
