@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label for="gender">Gender</label>
-            <select id="gender" class="form-control" name="gender">
+            <select id="gender" class="form-control" name="gender" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Male</option>
                 <option>Female</option>
@@ -76,7 +76,7 @@
 
         <div class="form-group">
             <label for="martialstatus">Martial Status</label>
-            <select id="martialstatus" class="form-control" name="martialstatus">
+            <select id="martialstatus" class="form-control" name="martialstatus" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Single</option>
                 <option>Married</option>
@@ -91,7 +91,7 @@
 
         <div class="form-group">
             <label for="level">Condition</label>
-            <select id="level" class="form-control" name="condition">
+            <select id="level" class="form-control" name="condition" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Unprocess</option>
                 <option>Quarantine</option>
@@ -169,7 +169,7 @@
 
         <div class="form-group">
             <label for="level">Level</label>
-            <select id="level" class="form-control" name="level">
+            <select id="level" class="form-control" name="level" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Undefined</option>
                 <option>Junior</option>
@@ -196,7 +196,7 @@
 
         <div class="form-group">
             <label for="status">Status</label>
-            <select id="status" class="form-control" name="status">
+            <select id="status" class="form-control" name="status" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Student</option>
                 <option>Worker</option>
@@ -207,7 +207,7 @@
 
         <div class="form-group">
             <label for="onsite">Onsite</label>
-            <select id="onsite" class="form-control" name="onsite">
+            <select id="onsite" class="form-control" name="onsite" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Unset</option>
                 <option>Yes</option>
@@ -217,7 +217,7 @@
 
         <div class="form-group">
             <label for="remote">Remote</label>
-            <select id="remote" class="form-control" name="remote">
+            <select id="remote" class="form-control" name="remote" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Unset</option>
                 <option>Yes</option>
@@ -227,7 +227,7 @@
 
         <div class="form-group">
             <label for="available">Available</label>
-            <select id="available" class="form-control" name="available">
+            <select id="available" class="form-control" name="available" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Yes</option>
                 <option>No</option>
@@ -238,7 +238,7 @@
 
         <div class="form-group">
             <label for="apply">Apply</label>
-            <select id="apply" class="form-control" name="apply">
+            <select id="apply" class="form-control" name="apply" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Yes</option>
                 <option>No</option>
@@ -248,7 +248,7 @@
 
         <div class="form-group">
             <label for="international">International Talent</label>
-            <select id="international" class="form-control" name="international">
+            <select id="international" class="form-control" name="international" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Ya, Kemungkinan saya tertarik</option>
                 <option>Tidak yakin, bahasa inggris saya tidak cukup baik</option>
@@ -279,7 +279,7 @@
 
         <div class="form-group">
             <label for="konsulrate">Konsultasi Rate</label>
-            <select id="konsulrate" class="form-control" name="konsulrate">
+            <select id="konsulrate" class="form-control" name="konsulrate" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Poor</option>
                 <option>Fair</option>
@@ -290,7 +290,7 @@
 
         <div class="form-group">
             <label for="tutorrate">Tutor Rate</label>
-            <select id="tutorrate" class="form-control" name="tutorrate">
+            <select id="tutorrate" class="form-control" name="tutorrate" onchange="this.form.submit()">
                 <option selected> </option>
                 <option>Poor</option>
                 <option>Fair</option>
