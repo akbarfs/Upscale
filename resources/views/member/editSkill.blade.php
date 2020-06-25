@@ -9,16 +9,17 @@
 </br>
 
 <main>
+<div class="container" align="left">
  <!-- web -->
   <div class="card-body">
     <br/>
     <h4>
-    <img class="" src="tambah.png" style="float:right;" style="bold" alt="Card image" height="25px" width="25px">
+    <a href=""> <img class="" src="{{url('template/upscale/media/tambah.png')}}" style="float:right;" style="bold" alt="Card image" height="25px" width="25px"></a>
     MANAGEMENT SKILL
     </h4>
     <br/>
     <br/>
-    <img class="" src="hapus.png" style="float:right;" alt="Card image" height="25px" width="25px">  
+    <a href=""><img class="" src="{{url('template/upscale/media/hapus.png')}}" style="float:right;" alt="Card image" height="25px" width="25px"></a>  
 
 
  <div class="question_box">
@@ -41,9 +42,9 @@
                             });
                         </script>
                         <select style="margin-top: 10px" class="custom-select" id="web_option">
-                            <option value="">-- pilih --</option>
-                            <option value="ya">Ya</option>
-                            <option value="tidak">Tidak</option>
+                            <option value="ya">Web Development</option>
+                            <option value="ya">Android</option>
+                            <option value="ya">UI/UX</option>
                         </select>
 
 

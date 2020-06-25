@@ -248,31 +248,36 @@ class MemberController extends Controller
         return redirect("/");
     }
 
+    public function profile()
+    {
+        return view("member.profile");
+    }
+
 
     public function editBasic()
     {
       //  $profile = Profile::find($id);
       //  return view('editBasicProfile',['profile' => $profile], compact('id'));
 
-      return view('editBasicProfile');
+      return view("member.editBasicProfile");
     }
 
     public function editEducation()
     {
-        return view('editEducation');
+        return view("member.editEducation");
     }
 
     public function editWork()
     {
-        return view('editWork');
+        return view("member.editWork");
     }
 
     public function editSkill()
     {
-        return view('editSkill');
+        return view("member.editSkill");
     }
     public function editCv()
     {
-        return view('editCv');
+        return view("member.editCv");
     }
 }

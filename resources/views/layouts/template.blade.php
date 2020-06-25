@@ -21,6 +21,7 @@
     <link rel="icon" href="{{url('template/upscale/media/upscale.ico')}}">
     <!-- <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script> -->
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -91,6 +92,7 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e8d;}
+
 
 </style>
 
@@ -551,7 +553,15 @@
                         </li>
                     </ul>
 
-                    <div class="menu-right">
+                   
+                    <div class="menu-custom-area">
+
+                        @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
+                            @if(!Session::has('login'))
+                                <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
+                            @else
+                                
+                            <div class="menu-right">
                     
                     <ul class="lan-menu">
                         <li class="dropdown">
@@ -562,13 +572,16 @@
                             @endif
 
                             <ul>
-                                <li><a href="">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
                                 
                                 <li><a  href="{{url('member/logout')}}">Logout</a></li>
                                 
                             </ul>
                         </li>
                     </ul>
+
+                            @endif
+                        @endif
   
                              <!--<a  href="{{url('member/logout')}}">Logout</a> -->
                    

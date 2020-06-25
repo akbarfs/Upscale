@@ -20,7 +20,7 @@
 
                 <div class="container" align="center">
 <div class="card" style="width:250px" align="center">
-<img class="card-img-top" src="profile.png" alt="Card image" style="width:100%">
+<img class="card-img-top" src="{{url('template/upscale/media/profile.png')}}" alt="Card image" style="width:100%">
 <div class="card-body">
   <form action="/action_page.php">
   <input type="file" id="myFile" name="filename"  style="width:220px">

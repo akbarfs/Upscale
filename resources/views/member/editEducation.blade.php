@@ -14,7 +14,7 @@
             <div class="card-body">
                 <br/>
                 <h4>
-    <img class="" src="tambah.png" style="float:right;" style="bold" alt="Card image" height="25px" width="25px">
+   <a href=""> <img class="" src="{{url('template/upscale/media/tambah.png')}}" style="float:right;" style="bold" alt="Card image" height="25px" width="25px"></a>
     EDUCATIONAL BACKGROUND 
     </h4>
 
@@ -24,7 +24,7 @@
                     <br/>
                     <br/>
                     <form action="/action_page.php">
-     <img class="" src="hapus.png" style="float:right;" alt="Card image" height="25px" width="25px">   
+    <a href=""> <img class="" src="{{url('template/upscale/media/hapus.png')}}" style="float:right;" alt="Card image" height="25px" width="25px"></a>   
      <form action="/register/member" method="post" id="register-talent">
             
             @csrf

@@ -57,6 +57,8 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
 }); 
 
+
+
 Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
 
 
@@ -69,11 +71,12 @@ Route::group(['middleware'=>'cek'],function(){
 
 /////////////////////////////
 
-Route::get("/editbasicprofile", "MemberController@editBasic");
-Route::get("/editeducation", "MemberController@editEducation");
-Route::get("/editwork", "MemberController@editWork");
-Route::get("/editskill", "MemberController@editSkill");
-Route::get("/editcv", "MemberController@editCv");
+Route::get("/profile", "MemberController@profile");
+Route::get("/profile/edit-basic-profile", "MemberController@editBasic");
+Route::get("/profile/edit-education", "MemberController@editEducation");
+Route::get("/profile/edit-work", "MemberController@editWork");
+Route::get("/profile/edit-skill", "MemberController@editSkill");
+Route::get("/profile/edit-cv", "MemberController@editCv");
 
 ////////////////////////////
 
