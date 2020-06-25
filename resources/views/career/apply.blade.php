@@ -148,7 +148,7 @@
                             <div class="col-md-4 margin-top">
                                 <label >Email<span style="color: red;">
                                         *</span></label>
-                                <input type="email" name="email" class="validate-required form-control" placeholder="Email Anda" required="" value="{{@$user->talent->talent_email}}" readonly="readonly">
+                                <input id="email" type="email" name="email" class="validate-required form-control" placeholder="Email Anda" required="" value="{{@$user->talent->talent_email}}" readonly="readonly">
                             </div>
                             <div class="col-md-4 margin-top">
                                 <label >Tempat Lahir<span
