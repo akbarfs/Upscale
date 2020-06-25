@@ -17,6 +17,14 @@
 		  <th scope="col">Ready</th>
 		  @endif
 
+		  @if (Request::input('ready_jogja') )
+		  <th scope="col">Jogja</th>
+		  @endif
+
+		  @if (Request::input('ready_jakarta') )
+		  <th scope="col">Jakarta</th>
+		  @endif
+
 		  @if (Request::input('created') )
 		  <th scope="col">Created</th>
 		  @endif 
@@ -66,6 +74,14 @@
 		  <td>
 		  	{{ \Carbon\Carbon::parse($talent->talent_date_ready)->format('D, d-m-Y H:i') }}
 		  </td>
+		  @endif
+
+		  @if (Request::input('ready_jogja') )
+		  <td>{{ $talent->talent_onsite_jogja }}</td>
+		  @endif
+
+		  @if (Request::input('ready_jakarta') )
+		  <td>{{ $talent->talent_onsite_jogja }}</td>
 		  @endif
 
 		  @if (Request::input('created') )
