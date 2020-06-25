@@ -44,7 +44,9 @@ class TalentNewController extends Controller
 
             if ( $request->talent_onsite_jogja ) {$data->where("talent_onsite_jogja",$request->talent_onsite_jogja); }
 
-            if ( $request->talnet_onsite_jakarta ) {$data->where("talnet_onsite_jakarta",$request->talnet_onsite_jakarta); }
+            if ( $request->talent_onsite_jakarta ) {$data->where("talnet_onsite_jakarta",$request->talent_onsite_jakarta); }
+
+            if ( $request->talent_isa ) {$data->where("talent_isa",$request->talent_isa); }
 
             if ( $request->status_member == "member" )
             {

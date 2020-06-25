@@ -24,6 +24,10 @@
 		  <th scope="col">Jakarta</th>
 		  @endif
 
+		  @if (Request::input('isa') )
+		  <th scope="col">ISA</th>
+		  @endif
+
 		  @if (Request::input('created') )
 		  <th scope="col">Created</th>
 		  @endif 
@@ -80,7 +84,11 @@
 		  @endif
 
 		  @if (Request::input('ready_jakarta') )
-		  <td>{{ $talent->talent_onsite_jogja }}</td>
+		  <td>{{ $talent->talent_onsite_jakarta }}</td>
+		  @endif
+
+		  @if (Request::input('isa') )
+		  <td>{{ $talent->talent_isa }}</td>
 		  @endif
 
 		  @if (Request::input('created') )

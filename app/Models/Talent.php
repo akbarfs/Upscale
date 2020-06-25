@@ -45,6 +45,7 @@ class Talent extends Model
 							'talent_international',
 							'talent_onsite_jakarta',
 							'talent_onsite_jogja',
+							'talent_isa',
 							'talent_remote'
 						];
 	public $timestamps = false;

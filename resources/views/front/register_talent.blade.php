@@ -401,10 +401,12 @@
                                     if ( $(this).val() == 'sudah' ) 
                                     {
                                         $('#pengalaman').show();
+                                        $(".isa").hide() ;
                                     }
                                     else
                                     {
                                         $('#pengalaman').hide();
+                                        $(".isa").show() ;
                                     }
                                 });
                             });
@@ -412,18 +414,34 @@
 
                         <div class="form-group" style="margin-top: 20px">
                             <div class="row">
-                                <div class="col-md-8">
-                                    <label class="ready">Sudah memiliki pengalaman kerja?</label>
+                                <div class="col-md-6">
+                                    <label class="ready">Memiliki pengalaman kerja?</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <select class="custom-select" id="pengalaman_option">
                                         <option value="">-- pilih --</option>
                                         <option value="sudah">Sudah</option>
-                                        <option value="belum">Belum</option>
+                                        <option value="belum">Belum/Sangat sedikit</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group isa" style="margin-top: 20px; display: none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="ready">Apakah anda bersedia untuk kami berikan edukasi intensif sebelum disalurkan ke lapangan pekerjaan ?
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <select class="custom-select" name="talent_isa">
+                                            <option value="unset">-- pilih --</option>
+                                            <option value="yes">ya</option>
+                                            <option value="no">tidak</option>
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>
 
                         <div id="pengalaman" style="display: none;">
                             <div style="font-size: 18px ;">

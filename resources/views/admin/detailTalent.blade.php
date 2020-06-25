@@ -302,6 +302,19 @@
 
                                 <div class="row form-group">
                                     <div class="col col-md-4">
+                                        <label class=" form-control-label">Education isa</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_isa}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
                                         <label class=" form-control-label">talent rate</label>
                                     </div>
                                     <div class="col-12 col-md-8">

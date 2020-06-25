@@ -127,6 +127,7 @@ class MemberController extends Controller
                 "talent_onsite_jakarta" => $request->talent_onsite_jakarta ? $request->talent_onsite_jakarta : "" ,
                 "talent_onsite_jogja" => $request->talent_onsite_jogja ? $request->talent_onsite_jogja : "" ,
                 "talent_remote" => $request->talent_remote ? $request->talent_remote : "",
+                "talent_isa" => $request->talent_isa ? $request->talent_isa : "unset",
         ];
 
         $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 

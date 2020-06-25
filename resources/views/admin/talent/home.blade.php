@@ -80,7 +80,7 @@
 
 							<div class="col-md-2">
 								<select class="custom-select" name="talent_onsite_jogja">
-								  <option value="">-- pilih --</option>
+								  <option value="">-- jogja? --</option>
 								  <option value="unset">unset</option>
 								  <option value="yes">yes</option>
 								  <option value="no">no</option>
@@ -89,12 +89,22 @@
 
 							<div class="col-md-2">
 								<select class="custom-select" name="talent_onsite_jakarta">
-								  <option value="">-- pilih --</option>
+								  <option value="">-- jakarta? --</option>
 								  <option value="unset">unset</option>
 								  <option value="yes">yes</option>
 								  <option value="no">no</option>
 							   </select>
 							</div>
+
+							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="talent_isa">
+								  <option value="">-- isa? --</option>
+								  <option value="unset">unset</option>
+								  <option value="yes">yes</option>
+								  <option value="no">no</option>
+							   </select>
+							</div>
+
 							@push('script')
     
 							<script src="{{url('template/upscale/js/tag.js')}}"></script>
@@ -156,6 +166,7 @@
 									<input type="checkbox" name="ready_jogja"> 
 									ready jogja &nbsp
 									<input type="checkbox" name="ready_jakarta"> ready jakarta &nbsp
+									<input type="checkbox" name="isa"> ISA &nbsp
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
 							</div>
