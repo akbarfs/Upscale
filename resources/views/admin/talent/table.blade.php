@@ -2,9 +2,12 @@
 	.badge { cursor: pointer; }
 </style>
 
+<form action="{{ url('list/del') }}" method="post">
+	{{csrf_field()}}
 <table class="table table-striped">
 	<thead>
 		<tr>
+		  <th>#</th>
 		  <th scope="col">id</th>
 		  <th scope="col">Name</th>
 		  @if (Request::input('contact') )
@@ -36,6 +39,7 @@
 		
 		@foreach($data as $talent)
 		<tr>
+		  <td><input type="checkbox" name="delid[]" value="{{$talent->talent_id}}"> </td>
 		  <th scope="row">{{$talent->talent_id}}</th>
 		  <td>
 		  		{{$talent->talent_name}}
@@ -100,10 +104,16 @@
 		  		class="btn btn-sm btn-primary" target="_blank">
 		  			<i class="fa fa-envelope"></i>
 		  		</a>
+
+				<a onclick="return confirm('Are you sure to delete this?')" href="{{url('/admin/talent/delete'.$talent->talent_id)}}"
+				  	class="btn btn-sm btn-danger" target="_blank">
+					  	<i class="fa fa-trash"></i>
+				</a>
 		  </td>
 		</tr>
 		@endforeach
 	</tbody>
 </table>
-
+<button type="submit" class="btn btn-danger">Delete Selected</button>
+</form>
 {{$data->links()}}
