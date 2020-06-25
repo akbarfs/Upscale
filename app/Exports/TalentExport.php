@@ -12,6 +12,6 @@ class TalentExport implements FromCollection
     */
     public function collection()
     {
-        return Talent::paginate(50);
+        return Talent::select("talent_name","talent_email")->limit(10)->get();
     }
 }
