@@ -29,16 +29,16 @@ class MemberController extends Controller
 
     public function regTalentStep1(Request $request)
     {
-        $this->validate ($request,[
-            'name'         => 'required|min:3|max:25|string',
-            'username'     => 'required|min:3|max:20|string|unique:users,username',
-            'email'        => 'required|string|email|unique:users,email',
-            'password'     => 'required|min:6|confirmed',
-            'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
-            'gender' => 'required',
-            'tgl_lahir' => 'required',
-            'tempat_lahir' => 'required|min:3|max:25',
-        ]); 
+        // $this->validate ($request,[
+        //     'name'         => 'required|min:3|max:25|string',
+        //     'username'     => 'required|min:3|max:20|string|unique:users,username',
+        //     'email'        => 'required|string|email|unique:users,email',
+        //     'password'     => 'required|min:6|confirmed',
+        //     'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
+        //     'gender' => 'required',
+        //     'tgl_lahir' => 'required',
+        //     'tempat_lahir' => 'required|min:3|max:25',
+        // ]); 
 
         return response()->json(array("message"=>"success","status"=>1));
     }
