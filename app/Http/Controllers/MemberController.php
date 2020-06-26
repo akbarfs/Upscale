@@ -29,16 +29,28 @@ class MemberController extends Controller
 
     public function regTalentStep1(Request $request)
     {
-        // $this->validate ($request,[
-        //     'name'         => 'required|min:3|max:25|string',
-        //     'username'     => 'required|min:3|max:20|string|unique:users,username',
-        //     'email'        => 'required|string|email|unique:users,email',
-        //     'password'     => 'required|min:6|confirmed',
-        //     'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
-        //     'gender' => 'required',
-        //     'tgl_lahir' => 'required',
-        //     'tempat_lahir' => 'required|min:3|max:25',
-        // ]); 
+        $this->validate ($request,[
+            'name'         => 'required|min:3|max:25|string',
+            'username'     => 'required|min:3|max:20|string|unique:users,username',
+            'email'        => 'required|string|email|unique:users,email',
+            'password'     => 'required|min:6|confirmed',
+            'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
+            'gender' => 'required',
+            'tgl_lahir' => 'required',
+            'tempat_lahir' => 'required|min:3|max:25',
+        ]); 
+
+        $data = [
+                'talent_name' =>$request->name,
+                'talent_condition' =>'unprocess',
+                'talent_phone'=>$request->phone_number,
+                'talent_email'=>$request->email, 
+                'talent_place_of_birth' => $request->tempat_lahir,
+                'talent_birth_date'=>$request->tgl_lahir,
+                'talent_gender' => $request->gender
+        ];
+
+        $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 
 
         return response()->json(array("message"=>"success","status"=>1));
     }
@@ -61,7 +73,7 @@ class MemberController extends Controller
             // 'talent_address' => 'sometimes|min:3|max:25|',
             // 'talent_prefered_location' => 'sometimes|min:3|max:25|',
             // 'talent_date_ready' => 'sometimes|string',
-            'talent_available' => 'sometimes|string',
+            // 'talent_available' => 'sometimes|string',
 
 
             'freelance_hour' => 'sometimes|format_rp',
@@ -128,6 +140,11 @@ class MemberController extends Controller
                 "talent_onsite_jogja" => $request->talent_onsite_jogja ? $request->talent_onsite_jogja : "" ,
                 "talent_remote" => $request->talent_remote ? $request->talent_remote : "",
                 "talent_isa" => $request->talent_isa ? $request->talent_isa : "unset",
+
+                'talent_salary_jogja'   =>preg_replace('/[^0-9]/', '', $request->salary_jogja),
+                'talent_salary_jakarta' =>preg_replace('/[^0-9]/', '', $request->salary_jakarta),
+                'talent_current_work'   =>$request->talent_current_work,
+                'talent_last_active'   =>date("Y-m-d H:i:s")
         ];
 
         $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 

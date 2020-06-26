@@ -44,7 +44,7 @@ class TalentNewController extends Controller
 
             if ( $request->talent_onsite_jogja ) {$data->where("talent_onsite_jogja",$request->talent_onsite_jogja); }
 
-            if ( $request->talent_onsite_jakarta ) {$data->where("talnet_onsite_jakarta",$request->talent_onsite_jakarta); }
+            if ( $request->talent_onsite_jakarta ) {$data->where("talent_onsite_jakarta",$request->talent_onsite_jakarta); }
 
             if ( $request->talent_isa ) {$data->where("talent_isa",$request->talent_isa); }
 
@@ -57,10 +57,19 @@ class TalentNewController extends Controller
             {
                 $data->where("users.email","=",null);
             }
+            if ( $request->order != '' )
+            {
+                $ar = explode(",",$request->order);
+                foreach ( $ar as $row)
+                {
+                    $data->orderBy($row,"DESC");
+                }
+            }
+            else
+            {
+                $data->orderBy("talent_id","DESC");
+            }
 
-            
-
-            $data->orderBy("talent_id","DESC");
 
             $data = $data->paginate(10);
 

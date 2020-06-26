@@ -46,7 +46,11 @@ class Talent extends Model
 							'talent_onsite_jakarta',
 							'talent_onsite_jogja',
 							'talent_isa',
-							'talent_remote'
+							'talent_remote',
+							'talent_salary_jogja',
+							'talent_salary_jakarta',
+							'talent_current_work',
+							'talent_last_active',
 						];
 	public $timestamps = false;
 

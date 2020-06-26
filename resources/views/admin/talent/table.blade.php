@@ -28,6 +28,10 @@
 		  <th scope="col">ISA</th>
 		  @endif
 
+		  @if (Request::input('active') )
+		  <th scope="col">active</th>
+		  @endif
+
 		  @if (Request::input('created') )
 		  <th scope="col">Created</th>
 		  @endif 
@@ -50,7 +54,7 @@
 		  </td>
 
 		  @if (Request::input('contact') )
-		  <td>{{$talent->talent_phone}}<br>{{$talent->member_email}}</td>
+		  <td>{{$talent->talent_phone}}<br>{{$talent->talent_email}}</td>
 		  @endif
 
 		  @if (Request::input('skill') )
@@ -75,7 +79,10 @@
 
 		  @if (Request::input('date_ready') )
 		  <td>
-		  	{{ \Carbon\Carbon::parse($talent->talent_date_ready)->format('D, d-m-Y H:i') }}
+		  	@if ( isset($talent->talent_date_ready))
+		  	{{ \Carbon\Carbon::parse($talent->talent_date_ready)->format('D, d-m-Y') }}<br>
+		  	<b>{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_date_ready))->diffForHumans()}}</b>
+		  	@endif
 		  </td>
 		  @endif
 
@@ -91,8 +98,19 @@
 		  <td>{{ $talent->talent_isa }}</td>
 		  @endif
 
+		  @if (Request::input('active') )
+		  <td>
+		  		@if ( isset($talent->talent_last_active))
+		  		{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_last_active))->diffForHumans()}}
+		  		@endif
+		  </td>
+		  @endif
+
 		  @if (Request::input('created') )
-		  <td>{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}</td>
+		  <td>
+		  	{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}<br>
+		  	<b>{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_created_date))->diffForHumans()}}</b>
+		  </td>
 		  @endif
 
 		  <td>

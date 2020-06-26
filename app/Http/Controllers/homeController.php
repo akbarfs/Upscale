@@ -10,6 +10,7 @@ use App\Models\Joblo;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Bootcamp;
+use App\Models\Talent;
 use Route ; 
 use App\Mail\progressMail;
 use Illuminate\Support\Facades\Mail;
@@ -51,13 +52,14 @@ class homeController extends Controller
            
            foreach ($array as $row )
            {
-
+                $mail_add = $row ;
                 $row = date("D d-m-Y H:i:s")." open mail : ".$row."
 ";
                 if( !file_put_contents("openmail.txt", $row, FILE_APPEND)){
                     die('tidak ada file');
                 }
 
+                //update email company
                 $email = CrmCompanyEmail::where('email_name',$row);
                 if ($email->count())
                 {
@@ -67,6 +69,16 @@ class homeController extends Controller
                     $email->email_last_response = date("Y-m-d H:i:s"); 
                     $email->email_last_source = "email ".$request->utm_content;
                     $email->save() ;  
+                }
+
+                //update email talent
+                $talent = Talent::where('talent_email',$mail_add);
+                if ($talent->count())
+                {
+                    //update email 
+                    $talent = $talent->first() ; 
+                    $talent->talent_last_active = date("Y-m-d H:i:s"); 
+                    $talent->save() ;  
                 }
            }
             
@@ -85,6 +97,7 @@ class homeController extends Controller
            foreach ($array as $row )
            {
 
+                $mail_add = $row ;
                 $row = date("D d-m-Y H:i:s")." open Form : ".$row."
 ";
 
@@ -100,6 +113,16 @@ class homeController extends Controller
                     $email->email_last_req_inquiry = date("Y-m-d H:i:s"); 
                     $email->email_last_source = "email ".$request->utm_content;
                     $email->save() ;  
+                }
+
+                //update email talent
+                $talent = Talent::where('talent_email',$mail_add);
+                if ($talent->count())
+                {
+                    //update email 
+                    $talent = $talent->first() ; 
+                    $talent->talent_last_active = date("Y-m-d H:i:s"); 
+                    $talent->save() ;  
                 }
            }
             

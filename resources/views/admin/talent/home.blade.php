@@ -105,6 +105,16 @@
 							   </select>
 							</div>
 
+							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="order">
+								  <option value="">-- order? --</option>
+								  <option value="talent_id">DB ID</option>
+								  <option value="talent_last_active">last active</option>
+								  <option value="talent_date_ready">date ready</option>
+								  <option value="talent_created_date">DB Created</option>
+							   </select>
+							</div>
+
 							@push('script')
     
 							<script src="{{url('template/upscale/js/tag.js')}}"></script>
@@ -167,6 +177,7 @@
 									ready jogja &nbsp
 									<input type="checkbox" name="ready_jakarta"> ready jakarta &nbsp
 									<input type="checkbox" name="isa"> ISA &nbsp
+									<input type="checkbox" name="active"> last active &nbsp
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
 							</div>

@@ -224,6 +224,31 @@
 
                                 <div class="row form-group">
                                     <div class="col col-md-4">
+                                        <label class=" form-control-label"> status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                           
+                                                {{$all->talent_available}}, 
+                                                {{$all->talent_current_work}}, 
+                                            
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">date ready</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            {{$all->talent_date_ready}}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
                                         <label class=" form-control-label"> Level</label>
                                     </div>
                                     <div class="col-12 col-md-8">
@@ -255,7 +280,7 @@
                                     <div class="col-12 col-md-8">
                                         <p class="form-control-static" style="margin-bottom: 0px;">
                                             <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
-                                                {{$all->talent_onsite_jakarta}}
+                                                {{$all->talent_onsite_jakarta}}, {{number_format($all->talent_salary_jakarta)}} 
                                             </strong>
                                         </p>
                                     </div>
@@ -268,7 +293,20 @@
                                     <div class="col-12 col-md-8">
                                         <p class="form-control-static" style="margin-bottom: 0px;">
                                             <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
-                                                {{$all->talent_onsite_jogja}}
+                                                {{$all->talent_onsite_jogja}}, {{number_format($all->talent_salary_jogja)}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">remote</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_remote}}
                                             </strong>
                                         </p>
                                     </div>
@@ -325,7 +363,7 @@
                                                 project min : {{number_format($all->talent_project_min)}}<br>
                                                 project max : {{number_format($all->talent_project_max)}}<br>
                                                 konsulrate : {{number_format($all->talent_konsultasi_rate)}} / hour<br>
-                                                ngajar rate : {{$all->talent_ngajar_rate}} / hour<br>
+                                                ngajar rate : {{number_format($all->talent_ngajar_rate)}} / hour<br>
                                             </strong>
                                         </p>
                                     </div>
