@@ -69,6 +69,40 @@ class TalentNewController extends Controller
     public function insertData(Request $request){
 
 
+
+        $validation = $request->validate([
+            'nama'=>'required|string|max:150',
+            'email'=>'required|string|email|max:100|unique:users',
+            'gender'=>'required',
+            'alamat'=>'required',
+            'phone'=>'required|string|max:30',
+            'birthdate'=>'required',
+            'birthplace'=>'required',
+            'martialstatus'=>'required',
+            'currentaddress'=>'required|string',
+            'condition'=>'required',
+            'skill'=>'required',
+            'salary'=>'required|string',
+            'focus'=>'required|string',
+            'startcareer'=>'required|string',
+            'level'=>'required',
+            'latestsalary'=>'required|string',
+            'preflocation'=>'required|string',
+            'status'=>'required',
+            'onsite'=>'required',
+            'remote'=>'required',
+            'available'=>'required',
+            'apply'=>'required',
+            'international'=>'required',
+            'freelancehour'=>'required',
+            'projectmin'=>'required',
+            'projectmax'=>'required',
+            'konsulrate'=>'required',
+            'tutorrate'=>'required',
+
+        ]);
+
+
         DB::table('talent')->insert([
             'talent_name' => $request->nama,
             'talent_email' => $request->email,
@@ -93,7 +127,7 @@ class TalentNewController extends Controller
             'talent_available' => $request->available,
             'talent_apply' => $request->apply,
             'talent_international' => $request->international,
-            'talent_location_id' => $request->locationid,
+            'talent_location_id' => '12',
             'talent_freelance_hour' => $request->freelancehour,
             'talent_project_min' => $request->projectmin,
             'talent_project_max' => $request->projectmax,
@@ -102,14 +136,17 @@ class TalentNewController extends Controller
         ]);
 
 
-        return view('admin.talent.home');
+        return redirect('/list');
+
+       
     }
 
     public function deleteData(Request $request){
 
-        ##Delete function disini yah.
+        ##Delete function disini.
+
+        return redirect('/list');
         
-        return view('admin.talent.home');
     }
 
 }

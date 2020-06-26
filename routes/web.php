@@ -326,7 +326,6 @@ Route::group(['middleware'=>'cek'],function(){
 	        Route::get('/detailcertification/{id}','talentController@detailcertification')->name('certification.detail');
 	        Route::post('/updatecertification/{id}','talentController@updatecertification')->name('certification.update');
 	        Route::post('/deletecertification/{id}','talentController@deletecertification')->name('certification.delete');
-
 			Route::get('/detailtalent/{id}','talentController@detailtalent')->name('detailtalent');
 	        Route::post('/notesreporttalent/{id}','talentController@storenote')->name('notesreporttalent');
 	        Route::get('/viewcertif/{id}','talentController@viewcertif')->name('viewcertif');
