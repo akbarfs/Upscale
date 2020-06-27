@@ -148,7 +148,8 @@
 		  			<i class="fa fa-user-o"></i>
 		  		</a>
 
-		  		<a href="https://api.whatsapp.com/send?phone={{$talent->talent_phone}}&amp;text=Halo {{$talent->talent_name}}, perkenalkan saya Dodi dari upscale.id" type="button" target="_blank" class="btn btn-success btn-sm"><i class=" fa fa-whatsapp"></i></a>
+		  		<?php $wa = preg_replace('/^0?/', '62', $talent->talent_phone); ?>
+		  		<a href="https://api.whatsapp.com/send?phone={{$wa}}&amp;text=Halo {{$talent->talent_name}}, perkenalkan saya Dodi dari upscale.id" type="button" target="_blank" class="btn btn-success btn-sm"><i class=" fa fa-whatsapp"></i></a>
 
 		  		<a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}" 
 		  		class="btn btn-sm btn-primary" target="_blank">
