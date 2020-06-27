@@ -40,17 +40,28 @@ class MemberController extends Controller
             'tempat_lahir' => 'required|min:3|max:25',
         ]); 
 
-        $data = [
-                'talent_name' =>$request->name,
-                'talent_condition' =>'unprocess',
-                'talent_phone'=>$request->phone_number,
-                'talent_email'=>$request->email, 
-                'talent_place_of_birth' => $request->tempat_lahir,
-                'talent_birth_date'=>$request->tgl_lahir,
-                'talent_gender' => $request->gender
-        ];
+        
 
-        $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 
+        //PROSES INSERT DATABASE talent
+        $talent = Talent::where('talent_email',$request->email);
+        if ($talent->count() == 0)
+        {
+
+            $data = [
+                    'talent_name' =>$request->name,
+                    'talent_condition' =>'unprocess',
+                    'talent_phone'=>$request->phone_number,
+                    'talent_email'=>$request->email, 
+                    'talent_place_of_birth' => $request->tempat_lahir,
+                    'talent_birth_date'=>$request->tgl_lahir,
+                    'talent_gender' => $request->gender,
+                    'talent_last_active' => date("Y-m-d H:i:s"),
+                    'talent_la_type' =>'register step 1'
+            ];
+
+            $talent = Talent::create($data); 
+
+        }
 
         return response()->json(array("message"=>"success","status"=>1));
     }
@@ -144,7 +155,9 @@ class MemberController extends Controller
                 'talent_salary_jogja'   =>preg_replace('/[^0-9]/', '', $request->salary_jogja),
                 'talent_salary_jakarta' =>preg_replace('/[^0-9]/', '', $request->salary_jakarta),
                 'talent_current_work'   =>$request->talent_current_work,
-                'talent_last_active'   =>date("Y-m-d H:i:s")
+                'talent_last_active'   =>date("Y-m-d H:i:s"),
+                'talent_la_type'        => 'register', 
+                'talent_last_active'    => date("Y-m-d H:i:s") 
         ];
 
         $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 

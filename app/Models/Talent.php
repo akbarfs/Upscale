@@ -51,6 +51,8 @@ class Talent extends Model
 							'talent_salary_jakarta',
 							'talent_current_work',
 							'talent_last_active',
+							'talent_la_type',
+							'talent_note',
 						];
 	public $timestamps = false;
 
@@ -64,6 +66,11 @@ class Talent extends Model
 	public function jobs_apply()
 	{	
 		return $this->hasMany('App\Models\Job_apply', 'jobs_apply_talent_id', 'talent_id');
+	}
+
+	public function log()
+	{
+		return $this->hasMany("App\Models\Talent_log","tl_talent_id","talent_id");
 	}
 
 }

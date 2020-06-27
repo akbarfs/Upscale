@@ -112,8 +112,11 @@
 								  <option value="talent_last_active">last active</option>
 								  <option value="talent_date_ready">date ready</option>
 								  <option value="talent_created_date">DB Created</option>
+								  <option value="member_date">register as member</option>
 							   </select>
 							</div>
+
+
 
 							@push('script')
     
@@ -178,6 +181,7 @@
 									<input type="checkbox" name="ready_jakarta"> ready jakarta &nbsp
 									<input type="checkbox" name="isa"> ISA &nbsp
 									<input type="checkbox" name="active"> last active &nbsp
+									<input type="checkbox" name="member_date"> member date &nbsp
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
 							</div>

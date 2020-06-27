@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Bootcamp;
 use App\Models\Talent;
+use App\Models\Talent_log;
 use Route ; 
 use App\Mail\progressMail;
 use Illuminate\Support\Facades\Mail;
@@ -44,6 +45,7 @@ class homeController extends Controller
         var_dump($arrayResponse); 
     }
 
+    //tracking email , load di email pake <img src='https://upscale.id/track?email={{Email Address}}'
     function track(Request $request)
     {
         if ( isset($request->email) && $request->email != "{{Email Address}}")
@@ -61,7 +63,7 @@ class homeController extends Controller
 
                 //update email company
                 $email = CrmCompanyEmail::where('email_name',$row);
-                if ($email->count())
+                if ($email->count() == 1)
                 {
                     //update email 
                     $email = $email->first() ; 
@@ -73,12 +75,34 @@ class homeController extends Controller
 
                 //update email talent
                 $talent = Talent::where('talent_email',$mail_add);
-                if ($talent->count())
+                if ($talent->count() == 1)
                 {
                     //update email 
                     $talent = $talent->first() ; 
+                    $talent->talent_la_type = 'buka email'; 
                     $talent->talent_last_active = date("Y-m-d H:i:s"); 
                     $talent->save() ;  
+
+                }
+                else if ( $talent->count() == 0 )
+                {
+                    // die("insert talent");
+                    $talent = new Talent ; 
+                    $talent->talent_name = $request->name ? $request->name : "-" ;
+                    $talent->talent_phone = "-" ; 
+                    $talent->talent_email = $mail_add ; 
+                    $talent->talent_last_active = date("Y-m-d H:i:s");
+                    $talent->talent_la_type = 'open email' ; 
+                    $talent->save() ; 
+                    //save di log
+                    $talent_log = new Talent_log ; 
+                    $talent_log->tl_talent_id = $talent->talent_id; 
+                    $talent_log->tl_name = $request->name ; 
+                    $talent_log->tl_type = "open email" ; 
+                    $talent_log->tl_email = $mail_add ; 
+                    $talent_log->tl_email_status = 'valid' ; 
+                    $talent_log->tl_desc = 'membuka email' ;
+                    $talent_log->save()  ;  
                 }
            }
             
@@ -121,8 +145,29 @@ class homeController extends Controller
                 {
                     //update email 
                     $talent = $talent->first() ; 
-                    $talent->talent_last_active = date("Y-m-d H:i:s"); 
+                    $talent->talent_last_active = date("Y-m-d H:i:s");
+                    $talent->talent_la_type = 'open form register';  
                     $talent->save() ;  
+                }
+                else if ( $talent->count() == 0 && $request->reg == 'open')
+                {
+                    // die("insert talent");
+                    $talent = new Talent ; 
+                    $talent->talent_name = $request->name ? $request->name : "-" ;
+                    $talent->talent_phone = "-" ; 
+                    $talent->talent_email = $mail_add ; 
+                    $talent->talent_last_active = date("Y-m-d H:i:s");
+                    $talent->talent_la_type = 'open form register' ; 
+                    $talent->save() ; 
+                    //save di log
+                    $talent_log = new Talent_log ; 
+                    $talent_log->tl_talent_id = $talent->talent_id; 
+                    $talent_log->tl_name = $request->name ; 
+                    $talent_log->tl_type = "open form register" ; 
+                    $talent_log->tl_email = $mail_add ; 
+                    $talent_log->tl_email_status = 'valid' ; 
+                    $talent_log->tl_desc = 'membuka form register dari email' ;
+                    $talent_log->save()  ;  
                 }
            }
             

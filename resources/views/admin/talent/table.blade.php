@@ -32,6 +32,10 @@
 		  <th scope="col">active</th>
 		  @endif
 
+		  @if (Request::input('member_date') )
+		  <th scope="col">member date</th>
+		  @endif
+
 		  @if (Request::input('created') )
 		  <th scope="col">Created</th>
 		  @endif 
@@ -54,7 +58,7 @@
 		  </td>
 
 		  @if (Request::input('contact') )
-		  <td>{{$talent->talent_phone}}<br>{{$talent->talent_email}}</td>
+		  <td>{{$talent->talent_email}}<br>{{$talent->talent_phone}}</td>
 		  @endif
 
 		  @if (Request::input('skill') )
@@ -81,7 +85,10 @@
 		  <td>
 		  	@if ( isset($talent->talent_date_ready))
 		  	{{ \Carbon\Carbon::parse($talent->talent_date_ready)->format('D, d-m-Y') }}<br>
-		  	<b>{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_date_ready))->diffForHumans()}}</b>
+		  	<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
+		  			{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_date_ready))->diffForHumans()}}</b>
+		  	</span>
 		  	@endif
 		  </td>
 		  @endif
@@ -101,15 +108,37 @@
 		  @if (Request::input('active') )
 		  <td>
 		  		@if ( isset($talent->talent_last_active))
+		  		{{$talent->talent_la_type}}<br>
+		  		{{ \Carbon\Carbon::parse($talent->talent_last_active)->format('D, d-m-Y H:i') }}<br>
+		  		<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
 		  		{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_last_active))->diffForHumans()}}
+		  		</span>
 		  		@endif
 		  </td>
 		  @endif
 
+		  @if (Request::input('member_date') )
+		  <td>
+		  	
+		  		@if ( isset($talent->member_date))
+		  		{{ \Carbon\Carbon::parse($talent->member_date)->format('D, d-m-Y H:i') }}<br>
+		  		<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
+			  		{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->member_date))->diffForHumans()}}
+			  	</span>
+			  	@endif
+		  </td>
+		  @endif
+
+
 		  @if (Request::input('created') )
 		  <td>
 		  	{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}<br>
-		  	<b>{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_created_date))->diffForHumans()}}</b>
+		  	<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
+		  			{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_created_date))->diffForHumans()}}</b>
+		  	</span>
 		  </td>
 		  @endif
 

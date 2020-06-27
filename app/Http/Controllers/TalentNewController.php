@@ -33,7 +33,7 @@ class TalentNewController extends Controller
     {
         // if ($request->ajax()) {
 
-            $data = Talent::select(DB::raw("*, users.email as member_email"));
+            $data = Talent::select(DB::raw("*, users.email as member_email, users.created_at as member_date"));
 
             $data->join("users","talent.user_id","=","users.id","LEFT");
 
