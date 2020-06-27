@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Talent_log extends Model
 {
-    protected $table = 'Talent_logs';
-    
+    protected $table = 'talent_logs';
+
 }

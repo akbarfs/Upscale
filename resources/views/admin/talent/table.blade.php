@@ -108,7 +108,7 @@
 		  @if (Request::input('active') )
 		  <td>
 		  		@if ( isset($talent->talent_last_active))
-		  		{{$talent->talent_la_type}}<br>
+		  		{{$talent->talent_la_type ? $talent->talent_la_type : '-'}}<br>
 		  		{{ \Carbon\Carbon::parse($talent->talent_last_active)->format('D, d-m-Y H:i') }}<br>
 		  		<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
 		  			title="member date">
