@@ -58,6 +58,7 @@
 
 				<div class="card-body">
 
+				
 					<form style="margin:0; padding: 0" method="post" action="" id="form-search">
 						<div class="row">
 							<div class="col-md-2">
@@ -192,6 +193,13 @@
 	</div>
 </div>
 
+
+
+
+<a id="export"  class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+
+<!-- href="/admin/talent/list/export_excel" -->
+
 <div id="loading" align="center">
 	<div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
 		<span class="sr-only">Loading...</span>
@@ -205,6 +213,8 @@
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
 
 	<script type="text/javascript">
 
@@ -220,8 +230,8 @@
 
 				$('#loading').show();
 				$("#pembungkus").html('');
-
-				
+				 export_url = "{{url('admin/talent/list/export_excel?page=1')}}&"+param;
+				alert(export_url);
 				$.ajax({
  					url:url+"&"+param,
  					method:"GET",
@@ -252,6 +262,13 @@
 				return false;
 			});
 
+			//klik export_excel
+			 $("#export").click(function()
+			 {
+				location.replace(expert_url)
+			 	return false; 
+			 });
+
 			//klikk all / non-member / member 
 			$("#non-member").click(function() 
 			{
@@ -274,5 +291,13 @@
 
 		});
 	</script>
+<!-- 
+	<script>
+		function myFunction() {
+			var param = $("#form-search").serialize();
+			export_url = "{{url('admin/talent/list/export_excel?page=1')}}&"+param;
+			location.replace(expert_url)
+			}
+	</script> -->
 
 @endsection
