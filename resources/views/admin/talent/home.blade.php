@@ -27,7 +27,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card">
+			<div class="card" style="margin-bottom: 10px;">
 				<div class="card-header">
 					<nav>
 		              <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
@@ -187,16 +187,15 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<a id="export"  class="btn btn-success btn-sm" 
+							style="margin: 0px 20px; color: #fff" target="_blank">EXPORT</a>
+						</div>
 					</form>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-
-<a id="export"  class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
 
 <!-- href="/admin/talent/list/export_excel" -->
 
@@ -220,6 +219,7 @@
 
 		$(document).ready(function()
 		{
+			var export_url;
 			//mengambil data tanggal
 			$( "#datepicker" ).datepicker();
 
@@ -230,8 +230,8 @@
 
 				$('#loading').show();
 				$("#pembungkus").html('');
-				 export_url = "{{url('admin/talent/list/export_excel?page=1')}}&"+param;
-				alert(export_url);
+				export_url = "{{url('admin/talent/list/export_excel?page=1')}}&"+param;
+				
 				$.ajax({
  					url:url+"&"+param,
  					method:"GET",
@@ -242,6 +242,12 @@
  					}
  				});
 			}
+			//klik export_excel
+			 $("#export").click(function(e)
+			 {
+				location.replace(export_url)
+			 	return false; 
+			 });
 
 			
 			//load pertama kali
@@ -262,12 +268,7 @@
 				return false;
 			});
 
-			//klik export_excel
-			 $("#export").click(function()
-			 {
-				location.replace(expert_url)
-			 	return false; 
-			 });
+			
 
 			//klikk all / non-member / member 
 			$("#non-member").click(function() 

@@ -17,18 +17,41 @@ class TalentExport implements FromCollection, ShouldAutoSize
     */
     public function collection()
     {
-            $data = Talent::select(DB::raw("*, users.email as member_email"));
+            $data = Talent::select(DB::raw("talent.talent_name, talent.talent_email"));
 
             $data->join("users","talent.user_id","=","users.id","LEFT");
-            
+
             if ( $_GET['talent_name'] ) {$data->where("talent_name","LIKE","%".$_GET['talent_name']."%"); }
             if ( $_GET['talent_phone'] ) {$data->where("talent_phone","LIKE","%".$_GET['talent_phone']."%"); }
             if ( $_GET['talent_email'] ) {$data->where("talent_email","LIKE","%".$_GET['talent_email']."%"); }
-            // if ( $_GET['talent_address'] ) {$data->where("talent_address","LIKE","%".$_GET['talent_address']."%"); }        
+            // if ( $_GET['talent_address'] ) {$data->where("talent_address","LIKE","%".$_GET['talent_address']."%"); }
+            if ( $_GET['talent_onsite_jogja'] ) {$data->where("talent_onsite_jogja",$_GET['talent_onsite_jogja']); }
+            if ( $_GET['talent_onsite_jakarta'] ) {$data->where("talent_onsite_jakarta",$_GET['talent_onsite_jakarta']); }
+            if ( $_GET['talent_isa'] ) {$data->where("talent_isa",$_GET['talent_isa']); }
 
-            $data->orderBy("talent_id","DESC");
+            if ( $_GET['status_member'] == "member" )
+            {
+                $data->where("users.email","!=","");
+            }
 
-            return $data = $data->paginate(10);
+            if ( $_GET['status_member'] == "non-member" )
+            {
+                $data->where("users.email","=",null);
+            }
+            if ( $_GET['order'] != '' )
+            {
+                $ar = explode(",",$_GET['order']);
+                foreach ( $ar as $row)
+                {
+                    $data->orderBy($row,"DESC");
+                }
+            }
+            else
+            {
+                $data->orderBy("talent_id","DESC");
+            }
+
+            return $data = $data->get();
     }
     
 }

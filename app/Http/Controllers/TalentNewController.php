@@ -47,11 +47,8 @@ class TalentNewController extends Controller
             if ( $request->talent_phone ) {$data->where("talent_phone","LIKE","%".$request->talent_phone."%"); }
             if ( $request->talent_email ) {$data->where("talent_email","LIKE","%".$request->talent_email."%"); }
             if ( $request->talent_address ) {$data->where("talent_address","LIKE","%".$request->talent_address."%"); }
-
             if ( $request->talent_onsite_jogja ) {$data->where("talent_onsite_jogja",$request->talent_onsite_jogja); }
-
             if ( $request->talent_onsite_jakarta ) {$data->where("talent_onsite_jakarta",$request->talent_onsite_jakarta); }
-
             if ( $request->talent_isa ) {$data->where("talent_isa",$request->talent_isa); }
 
             if ( $request->status_member == "member" )
@@ -75,7 +72,6 @@ class TalentNewController extends Controller
             {
                 $data->orderBy("talent_id","DESC");
             }
-
 
             $data = $data->paginate(10);
 

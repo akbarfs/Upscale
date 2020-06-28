@@ -1,6 +1,8 @@
 <style type="text/css">
 	.badge { cursor: pointer; }
 </style>
+
+
 <table class="table table-striped">
 	<thead>
 		<tr>
