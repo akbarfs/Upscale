@@ -57,6 +57,8 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
 }); 
 
+
+
 Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
 
 
@@ -66,6 +68,18 @@ Route::group(['middleware'=>'cek'],function(){
 	// Route::group(['prefix'=>'admin'], function(){
 	// 	Route::get('/dashboard', 'userController@index')->name('user.dashboard');
 	// });
+
+/////////////////////////////
+
+Route::get("/profile", "MemberController@profile");
+Route::get("/profile/edit-basic-profile", "MemberController@editBasic");
+Route::get("/profile/edit-education", "MemberController@editEducation");
+Route::get("/profile/edit-work", "MemberController@editWork");
+Route::get("/profile/edit-skill", "MemberController@editSkill");
+Route::get("/profile/edit-cv", "MemberController@editCv");
+
+////////////////////////////
+
 
 	Route::get('/blast', 'jobsapplyController@blast_show')->name('blast');
 

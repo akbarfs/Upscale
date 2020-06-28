@@ -21,6 +21,7 @@
     <link rel="icon" href="{{url('template/upscale/media/upscale.ico')}}">
     <!-- <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script> -->
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -55,6 +56,45 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+
+<style type="text/css">
+.dropbtn {
+  background-color: #626662;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #b5b0b0;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e8d;}
+
+
+</style>
 
 </head>
 <body>
@@ -512,6 +552,8 @@
                             </ul>
                         </li>
                     </ul>
+
+                   
                     <div class="menu-custom-area">
 
                         @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
@@ -519,10 +561,30 @@
                                 <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
                             @else
                                 
-                                <a class="btn btn-border btn-login btn-xs light" href="{{url('member/logout')}}">Logout</a>
+                            <div class="menu-right">
+                    
+                    <ul class="lan-menu">
+                        <li class="dropdown">
+                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
+                                <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/profile.png')}}" alt="" />Hello,  </a>
+                            @else
+                                <a href="{{Request::url()}}?lang=id">Hello, </a>
+                            @endif
+
+                            <ul>
+                                <li><a href="/profile">Profile</a></li>
+                                
+                                <li><a  href="{{url('member/logout')}}">Logout</a></li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+
                             @endif
                         @endif
-
+  
+                             <!--<a  href="{{url('member/logout')}}">Logout</a> -->
+                   
                         <!-- <a class="btn btn-border btn-xs btn-circle start_project" data-toggle="modal" data-target=".startProject">Start Project</a> -->
                         <a class="btn btn-border btn-xs btn-circle light" href="#" 
                         target="_blank" onClick="Tawk_API.maximize();">Live Chat</a>
