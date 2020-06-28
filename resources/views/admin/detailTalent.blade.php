@@ -179,20 +179,196 @@
                                         </p>
                                     </div>
                                 </div>
+
                                 <div class="row form-group">
-                                        <div class="col col-md-4">
-                                            <label class=" form-control-label">Recomendation Salary</label>
-                                        </div>
-                                        <div class="col-12 col-md-8">
-                                            <p class="form-control-static" style="margin-bottom: 0px;">
-                                                <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
-                                                    @if(is_numeric($all->talent_rec_salary)) Rp. {{number_format($all->talent_rec_salary)}}
-                                                    @else {{$all->talent_rec_salary}}
-                                                    @endif
-                                                </strong>
-                                            </p>
-                                        </div>
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Recomendation Salary</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                @if(is_numeric($all->talent_rec_salary)) Rp. {{number_format($all->talent_rec_salary)}}
+                                                @else {{$all->talent_rec_salary}}
+                                                @endif
+                                            </strong>
+                                        </p>
+                                    </div>
                                 </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label"> Focus</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_focus}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label"> Start Career</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_start_career}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label"> status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                           
+                                                {{$all->talent_available}}, 
+                                                {{$all->talent_current_work}}, 
+                                            
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">date ready</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            {{$all->talent_date_ready}}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label"> Level</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_level}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Prefered location</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_prefered_city}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">onsite jakarta</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_onsite_jakarta}}, {{number_format($all->talent_salary_jakarta)}} 
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">onsite jogja</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_onsite_jogja}}, {{number_format($all->talent_salary_jogja)}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">remote</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_remote}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">date ready</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_date_ready}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">international</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_international}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Education isa</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_isa}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">talent rate</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                freelance hour : 
+                                                {{number_format($all->talent_freelance_hour)}} / hour<br>
+                                                project min : {{number_format($all->talent_project_min)}}<br>
+                                                project max : {{number_format($all->talent_project_max)}}<br>
+                                                konsulrate : {{number_format($all->talent_konsultasi_rate)}} / hour<br>
+                                                ngajar rate : {{number_format($all->talent_ngajar_rate)}} / hour<br>
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
                                 <div class="row form-group">
                                         <div class="col col-md-4">
                                             <label class=" form-control-label">Lastest Salary</label>
@@ -217,7 +393,7 @@
                                     </div>
                                 </div>
                                 <div class="row form-group">
-                                <div class="col col-md-4">
+                                    <div class="col col-md-4">
                                         <label class=" form-control-label">Talent condition</label>
                                     </div>
                                     <div class="col-12 col-md-8">

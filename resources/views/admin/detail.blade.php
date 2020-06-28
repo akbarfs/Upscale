@@ -369,7 +369,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                    <strong class="modal-title">Tentukan Perubahan Jadwal Interview</strong>
+                <strong class="modal-title">Tentukan Perubahan Jadwal Interview</strong>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -491,7 +491,7 @@
         var interview_id = parseInt("{{ $interview->interview_id }}");
         var interview_jobs_apply_id = parseInt("{{ $interview->interview_jobs_apply_id }}");
         var interview_location_id = $("#location").val();
-        var interview_schedule = $("#jadwal-interview").datetimepicker('date').format('DD/MM/YYYY hh.m');
+        var interview_schedule = $("#jadwal-interview").datetimepicker('date').format('DD/MM/YYYY hh.mm');
         if(interview_location_id != null && interview_schedule != '' && interview_id > 0){
             swal({
             title: 'Reschedule Menjadi <br>'+moment(interview_schedule, 'DD/MM/YYYY, h.m').locale('id').format('MMMM Do YYYY, h:mm') + " ?",
@@ -662,7 +662,7 @@ $(document).on('click', '#simpan-catatan', function(e){
         $('#jadwal-interview').datetimepicker({
             inline: true,
             sideBySide: true,
-            minDate: moment().add(1, 'd'),
+            minDate: moment().add(0, 'd'),
             icons: {
                 time: "fa fa-clock-o",
                 date: "fa fa-calendar",

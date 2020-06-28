@@ -148,7 +148,7 @@
                             <div class="col-md-4 margin-top">
                                 <label >Email<span style="color: red;">
                                         *</span></label>
-                                <input type="email" name="email" class="validate-required form-control" placeholder="Email Anda" required="" value="{{@$user->talent->talent_email}}" readonly="readonly">
+                                <input id="emailJobs" type="email" name="email" class="validate-required form-control" placeholder="Email Anda" required="" value="{{@$user->talent->talent_email}}" readonly="readonly">
                             </div>
                             <div class="col-md-4 margin-top">
                                 <label >Tempat Lahir<span
@@ -517,7 +517,7 @@
 		var place        = $('#place');
 		var tgl          = $('#tgl');
 		var gender       = $('#gender');
-		var email        = $('#email');
+		var email        = $('#emailJobs');
 		var phone        = $('#phone');
 		var address      = $('#address');
 		var info         = $('#info');
@@ -630,11 +630,16 @@
             kolom_kosong.push('true');
         }
 
-        if(email.val() == ''){
-            swal('Tolong isi kolom email','');
-            email.focus();
-            kolom_kosong.push('true');
-        }
+        @if ( isset($user->talent->talent_email) && $user->talent->talent_email != '' )
+        
+            if(email.val() == ''){
+                swal('Tolong isi kolom email','');
+                email.focus();
+                kolom_kosong.push('true');
+            }
+        @endif
+
+        
 
         var x = document.forms["form-apply"]["email"].value;
         var atpos = x.indexOf("@");
