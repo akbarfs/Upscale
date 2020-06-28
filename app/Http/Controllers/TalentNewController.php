@@ -37,7 +37,8 @@ class TalentNewController extends Controller
         $recipients = [
             ['email' => 'upscale.campaign34@gmail.com'], 
             ['email' => 'upscale.campaign13@gmail.com'], 
-            ['email' => 'upscale.asia.id@gmail.com']
+            ['email' => 'upscale.asia.id@gmail.com'],
+            ['email' => 'grady.sianturi13@gmail.com']
         ];
         Mail::to($recipients)->send(new UpscaleEmail());
 
