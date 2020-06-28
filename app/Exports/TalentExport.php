@@ -17,7 +17,7 @@ class TalentExport implements FromCollection, ShouldAutoSize
     */
     public function collection()
     {
-            $data = Talent::select(DB::raw("talent.talent_name, talent.talent_email"));
+            $data = Talent::select(DB::raw("talent.talent_name, talent.talent_email,  users.created_at as member_date"));
 
             $data->join("users","talent.user_id","=","users.id","LEFT");
 

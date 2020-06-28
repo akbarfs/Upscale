@@ -185,17 +185,10 @@
 									<input type="checkbox" name="member_date"> member date &nbsp
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
-
-								<!-- link insert new talent -->
-								<a href="list/insert">Tambah Talent</a>
 							</div>
 
 							
 
-						</div>
-						<div class="row">
-							<a id="export"  class="btn btn-success btn-sm" 
-							style="margin: 0px 20px; color: #fff" target="_blank">EXPORT</a>
 						</div>
 					</form>
 			</div>
@@ -205,15 +198,31 @@
 
 <!-- href="/admin/talent/list/export_excel" -->
 
+<style type="text/css">
+	.tb { margin-bottom: 10px; color: #fff !important }
+</style>
+
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
+
+<form action="{{ url('admin/talent/del') }}" method="post">
+	{{csrf_field()}}
+	<a href="list/insert" class="btn btn-success btn-sm tb"> Tambah Talent </a>
+	<a id="export"  class="btn btn-success btn-sm tb"> Export </a>
+	<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
+	<!-- LOAD CONTENT -->
+	<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
+</form>
+
 <div id="loading" align="center">
 	<div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
 		<span class="sr-only">Loading...</span>
 	</div>
-</div>
-
-<div class="container-fluid" id="pembungkus">
-
-
 </div>
 
 
@@ -251,8 +260,12 @@
 			//klik export_excel
 			 $("#export").click(function(e)
 			 {
-				location.replace(export_url)
-			 	return false; 
+			 	if ( confirm("export"))
+			 	{
+			 		location.replace(export_url);
+			 		return false; 
+			 	}
+				
 			 });
 
 			
@@ -273,6 +286,11 @@
 				loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
 				return false;
 			});
+
+			$("#mass_del").click(function()
+			{
+				return confirm("delete selected ?");
+			})
 
 			
 

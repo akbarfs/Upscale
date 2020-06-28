@@ -285,8 +285,8 @@ Route::group(['middleware'=>'cek'],function(){
 
 			Route::get('/list/insert', 'TalentNewController@insert');
 			
-			Route::get('/list/delete/{id}', 'TalentNewController@delete');
-			Route::post('/list/del', 'TalentNewController@del');
+			Route::get('/delete/{id}', 'TalentNewController@delete');
+			Route::post('/del', 'TalentNewController@del');
 			//end adi
 
 
