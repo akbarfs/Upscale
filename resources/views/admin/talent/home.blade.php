@@ -185,7 +185,13 @@
 									<input type="checkbox" name="member_date"> member date &nbsp
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
+
+								<!-- link insert new talent -->
+								<a href="list/insert">Tambah Talent</a>
 							</div>
+
+							
+
 						</div>
 						<div class="row">
 							<a id="export"  class="btn btn-success btn-sm" 

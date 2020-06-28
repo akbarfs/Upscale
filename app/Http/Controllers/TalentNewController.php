@@ -84,4 +84,20 @@ class TalentNewController extends Controller
         return Excel::download(new TalentExport, 'talent.xlsx');
     }
 
+    public function delete($id){
+        Talent::where('id', $id)
+        ->delete();
+        return redirect('/')->with('success', 'Selected Talent has been deleted successfully');
+    }
+
+    public function del(Request $request){
+        $delid = $request->input('delid');
+        Talent::whereIn('id', $delid)
+        ->delete();
+        return redirect('/')->with('success', 'Selected Talent has been deleted successfully');
+    }
+    
+    public function insert(){
+        return view('admin.talent.insert');
+    }
 }

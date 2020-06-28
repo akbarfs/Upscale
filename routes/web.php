@@ -282,6 +282,11 @@ Route::group(['middleware'=>'cek'],function(){
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
 			
+
+			Route::get('/list/insert', 'TalentNewController@insert');
+			
+			Route::get('/list/delete/{id}', 'TalentNewController@delete');
+			Route::post('/list/del', 'TalentNewController@del');
 			//end adi
 
 
