@@ -23,7 +23,7 @@ class TalentNewController extends Controller
 
     public function show()
     {
-        
+
         return view('admin.talent.home');
     }
 
@@ -37,7 +37,7 @@ class TalentNewController extends Controller
         $recipients = [
             ['email' => 'upscale.campaign34@gmail.com'], 
             ['email' => 'upscale.campaign13@gmail.com'], 
-            ['email' => 'grady.sianturi13@gmail.com']
+            ['email' => 'upscale.asia.id@gmail.com']
         ];
         Mail::to($recipients)->send(new UpscaleEmail());
 

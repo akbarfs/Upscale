@@ -62,48 +62,55 @@ class homeController extends Controller
                 }
 
                 //update email company
-                $email = CrmCompanyEmail::where('email_name',$row);
-                if ($email->count() == 1)
+                if ( $request->type == 'client')
                 {
-                    //update email 
-                    $email = $email->first() ; 
-                    $email->email_validation = 1; 
-                    $email->email_last_response = date("Y-m-d H:i:s"); 
-                    $email->email_last_source = "email ".$request->utm_content;
-                    $email->save() ;  
+                    $email = CrmCompanyEmail::where('email_name',$row);
+                    if ($email->count() == 1)
+                    {
+                        //update email 
+                        $email = $email->first() ; 
+                        $email->email_validation = 1; 
+                        $email->email_last_response = date("Y-m-d H:i:s"); 
+                        $email->email_last_source = "email ".$request->utm_content;
+                        $email->save() ;  
+                    }
                 }
-
+                
                 //update email talent
-                $talent = Talent::where('talent_email',$mail_add);
-                if ($talent->count() == 1)
+                if ( $request->type == 'talent')
                 {
-                    //update email 
-                    $talent = $talent->first() ; 
-                    $talent->talent_la_type = 'buka email'; 
-                    $talent->talent_last_active = date("Y-m-d H:i:s"); 
-                    $talent->save() ;  
+                    $talent = Talent::where('talent_email',$mail_add);
+                    if ($talent->count() == 1)
+                    {
+                        //update email 
+                        $talent = $talent->first() ; 
+                        $talent->talent_la_type = 'buka email'; 
+                        $talent->talent_last_active = date("Y-m-d H:i:s"); 
+                        $talent->save() ;  
 
+                    }
+                    else if ( $talent->count() == 0 )
+                    {
+                        // die("insert talent");
+                        $talent = new Talent ; 
+                        $talent->talent_name = $request->name ? $request->name : "-" ;
+                        $talent->talent_phone = "-" ; 
+                        $talent->talent_email = $mail_add ; 
+                        $talent->talent_last_active = date("Y-m-d H:i:s");
+                        $talent->talent_la_type = 'open email' ; 
+                        $talent->save() ; 
+                        //save di log
+                        $talent_log = new Talent_log ; 
+                        $talent_log->tl_talent_id = $talent->talent_id; 
+                        $talent_log->tl_name = $request->name ; 
+                        $talent_log->tl_type = "open email" ; 
+                        $talent_log->tl_email = $mail_add ; 
+                        $talent_log->tl_email_status = 'valid' ; 
+                        $talent_log->tl_desc = 'membuka email' ;
+                        $talent_log->save()  ;  
+                    }
                 }
-                else if ( $talent->count() == 0 )
-                {
-                    // die("insert talent");
-                    $talent = new Talent ; 
-                    $talent->talent_name = $request->name ? $request->name : "-" ;
-                    $talent->talent_phone = "-" ; 
-                    $talent->talent_email = $mail_add ; 
-                    $talent->talent_last_active = date("Y-m-d H:i:s");
-                    $talent->talent_la_type = 'open email' ; 
-                    $talent->save() ; 
-                    //save di log
-                    $talent_log = new Talent_log ; 
-                    $talent_log->tl_talent_id = $talent->talent_id; 
-                    $talent_log->tl_name = $request->name ; 
-                    $talent_log->tl_type = "open email" ; 
-                    $talent_log->tl_email = $mail_add ; 
-                    $talent_log->tl_email_status = 'valid' ; 
-                    $talent_log->tl_desc = 'membuka email' ;
-                    $talent_log->save()  ;  
-                }
+                
            }
             
         }
