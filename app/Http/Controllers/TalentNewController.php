@@ -100,4 +100,80 @@ class TalentNewController extends Controller
     public function insert(){
         return view('admin.talent.insert');
     }
+
+public function insertData(Request $request){
+
+
+
+        $validation = $request->validate([
+            'nama'=>'required|string|max:150',
+            'email'=>'required|string|email|max:100|unique:users',
+            'gender'=>'required',
+            'alamat'=>'required',
+            'phone'=>'required|string|max:30',
+            'birthdate'=>'required',
+            'birthplace'=>'required',
+            'martialstatus'=>'required',
+            'currentaddress'=>'required|string',
+            'condition'=>'required',
+            'skill'=>'required',
+            'salary'=>'required|string',
+            'focus'=>'required|string',
+            'startcareer'=>'required|string',
+            'level'=>'required',
+            'latestsalary'=>'required|string',
+            'preflocation'=>'required|string',
+            'status'=>'required',
+            'onsite'=>'required',
+            'remote'=>'required',
+            'available'=>'required',
+            'apply'=>'required',
+            'international'=>'required',
+            'freelancehour'=>'required',
+            'projectmin'=>'required',
+            'projectmax'=>'required',
+            'konsulrate'=>'required',
+            'tutorrate'=>'required',
+
+        ]);
+
+
+        DB::table('talent')->insert([
+            'talent_name' => $request->nama,
+            'talent_email' => $request->email,
+            'talent_gender' => $request->gender,
+            'talent_address' => $request->alamat,
+            'talent_phone' => $request->phone,
+            'talent_birth_date' => $request->birthdate,
+            'talent_place_of_birth' => $request->birthplace,
+            'talent_martial_status' => $request->martialstatus,
+            'talent_current_address' => $request->currentaddress,
+            'talent_condition' => $request->condition,
+            'talent_skill' => $request->skill,
+            'talent_salary' => $request->salary,
+            'talent_focus' => $request->focus,
+            'talent_start_career' => $request->startcareer,
+            'talent_level' => $request->level,
+            'talent_latest_salary' => $request->latestsalary,
+            'talent_prefered_location' => $request->preflocation,
+            'talent_status' => $request->status,
+            'talent_onsite_jakarta' => $request->onsite,
+            'talent_remote' => $request->remote,
+            'talent_available' => $request->available,
+            'talent_apply' => $request->apply,
+            'talent_international' => $request->international,
+            'talent_location_id' => '12',
+            'talent_freelance_hour' => $request->freelancehour,
+            'talent_project_min' => $request->projectmin,
+            'talent_project_max' => $request->projectmax,
+            'talent_konsultasi_rate' => $request->konsulrate,
+            'talent_ngajar_rate' => $request->tutorrate,
+        ]);
+
+
+        return redirect('/list');
+
+       
+    }
+
 }
