@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\UpscaleEmail;
 use App\Models\Talent;
 
 use App\Exports\TalentExport;
@@ -21,8 +23,8 @@ class TalentNewController extends Controller
 
     public function show()
     {
-    	
-    	return view('admin.talent.home');
+        
+        return view('admin.talent.home');
     }
 
     function mail($id)
@@ -32,7 +34,14 @@ class TalentNewController extends Controller
 
     function mailSend()
     {
-        echo "coba send email lewat sini"; 
+        $recipients = [
+            ['email' => 'upscale.campaign34@gmail.com'], 
+            ['email' => 'upscale.campaign13@gmail.com'], 
+            ['email' => 'grady.sianturi13@gmail.com']
+        ];
+        Mail::to($recipients)->send(new UpscaleEmail());
+
+        echo "coba send email lewat sini";
     }
 
     public function paginate_data(Request $request)
