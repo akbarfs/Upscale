@@ -10,6 +10,7 @@ use App\Models\Skill ;
 use App\Models\SkillTalent ;  
 use Illuminate\Support\Facades\Hash;
 use Log ; 
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -279,4 +280,12 @@ class MemberController extends Controller
     	Session::flush();
         return redirect("/");
     }
+
+    public function CV($talent_id)
+    {
+        $talent = Talent::where('talent_id',$talent_id)->first();      
+        return view('CV',['talent' => $talent]);
+    }
+    
+    
 }
