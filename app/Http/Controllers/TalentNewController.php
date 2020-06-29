@@ -85,10 +85,10 @@ class TalentNewController extends Controller
     }
 
     // SEMENTARA DI HIDE DULU 
-    // public function delete($id){
-    //     Talent::find($id)->delete();
-    //     return back()->with('success', 'Selected Talent has been deleted successfully');
-    // }
+    public function delete($id){
+        Talent::find($id)->delete();
+        return back()->with('success', 'Selected Talent has been deleted successfully');
+    }
 
     public function del(Request $request)
     {

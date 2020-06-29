@@ -229,8 +229,8 @@
                                     <div class="col-12 col-md-8">
                                         <p class="form-control-static" style="margin-bottom: 0px;">
                                            
-                                                {{$all->talent_available}}, 
-                                                {{$all->talent_current_work}}, 
+                                                {{$all->talent_available}} ,
+                                                {{$all->talent_status}} ,
                                             
                                         </p>
                                     </div>
@@ -267,6 +267,19 @@
                                     <div class="col-12 col-md-8">
                                         <p class="form-control-static" style="margin-bottom: 0px;">
                                             <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_prefered_location}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Prefered City</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="talent_prefered_city" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
                                                 {{$all->talent_prefered_city}}
                                             </strong>
                                         </p>
@@ -400,6 +413,234 @@
                                       <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_condition}}</strong></p>
                                     </div>
                                 </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Jakarta Salary</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                @if(is_numeric($all->talent_salary_jakarta)) Rp. {{number_format($all->talent_salary_jakarta)}}
+                                                @else {{$all->talent_salary_jakarta}}
+                                                @endif
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Jogja Salary</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                @if(is_numeric($all->talent_salary_jogja)) Rp. {{number_format($all->talent_salary_jogja)}}
+                                                @else {{$all->talent_salary_jogja}}
+                                                @endif
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Martial Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static"style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_martial_status}}</strong></p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent CV </label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent CV update</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv_update}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Portofolio update</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->portofolio_update}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Portofolio File</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_portofolio_file}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Campus</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_campus}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Skill</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_skill}}</strong></p>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Created Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong id='ttl'>{{$all->talent_created_date}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">CV Talent Update</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->cv_talent_update}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Id Location</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_location_id}}</strong></p>
+                                    </div>
+                                </div> -->
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Current Work</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_current_work}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Apply</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_apply}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Notes Report</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_notes_report_talent}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Rt Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="talent_rt_status" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_rt_status}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Last Active</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_last_active}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent la Type</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_la_type}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Created Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->tcreated_date}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Updated Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->tupdated_date}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Rt Status Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_rt_status_date}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+  
                             </form>
                         </section>
                     </aside>
@@ -1871,6 +2112,33 @@
                                     @endif
                                     </select> 
 
+                                    <label for="text-input" class=" form-control-label">Talent Status</label>
+                                    <select name="talent_status" class="form-control">
+                                        @if ($all->talent_status == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="worker" > Worker</option>
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="edu" > Edu</option>
+                                        @elseif($all->talent_status == "worker")
+                                            <option value="worker" > Worker</option>
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="edu" > Edu</option>
+                                        @elseif($all->talent_status == "alumni")
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="worker" > Worker</option>
+                                            <option value="edu" > Edu</option>
+                                        @elseif($all->talent_status == "edu")
+                                            <option value="edu" > Edu</option>
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="worker" > Worker</option>
+                                        @endif
+                                    </select>
+
+
+
+
+
+
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="text-input" class=" form-control-label">Current Addres</label><br>
@@ -1890,6 +2158,14 @@
                                             <option value="{{$location->location_id}}">{{$location->location_name}}</option>
                                         @endforeach
                                     </select><br>
+
+                                    <label for="text-input" class=" form-control-label">Prefered City</label>
+                                    <select value="" name="talent_prefered_city" id="talent_prefered_city" class="form-control" style="width:100%">
+                                        @foreach ($locate as $location)
+                                            <option value="{{$location->location_id}}">{{$location->location_name}}</option>
+                                        @endforeach
+                                    </select><br>
+
                                     <label for="text-input" class=" form-control-label">Expected Salary</label>
                                     <input value="{{$all->talent_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah" type="text" name="talent_salary" class="form-control" placeholder="Your expected salary" required="">
                                     <label for="text-input" class=" form-control-label">Lastest Salary</label>

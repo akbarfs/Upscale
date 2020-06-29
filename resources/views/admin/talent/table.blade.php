@@ -159,11 +159,11 @@
 			  			<i class="fa fa-envelope"></i>
 			  		</a>
 
-					<!-- <a onclick="return confirm('Are you sure to delete this?')" 
+					<a onclick="return confirm('Are you sure to delete this?')" 
 					href="{{url('/admin/talent/delete/'.$talent->talent_id)}}"
 					class="btn btn-sm btn-danger">
 						  	<i class="fa fa-trash"></i>
-					</a> -->
+					</a>
 			  </td>
 			</tr>
 			@endforeach
