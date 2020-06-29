@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Talent;
+
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 
-class TalentExport implements FromCollection, ShouldAutoSize
+
+class TalentExport implements FromCollection, ShouldAutoSize, WithHeadings
 { 
     /**
     * @return \Illuminate\Support\Collection
@@ -52,6 +53,14 @@ class TalentExport implements FromCollection, ShouldAutoSize
             }
 
             return $data = $data->get();
+    }
+
+    public function headings(): array
+    {
+        return [
+            'Nama',
+            'Email', 
+        ];
     }
     
 }
