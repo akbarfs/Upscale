@@ -76,6 +76,7 @@ Route::get("/profile/edit-basic-profile", "MemberController@editBasic");
 Route::get("/profile/edit-education", "MemberController@editEducation");
 Route::get("/profile/edit-work", "MemberController@editWork");
 Route::get("/profile/edit-skill", "MemberController@editSkill");
+Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
 Route::get("/profile/edit-cv", "MemberController@editCv");
 
 ////////////////////////////

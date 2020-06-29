@@ -307,6 +307,7 @@ class MemberController extends Controller
 
     public function editSkill()
     {
+        
         return view("member.editSkill");
     }
     public function editCv()
