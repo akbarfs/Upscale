@@ -51,6 +51,7 @@
 		                	<strong>Member</strong> 
 		                	<span class="badge badge-primary">25</span> 
 		                </a>
+		                
 
 		              </div>
 		            </nav>
