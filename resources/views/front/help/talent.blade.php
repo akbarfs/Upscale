@@ -43,9 +43,9 @@
                         <li>Karir di perusahaan idaman</li>
                         <li>Project as a freelance</li>
                         <li>Pasif Income</li>
-                        <li>Free Education (ISA)</li>
-                        <li>Consultant senior programer</li>
-                        <li>International Remote Worker</li>
+                        <li>Free Education</li>
+                        <li>Konsultasi senior programer</li>
+                        <li>Kerja Remote (lokal/International)</li>
                     </ul>
                         
                 </div>

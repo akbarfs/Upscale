@@ -401,10 +401,12 @@
                                     if ( $(this).val() == 'sudah' ) 
                                     {
                                         $('#pengalaman').show();
+                                        $(".isa").hide() ;
                                     }
                                     else
                                     {
                                         $('#pengalaman').hide();
+                                        $(".isa").show() ;
                                     }
                                 });
                             });
@@ -412,18 +414,34 @@
 
                         <div class="form-group" style="margin-top: 20px">
                             <div class="row">
-                                <div class="col-md-8">
-                                    <label class="ready">Sudah memiliki pengalaman kerja?</label>
+                                <div class="col-md-6">
+                                    <label class="ready">Memiliki pengalaman kerja?</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <select class="custom-select" id="pengalaman_option">
                                         <option value="">-- pilih --</option>
                                         <option value="sudah">Sudah</option>
-                                        <option value="belum">Belum</option>
+                                        <option value="belum">Belum/Sangat sedikit</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group isa" style="margin-top: 20px; display: none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="ready">Apakah anda bersedia untuk kami berikan edukasi intensif sebelum disalurkan ke lapangan pekerjaan ?
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <select class="custom-select" name="talent_isa">
+                                            <option value="unset">-- pilih --</option>
+                                            <option value="yes">ya</option>
+                                            <option value="no">tidak</option>
+                                        </select>   
+                                    </div>
+                                </div>
+                            </div>
 
                         <div id="pengalaman" style="display: none;">
                             <div style="font-size: 18px ;">
@@ -791,24 +809,48 @@
                                             $("#av").change(function()
                                             {
                                                 var av = $(this).val();
-                                                if ( av == 'yes') 
+                                                if ( av == 'no') 
                                                 {
                                                     $(".ready").html('Selesai kontrak tanggal ?');
+                                                    $(".kantor_sekarang").show() ;
+                                                }
+                                                else if ( av == 'yes')
+                                                {
+                                                    $(".ready").html('Ready Kerja tanggal berapa ?');
+                                                    $(".kantor_sekarang").hide() ;
+                                                }
+                                                else if ( av == '1_month')
+                                                {
+                                                    $(".ready").html('Mencari kerja untuk tanggal ?');
+                                                    $(".kantor_sekarang").show() ;
                                                 }
                                                 else
                                                 {
-                                                    $(".ready").html('Ready kerja tanggal berapa ?');
+                                                    $(".kantor_sekarang").hide() ;
                                                 }
                                             });
                                         }); 
                                     </script>
                                     
                                     <select class="custom-select" name="talent_available" id="av">
-                                        <option value="-- pilih --">Tidak terikat kontrak</option>
-                                        <option value="no">Tidak terikat kontrak</option>
-                                        <option value="yes">Sedang terikat kontrak kerja</option>
+                                        <option value="">--pilih--</option>
+                                        <option value="yes">Tidak terikat kontrak</option>
+                                        <option value="no">Terikat sampai akhir kontrak</option>
+                                        <option value="1_month">Boleh keluar sewaktu-waktu</option>
                                     </select>
 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group kantor_sekarang" style="margin-top: 20px; display: none">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="Name">Perusahaan tempat kerja sekarang ?</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="talent_current_work" class="form-control" 
+                                    placeholder="Ex : Tokopedia" value="">
                                 </div>
                             </div>
                         </div>
@@ -874,11 +916,77 @@
                             <div class="row">
                                 <div class="col-md-6"><label for="Name">Bersedia di jakarta / sekitar ?</label></div>
                                 <div class="col-md-6">
+                                    <script type="text/javascript">
+                                        $(document).ready(function()
+                                        {
+                                            $("select[name='talent_onsite_jakarta']").change(function()
+                                            {
+                                                var av = $(this).val();
+                                                if ( av == 'yes') 
+                                                {
+                                                    $(".min_sal_jak").show();
+                                                }
+                                                else
+                                                {
+                                                    $(".min_sal_jak").hide();
+                                                }
+                                            });
+                                        }); 
+                                    </script>
                                     <select class="custom-select" name="talent_onsite_jakarta">
                                         <option value="">-- pilih --</option>
                                         <option value="yes">Bersedia</option>
                                         <option value="no">Tidak</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group min_sal_jak" style="margin-top: 20px; display: none">
+                            <div class="row">
+                                <div class="col-md-6"><label for="Name">Min-salary Jakarta</label></div>
+                                <div class="col-md-6">
+                                    <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="salary_jakarta" class="form-control rp" placeholder="silahkan ketik angka" value="">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group luar_kota" style="margin-top: 20px; display: none">
+                            <div class="row">
+                                <div class="col-md-6"><label for="Name">Bersedia di Jogja ?</label></div>
+                                <div class="col-md-6">
+                                    <script type="text/javascript">
+                                        $(document).ready(function()
+                                        {
+                                            $("select[name='talent_onsite_jogja']").change(function()
+                                            {
+                                                var av = $(this).val();
+                                                if ( av == 'yes') 
+                                                {
+                                                    $(".min_sal_jog").show();
+                                                }
+                                                else
+                                                {
+                                                    $(".min_sal_jog").hide();
+                                                }
+                                            });
+                                        }); 
+                                    </script>
+                                    <select class="custom-select" name="talent_onsite_jogja">
+                                        <option value="">-- pilih --</option>
+                                        <option value="yes">Bersedia</option>
+                                        <option value="no">Tidak</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group min_sal_jog" style="margin-top: 20px; display: none">
+                            <div class="row">
+                                <div class="col-md-6"><label for="Name">Min-salary Jogja</label></div>
+                                <div class="col-md-6">
+                                    <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="salary_jogja" class="form-control rp" placeholder="silahkan ketik angka" value="">
                                 </div>
                             </div>
                         </div>

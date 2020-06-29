@@ -10,6 +10,7 @@ use App\Models\Skill ;
 use App\Models\SkillTalent ;  
 use Illuminate\Support\Facades\Hash;
 use Log ; 
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -40,6 +41,29 @@ class MemberController extends Controller
             'tempat_lahir' => 'required|min:3|max:25',
         ]); 
 
+        
+
+        //PROSES INSERT DATABASE talent
+        $talent = Talent::where('talent_email',$request->email);
+        if ($talent->count() == 0)
+        {
+
+            $data = [
+                    'talent_name' =>$request->name,
+                    'talent_condition' =>'unprocess',
+                    'talent_phone'=>$request->phone_number,
+                    'talent_email'=>$request->email, 
+                    'talent_place_of_birth' => $request->tempat_lahir,
+                    'talent_birth_date'=>$request->tgl_lahir,
+                    'talent_gender' => $request->gender,
+                    'talent_last_active' => date("Y-m-d H:i:s"),
+                    'talent_la_type' =>'register step 1'
+            ];
+
+            $talent = Talent::create($data); 
+
+        }
+
         return response()->json(array("message"=>"success","status"=>1));
     }
 
@@ -61,7 +85,7 @@ class MemberController extends Controller
             // 'talent_address' => 'sometimes|min:3|max:25|',
             // 'talent_prefered_location' => 'sometimes|min:3|max:25|',
             // 'talent_date_ready' => 'sometimes|string',
-            'talent_available' => 'sometimes|string',
+            // 'talent_available' => 'sometimes|string',
 
 
             'freelance_hour' => 'sometimes|format_rp',
@@ -124,8 +148,17 @@ class MemberController extends Controller
                 "talent_level"=>$request->talent_level,
                 "talent_focus"=>$request->talent_focus,
 
-                "talent_onsite_jakarta" => $request->talent_onsite_jakarta,
-                "talent_remote" => $request->talent_remote,
+                "talent_onsite_jakarta" => $request->talent_onsite_jakarta ? $request->talent_onsite_jakarta : "" ,
+                "talent_onsite_jogja" => $request->talent_onsite_jogja ? $request->talent_onsite_jogja : "" ,
+                "talent_remote" => $request->talent_remote ? $request->talent_remote : "",
+                "talent_isa" => $request->talent_isa ? $request->talent_isa : "unset",
+
+                'talent_salary_jogja'   =>preg_replace('/[^0-9]/', '', $request->salary_jogja),
+                'talent_salary_jakarta' =>preg_replace('/[^0-9]/', '', $request->salary_jakarta),
+                'talent_current_work'   =>$request->talent_current_work,
+                'talent_last_active'   =>date("Y-m-d H:i:s"),
+                'talent_la_type'        => 'register', 
+                'talent_last_active'    => date("Y-m-d H:i:s") 
         ];
 
         $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 
@@ -246,5 +279,44 @@ class MemberController extends Controller
     {
     	Session::flush();
         return redirect("/");
+    }
+
+    public function profile()
+    {
+        return view("member.profile");
+    }
+
+
+    public function editBasic()
+    {
+      //  $profile = Profile::find($id);
+      //  return view('editBasicProfile',['profile' => $profile], compact('id'));
+
+      return view("member.editBasicProfile");
+    }
+
+    public function editEducation()
+    {
+        return view("member.editEducation");
+    }
+
+    public function editWork()
+    {
+        return view("member.editWork");
+    }
+
+    public function editSkill()
+    {
+        return view("member.editSkill");
+    }
+    public function editCv()
+    {
+        return view("member.editCv");
+    }
+    
+     public function CV($talent_id)
+    {
+        $talent = Talent::where('talent_id',$talent_id)->first();      
+        return view('CV',['talent' => $talent]);
     }
 }

@@ -44,7 +44,15 @@ class Talent extends Model
 							'talent_level',
 							'talent_international',
 							'talent_onsite_jakarta',
-							'talent_remote'
+							'talent_onsite_jogja',
+							'talent_isa',
+							'talent_remote',
+							'talent_salary_jogja',
+							'talent_salary_jakarta',
+							'talent_current_work',
+							'talent_last_active',
+							'talent_la_type',
+							'talent_note',
 						];
 	public $timestamps = false;
 
@@ -58,6 +66,26 @@ class Talent extends Model
 	public function jobs_apply()
 	{	
 		return $this->hasMany('App\Models\Job_apply', 'jobs_apply_talent_id', 'talent_id');
+	}
+
+	public function log()
+	{
+		return $this->hasMany("App\Models\Talent_log","tl_talent_id","talent_id");
+	}
+
+	public function talent_education()
+	{	
+		return $this->hasMany('App\Models\education' ,'edu_talent_id','talent_id');
+	}
+
+	public function talent_portfolio()
+	{	
+		return $this->hasMany('App\Models\portfolio' ,'portfolio_talent_id','talent_id');
+	}
+
+	public function talent_workex()
+	{	
+		return $this->hasMany('App\Models\work_experience' ,'workex_talent_id','talent_id');
 	}
 
 }
