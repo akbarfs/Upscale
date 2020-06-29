@@ -37,6 +37,7 @@ Route::get('/faq', 'homeController@faq')->name('faq');
 Route::post('/send-inquiry', 'homeController@sendInquiry')->name('send-inquiry');
 Route::get("/track","homeController@track")->name("mail-tracking");
 
+Route::get('/mailSends','TalentNewController@mailSends');
 
 // LOGIN ADMIN
 Route::get('/login'.date("dmY"), 'LoginController@index')->name('login');
@@ -280,6 +281,7 @@ Route::group(['middleware'=>'cek'],function(){
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
+			Route::get('/mailSend','TalentNewController@mailSend');
 			//end adi
 
 

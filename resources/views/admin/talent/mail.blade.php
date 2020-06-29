@@ -118,7 +118,7 @@
 					</form>
 </div>
 
-<button type="button" class="btn btn-primary" style="float:right">Send Email</button>
+<a href="/mailSends"><button type="button" class="btn btn-primary" style="float:right">Send Email</button></a>
 
 
 
@@ -146,42 +146,46 @@
       <td>Member offer</td>
       <td>081245457878</td>
       <td>sudah menjadi member</td>
+      <td><span class="badge badge-danger">Error</span>
+          <span class="badge badge-success">Valid</span> <d>
       <td>dfdsf</td>
-      <td>dfdsf</td>
-      <td>a</td> 
+      <td>24-Apr-2020</td>
     </tr>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">2</th>
       <td>A</td>
       <td>a@gmail.com</td>
       <td>Member offer</td>
       <td>081245457878</td>
       <td>sudah menjadi member</td>
+      <td><span class="badge badge-danger">Error</span>
+          <span class="badge badge-success">Valid</span> <d>
       <td>dfdsf</td>
-      <td>dfdsf</td>
-      <td>a</td> 
+      <td>24-Apr-2020</td> 
     </tr>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">3</th>
       <td>A</td>
       <td>a@gmail.com</td>
       <td>Member offer</td>
       <td>081245457878</td>
       <td>sudah menjadi member</td>
+      <td><span class="badge badge-danger">Error</span>
+          <span class="badge badge-success">Valid</span> <d>
       <td>dfdsf</td>
-      <td>dfdsf</td>
-      <td>a</td> 
+      <td>24-Apr-2020</td>
     </tr>
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">4</th>
       <td>A</td>
       <td>a@gmail.com</td>
       <td>Member offer</td>
       <td>081245457878</td>
       <td>sudah menjadi member</td>
+      <td><span class="badge badge-danger">Error</span>
+          <span class="badge badge-success">Valid</span> <d>
       <td>dfdsf</td>
-      <td>dfdsf</td>
-      <td>a</td> 
+      <td>24-Apr-2020</td>
     </tr>
   
   </tbody>
