@@ -57,6 +57,8 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
 }); 
 
+
+
 Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
 
 
@@ -66,6 +68,18 @@ Route::group(['middleware'=>'cek'],function(){
 	// Route::group(['prefix'=>'admin'], function(){
 	// 	Route::get('/dashboard', 'userController@index')->name('user.dashboard');
 	// });
+
+/////////////////////////////
+
+Route::get("/profile", "MemberController@profile");
+Route::get("/profile/edit-basic-profile", "MemberController@editBasic");
+Route::get("/profile/edit-education", "MemberController@editEducation");
+Route::get("/profile/edit-work", "MemberController@editWork");
+Route::get("/profile/edit-skill", "MemberController@editSkill");
+Route::get("/profile/edit-cv", "MemberController@editCv");
+
+////////////////////////////
+
 
 	Route::get('/blast', 'jobsapplyController@blast_show')->name('blast');
 
@@ -280,11 +294,15 @@ Route::group(['middleware'=>'cek'],function(){
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
+			Route::get('/list/export_excel','TalentNewController@export_excel');
+			
 
 			Route::get('/list/insert', 'TalentNewController@insert');
 			Route::get('/list/insert/data', 'TalentNewController@insertData');
 			Route::get('/list/delete', 'TalentNewController@deleteData');
 			
+			Route::get('/delete/{id}', 'TalentNewController@delete');
+			Route::post('/del', 'TalentNewController@del');
 			//end adi
 
 
@@ -533,3 +551,6 @@ $this->post('register', 'Auth\RegisterController@register');
 
 
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
+
+//MEMBER PROFILE
+Route::get('/profile/{id}','MemberController@CV');

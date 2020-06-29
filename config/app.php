@@ -156,6 +156,7 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+     
 
         /*
          * Package Service Providers...
@@ -230,6 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+       
 
     ],
     'debug_blacklist' => [

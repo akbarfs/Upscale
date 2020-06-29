@@ -27,7 +27,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="card">
+			<div class="card" style="margin-bottom: 10px;">
 				<div class="card-header">
 					<nav>
 		              <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
@@ -59,6 +59,7 @@
 
 				<div class="card-body">
 
+				
 					<form style="margin:0; padding: 0" method="post" action="" id="form-search">
 						<div class="row">
 							<div class="col-md-2">
@@ -78,6 +79,46 @@
 							<div class="col-md-2">
 								<input type="text" class="form-control" placeholder="phone" name="talent_phone">
 							</div>
+
+							<div class="col-md-2">
+								<select class="custom-select" name="talent_onsite_jogja">
+								  <option value="">-- jogja? --</option>
+								  <option value="unset">unset</option>
+								  <option value="yes">yes</option>
+								  <option value="no">no</option>
+							   </select>
+							</div>
+
+							<div class="col-md-2">
+								<select class="custom-select" name="talent_onsite_jakarta">
+								  <option value="">-- jakarta? --</option>
+								  <option value="unset">unset</option>
+								  <option value="yes">yes</option>
+								  <option value="no">no</option>
+							   </select>
+							</div>
+
+							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="talent_isa">
+								  <option value="">-- isa? --</option>
+								  <option value="unset">unset</option>
+								  <option value="yes">yes</option>
+								  <option value="no">no</option>
+							   </select>
+							</div>
+
+							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="order">
+								  <option value="">-- order? --</option>
+								  <option value="talent_id">DB ID</option>
+								  <option value="talent_last_active">last active</option>
+								  <option value="talent_date_ready">date ready</option>
+								  <option value="talent_created_date">DB Created</option>
+								  <option value="member_date">register as member</option>
+							   </select>
+							</div>
+
+
 
 							@push('script')
     
@@ -110,7 +151,7 @@
 								.fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
 								.fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
 							</style>
-							<div>
+							<div style="margin: 10px;">
 								<input
                                 type="text"
                                 onItemSelect="setClose()"
@@ -137,16 +178,18 @@
 									<input type="checkbox" name="skill" checked="checked"> Skill &nbsp
 									<input type="checkbox" name="date_ready" checked="checked"> Date Ready &nbsp
 									<input type="checkbox" name="created" checked="checked"> Created &nbsp
-
+									<input type="checkbox" name="ready_jogja"> 
+									ready jogja &nbsp
+									<input type="checkbox" name="ready_jakarta"> ready jakarta &nbsp
+									<input type="checkbox" name="isa"> ISA &nbsp
+									<input type="checkbox" name="active"> last active &nbsp
+									<input type="checkbox" name="member_date"> member date &nbsp
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
-
-								<!-- link insert new talent -->
-
 							</div>
-							<div class="col-md-12 float-right">
-								<a href="list/insert">Tambah Talent</a>
-						    </div>
+
+							
+
 						</div>
 					</form>
 			</div>
@@ -154,24 +197,45 @@
 	</div>
 </div>
 
+<!-- href="/admin/talent/list/export_excel" -->
+
+<style type="text/css">
+	.tb { margin-bottom: 10px; color: #fff !important }
+</style>
+
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
+
+<form action="{{ url('admin/talent/del') }}" method="post">
+	{{csrf_field()}}
+	<a href="list/insert" class="btn btn-success btn-sm tb"> Tambah Talent </a>
+	<a id="export"  class="btn btn-success btn-sm tb"> Export </a>
+	<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
+	<!-- LOAD CONTENT -->
+	<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
+</form>
+
 <div id="loading" align="center">
 	<div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
 		<span class="sr-only">Loading...</span>
 	</div>
 </div>
 
-<div class="container-fluid" id="pembungkus">
-
-
-</div>
-
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
 
 	<script type="text/javascript">
 
 		$(document).ready(function()
 		{
+			var export_url;
 			//mengambil data tanggal
 			$( "#datepicker" ).datepicker();
 
@@ -182,7 +246,7 @@
 
 				$('#loading').show();
 				$("#pembungkus").html('');
-
+				export_url = "{{url('admin/talent/list/export_excel?page=1')}}&"+param;
 				
 				$.ajax({
  					url:url+"&"+param,
@@ -194,6 +258,16 @@
  					}
  				});
 			}
+			//klik export_excel
+			 $("#export").click(function(e)
+			 {
+			 	if ( confirm("export"))
+			 	{
+			 		location.replace(export_url);
+			 		return false; 
+			 	}
+				
+			 });
 
 			
 			//load pertama kali
@@ -213,6 +287,13 @@
 				loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
 				return false;
 			});
+
+			$("#mass_del").click(function()
+			{
+				return confirm("delete selected ?");
+			})
+
+			
 
 			//klikk all / non-member / member 
 			$("#non-member").click(function() 
@@ -236,5 +317,13 @@
 
 		});
 	</script>
+<!-- 
+	<script>
+		function myFunction() {
+			var param = $("#form-search").serialize();
+			export_url = "{{url('admin/talent/list/export_excel?page=1')}}&"+param;
+			location.replace(expert_url)
+			}
+	</script> -->
 
 @endsection

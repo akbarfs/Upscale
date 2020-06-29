@@ -27,4 +27,9 @@ class SkillTalent extends Model
 		return $this->hasOne('App\Models\Skill','skill_id','st_skill_id');
 	}
 
+	public function score_skill()
+	{
+		return $this->hasOne('App\Models\Skill','skill_id','st_score');
+	}
+
 }
