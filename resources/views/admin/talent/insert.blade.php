@@ -242,6 +242,7 @@
                         <option>Free</option>
                       </select>
                 </div>
+                
       
       
 
@@ -345,7 +346,7 @@
 
 
 
-                <div class="form-group row">
+                <div class="form-group row" style="padding-left: 25px">
                   <div class="col-sm-10">
                   <button type="submit" class="btn btn-danger">Keluar</button>
                   <button type="submit" class="btn btn-primary">Tambah Talent</button>
