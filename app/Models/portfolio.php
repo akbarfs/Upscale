@@ -8,7 +8,7 @@ class portfolio extends Model
 {
     protected $table = 'portfolio';
 	protected $primaryKey = 'portfolio_id';
-	protected $fillable = ['Portfolio_name', 'portfolio_desc','portfolio_tech', 'portfolio_image', 'portfolio_tipe_project','portfolio_nama_company', 'portfolio_startdate', 'portfolio_endate' ];
+	protected $fillable = ['portfolio_name', 'portfolio_desc','portfolio_tech', 'portfolio_image', 'portfolio_tipe_project','portfolio_nama_company', 'portfolio_startdate', 'portfolio_endate' ];
 
     public function portfolio()
     {
