@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\UpscaleEmail;
 use App\Models\Talent;
+use App\User;
 
 use App\Exports\TalentExport;
 
@@ -103,7 +104,17 @@ class TalentNewController extends Controller
     public function del(Request $request)
     {
         $delid = $request->input('delid');
-        Talent::whereIn('talent_id', $delid)->delete();
+        foreach ( $delid as $row )
+        {
+            $talent = Talent::find($row);
+            
+            //menghapus semua data di table user yg berelasi
+            $user = User::find($talent->user_id); 
+            $user->delete() ; 
+
+            //delete 
+            Talent::where('talent_id', $row)->delete();
+        }
         return back()->with('success', 'Selected Talent has been deleted successfully');
     }
     
