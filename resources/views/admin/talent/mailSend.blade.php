@@ -79,7 +79,7 @@
                                     <tbody>
                                         <tr>
                                         <th scope="row">1</th>
-                                        <td>Service Offer</td>
+                                        <td>Member Offer</td>
                                         <td colspan="2"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button></td>
                                         <td colspan="2">
                                             <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Preview</button></a>
@@ -91,7 +91,7 @@
 
                                         <tr>
                                         <th scope="row">2</th>
-                                        <td>SO-Followup</td>
+                                        <td>MO-Followup</td>
                                         <td colspan="2">
                                             <button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button>
                                             <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
@@ -106,7 +106,7 @@
 
                                         <tr>
                                         <th scope="row">3</th>
-                                        <td>Talent Offer</td>
+                                        <td>Teacher Offer</td>
                                         <td colspan="2">
                                             <button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button>
                                             <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
@@ -136,7 +136,7 @@
 
                                         <tr>
                                         <th scope="row">5</th>
-                                        <td>Distribution Cooperation Offer</td>
+                                        <td>class Offer</td>
                                         <td colspan="2">
                                             <button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button>
                                             <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
@@ -151,8 +151,68 @@
 
                                         <tr>
                                         <th scope="row">6</th>
-                                        <td>DCO-Followup</td>
+                                        <td>CO-Followup</td>
                                         <td colspan="2">
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
+                                        </td>
+                                        <td colspan="2">
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Preview</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Edit</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Delete</button></a>
+                                        </td>
+                                        <td><input type="radio" aria-label="" style="padding-left:10px"></td>
+                                        </tr>
+
+                                        <tr>
+                                        <th scope="row">7</th>
+                                        <td>Letter Offer</td>
+                                        <td colspan="2">
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button>
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
+                                        </td>
+                                        <td colspan="2">
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Preview</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Edit</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Delete</button></a>
+                                        </td>
+                                        <td><input type="radio" aria-label="" style="padding-left:10px"></td>
+                                        </tr>
+
+                                        <tr>
+                                        <th scope="row">8</th>
+                                        <td>LO-Offer</td>
+                                        <td colspan="2">
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button>
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
+                                        </td>
+                                        <td colspan="2">
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Preview</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Edit</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Delete</button></a>
+                                        </td>
+                                        <td><input type="radio" aria-label="" style="padding-left:10px"></td>
+                                        </tr>
+
+                                        <tr>
+                                        <th scope="row">9</th>
+                                        <td>Job Offer</td>
+                                        <td colspan="2">
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button>
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
+                                        </td>
+                                        <td colspan="2">
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Preview</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Edit</button></a>
+                                            <a href="/client/mail"><button class="btn btn-outline-primary btn-sm" type="submit" id="search">Delete</button></a>
+                                        </td>
+                                        <td><input type="radio" aria-label="" style="padding-left:10px"></td>
+                                        </tr>
+
+                                        <tr>
+                                        <th scope="row">10</th>
+                                        <td>JO-Offer</td>
+                                        <td colspan="2">
+                                            <button class="btn btn-outline-primary btn-sm" type="submit" id="search">down</button>
                                             <button class="btn btn-outline-primary btn-sm" type="submit" id="search">up</button>
                                         </td>
                                         <td colspan="2">
