@@ -523,24 +523,23 @@
                                 <a class="btn btn-border btn-login btn-xs light" data-target="#ModalLogin" data-toggle="modal" onClick="$('.info').hide()" >Login</a>
                             @else
                                 
-                            <div class="menu-right">
-                    
-                    <ul class="lan-menu">
-                        <li class="dropdown">
-                            @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
-                                <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/profile.png')}}" alt="" />Hello,  </a>
-                            @else
-                                <a href="{{Request::url()}}?lang=id">Hello, </a>
-                            @endif
+                                <div class="menu-right">
+                        
+                                <ul class="lan-menu">
+                                    <li class="dropdown">
+                                        <a href="{{Request::url()}}?lang=en">
+                                            <!-- <img src="{{url('template/upscale/media/profile.png')}}" alt="" /> -->
+                                            Hello,
+                                        </a>
 
-                            <ul>
-                                <li><a href="/profile">Profile</a></li>
-                                
-                                <li><a  href="{{url('member/logout')}}">Logout</a></li>
-                                
-                            </ul>
-                        </li>
-                    </ul>
+                                        <ul>
+                                            <!-- <li><a href="/profile">Profile</a></li> -->
+                                            
+                                            <li><a  href="{{url('member/logout')}}">Logout</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                </ul>
 
                             @endif
                         @endif
