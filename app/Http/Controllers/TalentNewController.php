@@ -32,17 +32,10 @@ class TalentNewController extends Controller
         return view("admin.talent.mail");
     }
 
-    function mailSend()
+    public function mailSend(Request $request)
     {
-        $recipients = [
-            ['email' => 'upscale.campaign34@gmail.com'], 
-            ['email' => 'upscale.campaign13@gmail.com'], 
-            ['email' => 'upscale.asia.id@gmail.com'],
-            ['email' => 'grady.sianturi13@gmail.com']
-        ];
-        Mail::to($recipients)->send(new UpscaleEmail());
-
-        echo "coba send email lewat sini";
+        $mails = Talent::whereIn('id', $request->input('row_id'))->pluck('email');
+    Mail::to($mails)->send(new UpscaleEmail($mails->email))->delay(60);
     }
 
     public function paginate_data(Request $request)

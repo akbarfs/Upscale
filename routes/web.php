@@ -293,7 +293,7 @@ Route::get("/profile/edit-cv", "MemberController@editCv");
 			Route::get('/list/filter','TalentNewController@filter');
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
-			Route::get('/mail-send/{id}','TalentNewController@mailSend');
+			Route::get('/list/mailSend','TalentNewController@mailSend');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
 			
 
