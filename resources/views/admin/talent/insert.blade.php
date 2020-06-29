@@ -30,27 +30,27 @@
       <div class="card">
 
         <div class="card-body">
-        <form style="margin:0; padding: 0" method="post" action="">
+        <form style="margin:0; padding: 0" method="post" action="/list/insert/data">
 
           <div class="col-md-6 float-left">
       
       
             <div class="form-group">
             <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" placeholder="">
+            <input type="text" class="form-control" id="nama" name="nama" placeholder="" required>
             </div>
         
         
             <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="">
+            <input type="text" class="form-control" id="email" name="email" placeholder="" required>
             </div>
 
 
   
             <div class="form-group">
             <label for="gender">Gender</label>
-            <select id="gender" class="custom-select" name="gender" onchange="this.form.submit()">
+            <select id="gender" class="custom-select" name="gender" onchange="this.form.submit()"  required>
                     <option selected> </option>
                     <option>Male</option>
                     <option>Female</option>
@@ -61,14 +61,14 @@
 
             <div class="form-group">
               <label for="alamat">Alamat</label>
-              <input type="text" class="form-control" id="alamat" placeholder="" name="alamat">
+              <input type="text" class="form-control" id="alamat" placeholder="" name="alamat" required>
             </div>
         
         
 
             <div class="form-group">
               <label for="phone">Phone Number / WA</label>
-              <input type="text" class="form-control" id="phone" name="phone" placeholder="">
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="" required>
             </div>
             
 
@@ -76,7 +76,7 @@
             <div class="form-group">
               <label for="birthdate">Birth Date</label>
               <span class="info_tgl_lahir"></span>
-              <input type="hidden" name="birthdate" class="form-control hasDatepicker" id="tgl_lahir" placeholder="DD/MM/YYYY" value>
+              <input type="hidden" name="birthdate" class="form-control hasDatepicker" id="tgl_lahir" placeholder="DD/MM/YYYY" value  required>
               <button type="button" class="ui-datepicker-trigger">Set Date</button>
             </div>
         
@@ -84,14 +84,14 @@
 
             <div class="form-group">
               <label for="birthplace">Birth Place</label>
-              <input type="text" class="form-control" id="birthplace" name="birthplace"placeholder="">
+              <input type="text" class="form-control" id="birthplace" name="birthplace"placeholder="" required >
             </div>
 
 
 
             <div class="form-group">
               <label for="martialstatus">Martial Status</label>
-              <select id="martialstatus" class="custom-select" name="martialstatus" onchange="this.form.submit()">
+              <select id="martialstatus" class="custom-select" name="martialstatus" onchange="this.form.submit()"  required>
                     <option selected> </option>
                     <option>Single</option>
                     <option>Married</option>
@@ -102,14 +102,14 @@
 
             <div class="form-group">
               <label for="currentaddress">Current Address</label>
-              <input type="text" class="form-control" id="currentaddress" name="currentaddress" placeholder="">
+              <input type="text" class="form-control" id="currentaddress" name="currentaddress" placeholder="" required>
             </div>
         
         
 
             <div class="form-group">
               <label for="level">Condition</label>
-              <select id="level" class="custom-select" name="condition" onchange="this.form.submit()">
+              <select id="level" class="custom-select" name="condition" onchange="this.form.submit()"  required>
                     <option selected> </option>
                     <option>Unprocess</option>
                     <option>Quarantine</option>
@@ -164,7 +164,7 @@
                                 data-url="{{url('json/skill')}}"
                                 data-load-once="true"
                                 placeholder="Skill"
-                                name="skill"/>
+                                name="skill"  required/>
 
                     </p>
                     </div>
@@ -180,12 +180,18 @@
 
                 <div class="form-group">
                 <label for="focus">Focus</label>
-                <select id="status" class="custom-select" name="focus" onchange="this.form.submit()">
+                <select id="status" class="custom-select" name="focus" onchange="this.form.submit()"  required>
                         <option selected> </option>
-                        <option>Student</option>
-                        <option>Worker</option>
-                        <option>Freelance</option>
-                        <option>Free</option>
+                        <option>Frontend</option>
+                        <option>Backend Web</option>
+                        <option>Fullstack Web</option>
+                        <option>Mobile Programmer</option>
+                        <option>UI/UX</option>
+                        <option>QA</option>
+                        <option>Dev Ops</option>
+                        <option>Data Science</option>
+                        <option>PM</option>
+                        <option>Other</option>
                       </select>
                 </div>
         
@@ -193,20 +199,19 @@
 
                 <div class="form-group">
                 <label for="startcareer">Start Career</label>
-                <input type="text" class="form-control" id="startcareer" name="startcareer" placeholder="">
+                <input type="text" class="form-control" id="startcareer" name="startcareer" placeholder=""  required>
                 </div>
         
         
 
                 <div class="form-group">
                 <label for="level">Level</label>
-                <select id="level" class="custom-select" name="level" onchange="this.form.submit()">
+                <select id="level" class="custom-select" name="level" onchange="this.form.submit()"  required>
                 <option selected> </option>
-                <option>Developers</option>
-                <option>Designers</option>
-                <option>Project Managers</option>
-                <option>Product Managers</option>
-                <option>Finance</option>
+                <option>Undefined</option>
+                <option>Junior</option>
+                <option>Middle</option>
+                <option>Senior</option>
                 </select>
                 </div>
 
@@ -220,21 +225,21 @@
 
                 <div class="form-group">
                       <label for="lastestsalary">Lastest Salary</label>
-                      <input type="text" class="form-control" id="lastestsalary" name="lastestsalary" placeholder="">
+                      <input type="text" class="form-control" id="lastestsalary" name="lastestsalary" placeholder=""  required>
                 </div>
 
 
 
                 <div class="form-group">
                       <label for="preflocation">Prefered Location</label>
-                      <input type="text" class="form-control" id="preflocation" name="preflocation" placeholder="">
+                      <input type="text" class="form-control" id="preflocation" name="preflocation" placeholder=""  required>
                 </div>
       
       
 
                 <div class="form-group">
                       <label for="status">Status</label>
-                      <select id="status" class="custom-select" name="status" onchange="this.form.submit()">
+                      <select id="status" class="custom-select" name="status" onchange="this.form.submit()"  required>
                         <option selected> </option>
                         <option>Student</option>
                         <option>Worker</option>
@@ -242,13 +247,13 @@
                         <option>Free</option>
                       </select>
                 </div>
-                
+
       
       
 
                 <div class="form-group">
                       <label for="onsite">Onsite</label>
-                      <select id="onsite" class="custom-select" name="onsite" onchange="this.form.submit()">
+                      <select id="onsite" class="custom-select" name="onsite" onchange="this.form.submit()"  required>
                         <option selected> </option>
                         <option>Unset</option>
                         <option>Yes</option>
@@ -260,7 +265,7 @@
 
                 <div class="form-group">
                      <label for="remote">Remote</label>
-                      <select id="remote" class="custom-select" name="remote" onchange="this.form.submit()">
+                      <select id="remote" class="custom-select" name="remote" onchange="this.form.submit()"  required>
                         <option selected> </option>
                         <option>Unset</option>
                         <option>Yes</option>
@@ -272,7 +277,7 @@
 
                 <div class="form-group">
                       <label for="available">Available</label>
-                      <select id="available" class="custom-select" name="available" onchange="this.form.submit()">
+                      <select id="available" class="custom-select" name="available" onchange="this.form.submit()"  required>
                           <option selected> </option>
                           <option>Yes</option>
                           <option>No</option>
@@ -285,7 +290,7 @@
 
                 <div class="form-group">
                       <label for="apply">Apply</label>
-                      <select id="apply" class="custom-select" name="apply" onchange="this.form.submit()">
+                      <select id="apply" class="custom-select" name="apply" onchange="this.form.submit()"  required>
                           <option selected> </option>
                           <option>Yes</option>
                           <option>No</option>
@@ -297,7 +302,7 @@
 
                 <div class="form-group">
                       <label for="international">International Talent</label>
-                      <select id="international" class="custom-select" name="international" onchange="this.form.submit()">
+                      <select id="international" class="custom-select" name="international" onchange="this.form.submit()"  required>
                           <option selected> </option>
                           <option>Ya, Kemungkinan saya tertarik</option>
                           <option>Tidak yakin, bahasa inggris saya tidak cukup baik</option>
@@ -310,31 +315,31 @@
 
                 <div class="form-group">
                       <label for="freelancehour">Freelance Hours</label>
-                      <input type="text" class="form-control" id="freelancehour" name="freelancehour" placeholder="">
+                      <input type="text" class="form-control" id="freelancehour" name="freelancehour" placeholder=""  required>
                 </div>
       
       
 
                 <div class="form-group">
                       <label for="projectmin" >Project Min</label>
-                      <input type="text" class="form-control" id="projectmin" placeholder="" name="projectmin">
+                      <input type="text" class="form-control" id="projectmin" placeholder="" name="projectmin"  required>
                 </div>
 
                 <div class="form-group">
                       <label for="projectmax">Project Max</label>
-                      <input type="text" class="form-control" id="projectmax" name="projectmax" placeholder="">
+                      <input type="text" class="form-control" id="projectmax" name="projectmax" placeholder=""  required>
                 </div>
 
                 <div class="form-group">
                       <label for="konsulrate">Konsultasi Rate</label>
-                      <input type="text" class="form-control" id="konsulrate" name="konsulrate" placeholder="">
+                      <input type="text" class="form-control" id="konsulrate" name="konsulrate" placeholder=""  required>
                 </div>
       
       
 
                 <div class="form-group">
                       <label for="tutorrate">Tutor Rate</label>
-                      <input type="text" class="form-control" id="tutorrate" name="tutorrate" placeholder="">
+                      <input type="text" class="form-control" id="tutorrate" name="tutorrate" placeholder=""  required>
                 </div> 
       
       
@@ -369,10 +374,6 @@
 
 
 
-
-
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
   <script type="text/javascript">
 
     $(document).ready(function()
@@ -439,10 +440,8 @@
       });
 
 
-
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
+ 
+    
 
     $(document).ready(function()
     {
@@ -506,7 +505,34 @@
         $("select[name='status_member']").val("all");
         $("#form-search").submit();
       });
+
+
+
+
+      $(function() {
+           $('#tgl_lahir').datepicker(
+           {
+                showOn: "button",
+                buttonText: "set date",
+                dateFormat: 'yy-mm-dd',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1970:2015",
+                beforeShow: function () {
+                  setTimeout(function () {
+                      $('.ui-datepicker').css('top', 100);
+                  }, 0);
+                },
+                onSelect: function() 
+                {
+                    $(".info_tgl_lahir").html($(this).val());
+                    // doSomeValidation($(this).getDate());
+                }
+            });
+         });
   </script>
+
+   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
 
 @endsection
 
@@ -515,7 +541,11 @@
 <div>
   <ul>
     @foreach($errors->all() as $error)
+
     <li>{{$errors}}</li>
+    
+
+
     @endforeach
   </ul>
 </div>

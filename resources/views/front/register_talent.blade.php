@@ -80,6 +80,7 @@
     .info_tgl_lahir , .info_tgl_ready { float: left; margin-right: 10px; }
 </style>
 
+
 <script>
     $(document).ready(function()
     {
@@ -216,7 +217,7 @@
 
                 }
             });
-        }); 
+        });
 
         $(".registerTalent").click(function()
         {
