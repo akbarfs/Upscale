@@ -32,11 +32,6 @@ class TalentNewController extends Controller
         return view("admin.talent.mail");
     }
 
-    function newemail($id)
-    {
-        return view("admin.talent.newemail");
-    }
-
     function mailSend()
     {
         $recipients = [
@@ -47,8 +42,7 @@ class TalentNewController extends Controller
         ];
         Mail::to($recipients)->send(new UpscaleEmail());
 
-        //echo "coba send email lewat sini";
-	return view("admin/talent/mailSend");
+        echo "coba send email lewat sini";
     }
 
     public function paginate_data(Request $request)
