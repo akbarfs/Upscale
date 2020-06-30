@@ -210,43 +210,34 @@
 		<a href="list/insert" class="btn btn-success btn-sm tb"> Tambah Talent </a>
 		<a id="export" class="btn btn-success btn-sm tb"> Export </a>
 		<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
-		<a href="{{ url ('admin/talent/list/mailSend') }}" id="mailsend" class="btn btn-success btn-sm tb"> Send Email </a>
-
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-
-			<div class="modal-dialog">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<h4 class="modal-title">
-							Join Invitation
-						</h4>
-
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							×
-						</button>
-					</div>
-
-					<div id="modal-body">
-						Press ESC button to exit.
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							OK
-						</button>
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-		<!-- /.modal -->
+		<a name="mailsend" class="btn btn-success btn-sm tb" data-toggle="modal" data-target="#myModal"> Send Email </a>
 
 		<!-- LOAD CONTENT -->
 		<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
 	</form>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Send Email</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body">
+					<button href="{{ url('admin/talent/list/mailSend') }}" type="button" class="btn btn-success mailsend" data-dismiss="modal">Join Invitation</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
 
 	<div id="loading" align="center">
 		<div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
@@ -291,6 +282,23 @@
 
 			});
 
+			//Pop Up Send Email
+				$(document).ready(function() {
+					$(".mailsend").click(function() {
+						var selectedEmail = new Array();
+						$('input[name="delid[]"]:checked').each(function() {
+							selectedEmail.push(this.value);
+						});
+						
+						$.post( "{{url('admin/talent/list/mailSend')}}",{"_token": "{{ csrf_token() }}","id":10}, function( data ) 
+						{
+							alert("Selected Email: " + selectedEmail);	
+						});
+						//return false;
+
+					});
+				}); 
+
 
 			//load pertama kali
 			loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}");
@@ -311,11 +319,6 @@
 
 			$("#mass_del").click(function() {
 				return confirm("delete selected ?");
-			});
-
-			//click Send Email
-			$(document).ready(function() {
-				$('#sendmail').modal('show');
 			});
 
 			//klikk all / non-member / member 

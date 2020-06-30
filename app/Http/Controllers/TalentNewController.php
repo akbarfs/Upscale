@@ -34,8 +34,12 @@ class TalentNewController extends Controller
 
     public function mailSend(Request $request)
     {
-        $mails = Talent::whereIn('id', $request->input('row_id'))->pluck('email');
-    Mail::to($mails)->send(new UpscaleEmail($mails->email))->delay(60);
+        echo $request->id;die();
+        $mails = Talent::whereIn('talent_id', $request->input('delid'))->pluck('email');
+
+        Mail::to($mails)->send(new UpscaleEmail($mails->email))->delay(60);
+
+        return view("admin.talent.list");
     }
 
     public function paginate_data(Request $request)
