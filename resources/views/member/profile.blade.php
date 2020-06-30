@@ -23,6 +23,7 @@
                     </label></div>
                     <div class="col-md-8" >
 
+        {{ dd($data_diri)}}
                     <form action="/register/member" method="post" id="register-talent" >
             
             @csrf
@@ -32,7 +33,7 @@
             <div class="form-group" >
                 <div class="row">
                     <div class="col-md-4"><label for="Name"><h6><strong>Name</strong></h6></label></div>
-                    <div class="col-md-8">Clara Simanjuntak</div>
+                    <div class="col-md-8"></div>
                 </div>
             </div>
 

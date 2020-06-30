@@ -283,7 +283,10 @@ class MemberController extends Controller
 
     public function profile()
     {
-        return view("member.profile");
+        $data_diri = Talent::all();
+
+        $data_diri = DB::table('talent');
+        return view("member.profile",['data_diri' => $data_diri]);
     }
 
 
