@@ -15,16 +15,15 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
 
 	<script type="text/javascript" src="{{ asset('/cv/js/jquery-1.12.3.min.js')}}"></script>
-	<script type="text/javascript" src="{{ asset('/cv/bootstrap/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.onepage-scroll.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.easing.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.backstretch.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.filterizr.js')}}"></script>
-    <script type="text/javascript" src="{{ asset(  '/cv/js/jquery.magnific-popup.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('/cv/js/jquery.magnific-popup.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/custom.js')}}"></script>
-    <script type="text/javascript" src="{ {asset('/cv/js/smoothscroll.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet" type="text/css">
 	
 	<style>
@@ -44,12 +43,7 @@
 
 <main class="wrapper">
     <header class="header pull-left">
-    <div class="mobile-bar visible-sm visible-xs">
-			<div class="hamburger-menu">
-				  <div class="bar"></div>	
-			</div>
-        </div>
-        
+    
 		
         <div class="avatar">
 		<img src="{{url('template/upscale/media/images.jpg')}}" alt="avatar">
@@ -60,7 +54,13 @@
 			<h1>{{ $talent->talent_name }}</h1>
             <span>{{ $talent->talent_focus}}</span>
             @endif
-        </div>
+		</div>
+		
+		<div class="mobile-bar visible-sm visible-xs">
+			<div class="hamburger-menu">
+				  <div class="bar"></div>	
+			</div>
+		</div>
 
         <div class="social-icons">
 			<ul>
@@ -91,48 +91,57 @@
         <section id="about" class="about">
             <div class="section-header">
              <h2>About Me</h2>
-                <a href="#" class="resume-download" data-toggle="tooltip" data-placement="bottom" title="Download">
-                <i class="fa fa-download" aria-hidden="true"> </i> Download Resume
-                </a>
+			 @if($talent->talent_cv_update)
+			 	<a href="{{ url('storage/Curriculum vitae/'.$talent->talent_cv_update) }}" class="resume-download" data-toggle="tooltip" data-placement="bottom" title="Download">
+				 <i class="fa fa-download" aria-hidden="true"> </i> Download Resume
+				</a>
+				@endif
             </div>
 
-            <div class="intro" id="about" >
+            <div class="intro" id="about">
                  @if($talent)
 				<p>Hello, My name is {{ $talent->talent_name }}. Lorem ipsum dolor sit amet, usu sumo dicant vulputate in. Quando fabellas adipiscing nam an. An vis congue oporteat, no eros facer suavitate eos. An debet affert aliquid ius. Veritus placerat est ea, est ne nominavi suscipit maluisset.</p>
-				<ul class="info">
-				<table style="width:100%">
-				<tr>
-					<td><strong>Birthday</strong></td>
-					<td><strong>:</strong></td>
-					<td>{{ $talent->talent_birth_date }}</td>
-				</tr>
-				<tr>
-				<td><strong>Location</strong></td>
-					<td><strong>:</strong></td>
-					<td>{{ $talent->talent_place_of_birth }}</td>
-				</tr>
-				<tr>
-				<td><strong>Email</strong></td>
-					<td><strong>:</strong></td>
-					<td>{{ $talent->talent_email }}</td>
-				</tr>
-				<td><strong>Phone</strong></td>
-					<td><strong>:</strong></td>
-					<td> {{ $talent->talent_phone }}</td>
-				</tr>
-				</table>	
+				<br>
+				<div class="row" style="padding-left:15px">
+					<table class="col-md-6 col-sm-6 col-xs-6">
+						<tr>
+							<td><strong>Birthday</strong></td>
+							<td><strong>:</strong></td>
+							<td>{{ $talent->talent_birth_date }}</td>
+						</tr>
+						<tr>
+							<td><strong>Location</strong></td>
+							<td><strong>:</strong></td>
+							<td>{{ $talent->talent_place_of_birth }}</td>
+                		</tr>
+					</table>
+				<div class="row"style="padding-left:15px">
+					<table class="col-md-6 col-sm-6 col-xs-12" >
+						<tr>
+							<td><strong>Email</strong></td>
+							<td><strong>:</strong></td>
+							<td>{{ $talent->talent_email }}</td>
+						</tr>
+						<tr>
+							<td><strong>Phone</strong></td>
+							<td><strong>:</strong></td>
+							<td> {{ $talent->talent_phone }}</td>
+                		</tr>
+					</table>
+				</div>
             @endif
-            </div>
-
+			</div>
+			
+			
 
             <div class="skills" >
-				<div class="row">
+				<div class="row" >
                 @foreach($talent->talent_skill()->get() as $row )
 				<?php $skill = $row->skill()->first();
 						$score = $row->st_score;
 						$percent = round( $score )/5 * 100;
 				?>
-					<div class="col-md-4 col-sm-4 col-xs-6 item">
+					<div class="col-md-4 col-sm-4 col-xs-6 item " style="height: 100px; padding: 20px">
 						<div class="skill-info clearfix">
 							<h3 class="pull-left"> {{$skill->skill_name}}</h3>
 							<span class="pull-right">{{$percent}} %</span>
@@ -143,7 +152,8 @@
 							</div>
                         </div>
 					</div>
-                @endforeach
+				@endforeach
+				</div>
              </div>
         </section>
 		
@@ -157,7 +167,7 @@
 							<div class="top-item resume-item">
 								<h2>{{ $row->workex_office }}</h2>
 								<span>{{ $row->workex_position }} |  {{ $row->workex_startdate }} - {{ $row->workex_enddate }}</span>
-								<p><param>{{ $row->workex_desc }}</param></p>
+								<p><param>{!! $row->workex_desc !!}</param></p>
 							</div>
 						</div>
 			@endforeach	
@@ -171,7 +181,7 @@
 			
 			<div class="row">
 			@foreach($talent->talent_education()->get() as $row )
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-12">
 					<div class="top-item resume-item">
 						<h2>{{ $row->edu_name }}</h2>
 						<h6>{{ $row->edu_level }}</h6>
@@ -182,29 +192,30 @@
 			</div>
         </section>
 		
-        <section id="works" class="works clearfix">
+		<section id="works" class="works clearfix">
+			
 			<div class="section-header">
 				<h2>Portfolio</h2>
 			</div>
 			
-            <div class="item-outer row clearfix">
-				@foreach($talent->talent_portfolio()->get() as $row )
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" >
+			<div class="item-outer row clearfix">
+                @foreach($talent->talent_portfolio()->get() as $row )
+				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1" data-sort="value">
 					<div class="item">
-						<a href="{{url('template/upscale/media/work1.jpg')}}"  class="work-image">
+						<a href="{{url('template/upscale/media/work1.jpg')}}" class="work-image">
 							<div class="title">
 								<div class="inner">
 									<h2>{{ $row->portfolio_name }}</h2>
-									<span>{{ $row->portfolio_tech}}</span>
+									<span>{{ $row->portfolio_tech}}s</span>
 								</div>
 							</div>
 						</a>
 						<div class="overlay"></div>
-						<img src="{{url('template/upscale/media/work1.jpg')}}"  alt="portfolio">
-					</div>
-				</div>
-				@endforeach	
-        </section>
+						<img src="{{url('template/upscale/media/work1.jpg')}}" alt="portfolio">
+                    </div>
+                    @endforeach
+                </div>
+		</section>
 
 		{{-- <section id="contact" class="contact">	
 			<div class="section-header">
