@@ -2107,10 +2107,11 @@
                                                 <input type="text" name="position" value="" id="position" placeholder="" class="form-control">
 
                                                 <label for="catatan">Description</label>
-                                                <textarea name="desc" class="form-control" id="editdescworkex"></textarea>
+                                                <textarea type="text" name="desc" class="form-control" id="editdescworkex"></textarea>
 
                                                 <label for="catatan">Project Handle</label>
                                                 <textarea name="handle" class="form-control" id="editprojecthandle"></textarea>
+                                               
                                                 <label for="catatan">Start</label>
                                                 <div class="row">
                                                     <div class="col-md-3">
