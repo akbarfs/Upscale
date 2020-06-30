@@ -298,8 +298,8 @@ Route::get("/profile/edit-cv", "MemberController@editCv");
 			
 
 			Route::get('/list/insert', 'TalentNewController@insert');
-			Route::get('/list/insert/data', 'TalentNewController@insertData');
 			Route::get('/list/delete', 'TalentNewController@deleteData');
+			Route::post('/list/insert/data', 'TalentNewController@insertData');
 			
 			Route::get('/delete/{id}', 'TalentNewController@delete');
 			Route::post('/del', 'TalentNewController@del');

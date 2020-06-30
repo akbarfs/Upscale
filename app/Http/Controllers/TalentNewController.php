@@ -114,14 +114,31 @@ class TalentNewController extends Controller
 public function insertData(Request $request){
 
 
+   $Skill = DB::table('skill')
+
+   
+/*   
+    if ( $request->skill != '' )
+        {
+            $ar = explode(",",$request->skill);
+            foreach ( $ar as $row)
+            {
+                    $results = DB::select('select * from users where id = :id', ['id' => 1]);
+            }
+        }
+        
+*/
+
+    dd($Skill);
+
+
 
         $validation = $request->validate([
             'nama'=>'required|string|max:150',
             'email'=>'required|string|email|max:100|unique:users',
             'gender'=>'required',
             'alamat'=>'required',
-            'phone'=>'required|string|max:30',
-            'birthdate'=>'required',        
+            'phone'=>'required|string|max:30',        
             'martialstatus'=>'required',
             'currentaddress'=>'required|string',
             'condition'=>'required',
@@ -145,7 +162,7 @@ public function insertData(Request $request){
             'tutorrate'=>'required',
 
         ]);
-
+        
 
         DB::table('talent')->insert([
             'talent_name' => $request->nama,
@@ -158,7 +175,6 @@ public function insertData(Request $request){
             'talent_martial_status' => $request->martialstatus,
             'talent_current_address' => $request->currentaddress,
             'talent_condition' => $request->condition,
-            'talent_skill' => $request->skill,
             'talent_salary' => $request->salary,
             'talent_focus' => $request->focus,
             'talent_start_career' => $request->startcareer,
