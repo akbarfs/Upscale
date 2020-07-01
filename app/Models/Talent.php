@@ -88,4 +88,19 @@ class Talent extends Model
 		return $this->hasMany('App\Models\work_experience' ,'workex_talent_id','talent_id');
 	}
 
+	public function talent_certification()
+	{	
+		return $this->hasMany('App\Models\certification' ,'certif_talent_id','talent_id');
+	}
+
+	public function talent_interview()
+	{	
+		return $this->hasMany('App\Models\Interview' ,'interview_id','talent_id');
+	}
+
+	public function talent_historyApply()
+	{	
+		return $this->hasMany('App\Models\historyApply' ,'jobs_apply_talent_id','talent_id');
+	}
+
 }

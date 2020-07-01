@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> CV {{ $talent->talent_name }}</title>
 	
     <link rel="stylesheet" type="text/css" href="{{ asset('/cv/bootstrap/css/bootstrap.min.css') }}"  media="all">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/owl.carousel.css') }}" media="all">
@@ -43,7 +44,11 @@
 
 <main class="wrapper">
     <header class="header pull-left">
-    
+    <div class="mobile-bar visible-sm visible-xs">
+			<div class="hamburger-menu">
+				  <div class="bar"></div>	
+			</div>
+		</div>
 		
         <div class="avatar">
 		<img src="{{url('template/upscale/media/images.jpg')}}" alt="avatar">
@@ -51,15 +56,11 @@
         
         <div class="name">
         @if($talent)
+		<?php $originalDate = $talent->talent_date_ready ;
+		$newDate = date("l, j F Y", strtotime($originalDate)); ?>
 			<h1>{{ $talent->talent_name }}</h1>
-            <span>{{ $talent->talent_focus}}</span>
+            <span>Ready : {{ $newDate }}</span>
             @endif
-		</div>
-		
-		<div class="mobile-bar visible-sm visible-xs">
-			<div class="hamburger-menu">
-				  <div class="bar"></div>	
-			</div>
 		</div>
 
         <div class="social-icons">
@@ -78,7 +79,9 @@
 				<li><a href="#experience">Expereince</a></li>
 				<li><a href="#education">Education</a></li>
 				<li><a href="#works">Works</a></li>
-				<li><a href="#contact">Contact</a></li>
+				<li><a href="#certification">Certification</a></li>
+				<li><a href="#certification">History Work Apply</a></li>
+			{{--<li><a href="#history">Contact</a></li>--}}	
 			</ul>
         </nav>
 
@@ -92,7 +95,7 @@
             <div class="section-header">
              <h2>About Me</h2>
 			 @if($talent->talent_cv_update)
-			 	<a href="{{ url('storage/Curriculum vitae/'.$talent->talent_cv_update) }}" class="resume-download" data-toggle="tooltip" data-placement="bottom" title="Download">
+			 	<a href="{{ url('storage/Curriculum vitae/'.$talent->talent_cv_update) }}" target="_blank" class="resume-download" data-toggle="tooltip" data-placement="bottom" title="Download">
 				 <i class="fa fa-download" aria-hidden="true"> </i> Download Resume
 				</a>
 				@endif
@@ -125,7 +128,7 @@
 						<tr>
 							<td><strong>Phone</strong></td>
 							<td><strong>:</strong></td>
-							<td> {{ $talent->talent_phone }}</td>
+							<td> {{ $talent->talent_phone }} <a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></td>
                 		</tr>
 					</table>
 				</div>
@@ -145,6 +148,9 @@
 						<div class="skill-info clearfix">
 							<h3 class="pull-left"> {{$skill->skill_name}}</h3>
 							<span class="pull-right">{{$percent}} %</span>
+							@if($row->st_skill_verified_date)
+							<br> <i class="fa fa-star" aria-hidden="true"></i>
+							@endif
 						</div>
 						<div class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="{{$percent}}"
@@ -216,6 +222,42 @@
                     @endforeach
                 </div>
 		</section>
+
+		<section id="certification" class="resume">
+			<div class="section-header">
+				<h2>Certification</h2>
+			</div>
+			
+			<div class="row">
+			@foreach($talent->talent_certification()->get() as $row )
+                <div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="top-item resume-item">
+						<h2>{{ $row->certif_name }}</h2>
+						<h6>{{ $row->certif_years }}</h6>
+						<span>{{ $row->certif_company }} </span>
+					</div>
+				</div>
+			@endforeach	
+			</div>
+        </section>
+
+		<section id="history" class="resume">
+			<div class="section-header">
+				<h2>History Work Apply</h2>
+			</div>
+			
+			<div class="row">
+			@foreach($talent->talent_historyApply()->get() as $row )
+                <div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="top-item resume-item">
+						<h2>{{ $row->jobs_apply_name }}</h2>
+						<h6>{{ $row->jobs_apply_type_time }}</h6>
+						<span>{{ $row->jobs_apply_status }}</span>
+					</div>
+				</div>
+			@endforeach	
+			</div>
+        </section>
 
 		{{-- <section id="contact" class="contact">	
 			<div class="section-header">
