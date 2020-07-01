@@ -2055,6 +2055,36 @@
                             </div>
                             <div class="card-body card-block">
                                 <div class="form-group col-md-6">
+
+                                <label for="text-input" class=" form-control-label">Foto Profil Talent</label>
+                                <input value=" " type="file" id="inputgambar" name="gambar" placeholder="Your Photo" required="" class="form-control">
+                                    
+                                @section('js')
+                                <script type="text/javascript">
+
+                                    function readURL(input) {
+                                        if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function (e) {
+                                        $('#showgambar').attr('src', e.target.result);
+                                        }
+
+                                        reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+
+                                        $("#inputgambar").change(function () {
+                                        readURL(this);
+                                    });
+
+                                </script>
+
+                                @stop
+
+
+
+
                                     <label for="text-input" class=" form-control-label">Talent Name</label>
                                     <input value="{{$all->talent_name}}" type="text" id="talent_name" name="talent_name" placeholder="Your Name" required="" class="form-control">
                                     <label for="text-input" class=" form-control-label">Talent Email</label>

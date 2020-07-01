@@ -2,6 +2,11 @@
 	.badge { cursor: pointer; }
 </style>
 
+<form action="{{ url('admin/talent/del') }}" method="post">
+	{{csrf_field()}}
+	<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del" style="display:none"> Delete </button>
+</form>
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -49,7 +54,30 @@
 			
 			@foreach($data as $talent)
 			<tr>
-			  <td><input type="checkbox" name="delid[]" value="{{$talent->talent_id}}"> </td>
+			  <td><input type="checkbox" name="delid[]" class="talent_id"  value="{{$talent->talent_id}}"> </td> 
+			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$(".talent_id").click(function()
+	{
+		jumlalh = $('input[name="delid[]"]:checked').length;
+		if (jumlah > 0) 
+		{
+			// $("#mass_del").show();
+			alert("keluar");
+		}
+		else
+		{
+			// $("#mass_del").hide();
+			alert("hide");
+		}
+	});
+  
+});
+</script>
+
+
 			  <th scope="row">{{$talent->talent_id}}</th>
 			  <td>
 			  		{{$talent->talent_name}}

@@ -320,7 +320,13 @@ Route::get("/profile/edit-cv", "MemberController@editCv");
 	        Route::get('/portfolio', 'talentController@portfolio')->name('portfolio.talent');
 	        Route::get('/portfolio-delete', 'talentController@portfolioDelete')->name('portfolio.delete');
 	        Route::post('/portfolio-update','talentController@portfolioUpdate')->name('portfolio.update');
-	        Route::post('/portfolio-insert', 'talentController@portfolioInsert')->name('portfolio.insert');
+			Route::post('/portfolio-insert', 'talentController@portfolioInsert')->name('portfolio.insert');
+			
+			//photoprofil
+			Route::get('/photo', 'talentController@photo')->name('photo.talent');
+			Route::get('/photo-delete', 'talentController@photoDelete')->name('photo.delete');
+			Route::post('/photo-update', 'talentController@photoUpdate')->name('photo.update');
+			Route::post('/photo-insert', 'talentController@photoInsert')->name('photo.insert');
 
 	        Route::get('/workexperience','talentController@workex')->name('workex.talent');
 	        Route::post('/workexperience-insert','talentController@workexInsert')->name('workex.insert');
