@@ -35,21 +35,57 @@ class Talent extends Model
 							'portofolio_update',
 							'talent_address',
 			                'talent_prefered_location',
+			                'talent_prefered_city',
 			                'talent_date_ready',
-			                'talent_available'
+			                'talent_available',
+			                'talent_focus',
+							'talent_start_career',
+							'talent_english',
+							'talent_level',
+							'talent_international',
+							'talent_onsite_jakarta',
+							'talent_onsite_jogja',
+							'talent_isa',
+							'talent_remote',
+							'talent_salary_jogja',
+							'talent_salary_jakarta',
+							'talent_current_work',
+							'talent_last_active',
+							'talent_la_type',
+							'talent_note',
 						];
 	public $timestamps = false;
 
 	protected $dates = ['talent_created_date'];
 
-	 public function talent_skill()
+	public function talent_skill()
 	{	
-		return $this->hasMany('App\Models\SkillTalent', 'id_talent');
+		return $this->hasMany('App\Models\SkillTalent' ,'st_talent_id','talent_id');
 	}
 
-	 	public function jobs_apply()
+	public function jobs_apply()
 	{	
 		return $this->hasMany('App\Models\Job_apply', 'jobs_apply_talent_id', 'talent_id');
+	}
+
+	public function log()
+	{
+		return $this->hasMany("App\Models\Talent_log","tl_talent_id","talent_id");
+	}
+
+	public function talent_education()
+	{	
+		return $this->hasMany('App\Models\education' ,'edu_talent_id','talent_id');
+	}
+
+	public function talent_portfolio()
+	{	
+		return $this->hasMany('App\Models\portfolio' ,'portfolio_talent_id','talent_id');
+	}
+
+	public function talent_workex()
+	{	
+		return $this->hasMany('App\Models\work_experience' ,'workex_talent_id','talent_id');
 	}
 
 }

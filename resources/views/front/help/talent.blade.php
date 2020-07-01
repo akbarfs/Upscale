@@ -35,16 +35,17 @@
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
                 <div class="col-lg-8" id="desc-talent">
                     <h1>
-                        Scaling Up Your Skill & Networks.
+                        Upgrade kemampuan dan networkmu.
                     </h1>
                     
-                    Join and get the following benefits:
+                    Bergabung dan dapatkan beberapa manfaat:
                     <ul class="desc-list-talent" style="padding-top: 15px">
-                        <li>Land on your Dream Jobs and Project</li>
-                        <li>Exponential Opportunity</li>
-                        <li>Constructive Community</li>
-                        <li>Access to Our Coworking Space Network</li>
-                        <li>Access to Our Education Class Network</li>
+                        <li>Karir di perusahaan idaman</li>
+                        <li>Project as a freelance</li>
+                        <li>Pasif Income</li>
+                        <li>Free Education</li>
+                        <li>Konsultasi senior programer</li>
+                        <li>Kerja Remote (lokal/International)</li>
                     </ul>
                         
                 </div>

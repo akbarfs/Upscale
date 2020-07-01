@@ -409,25 +409,7 @@ class talentController extends Controller
     public function detail(Request $request)
     {
         //DB::disableQueryLog();
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.rajaongkir.com/starter/city",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array( "key: b319d10f3c8258f34a2ad6890144f994" ),
-        ));
-        $response = curl_exec($curl);
-        $err      = curl_error($curl);
-        curl_close($curl);
-
-        if (!$response){
-            $response = config('app.json_city');
-        }   
+       $response = config('app.json_city');
         
         $listKota      = array();
         $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
@@ -445,32 +427,9 @@ class talentController extends Controller
         }
 
 
-        $curl2 = curl_init();
-        curl_setopt_array($curl2, array(
-            CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "key: b319d10f3c8258f34a2ad6890144f994"
-            ),
-        ));
-
-        $response2 = curl_exec($curl2);
-        $err2 = curl_error($curl2);
-
-        curl_close($curl2);
+        $response2 = config('app.json_province'); 
         $listprovinsi = array();
-        // $listKota = array(); //udah dicomment gak dipakai
-
-        if ( !$response2)
-        {
-            $response2 = config('app.json_province'); 
-        }
-
+        
         $arrRespon = json_decode($response2,true);
         $tempRespon = $arrRespon['rajaongkir']['results'];
         foreach($tempRespon as $value){

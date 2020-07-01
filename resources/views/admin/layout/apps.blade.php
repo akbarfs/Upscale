@@ -12,6 +12,10 @@
     <meta property="og:image" itemprop="image" content="{{ asset('img/logo3.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="_token" content="{{ csrf_token() }}"/>
+
+    <script src="{{asset('/admin/js/vendor/jquery-3.3.1.min.js')}}"></script>
+    
+
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="{{ asset('/upscale.ico') }}">
@@ -154,7 +158,7 @@
         </style>
     <!-- </head> --> 
 </head>
-<body class="open" style="padding-right:0; border-collapse: collapse;">
+<body style="padding-right:0; border-collapse: collapse;">
     @include('admin.layout.sidebar')
 
     <div id="right-panel" class="right-panel">

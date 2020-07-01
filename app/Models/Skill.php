@@ -18,5 +18,9 @@ class Skill extends Model
 	return $this->belongsTo('App\Models\SkillCategory');
 	}
 
+	public function skill()
+	{
+		return $this->hasOne('App\Models\Skills','skill_id','st_skill_id');
+	}
 
 }

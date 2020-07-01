@@ -10,6 +10,7 @@ use App\Models\Skill ;
 use App\Models\SkillTalent ;  
 use Illuminate\Support\Facades\Hash;
 use Log ; 
+use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
@@ -40,6 +41,29 @@ class MemberController extends Controller
             'tempat_lahir' => 'required|min:3|max:25',
         ]); 
 
+        
+
+        //PROSES INSERT DATABASE talent
+        $talent = Talent::where('talent_email',$request->email);
+        if ($talent->count() == 0)
+        {
+
+            $data = [
+                    'talent_name' =>$request->name,
+                    'talent_condition' =>'unprocess',
+                    'talent_phone'=>$request->phone_number,
+                    'talent_email'=>$request->email, 
+                    'talent_place_of_birth' => $request->tempat_lahir,
+                    'talent_birth_date'=>$request->tgl_lahir,
+                    'talent_gender' => $request->gender,
+                    'talent_last_active' => date("Y-m-d H:i:s"),
+                    'talent_la_type' =>'register step 1'
+            ];
+
+            $talent = Talent::create($data); 
+
+        }
+
         return response()->json(array("message"=>"success","status"=>1));
     }
 
@@ -61,7 +85,7 @@ class MemberController extends Controller
             // 'talent_address' => 'sometimes|min:3|max:25|',
             // 'talent_prefered_location' => 'sometimes|min:3|max:25|',
             // 'talent_date_ready' => 'sometimes|string',
-            'talent_available' => 'sometimes|string',
+            // 'talent_available' => 'sometimes|string',
 
 
             'freelance_hour' => 'sometimes|format_rp',
@@ -83,6 +107,15 @@ class MemberController extends Controller
 
         $result = User::create($user);
 
+        if ( isset($request->karir_tahun) && isset($request->karir_bulan) )
+        {
+            $start_career = $request->karir_tahun."-".$request->karir_bulan."-01"; 
+        }
+        else
+        {
+            $start_career = '0000-00-00'; 
+        }
+
         //PROSES INSERT DATABASE TALENT
         $data = [
                 'user_id'  =>$result->id,
@@ -100,7 +133,7 @@ class MemberController extends Controller
                 'talent_salary' =>  preg_replace('/[^0-9]/', '', $request->fulltime_rate),
 
                 'talent_address' => $request->talent_address,
-                'talent_prefered_location' => $request->talent_prefered_location,
+                'talent_prefered_city' => $request->talent_prefered_city,
                 'talent_date_ready' => $request->talent_date_ready,
                 'talent_available' => $request->talent_available,
 
@@ -109,11 +142,26 @@ class MemberController extends Controller
                 'talent_project_max' =>  preg_replace('/[^0-9]/', '', $request->freelance_max),
                 'talent_konsultasi_rate' =>  preg_replace('/[^0-9]/', '', $request->konsultasi_rate),
                 'talent_ngajar_rate' =>  preg_replace('/[^0-9]/', '', $request->ngajar_rate),
-        ];
-        
-        //Log::info($data) ; 
 
-        $talent = Talent::create($data); 
+                'talent_international' => $request->talent_international,
+                'talent_start_career'   => $start_career,
+                "talent_level"=>$request->talent_level,
+                "talent_focus"=>$request->talent_focus,
+
+                "talent_onsite_jakarta" => $request->talent_onsite_jakarta ? $request->talent_onsite_jakarta : "" ,
+                "talent_onsite_jogja" => $request->talent_onsite_jogja ? $request->talent_onsite_jogja : "" ,
+                "talent_remote" => $request->talent_remote ? $request->talent_remote : "",
+                "talent_isa" => $request->talent_isa ? $request->talent_isa : "unset",
+
+                'talent_salary_jogja'   =>preg_replace('/[^0-9]/', '', $request->salary_jogja),
+                'talent_salary_jakarta' =>preg_replace('/[^0-9]/', '', $request->salary_jakarta),
+                'talent_current_work'   =>$request->talent_current_work,
+                'talent_last_active'   =>date("Y-m-d H:i:s"),
+                'talent_la_type'        => 'register', 
+                'talent_last_active'    => date("Y-m-d H:i:s") 
+        ];
+
+        $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 
 
         // proses insert skill
         $skill_1 = explode(",",$request->skill_1);
@@ -144,22 +192,31 @@ class MemberController extends Controller
     {
         foreach($array as $row)
         {
-            //get skill id 
-            $skill = Skill::where("skill_name",$row)->first() ; 
-            // Log::info($skill); 
-
-            if ( !$skill )
+            if ($row != "")
             {
-                $skill = Skill::create(array('skill_name'=>$row,'skill_sc_id'=>$cat));
-            }
+                //get skill id 
+                $skill = Skill::where("skill_name",$row)->first() ; 
 
-            $insert_skill = array(
-                                'st_talent_id'=> $talent_id,
-                                'st_skill_id'=> $skill->skill_id,
-                                'st_skill_verified'=> 'NO',
-                                'st_input_admin'=> 'NO',
-                            );
-            SkillTalent::insert($insert_skill);
+                //klo ga di table list ada buat baru 
+                if ( !$skill )
+                {
+                    $skill = Skill::create(array('skill_name'=>$row,'skill_sc_id'=>$cat));
+                }
+
+                //nambahin
+                $insert_skill = array(
+                                    'st_talent_id'=> $talent_id,
+                                    'st_skill_id'=> $skill->skill_id,
+                                    'st_skill_verified'=> 'NO',
+                                    'st_input_admin'=> 'NO',
+                                );
+
+                SkillTalent::updateOrCreate([
+                                                'st_talent_id'=> $talent_id,
+                                                'st_skill_id'=> $skill->skill_id
+                                            ],$insert_skill);
+            }
+            
         }
     }
     public function updateProfile(Request $request)
@@ -212,6 +269,7 @@ class MemberController extends Controller
             $skill->where("skill_sc_id","!=",1);
             $skill->where("skill_sc_id","!=",2);
         }
+        $skill->where('status','enable');
         $skill  = $skill->get() ;
 
         return response()->json($skill) ; 
@@ -221,5 +279,44 @@ class MemberController extends Controller
     {
     	Session::flush();
         return redirect("/");
+    }
+
+    public function profile()
+    {
+        return view("member.profile");
+    }
+
+
+    public function editBasic()
+    {
+      //  $profile = Profile::find($id);
+      //  return view('editBasicProfile',['profile' => $profile], compact('id'));
+
+      return view("member.editBasicProfile");
+    }
+
+    public function editEducation()
+    {
+        return view("member.editEducation");
+    }
+
+    public function editWork()
+    {
+        return view("member.editWork");
+    }
+
+    public function editSkill()
+    {
+        return view("member.editSkill");
+    }
+    public function editCv()
+    {
+        return view("member.editCv");
+    }
+    
+     public function CV($talent_id)
+    {
+        $talent = Talent::where('talent_id',$talent_id)->first();      
+        return view('CV',['talent' => $talent]);
     }
 }

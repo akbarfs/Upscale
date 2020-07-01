@@ -1,7 +1,13 @@
-
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        setTimeout(function() {$("#menuToggle").click() ; },1000);
+    });
+</script>
 <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
-        <a style="position:relative; left:54px;"id="menuToggle" class="menutoggle pull-right"><i class="fa fa fa-tasks"></i></a>
+        <a style="position:relative; left:54px;" id="menuToggle" class="menutoggle pull-right">
+            <i class="fa fa fa-tasks" style="margin-top: 10px"></i></a>
 
             <div class="navbar-header">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +55,13 @@
                         </ul>
                     </li>
                     <h3 class="menu-title">TALENT</h3>
-                    <li title="Talent List">
+                    {{-- Adi --}}
+                    <li title="Talent List New">
+                        <a href="{{route('talent.list')}}"> <i class="menu-icon fa fa-user-o"></i> Talent List New</a>
+                    </li>
+                    {{-- end of Adi --}}
+
+                     <li title="Talent List">
                         <a href="{{route('talent.index')}}"> <i class="menu-icon fa fa-user-o"></i> Talent List</a>
                     </li>
                     <li title="Talent Create">

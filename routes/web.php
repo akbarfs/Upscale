@@ -18,6 +18,8 @@ use App\Http\Middleware\CheckTalent;
 
 Auth::routes();
 
+Route::get('talent/test/condition','TalentNewController@condition');
+//end of adi
 Route::get('/', 'homeController@index')->name('index');
 Route::get('/home', 'homeController@index')->name('home');
 Route::get('/talent-register', 'homeController@apply')->name('talent-register');
@@ -31,6 +33,7 @@ Route::get('/faq', 'homeController@faq')->name('faq');
 Route::post('/send-inquiry', 'homeController@sendInquiry')->name('send-inquiry');
 Route::get("/track","homeController@track")->name("mail-tracking");
 
+Route::get('/mailSends','TalentNewController@mailSends');
 
 // LOGIN ADMIN
 Route::get('/login'.date("dmY"), 'LoginController@index')->name('login');
@@ -51,6 +54,8 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
 }); 
 
+
+
 Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
 
 
@@ -60,6 +65,18 @@ Route::group(['middleware'=>'cek'],function(){
 	// Route::group(['prefix'=>'admin'], function(){
 	// 	Route::get('/dashboard', 'userController@index')->name('user.dashboard');
 	// });
+
+/////////////////////////////
+
+Route::get("/profile", "MemberController@profile");
+Route::get("/profile/edit-basic-profile", "MemberController@editBasic");
+Route::get("/profile/edit-education", "MemberController@editEducation");
+Route::get("/profile/edit-work", "MemberController@editWork");
+Route::get("/profile/edit-skill", "MemberController@editSkill");
+Route::get("/profile/edit-cv", "MemberController@editCv");
+
+////////////////////////////
+
 
 	Route::get('/blast', 'jobsapplyController@blast_show')->name('blast');
 
@@ -264,7 +281,31 @@ Route::group(['middleware'=>'cek'],function(){
 		});
 
 		Route::group(['prefix'=>'talent'], function(){
+
+			
+			// adi
+			Route::get('/list','TalentNewController@show')->name('talent.list');
+			Route::get('/list/condition','TalentNewController@condition');
+			Route::get('/list/search','TalentNewController@search');
+			Route::get('/list/filter','TalentNewController@filter');
+			Route::get('/list/paginate_data','TalentNewController@paginate_data');
+			Route::get('/mail/{id}','TalentNewController@mail');
+			Route::get('/mail-send/{id}','TalentNewController@mailSend');
+			Route::get('/mailSend','TalentNewController@mailSend');
+			Route::get('/list/export_excel','TalentNewController@export_excel');
+			
+
+			Route::get('/list/insert', 'TalentNewController@insert');
+			Route::get('/list/insert/data', 'TalentNewController@insertData');
+			Route::get('/list/delete', 'TalentNewController@deleteData');
+			
+			Route::get('/delete/{id}', 'TalentNewController@delete');
+			Route::post('/del', 'TalentNewController@del');
+			//end adi
+
+
 			Route::get('/', 'talentController@index')->name('talent.index');
+
 			//Route Talent List
 	// 		Route::get('/', 'talentController@talent_list')->name('talent.listall');
 			// Route::get('/request', 'companyController@request')->name('talent.request');
@@ -301,7 +342,6 @@ Route::group(['middleware'=>'cek'],function(){
 	        Route::get('/detailcertification/{id}','talentController@detailcertification')->name('certification.detail');
 	        Route::post('/updatecertification/{id}','talentController@updatecertification')->name('certification.update');
 	        Route::post('/deletecertification/{id}','talentController@deletecertification')->name('certification.delete');
-
 			Route::get('/detailtalent/{id}','talentController@detailtalent')->name('detailtalent');
 	        Route::post('/notesreporttalent/{id}','talentController@storenote')->name('notesreporttalent');
 	        Route::get('/viewcertif/{id}','talentController@viewcertif')->name('viewcertif');
@@ -509,3 +549,6 @@ $this->post('register', 'Auth\RegisterController@register');
 
 
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
+
+//MEMBER PROFILE
+Route::get('/profile/{id}','MemberController@CV');

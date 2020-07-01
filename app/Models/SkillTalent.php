@@ -19,8 +19,17 @@ class SkillTalent extends Model
 
 	public function talent()
 	{
-	return $this->belongsTo('App\Models\Talent');
+		return $this->belongsTo('App\Models\Talent');
 	}
 
+	public function skill()
+	{
+		return $this->hasOne('App\Models\Skill','skill_id','st_skill_id');
+	}
+
+	public function score_skill()
+	{
+		return $this->hasOne('App\Models\Skill','skill_id','st_score');
+	}
 
 }
