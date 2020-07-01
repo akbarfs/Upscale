@@ -72,12 +72,14 @@ Route::group(['middleware'=>'cek'],function(){
 /////////////////////////////
 
 Route::get("/profile", "MemberController@profile");
-Route::get("/profile/edit-basic-profile", "MemberController@editBasic");
+
+Route::get("/profile/{talent_id}", "MemberController@profile"); 
+Route::get("/profile/edit-basic-profile/{talent_id}", "MemberController@editBasic");
 Route::get("/edit-basic-profile/profile", "MemberController@editBasic");
-Route::get("/profile/edit-education", "MemberController@editEducation");
-Route::get("/profile/edit-work", "MemberController@editWork");
-Route::get("/profile/edit-skill", "MemberController@editSkill");
-Route::get("/profile/edit-cv", "MemberController@editCv");
+Route::get("/profile/edit-education/{talent_id}", "MemberController@editEducation");
+Route::get("/profile/edit-work/{talent_id}", "MemberController@editWork");
+Route::get("/profile/edit-skill/{talent_id}", "MemberController@editSkill");
+Route::get("/profile/edit-cv/{talent_id}", "MemberController@editCv");
 
 ////////////////////////////
 
@@ -554,4 +556,4 @@ $this->post('register', 'Auth\RegisterController@register');
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
 
 //MEMBER PROFILE
-Route::get('/profile/{id}','MemberController@CV');
+
