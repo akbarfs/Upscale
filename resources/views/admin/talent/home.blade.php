@@ -290,12 +290,11 @@
 							selectedEmail.push(this.value);
 						});
 						
-						$.post( "{{url('admin/talent/list/mailSend')}}",{"_token": "{{ csrf_token() }}","id":10}, function( data ) 
+						$.post( "{{url('admin/talent/list/mailSend')}}",{"_token": "{{ csrf_token() }}","id":selectedEmail}, function( data ) 
 						{
-							alert("Selected Email: " + selectedEmail);	
+							console.log(data)	;
 						});
 						//return false;
-
 					});
 				}); 
 
