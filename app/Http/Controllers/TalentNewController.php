@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\UpscaleEmail;
 use App\Models\Talent;
+use App\Models\Skill;
 
 use App\Exports\TalentExport;
 
@@ -114,27 +115,19 @@ class TalentNewController extends Controller
 public function insertData(Request $request){
 
 
-   $Skill = DB::table('skill')->select('skill_id','skill_name')->get();
 
      
     if ( $request->skill != '' )
+    {
+        $InsertSkill = explode(",",$request->skill);
+        foreach ( $InsertSkill as $skill)
         {
-            $InsertSkill = explode(",",$request->skill);
-            foreach ( $InsertSkill as $ar1)
-            {
-                foreach ( $Skill as $ar2)
-                {
-                if ( $ar1 == $ar2->skill_name ){
-                
-                    $results = $ar2->select('skill_id')->where("skill_name","==",$ar2->skill_name)->get()->toArray();
-                    }
-                }
-
-            }
-        } 
+            $id[] = Skill::where("skill_name",$skill)->first()->skill_id;
+        }
+    } 
     
 
-    dd($results);
+    dd($id);
 
 
 
