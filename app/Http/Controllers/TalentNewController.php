@@ -32,6 +32,11 @@ class TalentNewController extends Controller
         return view("admin.talent.mail");
     }
 
+    function mailBackup($id)
+    {
+        return view("admin.talent.mail-backup");
+    }
+
     function mailSend()
     {
         $recipients = [
