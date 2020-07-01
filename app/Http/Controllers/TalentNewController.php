@@ -114,22 +114,27 @@ class TalentNewController extends Controller
 public function insertData(Request $request){
 
 
-   $Skill = DB::table('skill')
+   $Skill = DB::table('skill')->select('skill_id','skill_name')->get();
 
-   
-/*   
+     
     if ( $request->skill != '' )
         {
-            $ar = explode(",",$request->skill);
-            foreach ( $ar as $row)
+            $InsertSkill = explode(",",$request->skill);
+            foreach ( $InsertSkill as $ar1)
             {
-                    $results = DB::select('select * from users where id = :id', ['id' => 1]);
-            }
-        }
-        
-*/
+                foreach ( $Skill as $ar2)
+                {
+                if ( $ar1 == $ar2->skill_name ){
+                
+                    $results = $ar2->select('skill_id')->where("skill_name","==",$ar2->skill_name)->get()->toArray();
+                    }
+                }
 
-    dd($Skill);
+            }
+        } 
+    
+
+    dd($results);
 
 
 
