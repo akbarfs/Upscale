@@ -282,27 +282,47 @@ class MemberController extends Controller
         return redirect("/");
     }
 
-    public function profile()
+    public function profile($id="")
     {
-        $id = Session::get("user_id"); 
-        $talent = Talent::where("user_id",$id)->first();
-       
-        $profile = Talent::where('talent_id', $talent->talent_id)->first();
+        if ( $id == "" )
+        {
+            $id = Session::get("user_id"); 
+        }
         
-        return view("member.profile",compact('profile'));
-
-        
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+        return view("member.profile",compact('talent'));   
     }
-
 
     public function editBasic()
     {
         $id = Session::get("user_id"); 
-        $talent = Talent::where("user_id",$id)->first();
-       
-        $profile = Talent::where('talent_id', $talent->talent_id)->first();
 
-      return view("member.editBasicProfile", compact('profile'));
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+       
+        $profile = $talent;
+        return view("member.editBasicProfile", compact('profile'));
+    }
+
+    public function editBasicPost(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'phone' => 'required'
+        ]);
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $update = Talent::find($talent->talent_id); 
+        $update['talent_name'] = $request->name ; 
+        $update['talent_phone'] = $request->phone ; 
+        $update->save(); 
+
+        return back()->with("message","berhasil mengupdate"); ;
+
     }
 
     public function editEducation()
@@ -325,9 +345,5 @@ class MemberController extends Controller
         return view("member.editCv");
     }
     
-     public function CV($talent_id)
-    {
-        $talent = Talent::where('talent_id',$talent_id)->first();      
-        return view('CV',['talent' => $talent]);
-    }
+    
 }

@@ -534,7 +534,7 @@
                                         </a>
 
                                         <ul>
-                                            <!-- <li><a href="/profile">Profile</a></li> -->
+                                            <li><a href="{{url('/profile')}}">Profile</a></li>
                                             
                                             <li><a  href="{{url('member/logout')}}">Logout</a></li>
                                             

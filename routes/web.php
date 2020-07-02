@@ -67,16 +67,20 @@ Route::group(['middleware'=>'cek'],function(){
 	// });
 
 /////////////////////////////
+Route::get("/profile", "MemberController@profile"); //my profile
+Route::get("/profile/{talent_id}", "MemberController@profile");  //other profile
 
-Route::get("/profile", "MemberController@profile");
+Route::group(['prefix'=>'member'], function()
+{
+	Route::get("edit-basic-profile", "MemberController@editBasic");
+	Route::post("edit-basic-profile", "MemberController@editBasicPost");
 
-Route::get("/profile/{talent_id}", "MemberController@profile"); 
-Route::get("/profile/edit-basic-profile/{talent_id}", "MemberController@editBasic");
-Route::get("/edit-basic-profile/profile", "MemberController@editBasic");
-Route::get("/profile/edit-education/{talent_id}", "MemberController@editEducation");
-Route::get("/profile/edit-work/{talent_id}", "MemberController@editWork");
-Route::get("/profile/edit-skill/{talent_id}", "MemberController@editSkill");
-Route::get("/profile/edit-cv/{talent_id}", "MemberController@editCv");
+	Route::get("edit-education", "MemberController@editEducation");
+	Route::get("edit-work", "MemberController@editWork");
+	Route::get("edit-skill", "MemberController@editSkill");
+	Route::get("edit-cv", "MemberController@editCv");
+
+});
 
 ////////////////////////////
 
