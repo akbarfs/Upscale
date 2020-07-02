@@ -278,10 +278,10 @@ li {
 
 /* === Mobile Menu Bar === */
 .header .mobile-bar {
-    background: rgba(12,12,12,0.75);
+    background: #37517e ;
     color: #FFF;
     height: 60px;
-    right: -59px;
+    right: -25px;
     position: absolute;
     width: 60px;
     z-index: 3;
