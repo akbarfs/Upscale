@@ -9,6 +9,7 @@
 </br>
 
 <main>
+<div class="container">
 <div class="container" align="left">
             
             <div class="card-body">
@@ -17,13 +18,11 @@
     CV And PORTOFOLIO 
     </h4>
 
-        <div class="container">
+        
             <div class="card mt-5">
                 <div class="card-body">
                     <br/>
-                    <br/>
-                    
-
+                
                     <div class="form-group">
                 <div class="row">
                     <div class="col-md-4"><label for="Name">CV</label></div>
@@ -49,15 +48,16 @@
             </div>
                 </div>
             </div>
-        </div>
-        </div>
+            <div class="modal-footer">
+      <div class="btn btn-primary"  >
+      <a href="/profile" ><font color="#FFFFFF">Back</font></a>
+      </div>
 
+          <div class="">
+            <button type="submit" class="btn btn-primary">SAVE</button>
+          </div>
         
-
-
-        <div class="form-group" align="right" padding=25px;>
-         <input type="submit" class="btn btn-success" value="SAVE">
-        </div>
+    </div>
 
 
 </main>

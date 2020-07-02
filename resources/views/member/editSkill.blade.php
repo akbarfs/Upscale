@@ -77,7 +77,19 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="modal-footer">
+      <div class="btn btn-primary"  >
+      <a href="/profile" ><font color="#FFFFFF">Back</font></a>
+      </div>
+
+          <div class="">
+            <button type="submit" class="btn btn-primary">SAVE</button>
+          </div>
+        
+    </div>
+
+
+
 </main>
 </br>
 </br>

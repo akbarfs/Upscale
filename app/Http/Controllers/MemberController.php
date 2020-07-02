@@ -11,6 +11,7 @@ use App\Models\SkillTalent ;
 use Illuminate\Support\Facades\Hash;
 use Log ; 
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class MemberController extends Controller
 {
@@ -283,16 +284,25 @@ class MemberController extends Controller
 
     public function profile()
     {
-        return view("member.profile");
+        $id = Session::get("user_id"); 
+        $talent = Talent::where("user_id",$id)->first();
+       
+        $profile = Talent::where('talent_id', $talent->talent_id)->first();
+        
+        return view("member.profile",compact('profile'));
+
+        
     }
 
 
     public function editBasic()
     {
-      //  $profile = Profile::find($id);
-      //  return view('editBasicProfile',['profile' => $profile], compact('id'));
+        $id = Session::get("user_id"); 
+        $talent = Talent::where("user_id",$id)->first();
+       
+        $profile = Talent::where('talent_id', $talent->talent_id)->first();
 
-      return view("member.editBasicProfile");
+      return view("member.editBasicProfile", compact('profile'));
     }
 
     public function editEducation()
@@ -307,6 +317,7 @@ class MemberController extends Controller
 
     public function editSkill()
     {
+        
         return view("member.editSkill");
     }
     public function editCv()
