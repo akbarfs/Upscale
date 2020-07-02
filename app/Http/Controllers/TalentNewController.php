@@ -44,6 +44,8 @@ class TalentNewController extends Controller
         Mail::to($recipients)->send(new UpscaleEmail());
 
         echo "coba send email lewat sini";
+
+
     }
 
     public function paginate_data(Request $request)
@@ -122,10 +124,9 @@ public function insertData(Request $request){
         $InsertSkill = explode(",",$request->skill);
         foreach ( $InsertSkill as $skill)
         {
-            $id[] = Skill::where("skill_name",$skill)->first()->skill_id;
+            $idSkill[] = Skill::where("skill_name",$skill)->first()->skill_id;
         }
-    } 
-    
+    }    
 
     dd($id);
 
