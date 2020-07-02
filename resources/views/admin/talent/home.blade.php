@@ -214,7 +214,7 @@
 	{{csrf_field()}}
 	<a href="list/insert" class="btn btn-success btn-sm tb"> Tambah Talent </a>
 	<a id="export"  class="btn btn-success btn-sm tb"> Export </a>
-	<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
+	<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del" style="display: none;"> Delete </button>
 	<!-- LOAD CONTENT -->
 	<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
 </form>
@@ -224,6 +224,9 @@
 		<span class="sr-only">Loading...</span>
 	</div>
 </div>
+
+
+
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
