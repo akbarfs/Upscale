@@ -128,7 +128,7 @@ public function insertData(Request $request){
         }
     }    
 
-    dd($id);
+    dd($idSkill);
 
 
 
