@@ -130,8 +130,6 @@ public function insertData(Request $request){
 
     dd($idSkill);
 
-
-
         $validation = $request->validate([
             'nama'=>'required|string|max:150',
             'email'=>'required|string|email|max:100|unique:users',
@@ -161,6 +159,18 @@ public function insertData(Request $request){
             'tutorrate'=>'required',
 
         ]);
+
+
+
+        foreach($idSkill as $insert)
+        {
+
+            DB::table('skill_talent')->insert([
+            'st_skill_id' => $insert,
+            'st_skill_verified' => 'NO',
+            ]);
+        
+        }
         
 
         DB::table('talent')->insert([

@@ -74,10 +74,8 @@
 
 
             <div class="form-group">
-              <label for="birthdate">Birth Date</label>
-              <span class="info_tgl_lahir"></span>
-              <input type="hidden" name="birthdate" class="form-control hasDatepicker" id="tgl_lahir" placeholder="DD/MM/YYYY" value >
-              <button type="button" class="ui-datepicker-trigger">Set Date</button>
+              <label for="datepicker">Birth Date</label>
+              <input type="text" name="birthdate" class="form-control" id="datepicker">
             </div>
         
         
@@ -107,7 +105,7 @@
 
             <div class="form-group">
               <label for="level">Condition</label>
-              <select id="level" class="custom-select" name="condition"  >
+              <select id="level" class="custom-select" name="condition" >
                     <option selected> </option>
                     <option>Unprocess</option>
                     <option>Quarantine</option>
@@ -501,32 +499,31 @@
       });
 
 
+</script>
+  
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js">  </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"> </script>
+
+    <script>
+      $( function() {
+      $( "#datepicker" ).datepicker({
+        dateFormat: 'dd-mm-yy'
+      });
+      
 
 
-      $(function() {
-           $('#tgl_lahir').datepicker(
-           {
-                showOn: "button",
-                buttonText: "set date",
-                dateFormat: 'yy-mm-dd',
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "1970:2015",
-                beforeShow: function () {
-                  setTimeout(function () {
-                      $('.ui-datepicker').css('top', 100);
-                  }, 0);
-                },
-                onSelect: function() 
-                {
-                    $(".info_tgl_lahir").html($(this).val());
-                    // doSomeValidation($(this).getDate());
-                }
-            });
-         });
-  </script>
+      });
+    </script>
+
+
+
 
    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+     
+   </script>
+
+
 
 @endsection
 
@@ -535,11 +532,7 @@
 <div>
   <ul>
     @foreach($errors->all() as $error)
-
     <li>{{$errors}}</li>
-    
-
-
     @endforeach
   </ul>
 </div>
