@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Log ; 
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Models\work_experience; 
+use App\Models\education; 
 
 class MemberController extends Controller
 {
@@ -301,8 +303,7 @@ class MemberController extends Controller
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
        
-        $profile = $talent;
-        return view("member.editBasicProfile", compact('profile'));
+        return view("member.editBasicProfile", compact('talent'));
     }
 
     public function editBasicPost(Request $request)
@@ -327,19 +328,148 @@ class MemberController extends Controller
 
     public function editEducation()
     {
-        return view("member.editEducation");
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+        $education = $talent->talent_education();
+
+        return view("member.editEducation",compact('talent','education'));
+    }
+
+    public function editEducationPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $jumlah = count($request->edu_name);
+        if ( $jumlah > 0 )
+        {
+            $this->validate($request, [
+                'edu_name.*' => 'required|min:3'
+            ]);
+            //hpaus semua 
+            education::where("edu_talent_id",$talent->talent_id)->delete(); 
+            //insert baru   
+            for ( $i=0 ; $i<$jumlah ; $i++)
+            {
+                if ( isset($request->edu_name[$i]) && $request->edu_name[$i] != '' )
+                {
+                
+                    $education = New education; 
+                    $education->edu_talent_id = $talent->talent_id ; 
+                    $education->edu_name = $request->edu_name[$i] ? $request->edu_name[$i] : "" ; 
+                    $education->edu_level  = $request->edu_level[$i] ? $request->edu_level[$i] : "" ; 
+                    $education->edu_datestart = $request->edu_start_date[$i] ? $request->edu_start_date[$i] : "" ; 
+                    $education->edu_dateend = $request->edu_end_date[$i] ? $request->edu_end_date[$i] : "" ; 
+                    $education->edu_field = $request->edu_field[$i] ? $request->edu_field[$i] : "" ; ;
+                    $education->save() ; 
+                }
+                
+            }
+        }
+        return back()->with("message","berhasil mengupdate"); ;
+    }
+
+    public function editEducationDelete($id)
+    {
+        $education = education::find($id); 
+        $education->delete(); 
+        return back()->with("message","berhasil menghapus") ; 
     }
 
     public function editWork()
     {
-        return view("member.editWork");
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+        $work = $talent->talent_workex();
+
+        return view("member.editWork",compact('talent','work'));
+    }
+
+    public function editWorkPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $jumlah = count($request->name);
+        if ( $jumlah > 0 )
+        {
+            $this->validate($request, [
+                'name.*' => 'required|min:3'
+            ]);
+            //hpaus semua 
+            work_experience::where("workex_talent_id",$talent->talent_id)->delete(); 
+            //insert baru   
+            for ( $i=0 ; $i<$jumlah ; $i++)
+            {
+                if ( isset($request->name[$i]) && $request->name[$i] != '' )
+                {
+                    $work = New work_experience; 
+                    $work->workex_talent_id = $talent->talent_id ; 
+                    $work->workex_office  = $request->name[$i] ? $request->name[$i] : "" ; 
+                    $work->workex_position = $request->position[$i] ? $request->position[$i] : "" ; 
+                    $work->workex_startdate = $request->tglmulai[$i] ? $request->tglmulai[$i] : "";
+                    $work->workex_enddate = $request->tglselesai[$i] ? $request->tglselesai[$i] : "";
+                    $work->workex_desc = $request->desc[$i] ? $request->desc[$i] : ""; 
+                    $work->workex_handle_project = $request->project[$i] ? $request->project[$i] : ""; 
+                    $work->save() ; 
+                }
+                
+            }
+        }
+        return back()->with("message","berhasil mengupdate"); ;
+
+    }
+
+    public function editWorkDelete($id)
+    {
+        $work = work_experience::find($id); 
+        $work->delete(); 
+        return back()->with("message","berhasil menghapus") ; 
     }
 
     public function editSkill()
     {
-        
-        return view("member.editSkill");
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+       
+        return view("member.editSkill",compact('talent'));
     }
+
+    public function editSkillPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $skill_1 = explode(",",$request->skill_1);
+        $this->_insertSkill($skill_1,1,$talent->talent_id); 
+
+        $skill_2 = explode(",",$request->skill_2);
+        $this->_insertSkill($skill_2,2,$talent->talent_id); 
+
+        $skill_3 = explode(",",$request->skill_3);
+        $this->_insertSkill($skill_3,3,$talent->talent_id); 
+
+        $skill_4 = explode(",",$request->skill_4);
+        $this->_insertSkill($skill_4,4,$talent->talent_id); 
+
+        $skill_5 = explode(",",$request->skill_5);
+        $this->_insertSkill($skill_5,5,$talent->talent_id); 
+
+        return back()->with("message","berhasil menambah skill") ; 
+    }
+
     public function editCv()
     {
         return view("member.editCv");

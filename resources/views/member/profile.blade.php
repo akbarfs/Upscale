@@ -1,96 +1,6 @@
-<!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title> CV {{ $talent->talent_name }}</title>
+@extends('member.template')
+@section("content")
 	
-    <link rel="stylesheet" type="text/css" href="{{ asset('/cv/bootstrap/css/bootstrap.min.css') }}"  media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/owl.carousel.css') }}" media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/owl.theme.css') }}"  media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/font-awesome.min.css') }}" media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/magnific-popup.css') }}"  media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
-
-	<script type="text/javascript" src="{{ asset('/cv/js/jquery-1.12.3.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/jquery.onepage-scroll.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/jquery.easing.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/jquery.backstretch.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/jquery.filterizr.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/jquery.magnific-popup.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/owl.carousel.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/custom.js')}}"></script>
-    <script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet" type="text/css">
-	
-	<style>
-    @media only screen and (max-width:990px){
-    }
-    @media only screen and (max-width:767px){        
-    }
-    @media only screen and (max-width:480px){   
-    }
-
-</style>
-
-</head>   
-
-<body>
-
-
-<main class="wrapper">
-    <header class="header pull-left">
-    <div class="mobile-bar visible-sm visible-xs">
-			<div class="hamburger-menu">
-				  <div class="bar"></div>	
-			</div>
-		</div>
-		
-        <div class="avatar">
-		<img src="{{url('template/upscale/media/images.jpg')}}" alt="avatar">
-        </div>
-        
-        <div class="name">
-        @if($talent)
-		<?php $originalDate = $talent->talent_date_ready ;
-		$newDate = date("l, j F Y", strtotime($originalDate)); ?>
-			<h1>{{ $talent->talent_name }}</h1>
-            <span>Ready : {{ $newDate }}</span>
-            @endif
-		</div>
-
-        <div class="social-icons">
-			<ul>
-				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-				<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-			</ul>
-        </div>
-        
-        <nav class="main-nav">
-			<ul class="navigation">
-				<li><a href="#about">About Me</a></li>
-				<li><a href="#experience">Experience</a></li>
-				<li><a href="#education">Education</a></li>
-				<li><a href="#works">Works</a></li>
-				<li><a href="#certification">Certification</a></li>
-				<li><a href="#certification">History Work Apply</a></li>
-			{{--<li><a href="#history">Contact</a></li>--}}	
-			</ul>
-        </nav>
-
-		<div class="copyright">
-			<span>© Copyright 2020 UPSCALE.ID</span>
-		</div>
-    </header>
-
-    <div class="main-content pull-right">
         <section id="about" class="about">
             <div class="section-header">
              <h2>About Me</h2>
@@ -158,7 +68,7 @@
 					<div class="section-header" style="margin: 40px 0 -20px 15px;">
 			             <h2>Skills</h2>
 			             @if (Request::segment(2) == '') 
-			             <a class="edit" href="{{url('/member/edit-basic-profile')}}">edit</a>
+			             <a class="edit" href="{{url('/member/edit-skill')}}">edit</a>
 			             @endif
 		            </div>
 
@@ -209,6 +119,7 @@
 								<h2>{{ $row->workex_office }}</h2>
 								<span>{{ $row->workex_position }} |  {{ $row->workex_startdate }} - {{ $row->workex_enddate }}</span>
 								<p><param>{!! $row->workex_desc !!}</param></p>
+								<p><param>{!! $row->workex_handle_project !!}</param></p>
 							</div>
 						</div>
 			@endforeach	
@@ -261,7 +172,7 @@
                 </div>
 		</section>
 
-		<section id="certification" class="resume">
+		<!-- <section id="certification" class="resume">
 			<div class="section-header">
 				<h2>Certification</h2>
 			</div>
@@ -295,48 +206,41 @@
 				</div>
 			@endforeach	
 			</div>
-        </section>
+        </section> -->
 
-		{{-- <section id="contact" class="contact">	
-			<div class="section-header">
-				<h2>Get In Touch</h2>
-            </div>
-            <form method="post" action="">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Your Name" required>
-                    </div>
-                </div>
-				
-                <div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="form-group">
-							<input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Your Email" required>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="form-group">
-							<input type="text" class="form-control" name="InputPhone" id="InputPhone" placeholder="Phone (optional)">
-						</div>
-					</div>
-
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="form-group">
-							<input type="text" class="form-control" id="InputSubject" name="InputSubject" placeholder="Subject">
-						</div>
-					</div>
-
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="form-group">
-							<textarea name="InputMessage" id="InputMessage" class="form-control" rows="6" placeholder="Message" required></textarea>
-						</div>
-                    </div>
-            </div>
-                    <input type="submit" name="submit" id="submit" value="Send Message" class="btn btn-default pull-left">
-                    </form>    
-					</section>  
-					--}}  
-					
-					          
-</main>
+		<!-- <section id="contact" class="contact">
+		   <div class="section-header">
+		      <h2>Get In Touch</h2>
+		   </div>
+		   <form method="post" action="">
+		      <div class="row">
+		         <div class="col-md-6 col-sm-6 col-xs-12">
+		            <div class="form-group">
+		               <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Your Name" required>
+		            </div>
+		         </div>
+		         <div class="col-md-6 col-sm-6 col-xs-12">
+		            <div class="form-group">
+		               <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Your Email" required>
+		            </div>
+		         </div>
+		         <div class="col-md-6 col-sm-6 col-xs-12">
+		            <div class="form-group">
+		               <input type="text" class="form-control" name="InputPhone" id="InputPhone" placeholder="Phone (optional)">
+		            </div>
+		         </div>
+		         <div class="col-md-6 col-sm-6 col-xs-12">
+		            <div class="form-group">
+		               <input type="text" class="form-control" id="InputSubject" name="InputSubject" placeholder="Subject">
+		            </div>
+		         </div>
+		         <div class="col-md-12 col-sm-12 col-xs-12">
+		            <div class="form-group">
+		               <textarea name="InputMessage" id="InputMessage" class="form-control" rows="6" placeholder="Message" required></textarea>
+		            </div>
+		         </div>
+		      </div>
+		      <input type="submit" name="submit" id="submit" value="Send Message" class="btn btn-default pull-left">
+		   </form>
+		</section> -->
+@endsection

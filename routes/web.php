@@ -75,9 +75,17 @@ Route::group(['prefix'=>'member'], function()
 	Route::get("edit-basic-profile", "MemberController@editBasic");
 	Route::post("edit-basic-profile", "MemberController@editBasicPost");
 
-	Route::get("edit-education", "MemberController@editEducation");
 	Route::get("edit-work", "MemberController@editWork");
+	Route::post("edit-work", "MemberController@editWorkPost");
+	Route::get("edit-work-delete/{id}", "MemberController@editWorkDelete");
+
+	Route::get("edit-education", "MemberController@editEducation");
+	Route::post("edit-education", "MemberController@editEducationPost");
+	Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
+
 	Route::get("edit-skill", "MemberController@editSkill");
+	Route::post("edit-skill", "MemberController@editSkillPost");
+
 	Route::get("edit-cv", "MemberController@editCv");
 
 });
