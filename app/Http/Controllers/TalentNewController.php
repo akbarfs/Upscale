@@ -117,60 +117,25 @@ class TalentNewController extends Controller
 public function insertData(Request $request){
 
 
+    
 
-     
-    if ( $request->skill != '' )
-    {
-        $InsertSkill = explode(",",$request->skill);
-        foreach ( $InsertSkill as $skill)
-        {
-            $idSkill[] = Skill::where("skill_name",$skill)->first()->skill_id;
-        }
-    }    
-
-    dd($idSkill);
-
-        $validation = $request->validate([
+        $this->validate($request,[
             'nama'=>'required|string|max:150',
             'email'=>'required|string|email|max:100|unique:users',
             'gender'=>'required',
-            'alamat'=>'required',
-            'phone'=>'required|string|max:30',        
             'martialstatus'=>'required',
-            'currentaddress'=>'required|string',
-            'condition'=>'required',
+            'phone'=>'required|string|max:30',        
             'skill'=>'required',
-            'salary'=>'required|string',
-            'focus'=>'required|string',
-            'startcareer'=>'required|string',
             'level'=>'required',
-            'latestsalary'=>'required|string',
-            'preflocation'=>'required|string',
-            'status'=>'required',
-            'onsite'=>'required',
-            'remote'=>'required',
-            'available'=>'required',
-            'apply'=>'required',
-            'international'=>'required',
-            'freelancehour'=>'required',
-            'projectmin'=>'required',
-            'projectmax'=>'required',
-            'konsulrate'=>'required',
-            'tutorrate'=>'required',
-
+            'currentaddress'=>'required',
+            'freelancehour'=>'required|numeric|nullable',
+            'projectmin'=>'required|numeric|nullable',
+            'projectmax'=>'required|numeric|nullable',
+            'konsulrate'=>'required|numeric|nullable',
+            'tutorrate'=>'required|numeric|nullable'
         ]);
 
 
-
-        foreach($idSkill as $insert)
-        {
-
-            DB::table('skill_talent')->insert([
-            'st_skill_id' => $insert,
-            'st_skill_verified' => 'NO',
-            ]);
-        
-        }
         
 
         DB::table('talent')->insert([
@@ -188,7 +153,7 @@ public function insertData(Request $request){
             'talent_focus' => $request->focus,
             'talent_start_career' => $request->startcareer,
             'talent_level' => $request->level,
-            'talent_latest_salary' => $request->latestsalary,
+            'talent_lastest_salary' => $request->latestsalary,
             'talent_prefered_location' => $request->preflocation,
             'talent_status' => $request->status,
             'talent_onsite_jakarta' => $request->onsite,
@@ -204,8 +169,36 @@ public function insertData(Request $request){
             'talent_ngajar_rate' => $request->tutorrate,
         ]);
 
+        $idTalent = DB::table('talent')->insertGetId([ 'talent_name' => $request->nama ]);
 
-        return redirect('/list');
+
+
+        if ( $request->skill != '' )
+        {
+            $InsertSkill = explode(",",$request->skill);
+            foreach ( $InsertSkill as $skill)
+            {
+                $idSkill[] = Skill::where("skill_name",$skill)->first()->skill_id;
+            }
+
+        }
+
+
+
+
+
+        foreach($idSkill as $insert)
+        {
+
+            DB::table('skill_talent')->insert([
+            'st_talent_id' => $idTalent,
+            'st_skill_id' => $insert,
+            'st_skill_verified' => 'NO',
+            ]);
+        
+        }
+
+        return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
 
        
     }

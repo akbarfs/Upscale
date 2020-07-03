@@ -31,23 +31,36 @@
 
         <div class="card-body">
         <form style="margin:0; padding: 0" method="post" action="/admin/talent/list/insert/data">
-          @csrf
+          @if(session()->has('success'))
+            <div class="alert alert-success">
+              {{ session()->get('success') }}
+            </div>
+          @endif
           <div class="col-md-6 float-left">
-          
-      
+            @csrf
             <div class="form-group">
             <label for="nama">Nama</label>
             <input type="text" class="form-control" id="nama" name="nama" placeholder="">
+
+                @if($errors->has('nama'))
+                  <div class="alert alert-danger" >{{ $errors->first('nama') }}</div>
+                @endif
+
             </div>
         
         
             <div class="form-group">
             <label for="email">E-mail</label>
             <input type="text" class="form-control" id="email" name="email" placeholder="">
+
+                @if($errors->has('email'))
+                  <div class="alert alert-danger" >{{ $errors->first('email') }}</div>
+                @endif
+
             </div>
 
 
-  
+
             <div class="form-group">
             <label for="gender">Gender</label>
             <select id="gender" class="custom-select" name="gender" >
@@ -55,13 +68,21 @@
                     <option>Male</option>
                     <option>Female</option>
             </select>
+
+                @if($errors->has('gender'))
+                  <div class="alert alert-danger">{{ $errors->first('gender') }}</div>
+                @endif
+
             </div>
-
-
 
             <div class="form-group">
               <label for="alamat">Alamat</label>
               <input type="text" class="form-control" id="alamat" placeholder="" name="alamat">
+
+                @if($errors->has('alamat'))
+                  <div class="alert alert-danger">{{ $errors->first('alamat') }}</div>
+                @endif
+
             </div>
         
         
@@ -69,20 +90,35 @@
             <div class="form-group">
               <label for="phone">Phone Number / WA</label>
               <input type="text" class="form-control" id="phone" name="phone" placeholder="">
+
+                @if($errors->has('phone'))
+                  <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
+                @endif
+
             </div>
             
 
 
             <div class="form-group">
               <label for="datepicker">Birth Date</label>
-              <input type="text" name="birthdate" class="form-control" id="datepicker">
+              <input type="text" name="birthdate" class="form-control" id="birthdate">
+
+               @if($errors->has('birthdate'))
+                  <div class="alert alert-danger">{{ $errors->first('birthdate') }}</div>
+                @endif
+
             </div>
         
         
 
             <div class="form-group">
               <label for="birthplace">Birth Place</label>
-              <input type="text" class="form-control" id="birthplace" name="birthplace"placeholder="" >
+              <input type="text" class="form-control" id="birthplace" name="birthplace" placeholder="" >
+
+                @if($errors->has('birthplace'))
+                  <div class="alert alert-danger">{{ $errors->first('birthplace') }}</div>
+                @endif
+
             </div>
 
 
@@ -99,6 +135,12 @@
             <div class="form-group">
               <label for="currentaddress">Current Address</label>
               <input type="text" class="form-control" id="currentaddress" name="currentaddress" placeholder="">
+
+                @if($errors->has('currentaddress'))
+                  <div class="alert alert-danger">{{ $errors->first('currentaddress') }}</div>
+                @endif
+
+
             </div>
         
         
@@ -162,6 +204,11 @@
                                 placeholder="Skill"
                                 name="skill" />
 
+                            @if($errors->has('skill'))
+                            <div class="alert alert-danger">{{ $errors->first('skill') }}
+                            </div>
+                @endif
+
                     </p>
                     </div>
 
@@ -189,6 +236,11 @@
                         <option>PM</option>
                         <option>Other</option>
                       </select>
+
+                      @if($errors->has('focus'))
+                        <div class="alert alert-danger">{{ $errors->first('focus') }}</div>
+                      @endif
+
                 </div>
         
           
@@ -218,7 +270,7 @@
 
 
                 <div class="form-group">
-                      <label for="lastestsalary">Lastest Salary</label>
+                      <label for="lastestsalary">Lastest Salary (Rp)</label>
                       <input type="text" class="form-control" id="lastestsalary" name="lastestsalary" placeholder="" >
                 </div>
 
@@ -310,6 +362,11 @@
                 <div class="form-group">
                       <label for="freelancehour">Freelance Hours</label>
                       <input type="text" class="form-control" id="freelancehour" name="freelancehour" placeholder="" >
+
+                      @if($errors->has('freelancehour'))
+                        <div class="alert alert-danger">{{ $errors->first('freelancehour') }}</div>
+                      @endif
+
                 </div>
       
       
@@ -317,16 +374,30 @@
                 <div class="form-group">
                       <label for="projectmin" >Project Min</label>
                       <input type="text" class="form-control" id="projectmin" placeholder="" name="projectmin" >
+
+                      @if($errors->has('projectmin'))
+                        <div class="alert alert-danger">{{ $errors->first('projectmin') }}</div>
+                      @endif
+
                 </div>
 
                 <div class="form-group">
                       <label for="projectmax">Project Max</label>
                       <input type="text" class="form-control" id="projectmax" name="projectmax" placeholder="" >
+
+                      @if($errors->has('projectmax'))
+                        <div class="alert alert-danger">{{ $errors->first('projectmax') }}</div>
+                      @endif
+
                 </div>
 
                 <div class="form-group">
                       <label for="konsulrate">Konsultasi Rate</label>
                       <input type="text" class="form-control" id="konsulrate" name="konsulrate" placeholder="" >
+
+                      @if($errors->has('konsulrate'))
+                        <div class="alert alert-danger">{{ $errors->first('konsulrate') }}</div>
+                      @endif
                 </div>
       
       
@@ -334,6 +405,11 @@
                 <div class="form-group">
                       <label for="tutorrate">Tutor Rate</label>
                       <input type="text" class="form-control" id="tutorrate" name="tutorrate" placeholder="" >
+
+                      @if($errors->has('tutorrate'))
+                        <div class="alert alert-danger">{{ $errors->first('tutorrate') }}</div>
+                      @endif
+
                 </div> 
       
       
@@ -345,8 +421,8 @@
 
                 <div class="form-group row" style="padding-left: 25px">
                   <div class="col-sm-10">
-                  <button type="submit" class="btn btn-danger">Keluar</button>
-                  <button type="submit" class="btn btn-primary">Tambah Talent</button>
+                  <button type="submit" class="btn btn-success btn-sm tb">Tambah Talent</button>
+                  <a href="list/" class="btn btn-danger btn-sm tb"> Keluar </a>
                   </div>
                 </div>
 
@@ -497,6 +573,8 @@
         $("select[name='status_member']").val("all");
         $("#form-search").submit();
       });
+    });
+  });
 
 
 </script>
@@ -507,13 +585,11 @@
 
     <script>
       $( function() {
-      $( "#datepicker" ).datepicker({
+      $( "#birthdate" ).datepicker({
         dateFormat: 'dd-mm-yy'
-      });
-      
-
 
       });
+    });
     </script>
 
 
@@ -526,14 +602,3 @@
 
 
 @endsection
-
-
-@if($errors->any())
-<div>
-  <ul>
-    @foreach($errors->all() as $error)
-    <li>{{$errors}}</li>
-    @endforeach
-  </ul>
-</div>
-@endif
