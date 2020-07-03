@@ -11,6 +11,7 @@ class AddFoto extends Migration
         Schema::table('talent', function (Blueprint $table) {
             //
             $table->text('talent_foto')->after('talent_email')->nullable();
+            $table->text('talent_profile_desc')->after('talent_foto')->nullable();
         });
     }
 
@@ -24,6 +25,7 @@ class AddFoto extends Migration
         Schema::table('talent', function (Blueprint $table) {
             //
             $table->dropColumn('talent_foto');
+            $table->dropColumn('talent_profile_desc');
         });
     }
 }
