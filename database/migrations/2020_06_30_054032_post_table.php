@@ -14,11 +14,11 @@ class PostTable extends Migration
     public function up()
     {
         Schema::table('talent', function (Blueprint $table) {
-            $table->string('talent_web')->after('talent_address')->nullable();;
-            $table->string('talent_linkedin')->after('talent_email')->nullable();;
-            $table->string('talent_facebook')->after('talent_gender')->nullable();;
-            $table->string('talent_instagram')->after('talent_phone')->nullable();;
-            $table->string('talent_twitter')->after('talent_birth_date')->nullable();;
+            $table->string('talent_web')->after('talent_address')->nullable();
+            $table->string('talent_linkedin')->after('talent_email')->nullable();
+            $table->string('talent_facebook')->after('talent_gender')->nullable();
+            $table->string('talent_instagram')->after('talent_phone')->nullable();
+            $table->string('talent_twitter')->after('talent_birth_date')->nullable();
         });
     }
 
