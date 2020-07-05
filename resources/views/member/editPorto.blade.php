@@ -49,7 +49,8 @@
             @foreach ( $talent->talent_portfolio()->get() as $row ) 
             <tr>
                 <td align="center">
-                    <img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" width="50px">
+                    @php $random = date("his") @endphp
+                    <img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" width="50px">
                 </td>
                 <td>{{$row->portfolio_name}}</td>
                 <td>{{$row->portfolio_namacompany}}</td>

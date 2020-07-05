@@ -121,8 +121,9 @@
               <form action='{{url("member/crop-photo/")}}' method="POST">
                   
                   <div style="float:left;">
-                      @csrf         
-                      <img src="{{url('')}}/storage/photo/{{$talent->talent_foto}}" id="target" />
+                      @csrf   
+                      @php $random = date("his") @endphp      
+                      <img src="{{url('')}}/storage/photo/{{$talent->talent_foto}}?v={{$random}}" id="target" />
 
                       <!-- <div id="preview-pane">
                         <div class="preview-container">

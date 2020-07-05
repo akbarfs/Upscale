@@ -63,7 +63,8 @@
         <div class="avatar">
         	<a href="{{url('member/edit-basic-profile')}}">
 	        	@if ( $talent->talent_foto)
-				<img src="{{url('storage/photo/'.$talent->talent_foto)}}" alt="avatar">
+	        	@php $random = date("his") @endphp
+				<img src="{{url('storage/photo/'.$talent->talent_foto)}}?v={{$random}}" alt="avatar">
 				@else
 				<img src="{{url('img/images.jpg')}}" alt="avatar">
 				@endif
