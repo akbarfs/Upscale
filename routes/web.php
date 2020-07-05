@@ -320,7 +320,7 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
-			Route::get('/mailSend','TalentNewController@mailSend');
+			Route::post('/mail-send','TalentNewController@mailSend');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
 			
 
@@ -586,4 +586,4 @@ $this->post('register', 'Auth\RegisterController@register');
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
 
 //MEMBER PROFILE
-
+Route::get('/profile/{id}','MemberController@CV');

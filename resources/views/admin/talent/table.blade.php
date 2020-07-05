@@ -1,46 +1,48 @@
 <style type="text/css">
-	.badge { cursor: pointer; }
+	.badge {
+		cursor: pointer;
+	}
 </style>
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-			  <th>#</th>
-			  <th scope="col">id</th>
-			  <th scope="col">Name</th>
-			  @if (Request::input('contact') )
-			  <th scope="col">Contact</th>
-			  @endif
-			  @if (Request::input('skill') )
-			  <th scope="col">Skills</th>
-			  @endif 
-			  @if (Request::input('date_ready') )
-			  <th scope="col">Ready</th>
-			  @endif
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th scope="col">id</th>
+			<th scope="col">Name</th>
+			@if (Request::input('contact') )
+			<th scope="col">Contact</th>
+			@endif
+			@if (Request::input('skill') )
+			<th scope="col">Skills</th>
+			@endif
+			@if (Request::input('date_ready') )
+			<th scope="col">Ready</th>
+			@endif
 
-			  @if (Request::input('ready_jogja') )
-			  <th scope="col">Jogja</th>
-			  @endif
+			@if (Request::input('ready_jogja') )
+			<th scope="col">Jogja</th>
+			@endif
 
-			  @if (Request::input('ready_jakarta') )
-			  <th scope="col">Jakarta</th>
-			  @endif
+			@if (Request::input('ready_jakarta') )
+			<th scope="col">Jakarta</th>
+			@endif
 
-			  @if (Request::input('isa') )
-			  <th scope="col">ISA</th>
-			  @endif
+			@if (Request::input('isa') )
+			<th scope="col">ISA</th>
+			@endif
 
-			  @if (Request::input('active') )
-			  <th scope="col">active</th>
-			  @endif
+			@if (Request::input('active') )
+			<th scope="col">active</th>
+			@endif
 
-			  @if (Request::input('member_date') )
-			  <th scope="col">member date</th>
-			  @endif
+			@if (Request::input('member_date') )
+			<th scope="col">member date</th>
+			@endif
 
-			  @if (Request::input('created') )
-			  <th scope="col">Created</th>
-			  @endif 
+			@if (Request::input('created') )
+			<th scope="col">Created</th>
+			@endif
 
 			  <th scope="col">Action</th>
 			</tr>
@@ -54,18 +56,21 @@
 				<script>
 					$(document).ready(function(){
 						
+						$(".btnmail").hide();
 						$(".talent_id").click(function()
 						{
 							jumlah = $('input[name="delid[]"]:checked').length;
 							if (jumlah > 0) 
 							{
 								$("#mass_del").show();
-								console.log(jumlah);
+								$(".btnmail").show();
+								// console.log(jumlah);
 							}
 							else
 							{
 								$("#mass_del").hide();
-								console.log(jumlah);
+								$(".btnmail").hide();
+								// console.log(jumlah);
 							}
 						});
 					  

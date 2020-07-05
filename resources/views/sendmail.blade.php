@@ -168,7 +168,7 @@
 
             <div class="row mailcontent" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background-color:#fff;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;text-align:justify;padding-top:40px;padding-bottom:40px;padding-right:40px;padding-left:40px;">
 
-                Hi <b style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;"></b>,<br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;"><br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
+                Hai <b style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">Name</b>,<br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;"><br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
                 Perkenalkan kami dari <b style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">www.upscale.id</b>.
 
                 <br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;"><br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;">
