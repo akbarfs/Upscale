@@ -153,7 +153,17 @@
 								}
 							</style>
 							<div style="margin: 10px;">
-								<input type="text" onItemSelect="setClose()" multiple class="tagsInput form-control" value="" data-user-option-allowed="true" data-url="{{url('json/skill')}}" data-load-once="true" placeholder="skill" name="skill" />
+								<input
+                                type="text"
+                                onItemSelect="setClose()"
+                                multiple
+                                class="tagsInput form-control"
+                                value=""
+                                data-user-option-allowed="true"
+                                data-url="{{url('json/skill')}}"
+                                data-load-once="true"
+                                placeholder="skill"
+                                name="skill"/>
 							</div>
 
 
@@ -246,6 +256,9 @@
 	</div>
 
 
+
+
+
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
@@ -323,17 +336,17 @@
 			//klikk all / non-member / member 
 			$("#non-member").click(function() {
 				$("select[name='status_member']").val("non-member");
-				$("#form-search").submit();
+				$("#search").click();
 			});
 
 			$("#member").click(function() {
 				$("select[name='status_member']").val("member");
-				$("#form-search").submit();
+				$("#search").click();
 			});
 
 			$("#all").click(function() {
 				$("select[name='status_member']").val("all");
-				$("#form-search").submit();
+				$("#search").click();
 			});
 
 

@@ -229,8 +229,8 @@
                                     <div class="col-12 col-md-8">
                                         <p class="form-control-static" style="margin-bottom: 0px;">
                                            
-                                                {{$all->talent_available}}, 
-                                                {{$all->talent_current_work}}, 
+                                                {{$all->talent_available}} ,
+                                                {{$all->talent_status}} ,
                                             
                                         </p>
                                     </div>
@@ -238,7 +238,7 @@
 
                                 <div class="row form-group">
                                     <div class="col col-md-4">
-                                        <label class=" form-control-label">date ready</label>
+                                        <label class=" form-control-label">Date ready</label>
                                     </div>
                                     <div class="col-12 col-md-8">
                                         <p class="form-control-static" style="margin-bottom: 0px;">
@@ -267,6 +267,19 @@
                                     <div class="col-12 col-md-8">
                                         <p class="form-control-static" style="margin-bottom: 0px;">
                                             <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_prefered_location}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Prefered City</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="talent_prefered_city" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
                                                 {{$all->talent_prefered_city}}
                                             </strong>
                                         </p>
@@ -400,6 +413,234 @@
                                       <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_condition}}</strong></p>
                                     </div>
                                 </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Jakarta Salary</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                @if(is_numeric($all->talent_salary_jakarta)) Rp. {{number_format($all->talent_salary_jakarta)}}
+                                                @else {{$all->talent_salary_jakarta}}
+                                                @endif
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Jogja Salary</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                @if(is_numeric($all->talent_salary_jogja)) Rp. {{number_format($all->talent_salary_jogja)}}
+                                                @else {{$all->talent_salary_jogja}}
+                                                @endif
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Martial Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static"style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_martial_status}}</strong></p>
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent CV </label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent CV update</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv_update}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Portofolio update</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->portofolio_update}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Portofolio File</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_portofolio_file}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Campus</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_campus}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Skill</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_skill}}</strong></p>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Created Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong id='ttl'>{{$all->talent_created_date}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">CV Talent Update</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->cv_talent_update}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Id Location</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_location_id}}</strong></p>
+                                    </div>
+                                </div> -->
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Current Work</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_current_work}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Apply</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_apply}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Notes Report</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_notes_report_talent}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Rt Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="talent_rt_status" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_rt_status}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Last Active</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_last_active}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent la Type</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_la_type}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Created Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->tcreated_date}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Updated Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->tupdated_date}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Talent Rt Status Date</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="form-control-static" style="margin-bottom: 0px;">
+                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                                {{$all->talent_rt_status_date}}
+                                            </strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+  
                             </form>
                         </section>
                     </aside>
@@ -1814,6 +2055,36 @@
                             </div>
                             <div class="card-body card-block">
                                 <div class="form-group col-md-6">
+
+                                <label for="text-input" class=" form-control-label">Foto Profil Talent</label>
+                                <input value=" " type="file" id="inputgambar" name="gambar" placeholder="Your Photo" required="" class="form-control">
+                                    
+                                @section('js')
+                                <script type="text/javascript">
+
+                                    function readURL(input) {
+                                        if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function (e) {
+                                        $('#showgambar').attr('src', e.target.result);
+                                        }
+
+                                        reader.readAsDataURL(input.files[0]);
+                                        }
+                                    }
+
+                                        $("#inputgambar").change(function () {
+                                        readURL(this);
+                                    });
+
+                                </script>
+
+                                @stop
+
+
+
+
                                     <label for="text-input" class=" form-control-label">Talent Name</label>
                                     <input value="{{$all->talent_name}}" type="text" id="talent_name" name="talent_name" placeholder="Your Name" required="" class="form-control">
                                     <label for="text-input" class=" form-control-label">Talent Email</label>
@@ -1867,12 +2138,176 @@
                                     @elseif($all->talent_rt_status == "NOT YET")
                                             <option value="NOT YET" > NOT YET</option>
                                             <option value="DONE" > DONE</option>
-                                            
                                     @endif
                                     </select> 
 
+                                    <label for="text-input" class=" form-control-label">Talent Status</label>
+                                    <select name="talent_status" class="form-control">
+                                        @if ($all->talent_status == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="worker" > Worker</option>
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="edu" > Edu</option>
+                                        @elseif($all->talent_status == "worker")
+                                            <option value="worker" > Worker</option>
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="edu" > Edu</option>
+                                        @elseif($all->talent_status == "alumni")
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="worker" > Worker</option>
+                                            <option value="edu" > Edu</option>
+                                        @elseif($all->talent_status == "edu")
+                                            <option value="edu" > Edu</option>
+                                            <option value="alumni" > Alumni</option>
+                                            <option value="worker" > Worker</option>
+                                        @endif
+                                    </select>
+
+                                    <label for="text-input" class=" form-control-label">Condition</label>
+                                    <select name="talent_condition" class="form-control">
+                                        @if ($all->talent_condition == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="quarantine" > Quarantine</option>
+                                            <option value="assign" > Assign</option>
+                                        @elseif($all->talent_condition == "quarantine")
+                                            <option value="quarantine" > Quarantine</option>
+                                            <option value="assign" > Assign</option>
+                                        @elseif($all->talent_condition == "assign")
+                                            <option value="assign" > Assign</option>
+                                            <option value="quarantine" > Quarantine</option>
+                                        @endif
+                                    </select>
+
+                                    <label for="text-input" class=" form-control-label">Start Career</label>
+                                    <input value="{{$all->talent_start_career}}" type="text" id="talent_start_career" name="talent_start_career" placeholder="dd/mm/yyyy" class="form-control">
+
+                                    <label for="text-input" class=" form-control-label">Level</label>
+                                    <select name="talent_status" class="form-control">
+                                        @if ($all->talent_level == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="undefined" > Undefined</option>
+                                            <option value="junior" > Junior</option>
+                                            <option value="middle" > Middle</option>
+                                            <option value="senior" > Senior</option>
+                                        @elseif($all->talent_level == "undefined")
+                                            <option value="undefined" > Undefined</option>
+                                            <option value="junior" > Junior</option>
+                                            <option value="middle" > Middle</option>
+                                            <option value="senior" > Senior</option>
+                                        @elseif($all->talent_level == "junior")
+                                            <option value="junior" > Junior</option>
+                                            <option value="undefined" > Undefined</option>
+                                            <option value="middle" > Middle</option>
+                                            <option value="senior" > Senior</option>
+                                        @elseif($all->talent_level == "middle")
+                                            <option value="middle" > Middle</option>
+                                            <option value="junior" > Junior</option>
+                                            <option value="undefined" > Undefined</option>
+                                            <option value="senior" > Senior</option>
+                                        @elseif($all->talent_level == "senior")
+                                            <option value="senior" > Senior</option>
+                                            <option value="middle" > Middle</option>
+                                            <option value="junior" > Junior</option>
+                                            <option value="undefined" > Undefined</option>
+                                        @endif
+                                    </select>
+
+                                    <label for="text-input" class=" form-control-label">Date Ready</label>
+                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="" class="form-control">
+
+                                    <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
+                                    <select name="talent_onsite_jakarta" id="talent_onsite_jakarta" class="form-control">
+                                    @if ($all->talent_onsite_jakarta == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > NO</option>
+                                    @elseif($all->talent_onsite_jakarta == "Yes")
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > No</option>
+                                    @elseif($all->talent_onsite_jakarta == "No")
+                                            <option value="no" > No</option>
+                                            <option value="yes" > Yes</option>
+                                    @endif
+                                    </select> 
+
+                                    <label for="text-input" class=" form-control-label">Onsite Jogja</label>
+                                    <select name="talent_onsite_jogja" id="talent_onsite_jogja" class="form-control">
+                                    @if ($all->talent_onsite_jogja == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > NO</option>
+                                    @elseif($all->talent_onsite_jogja == "Yes")
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > No</option>
+                                    @elseif($all->talent_onsite_jogja == "No")
+                                            <option value="no" > No</option>
+                                            <option value="yes" > Yes</option>
+                                    @endif
+                                    </select> 
+
+                                    <label for="text-input" class=" form-control-label">Remote</label>
+                                    <select name="talent_remote" id="talent_remote" class="form-control">
+                                    @if ($all->talent_remote == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > NO</option>
+                                    @elseif($all->talent_remote == "Yes")
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > No</option>
+                                    @elseif($all->talent_remote == "No")
+                                            <option value="no" > No</option>
+                                            <option value="yes" > Yes</option>
+                                    @endif
+                                    </select> 
+
+
                                 </div>
                                 <div class="form-group col-md-6">
+                                <label for="text-input" class=" form-control-label">Skill</label>
+                                    @push('script')
+    
+							<script src="{{url('template/upscale/js/tag.js')}}"></script>
+		                    <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
+		                    <script>
+		                        $(document).ready(function()
+		                        {
+		                            $('.tagsInput').fastselect({
+
+		                                valueDelimiter: ',',
+		                                onItemSelect: function($item, itemModel) {
+		                                    $(".fstChoiceRemove").html("x");
+		                                    // $(".fstQueryInput").focus(); 
+		                                },
+
+		                            });
+		                            
+		                        });
+		                        
+		                    </script>
+
+							@endpush
+
+
+							<style type="text/css">
+								.fstQueryInput  { padding: 0 }
+								.fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
+								.fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
+							</style>
+							<div style="margin: 10px;">
+								<input
+                                type="text"
+                                onItemSelect="setClose()"
+                                multiple
+                                class="tagsInput form-control"
+                                value=""
+                                data-user-option-allowed="true"
+                                data-url="{{url('json/skill')}}"
+                                data-load-once="true"
+                                placeholder="skill"
+                                name="skill"
+                                value="{{$all->talent_skill}}" id="talent_skill">
+							</div>
+
                                     <label for="text-input" class=" form-control-label">Current Addres</label><br>
                                     <select value="" name="talent_current_address" id="talent_current_addres" class="js-example-basic-single form-control" style="width:100%">
                                     @if ($all->talent_current_address!=NULL)
@@ -1890,11 +2325,27 @@
                                             <option value="{{$location->location_id}}">{{$location->location_name}}</option>
                                         @endforeach
                                     </select><br>
-                                    <label for="text-input" class=" form-control-label">Expected Salary</label>
+
+                                    <label for="text-input" class=" form-control-label">Prefered City</label>
+                                    <select value="" name="talent_prefered_city" id="talent_prefered_city" class="form-control" style="width:100%">
+                                        @foreach ($locate as $location)
+                                            <option value="{{$location->location_id}}">{{$location->location_name}}</option>
+                                        @endforeach
+                                    </select><br>
+
+                                    
                                     <input value="{{$all->talent_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah" type="text" name="talent_salary" class="form-control" placeholder="Your expected salary" required="">
                                     <label for="text-input" class=" form-control-label">Lastest Salary</label>
                                     <input value="{{$all->talent_lastest_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="lastest_salary" class="form-control" placeholder="Lastest salary" required="">
                                     <label for="text-input" class=" form-control-label">Recomendation Salary</label>
+
+                                    <label for="text-input" class=" form-control-label">Jakarta Salary</label>
+                                    <input value="{{$all->talent_salary_jakarta}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_salary_jakarta" class="form-control" placeholder="Jakarta salary" required="">
+
+                                    <label for="text-input" class=" form-control-label">Jakarta Salary</label>
+                                    <input value="{{$all->talent_salary_jogja}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_salary_jogja" class="form-control" placeholder="Jogja salary" required="">
+
+                                    <label for="text-input" class=" form-control-label">Expected Salary</label>
                                     <input value="{{$all->talent_rec_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah3" type="text" name="recomendation_salary" class="form-control" placeholder="Recomendation salary" required="">
                                     <label for="text-input" class=" form-control-label">Total Experience</label>
                                     <input value="{{$all->talent_totalexperience}}" id="totalexperience" type="text" name="talent_totalexperience" class="form-control" placeholder="Total Experience Ex: 5 years" >
@@ -1912,6 +2363,10 @@
                                         <small>File </small><br>
                                     </div>
                                     <input type="file" value="{{$all->talent_portofolio_file}}" id="talent_portfolio" name="talent_portfolio" placeholder="dd/mm/yyyy" class="form-control" accept=".pdf">
+                                    
+                                    
+                                   
+
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -2107,10 +2562,11 @@
                                                 <input type="text" name="position" value="" id="position" placeholder="" class="form-control">
 
                                                 <label for="catatan">Description</label>
-                                                <textarea name="desc" class="form-control" id="editdescworkex"></textarea>
+                                                <textarea type="text" name="desc" class="form-control" id="editdescworkex"></textarea>
 
                                                 <label for="catatan">Project Handle</label>
                                                 <textarea name="handle" class="form-control" id="editprojecthandle"></textarea>
+                                               
                                                 <label for="catatan">Start</label>
                                                 <div class="row">
                                                     <div class="col-md-3">
