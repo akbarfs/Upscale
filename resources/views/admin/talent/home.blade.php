@@ -205,6 +205,7 @@
 			margin-bottom: 10px;
 			color: #fff !important
 		}
+		#mass_del { display: none; }
 	</style>
 
 	@if (\Session::has('success'))
@@ -220,7 +221,8 @@
 		<a href="list/insert" class="btn btn-success btn-sm tb"> Tambah Talent </a>
 		<a id="export" class="btn btn-success btn-sm tb"> Export </a>
 		<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
-		<a name="mailsend" class="btn btn-success btn-sm tb" data-toggle="modal" data-target="#myModal"> Send Email </a>
+		<a class="btn btn-success btn-sm tb btnmail" data-toggle="modal" 
+		data-target="#myModal"> Send Email </a>
 
 		<!-- LOAD CONTENT -->
 		<div class="container-fluid" id="pembungkus" style="padding: 0"></div>

@@ -56,17 +56,20 @@
 				<script>
 					$(document).ready(function(){
 						
+						$(".btnmail").hide();
 						$(".talent_id").click(function()
 						{
 							jumlah = $('input[name="delid[]"]:checked').length;
 							if (jumlah > 0) 
 							{
 								$("#mass_del").show();
+								$(".btnmail").show();
 								console.log(jumlah);
 							}
 							else
 							{
 								$("#mass_del").hide();
+								$(".btnmail").hide();
 								console.log(jumlah);
 							}
 						});
