@@ -16,13 +16,13 @@
         @endif
 
         @if ($errors->any())
-            <!-- <div class="alert alert-danger">
+            <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
-            </div> -->
+            </div>
         @endif
 
         <form action="{{url('member/edit-basic-profile')}}" method="post" id="register-talent" enctype="multipart/form-data">
@@ -39,9 +39,9 @@
                   <div class="col-md-8" style="padding: 10px">
                         <input type="file" id="myFile" name="photo" 
                         accept="image/jpeg,image/png,image/gif,image/JPG,image/JPEG">
-                        <div style="padding:5px 0">
-                          foto harus berbentuk persegi empat
-                        </div>
+                        
+                        <!-- <div style="padding:5px 0"> foto harus berbentuk persegi empat </div>  -->
+
                         @if ($errors->has('photo'))
                             @foreach ($errors->get('photo') as $error)
                             <div class="alert alert-danger"><i>{{$error}}</i></div>

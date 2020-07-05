@@ -338,6 +338,8 @@ class MemberController extends Controller
             $image_resize->resize(600, 600, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('/storage/photo/' .$filename));
+
+            $update['talent_foto'] = $filename ; 
         }
 
         
