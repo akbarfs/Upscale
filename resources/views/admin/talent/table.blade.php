@@ -64,13 +64,13 @@
 							{
 								$("#mass_del").show();
 								$(".btnmail").show();
-								console.log(jumlah);
+								// console.log(jumlah);
 							}
 							else
 							{
 								$("#mass_del").hide();
 								$(".btnmail").hide();
-								console.log(jumlah);
+								// console.log(jumlah);
 							}
 						});
 					  

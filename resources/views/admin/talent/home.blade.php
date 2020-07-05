@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 @section('content')
 
+<style type="text/css">
+	.mailreport {    padding: 10px; margin-top: 10px; background: #f1f1f1;} 
+</style>
 <div class="breadcrumbs">
 	<div class="col-sm-4">
 		<div class="page-header float-left">
@@ -240,7 +243,9 @@
 
 				</div>
 				<div class="modal-body">
-					<button href="{{ url('admin/talent/list/mailSend') }}" type="button" class="btn btn-success mailsend" data-dismiss="modal">Join Invitation</button>
+					<button href="{{ url('admin/talent/mail-send') }}" type="button" class="btn btn-success mailsend">Join Invitation</button>
+					<div style="clear: both;"></div>
+					<div class="mailreport"></div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -298,20 +303,50 @@
 			});
 
 			//Pop Up Send Email
-				$(document).ready(function() {
-					$(".mailsend").click(function() {
-						var selectedEmail = new Array();
-						$('input[name="delid[]"]:checked').each(function() {
-							selectedEmail.push(this.value);
-						});
-						
-						$.post( "{{url('admin/talent/list/mailSend')}}",{"_token": "{{ csrf_token() }}","id":selectedEmail}, function( data ) 
+			$(document).ready(function() 
+			{
+				var i = 0 ;
+				$(".mailsend").click(function() 
+				{
+					var list_id = [] ; 
+					i = 0 ; 
+
+					$('input[name="delid[]"]:checked').each(function() 
+					{
+						list_id.push(this.value); 
+						// console.log(this.value);
+					}); 
+					// console.log(list_id); 
+					sendMail(list_id,0);
+					$(".mailreport").prepend("<b> send email start process.. <br>");
+				});
+
+				function sendMail(list,urutan)
+				{
+					$.post("{{url('admin/talent/mail-send')}}",{"_token":"{{csrf_token()}}","id":list[urutan]},function(data) 
+					{
+						if ( data.status )
 						{
-							console.log(data)	;
-						});
-						//return false;
+							$(".mailreport").prepend("<b>"+data.email+"</b> berhasil<br> ");
+						}
+						else
+						{
+							$(".mailreport").prepend("<b>"+data.email+"</b> <span style='color:red'>error</span><br> ");
+						}
+
+						i++ ; 
+						if ( list[i]>0)
+						{
+							sendMail(list,i);
+						}
+						else
+						{
+							$(".mailreport").prepend("<b>DONE!</b> "+(i+1)+" email<br> ");
+						}
 					});
-				}); 
+				}
+
+			}); 
 
 
 			//load pertama kali

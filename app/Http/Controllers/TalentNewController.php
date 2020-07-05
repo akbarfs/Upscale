@@ -34,16 +34,19 @@ class TalentNewController extends Controller
 
     public function mailSend(Request $request)
     {
+        ini_set('max_execution_time', 120);
+
         $list_id = $request->input('id') ;
-        $email =array();
-        foreach($list_id as $row )
-        {
-            $email = Talent::find($row)->talent_email ; 
-            Mail::to($email)->send(new UpscaleEmail($email));
-        }
+       
+        $email = Talent::find($list_id)->talent_email ; 
+        Mail::to($email)->send(new UpscaleEmail($email));
+        // echo $email ;
+        // sleep(2);
+        return response()->json(['status'=>1,'email'=>$email]);
+        
 
         // Mail::to($email)->send(new UpscaleEmail($email))->delay(60);
-        return back()->withError('Masih gagal ' . $request->input('id'))->withInput(); 
+        // return back()->withError('Masih gagal ' . $request->input('id'));
     }
 
     public function paginate_data(Request $request)
