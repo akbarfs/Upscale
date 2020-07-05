@@ -531,7 +531,8 @@
 							</div>
 						</a>
 						<div class="overlay"></div>
-						<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" alt="portfolio">
+						@php $random = date("his") @endphp
+						<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio">
                     </div>
                 </div>
                 @endforeach
