@@ -38,16 +38,49 @@ class TalentNewController extends Controller
         ini_set('max_execution_time', 120);
 
         $list_id = $request->input('id') ;
-       
-        $email = Talent::find($list_id)->talent_email ; 
-        Mail::to($email)->send(new UpscaleEmail($email));
-        // echo $email ;
-        // sleep(2);
-        return response()->json(['status'=>1,'email'=>$email]);
+        $talent = Talent::find($list_id); 
         
+        $data['talent'] = $talent ; 
+        $data['sender'] = $request->sender ;    
+        // Mail::to($email)->send(new UpscaleEmail($email));
 
+        if ( $request->type == 'invitation')
+        {
+            $view = 'mail.invitation';
+        }
+        else
+        {
+            $view ='mail.regular';
+        }
+
+        $judul = $request->judul ; 
+        //ganti nama di judul
+        $judul = str_replace("#name#",$talent->talent_name,$judul); 
+        $judul = str_replace("#nama#",$talent->talent_name,$judul); 
+        //ganti content 
+        $content = str_replace("#name#",$talent->talent_name, $request->content); 
+        $data['content'] = str_replace("#nama#",$talent->talent_name, $content); 
+
+        Mail::send($view, $data, function ($message) use ($talent,$request,$judul) {
+            $message->from('dodi@upscale.id', $request->sender);
+            $message->to($talent->talent_email); 
+            $message->subject($judul);
+        });
+
+        return response()->json(['status'=>1,'email'=>$talent->talent_email,'message'=>'send berhasil']);
+        
         // Mail::to($email)->send(new UpscaleEmail($email))->delay(60);
         // return back()->withError('Masih gagal ' . $request->input('id'));
+    }
+
+    public function viewMail($view)
+    {
+        //dummy database 
+        $talent = (object) [
+            'talent_name' => 'Dodi Prakoso Wibowo',
+            'talent_email' => 'dodi@gmail.com',
+        ];
+        return view('mail.'.$view,compact('talent'));
     }
 
     public function paginate_data(Request $request)

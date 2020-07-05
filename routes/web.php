@@ -321,6 +321,7 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/mail/{id}','TalentNewController@mail');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			Route::post('/mail-send','TalentNewController@mailSend');
+			Route::get('/mail-view/{view}','TalentNewController@viewMail');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
 			
 

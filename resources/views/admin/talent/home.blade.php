@@ -2,9 +2,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 @section('content')
 
-<style type="text/css">
-	.mailreport {    padding: 10px; margin-top: 10px; background: #f1f1f1;} 
-</style>
+
 <div class="breadcrumbs">
 	<div class="col-sm-4">
 		<div class="page-header float-left">
@@ -232,7 +230,13 @@
 	</form>
 
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
+
+	<style type="text/css">
+		.mailreport {    padding: 10px; margin-top: 10px; background: #f1f1f1; max-height: 300px ; overflow: auto;} 
+	</style>
+
+
+	<div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -243,8 +247,107 @@
 
 				</div>
 				<div class="modal-body">
-					<button href="{{ url('admin/talent/mail-send') }}" type="button" class="btn btn-success mailsend">Join Invitation</button>
+
+					<script type="text/javascript">
+						$(document).ready(function()
+						{
+
+							var i = 0 ;
+							$(".mailsend").click(function() 
+							{
+								var list_id = [] ; 
+								i = 0 ; 
+
+								$('input[name="delid[]"]:checked').each(function() 
+								{
+									list_id.push(this.value); 
+								}); 
+
+								sendMail(list_id,0);
+								$(".mailreport").prepend("<b> send email start process.. <br>");
+							});
+
+							function sendMail(list,urutan)
+							{
+								type = $("#email-type").val(); 
+								sender = $("#email-sender").val(); 
+								judul = $("#email-judul").val(); 
+								content = $("#email-content").val(); 
+								data = {
+											"_token":"{{csrf_token()}}",
+											"id":list[urutan],
+											"sender":sender, 
+											"judul":judul, 
+											"content":content,
+											"type":type
+										};
+
+								$.post("{{url('admin/talent/mail-send')}}",data,function(data) 
+								{
+									if ( data.status == 1 )
+									{
+										$(".mailreport").prepend("<b>"+data.email+"</b> berhasil<br> ");
+									}
+									else
+									{
+										$(".mailreport").prepend("<b>"+data.email+"</b> <span style='color:red'>error</span><br> ");
+									}
+
+									//perulangan send 1-1 sampai list id nya habis 
+									i++ ; 
+									if ( list[i]>0)
+									{
+										sendMail(list,i);
+									}
+									else
+									{
+										$(".mailreport").prepend("<b>DONE!</b> "+(i)+" email<br> ");
+									}
+								});
+							}
+
+							$("#email-type").change(function()
+							{
+								var type=$(this).val();
+								judul = ''; content = ''; sender = ''; 
+								if ( type == 'invitation' )
+								{
+									sender = "HRD Upscale.id"; 
+									judul = 'Hai, #name#. kami mencari talent, bersedia bergabung?';
+									content = ''; 
+								}
+								else
+								{
+									sender = "HRD Upscale.id"; 
+									judul = '';
+									content = ''; 
+								}
+
+								$("#email-sender").val(sender);
+								$("#email-judul").val(judul);
+								$("#email-content").val(content);
+							});
+
+						});
+					</script>
+					<select id="email-type" style="padding: 5px ; width: 100%">
+						<option> -- pilih -- </option>
+						<option value="invitation">join invitation</option>
+						<option value="regular">regular</option>
+					</select><br>
+
+					Dari Nama <br>
+					<input type="text" id="email-sender" style="width:100%"><br>
+					Judul <br>
+					<input type="text" id="email-judul" style="width:100%"><br>
+					content<br>
+					<textarea rows="4" id="email-content" style="width: 100%"></textarea>
+
+					<button href="{{ url('admin/talent/mail-send') }}" type="button" class="btn btn-success mailsend" onclick="return confirm('yakin ?')">send</button>
+					
 					<div style="clear: both;"></div>
+
+
 					<div class="mailreport"></div>
 				</div>
 				<div class="modal-footer">
@@ -302,51 +405,6 @@
 
 			});
 
-			//Pop Up Send Email
-			$(document).ready(function() 
-			{
-				var i = 0 ;
-				$(".mailsend").click(function() 
-				{
-					var list_id = [] ; 
-					i = 0 ; 
-
-					$('input[name="delid[]"]:checked').each(function() 
-					{
-						list_id.push(this.value); 
-						// console.log(this.value);
-					}); 
-					// console.log(list_id); 
-					sendMail(list_id,0);
-					$(".mailreport").prepend("<b> send email start process.. <br>");
-				});
-
-				function sendMail(list,urutan)
-				{
-					$.post("{{url('admin/talent/mail-send')}}",{"_token":"{{csrf_token()}}","id":list[urutan]},function(data) 
-					{
-						if ( data.status )
-						{
-							$(".mailreport").prepend("<b>"+data.email+"</b> berhasil<br> ");
-						}
-						else
-						{
-							$(".mailreport").prepend("<b>"+data.email+"</b> <span style='color:red'>error</span><br> ");
-						}
-
-						i++ ; 
-						if ( list[i]>0)
-						{
-							sendMail(list,i);
-						}
-						else
-						{
-							$(".mailreport").prepend("<b>DONE!</b> "+(i+1)+" email<br> ");
-						}
-					});
-				}
-
-			}); 
 
 
 			//load pertama kali

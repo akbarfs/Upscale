@@ -37,6 +37,6 @@ class UpscaleEmail extends Mailable
         //         ]
         //     ));
 
-        return $this->from('dodi@upscale.id')->view('sendmail');
+        return $this->from('hrd@upscale.id')->view('mail.invitation');
     }
 }
