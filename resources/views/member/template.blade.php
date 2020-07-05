@@ -21,23 +21,31 @@
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.backstretch.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.filterizr.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.magnific-popup.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('/cv/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('/cv/bootstrap/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/custom.js')}}"></script>
     <script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{ asset('js/autoNumeric.js') }}"></script>
+
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet" type="text/css">
 
-    
-	
-	<style>
-    @media only screen and (max-width:990px){
-    }
-    @media only screen and (max-width:767px){        
-    }
-    @media only screen and (max-width:480px){   
-    }
+   
+                       
 
-</style>
+	<style>
+	    @media only screen and (max-width:990px){
+	    }
+	    @media only screen and (max-width:767px){        
+	    }
+	    @media only screen and (max-width:480px){   
+	    }
+
+	</style>
 
 </head>   
 
@@ -53,7 +61,13 @@
 		</div>
 		
         <div class="avatar">
-		<img src="{{url('template/upscale/media/images.jpg')}}" alt="avatar">
+        	<a href="{{url('member/edit-basic-profile')}}">
+	        	@if ( $talent->talent_foto)
+				<img src="{{url('storage/photo/'.$talent->talent_foto)}}" alt="avatar">
+				@else
+				<img src="{{url('img/images.jpg')}}" alt="avatar">
+				@endif
+			</a>
         </div>
         
         <div class="name">
@@ -61,11 +75,11 @@
 		<?php $originalDate = $talent->talent_date_ready ;
 		$newDate = date("l, j F Y", strtotime($originalDate)); ?>
 			<h1>{{ $talent->talent_name }}</h1>
-            <span>Ready : {{ $newDate }}</span>
+            <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
             @endif
 		</div>
 
-        <div class="social-icons">
+        <!-- <div class="social-icons">
 			<ul>
 				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -73,11 +87,12 @@
 				<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
 				<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
 			</ul>
-        </div>
+        </div> -->
         
         <nav class="main-nav">
 			<ul class="navigation">
 				<li><a href="{{url('profile#about')}}">About Me</a></li>
+				<li><a href="{{url('profile#skill')}}">Skills</a></li>
 				<li><a href="{{url('profile#experience')}}">Experience</a></li>
 				<li><a href="{{url('profile#education')}}">Education</a></li>
 				<li><a href="{{url('profile#works')}}">Portfolio</a></li>

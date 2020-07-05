@@ -75,6 +75,9 @@ Route::group(['prefix'=>'member'], function()
 	Route::get("edit-basic-profile", "MemberController@editBasic");
 	Route::post("edit-basic-profile", "MemberController@editBasicPost");
 
+	Route::get("crop-photo", "MemberController@cropPhoto");
+	Route::post("crop-photo", "MemberController@cropPhotoPost");
+
 	Route::get("edit-work", "MemberController@editWork");
 	Route::post("edit-work", "MemberController@editWorkPost");
 	Route::get("edit-work-delete/{id}", "MemberController@editWorkDelete");
@@ -85,8 +88,19 @@ Route::group(['prefix'=>'member'], function()
 
 	Route::get("edit-skill", "MemberController@editSkill");
 	Route::post("edit-skill", "MemberController@editSkillPost");
+	Route::post("update-level", "MemberController@updateSkill");
 
 	Route::get("edit-cv", "MemberController@editCv");
+	Route::post("post-cv", "MemberController@postCv");
+
+	Route::get("crop-porto/{id}", "MemberController@cropPorto");
+	Route::post("crop-porto/{id}", "MemberController@cropPortoPost");
+
+	Route::get("edit-porto", "MemberController@editPorto");
+	Route::post("post-porto", "MemberController@postPorto");
+	Route::get("delete-porto/{id}", "MemberController@portoDelete");
+	Route::get("update-porto/{id}", "MemberController@portoUpdate");
+	Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
 
 });
 

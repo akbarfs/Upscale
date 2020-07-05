@@ -285,6 +285,7 @@ li {
     position: absolute;
     width: 60px;
     z-index: 3;
+    margin-top: -40px;  
 }
 
 .header .hamburger-menu {

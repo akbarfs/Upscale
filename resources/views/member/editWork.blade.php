@@ -106,7 +106,7 @@
                 <div class="form-group">
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Description</label></div>
-                      <div class="col-md-8"><input type="text" name="desc[]" class="form-control" placeholder="Description" value="{{$row->workx_desc}}"></div>
+                      <div class="col-md-8"><input type="text" name="desc[]" class="form-control" placeholder="Ceritakan jobdesk general anda" value="{{$row->workex_desc}}"></div>
                    </div>
                 </div>
 
@@ -114,7 +114,7 @@
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Handle Project</label></div>
                       <div class="col-md-8">
-                        <textarea rows="5" name="project[]" class="form-control">{{$row->workex_handle_project}}</textarea>
+                        <textarea rows="5" name="project[]" class="form-control" placeholder="Ceritakan Selengkapnya tentang sistem apa yang anda buat, sendiri atau dengan berapa orang team, tugas anda bagian apa saja, dll. semakin lengkap semakin menarik anda terpilih">{{$row->workex_handle_project}}</textarea>
                       </div>
                    </div>
                 </div>
@@ -189,7 +189,7 @@
   <div class="form-group">
      <div class="row">
         <div class="col-md-4"><label for="Name">Description</label></div>
-        <div class="col-md-8"><input type="text" name="desc[]" class="form-control" placeholder="Description"></div>
+        <div class="col-md-8"><input type="text" name="desc[]" class="form-control" placeholder="Ceritakan jobdesk general anda"></div>
      </div>
   </div>
 
@@ -197,7 +197,7 @@
      <div class="row">
         <div class="col-md-4"><label for="Name">Handle Project</label></div>
         <div class="col-md-8">
-          <textarea name="project[]" class="form-control"></textarea>
+          <textarea name="project[]" rows="10" class="form-control" placeholder="Ceritakan Selengkapnya tentang sistem apa yang anda buat, sendiri atau dengan berapa orang team, tugas anda bagian apa saja, dll. semakin lengkap semakin menarik anda terpilih"></textarea>
         </div>
      </div>
   </div>

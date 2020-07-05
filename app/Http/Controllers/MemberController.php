@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\work_experience; 
 use App\Models\education; 
+use App\Models\portfolio; 
+use Storage ;
+use Image ; 
 
 class MemberController extends Controller
 {
@@ -150,6 +153,7 @@ class MemberController extends Controller
                 'talent_start_career'   => $start_career,
                 "talent_level"=>$request->talent_level,
                 "talent_focus"=>$request->talent_focus,
+                "talent_luar_kota"=>$request->luar_kota_option,
 
                 "talent_onsite_jakarta" => $request->talent_onsite_jakarta ? $request->talent_onsite_jakarta : "" ,
                 "talent_onsite_jogja" => $request->talent_onsite_jogja ? $request->talent_onsite_jogja : "" ,
@@ -291,7 +295,7 @@ class MemberController extends Controller
             $id = Session::get("user_id"); 
         }
         
-        $user = User::find($id); 
+        $user = User::findOrFail($id); 
         $talent = $user->talent()->first(); 
         return view("member.profile",compact('talent'));   
     }
@@ -309,20 +313,75 @@ class MemberController extends Controller
     public function editBasicPost(Request $request)
     {
         $this->validate($request, [
+            'photo' => 'max:500|sometimes|mimes:jpeg,png,jpg,JPG,JPEG',
             'name' => 'required|min:3',
-            'phone' => 'required'
+            'phone' => 'required',
+            'address'=> 'required',
+            'gender'=> 'required',
+            'phone'=> 'required'
         ]);
 
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
 
+
         $update = Talent::find($talent->talent_id); 
+
+        $photo = $request->file('photo');
+        if ($photo)
+        {
+            $extension = $photo->getClientOriginalExtension(); 
+            $filename = 'profile-'.$id.'.'.$extension;
+
+            $image_resize = Image::make($photo->getRealPath());              
+            $image_resize->resize(600, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('/storage/photo/' .$filename));
+        }
+
+        
+        
         $update['talent_name'] = $request->name ; 
+        $update['talent_profile_desc'] = $request->profile_desc ; 
+        $update['talent_salary'] = preg_replace('/[^0-9]/', '', $request->salary) ; 
+        $update['talent_salary_jogja'] = preg_replace('/[^0-9]/', '', $request->salary_jogja) ; 
+        $update['talent_salary_jakarta'] = preg_replace('/[^0-9]/', '', $request->salary_jakarta) ; 
+        $update['talent_prefered_city'] = $request->prefered_city ; 
+        $update['talent_focus'] = $request->focus ; 
+        $update['talent_level'] = $request->level ; 
         $update['talent_phone'] = $request->phone ; 
+        $update['talent_address'] = $request->address; 
+        $update['talent_gender'] = $request->gender; 
+        $update['talent_phone'] = $request->phone; 
+        $update['talent_luar_kota'] = $request->luar_kota; 
+        $update['talent_onsite_jakarta'] = $request->onsite_jakarta; 
+        $update['talent_onsite_jogja'] = $request->onsite_jogja; 
+        $update['talent_remote'] = $request->remote; 
+        $update['talent_international'] = $request->international; 
+        $update['talent_current_work'] = $request->current_work; 
+        $update['talent_isa'] = $request->isa; 
+        $update['talent_web'] = $request->website ; 
+        $update['talent_linkedin'] = $request->linkedin ; 
+        $update['talent_facebook'] = $request->facebook ; 
+        $update['talent_instagram'] = $request->instagram ; 
+        $update['talent_twitter'] = $request->twitter ; 
+        $update['talent_freelance_hour'] = preg_replace('/[^0-9]/', '', $request->freelance_hour) ; 
+        $update['talent_project_min'] = preg_replace('/[^0-9]/', '', $request->project_min) ; 
+        $update['talent_project_max'] = preg_replace('/[^0-9]/', '', $request->project_max) ; 
+        $update['talent_konsultasi_rate'] = preg_replace('/[^0-9]/', '', $request->konsultasi_rate) ; 
+        $update['talent_ngajar_rate'] = preg_replace('/[^0-9]/', '', $request->ngajar_rate) ; 
         $update->save(); 
 
-        return back()->with("message","berhasil mengupdate"); ;
+        if ( $photo )
+        {
+            return redirect('member/crop-photo/');
+        }
+        else
+        {
+            return back()->with("message","berhasil mengupdate"); ;
+        }
+
 
     }
 
@@ -470,9 +529,263 @@ class MemberController extends Controller
         return back()->with("message","berhasil menambah skill") ; 
     }
 
+    public function updateSkill(Request $request)
+    {
+        $st_id = $request->st_id ; 
+        $level = $request->level ; 
+        $st = SkillTalent::find($st_id); 
+        $st->st_level = $level ; 
+
+        if ( $level == 'beginer')
+        {
+            $st->st_score = 1 ; 
+        } 
+        else if ( $level == 'intermediate')
+        {
+            $st->st_score = 3;
+        }
+        else if ( $level == 'senior')
+        {
+            $st->st_score = 5 ; 
+        }
+
+        $st->save() ; 
+
+        return response()->json(['status'=>1,'message'=>'berhasil']);
+    }
+
     public function editCv()
     {
-        return view("member.editCv");
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        return view("member.editCv",compact('talent'));
+    }
+
+    public function postCv(Request $request)
+    {
+        $this->validate($request, [
+            'cv' => 'required|max:2000|mimes:pdf,PDF',
+        ]);
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+
+        $update = Talent::find($talent->talent_id); 
+
+        $cv = $request->file('cv');
+        if ($cv)
+        {
+            $extension = $cv->getClientOriginalExtension(); 
+            $namecv = 'cv-'.$talent->talent_name."_".$talent->talent_id.'.'.$extension;
+            $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
+            $update['talent_cv_update'] = $namecv ;
+            $update->save();
+
+            return back(); 
+        }
+    }
+
+    public function editPorto()
+    {
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        return view("member.editPorto",compact('talent'));
+    }
+
+    public function postPorto(Request $request)
+    {
+        $this->validate($request, [
+            'screenshoot' => 'max:500|sometimes|mimes:jpeg,png,jpg,JPG,JPEG',
+            'project_name' => 'required'
+        ]);
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $screenshoot = $request->file('screenshoot');
+        if ($screenshoot)
+        {
+            $extension = $screenshoot->getClientOriginalExtension(); 
+            $filename = 'screenshoot-'.$request->project_name."_".$talent->talent_id.'.'.$extension;
+            // $path = $screenshoot->storeAs('public/Project Portfolio',$filename);
+            // $porto['portfolio_image'] = $filename ; 
+
+            $image_resize = Image::make($screenshoot->getRealPath());              
+            $image_resize->resize(600, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('/storage/Project Portfolio/' .$filename));
+            
+            $porto = New portfolio;
+            $porto['portfolio_talent_id'] = $talent->talent_id; 
+            $porto['portfolio_name'] = $request->project_name ? $request->project_name : '' ; 
+            $porto['portfolio_desc'] = $request->desc ? $request->desc : ''; 
+            $porto['portfolio_tech'] = $request->tect ? $request->tect : ''; 
+            $porto['portfolio_image'] = $filename ; 
+            $porto['portfolio_link'] = $request->link ? $request->link : '' ; 
+            $porto['portfolio_date_created'] = date("Y-m-d H:i:s") ; 
+            $porto['portfolio_date_updated'] = date("Y-m-d H:i:s") ;  
+            $porto['portfolio_tipe_project'] = $request->typeproject ? $request->typeproject : '' ; 
+            $porto['portfolio_namacompany'] = $request->office ? $request->office : '' ; 
+            $porto['portfolio_startdate'] = $request->date_start ? $request->date_start : '' ; 
+            $porto['portfolio_enddate'] = $request->date_end ? $request->date_end : '' ; 
+
+            $porto->save();
+
+            return redirect('member/crop-porto/'.$porto->portfolio_id);
+            // return back()->with('message','berhasil mengupload portfolio'); 
+        }
+    }
+
+    public function portoDelete($id)
+    {
+        $porto = portfolio::find($id); 
+        Storage::delete("public/Project Portfolio/".$porto->portfolio_image) ;
+        $porto->delete();
+
+        return back()->with("message","berhasil menghapus data") ; 
+    }
+
+    public function portoUpdate($id)
+    {
+        $porto = portfolio::find($id); 
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        return view("member.updatePorto",compact('porto','talent'));
+    }
+
+    public function portoUpdatePost(Request $request)
+    {
+        $this->validate($request, [
+            'screenshoot' => 'max:500|sometimes|mimes:jpeg,png,jpg,JPG,JPEG',//|dimensions:max_width=600
+            'project_name' => 'required'
+        ]);
+
+        $porto = portfolio::find($request->porto_id);
+
+        $screenshoot = $request->file('screenshoot');
+        if ( $request->screenshoot)
+        {
+            //remove old screenshoot 
+            Storage::delete("public/Project Portfolio/".$porto->portfolio_image) ;
+            $extension = $screenshoot->getClientOriginalExtension(); 
+            $filename = 'screenshoot-'.$request->project_name."_".$porto->portfolio_talent_id.'.'.$extension;
+            // $path = $screenshoot->storeAs('public/Project Portfolio',$filename);
+            // $porto['portfolio_image'] = $filename ; 
+
+            $image_resize = Image::make($screenshoot->getRealPath());              
+            $image_resize->resize(600, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('/storage/Project Portfolio/' .$filename));
+
+        }
+
+        $porto->portfolio_name = $request->project_name ? $request->project_name : '' ; 
+        $porto->portfolio_desc = $request->desc ? $request->desc : ''; 
+        $porto->portfolio_tech = $request->tech ? $request->tech : ''; 
+        $porto->portfolio_link = $request->link ? $request->link : '' ; 
+        $porto->portfolio_date_created = date("Y-m-d H:i:s") ; 
+        $porto->portfolio_date_updated = date("Y-m-d H:i:s") ;  
+        $porto->portfolio_tipe_project = $request->typeproject ? $request->typeproject : '' ; 
+        $porto->portfolio_namacompany = $request->office ? $request->office : '' ; 
+        $porto->portfolio_startdate = $request->date_start ? $request->date_start : '' ; 
+        $porto->portfolio_enddate = $request->date_end ? $request->date_end : '' ; 
+        $porto->save();
+
+        if ( $request->screenshoot)
+        {
+            return redirect('member/crop-porto/'.$request->porto_id);
+        }
+        return back()->with('message','berhasil update');
+    }
+
+    public function cropPorto($id)
+    {
+        $porto = portfolio::find($id);
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();  
+        return view('member.cropPorto',compact('porto','talent'));
+    }
+
+    public function cropPortoPost(Request $request)
+    {
+
+        $width  = $request->input("width"); 
+        $height  = $request->input("height");
+        $x = $request->input("x");  
+        $y = $request->input("y");  
+        $id = $request->input("id"); 
+
+        // dd($width,$height,$x,$y,$id) ; 
+
+        $targ_w = 300 ; 
+        $targ_h = 300;
+        $jpeg_quality = 100;
+
+        $id = $request->id; 
+        $portfolio = portfolio::find($id) ; 
+
+        $src = 'storage/Project Portfolio/'.$portfolio->portfolio_image;
+        // dd($src); 
+        $img_r = imagecreatefromjpeg($src);
+        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+        imagecopyresampled($dst_r,$img_r,0,0,$x,$y, $targ_w,$targ_h,$width,$height);
+
+        // header('Content-type: image/jpeg');
+        imagejpeg($dst_r, 'storage/Project Portfolio/'.$portfolio->portfolio_image, $jpeg_quality);
+
+        return redirect('member/edit-porto'); 
+    }
+
+    public function cropPhoto()
+    {
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();  
+        return view('member.cropPhoto',compact('talent'));
+    }
+
+    public function cropPhotoPost(Request $request)
+    {
+
+        $width  = $request->input("width"); 
+        $height  = $request->input("height");
+        $x = $request->input("x");  
+        $y = $request->input("y");  
+
+        // dd($width,$height,$x,$y,$id) ; 
+
+        $targ_w = 300 ; 
+        $targ_h = 300;
+        $jpeg_quality = 100;
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();  
+
+        $src = 'storage/photo/'.$talent->talent_foto;
+        // dd($src); 
+        $img_r = imagecreatefromjpeg($src);
+        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+        imagecopyresampled($dst_r,$img_r,0,0,$x,$y, $targ_w,$targ_h,$width,$height);
+
+        // header('Content-type: image/jpeg');
+        imagejpeg($dst_r, 'storage/photo/'.$talent->talent_foto, $jpeg_quality);
+
+        return redirect('member/edit-basic-profile'); 
     }
     
     

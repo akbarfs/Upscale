@@ -6,6 +6,20 @@
     .tambah { cursor: pointer; }
     .web_input {width: 500px !important; }
 </style>
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        $(".skill_level").change(function()
+        {
+            st_id = $(this).data("id");
+            level = $(this).val(); 
+            $.post("{{url('member/update-level')}}",{st_id:st_id,level:level,'_token':'{{csrf_token()}}'},function(response)
+            {
+                // alert(response.message) ; 
+            });
+        });
+    });
+</script>
 <section class="about">
   <form action="" method="post" id="register-talent">
     @csrf
@@ -15,29 +29,33 @@
       <div class="card mt-5">
 
         @foreach($talent->talent_skill()->get() as $row)
-            <div style="display: block; padding: 10px; float: left; border: solid 1px #D1D1D1 ; border-radius: 5px ; margin: 5px; ">
+            <div style="display: block; padding: 10px; float: left; border: solid 1px #D1D1D1 ; border-radius: 5px ; margin: 5px; min-height: 70px; min-width: 30% ">
+
+
                 
-                <span style="font-weight: bold; font-size: 16px">{{$row->skill()->first()->skill_name}}</span><br>
+                <span style="font-weight: bold; font-size: 16px">{{$row->skill()->first()->skill_name}}</span>
 
-                {{$row->st_level}}
+                <a href="" onclick="return confirm('data verifikasi skill anda akan hilang juga, apakah yakin ?')" style="float: right;">
+                    <i class="fa fa-close"></i>
+                </a>
 
-                @if ( $row->st_skill_verified == 'NO' ) 
-                <select name="level[]" class="skill_level">
-                    <option value="">-unset-</option>
-                    <option value="1">beginer</option>
-                    <option value="2">beginer intermediate</option>
-                    <option value="3">intermediate</option>
-                    <option value="4">intermediate senior</option>
-                    <option value="5">senior</option>
-                </select>
+                <br>
+
+                @if ( !$row->st_skill_verified_date ) 
+                    <select name="level[]" class="skill_level" data-id="{{$row->st_id}}" style="width: 100%">
+                        <option value="">-unset-</option>
+                        <option value="beginer" @if($row->st_level == 'beginer') selected='selected' @endif>beginer</option>
+                        <!-- <option value="beginer intermediate">beginer intermediate</option> -->
+                        <option value="intermediate" @if($row->st_level == 'intermediate') selected='selected' @endif>intermediate</option>
+                        <!-- <option value="intermediate senior">intermediate senior</option> -->
+                        <option value="senior"  @if($row->st_level == 'senior') selected='selected' @endif>senior</option>
+                    </select>
+                    
                 @else
-
-
+                    <i class="fa fa-check" title="verified"></i> {{$row->st_level}} 
                 @endif
                 
-                <a href="" onclick="return confirm('data verifikasi skill anda akan hilang juga, apakah yakin ?')">
-                    <img class="" src="{{url('template/upscale/media/hapus.png')}}" width="15px">
-                </a>
+                
             </div>
         @endforeach
 
