@@ -9,6 +9,8 @@
 	{
 		$('#all-checkbox').click (function () {
 		  $('.talent_id').prop('checked', this.checked);
+		  $(".btnmail").toggle();
+		  $("#mass_del").toggle();
 		});
 	});
 </script>
