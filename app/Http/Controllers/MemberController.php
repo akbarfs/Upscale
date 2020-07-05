@@ -739,7 +739,7 @@ class MemberController extends Controller
         $id = $request->id; 
         $portfolio = portfolio::find($id) ; 
 
-        $src = '/storage/Project Portfolio/'.$portfolio->portfolio_image;
+        $src = 'storage/Project Portfolio/'.$portfolio->portfolio_image;
         // dd($src); 
         $img_r = imagecreatefromjpeg($src);
         $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
@@ -747,7 +747,7 @@ class MemberController extends Controller
         imagecopyresampled($dst_r,$img_r,0,0,$x,$y, $targ_w,$targ_h,$width,$height);
 
         // header('Content-type: image/jpeg');
-        imagejpeg($dst_r, '/storage/Project Portfolio/'.$portfolio->portfolio_image, $jpeg_quality);
+        imagejpeg($dst_r, 'storage/Project Portfolio/'.$portfolio->portfolio_image, $jpeg_quality);
 
         return redirect('member/edit-porto'); 
     }
