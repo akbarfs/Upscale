@@ -17,11 +17,7 @@ use App\Http\Middleware\CheckTalent;
 // });
 
 Auth::routes();
-// adi
-// Route::get('talent/test','TalentNewController@show');
-// Route::get('talent/test/search','TalentNewController@search');
-// Route::get('talent/test/filter','TalentNewController@filter');
-// Route::get('talent/test/paginate_data','TalentNewController@paginate_data');
+
 Route::get('talent/test/condition','TalentNewController@condition');
 //end of adi
 Route::get('/', 'homeController@index')->name('index');
@@ -37,6 +33,7 @@ Route::get('/faq', 'homeController@faq')->name('faq');
 Route::post('/send-inquiry', 'homeController@sendInquiry')->name('send-inquiry');
 Route::get("/track","homeController@track")->name("mail-tracking");
 
+Route::get('/mailSends','TalentNewController@mailSends');
 
 // LOGIN ADMIN
 Route::get('/login'.date("dmY"), 'LoginController@index')->name('login');
@@ -70,13 +67,42 @@ Route::group(['middleware'=>'cek'],function(){
 	// });
 
 /////////////////////////////
+Route::get("/profile", "MemberController@profile"); //my profile
+Route::get("/profile/{talent_id}", "MemberController@profile");  //other profile
 
-Route::get("/profile", "MemberController@profile");
-Route::get("/profile/edit-basic-profile", "MemberController@editBasic");
-Route::get("/profile/edit-education", "MemberController@editEducation");
-Route::get("/profile/edit-work", "MemberController@editWork");
-Route::get("/profile/edit-skill", "MemberController@editSkill");
-Route::get("/profile/edit-cv", "MemberController@editCv");
+Route::group(['prefix'=>'member'], function()
+{
+	Route::get("edit-basic-profile", "MemberController@editBasic");
+	Route::post("edit-basic-profile", "MemberController@editBasicPost");
+
+	Route::get("crop-photo", "MemberController@cropPhoto");
+	Route::post("crop-photo", "MemberController@cropPhotoPost");
+
+	Route::get("edit-work", "MemberController@editWork");
+	Route::post("edit-work", "MemberController@editWorkPost");
+	Route::get("edit-work-delete/{id}", "MemberController@editWorkDelete");
+
+	Route::get("edit-education", "MemberController@editEducation");
+	Route::post("edit-education", "MemberController@editEducationPost");
+	Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
+
+	Route::get("edit-skill", "MemberController@editSkill");
+	Route::post("edit-skill", "MemberController@editSkillPost");
+	Route::post("update-level", "MemberController@updateSkill");
+
+	Route::get("edit-cv", "MemberController@editCv");
+	Route::post("post-cv", "MemberController@postCv");
+
+	Route::get("crop-porto/{id}", "MemberController@cropPorto");
+	Route::post("crop-porto/{id}", "MemberController@cropPortoPost");
+
+	Route::get("edit-porto", "MemberController@editPorto");
+	Route::post("post-porto", "MemberController@postPorto");
+	Route::get("delete-porto/{id}", "MemberController@portoDelete");
+	Route::get("update-porto/{id}", "MemberController@portoUpdate");
+	Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
+
+});
 
 ////////////////////////////
 
@@ -294,6 +320,7 @@ Route::get("/profile/edit-cv", "MemberController@editCv");
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
+			Route::get('/mailSend','TalentNewController@mailSend');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
 			
 
@@ -320,7 +347,13 @@ Route::get("/profile/edit-cv", "MemberController@editCv");
 	        Route::get('/portfolio', 'talentController@portfolio')->name('portfolio.talent');
 	        Route::get('/portfolio-delete', 'talentController@portfolioDelete')->name('portfolio.delete');
 	        Route::post('/portfolio-update','talentController@portfolioUpdate')->name('portfolio.update');
-	        Route::post('/portfolio-insert', 'talentController@portfolioInsert')->name('portfolio.insert');
+			Route::post('/portfolio-insert', 'talentController@portfolioInsert')->name('portfolio.insert');
+			
+			//photoprofil
+			Route::get('/photo', 'talentController@photo')->name('photo.talent');
+			Route::get('/photo-delete', 'talentController@photoDelete')->name('photo.delete');
+			Route::post('/photo-update', 'talentController@photoUpdate')->name('photo.update');
+			Route::post('/photo-insert', 'talentController@photoInsert')->name('photo.insert');
 
 	        Route::get('/workexperience','talentController@workex')->name('workex.talent');
 	        Route::post('/workexperience-insert','talentController@workexInsert')->name('workex.insert');
@@ -553,4 +586,4 @@ $this->post('register', 'Auth\RegisterController@register');
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
 
 //MEMBER PROFILE
-Route::get('/profile/{id}','MemberController@CV');
+

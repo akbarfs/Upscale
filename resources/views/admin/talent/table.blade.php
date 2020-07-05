@@ -49,7 +49,30 @@
 			
 			@foreach($data as $talent)
 			<tr>
-			  <td><input type="checkbox" name="delid[]" value="{{$talent->talent_id}}"> </td>
+			  <td><input type="checkbox" name="delid[]" class="talent_id"  value="{{$talent->talent_id}}"> </td> 
+			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+				<script>
+					$(document).ready(function(){
+						
+						$(".talent_id").click(function()
+						{
+							jumlah = $('input[name="delid[]"]:checked').length;
+							if (jumlah > 0) 
+							{
+								$("#mass_del").show();
+								console.log(jumlah);
+							}
+							else
+							{
+								$("#mass_del").hide();
+								console.log(jumlah);
+							}
+						});
+					  
+					});
+				</script>
+
+
 			  <th scope="row">{{$talent->talent_id}}</th>
 			  <td>
 			  		{{$talent->talent_name}}
@@ -159,11 +182,11 @@
 			  			<i class="fa fa-envelope"></i>
 			  		</a>
 
-					<!-- <a onclick="return confirm('Are you sure to delete this?')" 
+					<a onclick="return confirm('Are you sure to delete this?')" 
 					href="{{url('/admin/talent/delete/'.$talent->talent_id)}}"
 					class="btn btn-sm btn-danger">
 						  	<i class="fa fa-trash"></i>
-					</a> -->
+					</a>
 			  </td>
 			</tr>
 			@endforeach
