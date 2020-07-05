@@ -122,7 +122,8 @@
                   
                   <div style="float:left;">
                       @csrf         
-                      <img src="{{url('')}}/storage/Project Portfolio/{{$porto->portfolio_image}}" id="target" />
+                      @php $random = date("his") @endphp
+                      <img src="{{url('')}}/storage/Project Portfolio/{{$porto->portfolio_image}}?rand={{$random}}" id="target" />
 
                       <!-- <div id="preview-pane">
                         <div class="preview-container">
