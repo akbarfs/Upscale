@@ -301,19 +301,19 @@
 			$("#non-member").click(function() 
 			{
 				$("select[name='status_member']").val("non-member");
-				$("#form-search").submit();
+				$("#search").click();
 			});
 
 			$("#member").click(function() 
 			{
 				$("select[name='status_member']").val("member");
-				$("#form-search").submit();
+				$("#search").click();
 			});
 
 			$("#all").click(function() 
 			{
 				$("select[name='status_member']").val("all");
-				$("#form-search").submit();
+				$("#search").click();
 			});
 
 
