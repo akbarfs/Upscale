@@ -109,6 +109,8 @@
 									<option value="talent_date_ready">date ready</option>
 									<option value="talent_created_date">DB Created</option>
 									<option value="member_date">register as member</option>
+									<option value="talent_mail_invitation">mail invitation</option>
+									<option value="talent_mail_regular">mail regular</option>
 								</select>
 							</div>
 
@@ -185,7 +187,11 @@
 									<input type="checkbox" name="ready_jakarta"> ready jakarta &nbsp
 									<input type="checkbox" name="isa"> ISA &nbsp
 									<input type="checkbox" name="active"> last active &nbsp
+									<input type="checkbox" name="mail_invitation"> mail invitation &nbsp
+									<input type="checkbox" name="mail_regular"> mail regular &nbsp
 									<input type="checkbox" name="member_date"> member date &nbsp
+								</div>
+								<div>
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
 								</div>
 							</div>
@@ -263,8 +269,8 @@
 									list_id.push(this.value); 
 								}); 
 
-								sendMail(list_id,0);
 								$(".mailreport").prepend("<b> send email start process.. <br>");
+								sendMail(list_id,0);
 							});
 
 							function sendMail(list,urutan)
@@ -281,28 +287,35 @@
 											"content":content,
 											"type":type
 										};
+								$(".mailreport").prepend("id talent : <b>"+data.id+"</b> send<br> ");
+								$.ajax({
+								    type: "POST",
+								    url: "{{url('admin/talent/mail-send')}}",
+								    data: data,
+								    dataType: "json",
+								    success: function(data) 
+								    {
+								        if ( data.status == 1 )
+										{
+											$(".mailreport").prepend("<b>"+data.email+"</b> berhasil<br> ");
+										}
 
-								$.post("{{url('admin/talent/mail-send')}}",data,function(data) 
-								{
-									if ( data.status == 1 )
-									{
-										$(".mailreport").prepend("<b>"+data.email+"</b> berhasil<br> ");
-									}
-									else
-									{
-										$(".mailreport").prepend("<b>"+data.email+"</b> <span style='color:red'>error</span><br> ");
-									}
-
-									//perulangan send 1-1 sampai list id nya habis 
-									i++ ; 
-									if ( list[i]>0)
-									{
-										sendMail(list,i);
-									}
-									else
-									{
-										$(".mailreport").prepend("<b>DONE!</b> "+(i)+" email<br> ");
-									}
+										//perulangan send 1-1 sampai list id nya habis 
+										i++ ; 
+										if ( list[i]>0)
+										{
+											sendMail(list,i);
+										}
+										else
+										{
+											$(".mailreport").prepend("<b>DONE!</b> "+(i)+" email<br> ");
+										}
+								    },
+								    error: function (jqXhr, textStatus, errorMessage) {
+								    	console.log(jqXhr); 
+								    	console.log(textStatus); 
+								        $(".mailreport").prepend("<b>"+errorMessage+"</b> <span style='color:red'>error</span><br> ");
+								    }
 								});
 							}
 

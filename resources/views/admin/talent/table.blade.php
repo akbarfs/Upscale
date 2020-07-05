@@ -4,10 +4,19 @@
 	}
 </style>
 
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$('#all-checkbox').click (function () {
+		  $('.talent_id').prop('checked', this.checked);
+		});
+	});
+</script>
+
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>#</th>
+			<th><input type="checkbox" id="all-checkbox"></th>
 			<th scope="col">id</th>
 			<th scope="col">Name</th>
 			@if (Request::input('contact') )
@@ -30,6 +39,14 @@
 
 			@if (Request::input('isa') )
 			<th scope="col">ISA</th>
+			@endif
+
+			@if (Request::input('mail_invitation') )
+			<th scope="col">mail invitation</th>
+			@endif
+
+			@if (Request::input('mail_regular') )
+			<th scope="col">mail regular</th>
 			@endif
 
 			@if (Request::input('active') )
@@ -136,6 +153,17 @@
 			  <td>{{ $talent->talent_isa }}</td>
 			  @endif
 
+
+			  @if (Request::input('mail_invitation') )
+			  <td>{{$talent->talent_mail_invitation}}</td>
+			  @endif
+
+
+			  @if (Request::input('mail_regular') )
+			  <td>{{$talent->talent_mail_regular}}</td>
+			  @endif
+
+
 			  @if (Request::input('active') )
 			  <td>
 			  		@if ( isset($talent->talent_last_active))
@@ -161,6 +189,8 @@
 				  	@endif
 			  </td>
 			  @endif
+
+
 
 
 			  @if (Request::input('created') )

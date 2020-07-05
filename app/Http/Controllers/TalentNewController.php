@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\UpscaleEmail;
 use App\Models\Talent;
+use App\Models\Talent_log;
 use App\User;
 
 use App\Exports\TalentExport;
@@ -37,8 +38,8 @@ class TalentNewController extends Controller
     {
         ini_set('max_execution_time', 120);
 
-        $list_id = $request->input('id') ;
-        $talent = Talent::find($list_id); 
+        $talent_id = $request->input('id') ;
+        $talent = Talent::find($talent_id); 
         
         $data['talent'] = $talent ; 
         $data['sender'] = $request->sender ;    
@@ -67,6 +68,9 @@ class TalentNewController extends Controller
             $message->subject($judul);
         });
 
+        $insert = new Talent_log; 
+        $insert->log($request->type,$talent_id,['desc'=>'dikirim dari new list talent']); 
+
         return response()->json(['status'=>1,'email'=>$talent->talent_email,'message'=>'send berhasil']);
         
         // Mail::to($email)->send(new UpscaleEmail($email))->delay(60);
@@ -87,9 +91,14 @@ class TalentNewController extends Controller
     {
         // if ($request->ajax()) {
 
-            $data = Talent::select(DB::raw("*, users.email as member_email, users.created_at as member_date"));
+            //SELECT BUILDER START
+            $default_query = "*, users.email as member_email, users.created_at as member_date";
+            $data = Talent::select(DB::raw($default_query));
+            //SELECT BUILDER END 
 
+            //JOIN BUILDER START
             $data->join("users","talent.user_id","=","users.id","LEFT");
+            //JOIN BULDER END 
 
             if ( $request->talent_name ) {$data->where("talent_name","LIKE","%".$request->talent_name."%"); }
             if ( $request->talent_phone ) {$data->where("talent_phone","LIKE","%".$request->talent_phone."%"); }
