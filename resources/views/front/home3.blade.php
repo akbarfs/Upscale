@@ -81,10 +81,12 @@
                         Request Quotation
                     </a>
 
-                    @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
-                        <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="border-color: #fff !important; color: #fff !important;">
-                            Join as Talent
-                        </a>
+                    @if( !Session::get("user_id") )
+                        @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
+                            <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="border-color: #fff !important; color: #fff !important;">
+                                Join as Talent
+                            </a>
+                        @endif
                     @endif
 
                 </div>

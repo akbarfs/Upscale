@@ -18,6 +18,7 @@ class AddColumnTalent extends Migration
             $table->date('talent_start_career')->after('talent_focus')->nullable();;
             $table->enum('talent_level',['undefined','junior','middle','senior'])->after('talent_start_career')->default('undefined');
             $table->string('talent_international')->after('talent_rt_status')->nullable();;
+            $table->string('talent_web')->after('talent_address')->nullable();;
         });
     }
 
@@ -33,6 +34,7 @@ class AddColumnTalent extends Migration
             $table->dropColumn('talent_start_career');
             $table->dropColumn('talent_level');
             $table->dropColumn('talent_international');
+            $table->dropColumn('talent_web');
         });
     }
 }

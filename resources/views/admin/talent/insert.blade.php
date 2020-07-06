@@ -40,7 +40,7 @@
             @csrf
             <div class="form-group">
             <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" placeholder="">
+            <input type="text" class="form-control" id="nama" value="{{old('nama')}}" name="nama" placeholder="">
 
                 @if($errors->has('nama'))
                   <div class="alert alert-danger" >{{ $errors->first('nama') }}</div>
@@ -63,8 +63,7 @@
 
             <div class="form-group">
             <label for="gender">Gender</label>
-            <select id="gender" class="custom-select" name="gender" >
-                    <option selected> </option>
+            <select id="gender" class="custom-select" name="gender">
                     <option>Male</option>
                     <option>Female</option>
             </select>
@@ -146,9 +145,8 @@
             <div class="form-group">
               <label for="martialstatus">Martial Status</label>
               <select id="martialstatus" class="custom-select" name="martialstatus">
-                    <option selected> </option>
-                    <option>Single</option>
-                    <option>Married</option>
+                    <option value="single">Single</option>
+                    <option value="merried">Married</option>
               </select>
             </div>
 

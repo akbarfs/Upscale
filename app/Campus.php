@@ -14,4 +14,10 @@ class Campus extends Model
     ];
     public $timestamps = false;
 
+    
+    public function campus()
+    {
+        return $this->belongsTo('App\Campus');
+    }
+
 }
