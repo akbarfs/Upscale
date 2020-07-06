@@ -98,6 +98,12 @@ class Talent extends Model
 		return $this->hasMany('App\Models\Interview' ,'interview_id','talent_id');
 	}
 
+
+	public function talent_interviewtest()
+	{
+		return $this->hasMany('App\Models\interview_test', 'it_talent_id', 'talent_id');
+	}
+
 	public function talent_historyApply()
 	{	
 		return $this->hasMany('App\Models\historyApply' ,'jobs_apply_talent_id','talent_id');

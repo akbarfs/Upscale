@@ -337,6 +337,18 @@ class MemberController extends Controller
         return view("member.editEducation",compact('talent','education'));
     }
 
+    public function editInterview()
+    {   
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+        $interview = $talent->talent_interviewtest();
+
+        return view("member.editInterview",compact('talent','interview'));
+
+    }
+
     public function editEducationPost(Request $request)
     {
         $id = Session::get("user_id"); 

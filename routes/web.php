@@ -83,6 +83,8 @@ Route::group(['prefix'=>'member'], function()
 	Route::post("edit-education", "MemberController@editEducationPost");
 	Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
 
+	Route::get("edit-interview", "MemberController@editInterview");
+
 	Route::get("edit-skill", "MemberController@editSkill");
 	Route::post("edit-skill", "MemberController@editSkillPost");
 

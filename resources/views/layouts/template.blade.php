@@ -128,7 +128,7 @@
         }
 
         @media only screen and (max-width:480px){
-            .menu-right { float: left !important }
+            .menu-right { float: center }
             .btn-border.light:not(:hover)
             { 
                 color: rgb(71, 178, 228) !important ; 
@@ -136,9 +136,8 @@
             }
             .btn-login { margin-left: 0 !important; border-left: none !important }
             .minht { height: 100% }
-            .lan-menu { margin-top: 0 !important; }
-            .menu-right { margin-top: 0 !important; 
-            align: left;}
+            .menu-right { 
+            align: center;}
         }
     </style>
 
@@ -499,7 +498,7 @@
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
                     
-                    <ul class="lan-menu">
+                    <ul class="lan-menu" >
                         <li class="dropdown" >
                             @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
                                 <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN </a>
@@ -526,7 +525,7 @@
                                 
                                 <div class="menu-right">
                         
-                                <ul class="lan-menu">
+                                <ul  style="text-align: left;">
                                     <li class="dropdown">
                                         <a href="{{Request::url()}}?lang=en">
                                             <!-- <img src="{{url('template/upscale/media/profile.png')}}" alt="" /> -->
