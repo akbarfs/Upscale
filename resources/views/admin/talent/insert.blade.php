@@ -84,6 +84,26 @@
                 @endif
 
             </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="text" class="form-control" id="password" placeholder="" name="password">
+
+                @if($errors->has(''))
+                  <div class="alert alert-danger">{{ $errors->first('') }}</div>
+                @endif
+
+            </div>
+
+            <div class="form-group">
+              <label for="confirmpass">Confirm Password</label>
+              <input type="text" class="form-control" id="confirmpass" placeholder="" name="confirmpass">
+
+                @if($errors->has(''))
+                  <div class="alert alert-danger">{{ $errors->first('') }}</div>
+                @endif
+
+            </div>
         
         
 
