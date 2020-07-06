@@ -11,8 +11,8 @@
             <h6> Dashboard / mail </h6>
             
             <br>
-            <a href="#"><button class="btn btn-default btn-sm" type="submit" id="search" style="margin-left:10px">Back</button></a>
-            <a href="#"><button class="btn btn-primary btn-sm" type="submit" id="search" style="margin-left:1%">Create New Email Type</button></a>
+            <a href="list"><button class="btn btn-outline-primary btn-sm" type="submit" id="search" style="margin-left:10px">Back</button></a>
+            <a href="createTypeEmail"><button class="btn btn-primary btn-sm" type="submit" id="search" style="margin-left:1%">Create New Email Type</button></a>
             <br><br>
             <div class="card" style="width: 55rem; margin-left:7%">
                 <div class="card-body center">

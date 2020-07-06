@@ -32,6 +32,11 @@ class TalentNewController extends Controller
         return view("admin.talent.mail");
     }
 
+    function createTypeEmail()
+    {
+        return view("admin.talent.createTypeEmail");
+    }
+
     function mailBackup($id)
     {
         return view("admin.talent.mail-backup");
