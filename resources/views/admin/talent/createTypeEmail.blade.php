@@ -10,7 +10,7 @@
         <div class="card ">
             <div class="card-body">
             <h6> Dashboard / createEmail </h6><br>
-            <a href="mail"><button class="btn btn-default btn-sm" type="submit" id="search" style="margin-left:60px">Back</button></a>
+            <a href=""><button class="btn btn-default btn-sm" type="submit" id="search" style="margin-left:60px">Back</button></a>
             <br><br>
 
                 <div class="card" style="width: 55rem; margin-left:7%">

@@ -32,7 +32,7 @@ class TalentNewController extends Controller
         return view("admin.talent.mail");
     }
 
-    function createTypeEmail()
+    function createTypeEmail($id)
     {
         return view("admin.talent.createTypeEmail");
     }
