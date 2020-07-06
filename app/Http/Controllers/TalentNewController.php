@@ -169,6 +169,8 @@ public function insertData(Request $request){
             'talent_ngajar_rate' => $request->tutorrate,
         ]);
 
+        
+
         $idTalent = DB::table('talent')->insertGetId([ 'talent_name' => $request->nama ]);
 
 
