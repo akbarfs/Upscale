@@ -308,9 +308,10 @@
 							</div>
 						</div>
 
-						<hr>
+						
 
 						@if ( $talent->talent_price_jakarta )
+						<hr>
 						<div>
 							Penempatan jakarta<br>
 							<b style="font-size: 18px">	

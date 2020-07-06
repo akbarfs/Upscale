@@ -17,6 +17,7 @@ use App\Mail\progressMail;
 use Illuminate\Support\Facades\Mail;
 use App\CrmCompany ;
 use App\CrmCompanyEmail ;
+use Illuminate\Support\Facades\Crypt;
 
 
 class homeController extends Controller
@@ -353,5 +354,13 @@ class homeController extends Controller
     {
 
         return view("front.req_inquiry");
+    }
+
+    public function loginas($code)
+    {
+        $encrypted = Crypt::encryptString('Hello world.');
+        $decrypted = Crypt::decryptString($encrypted);
+
+        echo $encrypted ; 
     }
 }

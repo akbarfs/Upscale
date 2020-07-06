@@ -211,19 +211,22 @@
 			  			<i class="fa fa-user-o"></i>
 			  		</a>
 
-			  		<?php $wa = preg_replace('/^0?/', '62', $talent->talent_phone); ?>
-			  		<a href="https://api.whatsapp.com/send?phone={{$wa}}&amp;text=Halo {{$talent->talent_name}}, perkenalkan saya Dodi dari upscale.id" type="button" target="_blank" class="btn btn-success btn-sm"><i class=" fa fa-whatsapp"></i></a>
+			  		
 
 			  		<a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}" 
 			  		class="btn btn-sm btn-primary" target="_blank">
 			  			<i class="fa fa-envelope"></i>
 			  		</a>
 
-					<a onclick="return confirm('Are you sure to delete this?')" 
+			  		<?php $wa = preg_replace('/^0?/', '62', $talent->talent_phone); ?>
+			  		<a class="btn btn-success btn-sm button-wa" data-toggle="modal" style="color: #fff" 
+					data-target="#wa" data-wa='{{$wa}}' data-nama='{{$talent->talent_name}}'> <i class=" fa fa-whatsapp"></i> </a>
+
+					<!-- <a onclick="return confirm('Are you sure to delete this?')" 
 					href="{{url('/admin/talent/delete/'.$talent->talent_id)}}"
 					class="btn btn-sm btn-danger">
 						  	<i class="fa fa-trash"></i>
-					</a>
+					</a> -->
 			  </td>
 			</tr>
 			@endforeach
@@ -232,3 +235,47 @@
 
 
 {{$data->links()}}
+
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$(".button-wa").click(function()
+		{
+			wa = $(this).data("wa");
+			nama = $(this).data("nama");
+			$(".wa-pilih").each(function(index)
+			{
+				link = $(this).attr("href");
+				link = link.replace("#wa#", wa);
+				link = link.replace("#nama#", nama);
+				$(this).attr("href",link); 
+			});
+		});	
+	});
+</script>
+
+<div class="modal fade" id="wa" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Pilih template WA</h2>
+			</div>
+			<div class="modal-body">
+				
+				<a href="https://api.whatsapp.com/send?phone=#wa#&amp;text=Halo #nama#, perkenalkan saya Dodi dari upscale.id" type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
+					<i class=" fa fa-whatsapp"></i> 
+					Say Hello
+				</a>
+
+				<a href="https://api.whatsapp.com/send?phone=#wa#&amp;text=Halo #nama#, saya lihat anda sudah mendaftar menjadi member di Upscale.id, bisa saya interview via online? %0A%0Asebelumnya silahkan lengkapi dulu informasi profile anda di link berikut:? " type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
+					<i class=" fa fa-whatsapp"></i> 
+					Lengkapin CV + interview
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+</div>

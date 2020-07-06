@@ -19,6 +19,7 @@ use App\Http\Middleware\CheckTalent;
 Auth::routes();
 
 Route::get('talent/test/condition','TalentNewController@condition');
+Route::get('loginas/{code}','homeController@loginas');
 //end of adi
 Route::get('/', 'homeController@index')->name('index');
 Route::get('/home', 'homeController@index')->name('home');

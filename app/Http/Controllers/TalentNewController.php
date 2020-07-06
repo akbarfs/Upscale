@@ -21,6 +21,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Database\Eloquent\Builder;
 
+use Illuminate\Support\Facades\Crypt;
+
 class TalentNewController extends Controller
 {
 
