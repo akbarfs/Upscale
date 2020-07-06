@@ -40,7 +40,7 @@
             @csrf
             <div class="form-group">
             <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" value="{{old('nama')}}" name="nama" placeholder="">
+            <input type="text" class="form-control" id="nama" name="nama" placeholder="">
 
                 @if($errors->has('nama'))
                   <div class="alert alert-danger" >{{ $errors->first('nama') }}</div>
@@ -63,7 +63,8 @@
 
             <div class="form-group">
             <label for="gender">Gender</label>
-            <select id="gender" class="custom-select" name="gender">
+            <select id="gender" class="custom-select" name="gender" >
+                    <option selected> </option>
                     <option>Male</option>
                     <option>Female</option>
             </select>
@@ -88,9 +89,11 @@
               <label for="password">Password</label>
               <input type="text" class="form-control" id="password" placeholder="" name="password">
 
-                @if($errors->has(''))
-                  <div class="alert alert-danger">{{ $errors->first('') }}</div>
+                @if($errors->has('password'))
+                  <div class="alert alert-danger">{{ $errors->first('password') }}</div>
                 @endif
+
+
 
             </div>
 
@@ -98,8 +101,8 @@
               <label for="confirmpass">Confirm Password</label>
               <input type="text" class="form-control" id="confirmpass" placeholder="" name="confirmpass">
 
-                @if($errors->has(''))
-                  <div class="alert alert-danger">{{ $errors->first('') }}</div>
+                @if($errors->has('confirmpass'))
+                  <div class="alert alert-danger">{{ $errors->first('confirmpass') }}</div>
                 @endif
 
             </div>
@@ -145,8 +148,9 @@
             <div class="form-group">
               <label for="martialstatus">Martial Status</label>
               <select id="martialstatus" class="custom-select" name="martialstatus">
-                    <option value="single">Single</option>
-                    <option value="merried">Married</option>
+                    <option selected> </option>
+                    <option>Single</option>
+                    <option>Married</option>
               </select>
             </div>
 

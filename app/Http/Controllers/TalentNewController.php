@@ -176,6 +176,8 @@ public function insertData(Request $request){
         $validation = $request->validate([
             'nama'=>'required|string|max:150',
             'email'=>'required|string|email|max:100|unique:users',
+            'password'=>'max:150|required_with:confirmpass|same:confirmpass',
+            'confirmpass'=>'max:150',
             // 'gender'=>'required',
             // 'alamat'=>'required',
             // 'phone'=>'required|string|max:30',
@@ -203,6 +205,16 @@ public function insertData(Request $request){
             // 'konsulrate'=>'required',
             // 'tutorrate'=>'required',
 
+        ]);
+
+        
+
+        DB::table('users')->insert([
+                'name' => $request->nama,
+                'username' => 'User',
+                'email' => $request->email,
+                'password' => $request->password,
+                'level' => isset($request->level)?$request->level:"undefined",
         ]);
 
 
