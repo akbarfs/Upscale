@@ -17,6 +17,7 @@ use App\Models\Requestt;
 use App\Models\TestQuestion;
 use App\Models\AssignRequest;
 use App\Models\Talent;
+use App\Models\photo;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 use App\Mail\progressMail;
@@ -1460,6 +1461,116 @@ return response()->json($cp);
       DB::table('portfolio')->where('portfolio_id', '=', $request->id)->delete();
       return redirect()->back();
     }
+
+    public function photodetail($id){
+      $data = DB::table('photo')
+              ->join('talent', 'talent_id', '=', 'photo_talent_id')
+              ->where('photo_id', '=', $id)
+              ->first();
+      return response()->json($data);
+    }
+
+    public function photo(Request $request){
+      $data= DB::table('photo')
+              ->where('photo_talent_id', '=', $request->id)
+              ->orderBy('photo_name' , 'asc')->get();
+
+      return Datatables::of($data)
+      ->addColumn('action', function($data){
+        return '<center>
+        <a href="#talent-photo" data-idport="'.$data->photo_id.'"type="button" data-toogle="modal" data-target="#mymodal" type="button" class="btn btn-info btn-xs" data-toogle="tooltip" data-placement="top" type="button" class="btn btn-primary btn-xs cobamodal"><i class="fa fa-eye"></i></a>
+        <a href="#edit-photo" data-idportfol="'.$data->photo_id.'" type="button" data-toggle="modal" data-target="#editphoto" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit"></i></a>
+        <a href="'.route('photo.delete').'?id='.$data->photo_id.'" type="button" class="btn btn-danger btn-xs" onclick="return confirm(\'Are you sure you want to delete this item?\');"><i class="fa fa-trash"></i></a></center>';
+      })
+      ->addColumn('photo_desc', function($data){
+        if(strlen(strip_tags($data->photo_desc))>75){ $status_desc = substr(strip_tags($data->photo_desc), 0,75). '...'; }
+        else{ $status_desc = strip_tags($data->photo_desc); }
+
+        return $status_desc;
+      })
+      ->addColumn('photo_date_created', function($data){
+        return substr($data->photo_date_created, 0,16);
+      })
+
+      ->rawColumn(['photo_desc', 'photo_date_created', 'action'])
+      ->make(true);
+    }
+
+    public function photoInsert(Request $request){
+      $bulanend = $request->bulanaddportend;
+      $tahunend = $request->tahunaddportend;
+      $bulan = $request->bulanaddport;
+      $tahun = $request->tahunaddport;
+      $now = Carbon::now('Asia/Jakarta');
+      if($request->file('photo_image')==null){
+        DB::table('photo')->insert(array (
+          'photo_name' =>$request->name,
+          'photo_desc' =>$request->desc,
+          'photo_talent_id' => $request->talent_id,
+          'photo_image' => $namegambar,
+          'photo_date_created' => $now
+        ));
+      }else{
+        $talent = DB::table('talent')->where('talent_id', $request->talent_id)->first();
+        $format = Carbon::today('Asia/Jakarta')->fromat('dmY');
+        $image = $request->file('photo_image');
+        $namegambar = 'Image_Photo_'.$talent->talent_name.'_'.$format.'.'.$iamge->getClientOriginalExtension();
+        $path = $image->storeAs('public/Photo', $namegambar);
+
+          DB::table('photo')->insert(array (
+            'photo_name' => $request->name,
+            'photo_desc' => $request->desc,
+            'photo_talent_id' => $request->talent_id,
+            'photo_image' => $namegambar,
+            'photo_date_created' => $now
+          ));
+      }
+
+      return redirect()->back();
+    }
+
+    public function photoUpdate(Request $req){
+        $bulanend = $req->bulanaddportend;
+        $tahunend = $req->tahunaddportend;      
+        $bulan = $req->bulanaddport;
+        $tahun = $req->tahunaddport; 
+        $talent = DB::table('talent')->where('talent_id',$req->talent_id)->first();
+        $today = Carbon::now('Asia/Jakarta');
+        $format= Carbon::today('Asia/Jakarta')->format('dmY');
+        if($req->portfolio_image!=NULL){
+            $image = $req->file('photo_image');
+            $namegambar = 'Image_Photo_'.$talent->talent_name.'_'.$format.'.'.$image->getClientOriginalExtension();
+            $path = $image->storeAs('public/Photo/Update Photo',$namegambar);
+            $update = DB::table('photo')->where('photo_id',$req->portfol_id)->update([
+              'photo_name' => $request->name,
+              'photo_desc' => $request->desc,
+              'photo_talent_id' => $request->talent_id,
+              'photo_image' => $namegambar,
+              'photo_date_update' => $today
+            ]);
+        }else{
+            $update = DB::table('portfolio')->where('portfolio_id',$req->portfol_id)->update([
+              'photo_name' => $request->name,
+              'photo_desc' => $request->desc,
+              'photo_talent_id' => $request->talent_id,
+              'photo_image' => $namegambar,
+              'photo_date_updated' => $today
+            ]);
+        }
+        return redirect()->back();
+    }
+
+    public function photoDelete(Request $request){
+      DB::table('photo')->where('photo_id', '=', $request->id)->delete();
+      return redirect()->back();
+    }
+
+
+
+
+
+
+
 
 
     public function workex(Request $request){

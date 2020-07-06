@@ -15,6 +15,7 @@ use Auth;
 use App\Models\work_experience; 
 use App\Models\education; 
 use App\Models\portfolio; 
+use App\Models\photo;
 use Storage ;
 use Image ; 
 
@@ -45,6 +46,7 @@ class MemberController extends Controller
             'gender' => 'required',
             'tgl_lahir' => 'required',
             'tempat_lahir' => 'required|min:3|max:25',
+            'photo' => 'required',
         ]); 
 
         
@@ -62,6 +64,7 @@ class MemberController extends Controller
                     'talent_place_of_birth' => $request->tempat_lahir,
                     'talent_birth_date'=>$request->tgl_lahir,
                     'talent_gender' => $request->gender,
+                    'talent_foto' => $request->foto,
                     'talent_last_active' => date("Y-m-d H:i:s"),
                     'talent_la_type' =>'register step 1'
             ];
@@ -106,6 +109,7 @@ class MemberController extends Controller
             'name'         => $request->name,
             'username'     => $request->username,
             'email'        => $request->email,
+            'foto'         => $request->foto,
             'password'     => Hash::make($request["password"]),
             'phone_number' => $request->phone_number,
             'level'         => 'talent',

@@ -323,8 +323,8 @@ Route::group(['prefix'=>'member'], function()
 			Route::post('/mail-send','TalentNewController@mailSend');
 			Route::get('/mail-view/{view}','TalentNewController@viewMail');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
-			
 
+		
 			Route::get('/list/insert', 'TalentNewController@insert');
 			Route::get('/list/insert/data', 'TalentNewController@insertData');
 			Route::get('/list/delete', 'TalentNewController@deleteData');

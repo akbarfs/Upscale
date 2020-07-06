@@ -99,6 +99,27 @@
                                 </h3>
                             </div>
                             <form style="padding-left: 20px; padding-top: 15px;">
+                            <div class="row form-group">
+                                <div class="avatar">
+                                    <div class="col col-md-4">
+                                    <a href="{{url('admin/detail-talent')}}">
+                                    @if ($all->talent_foto)
+                                    @php $random = date("his") @endphp
+                                    <img src="{{url('storage/photo/'.$talent->talent_foto)}}?v={{$random}}" alt="avatar">
+                                    @else
+                                    <img src="{{url('img/images.jpg')}}" alt="avatar">
+                                        <label class=" form-control-label">  </label>
+                                    @endif
+                                    </div>
+                                    <div class="col-12 col-md-8">
+
+                                      <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+
+
                                 <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">Name</label>
@@ -459,7 +480,7 @@
                                         <label class=" form-control-label">Talent CV </label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv}}</strong></p>
+                                      <p class="form-control-static" action="" style="margin-bottom: 0px;"><strong>{{$all->talent_cv}}</strong></p>
                                     </div>
                                 </div>
 
@@ -499,14 +520,14 @@
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
+                                <!-- <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">Talent Skill</label>
                                     </div>
                                     <div class="col-12 col-md-8">
                                       <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_skill}}</strong></p>
                                     </div>
-                                </div>
+                                </div> -->
 
 
 
@@ -2056,9 +2077,12 @@
                             <div class="card-body card-block">
                                 <div class="form-group col-md-6">
 
-                                <label for="text-input" class=" form-control-label">Foto Profil Talent</label>
-                                <input value=" " type="file" id="inputgambar" name="gambar" placeholder="Your Photo" required="" class="form-control">
-                                    
+                                
+					
+                                <label for="text-input" class=" form-control-label">Foto Profil Talent <span class="badge badge-secondary">.pdf Max 1MB</span></label>
+                                <input value=" " method="POST" enctype="multipart/form-data" type="file" id="inputgambar" name="gambar" placeholder="Your Photo" required="" class="form-control">
+                                {{ csrf_field() }}
+
                                 @section('js')
                                 <script type="text/javascript">
 
@@ -2263,7 +2287,7 @@
 
                                 </div>
                                 <div class="form-group col-md-6">
-                                <label for="text-input" class=" form-control-label">Skill</label>
+                                <!-- label for="text-input" class=" form-control-label">Skill</label>
                                     @push('script')
     
 							<script src="{{url('template/upscale/js/tag.js')}}"></script>
@@ -2306,7 +2330,7 @@
                                 placeholder="skill"
                                 name="skill"
                                 value="{{$all->talent_skill}}" id="talent_skill">
-							</div>
+							</div> -->
 
                                     <label for="text-input" class=" form-control-label">Current Addres</label><br>
                                     <select value="" name="talent_current_address" id="talent_current_addres" class="js-example-basic-single form-control" style="width:100%">
@@ -2333,11 +2357,11 @@
                                         @endforeach
                                     </select><br>
 
-                                    
+                                    <label for="text-input" class=" form-control-label">Recomendation Salary</label>
                                     <input value="{{$all->talent_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah" type="text" name="talent_salary" class="form-control" placeholder="Your expected salary" required="">
                                     <label for="text-input" class=" form-control-label">Lastest Salary</label>
                                     <input value="{{$all->talent_lastest_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="lastest_salary" class="form-control" placeholder="Lastest salary" required="">
-                                    <label for="text-input" class=" form-control-label">Recomendation Salary</label>
+                                    
 
                                     <label for="text-input" class=" form-control-label">Jakarta Salary</label>
                                     <input value="{{$all->talent_salary_jakarta}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_salary_jakarta" class="form-control" placeholder="Jakarta salary" required="">

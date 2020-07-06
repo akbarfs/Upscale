@@ -19,6 +19,7 @@ class Talent extends Model
 							'talent_birth_date', 
 							'talent_addres', 
 							'talent_salary', 
+							'talent_foto',
 							'talent_cv', 
 							'talent_portfolio', 
 							'talent_portofolio_file', 
@@ -90,6 +91,11 @@ class Talent extends Model
 	public function talent_portfolio()
 	{	
 		return $this->hasMany('App\Models\portfolio' ,'portfolio_talent_id','talent_id');
+	}
+
+	public function talent_foto()
+	{	
+		return $this->hasMany('App\Models\photo' ,'photo_talent_id','talent_id');
 	}
 
 	public function talent_workex()
