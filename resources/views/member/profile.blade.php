@@ -3,6 +3,33 @@
 		
 		<style type="text/css">
 
+				.popup-overlay {
+				/*Hides pop-up when there is no "active" class*/
+				visibility: hidden;
+				position: absolute;
+				background: #ffffff;
+				border: 3px solid #666666;
+				width: 50%;
+				height: 50%;
+				left: 25%;
+				}
+
+				.popup-overlay.active {
+				/*displays pop-up when "active" class is present*/
+				visibility: visible;
+				text-align: center;
+				}
+
+				.popup-content {
+				/*Hides pop-up content when there is no "active" class */
+				visibility: hidden;
+				}
+
+				.popup-content.active {
+				/*Shows pop-up content when "active" class is present */
+				visibility: visible;
+				}
+
 			.biodata { vertical-align: top }
 			.tombol ,.edit
 			{ 
@@ -99,7 +126,19 @@
 					$("#button-pricing").show();
 				});
 			});
+
+			//appends an "active" class to .popup and .popup-content when the "Open" button is clicked
+				$(".open").on("click", function() {
+				$(".popup-overlay, .popup-content").addClass("active");
+				});
+
+				//removes the "active" class to .popup and .popup-content when the "Close" button is clicked 
+				$(".close, .popup-overlay").on("click", function() {
+				$(".popup-overlay, .popup-content").removeClass("active");
+				});
+
 		</script>
+		
         <section id="about" class="about">
             <div class="section-header">
 
@@ -134,7 +173,6 @@
 					<p style="text-align: justify">
 						Hi, perkenalkan nama saya <b>{{ $talent->talent_name }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
 					</p>
-
 
 					<hr>
 					<div class="row biodata" style="padding-left:15px">
@@ -172,7 +210,7 @@
 							<tr>
 								<td><strong>Phone</strong></td>
 								<td><strong>: &nbsp</strong></td>
-								<td> {{ $talent->talent_phone }} <a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></td>
+								<td> {{ $talent->talent_phone }} <a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp"  style="color:green"  aria-hidden="true"></i></a></td>
 	                		</tr>
 						</table>
 						
@@ -506,6 +544,12 @@
 			</div>
         </section>
 		
+		<div class="popup-overlay">
+				<div class="popup-content">
+					<p>.</p>
+					<button class="close">Close</button> </div>
+				</div>
+
 		<section id="works" class="works clearfix">
 			
 			<div class="section-header" style="margin-left: 0">
@@ -517,12 +561,11 @@
 
 			<div style="clear: both;"></div>
 			
-			
 			<div class="item-outer row clearfix">
                 @foreach($talent->talent_portfolio()->get() as $row )
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1" data-sort="value">
+				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item"  data-sort="value">
 					<div class="item">
-						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image">
+					<a class="open" href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image"></a>
 							<div class="title">
 								<div class="inner">
 									<h2>{{ $row->portfolio_name }}</h2>
@@ -538,6 +581,46 @@
                 @endforeach
             </div>
 		</section>
+
+
+		<section id="works" class="works clearfix">
+			
+			<div class="section-header">
+				<h2>Testimonial</h2>
+			</div>
+			
+			<div class="item-outer row clearfix">
+			@if($talent)
+					
+					<p style="text-align: justify">
+						 {!! $talent->talent_notes_report_talent !!}
+					</p>
+                    @endif
+                </div>
+		</section>
+
+
+
+
+
+
+	{{--	<section id="personality" class="works clearfix">
+			
+			<div class="section-header" style="margin-left: 0">
+				<h2>Personality</h2> 
+			</div>
+
+			<div style="clear: both;"></div>
+			
+			
+		</section>
+
+		--}}
+
+
+
+
+
 
 		<!-- <section id="certification" class="resume">
 			<div class="section-header">

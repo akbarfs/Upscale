@@ -25,11 +25,7 @@
     <script type="text/javascript" src="{{ asset('/cv/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/custom.js')}}"></script>
     <script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="{{ asset('js/autoNumeric.js') }}"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet" type="text/css">
@@ -73,8 +69,9 @@
         
         <div class="name">
         @if($talent)
-		<?php $originalDate = $talent->talent_date_ready ;
-		$newDate = date("l, j F Y", strtotime($originalDate)); ?>
+		<?php setlocale(LC_ALL, 'IND');
+		$originalDate = $talent->talent_date_ready ;
+		$newDate =  strftime( "%A, %d %B %Y", $originalDate); ?>
 			<h1>{{ $talent->talent_name }}</h1>
             <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
             @endif
