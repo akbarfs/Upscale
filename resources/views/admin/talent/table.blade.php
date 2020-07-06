@@ -1,46 +1,67 @@
 <style type="text/css">
-	.badge { cursor: pointer; }
+	.badge {
+		cursor: pointer;
+	}
 </style>
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-			  <th>#</th>
-			  <th scope="col">id</th>
-			  <th scope="col">Name</th>
-			  @if (Request::input('contact') )
-			  <th scope="col">Contact</th>
-			  @endif
-			  @if (Request::input('skill') )
-			  <th scope="col">Skills</th>
-			  @endif 
-			  @if (Request::input('date_ready') )
-			  <th scope="col">Ready</th>
-			  @endif
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$('#all-checkbox').click (function () {
+		  $('.talent_id').prop('checked', this.checked);
+		  $(".btnmail").toggle();
+		  $("#mass_del").toggle();
+		});
+	});
+</script>
 
-			  @if (Request::input('ready_jogja') )
-			  <th scope="col">Jogja</th>
-			  @endif
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><input type="checkbox" id="all-checkbox"></th>
+			<th scope="col">id</th>
+			<th scope="col">Name</th>
+			@if (Request::input('contact') )
+			<th scope="col">Contact</th>
+			@endif
+			@if (Request::input('skill') )
+			<th scope="col">Skills</th>
+			@endif
+			@if (Request::input('date_ready') )
+			<th scope="col">Ready</th>
+			@endif
 
-			  @if (Request::input('ready_jakarta') )
-			  <th scope="col">Jakarta</th>
-			  @endif
+			@if (Request::input('ready_jogja') )
+			<th scope="col">Jogja</th>
+			@endif
 
-			  @if (Request::input('isa') )
-			  <th scope="col">ISA</th>
-			  @endif
+			@if (Request::input('ready_jakarta') )
+			<th scope="col">Jakarta</th>
+			@endif
 
-			  @if (Request::input('active') )
-			  <th scope="col">active</th>
-			  @endif
+			@if (Request::input('isa') )
+			<th scope="col">ISA</th>
+			@endif
 
-			  @if (Request::input('member_date') )
-			  <th scope="col">member date</th>
-			  @endif
+			@if (Request::input('mail_invitation') )
+			<th scope="col">mail invitation</th>
+			@endif
 
-			  @if (Request::input('created') )
-			  <th scope="col">Created</th>
-			  @endif 
+			@if (Request::input('mail_regular') )
+			<th scope="col">mail regular</th>
+			@endif
+
+			@if (Request::input('active') )
+			<th scope="col">active</th>
+			@endif
+
+			@if (Request::input('member_date') )
+			<th scope="col">member date</th>
+			@endif
+
+			@if (Request::input('created') )
+			<th scope="col">Created</th>
+			@endif
 
 			  <th scope="col">Action</th>
 			</tr>
@@ -49,7 +70,33 @@
 			
 			@foreach($data as $talent)
 			<tr>
-			  <td><input type="checkbox" name="delid[]" value="{{$talent->talent_id}}"> </td>
+			  <td><input type="checkbox" name="delid[]" class="talent_id"  value="{{$talent->talent_id}}"> </td> 
+			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+				<script>
+					$(document).ready(function(){
+						
+						$(".btnmail").hide();
+						$(".talent_id").click(function()
+						{
+							jumlah = $('input[name="delid[]"]:checked').length;
+							if (jumlah > 0) 
+							{
+								$("#mass_del").show();
+								$(".btnmail").show();
+								// console.log(jumlah);
+							}
+							else
+							{
+								$("#mass_del").hide();
+								$(".btnmail").hide();
+								// console.log(jumlah);
+							}
+						});
+					  
+					});
+				</script>
+
+
 			  <th scope="row">{{$talent->talent_id}}</th>
 			  <td>
 			  		{{$talent->talent_name}}
@@ -108,6 +155,17 @@
 			  <td>{{ $talent->talent_isa }}</td>
 			  @endif
 
+
+			  @if (Request::input('mail_invitation') )
+			  <td>{{$talent->talent_mail_invitation}}</td>
+			  @endif
+
+
+			  @if (Request::input('mail_regular') )
+			  <td>{{$talent->talent_mail_regular}}</td>
+			  @endif
+
+
 			  @if (Request::input('active') )
 			  <td>
 			  		@if ( isset($talent->talent_last_active))
@@ -135,6 +193,8 @@
 			  @endif
 
 
+
+
 			  @if (Request::input('created') )
 			  <td>
 			  	{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}<br>
@@ -159,11 +219,11 @@
 			  			<i class="fa fa-envelope"></i>
 			  		</a>
 
-					<!-- <a onclick="return confirm('Are you sure to delete this?')" 
+					<a onclick="return confirm('Are you sure to delete this?')" 
 					href="{{url('/admin/talent/delete/'.$talent->talent_id)}}"
 					class="btn btn-sm btn-danger">
 						  	<i class="fa fa-trash"></i>
-					</a> -->
+					</a>
 			  </td>
 			</tr>
 			@endforeach

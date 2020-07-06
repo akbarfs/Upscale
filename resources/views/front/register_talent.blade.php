@@ -231,25 +231,29 @@
                 data: $('#talent-update-profile').serialize(),
                 success: function(data)
                 {
-                    $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar, silahkan apply lowongan yang tersedia di menu jobs");
+                    $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar, silahkan lengkapi data diri anda agar kami dapat mengenal core kompetensi anda, <a href='{{url('/profile')}}'>klik disini</a> ");
                     $('#login-form').trigger("reset");
                     $(".modal-footer").hide(); 
                     $(".question_box").removeClass('show_box'); 
                     $(".registerTalent").hide(); 
 
-                    if ( typeof redirect != 'undefined' )
-                    {
-                        window.location.href = redirect ; 
-                    }
-                    else
-                    {
-                        // location.reload();
-                        setTimeout(function () {
-                              window.location.href = "{{url('jobs')}}";
-                        }, 3000);
+                    
 
-                        
-                    }
+                    setTimeout(function () {
+                              window.location.href = "{{url('/profile')}}" ; 
+                    }, 3000);
+
+                    // if ( typeof redirect != 'undefined' )
+                    // {
+                    //     window.location.href = "{{url('/profile')}}" ; 
+                    // }
+                    // else
+                    // {
+                    //     // location.reload();
+                    //     setTimeout(function () {
+                    //           window.location.href = "{{url('jobs')}}";
+                    //     }, 3000);
+                    // }
                 },
                 error: function(data){
                     
@@ -904,7 +908,7 @@
                                         }); 
                                     </script>
                                     
-                                    <select class="custom-select" id="luar_kota_option">
+                                    <select class="custom-select" name="luar_kota_option" id="luar_kota_option">
                                         <option value="">-- pilih --</option>
                                         <option value="yes">Bersedia</option>
                                         <option value="no">Tidak</option>

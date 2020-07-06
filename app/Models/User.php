@@ -14,8 +14,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = 'users';
+    protected static $tablename = 'users';
+    protected $primaryKey = 'id';
+    
     protected $fillable = [
-        'name', 'username', 'password','email','level'
+        'id', 'name', 'username', 'password','email','level'
     ];
 
     /**
@@ -30,5 +35,15 @@ class User extends Authenticatable
     function talent()
     {
         return $this->hasOne("App\Models\Talent");
+    }
+
+    public function talent_data()
+	{	
+		return $this->hasMany('App\Models\Talent' ,'talent_id', 'id');
+    }
+    
+    public function talent_education()
+    {
+        return $this->hasMany('App\Models\Education', 'edu_talent_id', 'id');
     }
 }
