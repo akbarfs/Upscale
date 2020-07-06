@@ -123,16 +123,16 @@ public function insertData(Request $request){
             'nama'=>'required|string|max:150',
             'email'=>'required|string|email|max:100|unique:users',
             'gender'=>'required',
-            'martialstatus'=>'required',
-            'phone'=>'required|string|max:30',        
-            'skill'=>'required',
-            'level'=>'required',
-            'currentaddress'=>'required',
-            'freelancehour'=>'required|numeric|nullable',
-            'projectmin'=>'required|numeric|nullable',
-            'projectmax'=>'required|numeric|nullable',
-            'konsulrate'=>'required|numeric|nullable',
-            'tutorrate'=>'required|numeric|nullable'
+            // 'martialstatus'=>'required',
+            // 'phone'=>'required|string|max:30',        
+            // 'skill'=>'required',
+            // 'level'=>'required',
+            // 'currentaddress'=>'required',
+            'freelancehour'=>'sometimes|numeric|nullable',
+            'projectmin'=>'sometimes|numeric|nullable',
+            'projectmax'=>'sometimes|numeric|nullable',
+            'konsulrate'=>'sometimes|numeric|nullable',
+            'tutorrate'=>'sometimes|numeric|nullable'
         ]);
 
 
@@ -143,16 +143,16 @@ public function insertData(Request $request){
             'talent_email' => $request->email,
             'talent_gender' => $request->gender,
             'talent_address' => $request->alamat,
-            'talent_phone' => $request->phone,
+            'talent_phone' => isset($request->phone) ? $request->phone : '',
             'talent_birth_date' => $request->birthdate,
             'talent_place_of_birth' => $request->birthplace,
             'talent_martial_status' => $request->martialstatus,
-            'talent_current_address' => $request->currentaddress,
+            'talent_current_address' => isset($request->currentaddress)?$request->currentaddress:'',
             'talent_condition' => $request->condition,
             'talent_salary' => $request->salary,
             'talent_focus' => $request->focus,
             'talent_start_career' => $request->startcareer,
-            'talent_level' => $request->level,
+            'talent_level' => isset($request->level)?$request->level:"undefined",
             'talent_lastest_salary' => $request->latestsalary,
             'talent_prefered_location' => $request->preflocation,
             'talent_status' => $request->status,
@@ -162,11 +162,11 @@ public function insertData(Request $request){
             'talent_apply' => $request->apply,
             'talent_international' => $request->international,
             'talent_location_id' => '12',
-            'talent_freelance_hour' => $request->freelancehour,
-            'talent_project_min' => $request->projectmin,
-            'talent_project_max' => $request->projectmax,
-            'talent_konsultasi_rate' => $request->konsulrate,
-            'talent_ngajar_rate' => $request->tutorrate,
+            'talent_freelance_hour' => isset($request->freelancehour)?$request->freelancehour:'',
+            'talent_project_min' => isset($request->projectmin)? $request->projectmin: '' ,
+            'talent_project_max' => isset($request->projectmax)? $request->projectmax: '' ,
+            'talent_konsultasi_rate' => isset($request->konsulrate)? $request->konsulrate: '' ,
+            'talent_ngajar_rate' => isset($request->tutorrate)? $request->tutorrate: '' ,
         ]);
 
         $idTalent = DB::table('talent')->insertGetId([ 'talent_name' => $request->nama ]);
@@ -180,23 +180,20 @@ public function insertData(Request $request){
             {
                 $idSkill[] = Skill::where("skill_name",$skill)->first()->skill_id;
             }
+            foreach($idSkill as $insert)
+            {
+
+                DB::table('skill_talent')->insert([
+                'st_talent_id' => $idTalent,
+                'st_skill_id' => $insert,
+                'st_skill_verified' => 'NO',
+                ]);
+            
+            }
 
         }
 
-
-
-
-
-        foreach($idSkill as $insert)
-        {
-
-            DB::table('skill_talent')->insert([
-            'st_talent_id' => $idTalent,
-            'st_skill_id' => $insert,
-            'st_skill_verified' => 'NO',
-            ]);
         
-        }
 
         return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
 
