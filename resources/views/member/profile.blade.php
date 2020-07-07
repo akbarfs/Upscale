@@ -108,6 +108,14 @@
 			    #button-pricing { font-size: 18px; }
 			}
 
+			aside {
+				float: right;
+				width: 50%;
+				overflow: auto;
+				margin-top: 20px;
+				border: 1px  wheat;
+				padding: 5px;
+ }
 		</style>
 
 		<script type="text/javascript">
@@ -126,16 +134,6 @@
 					$("#button-pricing").show();
 				});
 			});
-
-			//appends an "active" class to .popup and .popup-content when the "Open" button is clicked
-				$(".open").on("click", function() {
-				$(".popup-overlay, .popup-content").addClass("active");
-				});
-
-				//removes the "active" class to .popup and .popup-content when the "Close" button is clicked 
-				$(".close, .popup-overlay").on("click", function() {
-				$(".popup-overlay, .popup-content").removeClass("active");
-				});
 
 		</script>
 		
@@ -544,12 +542,6 @@
 			</div>
         </section>
 		
-		<div class="popup-overlay">
-				<div class="popup-content">
-					<p>.</p>
-					<button class="close">Close</button> </div>
-				</div>
-
 		<section id="works" class="works clearfix">
 			
 			<div class="section-header" style="margin-left: 0">
@@ -565,10 +557,10 @@
                 @foreach($talent->talent_portfolio()->get() as $row )
 				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item"  data-sort="value">
 					<div class="item">
-					<a class="open" href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image"></a>
+					<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image"></a>
 							<div class="title">
 								<div class="inner">
-									<h2>{{ $row->portfolio_name }}</h2>
+									<h2 id="demo01" href="#animatedModal">{{ $row->portfolio_name }}</h2>
 									<span>{{ $row->portfolio_tech}}</span>
 								</div>
 							</div>
@@ -579,11 +571,32 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
+			</div>
+			<div id="animatedModal">
+				<div  id="btn-close-modal" class="close-animatedModal"> 
+					CLOSE
+				</div>
+					
+				<div class="modal-content">
+				<div>
+				<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:700px" >
+				<aside>
+				<h2>{{ $row->portfolio_name }}</h2>
+				<h4>{{ $row->portfolio_tech }}</h4>
+				<span>{{ $row->portfolio_desc }}</span>
+            </aside>
+			</div>
+
+				<script>
+            $("#demo01").animatedModal();
+
+        </script>
+		</div>
+		
 		</section>
 
 
-		<section id="works" class="works clearfix">
+		<section id="Testimonial" class="works clearfix">
 			
 			<div class="section-header">
 				<h2>Testimonial</h2>

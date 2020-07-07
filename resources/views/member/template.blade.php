@@ -12,8 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/font-awesome.min.css') }}" media="all">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/magnific-popup.css') }}"  media="all">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/normalize.min.css' )}}" media="all">
+	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/animate.min.css' )}}" media="all">
+
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+
 
 	<script type="text/javascript" src="{{ asset('/cv/js/jquery-1.12.3.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.onepage-scroll.min.js')}}"></script>
@@ -24,8 +29,11 @@
     <script type="text/javascript" src="{{ asset('/cv/bootstrap/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/custom.js')}}"></script>
-    <script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/cv/js/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/cv/js/animatedModal.min.js')}}"></script>
+	
+
 
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet" type="text/css">
@@ -41,6 +49,12 @@
 	    @media only screen and (max-width:480px){   
 	    }
 
+		#btn-close-modal {
+                width:100%;
+                text-align: center;
+                cursor:pointer;
+                color:#fff;
+            }
 	</style>
 
 </head>   
@@ -109,8 +123,8 @@
     </style>
     <div class="main-content pull-right">
     	<div class="main-content pull-right">
-    		@yield("content")
-    	</div>
+			@yield("content")
+    	    	</div>
 	</div>		 
 								          
 </main>
