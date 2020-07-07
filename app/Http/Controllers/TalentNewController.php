@@ -176,7 +176,7 @@ public function insertData(Request $request){
         $validation = $request->validate([
             'nama'=>'required|string|max:150',
             'email'=>'required|string|email|max:100|unique:users',
-            'password'=>'max:150|required_with:confirmpass|same:confirmpass',
+            'password'=>'max:150|required|required_with:confirmpass|same:confirmpass',
             'confirmpass'=>'max:150',
             // 'gender'=>'required',
             // 'alamat'=>'required',

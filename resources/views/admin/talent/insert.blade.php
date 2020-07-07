@@ -87,7 +87,7 @@
 
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="text" class="form-control" id="password" placeholder="" name="password">
+              <input type="password" class="form-control" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$">
 
                 @if($errors->has('password'))
                   <div class="alert alert-danger">{{ $errors->first('password') }}</div>
@@ -99,7 +99,7 @@
 
             <div class="form-group">
               <label for="confirmpass">Confirm Password</label>
-              <input type="text" class="form-control" id="confirmpass" placeholder="" name="confirmpass">
+              <input type="password" class="form-control" id="confirmpass" name="confirmpass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$">
 
                 @if($errors->has('confirmpass'))
                   <div class="alert alert-danger">{{ $errors->first('confirmpass') }}</div>
@@ -118,7 +118,6 @@
                 @endif
 
             </div>
-            
 
 
             <div class="form-group">
