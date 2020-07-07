@@ -65,8 +65,8 @@
             <label for="gender">Gender</label>
             <select id="gender" class="custom-select" name="gender">
                     <option selected  > </option>
-                    <option value="1" {{old('gender',$request->gender) == 1 ? 'selected' : ''>Male</option>
-                    <option value="2" {{old('gender',$request->gender) == 2 ? 'selected' : ''>Female</option>
+                    <option value="1" {{old('gender') == 1 ? 'selected' : ''}}>Male</option>
+                    <option value="2" {{old('gender') == 2 ? 'selected' : ''}}>Female</option>
             </select>
 
                 @if($errors->has('gender'))
@@ -165,8 +165,8 @@
               <label for="martialstatus">Martial Status</label>
               <select id="martialstatus" class="custom-select" name="martialstatus">
                     <option selected> </option>
-                    <option value="1" {{old('martialstatus',$request->martialstatus) == 1 ? 'selected' : ''}}>Single</option>
-                    <option value="2" {{old('martialstatus',$request->martialstatus) == 2 ? 'selected' : ''>Married</option>
+                    <option value="1" {{old('martialstatus') == 1 ? 'selected' : ''}}>Single</option>
+                    <option value="2" {{old('martialstatus') == 2 ? 'selected' : ''}}>Married</option>
               </select>
             </div>
 
