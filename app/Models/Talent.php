@@ -93,11 +93,6 @@ class Talent extends Model
 		return $this->hasMany('App\Models\portfolio' ,'portfolio_talent_id','talent_id');
 	}
 
-	public function talent_foto()
-	{	
-		return $this->hasMany('App\Models\photo' ,'photo_talent_id','talent_id');
-	}
-
 	public function talent_workex()
 	{	
 		return $this->hasMany('App\Models\work_experience' ,'workex_talent_id','talent_id');
