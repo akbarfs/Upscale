@@ -525,7 +525,7 @@
                                 
                                 <div class="menu-right">
                         
-                                <ul  style="text-align: left;">
+                                <ul  style="text-align: center;">
                                     <li class="dropdown">
                                         <a href="{{Request::url()}}?lang=en">
                                             <!-- <img src="{{url('template/upscale/media/profile.png')}}" alt="" /> -->

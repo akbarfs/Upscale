@@ -40,63 +40,46 @@
 
           
           <div class="card-body">
-          @foreach ( $interview->get() as $row )
+                
                 <div class="info alert alert-warning" style="display: none"></div>
                 
                
                 <div class="form-group">
-                
-                   <div class="row">
-                  
-                      <div class="col-md-4"><label for="Name"><p>1. Soal satu</p>
-                      Jawaban
-                      </label></div>
-                      
-                      <div >
-                        <textarea rows="3" name="project[]" class="form-control" value="{{$row->it_answer}}">
-                        
-                        </textarea>
-                      </div>
-                   </div>
-                   @endforeach
+                   @foreach($question as $row)
+                          <div class="row">
+                          
+                            <div class=""><label for="Name"><p> {{$row->question_text}} </p>
+                            Jawaban
+                            </label>
+                            </div>  
+                           
+                            <div >
+                            @foreach ( $interview->get() as $row )
+                              <textarea rows="" name="project[]" class="form-control" value="">
+                              {{$row->it_answer}}
+                              </textarea>
+                            @endforeach
+                           </br>
+                            </div>
+                        </div>
+                    @endforeach
+
+                       
+                   
 
                 </div>
 
-                <div class="form-group">
-                   <div class="row">
-                      <div class="col-md-4"><label for="Name"><p>2. Soal satu </p>
-                      Jawaban
-                      </label></div>
-                      <div >
-                        <textarea rows="3" name="project[]" class="form-control"></textarea>
-                      </div>
-                   </div>
-                </div>
-
-                <div class="form-group">
-                   <div class="row">
-                      <div class="col-md-4"><label for="Name"><p>3. Soal satu </p>
-                      Jawaban
-                      </label></div>
-                      <div>
-                        <textarea rows="3" name="project[]" class="form-control"></textarea>
-                      </div>
-                   </div>
-                </div>
              
           </div>
          
  
       </div>
-      
+  </form>
 
-      
       <div align="right">
           <a class="btn btn-primary" href="/profile" ><font color="#FFFFFF">Cancel</font></a>
-          <button type="submit" class="btn btn-primary">SUBMIT</button>
+          <button type="submit" class="btn btn-primary">SAVE</button>
       </div>
-
-  </form>
 </section>
 
 

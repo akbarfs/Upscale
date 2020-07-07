@@ -322,8 +322,18 @@ class MemberController extends Controller
         $update['talent_phone'] = $request->phone ; 
         $update->save(); 
 
-        return back()->with("message","berhasil mengupdate"); ;
+        return back()->with("message","berhasil mengupdate"); 
 
+    }
+
+    public function editInterviewPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $update->save(); 
+        return back()->with("message","berhasil mengupdate"); 
     }
 
     public function editEducation()
@@ -344,8 +354,16 @@ class MemberController extends Controller
         $user = User::find($id); 
         $talent = $user->talent()->first();
         $interview = $talent->talent_interviewtest();
+        //dd($talent->talent_id);
+        //$question = $talent->talent_question();
 
-        return view("member.editInterview",compact('talent','interview'));
+        //$coba = $interview->interview_question();
+
+        $question = DB::table('question')->get();
+       return view("member.editInterview", ['question' => $question], compact('talent','interview','question','coba'));
+
+       
+        //return view("member.editInterview",compact('talent','interview','question'));
 
     }
 

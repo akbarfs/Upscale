@@ -18,12 +18,19 @@ class interview_test extends Model
 
     public function interviewtest()
 	{	
-		return $this->hasMany('App\Models\Talent' ,'talent_id', 'it_id');
+		return $this->hasMany('App\Models\Talent' ,'talent_id', 'it_tq_id');
+    }
+
+
+    public  function interview_question()
+	{
+		return $this->hasMany('App\models\QuestionModels', 'question_id', 'it_tq_id');
     }
     
-    public function interview_question()
-    {
-        return $this->hasMany('App\Models\QuestionModels', 'question_id', 'it_id');
-    }
+    public function interview_test()
+{
+	return $this->belongsTo('App\Models\interview_test');
+}
+
 
 }
