@@ -16,4 +16,9 @@ class TestQuestion extends Model
     ];
     public $timestamps = false;
     protected $primaryKey = 'tq_id';
+
+    public function pertanyaan()
+    {
+        return $this->hasOne('App\models\QuestionModels','question_id','tq_question_id');
+    }
 }

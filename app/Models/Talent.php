@@ -107,7 +107,7 @@ class Talent extends Model
 
 	public function talent_interviewtest()
 	{
-		return $this->hasMany('App\Models\interview_test', 'it_talent_id', 'talent_id');
+		return $this->hasMany('App\Models\interview_test','it_talent_id', 'talent_id');
 	}
 
 	public function talent_historyApply()

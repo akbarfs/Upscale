@@ -360,7 +360,7 @@ class MemberController extends Controller
         //$coba = $interview->interview_question();
 
         $question = DB::table('question')->get();
-       return view("member.editInterview", ['question' => $question], compact('talent','interview','question','coba'));
+       return view("member.editInterview", ['question' => $question], compact('talent','interview','question'));
 
        
         //return view("member.editInterview",compact('talent','interview','question'));

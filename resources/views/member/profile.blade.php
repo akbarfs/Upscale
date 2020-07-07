@@ -155,13 +155,19 @@
 				@endif 
 			</div>
 			<div class="row" >
-			@foreach($talent->talent_interview()->get() as $row )
-						<div class="col-md-12 col-sm-12 col-xs-12" >
-							<div class="top-item resume-item">
-							<h2></h2>
-							<h6>{{ $row->it_answer }}</h6>
-							</div>
-						</div>
+			@foreach($talent->talent_interviewtest()->get() as $row )
+				<div class="col-md-12 col-sm-12 col-xs-12" >
+					<div class="top-item resume-item">
+					<h2>
+
+						@if ( $soal = $row->test_question->pertanyaan )
+							{{$soal->question_text}}<br>
+							{{$soal->question_desc}}
+						@endif
+					</h2>
+					<h6>{{ $row->it_answer }}</h6>
+					</div>
+				</div>
 			@endforeach	
 			</div>
 		</section>
