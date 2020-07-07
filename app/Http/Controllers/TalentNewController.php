@@ -178,6 +178,7 @@ public function insertData(Request $request){
             'email'=>'required|string|email|max:100|unique:users',
             'password'=>'max:150|required|required_with:confirmpass|same:confirmpass',
             'confirmpass'=>'max:150',
+            'username'=>'required|string|max:150',
             // 'gender'=>'required',
             // 'alamat'=>'required',
             // 'phone'=>'required|string|max:30',
@@ -211,7 +212,7 @@ public function insertData(Request $request){
 
         $user_id = DB::table('users')->insertGetId([
                 'name' => $request->nama,
-                'username' => 'User',
+                'username' => $request->username,
                 'email' => $request->email,
                 'password' => $request->password,
                 'level' => isset($request->level)?$request->level:"undefined",
@@ -224,7 +225,7 @@ public function insertData(Request $request){
             'user_id' => $user_id ,
             'talent_name' => $request->nama,
             'talent_email' => $request->email,
-            'talent_gender' => $request->gender,
+            'talent_gender' => isset($request->gender) ? $request->gender : '',
             'talent_address' => $request->alamat,
             'talent_phone' => isset($request->phone) ? $request->phone : '',
             'talent_birth_date' => $request->birthdate,
@@ -252,6 +253,8 @@ public function insertData(Request $request){
             'talent_ngajar_rate' => isset($request->tutorrate)? $request->tutorrate: '' ,
         ]);
 
+
+
         
 
         $idTalent = DB::table('talent')->insertGetId([ 'talent_name' => $request->nama ]);
@@ -278,9 +281,14 @@ public function insertData(Request $request){
 
         }
 
-        
+
 
         return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
+        
+
+        
+
+        
 
        
     }

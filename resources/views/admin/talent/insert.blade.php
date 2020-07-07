@@ -40,7 +40,7 @@
             @csrf
             <div class="form-group">
             <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" placeholder="">
+            <input type="text" class="form-control" id="nama" name="nama" value="old('name',$request->nama)">
 
                 @if($errors->has('nama'))
                   <div class="alert alert-danger" >{{ $errors->first('nama') }}</div>
@@ -51,7 +51,7 @@
         
             <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="">
+            <input type="text" class="form-control" id="email" name="email" placeholder="" value="old('email',$request->email)">
 
                 @if($errors->has('email'))
                   <div class="alert alert-danger" >{{ $errors->first('email') }}</div>
@@ -63,10 +63,10 @@
 
             <div class="form-group">
             <label for="gender">Gender</label>
-            <select id="gender" class="custom-select" name="gender" >
-                    <option selected> </option>
-                    <option>Male</option>
-                    <option>Female</option>
+            <select id="gender" class="custom-select" name="gender">
+                    <option selected  > </option>
+                    <option value="1" {{old('gender',$request->gender) == 1 ? 'selected' : ''>Male</option>
+                    <option value="2" {{old('gender',$request->gender) == 2 ? 'selected' : ''>Female</option>
             </select>
 
                 @if($errors->has('gender'))
@@ -75,9 +75,11 @@
 
             </div>
 
+
+
             <div class="form-group">
               <label for="alamat">Alamat</label>
-              <input type="text" class="form-control" id="alamat" placeholder="" name="alamat">
+              <input type="text" class="form-control" id="alamat" placeholder="" name="alamat" value="old('alamat',$request->alamat)">
 
                 @if($errors->has('alamat'))
                   <div class="alert alert-danger">{{ $errors->first('alamat') }}</div>
@@ -85,9 +87,24 @@
 
             </div>
 
+
+
+
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="" name="username" value="old('username',$request->username)">
+
+                @if($errors->has('username'))
+                  <div class="alert alert-danger">{{ $errors->first('username') }}</div>
+                @endif
+
+            </div>
+
+
+
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$">
+              <input type="password" class="form-control" id="password" name="password" value="old('password',$request->password)">
 
                 @if($errors->has('password'))
                   <div class="alert alert-danger">{{ $errors->first('password') }}</div>
@@ -99,7 +116,7 @@
 
             <div class="form-group">
               <label for="confirmpass">Confirm Password</label>
-              <input type="password" class="form-control" id="confirmpass" name="confirmpass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$">
+              <input type="password" class="form-control" id="confirmpass" name="confirmpass">
 
                 @if($errors->has('confirmpass'))
                   <div class="alert alert-danger">{{ $errors->first('confirmpass') }}</div>
@@ -111,7 +128,7 @@
 
             <div class="form-group">
               <label for="phone">Phone Number / WA</label>
-              <input type="text" class="form-control" id="phone" name="phone" placeholder="">
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="old('phone',$request->phone)">
 
                 @if($errors->has('phone'))
                   <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
@@ -122,7 +139,7 @@
 
             <div class="form-group">
               <label for="datepicker">Birth Date</label>
-              <input type="text" name="birthdate" class="form-control" id="birthdate">
+              <input type="text" name="birthdate" class="form-control" id="birthdate" value="old('birthdate',$request->birthdate)">
 
                @if($errors->has('birthdate'))
                   <div class="alert alert-danger">{{ $errors->first('birthdate') }}</div>
@@ -134,7 +151,7 @@
 
             <div class="form-group">
               <label for="birthplace">Birth Place</label>
-              <input type="text" class="form-control" id="birthplace" name="birthplace" placeholder="" >
+              <input type="text" class="form-control" id="birthplace" name="birthplace" placeholder=""  value="old('birthplace',$request->birthplace)">
 
                 @if($errors->has('birthplace'))
                   <div class="alert alert-danger">{{ $errors->first('birthplace') }}</div>
@@ -148,14 +165,14 @@
               <label for="martialstatus">Martial Status</label>
               <select id="martialstatus" class="custom-select" name="martialstatus">
                     <option selected> </option>
-                    <option>Single</option>
-                    <option>Married</option>
+                    <option value="1" {{old('martialstatus',$request->martialstatus) == 1 ? 'selected' : ''}}>Single</option>
+                    <option value="2" {{old('martialstatus',$request->martialstatus) == 2 ? 'selected' : ''>Married</option>
               </select>
             </div>
 
             <div class="form-group">
               <label for="currentaddress">Current Address</label>
-              <input type="text" class="form-control" id="currentaddress" name="currentaddress" placeholder="">
+              <input type="text" class="form-control" id="currentaddress" name="currentaddress" placeholder="" value="old('currentaddress',$request->currentaddress)">
 
                 @if($errors->has('currentaddress'))
                   <div class="alert alert-danger">{{ $errors->first('currentaddress') }}</div>
@@ -223,7 +240,8 @@
                                 data-url="{{url('json/skill')}}"
                                 data-load-once="true"
                                 placeholder="Skill"
-                                name="skill" />
+                                name="skill" 
+                                 value="old('skill',$request->skill)" />
 
                             @if($errors->has('skill'))
                             <div class="alert alert-danger">{{ $errors->first('skill') }}
@@ -236,7 +254,7 @@
 
                 <div class="form-group">
                 <label for="salary">Salary</label>
-                <input type="text" class="form-control" id="salary" placeholder="" name="salary">
+                <input type="text" class="form-control" id="salary" placeholder="" name="salary" value="old('salary',$request->salary)">
                 </div>
         
         
@@ -268,7 +286,7 @@
 
                 <div class="form-group">
                 <label for="startcareer">Start Career</label>
-                <input type="text" class="form-control" id="startcareer" name="startcareer" placeholder="" >
+                <input type="text" class="form-control" id="startcareer" name="startcareer" placeholder=""  value="old('startcareer',$request->startcareer)">
                 </div>
         
         
@@ -292,14 +310,14 @@
 
                 <div class="form-group">
                       <label for="lastestsalary">Lastest Salary (Rp)</label>
-                      <input type="text" class="form-control" id="lastestsalary" name="lastestsalary" placeholder="" >
+                      <input type="text" class="form-control" id="lastestsalary" name="lastestsalary" placeholder=""  value="old('lastestsalary',$request->lastestsalary)">
                 </div>
 
 
 
                 <div class="form-group">
                       <label for="preflocation">Prefered Location</label>
-                      <input type="text" class="form-control" id="preflocation" name="preflocation" placeholder="" >
+                      <input type="text" class="form-control" id="preflocation" name="preflocation" placeholder=""  value="old('preflocation',$request->preflocation)">
                 </div>
       
       
@@ -382,7 +400,7 @@
 
                 <div class="form-group">
                       <label for="freelancehour">Freelance Hours</label>
-                      <input type="text" class="form-control" id="freelancehour" name="freelancehour" placeholder="" >
+                      <input type="text" class="form-control" id="freelancehour" name="freelancehour" placeholder=""  value="old('freelancehour',$request->freelancehour)">
 
                       @if($errors->has('freelancehour'))
                         <div class="alert alert-danger">{{ $errors->first('freelancehour') }}</div>
@@ -394,7 +412,7 @@
 
                 <div class="form-group">
                       <label for="projectmin" >Project Min</label>
-                      <input type="text" class="form-control" id="projectmin" placeholder="" name="projectmin" >
+                      <input type="text" class="form-control" id="projectmin" placeholder="" name="projectmin"  value="old('projectmin',$request->projectmin)">
 
                       @if($errors->has('projectmin'))
                         <div class="alert alert-danger">{{ $errors->first('projectmin') }}</div>
@@ -404,7 +422,7 @@
 
                 <div class="form-group">
                       <label for="projectmax">Project Max</label>
-                      <input type="text" class="form-control" id="projectmax" name="projectmax" placeholder="" >
+                      <input type="text" class="form-control" id="projectmax" name="projectmax" placeholder=""  value="old('projectmax',$request->projectmax)">
 
                       @if($errors->has('projectmax'))
                         <div class="alert alert-danger">{{ $errors->first('projectmax') }}</div>
@@ -414,7 +432,7 @@
 
                 <div class="form-group">
                       <label for="konsulrate">Konsultasi Rate</label>
-                      <input type="text" class="form-control" id="konsulrate" name="konsulrate" placeholder="" >
+                      <input type="text" class="form-control" id="konsulrate" name="konsulrate" placeholder=""  value="old('konsulrate',$request->konsulrate)">
 
                       @if($errors->has('konsulrate'))
                         <div class="alert alert-danger">{{ $errors->first('konsulrate') }}</div>
@@ -425,7 +443,7 @@
 
                 <div class="form-group">
                       <label for="tutorrate">Tutor Rate</label>
-                      <input type="text" class="form-control" id="tutorrate" name="tutorrate" placeholder="" >
+                      <input type="text" class="form-control" id="tutorrate" name="tutorrate" placeholder=""  value="old('tutorrate',$request->tutorrate)">
 
                       @if($errors->has('tutorrate'))
                         <div class="alert alert-danger">{{ $errors->first('tutorrate') }}</div>
