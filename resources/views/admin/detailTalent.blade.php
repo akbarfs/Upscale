@@ -105,16 +105,15 @@
                                     <a href="{{url('admin/detail-talent')}}">
                                     @if ($all->talent_foto)
                                     @php $random = date("his") @endphp
-                                    <img src="{{url('storage/photo/'.$talent->talent_foto)}}?v={{$random}}" alt="avatar">
+                                    <img src="{{url('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar">
                                     @else
                                     <img src="{{url('img/images.jpg')}}" alt="avatar">
                                         <label class=" form-control-label">  </label>
-                                    @endif
                                     </div>
                                     <div class="col-12 col-md-8">
 
                                       <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
-                                    
+                                      @endif
                                     </div>
                                 </div>
                             </div>
@@ -2287,7 +2286,7 @@
 
                                 </div>
                                 <div class="form-group col-md-6">
-                                <!-- label for="text-input" class=" form-control-label">Skill</label>
+                                <!-- <label for="text-input" class=" form-control-label">Skill</label>
                                     @push('script')
     
 							<script src="{{url('template/upscale/js/tag.js')}}"></script>
