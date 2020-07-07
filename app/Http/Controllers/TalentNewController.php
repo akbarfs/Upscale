@@ -209,7 +209,7 @@ public function insertData(Request $request){
 
         
 
-        DB::table('users')->insert([
+        $user_id = DB::table('users')->insertGetId([
                 'name' => $request->nama,
                 'username' => 'User',
                 'email' => $request->email,
@@ -221,6 +221,7 @@ public function insertData(Request $request){
         
 
         DB::table('talent')->insert([
+            'user_id' => $user_id ,
             'talent_name' => $request->nama,
             'talent_email' => $request->email,
             'talent_gender' => $request->gender,
