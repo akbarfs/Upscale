@@ -10,7 +10,7 @@
         <div class="card ">
             <div class="card-body">
             <h6> Dashboard / createEmail </h6><br>
-            <a href=""><button class="btn btn-default btn-sm" type="submit" id="search" style="margin-left:60px">Back</button></a>
+            <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-outline-primary btn-sm" type="submit" id="search" style="margin-left:60px">Back</button></a>
             <br><br>
 
                 <div class="card" style="width: 55rem; margin-left:7%">
@@ -46,15 +46,15 @@
                             </div>
                         </div>
 
-                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="padding:3% 0% 3% 7%; margin-bottom:20px">
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#createEmail-preview" id="" style="margin:2% 60% 2% 5%">Preview</button>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="padding:2% 0% 3% 7%; margin-bottom:20px; width: 50rem">
+                            <div class="btn" role="group" aria-label="First group">
+                                <button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#createEmail-preview" id="" style="margin:2% 0% 2% 5%">Preview</button>
                             </div>
-                            <div class="btn-group mr-2" role="group" aria-label="First group" style="margin:0% 0% 0% 60%">
-                                <a href="mail"><button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" style="margin:4% 0% 4% 62%">Cancel</button></a>            
+                            <div class="btn" role="group" aria-label="First group" style="margin:0% 0% 0% 65%">
+                                <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" >Cancel</button></a>            
                             </div>
-                            <div class="btn-group mr-2" role="group" aria-label="First group" style="margin:0% 0% 0% 5%">
-                                <a href="mail"><button type="button" class="btn btn-success btn-sm" data-dismiss="modal" style="margin:4% 0% 4% 1%">Save</button></a>
+                            <div class="btn" role="group" aria-label="First group" style="margin:0% 0% 0% 0%">
+                                <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Save</button></a>
                             </div>
                         </div>
 

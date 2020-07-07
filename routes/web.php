@@ -294,7 +294,7 @@ Route::get("/profile/edit-cv", "MemberController@editCv");
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			Route::get('/mailSend','TalentNewController@mailSend');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
-			Route::get('/createTypeEmail/{id}', 'TalentNewController@createTypeEmail');
+			Route::get('/create-type-email/{id}', 'TalentNewController@createTypeEmail');
 
 			Route::get('/list/insert', 'TalentNewController@insert');
 			Route::get('/list/insert/data', 'TalentNewController@insertData');
