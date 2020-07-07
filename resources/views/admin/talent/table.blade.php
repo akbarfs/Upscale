@@ -205,13 +205,16 @@
 			  </td>
 			  @endif
 
-			  <td>
+			  <td style="min-width: 200px">
 			  		<a href="{{url('/admin/talent/detail?id='.$talent->talent_id)}}" 
+			  		class="btn btn-sm btn-primary" target="_blank">
+			  			<i class="fa fa-pencil"></i>
+			  		</a>
+
+			  		<a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" 
 			  		class="btn btn-sm btn-primary" target="_blank">
 			  			<i class="fa fa-user-o"></i>
 			  		</a>
-
-			  		
 
 			  		<a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}" 
 			  		class="btn btn-sm btn-primary" target="_blank">
@@ -221,6 +224,11 @@
 			  		<?php $wa = preg_replace('/^0?/', '62', $talent->talent_phone); ?>
 			  		<a class="btn btn-success btn-sm button-wa" data-toggle="modal" style="color: #fff" 
 					data-target="#wa" data-wa='{{$wa}}' data-nama='{{$talent->talent_name}}'> <i class=" fa fa-whatsapp"></i> </a>
+
+					<a href="{{url('/loginas/'.encrypt_custom($talent->talent_id))}}" 
+			  		class="btn btn-sm btn-primary" target="_blank">
+			  			<i class="fa fa-sign-in"></i>
+			  		</a>
 
 					<!-- <a onclick="return confirm('Are you sure to delete this?')" 
 					href="{{url('/admin/talent/delete/'.$talent->talent_id)}}"
@@ -243,16 +251,34 @@
 		{
 			wa = $(this).data("wa");
 			nama = $(this).data("nama");
-			$(".wa-pilih").each(function(index)
+			$(".wa-pilih").click(function(index)
 			{
-				link = $(this).attr("href");
-				link = link.replace("#wa#", wa);
-				link = link.replace("#nama#", nama);
+				type = $(this).data("type")  ;
+				if ( type == 'say-hai')
+				{
+					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', perkenalkan saya Dodi dari upscale.id'; 
+				}
+				else if ( type == 'cv-interview-umum')
+				{
+					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar menjadi member di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya kami perlu tau harapan anda ketika menjadi member upscale, apakah ingin mencari lowongan pekerjaan, mencari project freelance atau mungkin ada harapan lainya.%0A %0A Oleh sebab itu apakah besok / hari ini bisa saya interview via online?'; 
+				} 
+				else if ( type == 'cv-interview-jobs')
+				{
+					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar lowongan kerja di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya apakah besok / hari ini bisa saya interview via online?'; 
+				} 
+
+				// link = link.replace("#wa#", wa); 
+				// link = link.replace("#nama#", nama);
+				// alert(link); return false ;
 				$(this).attr("href",link); 
+
 			});
 		});	
 	});
 </script>
+<style type="text/css">
+	.wa-pilih { margin-bottom: 10px; }
+</style>
 
 <div class="modal fade" id="wa" role="dialog">
 	<div class="modal-dialog">
@@ -264,14 +290,20 @@
 			</div>
 			<div class="modal-body">
 				
-				<a href="https://api.whatsapp.com/send?phone=#wa#&amp;text=Halo #nama#, perkenalkan saya Dodi dari upscale.id" type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
+				<a href="#" data-type="say-hai" type="button" target="_blank" 
+				class="btn btn-success btn-sm wa-pilih">
 					<i class=" fa fa-whatsapp"></i> 
 					Say Hello
 				</a>
 
-				<a href="https://api.whatsapp.com/send?phone=#wa#&amp;text=Halo #nama#, saya lihat anda sudah mendaftar menjadi member di Upscale.id, bisa saya interview via online? %0A%0Asebelumnya silahkan lengkapi dulu informasi profile anda di link berikut:? " type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
+				<a href="#" data-type='cv-interview-umum' type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
 					<i class=" fa fa-whatsapp"></i> 
-					Lengkapin CV + interview
+					Lengkapin CV + interview umum
+				</a>
+
+				<a href="#" data-type='cv-interview-jobs' type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
+					<i class=" fa fa-whatsapp"></i> 
+					Lengkapin CV + interview job
 				</a>
 
 			</div>

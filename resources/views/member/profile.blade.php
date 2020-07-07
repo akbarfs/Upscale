@@ -107,7 +107,7 @@
             		<h2>About Me</h2>
 				</div>
 
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" style="background: green" href="{{url('/member/edit-cv')}}">upload cv</a>
 					<a class="edit" href="{{url('/member/edit-basic-profile')}}">edit</a>
 				@else 
@@ -130,9 +130,23 @@
 
             <div class="intro" id="about">
                  @if($talent)
+
+                 	@php
+						$name = explode(" ",$talent->talent_name) ; 
+						if ( count($name) > 0 )
+						{
+							$panggilan = $name[0];
+							$nama =  $name[0]." (".$talent->talent_id.")";
+						}
+						else
+						{
+							$panggilan = $name ; 
+							$nama = " (".$talent->talent_id.")"; 
+						}
+					@endphp
 					
 					<p style="text-align: justify">
-						Hi, perkenalkan nama saya <b>{{ $talent->talent_name }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
+						Hi, perkenalkan nama saya <b>{{ $panggilan }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
 					</p>
 
 
@@ -140,9 +154,11 @@
 					<div class="row biodata" style="padding-left:15px">
 						<table class="col-md-6 col-sm-6 col-xs-12">
 							<tr>
-								<td width="40%"><strong>Nama</strong></td>
+								<td width="40%"><strong>Nama & Kode</strong></td>
 								<td><strong>:&nbsp</strong></td>
-								<td>{{$talent->talent_name}}</td>
+								<td style="font-weight: bold">
+									{{$nama}}
+								</td>
 							</tr>
 							<tr>
 								<td><strong>Umur</strong></td>
@@ -220,7 +236,7 @@
 
 	            @endif
 
-	            @if (Request::segment(2) != '')
+	            @if ( !$lock && Request::segment(2) != '')
 					
 					<hr>
 
@@ -426,7 +442,7 @@
 
 					<div class="section-header" style="margin: 20px 0 -20px 15px;">
 			             <h2>Skills</h2>
-			             @if (Request::segment(2) == '') 
+			             @if ( !$lock && Request::segment(2) == '') 
 			             <a class="edit" href="{{url('/member/edit-skill')}}">edit</a>
 			             @endif
 		            </div>
@@ -468,7 +484,7 @@
 		<section id="experience" class="resume">
 			<div class="section-header" style="margin-left: 0">
 				<h2>Work Experience</h2>
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-work')}}">edit</a>
 				@endif 
 			</div>
@@ -489,7 +505,7 @@
         <section id="education" class="resume">
 			<div class="section-header" style="margin-left: 0">
 				<h2>Education</h2>
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-education')}}">edit</a>
 				@endif
 			</div>
@@ -511,7 +527,7 @@
 			
 			<div class="section-header" style="margin-left: 0">
 				<h2>Portfolio</h2>
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-porto')}}">edit</a>
 				@endif 
 			</div>

@@ -112,4 +112,9 @@ class Talent extends Model
 		return $this->hasMany('App\Models\historyApply' ,'jobs_apply_talent_id','talent_id');
 	}
 
+	public function user()
+	{
+		return $this->belongsTo('App\User','user_id','id');
+	}
+
 }

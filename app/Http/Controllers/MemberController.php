@@ -294,10 +294,21 @@ class MemberController extends Controller
         {
             $id = Session::get("user_id"); 
         }
+        else
+        {
+            $id = decrypt_custom($id); 
+            $id = (int) $id ;
+        }
         
         $user = User::findOrFail($id); 
         $talent = $user->talent()->first(); 
-        return view("member.profile",compact('talent'));   
+
+        $lock = false ; 
+        if ( $talent->talent_notes_report_talent != "" ) 
+        {
+            $lock = true ; 
+        }
+        return view("member.profile",compact('talent','lock'));   
     }
 
     public function editBasic()
@@ -306,7 +317,9 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
-       
+        
+        $this->lock($talent);
+
         return view("member.editBasicProfile", compact('talent'));
     }
 
@@ -324,7 +337,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
-
+        $this->lock($talent);
 
         $update = Talent::find($talent->talent_id); 
 
@@ -394,7 +407,7 @@ class MemberController extends Controller
         $user = User::find($id); 
         $talent = $user->talent()->first();
         $education = $talent->talent_education();
-
+        $this->lock($talent);
         return view("member.editEducation",compact('talent','education'));
     }
 
@@ -404,6 +417,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first();
+        $this->lock($talent);
 
         $jumlah = count($request->edu_name);
         if ( $jumlah > 0 )
@@ -447,6 +461,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first();
+        $this->lock($talent);
         $work = $talent->talent_workex();
 
         return view("member.editWork",compact('talent','work'));
@@ -458,6 +473,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first();
+        $this->lock($talent);
 
         $jumlah = count($request->name);
         if ( $jumlah > 0 )
@@ -502,6 +518,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
        
         return view("member.editSkill",compact('talent'));
     }
@@ -562,6 +579,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         return view("member.editCv",compact('talent'));
     }
@@ -575,6 +593,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
 
         $update = Talent::find($talent->talent_id); 
@@ -598,6 +617,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         return view("member.editPorto",compact('talent'));
     }
@@ -612,6 +632,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         $screenshoot = $request->file('screenshoot');
         if ($screenshoot)
@@ -662,6 +683,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         return view("member.updatePorto",compact('porto','talent'));
     }
@@ -718,6 +740,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first();  
+        $this->lock($talent);
         return view('member.cropPorto',compact('porto','talent'));
     }
 
@@ -789,6 +812,14 @@ class MemberController extends Controller
         imagejpeg($dst_r, 'storage/photo/'.$talent->talent_foto, $jpeg_quality);
 
         return redirect('member/edit-basic-profile'); 
+    }
+
+    function lock($talent)
+    {
+        if ( $talent->talent_notes_report_talent != "" ) 
+        {
+            return abort(404); 
+        }
     }
     
     
