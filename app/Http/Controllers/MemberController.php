@@ -383,6 +383,7 @@ class MemberController extends Controller
         {
             return back()->with("message","berhasil mengupdate"); ;
         }
+    }
 
     public function editInterviewPost(Request $request)
     {
