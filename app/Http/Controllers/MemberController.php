@@ -410,6 +410,32 @@ class MemberController extends Controller
         return back()->with("message","berhasil menghapus") ; 
     }
 
+    public function editCertification()
+    {
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+        $certification = $talent->talent_certification();
+        
+        //dd($certification->certif_talent_id);
+        //dd($talent->talent_id);
+
+
+        return view("member.editCertification", compact('talent', 'certification'));
+    }
+
+    public function editCertificationPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $update->save(); 
+        return back()->with("message","berhasil mengupdate"); 
+    }
+
+
     public function editWork()
     {
         $id = Session::get("user_id"); 

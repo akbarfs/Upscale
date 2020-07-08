@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class certification extends Model
 {
     protected $table = 'certification';
-	protected $primaryKey = 'certif_talent_id';
-	protected $fillable = ['certif_name','edu_datestart', 'certif years', 'certif_company', 'certif_desc','certif_number','certif_expired'];
+	protected $primaryKey = 'certif_id';
+	protected $fillable = [ 'certif_name', 'certif years', 'certif_company', 'certif_desc','certif_number','certif_expired'];
+	public $timestamps = false;
 
     public function certification() {
 		return $this->belongsTo('App\Models\certification');

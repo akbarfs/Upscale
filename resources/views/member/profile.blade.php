@@ -1,7 +1,7 @@
 @extends('member.template')
 @section("content")
-	
-        <section id="about" class="about">
+
+<section id="about" class="about">
             <div class="section-header">
              <h2>About Me</h2>
              
@@ -104,7 +104,7 @@
 				</div>
              </div>
         </section>
-		
+
 		<section id="experience" class="resume">
 			<div class="section-header">
 				<h2>Work Experience</h2>
@@ -126,7 +126,7 @@
 			</div>
 		</section>
 
-        <section id="education" class="resume">
+		<section id="education" class="resume">
 			<div class="section-header">
 				<h2>Education</h2>
 				@if (Request::segment(2) == '') 
@@ -147,6 +147,17 @@
 			</div>
         </section>
 
+		<section id="education" class="resume">
+			<div class="section-header">
+				<h2>Certification</h2>
+				@if (Request::segment(2) == '') 
+					<a class="edit" href="{{url('/member/edit-certification')}}">edit</a>
+				@endif
+			</div>
+			
+
+        </section>
+
 		<section id="experience" class="resume">
 			<div class="section-header">
 				<h2>Interview</h2>
@@ -159,8 +170,7 @@
 				<div class="col-md-12 col-sm-12 col-xs-12" >
 					<div class="top-item resume-item">
 					<h2>
-
-						@if ( $soal = $row->test_question->pertanyaan )
+						@if ( $soal = $row->interview_question()->first() )
 							{{$soal->question_text}}<br>
 							{{$soal->question_desc}}
 						@endif
@@ -171,7 +181,7 @@
 			@endforeach	
 			</div>
 		</section>
-		
+
 		<section id="works" class="works clearfix">
 			
 			<div class="section-header">
@@ -268,4 +278,7 @@
 		      <input type="submit" name="submit" id="submit" value="Send Message" class="btn btn-default pull-left">
 		   </form>
 		</section> -->
+
+	
+        
 @endsection
