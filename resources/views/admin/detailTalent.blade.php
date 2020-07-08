@@ -599,6 +599,7 @@
                                         <a href="" id="downloadbutton" data-idtalent="{{$all->talent_id}}" data-toggle="modal" data-target="#download-report" type="button" class="btn-success btn"><i class="fa fa-arrow-down"></i> Download</a>
                                         {{-- <a  type="button" id="tombol-download" class="btn btn-info"> Download</a> --}}
 
+
                                         <div id="preview-report">
                                                 <div class="container"><br>
                                                         <center>
