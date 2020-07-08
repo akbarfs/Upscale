@@ -842,6 +842,62 @@ class MemberController extends Controller
         return redirect('member/edit-basic-profile'); 
     }
 
+    public function personalityTest()
+    {
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=','3')
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        foreach ($test as $row) 
+        {
+            $check = DB::table('interview_test')->where('it_tq_id','=',$row->tq_id)->where('it_talent_id','=',$talent->talent_id)->first();
+            if(isset($check->it_answer))
+            {
+                $answer[$row->tq_id] = $check->it_answer;
+            }
+            else
+            {
+                $answer[$row->tq_id] = "";
+            }
+        }
+
+        return view('member/personalityTest',compact('talent','test','answer'));
+    }
+
+    public function personalityTestPost(Request $request)
+    {
+        $this->validate($request, ['answer.*' => 'required|min:2']);
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=','3')
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        foreach ( $test as $row )
+        {
+            $jawaban =  $request->answer[$row->tq_id];
+            DB::table('interview_test')->updateOrInsert(
+                array('it_talent_id'=>$talent->talent_id, 'it_tq_id'=>$row->tq_id ),
+                array('it_answer' => $request->answer[$row->tq_id])
+            );
+        }
+
+        return back()->with("message","berhasil menyimpan data");
+        
+
+    }
+
     function lock($talent)
     {
         if ( $talent->talent_notes_report_talent != "" ) 

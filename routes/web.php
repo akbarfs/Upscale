@@ -106,6 +106,9 @@ Route::group(['prefix'=>'member'], function()
 	Route::get("update-porto/{id}", "MemberController@portoUpdate");
 	Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
 
+	Route::get("personality-test", "MemberController@personalityTest");
+	Route::post("personality-test", "MemberController@personalityTestPost");
+
 });
 
 ////////////////////////////

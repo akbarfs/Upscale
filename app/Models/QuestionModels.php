@@ -33,6 +33,11 @@ class QuestionModels extends Model
         return $this->belongsTo('App\Models\interview_test');
     }
 
+    public function katagori()
+    {
+        // return $this->belongsTo('App\Models\');
+    }
+
 
 
 }
