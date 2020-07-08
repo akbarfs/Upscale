@@ -29,13 +29,13 @@ class TalentNewController extends Controller
 
     function mail($talent_id)
     {
-        $talent = Talent::find($talent_id);
+        $talent = Talent::findOrFail($talent_id);
         return view("admin.talent.mail",compact('talent'));
     }
 
     function createTypeEmail($id)
     {
-        $talent = Talent::find($id); 
+        $talent = Talent::find($id);
         return view("admin.talent.createTypeEmail",compact('talent'));
     }
 

@@ -9,8 +9,15 @@
     
         <div class="card ">
             <div class="card-body">
-            <h6> Dashboard / createEmail </h6><br>
-            <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-outline-primary btn-sm" type="submit" id="search" style="margin-left:60px">Back</button></a>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/dashboard" style="color:#3532ff">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create Email</li>
+                </ol>
+            </nav>
+
+            <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-primary btn-sm" type="submit" id="search" style="margin-left:60px">Back</button></a>
             <br><br>
 
                 <div class="card" style="width: 55rem; margin-left:7%">

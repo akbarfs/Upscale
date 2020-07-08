@@ -8,11 +8,17 @@
 
     <div class="card ">
         <div class="card-body">
-            <h6> Dashboard / mail </h6>
+            
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin/dashboard" style="color:#3532ff">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Send Email</li>
+                </ol>
+            </nav>
             
             <br>
-            <a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}"><button class="btn btn-outline-primary btn-sm" type="submit" id="search" style="margin-left:10px">Back</button></a>
-            <a href="{{url('/admin/talent/create-type-email/'.$talent->talent_id)}}"><button class="btn btn-primary btn-sm" type="submit" id="search" style="margin-left:1%">Create New Email Type</button></a>
+            <a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}"><button class="btn btn-primary btn-sm" type="submit" id="search" style="margin-left:10px">Back</button></a>
+            <a href="{{url('/admin/talent/create-type-email/'.$talent->talent_id)}}"><button class="btn btn-success btn-sm" type="submit" id="search" style="margin-left:1%">Create New Email Type</button></a>
             <br><br>
             <div class="card" style="width: 55rem; margin-left:7%">
                 <div class="card-body center">
@@ -22,14 +28,14 @@
                         <div class="container-fluid">
 
                             <dic class="row">
-                                <div class="col-sm-2" style="padding:18px 0px 0px 15px">
+                                <div class="col-sm-2" style="padding:18px 0px 0px 10px">
                                         <p class="card-text">Choose Email : </p>
                                 </div>
                                 <div class="col-sm-10">
                                     <div class="card" style="width: 40rem;">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="form-check form-check-inline" style="padding-left: 10px;">
+                                                <div class="form-check form-check-inline" style="padding-left: 15px;">
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                                                     <label class="form-check-label" for="inlineCheckbox1">Gery789@gmail.com</label>
                                                 </div>
@@ -41,7 +47,7 @@
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                                                     <label class="form-check-label" for="inlineCheckbox2">Gery789@gmail.com</label>
                                                 </div>
-                                                <div class="form-check form-check-inline" style="padding-left: 10px;">
+                                                <div class="form-check form-check-inline" style="padding-left: 15px;">
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
                                                     <label class="form-check-label" for="inlineCheckbox2">Gery456@gmail.com</label>
                                                 </div>
@@ -65,7 +71,7 @@
                             </div>
 
                             <div class="table-responsive" style=" padding:2%">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
                                         <th scope="col">No.</th>
