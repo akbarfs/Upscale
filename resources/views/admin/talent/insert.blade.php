@@ -40,7 +40,7 @@
             @csrf
             <div class="form-group">
             <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" value="old('name',$request->nama)">
+            <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama')}}">
 
                 @if($errors->has('nama'))
                   <div class="alert alert-danger" >{{ $errors->first('nama') }}</div>
@@ -51,7 +51,7 @@
         
             <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="" value="old('email',$request->email)">
+            <input type="text" class="form-control" id="email" name="email" placeholder="" value="{{old('email')}}">
 
                 @if($errors->has('email'))
                   <div class="alert alert-danger" >{{ $errors->first('email') }}</div>
@@ -79,7 +79,7 @@
 
             <div class="form-group">
               <label for="alamat">Alamat</label>
-              <input type="text" class="form-control" id="alamat" placeholder="" name="alamat" value="old('alamat',$request->alamat)">
+              <input type="text" class="form-control" id="alamat" placeholder="" name="alamat" value="{{old('alamat')}}">
 
                 @if($errors->has('alamat'))
                   <div class="alert alert-danger">{{ $errors->first('alamat') }}</div>
@@ -92,7 +92,7 @@
 
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="" name="username" value="old('username',$request->username)">
+              <input type="text" class="form-control" id="username" placeholder="" name="username" value="{{old('username')}}">
 
                 @if($errors->has('username'))
                   <div class="alert alert-danger">{{ $errors->first('username') }}</div>
@@ -104,7 +104,7 @@
 
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" name="password" value="old('password',$request->password)">
+              <input type="password" class="form-control" id="password" name="password" value="">
 
                 @if($errors->has('password'))
                   <div class="alert alert-danger">{{ $errors->first('password') }}</div>
@@ -128,7 +128,7 @@
 
             <div class="form-group">
               <label for="phone">Phone Number / WA</label>
-              <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="old('phone',$request->phone)">
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="{{old('phone')}}">
 
                 @if($errors->has('phone'))
                   <div class="alert alert-danger">{{ $errors->first('phone') }}</div>
@@ -139,7 +139,7 @@
 
             <div class="form-group">
               <label for="datepicker">Birth Date</label>
-              <input type="text" name="birthdate" class="form-control" id="birthdate" value="old('birthdate',$request->birthdate)">
+              <input type="text" name="birthdate" class="form-control" id="birthdate" value="{{old('birthdate')}}">
 
                @if($errors->has('birthdate'))
                   <div class="alert alert-danger">{{ $errors->first('birthdate') }}</div>
@@ -151,7 +151,7 @@
 
             <div class="form-group">
               <label for="birthplace">Birth Place</label>
-              <input type="text" class="form-control" id="birthplace" name="birthplace" placeholder=""  value="old('birthplace',$request->birthplace)">
+              <input type="text" class="form-control" id="birthplace" name="birthplace" placeholder=""  value="{{old('birthplace')}}">
 
                 @if($errors->has('birthplace'))
                   <div class="alert alert-danger">{{ $errors->first('birthplace') }}</div>
@@ -172,7 +172,7 @@
 
             <div class="form-group">
               <label for="currentaddress">Current Address</label>
-              <input type="text" class="form-control" id="currentaddress" name="currentaddress" placeholder="" value="old('currentaddress',$request->currentaddress)">
+              <input type="text" class="form-control" id="currentaddress" name="currentaddress" placeholder="" value="{{old('currentaddress')}}">
 
                 @if($errors->has('currentaddress'))
                   <div class="alert alert-danger">{{ $errors->first('currentaddress') }}</div>
@@ -187,9 +187,9 @@
               <label for="level">Condition</label>
               <select id="level" class="custom-select" name="condition" >
                     <option selected> </option>
-                    <option>Unprocess</option>
-                    <option>Quarantine</option>
-                    <option>Assign</option>
+                    <option value="1" {{old('condition') == 1 ? 'selected' : ''}}>Unprocess</option>
+                    <option value="2" {{old('condition') == 2 ? 'selected' : ''}}>Quarantine</option>
+                    <option value="3" {{old('condition') == 3 ? 'selected' : ''}}>Assign</option>
               <select>
             </div>
 
@@ -241,7 +241,7 @@
                                 data-load-once="true"
                                 placeholder="Skill"
                                 name="skill" 
-                                 value="old('skill',$request->skill)" />
+                                 value="{{old('skill')}}" />
 
                             @if($errors->has('skill'))
                             <div class="alert alert-danger">{{ $errors->first('skill') }}
@@ -254,7 +254,7 @@
 
                 <div class="form-group">
                 <label for="salary">Salary</label>
-                <input type="text" class="form-control" id="salary" placeholder="" name="salary" value="old('salary',$request->salary)">
+                <input type="text" class="form-control" id="salary" placeholder="" name="salary" value="{{old('salary')}}">
                 </div>
         
         
@@ -264,16 +264,16 @@
                 <label for="focus">Focus</label>
                 <select id="status" class="custom-select" name="focus" >
                         <option selected> </option>
-                        <option>Frontend</option>
-                        <option>Backend Web</option>
-                        <option>Fullstack Web</option>
-                        <option>Mobile Programmer</option>
-                        <option>UI/UX</option>
-                        <option>QA</option>
-                        <option>Dev Ops</option>
-                        <option>Data Science</option>
-                        <option>PM</option>
-                        <option>Other</option>
+                        <option value="1" {{old('focus') == 1 ? 'selected' : ''}}>Frontend</option>
+                        <option value="2" {{old('focus') == 2 ? 'selected' : ''}}>Backend Web</option>
+                        <option value="3" {{old('focus') == 3 ? 'selected' : ''}}>Fullstack Web</option>
+                        <option value="4" {{old('focus') == 4 ? 'selected' : ''}}>Mobile Programmer</option>
+                        <option value="5" {{old('focus') == 5 ? 'selected' : ''}}>UI/UX</option>
+                        <option value="6" {{old('focus') == 6 ? 'selected' : ''}}>QA</option>
+                        <option value="7" {{old('focus') == 7 ? 'selected' : ''}}>Dev Ops</option>
+                        <option value="8" {{old('focus') == 8 ? 'selected' : ''}}>Data Science</option>
+                        <option value="9" {{old('focus') == 9 ? 'selected' : ''}}>PM</option>
+                        <option value="10" {{old('focus') == 10 ? 'selected' : ''}}>Other</option>
                       </select>
 
                       @if($errors->has('focus'))
@@ -286,7 +286,7 @@
 
                 <div class="form-group">
                 <label for="startcareer">Start Career</label>
-                <input type="text" class="form-control" id="startcareer" name="startcareer" placeholder=""  value="old('startcareer',$request->startcareer)">
+                <input type="text" class="form-control" id="startcareer" name="startcareer" placeholder=""  value="{{old('startcareer')}}">
                 </div>
         
         
@@ -295,10 +295,10 @@
                 <label for="level">Level</label>
                 <select id="level" class="custom-select" name="level"  >
                 <option selected> </option>
-                <option>Undefined</option>
-                <option>Junior</option>
-                <option>Middle</option>
-                <option>Senior</option>
+                <option value="1" {{old('level') == 1 ? 'selected' : ''}}>Undefined</option>
+                <option value="2" {{old('level') == 2 ? 'selected' : ''}}>Junior</option>
+                <option value="3" {{old('level') == 3 ? 'selected' : ''}}>Middle</option>
+                <option value="4" {{old('level') == 4 ? 'selected' : ''}}>Senior</option>
                 </select>
                 </div>
 
@@ -310,14 +310,14 @@
 
                 <div class="form-group">
                       <label for="lastestsalary">Lastest Salary (Rp)</label>
-                      <input type="text" class="form-control" id="lastestsalary" name="lastestsalary" placeholder=""  value="old('lastestsalary',$request->lastestsalary)">
+                      <input type="text" class="form-control" id="lastestsalary" name="lastestsalary" placeholder=""  value="{{old('lastestsalary')}}">
                 </div>
 
 
 
                 <div class="form-group">
                       <label for="preflocation">Prefered Location</label>
-                      <input type="text" class="form-control" id="preflocation" name="preflocation" placeholder=""  value="old('preflocation',$request->preflocation)">
+                      <input type="text" class="form-control" id="preflocation" name="preflocation" placeholder=""  value="{{old('preflocation')}}">
                 </div>
       
       
@@ -326,10 +326,10 @@
                       <label for="status">Status</label>
                       <select id="status" class="custom-select" name="status" >
                         <option selected> </option>
-                        <option>Student</option>
-                        <option>Worker</option>
-                        <option>Freelance</option>
-                        <option>Free</option>
+                        <option value="1" {{old('status') == 1 ? 'selected' : ''}}>Student</option>
+                        <option value="2" {{old('status') == 2 ? 'selected' : ''}}>Worker</option>
+                        <option value="3" {{old('status') == 3 ? 'selected' : ''}}>Freelance</option>
+                        <option value="4" {{old('status') == 4 ? 'selected' : ''}}>Free</option>
                       </select>
                 </div>
 
@@ -340,9 +340,9 @@
                       <label for="onsite">Onsite</label>
                       <select id="onsite" class="custom-select" name="onsite" >
                         <option selected> </option>
-                        <option>Unset</option>
-                        <option>Yes</option>
-                        <option>No</option>
+                        <option value="1" {{old('onsite') == 1 ? 'selected' : ''}}>Unset</option>
+                        <option value="2" {{old('onsite') == 2 ? 'selected' : ''}}>Yes</option>
+                        <option value="3" {{old('onsite') == 3 ? 'selected' : ''}}>No</option>
                       </select>
                 </div>
       
@@ -352,9 +352,9 @@
                      <label for="remote">Remote</label>
                       <select id="remote" class="custom-select" name="remote" >
                         <option selected> </option>
-                        <option>Unset</option>
-                        <option>Yes</option>
-                        <option>No</option>
+                        <option value="1" {{old('remote') == 1 ? 'selected' : ''}}>Unset</option>
+                        <option value="2" {{old('remote') == 2 ? 'selected' : ''}}>Yes</option>
+                        <option value="3" {{old('remote') == 3 ? 'selected' : ''}}>No</option>
                       </select>
                 </div>
       
@@ -364,10 +364,10 @@
                       <label for="available">Available</label>
                       <select id="available" class="custom-select" name="available" >
                           <option selected> </option>
-                          <option>Yes</option>
-                          <option>No</option>
-                          <option>1 Month</option>
-                          <option>ASAP</option>
+                          <option value="1" {{old('available') == 1 ? 'selected' : ''}}>Yes</option>
+                          <option value="2" {{old('available') == 2 ? 'selected' : ''}}>No</option>
+                          <option value="3" {{old('available') == 3 ? 'selected' : ''}}>1 Month</option>
+                          <option value="4" {{old('available') == 4 ? 'selected' : ''}}>ASAP</option>
                       </select>
                 </div>
       
@@ -377,9 +377,9 @@
                       <label for="apply">Apply</label>
                       <select id="apply" class="custom-select" name="apply" >
                           <option selected> </option>
-                          <option>Yes</option>
-                          <option>No</option>
-                          <option>Old</option>
+                          <option value="1" {{old('apply') == 1 ? 'selected' : ''}}>Yes</option>
+                          <option value="2" {{old('apply') == 2 ? 'selected' : ''}}>No</option>
+                          <option value="3" {{old('apply') == 3 ? 'selected' : ''}}>Old</option>
                       </select>
                 </div>
       
@@ -389,10 +389,10 @@
                       <label for="international">International Talent</label>
                       <select id="international" class="custom-select" name="international" >
                           <option selected> </option>
-                          <option>Ya, Kemungkinan saya tertarik</option>
-                          <option>Tidak yakin, bahasa inggris saya tidak cukup baik</option>
-                          <option>Tidak, karena perbedaan budaya kerja</option>
-                          <option>Tidak, karena suatu hal</option>
+                          <option value="1" {{old('international') == 1 ? 'selected' : ''}}>Ya, Kemungkinan saya tertarik</option>
+                          <option value="2" {{old('international') == 2 ? 'selected' : ''}}>Tidak yakin, bahasa inggris saya tidak cukup baik</option>
+                          <option value="3" {{old('international') == 3 ? 'selected' : ''}}>Tidak, karena perbedaan budaya kerja</option>
+                          <option value="4" {{old('international') == 4 ? 'selected' : ''}}>Tidak, karena suatu hal</option>
                       </select>
                 </div>
       
@@ -400,7 +400,7 @@
 
                 <div class="form-group">
                       <label for="freelancehour">Freelance Hours</label>
-                      <input type="text" class="form-control" id="freelancehour" name="freelancehour" placeholder=""  value="old('freelancehour',$request->freelancehour)">
+                      <input type="text" class="form-control" id="freelancehour" name="freelancehour" placeholder=""  value="{{old('freelancehour')}}">
 
                       @if($errors->has('freelancehour'))
                         <div class="alert alert-danger">{{ $errors->first('freelancehour') }}</div>
@@ -412,7 +412,7 @@
 
                 <div class="form-group">
                       <label for="projectmin" >Project Min</label>
-                      <input type="text" class="form-control" id="projectmin" placeholder="" name="projectmin"  value="old('projectmin',$request->projectmin)">
+                      <input type="text" class="form-control" id="projectmin" placeholder="" name="projectmin"  value="{{old('projectmin')}}">
 
                       @if($errors->has('projectmin'))
                         <div class="alert alert-danger">{{ $errors->first('projectmin') }}</div>
@@ -422,7 +422,7 @@
 
                 <div class="form-group">
                       <label for="projectmax">Project Max</label>
-                      <input type="text" class="form-control" id="projectmax" name="projectmax" placeholder=""  value="old('projectmax',$request->projectmax)">
+                      <input type="text" class="form-control" id="projectmax" name="projectmax" placeholder=""  value="{{old('projectmax')}}">
 
                       @if($errors->has('projectmax'))
                         <div class="alert alert-danger">{{ $errors->first('projectmax') }}</div>
@@ -432,7 +432,7 @@
 
                 <div class="form-group">
                       <label for="konsulrate">Konsultasi Rate</label>
-                      <input type="text" class="form-control" id="konsulrate" name="konsulrate" placeholder=""  value="old('konsulrate',$request->konsulrate)">
+                      <input type="text" class="form-control" id="konsulrate" name="konsulrate" placeholder=""  value="{{old('konsulrate')}}">
 
                       @if($errors->has('konsulrate'))
                         <div class="alert alert-danger">{{ $errors->first('konsulrate') }}</div>
@@ -443,7 +443,7 @@
 
                 <div class="form-group">
                       <label for="tutorrate">Tutor Rate</label>
-                      <input type="text" class="form-control" id="tutorrate" name="tutorrate" placeholder=""  value="old('tutorrate',$request->tutorrate)">
+                      <input type="text" class="form-control" id="tutorrate" name="tutorrate" placeholder=""  value="{{old('tutorrate')}}">
 
                       @if($errors->has('tutorrate'))
                         <div class="alert alert-danger">{{ $errors->first('tutorrate') }}</div>
