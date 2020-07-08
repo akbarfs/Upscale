@@ -16,10 +16,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/animate.min.css' )}}" media="all">
 
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
-
-
 	<script type="text/javascript" src="{{ asset('/cv/js/jquery-1.12.3.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.onepage-scroll.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.easing.min.js')}}"></script>
@@ -51,7 +47,7 @@
 
 		#btn-close-modal {
                 width:100%;
-                text-align: center;
+                text-align: right;
                 cursor:pointer;
                 color:#fff;
             }
@@ -83,14 +79,13 @@
         
         <div class="name">
         @if($talent)
-		<?php setlocale(LC_ALL, 'IND');
+		<?php setlocale(LC_TIME, "id_ID");
 		$originalDate = $talent->talent_date_ready ;
-		$newDate =  strftime( "%A, %d %B %Y", $originalDate); ?>
+		$newDate = date( "l, j F Y", strtotime($originalDate)); ?>
 			<h1>{{ $talent->talent_name }}</h1>
             <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
             @endif
 		</div>
-
         <!-- <div class="social-icons">
 			<ul>
 				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>

@@ -108,13 +108,20 @@
 			    #button-pricing { font-size: 18px; }
 			}
 
+			.fa-whatsapp {
+			stroke: black;
+			stroke-width: 10;
+			}
+
 			aside {
 				float: right;
-				width: 50%;
+				width: 55%;
 				overflow: auto;
-				margin-top: 20px;
+				margin: 20px 20px;
 				border: 1px  wheat;
 				padding: 5px;
+
+			
  }
 		</style>
 
@@ -154,7 +161,7 @@
 						<a href="{{ url('storage/Curriculum vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
 						 	<i class="fa fa-download" aria-hidden="true"></i> Download CV
 						</a>
-						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green">
+						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green;">
 							<i class="fa fa-phone" aria-hidden="true"></i> Request Interview
 						</a>
 					@endif
@@ -208,7 +215,7 @@
 							<tr>
 								<td><strong>Phone</strong></td>
 								<td><strong>: &nbsp</strong></td>
-								<td> {{ $talent->talent_phone }} <a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp"  style="color:green"  aria-hidden="true"></i></a></td>
+								<td> {{ $talent->talent_phone }} <a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp fa-lg"  style="color:green"  aria-hidden="true"></i></a></td>
 	                		</tr>
 						</table>
 						
@@ -556,11 +563,11 @@
 			<div class="item-outer row clearfix">
                 @foreach($talent->talent_portfolio()->get() as $row )
 				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item"  data-sort="value">
-					<div class="item">
+					<div class="item"  id="demo01" href="#animatedModal">
 					<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image"></a>
 							<div class="title">
 								<div class="inner">
-									<h2 id="demo01" href="#animatedModal">{{ $row->portfolio_name }}</h2>
+									<h2 >{{ $row->portfolio_name }}</h2>
 									<span>{{ $row->portfolio_tech}}</span>
 								</div>
 							</div>
@@ -573,18 +580,24 @@
                 @endforeach
 			</div>
 			<div id="animatedModal">
-				<div  id="btn-close-modal" class="close-animatedModal"> 
-					CLOSE
+				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal">
+					
 				</div>
 					
 				<div class="modal-content">
-				<div>
-				<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:700px" >
-				<aside>
-				<h2>{{ $row->portfolio_name }}</h2>
-				<h4>{{ $row->portfolio_tech }}</h4>
-				<span>{{ $row->portfolio_desc }}</span>
-            </aside>
+					<div class="row">
+						<div class="col-md-5 col-sm-5">
+							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:700px" >
+						</div>
+						<div class="col-md-7 col-sm-7 col-xs-12">
+							<h2>{{ $row->portfolio_name }}</h2>
+							<h4>{{ $row->portfolio_startdate}} - {{ $row->portfolio_enddate }} </h4>
+							<h6>Technology Used : {{ $row->portfolio_tech }}</h6>
+							<h6>Project Type : {{ $row->portfolio_tipe_project }}</h6>
+							<h6>Project Type : {{ $row->portfolio_namacompany }}</h6>
+							<span>{{ $row->portfolio_desc }}</span>
+						</div>
+					</div>
 			</div>
 
 				<script>
@@ -596,20 +609,31 @@
 		</section>
 
 
-		<section id="Testimonial" class="works clearfix">
+		<section id="testimonials" class="testimonials">
 			
 			<div class="section-header">
-				<h2>Testimonial</h2>
+				<h2>Testimonials</h2>
 			</div>
-			
-			<div class="item-outer row clearfix">
-			@if($talent)
-					
-					<p style="text-align: justify">
-						 {!! $talent->talent_notes_report_talent !!}
-					</p>
-                    @endif
-                </div>
+
+				<div class="item">
+					<div class="row">
+						<div class="col-md-2 col-sm-2 hidden-xs">
+							<div class="thumb">
+							@if ( $talent->talent_foto)
+							@php $random = date("his") @endphp
+									<img src="{{url('storage/photo/'.$talent->talent_foto)}}?v={{$random}}" alt="testimonial-customer">
+									@else
+									<img src="{{url('img/images.jpg')}}" alt="testimonial-customer">
+									@endif
+							</div>
+						</div>
+						<div class="text col-md-10 col-sm-10 col-xs-12">
+						<p style="text-align: justify">
+						 {!! $talent->talent_notes_report_talent !!}</p>
+							<span class="author">-{{ $talent->talent_name }}-</span>
+						</div>
+					</div>
+			</div>
 		</section>
 
 
