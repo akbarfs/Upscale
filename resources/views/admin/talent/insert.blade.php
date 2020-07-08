@@ -459,7 +459,7 @@
                 <div class="form-group row" style="padding-left: 25px">
                   <div class="col-sm-10">
                   <button type="submit" class="btn btn-success btn-sm tb">Tambah Talent</button>
-                  <a href="/.." class="btn btn-danger btn-sm tb"> Keluar </a>
+                  <a href="{{ route('talent.list') }}" class="btn btn-danger btn-sm tb"> Keluar </a>
                   </div>
                 </div>
 
