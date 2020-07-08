@@ -506,30 +506,7 @@
 			</div>
         </section>
 
-		<section id="experience" class="resume">
-			<div class="section-header">
-				<h2>Interview</h2>
-				@if (Request::segment(2) == '') 
-					<a class="edit" href="{{url('/member/edit-interview')}}">edit</a>
-				@endif 
-			</div>
-			<div class="row" >
-			@foreach($talent->talent_interviewtest()->get() as $row )
-				<div class="col-md-12 col-sm-12 col-xs-12" >
-					<div class="top-item resume-item">
-					<h2>
-
-						@if ( $soal = $row->test_question->pertanyaan )
-							{{$soal->question_text}}<br>
-							{{$soal->question_desc}}
-						@endif
-					</h2>
-					<h6>{{ $row->it_answer }}</h6>
-					</div>
-				</div>
-			@endforeach	
-			</div>
-		</section>
+		
 		
 		<section id="works" class="works clearfix">
 			
@@ -562,6 +539,31 @@
                 </div>
                 @endforeach
             </div>
+		</section>
+
+		<section id="experience" class="resume">
+			<div class="section-header">
+				<h2>Hasil Assessment</h2>
+				@if (Request::segment(2) == '') 
+					<a class="edit" href="{{url('/member/edit-interview')}}">edit</a>
+				@endif 
+			</div>
+			<div class="row" >
+			@foreach($talent->talent_interviewtest()->get() as $row )
+				<div class="col-md-12 col-sm-12 col-xs-12" >
+					<div class="top-item resume-item">
+					<h2>
+
+						@if ( $soal = $row->test_question->pertanyaan )
+							{{$soal->question_text}}<br>
+							{{$soal->question_desc}}
+						@endif
+					</h2>
+					<h6>{{ $row->it_answer }}</h6>
+					</div>
+				</div>
+			@endforeach	
+			</div>
 		</section>
 
 		<!-- <section id="certification" class="resume">
