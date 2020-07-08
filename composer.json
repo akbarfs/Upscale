@@ -30,7 +30,7 @@
     },
     "autoload": {
         "files" : [
-            "app/Http/Helpers/language.php"
+            "app/Http/Helpers/default.php"
         ],
         "classmap": [
             "database/seeds",

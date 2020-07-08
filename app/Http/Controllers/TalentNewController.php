@@ -21,6 +21,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Database\Eloquent\Builder;
 
+use Illuminate\Support\Facades\Crypt;
+
 class TalentNewController extends Controller
 {
 
@@ -93,7 +95,7 @@ class TalentNewController extends Controller
         // if ($request->ajax()) {
 
             //SELECT BUILDER START
-            $default_query = "*, users.email as member_email, users.created_at as member_date";
+            $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
             $data = Talent::select(DB::raw($default_query));
             //SELECT BUILDER END 
 
@@ -176,32 +178,32 @@ public function insertData(Request $request){
         $validation = $request->validate([
             'nama'=>'required|string|max:150',
             'email'=>'required|string|email|max:100|unique:users',
-            'gender'=>'required',
-            'alamat'=>'required',
-            'phone'=>'required|string|max:30',
-            'birthdate'=>'required',
-            'birthplace'=>'required',
-            'martialstatus'=>'required',
-            'currentaddress'=>'required|string',
-            'condition'=>'required',
-            'skill'=>'required',
-            'salary'=>'required|string',
-            'focus'=>'required|string',
-            'startcareer'=>'required|string',
-            'level'=>'required',
-            'latestsalary'=>'required|string',
-            'preflocation'=>'required|string',
-            'status'=>'required',
-            'onsite'=>'required',
-            'remote'=>'required',
-            'available'=>'required',
-            'apply'=>'required',
-            'international'=>'required',
-            'freelancehour'=>'required',
-            'projectmin'=>'required',
-            'projectmax'=>'required',
-            'konsulrate'=>'required',
-            'tutorrate'=>'required',
+            // 'gender'=>'required',
+            // 'alamat'=>'required',
+            // 'phone'=>'required|string|max:30',
+            // 'birthdate'=>'required',
+            // 'birthplace'=>'required',
+            // 'martialstatus'=>'required',
+            // 'currentaddress'=>'required|string',
+            // 'condition'=>'required',
+            // 'skill'=>'required',
+            // 'salary'=>'required|string',
+            // 'focus'=>'required|string',
+            // 'startcareer'=>'required|string',
+            // 'level'=>'required',
+            // 'latestsalary'=>'required|string',
+            // 'preflocation'=>'required|string',
+            // 'status'=>'required',
+            // 'onsite'=>'required',
+            // 'remote'=>'required',
+            // 'available'=>'required',
+            // 'apply'=>'required',
+            // 'international'=>'required',
+            // 'freelancehour'=>'required',
+            // 'projectmin'=>'required',
+            // 'projectmax'=>'required',
+            // 'konsulrate'=>'required',
+            // 'tutorrate'=>'required',
 
         ]);
 
