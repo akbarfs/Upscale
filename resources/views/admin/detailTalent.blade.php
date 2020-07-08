@@ -68,7 +68,7 @@
                                         
                                         <a class="nav-link" id="v-pills-portfolio-tab" data-toggle="pill" href="#v-pills-portfolio" role="tab" aria-controls="v-pills-profile" aria-selected="false">Portfolio</a>
                                         <a class="nav-link" id="v-pills-experience-tab" data-toggle="pill" href="#v-pills-experience" role="tab" aria-controls="v-pills-profile" aria-selected="false">Work Experience</a>
-                                        <a class="nav-link " id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-home" aria-selected="true">Certification</a>
+                                        <a class="nav-link " id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-home" aria-selected="false">Certification</a>
                                         <a class="nav-link" id="v-pills-apply-tab" data-toggle="pill" href="#v-pills-apply" role="tab" aria-controls="v-pills-profile" aria-selected="false">Apply</a>
                                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Skill</a>
                                         <a class="nav-link" id="v-pills-personality-tab" data-toggle="pill" href="#v-pills-personality" role="tab" aria-controls="v-pills-profile" aria-selected="false">Personality</a>
@@ -657,6 +657,42 @@
                                                 {{$all->talent_rt_status_date}}
                                             </strong>
                                         </p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">LinkedIn</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_linkedin}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Facebook</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_facebook}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Instagram</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_instagram}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Twitter</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_instagram}}</strong></p>
                                     </div>
                                 </div>
 
@@ -2053,31 +2089,29 @@
 
 
 
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <aside class="profile-nav alt">
-                        <section class="card">
-                            <div class="card-header">
-                                    <strong class="card-title mb-3">Portofolio</strong>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <aside class="profile-nav alt">
+                            <section class="card">
+                                <div class="card-header">
+                                        <strong class="card-title mb-3">Portofolio</strong>
+                                    </div>
+                                <div class="card-body">
+                                    <object data=""></object>
                                 </div>
-                            <div class="card-body">
-                                <object data=""></object>
-                            </div>
-                        </section>
-                    </aside>
-                </div>
+                            </section>
+                        </aside>
+                    </div>
 
-                <div class="tab-pane" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
+                <div class="tab-pane" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab" style="margin-top:-35%">
                     <form id="simpantalent-form" action="{{url('admin/talent/update/'.$all->talent_id)}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="card">
                             <div class="card-header">
                                 <strong>Talent Profile Edit</strong>
                             </div>
-                            <div class="card-body card-block">
-                                <div class="form-group col-md-6">
+                        <div class="card-body card-block">
+                            <div class="form-group col-md-6">
 
-                                
-					
                                 <label for="text-input" class=" form-control-label">Foto Profil Talent <span class="badge badge-secondary">.pdf Max 1MB</span></label>
                                 <input value=" " method="POST" enctype="multipart/form-data" type="file" id="inputgambar" name="gambar" placeholder="Your Photo" required="" class="form-control">
                                 {{ csrf_field() }}
@@ -2104,10 +2138,6 @@
                                 </script>
 
                                 @stop
-
-
-
-
                                     <label for="text-input" class=" form-control-label">Talent Name</label>
                                     <input value="{{$all->talent_name}}" type="text" id="talent_name" name="talent_name" placeholder="Your Name" required="" class="form-control">
                                     <label for="text-input" class=" form-control-label">Talent Email</label>
@@ -2123,6 +2153,7 @@
                                     <input type="text" name="talent_place_of_birth" id="talent_place_of_birth" class="form-control" value="{{$all->talent_place_of_birth}}">
                                     <label for="text-input" class=" form-control-label">Birth Day</label>
                                     <input value="{{$all->talent_birth_date}}" type="text" id="talent_birth_date" name="talent_birth_date" placeholder="dd/mm/yyyy" class="form-control">
+                                    
                                     <label for="text-input" class=" form-control-label">Martial Status</label>
                                     <select name="martial_status" class="form-control">
                                         @if ($all->talent_martial_status == NULL)
@@ -2164,25 +2195,25 @@
                                     @endif
                                     </select> 
 
-                                    <label for="text-input" class=" form-control-label">Talent Status</label>
+                                    <label for="text-input" class="form-control-label">Talent Status</label>
                                     <select name="talent_status" class="form-control">
                                         @if ($all->talent_status == NULL)
                                             <option value=""> Pilih</option>
                                             <option value="worker" > Worker</option>
-                                            <option value="alumni" > Alumni</option>
+                                            <option value="free" > Free</option>
                                             <option value="edu" > Edu</option>
                                         @elseif($all->talent_status == "worker")
                                             <option value="worker" > Worker</option>
                                             <option value="alumni" > Alumni</option>
                                             <option value="edu" > Edu</option>
-                                        @elseif($all->talent_status == "alumni")
-                                            <option value="alumni" > Alumni</option>
-                                            <option value="worker" > Worker</option>
+                                        @elseif($all->talent_status == "free")
+                                            <option value="free" > Free</option>
                                             <option value="edu" > Edu</option>
+                                            <option value="worker" > Worker</option>
                                         @elseif($all->talent_status == "edu")
                                             <option value="edu" > Edu</option>
-                                            <option value="alumni" > Alumni</option>
                                             <option value="worker" > Worker</option>
+                                            <option value="free" > Free</option>
                                         @endif
                                     </select>
 
@@ -2205,7 +2236,7 @@
                                     <input value="{{$all->talent_start_career}}" type="text" id="talent_start_career" name="talent_start_career" placeholder="dd/mm/yyyy" class="form-control">
 
                                     <label for="text-input" class=" form-control-label">Level</label>
-                                    <select name="talent_status" class="form-control">
+                                    <select name="talent_level" class="form-control">
                                         @if ($all->talent_level == NULL)
                                             <option value=""> Pilih</option>
                                             <option value="undefined" > Undefined</option>
@@ -2238,16 +2269,17 @@
                                     <label for="text-input" class=" form-control-label">Date Ready</label>
                                     <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="" class="form-control">
 
+
                                     <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
-                                    <select name="talent_onsite_jakarta" id="talent_onsite_jakarta" class="form-control">
+                                    <select name="talent_onsite_jakarta" class="form-control">
                                     @if ($all->talent_onsite_jakarta == NULL)
                                             <option value=""> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
-                                    @elseif($all->talent_onsite_jakarta == "Yes")
+                                    @elseif($all->talent_onsite_jakarta == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
-                                    @elseif($all->talent_onsite_jakarta == "No")
+                                    @elseif($all->talent_onsite_jakarta == "no")
                                             <option value="no" > No</option>
                                             <option value="yes" > Yes</option>
                                     @endif
@@ -2259,10 +2291,10 @@
                                             <option value=""> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
-                                    @elseif($all->talent_onsite_jogja == "Yes")
+                                    @elseif($all->talent_onsite_jogja == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
-                                    @elseif($all->talent_onsite_jogja == "No")
+                                    @elseif($all->talent_onsite_jogja == "no")
                                             <option value="no" > No</option>
                                             <option value="yes" > Yes</option>
                                     @endif
@@ -2274,17 +2306,179 @@
                                             <option value=""> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
-                                    @elseif($all->talent_remote == "Yes")
+                                    @elseif($all->talent_remote == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
-                                    @elseif($all->talent_remote == "No")
+                                    @elseif($all->talent_remote == "no")
+                                            <option value="no" > No</option>
+                                            <option value="yes" > Yes</option>
+                                    @endif
+                                    </select> 
+
+                                    <label for="text-input" class=" form-control-label">Bekerja Remote di Luar Kota</label>
+                                    <select name="talent_luar_kota" id="talent_luar_kota" class="form-control">
+                                    @if ($all->talent_luar_kota == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > NO</option>
+                                    @elseif($all->talent_luar_kota == "yes")
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > No</option>
+                                    @elseif($all->talent_luar_kota == "no")
                                             <option value="no" > No</option>
                                             <option value="yes" > Yes</option>
                                     @endif
                                     </select> 
 
 
+                                    <label for="text-input" class=" form-control-label">Focus</label>
+                                    <select name="talent_focus" id="talent_focus" class="form-control">
+                                        @if ($all->talent_focus == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                        @elseif($all->talent_focus == "Frontend web")
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                        @elseif($all->talent_focus == "Backend web")
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                        @elseif($all->talent_focus == "Fullstack web")
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                        @elseif($all->talent_focus == "Mobile programmer")
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                        @elseif($all->talent_focus == "uiux")
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                        @elseif($all->talent_focus == "qa")
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                        @elseif($all->talent_focus == "Dev ops")
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                        @elseif($all->talent_focus == "Data science")
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                        @elseif($all->talent_focus == "pm")
+                                            <option value="pm" > Project / Product Manager</option>
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                        @elseif($all->talent_focus == "Other")
+                                            <option value="Other" > Other</option>
+                                            <option value="Frontend web" > Frontend Web</option>
+                                            <option value="Backend web" > Backend Web</option>
+                                            <option value="Fullstack web" > Fullstack Web</option>
+                                            <option value="Mobile programmer" > Mobile Programmer</option>
+                                            <option value="uiux" > UI UX</option>
+                                            <option value="qa" > QA</option>
+                                            <option value="Dev ops" > Dev Ops</option>
+                                            <option value="Data science" > Data Science</option>
+                                            <option value="pm" > Project / Product Manager</option>
+                                        @endif
+                                    </select>
+
+                                    <label for="text-input" class=" form-control-label">Current Work</label>
+                                    <input value="{{$all->talent_current_work}}" type="text" id="talent_current_work" name="talent_current_work" placeholder="Your Current Work" required="" class="form-control">
+
+                                    <label for="text-input" class=" form-control-label">Current Address</label>
+                                    <select value="" name="talent_current_address" id="talent_current_address" class="js-example-basic-single form-control" style="width:100%">
+                                    @if ($all->talent_current_address!=NULL)
+                                        <option value="{{$all->talent_current_address}}">{{$all->talent_current_address}}</option>
+                                    @endif
+                                    @foreach($listKota as $kota)
+                                        <option value="{{$kota->type." ".$kota->nama}}">{{$kota->type." ".$kota->nama}}</option>
+                                    @endforeach
+                                    </select>
+
+                                    <label for="text-input" class=" form-control-label">Address</label>
+                                    <input value="{{$all->talent_address}}" type="text" id="talent_address" name="talent_address"  placeholder="Your Current City" required="" class="form-control"> 
+
+
+
+                            
                                 </div>
+
                                 <div class="form-group col-md-6">
                                 <!-- <label for="text-input" class=" form-control-label">Skill</label>
                                     @push('script')
@@ -2331,30 +2525,51 @@
                                 value="{{$all->talent_skill}}" id="talent_skill">
 							</div> -->
 
-                                    <label for="text-input" class=" form-control-label">Current Addres</label><br>
-                                    <select value="" name="talent_current_address" id="talent_current_addres" class="js-example-basic-single form-control" style="width:100%">
-                                    @if ($all->talent_current_address!=NULL)
-                                        <option value="{{$all->talent_current_address}}">{{$all->talent_current_address}}</option>
-                                    @endif
-                                    @foreach($listKota as $kota)
-                                        <option value="{{$kota->type." ".$kota->nama}}">{{$kota->type." ".$kota->nama}}</option>
-                                    @endforeach
-                                    </select><br>
-                                    <label for="text-input" class=" form-control-label">Address</label>
-                                    <input value="{{$all->talent_address}}" type="text" id="talent_address" name="talent_address"  placeholder="Your Current City" required="" class="form-control"> <br>
                                     <label for="text-input" class=" form-control-label">Prefered Location</label>
                                     <select value="" name="talent_prefered_location" id="talent_prefered_location" class="form-control" style="width:100%">
                                         @foreach ($locate as $location)
                                             <option value="{{$location->location_id}}">{{$location->location_name}}</option>
                                         @endforeach
-                                    </select><br>
+                                    </select>
+
 
                                     <label for="text-input" class=" form-control-label">Prefered City</label>
                                     <select value="" name="talent_prefered_city" id="talent_prefered_city" class="form-control" style="width:100%">
                                         @foreach ($locate as $location)
                                             <option value="{{$location->location_id}}">{{$location->location_name}}</option>
                                         @endforeach
-                                    </select><br>
+                                    </select>
+
+                                    <label for="text-input" class=" form-control-label">Edukasi ISA</label>
+                                    <select name="talent_isa" class="form-control">
+                                    @if ($all->talent_isa == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > NO</option>
+                                    @elseif($all->talent_isa == "yes")
+                                            <option value="yes" > Yes</option>
+                                            <option value="no" > No</option>
+                                    @elseif($all->talent_isa == "no")
+                                            <option value="no" > No</option>
+                                            <option value="yes" > Yes</option>
+                                    @endif
+                                    </select> 
+
+
+                                    <label for="text-input" class=" form-control-label">Bekerja di Luar Negeri</label>
+                                    <select name="talent_international" id="talent_international" class="form-control">
+                                    @if ($all->talent_international == NULL)
+                                            <option value=""> Pilih</option>
+                                            <option value="ya" > Yes</option>
+                                            <option value="no" > NO</option>
+                                    @elseif($all->talent_international == "ya")
+                                            <option value="ya" > Yes</option>
+                                            <option value="no" > No</option>
+                                    @elseif($all->talent_international == "no")
+                                            <option value="no" > No</option>
+                                            <option value="ya" > Yes</option>
+                                    @endif
+                                    </select> 
 
                                     <label for="text-input" class=" form-control-label">Recomendation Salary</label>
                                     <input value="{{$all->talent_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah" type="text" name="talent_salary" class="form-control" placeholder="Your expected salary" required="">
@@ -2362,16 +2577,34 @@
                                     <input value="{{$all->talent_lastest_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="lastest_salary" class="form-control" placeholder="Lastest salary" required="">
                                     
 
-                                    <label for="text-input" class=" form-control-label">Jakarta Salary</label>
+                                    <label for="text-input" class=" form-control-label">Expected Jakarta Salary</label>
                                     <input value="{{$all->talent_salary_jakarta}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_salary_jakarta" class="form-control" placeholder="Jakarta salary" required="">
 
-                                    <label for="text-input" class=" form-control-label">Jakarta Salary</label>
+                                    <label for="text-input" class=" form-control-label">Expected Yogyakarta Salary</label>
                                     <input value="{{$all->talent_salary_jogja}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_salary_jogja" class="form-control" placeholder="Jogja salary" required="">
 
                                     <label for="text-input" class=" form-control-label">Expected Salary</label>
                                     <input value="{{$all->talent_rec_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah3" type="text" name="recomendation_salary" class="form-control" placeholder="Recomendation salary" required="">
+                                    
+                                    <label for="text-input" class=" form-control-label">Freelance hour rate</label>
+                                    <input value="{{$all->talent_freelance_hour}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_freelance_hour" class="form-control" placeholder="Freelance hour rate" required="">
+
+                                    
                                     <label for="text-input" class=" form-control-label">Total Experience</label>
                                     <input value="{{$all->talent_totalexperience}}" id="totalexperience" type="text" name="talent_totalexperience" class="form-control" placeholder="Total Experience Ex: 5 years" >
+                                    
+                                    <label for="text-input" class=" form-control-label">Project Min</label>
+                                    <input value="{{$all->talent_project_min}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_project_min" class="form-control" placeholder="Project min" required="">
+
+                                    <label for="text-input" class=" form-control-label">Project Max</label>
+                                    <input value="{{$all->talent_project_max}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_project_max" class="form-control" placeholder="Project max" required="">
+                                    
+                                    <label for="text-input" class=" form-control-label">Konsultasi rate</label>
+                                    <input value="{{$all->talent_konsultasi_rate}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_konsultasi_rate" class="form-control" placeholder="Konsultasi rate" required="">
+
+                                    <label for="text-input" class=" form-control-label">Rate mengajar</label>
+                                    <input value="{{$all->talent_ngajar_rate}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_ngajar_rate" class="form-control" placeholder="Mengajar rate" required="">
+
                                     <label for="text-input" class=" form-control-label">CV <span class="badge badge-secondary">.pdf Max 1MB</span></label><br>
                                     {{-- <div id="link_cv">
                                             <small>*Link </small><br>
@@ -2386,9 +2619,18 @@
                                         <small>File </small><br>
                                     </div>
                                     <input type="file" value="{{$all->talent_portofolio_file}}" id="talent_portfolio" name="talent_portfolio" placeholder="dd/mm/yyyy" class="form-control" accept=".pdf">
-                                    
-                                    
-                                   
+
+                                    <label for="text-input" class=" form-control-label">LinkedIn</label>
+                                    <input value="{{$all->talent_linkedin}}" type="text" id="talent_linkedin" name="talent_linkedin"  placeholder="Your Linkedin" required="" class="form-control"> 
+
+                                    <label for="text-input" class=" form-control-label">Facebook</label>
+                                    <input value="{{$all->talent_facebook}}" type="text" id="talent_facebook" name="talent_facebook"  placeholder="Your Facebook" required="" class="form-control"> 
+
+                                    <label for="text-input" class=" form-control-label">Instagram</label>
+                                    <input value="{{$all->talent_instagram}}" type="text" id="talent_instagram" name="talent_instagram"  placeholder="Your Instagram" required="" class="form-control">
+
+                                    <label for="text-input" class=" form-control-label">Twitter</label>
+                                    <input value="{{$all->talent_twitter}}" type="text" id="talent_twitter" name="talent_twitter"  placeholder="Your Twitter" required="" class="form-control">  
 
                                 </div>
                             </div>
@@ -2400,6 +2642,7 @@
                         </div>
                     </form>
                 </div>
+
 
 
                 {{--         <div class="tab-pane fade" id="v-pills-skill-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
