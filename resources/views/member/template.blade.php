@@ -79,13 +79,51 @@
         
         <div class="name">
         @if($talent)
-		<?php setlocale(LC_TIME, "id_ID");
+		<h1>{{ $talent->talent_name }}</h1>
+		<?php
 		$originalDate = $talent->talent_date_ready ;
-		$newDate = date( "l, j F Y", strtotime($originalDate)); ?>
-			<h1>{{ $talent->talent_name }}</h1>
-            <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
+		$hari=date('l', strtotime($originalDate));
+		$bulan=date('F', strtotime($originalDate) );
+
+		switch ($hari) {
+			case"Sunday":$hari="Minggu";break;
+			case"Monday":$hari="Senin";break;
+			case"Tuesday":$hari="Selasa";break;
+			case"Wednesday":$hari="Rabu";break;
+			case"Thursday":$hari="Kamis";break;
+			case"Friday":$hari="Jumat";break;
+			case"Saturday":$hari="Sabtu";break;
+		   }
+		
+		   switch($bulan){
+			case"January":$bulan="Januari";break;
+			case"February":$bulan="Februari";break;
+			case"March":$bulan="Maret";break;
+			case"April":$bulan="April";break;
+			case"May":$bulan="Mei";break;
+			case"June":$bulan="Juni";break;
+			case"July":$bulan="Juli";break;
+			case"August":$bulan="Agustus";break;
+			case"September":$bulan="September";break;
+			case"October":$bulan="Oktober"; break;
+			case"November":$bulan="November";break;
+			case"December":$bulan="Desember";break;
+			
+		}
+
+		$tanggal=date('j');
+		$tahun=date('Y');		
+		
+		echo "<span>$hari, $tanggal $bulan $tahun"; 
+		
+
+		?>
+			
+            
             @endif
 		</div>
+
+		
         <!-- <div class="social-icons">
 			<ul>
 				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -102,7 +140,6 @@
 				<li><a href="{{url('profile#skill')}}">Skills</a></li>
 				<li><a href="{{url('profile#experience')}}">Experience</a></li>
 				<li><a href="{{url('profile#education')}}">Education</a></li>
-				<!-- <li><a href="{{url('profile#interview')}}">Interview</a></li> -->
 				<li><a href="{{url('profile#works')}}">Portfolio</a></li>
 				<!-- <li><a href="{{url('profile#certification')}}">Certification</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">History Work Apply</a></li> -->
