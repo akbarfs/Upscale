@@ -899,9 +899,24 @@
 
                                         <div id="preview-report">
                                                 <div class="container"><br>
-                                                        <center>
+                                                
+                                                <center>
+                                                @if ($all->talent_foto)
+                                                    @php $random = date("his") @endphp
+                                                    <img src="{{url('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar">
+                                                    @else
+                                                    <img src="{{url('img/images.jpg')}}" alt="avatar">
+                                                        <label class=" form-control-label">  </label>
+                                                    </div>
+                                                    <div class="col-12 col-md-8">
+
+                                                    <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
+                                                    @endif
+                                                    </center>
+
+                                                        <!-- <center>
                                                                 <img src="{{asset('public/logo-suitcareer.png')}}" alt="" width="20%">
-                                                        </center>  <br>
+                                                        </center>  <br> -->
                                                         <p align="center" style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
                                                             <b>REPORT TALENT</b>
                                                         </p>
@@ -1117,6 +1132,7 @@
                                                                 <b>PROJECT HIGHLIGHT</b>
                                                         </p>
                                                         <table width="100%" border="1"  align="center">
+                                                                 
                                                                     <thead align="center" style="background-color: #ABB4BD">
                                                                         <tr>
                                                                             <td>Project Name</td>
@@ -1125,11 +1141,12 @@
                                                                             <td>Dated Created</td>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody align="center">
                                                                     @php
                                                                       $getdatapor = DB::table('portfolio')->where('portfolio_talent_id',$all->talent_id)->get();
                                                                     @endphp
                                                                     @foreach ($getdatapor as $por)
+                                                                    <tbody align="center">
+                                                         
                                                                         <tr>
                                                                             <td>
                                                                                 {{$por->portfolio_name}}
