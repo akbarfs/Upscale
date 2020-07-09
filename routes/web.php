@@ -19,6 +19,7 @@ use App\Http\Middleware\CheckTalent;
 Auth::routes();
 
 Route::get('talent/test/condition','TalentNewController@condition');
+Route::get('loginas/{code}','homeController@loginas');
 //end of adi
 Route::get('/', 'homeController@index')->name('index');
 Route::get('/home', 'homeController@index')->name('home');
@@ -86,6 +87,9 @@ Route::group(['prefix'=>'member'], function()
 	Route::post("edit-education", "MemberController@editEducationPost");
 	Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
 
+	Route::get("edit-interview", "MemberController@editInterview");
+	Route::post("edit-interview", "MemberController@editInterviewPost");
+
 	Route::get("edit-skill", "MemberController@editSkill");
 	Route::post("edit-skill", "MemberController@editSkillPost");
 	Route::post("update-level", "MemberController@updateSkill");
@@ -101,6 +105,12 @@ Route::group(['prefix'=>'member'], function()
 	Route::get("delete-porto/{id}", "MemberController@portoDelete");
 	Route::get("update-porto/{id}", "MemberController@portoUpdate");
 	Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
+
+	Route::get("personality-test", "MemberController@personalityTest");
+	Route::post("personality-test", "MemberController@personalityTestPost");
+
+	Route::get("skill-test/{type_soal_id}", "MemberController@skillTest");
+	Route::post("skill-test/", "MemberController@skillTestPost");
 
 });
 
@@ -319,15 +329,16 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/list/filter','TalentNewController@filter');
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
+			Route::get('/mail-backup/{id}','TalentNewController@mailBackup');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			Route::post('/mail-send','TalentNewController@mailSend');
 			Route::get('/mail-view/{view}','TalentNewController@viewMail');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
+			Route::get('/create-type-email/{id}', 'TalentNewController@createTypeEmail');
 
-		
 			Route::get('/list/insert', 'TalentNewController@insert');
-			Route::get('/list/insert/data', 'TalentNewController@insertData');
 			Route::get('/list/delete', 'TalentNewController@deleteData');
+			Route::post('/list/insert/data', 'TalentNewController@insertData');
 			
 			Route::get('/delete/{id}', 'TalentNewController@delete');
 			Route::post('/del', 'TalentNewController@del');

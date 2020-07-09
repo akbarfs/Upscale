@@ -16,7 +16,7 @@ class ReportTalentPDF extends Controller
         $skill    = DB::table('skill_talent')->join('skill','skill.skill_id','=','skill_talent.st_skill_id')->where('st_talent_id',$req->talentidnih)->get();
         // var_dump($certif); die();
         // dd($req->all());
-    	$pdf = PDF::loadview('coba',[
+    	$pdf = PDF::loadview('coba2',[
             'all'      =>$all,
             'edu'      =>$edu,
             'certif'   =>$certif,

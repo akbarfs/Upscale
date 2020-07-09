@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Talent extends Model
 {
    	protected $table = 'talent';
@@ -78,7 +79,7 @@ class Talent extends Model
 		return $this->hasMany('App\Models\Job_apply', 'jobs_apply_talent_id', 'talent_id');
 	}
 
-	public function log()
+	public function Talent_log()
 	{
 		return $this->hasMany("App\Models\Talent_log","tl_talent_id","talent_id");
 	}
@@ -108,9 +109,26 @@ class Talent extends Model
 		return $this->hasMany('App\Models\Interview' ,'interview_id','talent_id');
 	}
 
+   /* public  function talent_question()
+	{
+		return $this->hasMany('App\models\QuestionModels', 'it_talent_id', 'talent_id');
+	}
+	*/
+
+
+	public function talent_interviewtest()
+	{
+		return $this->hasMany('App\Models\interview_test','it_talent_id', 'talent_id');
+	}
+
 	public function talent_historyApply()
 	{	
 		return $this->hasMany('App\Models\historyApply' ,'jobs_apply_talent_id','talent_id');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo('App\User','user_id','id');
 	}
 
 }
