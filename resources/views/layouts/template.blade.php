@@ -128,7 +128,7 @@
         }
 
         @media only screen and (max-width:480px){
-            .menu-right { float: left !important }
+            .menu-right { float: center }
             .btn-border.light:not(:hover)
             { 
                 color: rgb(71, 178, 228) !important ; 
@@ -136,8 +136,8 @@
             }
             .btn-login { margin-left: 0 !important; border-left: none !important }
             .minht { height: 100% }
-            .lan-menu { margin-top: 0 !important; }
-            .menu-right { margin-top: 0 !important; }
+            .menu-right { 
+            align: center;}
         }
     </style>
 
@@ -498,8 +498,8 @@
                 {{-- menambahkan login link --}}
                 <div class="menu-right">
                     
-                    <ul class="lan-menu">
-                        <li class="dropdown">
+                    <ul class="lan-menu" >
+                        <li class="dropdown" >
                             @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
                                 <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN </a>
                             @else
@@ -516,7 +516,7 @@
                     </ul>
 
                    
-                    <div class="menu-custom-area">
+                    <div class="menu-custom-area" >
 
                         @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
                             @if(!Session::has('login'))
@@ -525,7 +525,7 @@
                                 
                                 <div class="menu-right">
                         
-                                <ul class="lan-menu">
+                                <ul  style="text-align: center;">
                                     <li class="dropdown">
                                         <a href="{{Request::url()}}?lang=en">
                                             <!-- <img src="{{url('template/upscale/media/profile.png')}}" alt="" /> -->
@@ -533,7 +533,7 @@
                                         </a>
 
                                         <ul>
-                                            <!-- <li><a href="/profile">Profile</a></li> -->
+                                            <li><a href="{{url('/profile')}}">Profile</a></li>
                                             
                                             <li><a  href="{{url('member/logout')}}">Logout</a></li>
                                             

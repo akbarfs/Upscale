@@ -1,66 +1,44 @@
-@extends('layouts.template',['logo'=>'transparent'])
-
-@section("menu_class",'light')
-
+@extends('member.template')
 @section('content')
 
-</br>
-</br>
-</br>
 
-<main>
-<div class="container" align="left">
-            
-            <div class="card-body">
-                <br/>
-                <h4>
-    CV And PORTOFOLIO 
-    </h4>
-
-        <div class="container">
-            <div class="card mt-5">
-                <div class="card-body">
-                    <br/>
-                    <br/>
-                    
-
-                    <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4"><label for="Name">CV</label></div>
-                    <div class="card md-8">
-                        <form action="/action_page.php" >
-                        <input type="file" id="myFile" name="filename"  style="width:220px">
-                        </form>
-                    </div>
-                </div>
-            </div>
-            </br>
-            </br>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-4"><label for="Name">PORTOFOLIO</label></div>
-                    <div  class="card md-8">
-                    <form action="/action_page.php">
-                     <input type="file" id="myFile" name="filename"  style="width:220px">
-                    </div>
-                    </form>
-                </div>
-            </div>
-                </div>
-            </div>
-        </div>
-        </div>
-
+<section class="about">
         
+    <div class="section-header"> <h2>Curriculim Vitae</h2> </div>
 
+    <form action="{{url('member/post-cv')}}" method="post" id="register-talent" enctype="multipart/form-data">
+            
+        @csrf
 
-        <div class="form-group" align="right" padding=25px;>
-         <input type="submit" class="btn btn-success" value="SAVE">
+        <div class="info alert alert-warning" style="display: none"></div>
+
+        <div class="form-group">
+           <div class="row">
+              <div class="col-md-4"><label for="Name">Curriculum Vitae</label></div>
+              <div class="col-md-8" style="padding: 10px">
+                    <input type="file" id="myFile" name="cv"  style="width:220px">
+                    @if ($errors->has('cv'))
+                        @foreach ($errors->get('cv') as $error)
+                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                        @endforeach
+                    @endif
+              </div>
+           </div>
         </div>
+            
+        <div class="modal-footer">
+            <a href="/profile" class="btn btn-primary"><font color="#FFFFFF">Back</font></a>
+            <button type="submit" class="btn btn-primary">UPDATE</button>
+        </div>
+        <hr style="margin-top: 0">
+    </form>
+    
+    @if ( $talent->talent_cv_update)
+    <iframe src="{{url('storage/Curriculum Vitae/'.$talent->talent_cv_update)}}" 
+        style="height:500px;width:100%;"></iframe>
+    @endif 
 
-
-</main>
+</section>
 
 <script src="{{url('template/upscale/themekit/scripts/sticky-kit.min.js')}}"></script>
 @endsection

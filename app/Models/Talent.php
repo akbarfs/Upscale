@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Talent extends Model
 {
    	protected $table = 'talent';
@@ -19,6 +20,7 @@ class Talent extends Model
 							'talent_birth_date', 
 							'talent_addres', 
 							'talent_salary', 
+							'talent_foto',
 							'talent_cv', 
 							'talent_portfolio', 
 							'talent_portofolio_file', 
@@ -46,13 +48,22 @@ class Talent extends Model
 							'talent_onsite_jakarta',
 							'talent_onsite_jogja',
 							'talent_isa',
+							'talent_luar_kota',
 							'talent_remote',
 							'talent_salary_jogja',
 							'talent_salary_jakarta',
 							'talent_current_work',
 							'talent_last_active',
+							'talent_mail_invitation',
+							'talent_mail_regular',
+							'talent_mail_isa',
 							'talent_la_type',
 							'talent_note',
+							'talent_web',
+							'talent_linkedin',
+							'talent_facebook',
+							'talent_instagram',
+							'talent_twitter'
 						];
 	public $timestamps = false;
 
@@ -68,7 +79,7 @@ class Talent extends Model
 		return $this->hasMany('App\Models\Job_apply', 'jobs_apply_talent_id', 'talent_id');
 	}
 
-	public function log()
+	public function Talent_log()
 	{
 		return $this->hasMany("App\Models\Talent_log","tl_talent_id","talent_id");
 	}
@@ -86,6 +97,38 @@ class Talent extends Model
 	public function talent_workex()
 	{	
 		return $this->hasMany('App\Models\work_experience' ,'workex_talent_id','talent_id');
+	}
+
+	public function talent_certification()
+	{	
+		return $this->hasMany('App\Models\certification' ,'certif_talent_id','talent_id');
+	}
+
+	public function talent_interview()
+	{	
+		return $this->hasMany('App\Models\Interview' ,'interview_id','talent_id');
+	}
+
+   /* public  function talent_question()
+	{
+		return $this->hasMany('App\models\QuestionModels', 'it_talent_id', 'talent_id');
+	}
+	*/
+
+
+	public function talent_interviewtest()
+	{
+		return $this->hasMany('App\Models\interview_test','it_talent_id', 'talent_id');
+	}
+
+	public function talent_historyApply()
+	{	
+		return $this->hasMany('App\Models\historyApply' ,'jobs_apply_talent_id','talent_id');
+	}
+
+	public function user()
+	{
+		return $this->belongsTo('App\User','user_id','id');
 	}
 
 }
