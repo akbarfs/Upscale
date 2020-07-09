@@ -223,7 +223,7 @@ public function insertData(Request $request){
 
         
 
-        DB::table('talent')->insert([
+        $idTalent = DB::table('talent')->insertGetId([
             'user_id' => $user_id ,
             'talent_name' => $request->nama,
             'talent_email' => $request->email,
@@ -254,12 +254,6 @@ public function insertData(Request $request){
             'talent_konsultasi_rate' => isset($request->konsulrate)? $request->konsulrate: '' ,
             'talent_ngajar_rate' => isset($request->tutorrate)? $request->tutorrate: '' ,
         ]);
-
-
-
-        
-
-        $idTalent = DB::table('talent')->insertGetId([ 'talent_name' => $request->nama ]);
 
 
 
