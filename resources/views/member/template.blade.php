@@ -29,7 +29,10 @@
 	<script type="text/javascript" src="{{asset('/cv/js/jquery.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('/cv/js/animatedModal.min.js')}}"></script>
 	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="{{ asset('js/autoNumeric.js') }}"></script>
 
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet" type="text/css">

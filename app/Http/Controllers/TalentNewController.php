@@ -173,8 +173,11 @@ class TalentNewController extends Controller
             $talent = Talent::find($row);
             
             //menghapus semua data di table user yg berelasi
-            $user = User::find($talent->user_id); 
-            $user->delete() ; 
+            if ( $user = User::find($talent->user_id) ) 
+            {
+
+                $user->delete() ; 
+            } 
 
             //delete 
             Talent::where('talent_id', $row)->delete();
@@ -186,7 +189,7 @@ class TalentNewController extends Controller
         return view('admin.talent.insert');
     }
 
-public function insertData(Request $request){
+    public function insertData(Request $request){
 
 
 
@@ -283,7 +286,6 @@ public function insertData(Request $request){
         
 
         return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
-
        
     }
 
