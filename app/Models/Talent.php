@@ -20,6 +20,7 @@ class Talent extends Model
 							'talent_birth_date', 
 							'talent_addres', 
 							'talent_salary', 
+							'talent_foto',
 							'talent_cv', 
 							'talent_portfolio', 
 							'talent_portofolio_file', 
