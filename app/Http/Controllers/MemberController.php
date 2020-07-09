@@ -15,6 +15,7 @@ use Auth;
 use App\Models\work_experience; 
 use App\Models\education; 
 use App\Models\portfolio; 
+use App\Models\CategoryTest; 
 use Storage ;
 use Image ; 
 
@@ -308,7 +309,10 @@ class MemberController extends Controller
         {
             $lock = true ; 
         }
-        return view("member.profile",compact('talent','lock'));   
+
+        $test = CategoryTest::all() ; 
+
+        return view("member.profile",compact('talent','lock','test'));   
     }
 
     public function editBasic()
@@ -904,6 +908,72 @@ class MemberController extends Controller
         {
             return abort(404); 
         }
+    }
+
+    function skillTest($type_soal_id)
+    {
+        $category = CategoryTest::findOrFail($type_soal_id) ; 
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=',$type_soal_id)
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        $answer= array() ;
+        foreach ($test as $row) 
+        {
+            $check = DB::table('interview_test')->where('it_tq_id','=',$row->tq_id)->where('it_talent_id','=',$talent->talent_id)->first();
+
+            if(isset($check->it_answer))
+            {
+                $answer[$row->tq_id] = $check->it_answer;
+            }
+            else
+            {
+                $answer[$row->tq_id] = "";
+            }
+        }
+
+        return view('member/skillTest',compact('talent','test','answer','category'));
+    }
+
+    public function skillTestPost(Request $request)
+    {
+        $this->validate($request, 
+                        [
+                            'answer.*' => 'required|min:2',
+                            'ct_id' => 'required',
+                        ]);
+
+        $ct_id = $request->ct_id  ;
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=',$ct_id)
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        foreach ( $test as $row )
+        {
+            $jawaban =  $request->answer[$row->tq_id];
+            DB::table('interview_test')->updateOrInsert(
+                array('it_talent_id'=>$talent->talent_id, 'it_tq_id'=>$row->tq_id ),
+                array('it_answer' => $request->answer[$row->tq_id])
+            );
+        }
+
+        return back()->with("message","berhasil menyimpan data");
+        
+
     }
     
     
