@@ -75,6 +75,10 @@
 							</div>
 
 							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="focus" name="talent_focus">
+							</div>
+
+							<div class="col-md-2">
 								<select class="custom-select" name="talent_onsite_jogja">
 									<option value="">-- jogja? --</option>
 									<option value="unset">unset</option>
@@ -83,7 +87,7 @@
 								</select>
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-md-2" style="margin-top: 10px">
 								<select class="custom-select" name="talent_onsite_jakarta">
 									<option value="">-- jakarta? --</option>
 									<option value="unset">unset</option>
@@ -178,6 +182,8 @@
                                 placeholder="skill"
                                 name="skill"/>
 							</div>
+
+							
 
 
 
