@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 use App\Mail\UpscaleEmail;
 use App\Models\Talent;
@@ -153,7 +154,7 @@ class TalentNewController extends Controller
         // }
     }
 
-    public function export_excel()
+    public function export_excel ()
     {
         return Excel::download(new TalentExport, 'talent.xlsx');
     }

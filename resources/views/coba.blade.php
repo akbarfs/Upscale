@@ -12,7 +12,7 @@
     </style>
 </head>
 <body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
-        <div class="container">
+<div class="container">
                 <center><img src="logo-suitcareer.png" alt="" width="20%"></center>  <br>
                 <p align="center" style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
                     <b>REPORT TALENT</b>
@@ -77,20 +77,19 @@
                 <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
                         <b>TALENT SKILL OVERVIEW</b>
                 </p>
-                <div style="text-align:center; margin-left: 0px;" >
-                    <table width="100%" border=1 id="teknologidanlevel">
-                    <!--<table width="100%" id="teknologidanlevel">-->
-                            <tr style="background-color: greenyellow">
-                                <td align="center"><strong>TECHNOLOGY STACK</strong> </td>
-                                <td align="center" width="50%"><strong>LEVEL</strong></td>
-                            </tr>
-                            @foreach ($skill as $s)
-                                <tr align="center">
-                                    <td>{{$s->skill_name}}</td>
-                                    <td>{{$s->st_level}}</td>
-                                </tr>
-                            @endforeach
-                    </table>
+                <!-- <div style="text-align:center; margin-left: 0px;" > -->
+                <table  width="100%"  border="1" id="teknologidanlevel">
+                                                                <tr style="background-color: #ABB4BD">
+                                                                    <td align="center"><strong>TECHNOLOGY STACK</strong> </td>
+                                                                    <td align="center" width="50%"><strong>LEVEL</strong></td>
+                                                                </tr>
+                                                                @foreach ($skill as $s)
+                                                                    <tr align="center">
+                                                                        <td>{{$s->skill_name}}</td>
+                                                                        <td>{{$s->st_level}}</td>
+                                                                    </tr>
+                                                                @endforeach
+                                                        </table>
                 </div>
                 <hr>
                 <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
