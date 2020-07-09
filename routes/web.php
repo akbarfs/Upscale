@@ -326,11 +326,12 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/list/filter','TalentNewController@filter');
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/mail/{id}','TalentNewController@mail');
+			Route::get('/mail-backup/{id}','TalentNewController@mailBackup');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			Route::post('/mail-send','TalentNewController@mailSend');
 			Route::get('/mail-view/{view}','TalentNewController@viewMail');
 			Route::get('/list/export_excel','TalentNewController@export_excel');
-			
+			Route::get('/create-type-email/{id}', 'TalentNewController@createTypeEmail');
 
 			Route::get('/list/insert', 'TalentNewController@insert');
 			Route::get('/list/delete', 'TalentNewController@deleteData');

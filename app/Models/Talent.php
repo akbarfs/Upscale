@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Talent extends Model
 {
    	protected $table = 'talent';
@@ -77,7 +78,7 @@ class Talent extends Model
 		return $this->hasMany('App\Models\Job_apply', 'jobs_apply_talent_id', 'talent_id');
 	}
 
-	public function log()
+	public function Talent_log()
 	{
 		return $this->hasMany("App\Models\Talent_log","tl_talent_id","talent_id");
 	}
