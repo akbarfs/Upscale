@@ -240,9 +240,9 @@
 
 		  		<?php $wa = preg_replace('/^0?/', '62', $talent->talent_phone); ?>
 		  		<a class="btn btn-success btn-sm button-wa" data-toggle="modal" style="color: #fff" 
-				data-target="#wa" data-wa='{{$wa}}' data-nama='{{$talent->talent_name}}'> <i class=" fa fa-whatsapp"></i> </a>
+				data-target="#wa" data-wa='{{$wa}}' data-nama='{{$talent->talent_name}}' data-link="{{url('loginas/'.encrypt_custom($talent->talent_id))}}"> <i class=" fa fa-whatsapp"></i> </a>
 
-				<a href="{{url('/loginas/'.encrypt_custom($talent->talent_id))}}" 
+				<a href="{{url('/loginas/'.encrypt_custom($talent->user_id))}}" 
 		  		class="btn btn-sm btn-primary" target="_blank">
 		  			<i class="fa fa-sign-in"></i>
 		  		</a>
@@ -268,6 +268,7 @@
 		{
 			wa = $(this).data("wa");
 			nama = $(this).data("nama");
+			link = $(this).data("link");
 			$(".wa-pilih").click(function(index)
 			{
 				type = $(this).data("type")  ;
@@ -277,11 +278,11 @@
 				}
 				else if ( type == 'cv-interview-umum')
 				{
-					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar menjadi member di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya kami perlu tau harapan anda ketika menjadi member upscale, apakah ingin mencari lowongan pekerjaan, mencari project freelance atau mungkin ada harapan lainya.%0A %0A Oleh sebab itu apakah besok / hari ini bisa saya interview via online?'; 
+					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar menjadi member di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  '+link+' %0A %0A Selanjutnya kami perlu tau harapan anda ketika menjadi member upscale, apakah ingin mencari lowongan pekerjaan, mencari project freelance atau mungkin ada harapan lainya.%0A %0A Oleh sebab itu apakah besok / hari ini bisa saya interview via online?'; 
 				} 
 				else if ( type == 'cv-interview-jobs')
 				{
-					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar lowongan kerja di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya apakah besok / hari ini bisa saya interview via online?'; 
+					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar lowongan kerja di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  '+link+' %0A %0A Selanjutnya apakah besok / hari ini bisa saya interview via online?'; 
 				} 
 
 				// link = link.replace("#wa#", wa); 
