@@ -15,7 +15,7 @@
 
     <script src="{{asset('/admin/js/vendor/jquery-3.3.1.min.js')}}"></script>
     
-
+    
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="{{ asset('/upscale.ico') }}">

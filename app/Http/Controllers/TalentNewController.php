@@ -21,6 +21,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Database\Eloquent\Builder;
 
+use Illuminate\Support\Facades\Crypt;
+
 class TalentNewController extends Controller
 {
 
@@ -30,9 +32,23 @@ class TalentNewController extends Controller
         return view('admin.talent.home');
     }
 
-    function mail($id)
+    function mail($talent_id)
     {
-        return view("admin.talent.mail");
+        $talent = Talent::findOrFail($talent_id);
+        return view("admin.talent.mail",compact('talent'));
+    }
+
+    function createTypeEmail($id)
+    {
+        $talent = Talent::find($id);
+        return view("admin.talent.createTypeEmail",compact('talent'));
+    }
+
+    function mailBackup($id)
+    {
+        $talent = Talent::find($id); 
+        return view("admin.talent.mail-backup",compact('talent'));
+
     }
 
     public function mailSend(Request $request)
@@ -104,7 +120,7 @@ class TalentNewController extends Controller
         // if ($request->ajax()) {
 
             //SELECT BUILDER START
-            $default_query = "*, users.email as member_email, users.created_at as member_date";
+            $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
             $data = Talent::select(DB::raw($default_query));
             //SELECT BUILDER END 
 

@@ -96,6 +96,7 @@
 				<li><a href="{{url('profile#skill')}}">Skills</a></li>
 				<li><a href="{{url('profile#experience')}}">Experience</a></li>
 				<li><a href="{{url('profile#education')}}">Education</a></li>
+				<!-- <li><a href="{{url('profile#interview')}}">Interview</a></li> -->
 				<li><a href="{{url('profile#works')}}">Portfolio</a></li>
 				<!-- <li><a href="{{url('profile#certification')}}">Certification</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">History Work Apply</a></li> -->
