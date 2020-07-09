@@ -109,6 +109,9 @@ Route::group(['prefix'=>'member'], function()
 	Route::get("personality-test", "MemberController@personalityTest");
 	Route::post("personality-test", "MemberController@personalityTestPost");
 
+	Route::get("skill-test/{type_soal_id}", "MemberController@skillTest");
+	Route::post("skill-test/", "MemberController@skillTestPost");
+
 });
 
 ////////////////////////////

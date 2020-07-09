@@ -542,7 +542,7 @@
                 @foreach($talent->talent_portfolio()->get() as $row )
 				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1" data-sort="value">
 					<div class="item">
-						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image">
+						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image" target="_blank">
 							<div class="title">
 								<div class="inner">
 									<h2>{{ $row->portfolio_name }}</h2>
@@ -623,9 +623,18 @@
 			<!-- BOX PENILAIAN PERSONALITY END -->
 
 			<!-- START HASIL PERSONALITY INTERVIEW  -->
+
+			<!-- START HASIL BACKEND TEST  -->
+			@foreach($talent->talent_interviewtest()->get() as $row)
+				@if ( $row->test_question->tq_ct_id == 3 )
+					@php $pengenalan_diri = 'on' @endphp 
+				@endif
+			@endforeach 
+
+			@if ( isset($pengenalan_diri) && $pengenalan_diri == 'on')
 			<section id="experience" class="resume">
 				<div class="section-header" style="margin-left: 0">
-					<h2>Hasil Interview</h2>
+					<h2>Pengenalan Diri Dasar</h2>
 					@if ( !$lock && Request::segment(2) == '') 
 						<a class="edit" href="{{url('/member/personality-test')}}">edit</a>
 					@endif 
@@ -648,29 +657,37 @@
 				@endforeach	
 				</div>
 			</section>
+			@endif
 			<!-- END BOX HASIL PERSONALITY INTERVIEW -->
 
-			<!-- START HASIL BACKEND TEST  -->
-			@foreach($talent->talent_interviewtest()->get() as $row)
-				@if ( $row->test_question->tq_ct_id == 1 )
-					@php $backend = 'on' @endphp 
-				@endif
-			@endforeach 
+			<!-- START HASIL skill TEST  -->
 
-			@if ( isset($backend) && $backend == 'on')
+
+
+			@foreach ( $test as $cat )
+
+				@if ( $cat->ct_id != 3 && $cat->ct_id != 8 )
 				<section id="experience" class="resume">
 					<div class="section-header" style="margin-left: 0">
-						<h2>Backend Test</h2>
+						<h2>{{$cat->ct_name}}</h2>
 						@if ( !$lock && Request::segment(2) == '') 
-							<a class="edit" href="{{url('/member/personality-test')}}">edit</a>
+							<a class="edit" href="{{url('/member/skill-test/'.$cat->ct_id)}}">edit</a>
 						@endif 
 					</div>
 					<div class="row" >
-					@foreach($talent->talent_interviewtest()->where('it_answer','!=','')->where('it_answer','!=','-')->get() as $row )
 
-						@if ( $row->test_question->tq_ct_id == 1 )
+					@php 
+					$result = $talent->talent_interviewtest()
+							->where('it_answer','!=','')
+							->where('it_answer','!=','-')
+							->get()
+					@endphp 
+
+					@foreach( $result as $row )
+
+						@if ( $row->test_question->tq_ct_id == $cat->ct_id )
 							
-							<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px; margin-bottom: 10px; ">
+							<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px;margin-bottom: 10px; ">
 								<div class="top-item resume-item">
 									<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
 									<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
@@ -683,15 +700,17 @@
 					@endforeach	
 					</div>
 				</section>
-			@endif 
+				@endif
+
+			@endforeach 
 			<!-- END BOX HASIL BACKEND TEST -->
 
 
 		@else
 
 			@if ( Request::segment(2) == '') 
-				<div style="padding: 20px; text-align: center; margin-bottom: 50px">
-					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Klik Disini! untuk memulai interview online</a>
+				<div style="padding: 20px; text-align: center;">
+					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
 				</div>
 			@endif
 
