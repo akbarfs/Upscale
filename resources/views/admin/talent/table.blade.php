@@ -63,183 +63,189 @@
 			<th scope="col">Created</th>
 			@endif
 
-			  <th scope="col">Action</th>
-			</tr>
-		</thead>
-		<tbody id="container">
-			
-			@foreach($data as $talent)
-			<tr>
-			  <td><input type="checkbox" name="delid[]" class="talent_id"  value="{{$talent->talent_id}}"> </td> 
-			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-				<script>
-					$(document).ready(function(){
-						
-						$(".btnmail").hide();
-						$(".talent_id").click(function()
+			<th scope="col">Apply</th>
+
+			<th scope="col">Action</th>
+		</tr>
+	</thead>
+	<tbody id="container">
+		
+		@foreach($data as $talent)
+		<tr>
+		  <td><input type="checkbox" name="delid[]" class="talent_id"  value="{{$talent->talent_id}}"> </td> 
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script>
+				$(document).ready(function(){
+					
+					$(".btnmail").hide();
+					$(".talent_id").click(function()
+					{
+						jumlah = $('input[name="delid[]"]:checked').length;
+						if (jumlah > 0) 
 						{
-							jumlah = $('input[name="delid[]"]:checked').length;
-							if (jumlah > 0) 
-							{
-								$("#mass_del").show();
-								$(".btnmail").show();
-								// console.log(jumlah);
-							}
-							else
-							{
-								$("#mass_del").hide();
-								$(".btnmail").hide();
-								// console.log(jumlah);
-							}
-						});
-					  
+							$("#mass_del").show();
+							$(".btnmail").show();
+							// console.log(jumlah);
+						}
+						else
+						{
+							$("#mass_del").hide();
+							$(".btnmail").hide();
+							// console.log(jumlah);
+						}
 					});
-				</script>
+				  
+				});
+			</script>
 
 
-			  <th scope="row">{{$talent->talent_id}}</th>
-			  <td>
-			  		{{$talent->talent_name}}
-			  		@if ( $talent->member_email )
-			  			<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
-			  			title="member">m</span>
-			  		@endif
-			  		<br>
-			  </td>
+		  <th scope="row">{{$talent->talent_id}}</th>
+		  <td>
+		  		{{$talent->talent_name}}
+		  		@if ( $talent->member_email )
+		  			<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member">m</span>
+		  		@endif
+		  		<br>
+		  </td>
 
-			  @if (Request::input('contact') )
-			  <td>{{$talent->talent_email}}<br>{{$talent->talent_phone}}</td>
-			  @endif
+		  @if (Request::input('contact') )
+		  <td>{{$talent->talent_email}}<br>{{$talent->talent_phone}}</td>
+		  @endif
 
-			  @if (Request::input('skill') )
-			  <td style="max-width: 400px">
-			  	@foreach ( $talent->talent_skill()->get() as $row ) 
-			  		<?php 
-			  			
-			  			if ( $row->st_skill_verified == "YES")
-			  			{
-			  				$badge = 'success'; 
-			  			}
-			  			else
-			  			{
-			  				$badge = 'default'; 
-			  			}
-			  			$skill = $row->skill()->first(); 
-			  		?>
-			  		<span class="badge badge-{{$badge}}">{{$skill->skill_name}}</span> 
-			  	@endforeach
-			  </td>
-			  @endif
+		  @if (Request::input('skill') )
+		  <td style="max-width: 400px">
+		  	@foreach ( $talent->talent_skill()->get() as $row ) 
+		  		<?php 
+		  			
+		  			if ( $row->st_skill_verified == "YES")
+		  			{
+		  				$badge = 'success'; 
+		  			}
+		  			else
+		  			{
+		  				$badge = 'default'; 
+		  			}
+		  			$skill = $row->skill()->first(); 
+		  		?>
+		  		<span class="badge badge-{{$badge}}">{{$skill->skill_name}}</span> 
+		  	@endforeach
+		  </td>
+		  @endif
 
-			  @if (Request::input('date_ready') )
-			  <td>
-			  	@if ( isset($talent->talent_date_ready))
-			  	{{ \Carbon\Carbon::parse($talent->talent_date_ready)->format('D, d-m-Y') }}<br>
-			  	<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
-			  			title="member date">
-			  			{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_date_ready))->diffForHumans()}}</b>
+		  @if (Request::input('date_ready') )
+		  <td>
+		  	@if ( isset($talent->talent_date_ready))
+		  	{{ \Carbon\Carbon::parse($talent->talent_date_ready)->format('D, d-m-Y') }}<br>
+		  	<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
+		  			{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_date_ready))->diffForHumans()}}</b>
+		  	</span>
+		  	@endif
+		  </td>
+		  @endif
+
+		  @if (Request::input('ready_jogja') )
+		  <td>{{ $talent->talent_onsite_jogja }}</td>
+		  @endif
+
+		  @if (Request::input('ready_jakarta') )
+		  <td>{{ $talent->talent_onsite_jakarta }}</td>
+		  @endif
+
+		  @if (Request::input('isa') )
+		  <td>{{ $talent->talent_isa }}</td>
+		  @endif
+
+
+		  @if (Request::input('mail_invitation') )
+		  <td>{{$talent->talent_mail_invitation}}</td>
+		  @endif
+
+
+		  @if (Request::input('mail_regular') )
+		  <td>{{$talent->talent_mail_regular}}</td>
+		  @endif
+
+
+		  @if (Request::input('active') )
+		  <td>
+		  		@if ( isset($talent->talent_last_active))
+		  		{{$talent->talent_la_type ? $talent->talent_la_type : '-'}}<br>
+		  		{{ \Carbon\Carbon::parse($talent->talent_last_active)->format('D, d-m-Y H:i') }}<br>
+		  		<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
+		  		{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_last_active))->diffForHumans()}}
+		  		</span>
+		  		@endif
+		  </td>
+		  @endif
+
+		  @if (Request::input('member_date') )
+		  <td>
+		  	
+		  		@if ( isset($talent->member_date))
+		  		{{ \Carbon\Carbon::parse($talent->member_date)->format('D, d-m-Y H:i') }}<br>
+		  		<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
+			  		{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->member_date))->diffForHumans()}}
 			  	</span>
 			  	@endif
-			  </td>
-			  @endif
-
-			  @if (Request::input('ready_jogja') )
-			  <td>{{ $talent->talent_onsite_jogja }}</td>
-			  @endif
-
-			  @if (Request::input('ready_jakarta') )
-			  <td>{{ $talent->talent_onsite_jakarta }}</td>
-			  @endif
-
-			  @if (Request::input('isa') )
-			  <td>{{ $talent->talent_isa }}</td>
-			  @endif
-
-
-			  @if (Request::input('mail_invitation') )
-			  <td>{{$talent->talent_mail_invitation}}</td>
-			  @endif
-
-
-			  @if (Request::input('mail_regular') )
-			  <td>{{$talent->talent_mail_regular}}</td>
-			  @endif
-
-
-			  @if (Request::input('active') )
-			  <td>
-			  		@if ( isset($talent->talent_last_active))
-			  		{{$talent->talent_la_type ? $talent->talent_la_type : '-'}}<br>
-			  		{{ \Carbon\Carbon::parse($talent->talent_last_active)->format('D, d-m-Y H:i') }}<br>
-			  		<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
-			  			title="member date">
-			  		{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_last_active))->diffForHumans()}}
-			  		</span>
-			  		@endif
-			  </td>
-			  @endif
-
-			  @if (Request::input('member_date') )
-			  <td>
-			  	
-			  		@if ( isset($talent->member_date))
-			  		{{ \Carbon\Carbon::parse($talent->member_date)->format('D, d-m-Y H:i') }}<br>
-			  		<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
-			  			title="member date">
-				  		{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->member_date))->diffForHumans()}}
-				  	</span>
-				  	@endif
-			  </td>
-			  @endif
+		  </td>
+		  @endif
 
 
 
 
-			  @if (Request::input('created') )
-			  <td>
-			  	{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}<br>
-			  	<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
-			  			title="member date">
-			  			{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_created_date))->diffForHumans()}}</b>
-			  	</span>
-			  </td>
-			  @endif
+		  @if (Request::input('created') )
+		  <td>
+		  	{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}<br>
+		  	<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+		  			title="member date">
+		  			{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_created_date))->diffForHumans()}}</b>
+		  	</span>
+		  </td>
+		  @endif
 
-			  <td style="min-width: 200px">
-			  		<a href="{{url('/admin/talent/detail?id='.$talent->talent_id)}}" 
-			  		class="btn btn-sm btn-primary" target="_blank">
-			  			<i class="fa fa-pencil"></i>
-			  		</a>
+		  <td>
+		  	{{$talent->jobs_apply}}
+		  </td>
 
-			  		<a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" 
-			  		class="btn btn-sm btn-primary" target="_blank">
-			  			<i class="fa fa-user-o"></i>
-			  		</a>
+		  <td style="min-width: 200px">
+		  		<a href="{{url('/admin/talent/detail?id='.$talent->talent_id)}}" 
+		  		class="btn btn-sm btn-primary" target="_blank">
+		  			<i class="fa fa-pencil"></i>
+		  		</a>
 
-			  		<a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}" 
-			  		class="btn btn-sm btn-primary" target="_blank">
-			  			<i class="fa fa-envelope"></i>
-			  		</a>
+		  		<a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" 
+		  		class="btn btn-sm btn-primary" target="_blank">
+		  			<i class="fa fa-user-o"></i>
+		  		</a>
 
-			  		<?php $wa = preg_replace('/^0?/', '62', $talent->talent_phone); ?>
-			  		<a class="btn btn-success btn-sm button-wa" data-toggle="modal" style="color: #fff" 
-					data-target="#wa" data-wa='{{$wa}}' data-nama='{{$talent->talent_name}}'> <i class=" fa fa-whatsapp"></i> </a>
+		  		<a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}" 
+		  		class="btn btn-sm btn-primary" target="_blank">
+		  			<i class="fa fa-envelope"></i>
+		  		</a>
 
-					<a href="{{url('/loginas/'.encrypt_custom($talent->talent_id))}}" 
-			  		class="btn btn-sm btn-primary" target="_blank">
-			  			<i class="fa fa-sign-in"></i>
-			  		</a>
+		  		<?php $wa = preg_replace('/^0?/', '62', $talent->talent_phone); ?>
+		  		<a class="btn btn-success btn-sm button-wa" data-toggle="modal" style="color: #fff" 
+				data-target="#wa" data-wa='{{$wa}}' data-nama='{{$talent->talent_name}}'> <i class=" fa fa-whatsapp"></i> </a>
 
-					<!-- <a onclick="return confirm('Are you sure to delete this?')" 
-					href="{{url('/admin/talent/delete/'.$talent->talent_id)}}"
-					class="btn btn-sm btn-danger">
-						  	<i class="fa fa-trash"></i>
-					</a> -->
-			  </td>
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
+				<a href="{{url('/loginas/'.encrypt_custom($talent->talent_id))}}" 
+		  		class="btn btn-sm btn-primary" target="_blank">
+		  			<i class="fa fa-sign-in"></i>
+		  		</a>
+
+				<!-- <a onclick="return confirm('Are you sure to delete this?')" 
+				href="{{url('/admin/talent/delete/'.$talent->talent_id)}}"
+				class="btn btn-sm btn-danger">
+					  	<i class="fa fa-trash"></i>
+				</a> -->
+		  </td>
+		</tr>
+		@endforeach
+	</tbody>
+</table>
 
 
 {{$data->links()}}

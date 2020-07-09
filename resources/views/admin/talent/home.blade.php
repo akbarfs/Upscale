@@ -102,6 +102,14 @@
 							</div>
 
 							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="apply_jobs">
+									<option value="">-- apply jobs? --</option>
+									<option value="yes">yes</option>
+									<option value="no">no</option>
+								</select>
+							</div>
+
+							<div class="col-md-2" style="margin-top: 10px">
 								<select class="custom-select" name="order">
 									<option value="">-- order? --</option>
 									<option value="talent_id">DB ID</option>
