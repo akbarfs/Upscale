@@ -4,29 +4,29 @@
 
 @section('content')
 
-   <div class="content-wrapper">
-      <div class="putih" style="background-color:white">
+<div class="content-wrapper">
+    <div class="putih" style="background-color:white">
 
-      <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/admin/dashboard" style="color:#3532ff">Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">History</li>
-                </ol>
-            </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/dashboard" style="color:#3532ff">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">History</li>
+            </ol>
+        </nav>
 
-        <h3 style="margin:2% 3% 0%" > History </h3>
+        <h3 style="margin:2% 3% 0%"> History </h3>
         <br>
-            <div class="container-fluid" >
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card" style="position: relative; float:right ; margin-right: 10%; width: 30rem">
-                            <div class="card-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card" style="position: relative; float:right ; margin-right: 10%; width: 30rem">
+                        <div class="card-body">
                             <table class="table table-bordered table-white" style="font-size:10px;text-align:center">
                                 <thead>
                                     <tr>
                                         <th scope="col"></th>
-                                        <th scope="col">Member offer</th>
-                                        <th scope="col">Teacher offer</th>
+                                        <th scope="col">Join Invitation</th>
+                                        <th scope="col">Regular</th>
                                         <th scope="col">Class Offer</th>
                                         <th scope="col">Letter Offer</th>
                                         <th scope="col">Job Offer</th>
@@ -34,117 +34,199 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <th scope="row">Total Email Send</th>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td colspan="2">0</td>
+                                        <th scope="row">Total Email Send</th>
+                                        <td>{{$talent->talent_mail_invitation}}</td>
+                                        <td>{{$talent->talent_mail_regular}}</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td colspan="2">0</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <form style= "background-color:white" method="post" action="" id="form-search">
-				   <div class="row">
-                    <div class="col-sm-2" style="padding-left:4%; margin-top:0%">
-                        <select class="custom-select" name="status_member">
-                            <option value="">--ALL--</option>
-                            <option value="all" selected="selected">All</option>
-                            <option value="non-member">Member offer</option>
-                            <option value="member">Teacher Offer</option>
-                            <option value="member">Class Offer</option>
-                            <option value="member">Letter Offer</option>
-                            <option value="member">Job Offer</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control" placeholder="email" name="talent_email">
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control" placeholder="phone" name="talent_phone">
-                    </div>
-                    <style type="text/css">
-                        .fstQueryInput  { padding: 0 }
-                        .fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
-                        .fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
-                     </style>
-				   </div>
-            </form>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form style="background-color:white" method="post" action="" id="form-search">
+                        <div class="row">
+                            <div class="col-sm-2" style="padding-left:4%; margin-top:0%">
+                                <select class="custom-select" name="status_member">
+                                    <option value="">--ALL--</option>
+                                    <option value="all" selected="selected">All</option>
+                                    <option value="non-member">Member offer</option>
+                                    <option value="member">Teacher Offer</option>
+                                    <option value="member">Class Offer</option>
+                                    <option value="member">Letter Offer</option>
+                                    <option value="member">Job Offer</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="email" name="talent_email">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="phone" name="talent_phone">
+                            </div>
+                            <div class="col-sm-2" style="padding-left:4%; margin-top:0%">
+                                <select class="custom-select" name="categories">
+                                    <option value="">--categories--</option>
+                                    <option value="all" selected="selected">categories</option>
+                                    <option value="invitation">Join Invitation</option>
+                                    <option value="regular">Regular</option>
+                                </select>
+                            </div>
+                            <style type="text/css">
+                                .fstQueryInput {
+                                    padding: 0
+                                }
 
-            <div class="container-fluid">
-                <div class="card" style=" margin : 0% 2.5%">
-                    <div class="row mb-2">
-                        <div class="col-sm-10" style="margin-top:8px; padding-left:2%;">
-                            <form style= "background-color:white" method="post" action="" id="form-search">                     
-                                <div class="row" style="margin-top: 10px">
-                                    <div class=" col-sm-12">
-                                    <div style="padding: 0px;">
-                                        show :   
-                                        <input type="checkbox" name="contact" checked="checked"> Type &nbsp;
-                                        <input type="checkbox" name="skill" checked="checked"> Name &nbsp;
-                                        <input type="checkbox" name="date_ready" checked="checked"> Phone &nbsp;
-                                        <input type="checkbox" name="date_ready" checked="checked"> Email &nbsp;
-                                        <input type="checkbox" name="created" checked="checked"> Status Email &nbsp;
-                                        <input type="checkbox" name="created" checked="checked"> Details &nbsp;
-                                        <input type="checkbox" name="created" checked="checked"> Date &nbsp;
-                                        <button class="btn btn-outline-primary" type="submit" id="search">Search</button>
+                                .fstControls {
+                                    padding: 0 !important;
+                                    min-width: 200px;
+                                    height: 35px
+                                }
+
+                                .fstQueryInputExpanded {
+                                    padding: 0 10px !important;
+                                    margin: 0 !important
+                                }
+                            </style>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="card" style=" margin : 0% 2.5%">
+                                <div class="row mb-2">
+                                    <div class="col-sm-10" style="margin-top:8px; padding-left:2%;">
+
+                                        <div class="row" style="margin-top: 10px">
+                                            <div class=" col-sm-12">
+                                                <div style="padding: 0px;">
+                                                    show :
+                                                    <input type="checkbox" name="tl_type" checked="checked"> Type &nbsp;
+                                                    <input type="checkbox" name="tl_name" checked="checked"> Name &nbsp;
+                                                    <input type="checkbox" name="tl_phone" checked="checked"> Phone &nbsp;
+                                                    <input type="checkbox" name="tl_email" checked="checked"> Email &nbsp;
+                                                    <input type="checkbox" name="tl_status" checked="checked"> Status Email &nbsp;
+                                                    <input type="checkbox" name="tl_desc" checked="checked"> Details &nbsp;
+                                                    <input type="checkbox" name="created_at" checked="checked"> Created &nbsp;
+                                                    <input type="checkbox" name="updated_at" checked="checked"> Updated &nbsp;
+                                                    <input type="checkbox" name="mail_invitation"> mail invitation &nbsp;
+                                                    <input type="checkbox" name="mail_regular"> mail regular &nbsp;
+                                                    <button class="btn btn-outline-primary" type="submit" id="search">Search</button>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                    </div>
+                                    <div class="col-sm-2" style="margin-top:18px;">
+                                        <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-success" type="submit" id="search">New Email</button></a>
+
+                                        <div class="container-fluid" id="tag_container" style="padding: 0"></div>
+
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="col-sm-2" style="margin-top:18px;">
-                            <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-success" type="submit" id="search">New Email</button></a>
-                        </div>
-                    </div>
+                            </div>
+                    </form>
+
                 </div>
             </div>
 
-            
-            <div class="table-responsive" style=" padding: 1% 3%">
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr>
+        </div>
+
+
+
+
+        <div class="table-responsive" style=" padding: 1% 3%">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
                         <th scope="col">No.</th>
-                        <th scope="col" name="tl_type">Talent Id</th>
+                        <th scope="col" name="tl_talent_id">Talent Id</th>
                         <th scope="col" name="tl_type">Type Email</th>
                         <th scope="col" name="tl_name">Name</th>
                         <th scope="col" name="tl_phone">Phone </th>
                         <th scope="col" name="tl_email">Email</th>
                         <th scope="col" name="tl_status">Status Email </th>
                         <th scope="col" name="tl_desc">Details </th>
-                        <th scope="col" name="date">Date </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                
+                        <th scope="col" name="created_at">Created </th>
+                        <th scope="col" name="updated_at">Updated </th>
+                    </tr>
+                </thead>
+                <tbody>
+
                     @foreach ($talent->Talent_log()->get() as $t)
-                         
-                        <tr>
-                            <td>{{$t->id}}</td>
-                            <td>{{$t->tl_talent_id}}</td>
-                            <td>{{$t->tl_type}}</td>
-                            <td>{{$t->tl_name}}</td>
-                            <td>{{$t->tl_phone}}</td>
-                            <td>{{$t->tl_email}}</td>
-                            <td>{{$t->tl_email_status}}</td>
-                            <td>{{$t->tl_desc}}</td>
-                        </tr>
-                      
+
+                    <tr>
+                        <td>{{$t->id}}</td>
+                        <td>{{$t->tl_talent_id}}</td>
+                        <td>{{$t->tl_type}}</td>
+                        <td>{{$t->tl_name}}</td>
+                        <td>{{$t->tl_phone}}</td>
+                        <td>{{$t->tl_email}}</td>
+                        <td>{{$t->tl_email_status}}</td>
+                        <td>{{$t->tl_desc}}</td>
+                        <td>{{$t->created_at}}</td>
+                        <td>{{$t->updated_at}}</td>
+                    </tr>
+
                     @endforeach
-                    </tbody>
-                </table>
-            </div>
-    
-           
-      </div>
-   </div>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var export_url;
+        //mengambil data tanggal
+        $("#datepicker").datepicker();
+
+        //function load table
+        function loadTable(url) {
+            var param = $("#form-search").serialize();
+
+            $('#loading').show();
+            $("#pembungkus").html('');
+            export_url = "{{url('admin/talent/list/export_excel?page=1')}}&" + param;
+
+            $.ajax({
+                url: url + "&" + param,
+                method: "GET",
+                success: function(data) {
+                    $('#loading').hide();
+                    $("#pembungkus").html(data);
+                }
+            });
+        }
+
+        //load pertama kali
+        loadTable("{{url('/admin/talent/mail/{request::segment(2)}?page=1')}}");
+
+        //klik pagination , diambil urlnya langsung di load ajax
+        $(document).on("click", ".page-link", function(event) {
+            $("body").scrollTop(0);
+            var url = $(this).attr("href");
+            loadTable(url);
+            event.preventDefault(); //ini biar ga keredirect ke halaman lain 
+        });
+
+        //search 
+        $("#form-search").submit(function() {
+            loadTable("{url('/admin/talent/mail/{request::segment(2)}->talent_id?page=1')}}");
+            return false;
+        });
+
+    });
+</script>
 
 @endsection
-
-    

@@ -32,8 +32,9 @@ class TalentNewController extends Controller
         return view('admin.talent.home');
     }
 
-    function mail($talent_id)
+   public function mail($talent_id)
     {
+
         $talent = Talent::findOrFail($talent_id);
         return view("admin.talent.mail",compact('talent'));
     }
