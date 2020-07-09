@@ -63,7 +63,9 @@
 			<th scope="col">Created</th>
 			@endif
 
+			@if (Request::input('jumlah_apply_jobs') )
 			<th scope="col">Apply</th>
+			@endif
 
 			<th scope="col">Action</th>
 		</tr>
@@ -194,9 +196,6 @@
 		  </td>
 		  @endif
 
-
-
-
 		  @if (Request::input('created') )
 		  <td>
 		  	{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}<br>
@@ -207,9 +206,11 @@
 		  </td>
 		  @endif
 
+		  @if (Request::input('jumlah_apply_jobs') )
 		  <td>
-		  	{{$talent->jobs_apply}}
+		  	{{$talent->jumlah_apply_jobs}}
 		  </td>
+		  @endif
 
 		  <td style="min-width: 200px">
 		  		<a href="{{url('/admin/talent/detail?id='.$talent->talent_id)}}" 
