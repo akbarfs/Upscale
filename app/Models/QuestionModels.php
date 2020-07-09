@@ -4,15 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class QuestionModel extends Model
+class QuestionModels extends Model
 {
     protected $table = 'question';
+    protected $primaryKey = 'question_id';
     protected $fillable = [
+        'question_id',
         'question_text',
         'question_desc',
         'question_updated_date',
-        'question_type'
+        'question_type',
+        'q_talent_id'
     ];
     public $timestamps = false;
-    protected $primaryKey = 'question_id';
+
+    function talent()
+    {
+        return $this->hasOne("App\Models\Talent");
+    }
+
+    public function question()
+	{	
+		return $this->belongsTo('App\Models\Talent' ,'talent_id', 'q_talent_id');
+    }
+
+    public function interviewquestion()
+    {
+        return $this->belongsTo('App\Models\interview_test');
+    }
+
+    public function katagori()
+    {
+        // return $this->belongsTo('App\Models\');
+    }
+
+
+
 }
