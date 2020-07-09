@@ -16,4 +16,14 @@ class TestQuestion extends Model
     ];
     public $timestamps = false;
     protected $primaryKey = 'tq_id';
+
+    public function pertanyaan()
+    {
+        return $this->hasOne('App\models\QuestionModels','question_id','tq_question_id');
+    }
+
+    public function katagori()
+    {
+        return $this->hasOne('App\models\CategoryTest','ct_id','tq_ct_id');
+    }
 }

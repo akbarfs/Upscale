@@ -2002,6 +2002,8 @@ return response()->json($cp);
         return redirect()->back();
      }
 
+
+     
      public function detailtalent($id){
        $talent = DB::table('talent')  
             ->join('campus','campus.campus_id','=','talent.talent_campus')          

@@ -19,8 +19,11 @@ class Interview extends Model
 	{
 		return $this->hasOne('App\Models\Job_apply', 'jobs_apply_jobs_id', 'interview_jobs_apply_id');
 	}
+
 	public function interview()
 	{
 		return $this->hasOne('App\Models\InterviewReport', 'interview_id', 'interview_id');
 	}
+	
+
 }

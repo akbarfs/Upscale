@@ -20,4 +20,17 @@
 		}
 	}
 
+	function encrypt_custom($sData)
+	{
+	    $id=(double)$sData*45646.24;
+	    return base64_encode($id);
+    }
+
+    function decrypt_custom($sData)
+    {
+	    $url_id=base64_decode($sData);
+	    $id=(double)$url_id/45646.24;
+	    return $id;
+    }
+
 ?>
