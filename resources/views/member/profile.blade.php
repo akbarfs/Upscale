@@ -73,6 +73,29 @@
 			#button-pricing:hover { background: #379CF4 }
 
 			.biodata td { padding: 5px 0 }
+
+			.edit
+			{
+			    background: #bfbfbf;
+			    padding: 2px 10px;
+			    border-radius: 5px;
+			    color: #fff;
+			}
+			.edit:hover { color: #fff ; }
+
+			.in-header {
+				margin-left: 0;padding: 20px;background: #e8f1ff;cursor: pointer;
+				margin-bottom: 0 !important; 
+			}
+
+			.in-header:hover { background: #D1E0F0; }
+
+			.answer 
+			{
+				margin-top: 20px;
+			}
+
+
 			@media (max-width: 768px) {
 			    .call-cv .tombol{
 			        float: left;
@@ -82,6 +105,7 @@
 			}
 
 		</style>
+
 
 		<script type="text/javascript">
 			$(document).ready(function()
@@ -98,6 +122,15 @@
 					$(this).parent().hide();
 					$("#button-pricing").show();
 				});
+
+				$(".answer").hide(); 
+
+				$(".in-header").click(function()
+				{
+					// $(".answer").hide();
+					$(this).parent().find(".answer").toggle();
+				});
+
 			});
 		</script>
         <section id="about" class="about">
@@ -426,16 +459,7 @@
 			</div>
 			
 			
-			<style type="text/css">
-				.edit
-				{
-				    background: #bfbfbf;
-				    padding: 2px 10px;
-				    border-radius: 5px;
-				    color: #fff;
-				}
-				.edit:hover { color: #fff ; }
-			</style>
+
 
             <div class="skills" id="skill">
 				<div class="row" >
@@ -462,9 +486,9 @@
 
 								@if($row->st_skill_verified_date)
 									<br> <i class="fa fa-check" style="color: #379CF4"></i>
-									<span style="font-size: 12px"> verified by Upscale 
+									<span style="font-size: 12px"> verified  
 									<!-- {{ date("l, j F Y", strtotime($row->st_skill_verified_date)) }} -->
-								</span>
+									</span>
 								@else
 									<br> 
 									<i class="fa fa-check" style="color: #E0E0E0"></i> <span style="font-size: 12px"> on process</span>
@@ -598,7 +622,7 @@
 
 											@if( $nilai >0 )
 												<br> <i class="fa fa-check" style="color: #379CF4"></i>
-												<span style="font-size: 12px"> verified by Upscale 
+												<span style="font-size: 12px"> verified 
 											</span>
 											@else
 												<br> 
@@ -632,19 +656,20 @@
 			@endforeach 
 
 			@if ( isset($pengenalan_diri) && $pengenalan_diri == 'on')
-			<section id="experience" class="resume">
-				<div class="section-header" style="margin-left: 0">
-					<h2>Pengenalan Diri Dasar</h2>
+			<section id="pengenalan_diri" class="resume">
+				<div style="padding: 10px">hasil interview</div>
+				<div class="section-header in-header" style="margin-left: 0">
+					<h2>Pengenalan Diri</h2>
 					@if ( !$lock && Request::segment(2) == '') 
 						<a class="edit" href="{{url('/member/personality-test')}}">edit</a>
 					@endif 
 				</div>
-				<div class="row" >
+				<div class="row answer">
 				@foreach($talent->talent_interviewtest()->where('it_answer','!=','')->where('it_answer','!=','-')->get() as $row )
 
 					@if ( $row->test_question->tq_ct_id == 3 )
 						
-						<div class="col-md-12 col-sm-12 col-xs-12" style="border-top: solid 1px #e2e2e2; padding-top: 10px; margin-top: 10px; ">
+						<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px; margin-bottom: 10px; ">
 							<div class="top-item resume-item">
 								<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
 								<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
@@ -666,40 +691,57 @@
 
 			@foreach ( $test as $cat )
 
+				<!-- nampilin selain personality interview & point -->
 				@if ( $cat->ct_id != 3 && $cat->ct_id != 8 )
-				<section id="experience" class="resume">
-					<div class="section-header" style="margin-left: 0">
-						<h2>{{$cat->ct_name}}</h2>
-						@if ( !$lock && Request::segment(2) == '') 
-							<a class="edit" href="{{url('/member/skill-test/'.$cat->ct_id)}}">edit</a>
-						@endif 
-					</div>
-					<div class="row" >
 
 					@php 
-					$result = $talent->talent_interviewtest()
-							->where('it_answer','!=','')
-							->where('it_answer','!=','-')
-							->get()
-					@endphp 
+						$count = DB::table('interview_test')
+							->join('test_question','test_question.tq_id','=','interview_test.it_tq_id')
+							->where('tq_ct_id','=',$cat->ct_id)
+	                      	->where('tq_active','=','YES')
+	                      	->where('it_talent_id','=',$talent->talent_id)
+	                      	->groupBy('it_id')
+	                      	->orderBy('tq_sort', 'asc')->count();
+	                @endphp
 
-					@foreach( $result as $row )
+	                @if ( $count > 0 )
 
-						@if ( $row->test_question->tq_ct_id == $cat->ct_id )
-							
-							<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px;margin-bottom: 10px; ">
-								<div class="top-item resume-item">
-									<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
-									<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
-									<p><param>{!! $row->it_answer !!}</param></p>
+					<section class="resume">
+						<div style="padding: 10px">hasil interview skill</div>
+						<div class="section-header in-header" style="margin-left: 0">
+							<h2>{{$cat->ct_name}}</h2>
+							@if ( !$lock && Request::segment(2) == '') 
+								<a class="edit" href="{{url('/member/skill-test/'.$cat->ct_id)}}">edit</a>
+							@endif 
+						</div>
+						<div class="row answer">
+
+						@php 
+						$result = $talent->talent_interviewtest()
+								->where('it_answer','!=','')
+								->where('it_answer','!=','-')
+								->get()
+						@endphp 
+
+						@foreach( $result as $row )
+
+							@if ( $row->test_question->tq_ct_id == $cat->ct_id )
+								
+								<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px;margin-bottom: 10px; ">
+									<div class="top-item resume-item">
+										<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
+										<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
+										<p><param>{!! $row->it_answer !!}</param></p>
+									</div>
 								</div>
-							</div>
-							
-						@endif
+								
+							@endif
 
-					@endforeach	
-					</div>
-				</section>
+						@endforeach	
+						</div>
+					</section>
+					@endif
+
 				@endif
 
 			@endforeach 

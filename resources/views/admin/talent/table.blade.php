@@ -260,11 +260,11 @@
 				}
 				else if ( type == 'cv-interview-umum')
 				{
-					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar menjadi member di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya kami perlu tau harapan anda ketika menjadi member upscale, apakah ingin mencari lowongan pekerjaan, mencari project freelance atau mungkin ada harapan lainya.%0A %0A Oleh sebab itu apakah besok / hari ini bisa saya interview via online?'; 
+					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar menjadi member di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya kami perlu tau harapan anda ketika menjadi member upscale, apakah ingin mencari lowongan pekerjaan, mencari project freelance atau mungkin ada harapan lainya.%0A %0A Oleh sebab itu apakah besok / hari ini bisa saya interview via online?'; 
 				} 
 				else if ( type == 'cv-interview-jobs')
 				{
-					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar lowongan kerja di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya apakah besok / hari ini bisa saya interview via online?'; 
+					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar lowongan kerja di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  {{url("/loginas/".encrypt_custom($talent->talent_id))}} %0A %0A Selanjutnya apakah besok / hari ini bisa saya interview via online?'; 
 				} 
 
 				// link = link.replace("#wa#", wa); 
