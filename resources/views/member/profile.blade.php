@@ -147,7 +147,7 @@
 
 				<div class="col-md-8 col-sm-8 col-xs-12 call-cv" style="padding-right: 0">
 					@if($talent->talent_cv_update)
-						<a href="{{ url('storage/Curriculum vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
+						<a href="{{ url('storage/Curriculum Vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
 						 	<i class="fa fa-download" aria-hidden="true"></i> Download CV
 						</a>
 						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green">
