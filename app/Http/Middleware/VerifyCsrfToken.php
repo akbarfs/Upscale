@@ -18,4 +18,26 @@ class VerifyCsrfToken extends Middleware
         '/login/member',
         '/send-inquiry'
     ];
+
+
+
+    protected function tokensMatch($request)
+    {
+        $token = $request->input('_token') ?: $request->header('X-CSRF-TOKEN');
+
+        if (!$token && $header = $request->header('X-XSRF-TOKEN')) {
+        $token = $this->encrypter->decrypt($header);
+        }
+
+        $tokensMatch = hash_equals($request->session()->token(), $token);
+
+        if($tokensMatch) $request->session()->regenerateToken();
+
+        return $tokensMatch;
+    }
+
+
 }
+
+
+

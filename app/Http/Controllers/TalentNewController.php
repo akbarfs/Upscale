@@ -171,6 +171,8 @@ class TalentNewController extends Controller
 
 public function insertData(Request $request){
 
+    
+
 
 
         $validation = $request->validate([
@@ -178,7 +180,7 @@ public function insertData(Request $request){
             'email'=>'required|string|email|max:100|unique:users',
             'password'=>'max:150|required|required_with:confirmpass|same:confirmpass',
             'confirmpass'=>'max:150',
-            'username'=>'required|string|max:150',
+            'username'=>'required|string|unique:users,username|max:150',
             // 'gender'=>'required',
             // 'alamat'=>'required',
             // 'phone'=>'required|string|max:30',
@@ -230,7 +232,7 @@ public function insertData(Request $request){
             'talent_phone' => isset($request->phone) ? $request->phone : '',
             'talent_birth_date' => $request->birthdate,
             'talent_place_of_birth' => $request->birthplace,
-            'talent_martial_status' => $request->martialstatus,
+            'talent_martial_status' => isset($request->martialstatus) ? $request->martialstatus : '',
             'talent_current_address' => isset($request->currentaddress)?$request->currentaddress:'',
             'talent_condition' => $request->condition,
             'talent_salary' => $request->salary,
@@ -283,7 +285,7 @@ public function insertData(Request $request){
 
 
 
-        return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
+        return redirect('admin/talent/list/insert')->with('success', 'Talent Data succesfully created.');
         
 
         

@@ -458,7 +458,7 @@
 
                 <div class="form-group row" style="padding-left: 25px">
                   <div class="col-sm-10">
-                  <button type="submit" class="btn btn-success btn-sm tb">Tambah Talent</button>
+                  <button type="submit" class="btn btn-success btn-sm tb" onclick="submitForm(this);">Tambah Talent</button>
                   <a href="{{ route('talent.list') }}" class="btn btn-danger btn-sm tb"> Keluar </a>
                   </div>
                 </div>
@@ -469,15 +469,6 @@
     </div>
   </div>
 </div>
-
-
-  
-
-
-          
-
-
-
 
   <script type="text/javascript">
 
@@ -627,6 +618,13 @@
 
       });
     });
+    </script>
+
+    <script>
+    function submitForm(btn) {
+        btn.disabled = true;   
+        btn.form.submit();
+      }
     </script>
 
 
