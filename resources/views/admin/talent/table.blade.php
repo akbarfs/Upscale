@@ -24,9 +24,15 @@
 			@if (Request::input('contact') )
 			<th scope="col">Contact</th>
 			@endif
+			
+			@if (Request::input('focus') )
+			<th scope="col">focus</th>
+			@endif
+
 			@if (Request::input('skill') )
 			<th scope="col">Skills</th>
 			@endif
+
 			@if (Request::input('date_ready') )
 			<th scope="col">Ready</th>
 			@endif
@@ -113,6 +119,10 @@
 
 		  @if (Request::input('contact') )
 		  <td>{{$talent->talent_email}}<br>{{$talent->talent_phone}}</td>
+		  @endif
+
+		  @if (Request::input('focus') )
+		  <td>{{$talent->talent_focus}}</td>
 		  @endif
 
 		  @if (Request::input('skill') )

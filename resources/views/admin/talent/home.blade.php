@@ -201,6 +201,7 @@
 									<input type="checkbox" name="mail_regular"> mail regular &nbsp
 									<input type="checkbox" name="member_date"> member date &nbsp
 									<input type="checkbox" name="jumlah_apply_jobs"> Jumlah Apply Jobs &nbsp
+									<input type="checkbox" name="focus"> Focus &nbsp
 								</div>
 								<div>
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
