@@ -85,7 +85,18 @@ class TalentNewController extends Controller
             'talent_name' => 'Dodi Prakoso Wibowo',
             'talent_email' => 'dodi@gmail.com',
         ];
-        return view('mail.'.$view,compact('talent'));
+        
+        if ( $view == 'invitation')
+        {
+            $content = ''; 
+            $sender = ''; 
+        }
+        else if ( $view == 'regular')
+        {
+            $content = 'ini adalah halaman content ';
+            $sender = 'dodi'; 
+        }
+        return view('mail.'.$view,compact('talent','content','sender'));
     }
 
     public function paginate_data(Request $request)
