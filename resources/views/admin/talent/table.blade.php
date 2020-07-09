@@ -242,7 +242,7 @@
 		  		<a class="btn btn-success btn-sm button-wa" data-toggle="modal" style="color: #fff" 
 				data-target="#wa" data-wa='{{$wa}}' data-nama='{{$talent->talent_name}}' data-link="{{url('loginas/'.encrypt_custom($talent->talent_id))}}"> <i class=" fa fa-whatsapp"></i> </a>
 
-				<a href="{{url('/loginas/'.encrypt_custom($talent->user_id))}}" 
+				<a href="{{url('/loginas/'.encrypt_custom($talent->talent_id))}}" 
 		  		class="btn btn-sm btn-primary" target="_blank">
 		  			<i class="fa fa-sign-in"></i>
 		  		</a>
