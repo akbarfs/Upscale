@@ -4,6 +4,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="{{asset('/admin/css/bootstrap.min.css')}}"> -->
     <title>Document</title>
     <style>
         table {
@@ -13,7 +14,7 @@
 </head>
 <body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
 <div class="container">
-                <center><img src="logo-suitcareer.png" alt="" width="20%"></center>  <br>
+                <!-- <center><img src="logo-suitcareer.png" alt="" width="20%"></center>  <br> -->
                 <p align="center" style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
                     <b>REPORT TALENT</b>
                 </p>
@@ -57,7 +58,7 @@
                         <td id="pengalamankerja">{{$all->talent_totalexperience}}</td>
                     </tr>
                     <tr>
-                        <td ><strong style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><b>NOTICE PERIOD</b></strong></td>
+                        <td ><strong style="padding-left: 10px; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><b>NOTICE PERIOD</b></strong></td>
                         <td id="noticeperiode">
                             @if ($all->talent_available=="no")
                                 {{ucfirst($all->talent_available)}}
@@ -74,7 +75,7 @@
                 </table>
                 </div>
 
-                <p  style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p  style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>TALENT SKILL OVERVIEW</b>
                 </p>
                 <table  width="100%"  border="1" id="teknologidanlevel">
@@ -91,7 +92,7 @@
                                                         </table>
                 </div>
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>EXPERIENCE HIGHLIGHT</b>
                 </p>
                 <div  id="experiencehighlight">
@@ -100,11 +101,11 @@
                                                             @endphp
                                                             @foreach ($getData as $exper)
                                                         <table width="100%" border="1">
-                                                        
+                                                    
                                                                 <tr>
-                                                                <th scope="col">Office</th>
+                                                                <th style="width:29%" scope="col">Office</th>
                                                                 <td>:</td>
-                                                                <td>
+                                                                <td style="width:70%">
                                                                 <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                     {{$exper->workex_office}}
                                                                 <!-- </p> -->
@@ -163,9 +164,9 @@
                                                                 <br>
                                                             @endforeach
                                                         </div>  
-
+                     
                                         <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>PROJECT HIGHLIGHT</b>
                 </p>
                 <table width="100%" border="1">
@@ -175,9 +176,9 @@
                                                                     @foreach ($getdatapor as $por)
 
                                                                         <tr>
-                                                                            <td>Project Name</td>
+                                                                            <td  style="width:29%">Project Name</td>
                                                                             <td>:</td>
-                                                                            <td>
+                                                                            <td  style="width:70%">
                                                                                 {{$por->portfolio_name}}
                                                                             </td>
                                                                         </tr>
@@ -206,7 +207,7 @@
                                                                     @endforeach
                                                                 </table>                                                     
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>EDUCATIONAL BACKGROUND</b>
                 </p>
                 <div align="center">
@@ -241,7 +242,7 @@
                                                                 </table>
                                                             </div>
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                     <b>LICENSES & CERTIFICATION</b>
                 </p>
                 <table width="100%" border="1">
@@ -287,7 +288,7 @@
                                                                 </table>
 
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>SUITCAREER NOTES</b>
                 </p>
                 <?php if( isset($all->talent_notes_report_talent) && $all->talent_notes_report_talent!='' ) { ?>
@@ -303,7 +304,7 @@
                 <br> <br>
                 <table width=100%>
                          <tr style=" background-color: #053D6E;">
-                                <td style="padding-left: 10px" colspan="2" class="text-white"> Further Information </td>
+                                <td style=" color: white; padding-left: 10px  " colspan="2" class="text-white"> Further Information </td>
                          </tr>
                     <tr style="font-size:12px; vertical-align:middle; padding-top:4px;">
                         <td style="padding-left: 0px;">

@@ -692,14 +692,12 @@
                                                                 <b>EXPERIENCE HIGHLIGHT</b>
                                                         </p>
 
-                                                        <!-- <div  id="experiencehighlight">
-                                                            @php
-                                                                $getData = DB::table('work_experience')->where('workex_talent_id',$all->talent_id)->get();
-                                                            @endphp
-                                                            @foreach ($getData as $exper)
+                                                        <div  id="experiencehighlight">
+                                                    
                                                         <table width="100%" border="1">
-                                                            <thead align="center" class="bg-info"> 
-                                                                <tr>
+                                                      
+                                                            <thead align="center" > 
+                                                                <tr style="background-color: #ABB4BD">
                                                                 <th scope="col">Office</th>
                                                                 <th scope="col">Posisition</th>
                                                                 <th scope="col">Description</th>
@@ -707,6 +705,10 @@
                                                                 <th scope="col">Project Handled</th> 
                                                                 </tr>
                                                             </thead>
+                                                            @php
+                                                                $getData = DB::table('work_experience')->where('workex_talent_id',$all->talent_id)->get();
+                                                            @endphp
+                                                            @foreach ($getData as $exper)
                                                             <tbody>
                                                                 <tr>
                                                                 <td>
@@ -744,55 +746,50 @@
                                                                
                                                                 </td>
                                                                 </tr>
+                                                                @endforeach
                                                             </tbody>
+                                                        
                                                             </table>
                     
                                                                 <br>
-                                                            @endforeach
-                                                        </div> -->
+                                                         
+                                                        </div>
 
-                                                        <div  id="experiencehighlight">
+                                                        <!-- <div  id="experiencehighlight">
                                                             @php
                                                                 $getData = DB::table('work_experience')->where('workex_talent_id',$all->talent_id)->get();
                                                             @endphp
                                                             @foreach ($getData as $exper)
                                                         <table width="100%" border="1">
-                                                        
+                                                    
                                                                 <tr>
-                                                                <th scope="col">Office</th>
+                                                                <th style="width:29%">Office</th>
                                                                 <td>:</td>
-                                                                <td>
-                                                                <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
+                                                                <td style="width:70%">
                                                                     {{$exper->workex_office}}
-                                                                <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
-                                                                <th scope="col">Posisition</th>
+                                                                <th>Posisition</th>
                                                                 <td>:</td>
                                                                 <td>
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                     {{$exper->workex_position}}
-                                                                    <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
-                                                                <th scope="col">Description</th>
+                                                                <th>Description</th>
                                                                 <td>:</td>
                                                                 <td>
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                      {!! $exper->workex_desc !!}
-                                                                    <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
-                                                                <th scope="col">Start Date & End Date</th>
+                                                                <th>Start Date & End Date</th>
                                                                 <th>:</th>
                                                                 <td>        
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                    
                                                                     @php
                                                                         $start = explode(' ',$exper->workex_startdate);
@@ -803,29 +800,26 @@
                                                                             echo $exper->workex_startdate." - ".$exper->workex_enddate."<br>";
                                                                         }
                                                                     @endphp
-                                                                    <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
-                                                                <th scope="col">Project Handled</th>
+                                                                <th>Project Handled</th>
                                                                 <td>:</td>
                                                                 <td>
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                     {!!$exper->workex_handle_project!!}
-                                                                    <!-- </p> -->
                                                                 </tr>
                                                             </table>
                     
                                                                 <br>
                                                             @endforeach
-                                                        </div>  
+                                                        </div>   -->
 
                                                         <hr>
                                                         <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                                                                 <b>PROJECT HIGHLIGHT</b>
                                                         </p>
-                                                        <!-- <table width="100%" border="1">
+                                                        <table width="100%" border="1"  align="center">
                                                                     <thead align="center" style="background-color: #ABB4BD">
                                                                         <tr>
                                                                             <td>Project Name</td>
@@ -859,18 +853,19 @@
                                                                     
                                                                     </tbody>
                                                                     @endforeach
-                                                                </table> -->
-                                                       
-                                                                <table width="100%" border="1">
-                                                                    @php
+                                                                </table>
+                                                                <!-- <div  id="projecthighlight">
+                                                                @php
                                                                       $getdatapor = DB::table('portfolio')->where('portfolio_talent_id',$all->talent_id)->get();
                                                                     @endphp
                                                                     @foreach ($getdatapor as $por)
 
+                                                                <table width="100%" border="1">
+                                                             
                                                                         <tr>
-                                                                            <td>Project Name</td>
+                                                                            <td style="width:29%">Project Name</td>
                                                                             <td>:</td>
-                                                                            <td>
+                                                                            <td style="width:70%">
                                                                                 {{$por->portfolio_name}}
                                                                             </td>
                                                                         </tr>
@@ -896,9 +891,11 @@
                                                                                 {{$por->portfolio_startdate.' - '.$por->portfolio_enddate}}
                                                                             </td>
                                                                         </tr>
-                                                                    @endforeach
+                                                                
                                                                 </table>
-
+                                                                <br>
+                                                                @endforeach
+                                                            </div> -->
                                                         <hr>
                                                         <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                                                                 <b>EDUCATIONAL BACKGROUND</b>
