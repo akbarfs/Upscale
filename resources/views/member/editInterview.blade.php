@@ -45,28 +45,29 @@
                 
                
                 <div class="form-group">
-                   @foreach($question as $row)
+                @foreach($talent->talent_interviewtest()->get() as $row )
                           <div class="row">
                           
-                            <div class=""><label for="Name"><p> {{$row->question_text}} </p>
+                            <div class=""><label for="Name">
+                            <p>
+                            @if ( $soal = $row->interview_question()->first() )
+							{{$soal->question_text}}<br>
+							{{$soal->question_desc}}
+						    @endif
+                            </p>
                             Jawaban
                             </label>
                             </div>  
                            
                             <div >
-                            @foreach ( $interview->get() as $row )
-                              <textarea rows="" name="project[]" class="form-control" value="">
-                              {{$row->it_answer}}
+                              <textarea rows="3" name="project[]" class="form-control" value="">
+                              {{ $row->it_answer }}
                               </textarea>
-                            @endforeach
+                          
                            </br>
                             </div>
                         </div>
                     @endforeach
-
-                       
-                   
-
                 </div>
 
              

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\work_experience; 
 use App\Models\education; 
+use App\Models\certification;
 
 class MemberController extends Controller
 {
@@ -428,12 +429,49 @@ class MemberController extends Controller
     public function editCertificationPost(Request $request)
     {
         $id = Session::get("user_id"); 
-        $user = User::find($id); 
-        $talent = $user->talent()->first(); 
 
-        $update->save(); 
-        return back()->with("message","berhasil mengupdate"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $jumlah = count($request->name);
+        if ( $jumlah > 0 )
+        {
+            $this->validate($request, [
+                'name.*' => 'required|min:3'
+            ]);
+
+            //hpaus semua 
+           // $talent  = certification::where("certif_talent_id",$talent->talent_id)->delete(); 
+            //insert baru   
+            for ( $i=0 ; $i<$jumlah ; $i++)
+            {
+                if ( isset($request->name[$i]) && $request->name[$i] != '' )
+                {
+                    $certif = New certification; 
+                    $certif->certif_talent_id = $talent->talent_id ; 
+                    $certif->certif_name  = $request->name[$i] ? $request->name[$i] : "" ; 
+                    $certif->certif_years = $request->years[$i] ? $request->years[$i] : "" ; 
+                    $certif->certif_company = $request->company[$i] ? $request->company[$i] : "";
+                    $certif->certif_desc = $request->desc[$i] ? $request->desc[$i] : "";
+                    $certif->certif_number = $request->number[$i] ? $request->number[$i] : ""; 
+                    $certif->certif_expired = $request->expired[$i] ? $request->expired[$i] : ""; 
+                    $certif->certif_file = $request->file[$i] ? $request->file[$i] : ""; 
+                    $certif->save() ; 
+                }
+                
+            }
+        }
+        return back()->with("message","berhasil mengupdate"); ;
+
     }
+
+    public function editCertificationDelete($id)
+    {
+        $certif = certification::find($id); 
+        $certif->delete(); 
+        return back()->with("message","berhasil menghapus") ; 
+    }
+
 
 
     public function editWork()

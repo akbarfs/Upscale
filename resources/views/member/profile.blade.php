@@ -147,16 +147,26 @@
 			</div>
         </section>
 
-		<section id="education" class="resume">
+		<section id="experience" class="resume">
 			<div class="section-header">
 				<h2>Certification</h2>
 				@if (Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-certification')}}">edit</a>
-				@endif
+				@endif 
 			</div>
-			
-
-        </section>
+			<div class="row" >
+			@foreach($talent->talent_certification()->get() as $row )
+						<div class="col-md-12 col-sm-12 col-xs-12" >
+							<div class="top-item resume-item">
+								<h2>{{ $row->certif_name }} ({{$row->certif_number}})</h2>
+								<span>{{$row->certif_company}} |  {{$row->certif_years}} - {{$row->certif_expired}}</span>
+								<p><param>{!! $row->certif_desc !!}</param></p>
+								<p><param></param></p>
+							</div>
+						</div>
+			@endforeach	
+			</div>
+		</section>
 
 		<section id="experience" class="resume">
 			<div class="section-header">
@@ -174,6 +184,7 @@
 							{{$soal->question_text}}<br>
 							{{$soal->question_desc}}
 						@endif
+					
 					</h2>
 					<h6>{{ $row->it_answer }}</h6>
 					</div>
