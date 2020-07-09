@@ -2156,15 +2156,17 @@
                                     
                                     <label for="text-input" class=" form-control-label">Martial Status</label>
                                     <select name="martial_status" class="form-control">
-                                        @if ($all->talent_martial_status == NULL)
-                                            <option value=""> Pilih</option>
+                                        @if ($all->talent_martial_status == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="married" > Married</option>
                                             <option value="single" > Single</option>
                                         @elseif($all->talent_martial_status == "single")
                                             <option value="single" > Single</option>
                                             <option value="married" > Married</option>
+                                            <option value="unset"> Pilih</option>
                                         @elseif($all->talent_martial_status == "married")
                                             <option value="married" > Married</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="single" > Single</option>
                                         @endif
                                     </select>
@@ -2182,23 +2184,25 @@
                                     </select>
                                     <label for="text-input" class=" form-control-label">Request Talent Status</label>
                                     <select name="talent_rt_status" id="talent_rt_status" class="form-control">
-                                    @if ($all->talent_rt_status == NULL)
-                                            <option value=""> Pilih</option>
+                                    @if ($all->talent_rt_status == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="DONE" >DONE</option>
                                             <option value="NOT YET" >NOT YET</option>
                                     @elseif($all->talent_rt_status == "DONE")
                                             <option value="DONE" > DONE</option>
                                             <option value="NOT YET" > NOT YET</option>
+                                            <option value="unset"> Pilih</option>
                                     @elseif($all->talent_rt_status == "NOT YET")
                                             <option value="NOT YET" > NOT YET</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="DONE" > DONE</option>
                                     @endif
                                     </select> 
 
                                     <label for="text-input" class="form-control-label">Talent Status</label>
                                     <select name="talent_status" class="form-control">
-                                        @if ($all->talent_status == NULL)
-                                            <option value=""> Pilih</option>
+                                        @if ($all->talent_status == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="worker" > Worker</option>
                                             <option value="free" > Free</option>
                                             <option value="edu" > Edu</option>
@@ -2206,12 +2210,15 @@
                                             <option value="worker" > Worker</option>
                                             <option value="alumni" > Alumni</option>
                                             <option value="edu" > Edu</option>
+                                            <option value="unset"> Pilih</option>
                                         @elseif($all->talent_status == "free")
                                             <option value="free" > Free</option>
                                             <option value="edu" > Edu</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="worker" > Worker</option>
                                         @elseif($all->talent_status == "edu")
                                             <option value="edu" > Edu</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="worker" > Worker</option>
                                             <option value="free" > Free</option>
                                         @endif
@@ -2219,15 +2226,17 @@
 
                                     <label for="text-input" class=" form-control-label">Condition</label>
                                     <select name="talent_condition" class="form-control">
-                                        @if ($all->talent_condition == NULL)
+                                        @if ($all->talent_condition == NULL )
                                             <option value=""> Pilih</option>
                                             <option value="quarantine" > Quarantine</option>
                                             <option value="assign" > Assign</option>
                                         @elseif($all->talent_condition == "quarantine")
                                             <option value="quarantine" > Quarantine</option>
                                             <option value="assign" > Assign</option>
+                                            <option value=""> Pilih</option>
                                         @elseif($all->talent_condition == "assign")
                                             <option value="assign" > Assign</option>
+                                            <option value=""> Pilih</option>
                                             <option value="quarantine" > Quarantine</option>
                                         @endif
                                     </select>
@@ -2237,8 +2246,8 @@
 
                                     <label for="text-input" class=" form-control-label">Level</label>
                                     <select name="talent_level" class="form-control">
-                                        @if ($all->talent_level == NULL)
-                                            <option value=""> Pilih</option>
+                                        @if ($all->talent_level == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="undefined" > Undefined</option>
                                             <option value="junior" > Junior</option>
                                             <option value="middle" > Middle</option>
@@ -2248,84 +2257,96 @@
                                             <option value="junior" > Junior</option>
                                             <option value="middle" > Middle</option>
                                             <option value="senior" > Senior</option>
+                                            <option value="unset"> Pilih</option>
                                         @elseif($all->talent_level == "junior")
                                             <option value="junior" > Junior</option>
                                             <option value="undefined" > Undefined</option>
                                             <option value="middle" > Middle</option>
                                             <option value="senior" > Senior</option>
+                                            <option value="unset"> Pilih</option>
                                         @elseif($all->talent_level == "middle")
                                             <option value="middle" > Middle</option>
                                             <option value="junior" > Junior</option>
                                             <option value="undefined" > Undefined</option>
                                             <option value="senior" > Senior</option>
+                                            <option value="unset"> Pilih</option>
                                         @elseif($all->talent_level == "senior")
                                             <option value="senior" > Senior</option>
                                             <option value="middle" > Middle</option>
                                             <option value="junior" > Junior</option>
                                             <option value="undefined" > Undefined</option>
+                                            <option value="unset"> Pilih</option>
                                         @endif
                                     </select>
 
                                     <label for="text-input" class=" form-control-label">Date Ready</label>
-                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="" class="form-control">
+                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="dd/mm/yy" class="form-control">
 
 
                                     <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
                                     <select name="talent_onsite_jakarta" class="form-control">
-                                    @if ($all->talent_onsite_jakarta == NULL)
-                                            <option value=""> Pilih</option>
+                                    @if ($all->talent_onsite_jakarta == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
                                     @elseif($all->talent_onsite_jakarta == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                     @elseif($all->talent_onsite_jakarta == "no")
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                     @endif
                                     </select> 
 
                                     <label for="text-input" class=" form-control-label">Onsite Jogja</label>
                                     <select name="talent_onsite_jogja" id="talent_onsite_jogja" class="form-control">
-                                    @if ($all->talent_onsite_jogja == NULL)
-                                            <option value=""> Pilih</option>
+                                    @if ($all->talent_onsite_jogja == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
                                     @elseif($all->talent_onsite_jogja == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                     @elseif($all->talent_onsite_jogja == "no")
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                     @endif
                                     </select> 
 
                                     <label for="text-input" class=" form-control-label">Remote</label>
                                     <select name="talent_remote" id="talent_remote" class="form-control">
-                                    @if ($all->talent_remote == NULL)
-                                            <option value=""> Pilih</option>
+                                    @if ($all->talent_remote == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
                                     @elseif($all->talent_remote == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                     @elseif($all->talent_remote == "no")
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                     @endif
                                     </select> 
 
                                     <label for="text-input" class=" form-control-label">Bekerja Remote di Luar Kota</label>
                                     <select name="talent_luar_kota" id="talent_luar_kota" class="form-control">
-                                    @if ($all->talent_luar_kota == NULL)
+                                    @if ($all->talent_luar_kota == "")
                                             <option value=""> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
                                     @elseif($all->talent_luar_kota == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
+                                            <option value=""> Pilih</option>
                                     @elseif($all->talent_luar_kota == "no")
                                             <option value="no" > No</option>
+                                            <option value=""> Pilih</option>
                                             <option value="yes" > Yes</option>
                                     @endif
                                     </select> 
@@ -2333,7 +2354,7 @@
 
                                     <label for="text-input" class=" form-control-label">Focus</label>
                                     <select name="talent_focus" id="talent_focus" class="form-control">
-                                        @if ($all->talent_focus == NULL)
+                                        @if ($all->talent_focus == "")
                                             <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
@@ -2356,6 +2377,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                         @elseif($all->talent_focus == "Backend web")
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2366,6 +2388,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                         @elseif($all->talent_focus == "Fullstack web")
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2376,6 +2399,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                         @elseif($all->talent_focus == "Mobile programmer")
@@ -2386,6 +2410,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2396,6 +2421,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2406,6 +2432,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2416,6 +2443,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2426,6 +2454,7 @@
                                             <option value="Data science" > Data Science</option>
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2436,6 +2465,7 @@
                                         @elseif($all->talent_focus == "pm")
                                             <option value="pm" > Project / Product Manager</option>
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2446,6 +2476,7 @@
                                             <option value="Data science" > Data Science</option>
                                         @elseif($all->talent_focus == "Other")
                                             <option value="Other" > Other</option>
+                                            <option value=""> Pilih</option>
                                             <option value="Frontend web" > Frontend Web</option>
                                             <option value="Backend web" > Backend Web</option>
                                             <option value="Fullstack web" > Fullstack Web</option>
@@ -2542,15 +2573,17 @@
 
                                     <label for="text-input" class=" form-control-label">Edukasi ISA</label>
                                     <select name="talent_isa" class="form-control">
-                                    @if ($all->talent_isa == NULL)
-                                            <option value=""> Pilih</option>
+                                    @if ($all->talent_isa == "unset")
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                             <option value="no" > NO</option>
                                     @elseif($all->talent_isa == "yes")
                                             <option value="yes" > Yes</option>
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                     @elseif($all->talent_isa == "no")
                                             <option value="no" > No</option>
+                                            <option value="unset"> Pilih</option>
                                             <option value="yes" > Yes</option>
                                     @endif
                                     </select> 
@@ -2558,15 +2591,17 @@
 
                                     <label for="text-input" class=" form-control-label">Bekerja di Luar Negeri</label>
                                     <select name="talent_international" id="talent_international" class="form-control">
-                                    @if ($all->talent_international == NULL)
+                                    @if ($all->talent_international == "")
                                             <option value=""> Pilih</option>
                                             <option value="ya" > Yes</option>
                                             <option value="no" > NO</option>
                                     @elseif($all->talent_international == "ya")
                                             <option value="ya" > Yes</option>
                                             <option value="no" > No</option>
+                                            <option value=""> Pilih</option>
                                     @elseif($all->talent_international == "no")
                                             <option value="no" > No</option>
+                                            <option value=""> Pilih</option>
                                             <option value="ya" > Yes</option>
                                     @endif
                                     </select> 
