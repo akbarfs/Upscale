@@ -898,7 +898,8 @@
 
 
                                         <div id="preview-report">
-                                                <div class="container"><br>
+                                                <div class="container" h><br>
+                                               
                                                 
                                                 <center>
                                                 @if ($all->talent_foto)
@@ -930,7 +931,7 @@
                                                                 <tr>
                                                                     <td ><strong style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">POSITION AS</strong></td>
                                                                     <td id="positionas"></td>
-                                                                </tr>
+                                                                </tr>   
                                                                 <tr>
                                                                     <td ><strong style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">TALENT NAME</strong></td>
                                                                     <td  id="namatalent">{{ucwords($all->talent_name)}}</td>
@@ -981,6 +982,7 @@
                                                                 <hr>
                                                             </table>
                                                         </div>
+
                                                         <hr>
                                                         <p  style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                                                                 <b>TALENT SKILL OVERVIEW</b>
@@ -1004,7 +1006,7 @@
                                                                 <b>EXPERIENCE HIGHLIGHT</b>
                                                         </p>
 
-                                                        <div  id="experiencehighlight">
+                                                        <!-- <div  id="experiencehighlight">
                                                     
                                                         <table width="100%" border="1">
                                                       
@@ -1065,9 +1067,9 @@
                     
                                                                 <br>
                                                          
-                                                        </div>
+                                                        </div> -->
 
-                                                        <!-- <div  id="experiencehighlight">
+                                                        <div  id="experiencehighlight">
                                                             @php
                                                                 $getData = DB::table('work_experience')->where('workex_talent_id',$all->talent_id)->get();
                                                             @endphp
@@ -1075,16 +1077,16 @@
                                                         <table width="100%" border="1">
                                                     
                                                                 <tr>
-                                                                <th style="width:29%">Office</th>
-                                                                <td>:</td>
-                                                                <td style="width:70%">
+                                                                <th style="width:29%; background-color: #ABB4BD">Office</th>
+                                                            
+                                                                <td style="width:70%;  background-color: #ABB4BD">
                                                                     {{$exper->workex_office}}
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                 <th>Posisition</th>
-                                                                <td>:</td>
+                                                              
                                                                 <td>
                                                                     {{$exper->workex_position}}
                                                                 </td>
@@ -1092,7 +1094,7 @@
 
                                                                 <tr>
                                                                 <th>Description</th>
-                                                                <td>:</td>
+                                                              
                                                                 <td>
                                                                      {!! $exper->workex_desc !!}
                                                                 </td>
@@ -1100,7 +1102,7 @@
 
                                                                 <tr>
                                                                 <th>Start Date & End Date</th>
-                                                                <th>:</th>
+                                                             
                                                                 <td>        
                                                                    
                                                                     @php
@@ -1117,7 +1119,7 @@
 
                                                                 <tr>
                                                                 <th>Project Handled</th>
-                                                                <td>:</td>
+                                                              
                                                                 <td>
                                                                     {!!$exper->workex_handle_project!!}
                                                                 </tr>
@@ -1125,13 +1127,13 @@
                     
                                                                 <br>
                                                             @endforeach
-                                                        </div>   -->
+                                                        </div>  
 
                                                         <hr>
                                                         <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                                                                 <b>PROJECT HIGHLIGHT</b>
                                                         </p>
-                                                        <table width="100%" border="1"  align="center">
+                                                        <!-- <table width="100%" border="1"  align="center">
                                                                  
                                                                     <thead align="center" style="background-color: #ABB4BD">
                                                                         <tr>
@@ -1167,8 +1169,8 @@
                                                                     
                                                                     </tbody>
                                                                     @endforeach
-                                                                </table>
-                                                                <!-- <div  id="projecthighlight">
+                                                                </table> -->
+                                                                <div  id="projecthighlight">
                                                                 @php
                                                                       $getdatapor = DB::table('portfolio')->where('portfolio_talent_id',$all->talent_id)->get();
                                                                     @endphp
@@ -1177,22 +1179,22 @@
                                                                 <table width="100%" border="1">
                                                              
                                                                         <tr>
-                                                                            <td style="width:29%">Project Name</td>
-                                                                            <td>:</td>
-                                                                            <td style="width:70%">
+                                                                            <td style="width:29%; background-color: #ABB4BD">Project Name</td>
+                                                                          
+                                                                            <td style="width:70%; background-color: #ABB4BD">
                                                                                 {{$por->portfolio_name}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Project Description</td>
-                                                                            <td>:</td>
+                                                                       
                                                                             <td>   
                                                                                 {{$por->portfolio_desc}} 
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Teknology Used</td>
-                                                                            <td>:</td>
+                                                                           
                                                                             <td>
                                                                                 {{$por->portfolio_tech}}                                                               
                                                                             </td>
@@ -1200,7 +1202,7 @@
 
                                                                         <tr>
                                                                             <td>Dated Created</td>
-                                                                            <td>:</td>
+                                                                       
                                                                             <td>
                                                                                 {{$por->portfolio_startdate.' - '.$por->portfolio_enddate}}
                                                                             </td>
@@ -1209,7 +1211,7 @@
                                                                 </table>
                                                                 <br>
                                                                 @endforeach
-                                                            </div> -->
+                                                            </div>
                                                         <hr>
                                                         <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                                                                 <b>EDUCATIONAL BACKGROUND</b>
@@ -1335,9 +1337,56 @@
                                                                  <td></td>
                                                              </tr>
                                                          </table>
-                                         
-                                                        </div>
-                                        </div>
+                                                         <br>
+    <!-- <footer id="footer-bottom" class="footer light">
+        <div class="container footerpadding">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>UpScale</h4>
+                    <hr class="space-sm" />
+                    <table class='table table-borderless table-sm light'>
+                        <tr>
+                            <td width='100'><b>Location</b></td>
+                            <td>Jln. Ringroad Utara No 34 Maguwoharjo Yogyakarta, Indonesia</td>
+                        </tr>
+                        <tr>
+                            <td><b>Phone</b></td>
+                            <td>
+                                <img src="{{url('template/upscale/media/id.png')}}"/> +62 87 888 666 531
+                                &nbsp
+                                <img src="{{url('template/upscale/media/au.png')}}"/> +61 3 9010 6067
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Email</b></td>
+                            <td>sales@upscale.id</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-3">
+                    
+                </div>
+                          </div>
+        </div>
+        <div class="footer-bar">
+            <div class="container">
+                <span>© UpScale 2020. Member of PT Talenta Sinergi Group</span>
+                <span><img src="{{url('template/upscale/media/logo-transparent.png')}}" alt="" /></span>
+            </div>
+        </div>
+        <link rel="stylesheet" href="{{url('template/upscale/themekit/media/icons/iconsmind/line-icons.min.css')}}">
+        <script src="{{url('template/upscale/themekit/scripts/parallax.min.js')}}"></script>
+        <script src="{{url('template/upscale/themekit/scripts/glide.min.js')}}"></script>
+        <script src="{{url('template/upscale/themekit/scripts/magnific-popup.min.js')}}"></script>
+        <script src="{{url('template/upscale/themekit/scripts/tab-accordion.js')}}"></script>
+        <script src="{{url('template/upscale/themekit/scripts/imagesloaded.min.js')}}"></script>
+        <script src="{{url('template/upscale/themekit/scripts/contact-form/contact-form.js')}}"></script>
+        <script src="{{url('template/upscale/themekit/scripts/progress.js')}}"></script>
+        <script src="{{url('template/upscale/media/custom.js')}}"></script>
+        <script src="{{url('js/bootstrap.min.js')}}"></script>
+    </footer> -->
+                    </div>
+                         </div>
 
 
 
@@ -1366,7 +1415,7 @@
                                                 </div>
                                             </div>
 
-
+               
 
 
 
