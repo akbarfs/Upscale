@@ -126,12 +126,15 @@
                    <div class="form-group">
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Certification File</label></div>
+                      <p>{{$row->certif_file}}</p>
                       <div class="col-md-8">
-                      <input type="file" name="certif_file" class="form-control" accept=".pdf|.png|.jpg|.jpeg" value="">
-                      {{$row->certif_file}}
+                      <input type="file" name="certif_file" class="form-control" accept=".pdf|.png|.jpg|.jpeg" value="{{$row->certif_file}}">
+                      
                       <br>
                       </div>
                    </div>
+
+
                    </div>
                    
                   

@@ -441,7 +441,8 @@ class MemberController extends Controller
             ]);
 
             //hpaus semua 
-           // $talent  = certification::where("certif_talent_id",$talent->talent_id)->delete(); 
+            certification::where("certif_talent_id",$talent->talent_id)->delete(); 
+            //work_experience::where("workex_talent_id",$talent->talent_id)->delete(); 
             //insert baru   
             for ( $i=0 ; $i<$jumlah ; $i++)
             {

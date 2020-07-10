@@ -158,7 +158,7 @@
 			@foreach($talent->talent_certification()->get() as $row )
 						<div class="col-md-12 col-sm-12 col-xs-12" >
 							<div class="top-item resume-item">
-								<h2>{{ $row->certif_name }} ({{$row->certif_number}})</h2>
+								<h2>{{ $row->certif_name }}    |   No. {{$row->certif_number}}</h2>
 								<span>{{$row->certif_company}} |  {{$row->certif_years}} - {{$row->certif_expired}}</span>
 								<p><param>{!! $row->certif_desc !!}</param></p>
 								<p><param></param></p>
