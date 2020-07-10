@@ -581,12 +581,84 @@
 							@php $random = date("his") @endphp	
 							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%" >
 						</div>
+						
 						<div class="col-md-5 col-sm-5 col-xs-12">
 							<h2>{{ $row->portfolio_name }}</h2>
-							<h4>{{ $row->portfolio_startdate}} - {{ $row->portfolio_enddate }} </h4>
-							<h6>Technology Used : {{ $row->portfolio_tech }}</h6>
-							<h6>Project Type : {{ $row->portfolio_tipe_project }}</h6>
-							<h6>Project Type : {{ $row->portfolio_namacompany }}</h6>
+							
+						<?php $originalDate = $row->portfolio_startdate;
+							 $originalDate1 = $row->portfolio_enddate;
+
+								$bulan =date('F', strtotime($originalDate) );
+								$bulan1 =date('F', strtotime($originalDate1) );
+
+
+
+								switch($bulan){
+									case"January":$bulan="Januari";break;
+									case"February":$bulan="Februari";break;
+									case"March":$bulan="Maret";break;
+									case"April":$bulan="April";break;
+									case"May":$bulan="Mei";break;
+									case"June":$bulan="Juni";break;
+									case"July":$bulan="Juli";break;
+									case"August":$bulan="Agustus";break;
+									case"September":$bulan="September";break;
+									case"October":$bulan="Oktober"; break;
+									case"November":$bulan="November";break;
+									case"December":$bulan="Desember";break;
+									
+								}
+
+								switch($bulan1){
+									case"January":$bulan1="Januari";break;
+									case"February":$bulan1="Februari";break;
+									case"March":$bulan1="Maret";break;
+									case"April":$bulan1="April";break;
+									case"May":$bulan1="Mei";break;
+									case"June":$bulan1="Juni";break;
+									case"July":$bulan1="Juli";break;
+									case"August":$bulan1="Agustus";break;
+									case"September":$bulan1="September";break;
+									case"October":$bulan1="Oktober"; break;
+									case"November":$bulan1="November";break;
+									case"December":$bulan1="Desember";break;
+									
+								}
+
+								$tanggal=date('j', strtotime($originalDate) );
+								$tanggal1=date('j', strtotime($originalDate1) );
+								$tahun=date('Y', strtotime($originalDate1) );
+								$tahun1=date('Y', strtotime($originalDate1) );
+
+							echo "<h4>$tanggal $bulan $tahun - $tanggal1 $bulan1 $tahun1  " ;
+
+								?>
+
+
+									<table >
+										<tr>
+											<td><strong>Technology Used</strong></td>
+											<td><strong>:</strong></td>
+											<td>{{ $row->portfolio_tech }}</td>
+										</tr>
+										<tr>
+											<td><strong>Project Type</strong></td>
+											<td><strong>:</strong></td>
+											<td>{{ $row->portfolio_tipe_project }}</td>
+										</tr>
+										<tr>
+											<td><strong>Company Name</strong></td>
+											<td><strong>:</strong></td>
+											<td>{{ $row->portfolio_namacompany }}</td>
+										</tr>
+										@if ( $row->portfolio_link)
+										<tr>
+											<td><strong>Link</strong></td>
+											<td><strong>:</strong></td>
+											<td>{{ $row->portfolio_link }}</td>
+										</tr>
+										@endif
+									</table> <br>
 							<span>{{ $row->portfolio_desc }}</span>
 						</div>
 					</div>
