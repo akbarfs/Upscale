@@ -2155,21 +2155,17 @@
                                     <input value="{{$all->talent_birth_date}}" type="text" id="talent_birth_date" name="talent_birth_date" placeholder="dd/mm/yyyy" class="form-control">
                                     
                                     <label for="text-input" class=" form-control-label">Martial Status</label>
-                                    <select name="martial_status" class="form-control">
-                                        @if ($all->talent_martial_status == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="married" > Married</option>
-                                            <option value="single" > Single</option>
-                                        @elseif($all->talent_martial_status == "single")
-                                            <option value="single" > Single</option>
-                                            <option value="married" > Married</option>
-                                            <option value="unset"> Pilih</option>
-                                        @elseif($all->talent_martial_status == "married")
-                                            <option value="married" > Married</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="single" > Single</option>
-                                        @endif
+                                    <select class="custom-select" name="martial_status">
+                                        <option value="">-- Choose --</option>
+                                        <option value="single" @if($all->talent_martial_status == 'single') selected="selected" @endif>single</option>
+                                        <option value="married" @if($all->talent_martial_status == 'married') selected="selected" @endif>married</option>
                                     </select>
+                                    @if($errors->has('martial_status'))
+                                        @foreach ($errors->get('martial_status') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
                                     <label for="text-input" class=" form-control-label">Campus</label>
                                     <select name="campus" class="form-control campus2">
                                         @if ($all->talent_campus!=NULL)
@@ -2182,312 +2178,138 @@
                                             <option value="{{$c->campus_id}}">{{$c->nama}}</option>
                                         @endforeach
                                     </select>
+
                                     <label for="text-input" class=" form-control-label">Request Talent Status</label>
-                                    <select name="talent_rt_status" id="talent_rt_status" class="form-control">
-                                    @if ($all->talent_rt_status == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="DONE" >DONE</option>
-                                            <option value="NOT YET" >NOT YET</option>
-                                    @elseif($all->talent_rt_status == "DONE")
-                                            <option value="DONE" > DONE</option>
-                                            <option value="NOT YET" > NOT YET</option>
-                                            <option value="unset"> Pilih</option>
-                                    @elseif($all->talent_rt_status == "NOT YET")
-                                            <option value="NOT YET" > NOT YET</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="DONE" > DONE</option>
-                                    @endif
-                                    </select> 
+                                    <select class="custom-select" name="rt_status">
+                                        <option value="">-- Choose --</option>
+                                        <option value="notyet" @if($all->talent_rt_status == 'notyet') selected="selected" @endif>Not Yet</option>
+                                        <option value="done" @if($all->talent_rt_status == 'done') selected="selected" @endif>Done</option>
+                                    </select>
+                                        @if($errors->has('rt_status'))
+                                            @foreach ($errors->get('rt_status') as $error)
+                                            <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                            @endforeach
+                                        @endif
+
 
                                     <label for="text-input" class="form-control-label">Talent Status</label>
-                                    <select name="talent_status" class="form-control">
-                                        @if ($all->talent_status == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="worker" > Worker</option>
-                                            <option value="free" > Free</option>
-                                            <option value="edu" > Edu</option>
-                                        @elseif($all->talent_status == "worker")
-                                            <option value="worker" > Worker</option>
-                                            <option value="alumni" > Alumni</option>
-                                            <option value="edu" > Edu</option>
-                                            <option value="unset"> Pilih</option>
-                                        @elseif($all->talent_status == "free")
-                                            <option value="free" > Free</option>
-                                            <option value="edu" > Edu</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="worker" > Worker</option>
-                                        @elseif($all->talent_status == "edu")
-                                            <option value="edu" > Edu</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="worker" > Worker</option>
-                                            <option value="free" > Free</option>
-                                        @endif
+                                    <select class="custom-select" name="talent_status" >
+                                        <option value="">-- Choose --</option>
+                                        <option value="worker" @if($all->talent_status == 'worker') selected="selected" @endif>Worker</option>
+                                        <option value="free" @if($all->talent_status == 'free') selected="selected" @endif>Free</option>
+                                        <option value="edu" @if($all->talent_status == 'edu') selected="selected" @endif>Edu</option>
                                     </select>
 
+                                    @if($errors->has('talent_status'))
+                                        @foreach($errors->get('talent_status') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
+
                                     <label for="text-input" class=" form-control-label">Condition</label>
-                                    <select name="talent_condition" class="form-control">
-                                        @if ($all->talent_condition == NULL )
-                                            <option value=""> Pilih</option>
-                                            <option value="quarantine" > Quarantine</option>
-                                            <option value="assign" > Assign</option>
-                                        @elseif($all->talent_condition == "quarantine")
-                                            <option value="quarantine" > Quarantine</option>
-                                            <option value="assign" > Assign</option>
-                                            <option value=""> Pilih</option>
-                                        @elseif($all->talent_condition == "assign")
-                                            <option value="assign" > Assign</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="quarantine" > Quarantine</option>
-                                        @endif
+                                    <select name="talent_condition" class="custom-select">
+                                    <option value="">-- Choose --</option>
+                                        <option value="quarantine" @if($all->talent_condition == 'quarantine') selected="selected" @endif>Quarantine</option>
+                                        <option value="assign" @if($all->talent_condition == 'assign') selected="selected" @endif>Assign</option>
                                     </select>
+
+                                    @if($errors->has('talent_condition'))
+                                        @foreach($errors->get('talent_condition') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
 
                                     <label for="text-input" class=" form-control-label">Start Career</label>
                                     <input value="{{$all->talent_start_career}}" type="text" id="talent_start_career" name="talent_start_career" placeholder="dd/mm/yyyy" class="form-control">
 
                                     <label for="text-input" class=" form-control-label">Level</label>
-                                    <select name="talent_level" class="form-control">
-                                        @if ($all->talent_level == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="senior" > Senior</option>
-                                        @elseif($all->talent_level == "undefined")
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="senior" > Senior</option>
-                                            <option value="unset"> Pilih</option>
-                                        @elseif($all->talent_level == "junior")
-                                            <option value="junior" > Junior</option>
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="senior" > Senior</option>
-                                            <option value="unset"> Pilih</option>
-                                        @elseif($all->talent_level == "middle")
-                                            <option value="middle" > Middle</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="senior" > Senior</option>
-                                            <option value="unset"> Pilih</option>
-                                        @elseif($all->talent_level == "senior")
-                                            <option value="senior" > Senior</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="unset"> Pilih</option>
-                                        @endif
-                                    </select>
+                                    <select name="talent_level" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="junior" @if($all->talent_level == 'junior') selected="selected" @endif>Junior</option>
+                                        <option value="middle" @if($all->talent_level == 'middle') selected="selected" @endif>Middle</option>
+                                        <option value="senior" @if($all->talent_level == 'senior') selected="selected" @endif>Senior</option>
+                                    </select> 
+                                    @if ($errors->has('talent_level'))
+                                        @foreach ($errors->get('talent_level') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif                                  
 
                                     <label for="text-input" class=" form-control-label">Date Ready</label>
                                     <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="dd/mm/yy" class="form-control">
 
 
                                     <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
-                                    <select name="talent_onsite_jakarta" class="form-control">
-                                    @if ($all->talent_onsite_jakarta == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_onsite_jakarta == "yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                    @elseif($all->talent_onsite_jakarta == "no")
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="talent_onsite_jakarta" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_onsite_jakarta == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_onsite_jakarta == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('talent_onsite_jakarta'))
+                                        @foreach ($errors->get('talent_onsite_jakarta') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+                                    
 
                                     <label for="text-input" class=" form-control-label">Onsite Jogja</label>
-                                    <select name="talent_onsite_jogja" id="talent_onsite_jogja" class="form-control">
-                                    @if ($all->talent_onsite_jogja == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_onsite_jogja == "yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                    @elseif($all->talent_onsite_jogja == "no")
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="talent_onsite_jogja" class="custom-selecet">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_onsite_jogja == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_onsite_jogja == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('talent_onsite_jogja'))
+                                        @foreach ($errors->get('talent_onsite_jogja') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Remote</label>
-                                    <select name="talent_remote" id="talent_remote" class="form-control">
-                                    @if ($all->talent_remote == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_remote == "yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                    @elseif($all->talent_remote == "no")
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="talent_remote" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_remote == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_remote == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('talent_remote'))
+                                        @foreach ($errors->get('talent_remote') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Bekerja Remote di Luar Kota</label>
-                                    <select name="talent_luar_kota" id="talent_luar_kota" class="form-control">
-                                    @if ($all->talent_luar_kota == "")
-                                            <option value=""> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_luar_kota == "yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                            <option value=""> Pilih</option>
-                                    @elseif($all->talent_luar_kota == "no")
-                                            <option value="no" > No</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="talent_luar_kota" class="custom-select">
+                                    <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_luar_kota == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_luar_kota == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('talent_luar_kota'))
+                                        @foreach ($errors->get('talent_luar_kota') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
 
                                     <label for="text-input" class=" form-control-label">Focus</label>
-                                    <select name="talent_focus" id="talent_focus" class="form-control">
-                                        @if ($all->talent_focus == "")
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                        @elseif($all->talent_focus == "Frontend web")
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                        @elseif($all->talent_focus == "Backend web")
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                        @elseif($all->talent_focus == "Fullstack web")
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                        @elseif($all->talent_focus == "Mobile programmer")
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                        @elseif($all->talent_focus == "uiux")
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                        @elseif($all->talent_focus == "qa")
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                        @elseif($all->talent_focus == "Dev ops")
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                        @elseif($all->talent_focus == "Data science")
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                        @elseif($all->talent_focus == "pm")
-                                            <option value="pm" > Project / Product Manager</option>
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                        @elseif($all->talent_focus == "Other")
-                                            <option value="Other" > Other</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="Frontend web" > Frontend Web</option>
-                                            <option value="Backend web" > Backend Web</option>
-                                            <option value="Fullstack web" > Fullstack Web</option>
-                                            <option value="Mobile programmer" > Mobile Programmer</option>
-                                            <option value="uiux" > UI UX</option>
-                                            <option value="qa" > QA</option>
-                                            <option value="Dev ops" > Dev Ops</option>
-                                            <option value="Data science" > Data Science</option>
-                                            <option value="pm" > Project / Product Manager</option>
-                                        @endif
-                                    </select>
+                                    <select name="talent_focus" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="Frontend" @if($all->talent_focus == 'Frontend') selected="selected" @endif>Frontend Web</option>
+                                        <option value="Backend web" @if($all->talent_focus == 'Backend web') selected="selected" @endif>Backend Web</option>
+                                        <option value="Fullstack web" @if($all->talent_focus == 'Fullstack web') selected="selected" @endif>Fullstack Web</option>
+                                        <option value="Mobile programmer" @if($all->talent_focus == 'Mobile programmer') selected="selected" @endif>Mobile programmer</option>
+                                        <option value="UI UX" @if($all->talent_focus == 'UI UX') selected="selected" @endif>UI UX</option>
+                                        <option value="QA" @if($all->talent_focus == 'QA') selected="selected" @endif>QA</option>
+                                        <option value="Dev Ops" @if($all->talent_focus == 'Dev Ops') selected="selected" @endif>Dev Ops</option>
+                                        <option value="Data science" @if($all->talent_focus == 'Data science') selected="selected" @endif>Data Science</option>
+                                        <option value="PM" @if($all->talent_focus == 'PM') selected="selected" @endif>Project/Product Manager</option>
+                                        <option value="Other" @if($all->talent_focus == 'Other') selected="selected" @endif>Other</option>
+                                    </select> 
+                                    @if ($errors->has('talent_focus'))
+                                        @foreach ($errors->get('talent_focus') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Current Work</label>
                                     <input value="{{$all->talent_current_work}}" type="text" id="talent_current_work" name="talent_current_work" placeholder="Your Current Work" required="" class="form-control">
@@ -2572,39 +2394,29 @@
                                     </select>
 
                                     <label for="text-input" class=" form-control-label">Edukasi ISA</label>
-                                    <select name="talent_isa" class="form-control">
-                                    @if ($all->talent_isa == "unset")
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_isa == "yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                    @elseif($all->talent_isa == "no")
-                                            <option value="no" > No</option>
-                                            <option value="unset"> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="talent_isa" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_isa == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_isa == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('talent_isa'))
+                                        @foreach ($errors->get('talent_isa') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif 
 
 
                                     <label for="text-input" class=" form-control-label">Bekerja di Luar Negeri</label>
-                                    <select name="talent_international" id="talent_international" class="form-control">
-                                    @if ($all->talent_international == "")
-                                            <option value=""> Pilih</option>
-                                            <option value="ya" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_international == "ya")
-                                            <option value="ya" > Yes</option>
-                                            <option value="no" > No</option>
-                                            <option value=""> Pilih</option>
-                                    @elseif($all->talent_international == "no")
-                                            <option value="no" > No</option>
-                                            <option value=""> Pilih</option>
-                                            <option value="ya" > Yes</option>
-                                    @endif
+                                    <select name="talent_international" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_international == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_international == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('talent_international'))
+                                        @foreach ($errors->get('talent_international') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Recomendation Salary</label>
                                     <input value="{{$all->talent_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah" type="text" name="talent_salary" class="form-control" placeholder="Your expected salary" required="">
