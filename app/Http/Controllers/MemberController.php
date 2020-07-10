@@ -15,6 +15,7 @@ use Auth;
 use App\Models\work_experience; 
 use App\Models\education; 
 use App\Models\portfolio; 
+use App\Models\CategoryTest; 
 use Storage ;
 use Image ; 
 
@@ -294,10 +295,24 @@ class MemberController extends Controller
         {
             $id = Session::get("user_id"); 
         }
+        else
+        {
+            $id = decrypt_custom($id); 
+            $id = (int) $id ;
+        }
         
         $user = User::findOrFail($id); 
         $talent = $user->talent()->first(); 
-        return view("member.profile",compact('talent'));   
+
+        $lock = false ; 
+        if ( $talent->talent_notes_report_talent != "" ) 
+        {
+            $lock = true ; 
+        }
+
+        $test = CategoryTest::all() ; 
+
+        return view("member.profile",compact('talent','lock','test'));   
     }
 
     public function editBasic()
@@ -306,7 +321,9 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
-       
+        
+        $this->lock($talent);
+
         return view("member.editBasicProfile", compact('talent'));
     }
 
@@ -324,7 +341,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
-
+        $this->lock($talent);
 
         $update = Talent::find($talent->talent_id); 
 
@@ -383,8 +400,16 @@ class MemberController extends Controller
         {
             return back()->with("message","berhasil mengupdate"); ;
         }
+    }
 
+    public function editInterviewPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
 
+        $update->save(); 
+        return back()->with("message","berhasil mengupdate"); 
     }
 
     public function editEducation()
@@ -394,8 +419,28 @@ class MemberController extends Controller
         $user = User::find($id); 
         $talent = $user->talent()->first();
         $education = $talent->talent_education();
-
+        $this->lock($talent);
         return view("member.editEducation",compact('talent','education'));
+    }
+
+    public function editInterview()
+    {   
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+        $interview = $talent->talent_interviewtest();
+        //dd($talent->talent_id);
+        //$question = $talent->talent_question();
+
+        //$coba = $interview->interview_question();
+
+        $question = DB::table('question')->get();
+       return view("member.editInterview", ['question' => $question], compact('talent','interview','question'));
+
+       
+        //return view("member.editInterview",compact('talent','interview','question'));
+
     }
 
     public function editEducationPost(Request $request)
@@ -404,6 +449,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first();
+        $this->lock($talent);
 
         $jumlah = count($request->edu_name);
         if ( $jumlah > 0 )
@@ -447,6 +493,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first();
+        $this->lock($talent);
         $work = $talent->talent_workex();
 
         return view("member.editWork",compact('talent','work'));
@@ -458,6 +505,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first();
+        $this->lock($talent);
 
         $jumlah = count($request->name);
         if ( $jumlah > 0 )
@@ -502,6 +550,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
        
         return view("member.editSkill",compact('talent'));
     }
@@ -562,6 +611,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         return view("member.editCv",compact('talent'));
     }
@@ -575,6 +625,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
 
         $update = Talent::find($talent->talent_id); 
@@ -598,6 +649,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         return view("member.editPorto",compact('talent'));
     }
@@ -612,6 +664,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         $screenshoot = $request->file('screenshoot');
         if ($screenshoot)
@@ -662,6 +715,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
+        $this->lock($talent);
 
         return view("member.updatePorto",compact('porto','talent'));
     }
@@ -718,6 +772,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first();  
+        $this->lock($talent);
         return view('member.cropPorto',compact('porto','talent'));
     }
 
@@ -789,6 +844,136 @@ class MemberController extends Controller
         imagejpeg($dst_r, 'storage/photo/'.$talent->talent_foto, $jpeg_quality);
 
         return redirect('member/edit-basic-profile'); 
+    }
+
+    public function personalityTest()
+    {
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=','3')
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        foreach ($test as $row) 
+        {
+            $check = DB::table('interview_test')->where('it_tq_id','=',$row->tq_id)->where('it_talent_id','=',$talent->talent_id)->first();
+            if(isset($check->it_answer))
+            {
+                $answer[$row->tq_id] = $check->it_answer;
+            }
+            else
+            {
+                $answer[$row->tq_id] = "";
+            }
+        }
+
+        return view('member/personalityTest',compact('talent','test','answer'));
+    }
+
+    public function personalityTestPost(Request $request)
+    {
+        $this->validate($request, ['answer.*' => 'required|min:2']);
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=','3')
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        foreach ( $test as $row )
+        {
+            $jawaban =  $request->answer[$row->tq_id];
+            DB::table('interview_test')->updateOrInsert(
+                array('it_talent_id'=>$talent->talent_id, 'it_tq_id'=>$row->tq_id ),
+                array('it_answer' => $request->answer[$row->tq_id])
+            );
+        }
+
+        return back()->with("message","berhasil menyimpan data");
+        
+
+    }
+
+    function lock($talent)
+    {
+        if ( $talent->talent_notes_report_talent != "" ) 
+        {
+            return abort(404); 
+        }
+    }
+
+    function skillTest($type_soal_id)
+    {
+        $category = CategoryTest::findOrFail($type_soal_id) ; 
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=',$type_soal_id)
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        $answer= array() ;
+        foreach ($test as $row) 
+        {
+            $check = DB::table('interview_test')->where('it_tq_id','=',$row->tq_id)->where('it_talent_id','=',$talent->talent_id)->first();
+
+            if(isset($check->it_answer))
+            {
+                $answer[$row->tq_id] = $check->it_answer;
+            }
+            else
+            {
+                $answer[$row->tq_id] = "";
+            }
+        }
+
+        return view('member/skillTest',compact('talent','test','answer','category'));
+    }
+
+    public function skillTestPost(Request $request)
+    {
+        $this->validate($request, 
+                        [
+                            'answer.*' => 'required|min:2',
+                            'ct_id' => 'required',
+                        ]);
+
+        $ct_id = $request->ct_id  ;
+
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $test     = DB::table('test_question')
+                      ->join('question','question.question_id','=','test_question.tq_question_id')
+                      ->where('tq_ct_id','=',$ct_id)
+                      ->where('tq_active','=','YES')
+                      ->orderBy('tq_sort', 'asc')->get();
+
+        foreach ( $test as $row )
+        {
+            $jawaban =  $request->answer[$row->tq_id];
+            DB::table('interview_test')->updateOrInsert(
+                array('it_talent_id'=>$talent->talent_id, 'it_tq_id'=>$row->tq_id ),
+                array('it_answer' => $request->answer[$row->tq_id])
+            );
+        }
+
+        return back()->with("message","berhasil menyimpan data");
+        
+
     }
     
     

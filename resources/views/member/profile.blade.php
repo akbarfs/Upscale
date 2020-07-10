@@ -73,6 +73,29 @@
 			#button-pricing:hover { background: #379CF4 }
 
 			.biodata td { padding: 5px 0 }
+
+			.edit
+			{
+			    background: #bfbfbf;
+			    padding: 2px 10px;
+			    border-radius: 5px;
+			    color: #fff;
+			}
+			.edit:hover { color: #fff ; }
+
+			.in-header {
+				margin-left: 0;padding: 20px;background: #e8f1ff;cursor: pointer;
+				margin-bottom: 0 !important; 
+			}
+
+			.in-header:hover { background: #D1E0F0; }
+
+			.answer 
+			{
+				margin-top: 20px;
+			}
+
+
 			@media (max-width: 768px) {
 			    .call-cv .tombol{
 			        float: left;
@@ -82,6 +105,7 @@
 			}
 
 		</style>
+
 
 		<script type="text/javascript">
 			$(document).ready(function()
@@ -98,6 +122,15 @@
 					$(this).parent().hide();
 					$("#button-pricing").show();
 				});
+
+				$(".answer").hide(); 
+
+				$(".in-header").click(function()
+				{
+					// $(".answer").hide();
+					$(this).parent().find(".answer").toggle();
+				});
+
 			});
 		</script>
         <section id="about" class="about">
@@ -107,14 +140,14 @@
             		<h2>About Me</h2>
 				</div>
 
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" style="background: green" href="{{url('/member/edit-cv')}}">upload cv</a>
 					<a class="edit" href="{{url('/member/edit-basic-profile')}}">edit</a>
 				@else 
 
 				<div class="col-md-8 col-sm-8 col-xs-12 call-cv" style="padding-right: 0">
 					@if($talent->talent_cv_update)
-						<a href="{{ url('storage/Curriculum vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
+						<a href="{{ url('storage/Curriculum Vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
 						 	<i class="fa fa-download" aria-hidden="true"></i> Download CV
 						</a>
 						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green">
@@ -130,9 +163,23 @@
 
             <div class="intro" id="about">
                  @if($talent)
+
+                 	@php
+						$name = explode(" ",$talent->talent_name) ; 
+						if ( count($name) > 0 )
+						{
+							$panggilan = $name[0];
+							$nama =  $name[0]." (".$talent->talent_id.")";
+						}
+						else
+						{
+							$panggilan = $name ; 
+							$nama = " (".$talent->talent_id.")"; 
+						}
+					@endphp
 					
 					<p style="text-align: justify">
-						Hi, perkenalkan nama saya <b>{{ $talent->talent_name }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
+						Hi, perkenalkan nama saya <b>{{ $panggilan }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
 					</p>
 
 
@@ -140,9 +187,11 @@
 					<div class="row biodata" style="padding-left:15px">
 						<table class="col-md-6 col-sm-6 col-xs-12">
 							<tr>
-								<td width="40%"><strong>Nama</strong></td>
+								<td width="40%"><strong>Nama & Kode</strong></td>
 								<td><strong>:&nbsp</strong></td>
-								<td>{{$talent->talent_name}}</td>
+								<td style="font-weight: bold">
+									{{$nama}}
+								</td>
 							</tr>
 							<tr>
 								<td><strong>Umur</strong></td>
@@ -220,7 +269,7 @@
 
 	            @endif
 
-	            @if (Request::segment(2) != '')
+	            @if ( !$lock && Request::segment(2) != '')
 					
 					<hr>
 
@@ -308,9 +357,10 @@
 							</div>
 						</div>
 
-						<hr>
+						
 
 						@if ( $talent->talent_price_jakarta )
+						<hr>
 						<div>
 							Penempatan jakarta<br>
 							<b style="font-size: 18px">	
@@ -409,23 +459,14 @@
 			</div>
 			
 			
-			<style type="text/css">
-				.edit
-				{
-				    background: #bfbfbf;
-				    padding: 2px 10px;
-				    border-radius: 5px;
-				    color: #fff;
-				}
-				.edit:hover { color: #fff ; }
-			</style>
+
 
             <div class="skills" id="skill">
 				<div class="row" >
 
 					<div class="section-header" style="margin: 20px 0 -20px 15px;">
 			             <h2>Skills</h2>
-			             @if (Request::segment(2) == '') 
+			             @if ( !$lock && Request::segment(2) == '') 
 			             <a class="edit" href="{{url('/member/edit-skill')}}">edit</a>
 			             @endif
 		            </div>
@@ -433,54 +474,55 @@
 		            <div style="clear: both;"></div>
 
                 	@foreach($talent->talent_skill()->orderBy('st_score','DESC')->get() as $row )
-					<?php 
-							$skill = $row->skill()->first();
-							$score = $row->st_score;
-							$percent = round( $score )/5 * 100;
-					?>
-					<div class="col-md-4 col-sm-4 col-xs-6 item " style="height: 100px; padding: 20px">
-						<div class="skill-info clearfix">
-							<h3 class="pull-left"> {{$skill->skill_name}}</h3>
-							<span class="pull-right">{{($percent/10)}}</span>
+						<?php 
+								$skill = $row->skill()->first();
+								$score = $row->st_score;
+								$percent = round( $score )/5 * 100;
+						?>
+						<div class="col-md-4 col-sm-4 col-xs-6 item " style="height: 100px; padding: 20px">
+							<div class="skill-info clearfix">
+								<h3 class="pull-left"> {{$skill->skill_name}}</h3>
+								<span class="pull-right">{{($percent/10)}}</span>
 
-							@if($row->st_skill_verified_date)
-								<br> <i class="fa fa-check" style="color: #379CF4"></i>
-								<span style="font-size: 12px"> verified by Upscale 
-								<!-- {{ date("l, j F Y", strtotime($row->st_skill_verified_date)) }} -->
-							</span>
-							@else
-								<br> 
-								<i class="fa fa-check" style="color: #E0E0E0"></i> <span style="font-size: 12px"> on process</span>
-							@endif
-						</div>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="{{$percent}}"
-							aria-valuemin="0" aria-valuemax="100" style="width:{{$percent}}%">
+								@if($row->st_skill_verified_date)
+									<br> <i class="fa fa-check" style="color: #379CF4"></i>
+									<span style="font-size: 12px"> verified  
+									<!-- {{ date("l, j F Y", strtotime($row->st_skill_verified_date)) }} -->
+									</span>
+								@else
+									<br> 
+									<i class="fa fa-check" style="color: #E0E0E0"></i> <span style="font-size: 12px"> on process</span>
+								@endif
 							</div>
-                        </div>
-					</div>
-				@endforeach
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="{{$percent}}"
+								aria-valuemin="0" aria-valuemax="100" style="width:{{$percent}}%">
+								</div>
+	                        </div>
+						</div>
+					@endforeach
 				</div>
              </div>
+
         </section>
 		
 		<section id="experience" class="resume">
 			<div class="section-header" style="margin-left: 0">
 				<h2>Work Experience</h2>
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-work')}}">edit</a>
 				@endif 
 			</div>
 			<div class="row" >
 			@foreach($talent->talent_workex()->get() as $row )
-						<div class="col-md-12 col-sm-12 col-xs-12" >
-							<div class="top-item resume-item">
-								<h2>{{ $row->workex_office }}</h2>
-								<span>{{ $row->workex_position }} |  {{ $row->workex_startdate }} - {{ $row->workex_enddate }}</span>
-								<p><param>{!! $row->workex_desc !!}</param></p>
-								<p><param>{!! $row->workex_handle_project !!}</param></p>
-							</div>
-						</div>
+				<div class="col-md-12 col-sm-12 col-xs-12" >
+					<div class="top-item resume-item">
+						<h2>{{ $row->workex_office }}</h2>
+						<span>{{ $row->workex_position }} |  {{ $row->workex_startdate }} - {{ $row->workex_enddate }}</span>
+						<p><param>{!! $row->workex_desc !!}</param></p>
+						<p><param>{!! $row->workex_handle_project !!}</param></p>
+					</div>
+				</div>
 			@endforeach	
 			</div>
 		</section>
@@ -488,7 +530,7 @@
         <section id="education" class="resume">
 			<div class="section-header" style="margin-left: 0">
 				<h2>Education</h2>
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-education')}}">edit</a>
 				@endif
 			</div>
@@ -505,12 +547,14 @@
 			@endforeach	
 			</div>
         </section>
+
+		
 		
 		<section id="works" class="works clearfix">
 			
 			<div class="section-header" style="margin-left: 0">
 				<h2>Portfolio</h2>
-				@if (Request::segment(2) == '') 
+				@if ( !$lock && Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-porto')}}">edit</a>
 				@endif 
 			</div>
@@ -522,7 +566,7 @@
                 @foreach($talent->talent_portfolio()->get() as $row )
 				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1" data-sort="value">
 					<div class="item">
-						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image">
+						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image" target="_blank">
 							<div class="title">
 								<div class="inner">
 									<h2>{{ $row->portfolio_name }}</h2>
@@ -538,6 +582,183 @@
                 @endforeach
             </div>
 		</section>
+
+		@if ( $talent->talent_interviewtest()->count() > 0 )
+
+			<!-- UNTUK NGECEK APAKAH UDAH ADA HASIL PENILAIAN PERSONALITY OLEH ADMIN -->
+			@foreach($talent->talent_interviewtest()->get() as $row)
+				@if ( $row->test_question->tq_ct_id == 8 )
+					@php $personality = 'on' @endphp 
+				@endif
+			@endforeach 
+
+			@if ( isset($personality) && $personality == 'on')
+
+			<section id="about" class="about">
+	            <div class="skills" id="assessment">
+					<div class="row" >
+
+						<div class="section-header" style="margin: 20px 0 -20px 15px;">
+				             <h2>Personality</h2>
+				             <!-- @if ( !$lock && Request::segment(2) == '') 
+				             <a class="edit" href="{{url('/member/edit-skill')}}">Take a Test</a>
+				             @endif -->
+			            </div>
+
+			            <div style="clear: both;"></div>
+
+	                	@foreach($talent->talent_interviewtest()->get() as $row )
+
+							@if ( $row->test_question->tq_ct_id == 8 )
+								@if ( $soal = $row->test_question->pertanyaan )
+									@php
+										$nilai = ($row->it_answer>0) ? $row->it_answer : 0 ; 
+										$percent = ($nilai/10)*100 ; 
+									@endphp
+									<div class="col-md-4 col-sm-4 col-xs-6 item " style="height: 100px; padding: 20px">
+										<div class="skill-info clearfix">
+											<h3 class="pull-left">{{$soal->question_text}}</h3>
+											<span class="pull-right">{{ $nilai }}</span>
+
+											@if( $nilai >0 )
+												<br> <i class="fa fa-check" style="color: #379CF4"></i>
+												<span style="font-size: 12px"> verified 
+											</span>
+											@else
+												<br> 
+												<i class="fa fa-check" style="color: #E0E0E0"></i> <span style="font-size: 12px"> on process</span>
+											@endif
+										</div>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar" aria-valuenow="{{$percent}}"
+											aria-valuemin="0" aria-valuemax="100" style="width:{{$percent}}%">
+											</div>
+				                        </div>
+									</div>
+
+								@endif
+							@endif 
+
+						@endforeach
+					</div>
+				</div>
+			</section>
+			@endif
+			<!-- BOX PENILAIAN PERSONALITY END -->
+
+			<!-- START HASIL PERSONALITY INTERVIEW  -->
+
+			<!-- START HASIL BACKEND TEST  -->
+			@foreach($talent->talent_interviewtest()->get() as $row)
+				@if ( $row->test_question->tq_ct_id == 3 )
+					@php $pengenalan_diri = 'on' @endphp 
+				@endif
+			@endforeach 
+
+			@if ( isset($pengenalan_diri) && $pengenalan_diri == 'on')
+			<section id="pengenalan_diri" class="resume">
+				<div style="padding: 10px">hasil interview</div>
+				<div class="section-header in-header" style="margin-left: 0">
+					<h2>Pengenalan Diri</h2>
+					@if ( !$lock && Request::segment(2) == '') 
+						<a class="edit" href="{{url('/member/personality-test')}}">edit</a>
+					@endif 
+				</div>
+				<div class="row answer">
+				@foreach($talent->talent_interviewtest()->where('it_answer','!=','')->where('it_answer','!=','-')->get() as $row )
+
+					@if ( $row->test_question->tq_ct_id == 3 )
+						
+						<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px; margin-bottom: 10px; ">
+							<div class="top-item resume-item">
+								<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
+								<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
+								<p><param>{!! $row->it_answer !!}</param></p>
+							</div>
+						</div>
+						
+					@endif
+
+				@endforeach	
+				</div>
+			</section>
+			@endif
+			<!-- END BOX HASIL PERSONALITY INTERVIEW -->
+
+			<!-- START HASIL skill TEST  -->
+
+
+
+			@foreach ( $test as $cat )
+
+				<!-- nampilin selain personality interview & point -->
+				@if ( $cat->ct_id != 3 && $cat->ct_id != 8 )
+
+					@php 
+						$count = DB::table('interview_test')
+							->join('test_question','test_question.tq_id','=','interview_test.it_tq_id')
+							->where('tq_ct_id','=',$cat->ct_id)
+	                      	->where('tq_active','=','YES')
+	                      	->where('it_talent_id','=',$talent->talent_id)
+	                      	->groupBy('it_id')
+	                      	->orderBy('tq_sort', 'asc')->count();
+	                @endphp
+
+	                @if ( $count > 0 )
+
+					<section class="resume">
+						<div style="padding: 10px">hasil interview skill</div>
+						<div class="section-header in-header" style="margin-left: 0">
+							<h2>{{$cat->ct_name}}</h2>
+							@if ( !$lock && Request::segment(2) == '') 
+								<a class="edit" href="{{url('/member/skill-test/'.$cat->ct_id)}}">edit</a>
+							@endif 
+						</div>
+						<div class="row answer">
+
+						@php 
+						$result = $talent->talent_interviewtest()
+								->where('it_answer','!=','')
+								->where('it_answer','!=','-')
+								->get()
+						@endphp 
+
+						@foreach( $result as $row )
+
+							@if ( $row->test_question->tq_ct_id == $cat->ct_id )
+								
+								<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px;margin-bottom: 10px; ">
+									<div class="top-item resume-item">
+										<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
+										<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
+										<p><param>{!! $row->it_answer !!}</param></p>
+									</div>
+								</div>
+								
+							@endif
+
+						@endforeach	
+						</div>
+					</section>
+					@endif
+
+				@endif
+
+			@endforeach 
+			<!-- END BOX HASIL BACKEND TEST -->
+
+
+		@else
+
+			@if ( Request::segment(2) == '') 
+				<div style="padding: 20px; text-align: center;">
+					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
+				</div>
+			@endif
+
+		@endif
+
+		
 
 		<!-- <section id="certification" class="resume">
 			<div class="section-header">
