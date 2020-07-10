@@ -272,7 +272,14 @@
 									@if ( Request::segment(2) != '')
 										hrd@upscale.id
 									@else
-										{{$talent->talent_email}}
+										@php $l = strlen($talent->talent_email) @endphp
+										@if($l>22)
+											<div style="font-size: 9px">
+												{{$talent->talent_email}}
+											</div>
+										@else
+											{{$talent->talent_email}}
+										@endif
 									@endif
 								</td>
 							</tr>
