@@ -52,9 +52,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form style="background-color:white" method="post" action="" id="form-search">
+                    <form style="margin:0; padding: 0" method="post" action="" id="form-search">
                         <div class="row">
-                            <div class="col-sm-2" style="padding-left:4%; margin-top:0%">
+                            <div class="col-md-2">
                                 <select class="custom-select" name="status_member">
                                     <option value="">--ALL--</option>
                                     <option value="all" selected="selected">All</option>
@@ -71,14 +71,41 @@
                             <div class="col-md-2">
                                 <input type="text" class="form-control" placeholder="phone" name="talent_phone">
                             </div>
-                            <div class="col-sm-2" style="padding-left:4%; margin-top:0%">
-                                <select class="custom-select" name="categories">
+
+                            <div class="col-md-2" style="margin-top: 10px">
+                                <select class="custom-select" name="order">
                                     <option value="">--categories--</option>
-                                    <option value="all" selected="selected">categories</option>
+                                    <option value="all" selected="selected">--categories--</option>
                                     <option value="invitation">Join Invitation</option>
                                     <option value="regular">Regular</option>
                                 </select>
                             </div>
+
+
+
+                            @push('script')
+
+                            <script src="{{url('template/upscale/js/tag.js')}}"></script>
+                            <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
+
+                            <script>
+                                $(document).ready(function() {
+                                    $('.tagsInput').fastselect({
+
+                                        valueDelimiter: ',',
+                                        onItemSelect: function($item, itemModel) {
+                                            $(".fstChoiceRemove").html("x");
+                                            // $(".fstQueryInput").focus(); 
+                                        },
+
+                                    });
+
+                                });
+                            </script>
+
+                            @endpush
+
+
                             <style type="text/css">
                                 .fstQueryInput {
                                     padding: 0
@@ -95,40 +122,31 @@
                                     margin: 0 !important
                                 }
                             </style>
+
                         </div>
-                        <div class="container-fluid">
-                            <div class="card" style=" margin : 0% 2.5%">
-                                <div class="row mb-2">
-                                    <div class="col-sm-10" style="margin-top:8px; padding-left:2%;">
 
-                                        <div class="row" style="margin-top: 10px">
-                                            <div class=" col-sm-12">
-                                                <div style="padding: 0px;">
-                                                    show :
-                                                    <input type="checkbox" name="tl_type" checked="checked"> Type &nbsp;
-                                                    <input type="checkbox" name="tl_name" checked="checked"> Name &nbsp;
-                                                    <input type="checkbox" name="tl_phone" checked="checked"> Phone &nbsp;
-                                                    <input type="checkbox" name="tl_email" checked="checked"> Email &nbsp;
-                                                    <input type="checkbox" name="tl_status" checked="checked"> Status Email &nbsp;
-                                                    <input type="checkbox" name="tl_desc" checked="checked"> Details &nbsp;
-                                                    <input type="checkbox" name="created_at" checked="checked"> Created &nbsp;
-                                                    <input type="checkbox" name="updated_at" checked="checked"> Updated &nbsp;
-                                                    <input type="checkbox" name="mail_invitation"> mail invitation &nbsp;
-                                                    <input type="checkbox" name="mail_regular"> mail regular &nbsp;
-                                                    <button class="btn btn-outline-primary" type="submit" id="search">Search</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="row" style="margin-top: 10px">
 
-                                    </div>
-                                    <div class="col-sm-2" style="margin-top:18px;">
-                                        <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-success" type="submit" id="search">New Email</button></a>
+                            <div class="col-md-12">
+                                <div style="padding: 10px;">
+                                    show :
 
-                                        <div class="container-fluid" id="tag_container" style="padding: 0"></div>
-
-                                    </div>
+                                    <input type="checkbox" name="tl_type" checked="checked"> Type &nbsp;
+                                        <input type="checkbox" name="tl_name" checked="checked"> Name &nbsp;
+                                        <input type="checkbox" name="tl_phone" checked="checked"> Phone &nbsp;
+                                        <input type="checkbox" name="tl_email" checked="checked"> Email &nbsp;
+                                        <input type="checkbox" name="tl_status" checked="checked"> Status Email &nbsp;
+                                        <input type="checkbox" name="tl_desc" checked="checked"> Details &nbsp;
+                                        <input type="checkbox" name="created_at" checked="checked"> Created &nbsp;
+                                </div>
+                                <div>
+                                    <button class="btn btn-outline-primary" type="submit" id="search">Search</button>
                                 </div>
                             </div>
+
+
+
+                        </div>
                     </form>
 
                 </div>
@@ -140,7 +158,7 @@
 
 
         <div class="table-responsive" style=" padding: 1% 3%">
-            <table class="table table-bordered table-striped table-hover">
+            <table id="log_data" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
@@ -152,7 +170,7 @@
                         <th scope="col" name="tl_status">Status Email </th>
                         <th scope="col" name="tl_desc">Details </th>
                         <th scope="col" name="created_at">Created </th>
-                        <th scope="col" name="updated_at">Updated </th>
+                        <!-- <th scope="col" name="updated_at">Updated </th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -168,8 +186,12 @@
                         <td>{{$t->tl_email}}</td>
                         <td>{{$t->tl_email_status}}</td>
                         <td>{{$t->tl_desc}}</td>
-                        <td>{{$t->created_at}}</td>
-                        <td>{{$t->updated_at}}</td>
+                        <td>{{ \Carbon\Carbon::parse($t->created_at)->format('D, d-m-Y H:i') }}
+                            <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="member date">
+                                {{\Carbon\Carbon::createFromTimeStamp(strtotime($t->created_at))->diffForHumans()}}</b>
+                            </span>
+                        </td>
+                        <!-- <td>{{$t->updated_at}}</td> -->
                     </tr>
 
                     @endforeach
@@ -208,9 +230,19 @@
                 }
             });
         }
+        //klik export_excel
+        $("#export").click(function(e) {
+            if (confirm("export")) {
+                location.replace(export_url);
+                return false;
+            }
+
+        });
+
+
 
         //load pertama kali
-        loadTable("{{url('/admin/talent/mail/{request::segment(2)}?page=1')}}");
+        loadTable("{{url('/admin/talent/mail/{id}index?page=1')}}");
 
         //klik pagination , diambil urlnya langsung di load ajax
         $(document).on("click", ".page-link", function(event) {
@@ -222,8 +254,12 @@
 
         //search 
         $("#form-search").submit(function() {
-            loadTable("{url('/admin/talent/mail/{request::segment(2)}->talent_id?page=1')}}");
+            loadTable("{{url('/admin/talent/mail/{id}index?page=1')}}");
             return false;
+        });
+
+        $("#mass_del").click(function() {
+            return confirm("delete selected ?");
         });
 
     });

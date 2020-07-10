@@ -22,7 +22,7 @@ class Talent_log extends Model
         $insert['tl_email'] = isset($data['email']) ? $data['email'] : $talent->talent_email; 
         $insert['tl_desc'] = isset($data['desc']) ? $data['desc'] : '' ;
         $insert['tl_email_status'] = isset($data['status']) ? $data['status'] : '' ;
-        $insert['created_at'] = date("Y-m-d g:i:s");
+        $insert['created_at'] = date("D, d-m-Y H:i");
         $insert['updated_at'] = date("Y-m-d g:i:s");
         DB::table("talent_logs")->insert($insert); 
 

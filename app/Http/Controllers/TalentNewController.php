@@ -32,65 +32,82 @@ class TalentNewController extends Controller
         return view('admin.talent.home');
     }
 
-   public function mail($talent_id)
+    public function mail($talent_id)
     {
 
         $talent = Talent::findOrFail($talent_id);
-        return view("admin.talent.mail",compact('talent'));
+        return view("admin.talent.mail", compact('talent'));
+    }
+    public function index(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $talent_logs = Talent_log::orderBy("tl_talent_id", "DESC");
+
+            if ($request->tl_name) {
+                $talent_logs->where("tl_name", "LIKE", "%" . $request->tl_name . "%");
+            }
+            if ($request->tl_email) {
+                $talent_logs->where("tl_email", "LIKE", "%" . $request->tl_email . "%");
+            }
+            if ($request->tl_phone) {
+                $talent_logs->where("tl_phone", "LIKE", "%" . $request->tl_phone . "%");
+            }
+           
+            $talent_logs = $talent_logs->paginate(5);
+            return view('admin.talent.mail.{id}', compact('talent_logs'))->render();        
+        }
+
     }
 
     function createTypeEmail($id)
     {
         $talent = Talent::find($id);
-        return view("admin.talent.createTypeEmail",compact('talent'));
+        return view("admin.talent.createTypeEmail", compact('talent'));
     }
 
     function mailBackup($id)
     {
-        $talent = Talent::find($id); 
-        return view("admin.talent.mail-backup",compact('talent'));
-
+        $talent = Talent::find($id);
+        return view("admin.talent.mail-backup", compact('talent'));
     }
 
     public function mailSend(Request $request)
     {
         ini_set('max_execution_time', 120);
 
-        $talent_id = $request->input('id') ;
-        $talent = Talent::find($talent_id); 
-        
-        $data['talent'] = $talent ; 
-        $data['sender'] = $request->sender ;    
+        $talent_id = $request->input('id');
+        $talent = Talent::find($talent_id);
+
+        $data['talent'] = $talent;
+        $data['sender'] = $request->sender;
         // Mail::to($email)->send(new UpscaleEmail($email));
 
-        if ( $request->type == 'invitation')
-        {
+        if ($request->type == 'invitation') {
             $view = 'mail.invitation';
-        }
-        else
-        {
-            $view ='mail.regular';
+        } else {
+            $view = 'mail.regular';
         }
 
-        $judul = $request->judul ; 
+        $judul = $request->judul;
         //ganti nama di judul
-        $judul = str_replace("#name#",$talent->talent_name,$judul); 
-        $judul = str_replace("#nama#",$talent->talent_name,$judul); 
+        $judul = str_replace("#name#", $talent->talent_name, $judul);
+        $judul = str_replace("#nama#", $talent->talent_name, $judul);
         //ganti content 
-        $content = str_replace("#name#",$talent->talent_name, $request->content); 
-        $data['content'] = str_replace("#nama#",$talent->talent_name, $content); 
+        $content = str_replace("#name#", $talent->talent_name, $request->content);
+        $data['content'] = str_replace("#nama#", $talent->talent_name, $content);
 
-        Mail::send($view, $data, function ($message) use ($talent,$request,$judul) {
+        Mail::send($view, $data, function ($message) use ($talent, $request, $judul) {
             $message->from('dodi@upscale.id', $request->sender);
-            $message->to($talent->talent_email); 
+            $message->to($talent->talent_email);
             $message->subject($judul);
         });
 
-        $insert = new Talent_log; 
-        $insert->log($request->type,$talent_id,['desc'=>'dikirim dari new list talent']); 
+        $insert = new Talent_log;
+        $insert->log($request->type, $talent_id, ['desc' => 'dikirim dari new list talent']);
 
-        return response()->json(['status'=>1,'email'=>$talent->talent_email,'message'=>'send berhasil']);
-        
+        return response()->json(['status' => 1, 'email' => $talent->talent_email, 'message' => 'send berhasil']);
+
         // Mail::to($email)->send(new UpscaleEmail($email))->delay(60);
         // return back()->withError('Masih gagal ' . $request->input('id'));
     }
@@ -102,66 +119,71 @@ class TalentNewController extends Controller
             'talent_name' => 'Dodi Prakoso Wibowo',
             'talent_email' => 'dodi@gmail.com',
         ];
-        
-        if ( $view == 'invitation')
-        {
-            $content = ''; 
-            $sender = ''; 
-        }
-        else if ( $view == 'regular')
-        {
+
+        if ($view == 'invitation') {
+            $content = '';
+            $sender = '';
+        } else if ($view == 'regular') {
             $content = 'ini adalah halaman content ';
-            $sender = 'dodi'; 
+            $sender = 'dodi';
         }
-        return view('mail.'.$view,compact('talent','content','sender'));
+        return view('mail.' . $view, compact('talent', 'content', 'sender'));
     }
 
     public function paginate_data(Request $request)
     {
         // if ($request->ajax()) {
 
-            //SELECT BUILDER START
-            $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
-            $data = Talent::select(DB::raw($default_query));
-            //SELECT BUILDER END 
+        //SELECT BUILDER START
+        $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
+        $data = Talent::select(DB::raw($default_query));
 
-            //JOIN BUILDER START
-            $data->join("users","talent.user_id","=","users.id","LEFT");
-            //JOIN BULDER END 
+        //SELECT BUILDER END 
 
-            if ( $request->talent_name ) {$data->where("talent_name","LIKE","%".$request->talent_name."%"); }
-            if ( $request->talent_phone ) {$data->where("talent_phone","LIKE","%".$request->talent_phone."%"); }
-            if ( $request->talent_email ) {$data->where("talent_email","LIKE","%".$request->talent_email."%"); }
-            if ( $request->talent_address ) {$data->where("talent_address","LIKE","%".$request->talent_address."%"); }
-            if ( $request->talent_onsite_jogja ) {$data->where("talent_onsite_jogja",$request->talent_onsite_jogja); }
-            if ( $request->talent_onsite_jakarta ) {$data->where("talent_onsite_jakarta",$request->talent_onsite_jakarta); }
-            if ( $request->talent_isa ) {$data->where("talent_isa",$request->talent_isa); }
+        //JOIN BUILDER START
+        $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
+        //JOIN BULDER END 
 
-            if ( $request->status_member == "member" )
-            {
-                $data->where("users.email","!=","");
+        if ($request->talent_name) {
+            $data->where("talent_name", "LIKE", "%" . $request->talent_name . "%");
+        }
+        if ($request->talent_phone) {
+            $data->where("talent_phone", "LIKE", "%" . $request->talent_phone . "%");
+        }
+        if ($request->talent_email) {
+            $data->where("talent_email", "LIKE", "%" . $request->talent_email . "%");
+        }
+        if ($request->talent_address) {
+            $data->where("talent_address", "LIKE", "%" . $request->talent_address . "%");
+        }
+        if ($request->talent_onsite_jogja) {
+            $data->where("talent_onsite_jogja", $request->talent_onsite_jogja);
+        }
+        if ($request->talent_onsite_jakarta) {
+            $data->where("talent_onsite_jakarta", $request->talent_onsite_jakarta);
+        }
+        if ($request->talent_isa) {
+            $data->where("talent_isa", $request->talent_isa);
+        }
+
+        if ($request->status_member == "member") {
+            $data->where("users.email", "!=", "");
+        }
+
+        if ($request->status_member == "non-member") {
+            $data->where("users.email", "=", null);
+        }
+        if ($request->order != '') {
+            $ar = explode(",", $request->order);
+            foreach ($ar as $row) {
+                $data->orderBy($row, "DESC");
             }
+        } else {
+            $data->orderBy("talent_id", "DESC");
+        }
 
-            if ( $request->status_member == "non-member" )
-            {
-                $data->where("users.email","=",null);
-            }
-            if ( $request->order != '' )
-            {
-                $ar = explode(",",$request->order);
-                foreach ( $ar as $row)
-                {
-                    $data->orderBy($row,"DESC");
-                }
-            }
-            else
-            {
-                $data->orderBy("talent_id","DESC");
-            }
-
-            $data = $data->paginate(10);
-
-            return view('admin.talent.table',compact('data'))->render();
+        $data = $data->paginate(10);
+        return view('admin.talent.table', compact('data'))->render();
         // }
     }
 
@@ -171,7 +193,8 @@ class TalentNewController extends Controller
     }
 
     // SEMENTARA DI HIDE DULU 
-    public function delete($id){
+    public function delete($id)
+    {
         Talent::find($id)->delete();
         return back()->with('success', 'Selected Talent has been deleted successfully');
     }
@@ -179,31 +202,32 @@ class TalentNewController extends Controller
     public function del(Request $request)
     {
         $delid = $request->input('delid');
-        foreach ( $delid as $row )
-        {
+        foreach ($delid as $row) {
             $talent = Talent::find($row);
-            
+
             //menghapus semua data di table user yg berelasi
-            $user = User::find($talent->user_id); 
-            $user->delete() ; 
+            $user = User::find($talent->user_id);
+            $user->delete();
 
             //delete 
             Talent::where('talent_id', $row)->delete();
         }
         return back()->with('success', 'Selected Talent has been deleted successfully');
     }
-    
-    public function insert(){
+
+    public function insert()
+    {
         return view('admin.talent.insert');
     }
 
-public function insertData(Request $request){
+    public function insertData(Request $request)
+    {
 
 
 
         $validation = $request->validate([
-            'nama'=>'required|string|max:150',
-            'email'=>'required|string|email|max:100|unique:users',
+            'nama' => 'required|string|max:150',
+            'email' => 'required|string|email|max:100|unique:users',
             // 'gender'=>'required',
             // 'alamat'=>'required',
             // 'phone'=>'required|string|max:30',
@@ -234,7 +258,7 @@ public function insertData(Request $request){
         ]);
 
 
-        
+
 
         DB::table('talent')->insert([
             'talent_name' => $request->nama,
@@ -245,12 +269,12 @@ public function insertData(Request $request){
             'talent_birth_date' => $request->birthdate,
             'talent_place_of_birth' => $request->birthplace,
             'talent_martial_status' => $request->martialstatus,
-            'talent_current_address' => isset($request->currentaddress)?$request->currentaddress:'',
+            'talent_current_address' => isset($request->currentaddress) ? $request->currentaddress : '',
             'talent_condition' => $request->condition,
             'talent_salary' => $request->salary,
             'talent_focus' => $request->focus,
             'talent_start_career' => $request->startcareer,
-            'talent_level' => isset($request->level)?$request->level:"undefined",
+            'talent_level' => isset($request->level) ? $request->level : "undefined",
             'talent_lastest_salary' => $request->latestsalary,
             'talent_prefered_location' => $request->preflocation,
             'talent_status' => $request->status,
@@ -260,42 +284,34 @@ public function insertData(Request $request){
             'talent_apply' => $request->apply,
             'talent_international' => $request->international,
             'talent_location_id' => '12',
-            'talent_freelance_hour' => isset($request->freelancehour)?$request->freelancehour:'',
-            'talent_project_min' => isset($request->projectmin)? $request->projectmin: '' ,
-            'talent_project_max' => isset($request->projectmax)? $request->projectmax: '' ,
-            'talent_konsultasi_rate' => isset($request->konsulrate)? $request->konsulrate: '' ,
-            'talent_ngajar_rate' => isset($request->tutorrate)? $request->tutorrate: '' ,
+            'talent_freelance_hour' => isset($request->freelancehour) ? $request->freelancehour : '',
+            'talent_project_min' => isset($request->projectmin) ? $request->projectmin : '',
+            'talent_project_max' => isset($request->projectmax) ? $request->projectmax : '',
+            'talent_konsultasi_rate' => isset($request->konsulrate) ? $request->konsulrate : '',
+            'talent_ngajar_rate' => isset($request->tutorrate) ? $request->tutorrate : '',
         ]);
 
-        $idTalent = DB::table('talent')->insertGetId([ 'talent_name' => $request->nama ]);
+        $idTalent = DB::table('talent')->insertGetId(['talent_name' => $request->nama]);
 
 
 
-        if ( $request->skill != '' )
-        {
-            $InsertSkill = explode(",",$request->skill);
-            foreach ( $InsertSkill as $skill)
-            {
-                $idSkill[] = Skill::where("skill_name",$skill)->first()->skill_id;
+        if ($request->skill != '') {
+            $InsertSkill = explode(",", $request->skill);
+            foreach ($InsertSkill as $skill) {
+                $idSkill[] = Skill::where("skill_name", $skill)->first()->skill_id;
             }
-            foreach($idSkill as $insert)
-            {
+            foreach ($idSkill as $insert) {
 
                 DB::table('skill_talent')->insert([
-                'st_talent_id' => $idTalent,
-                'st_skill_id' => $insert,
-                'st_skill_verified' => 'NO',
+                    'st_talent_id' => $idTalent,
+                    'st_skill_id' => $insert,
+                    'st_skill_verified' => 'NO',
                 ]);
-            
             }
-
         }
 
-        
+
 
         return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
-
-       
     }
-
 }
