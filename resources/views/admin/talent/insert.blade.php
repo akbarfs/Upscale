@@ -231,6 +231,7 @@
         
                     <p>
                     <input
+                                id="skill"
                                 type="text"
                                 onItemSelect="setClose()"
                                 multiple
@@ -241,7 +242,7 @@
                                 data-load-once="true"
                                 placeholder="Skill"
                                 name="skill" 
-                                 value="{{old('skill')}}" />
+                                value="{{old('skill')}}" />
 
                             @if($errors->has('skill'))
                             <div class="alert alert-danger">{{ $errors->first('skill') }}
