@@ -221,7 +221,14 @@
 							<tr>
 								<td><strong>Phone</strong></td>
 								<td><strong>: &nbsp</strong></td>
-								<td> {{ $talent->talent_phone }} <a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></td>
+								<td> 
+									{{ $talent->talent_phone }} 
+
+									@if ( Request::segment(2) != '')
+									<a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+									@endif
+
+								</td>
 	                		</tr>
 						</table>
 						
@@ -261,7 +268,13 @@
 							<tr>
 								<td width="40%"><strong>Email</strong></td>
 								<td><strong>:</strong></td>
-								<td>hrd@upscale.id</td>
+								<td>
+									@if ( Request::segment(2) != '')
+										hrd@upscale.id
+									@else
+										{{$talent->talent_email}}
+									@endif
+								</td>
 							</tr>
 						</table>
 					</div>
