@@ -19,6 +19,7 @@ use App\CrmCompany ;
 use App\CrmCompanyEmail ;
 use Illuminate\Support\Facades\Crypt;
 use Session; 
+use Input ; 
 
 
 class homeController extends Controller
@@ -359,7 +360,7 @@ class homeController extends Controller
 
     public function loginas($code)
     {
-
+        $redirect = Input::get('redirect');
         $talent_id = (int) decrypt_custom($code);
         $talent = Talent::find($talent_id); 
 
@@ -370,7 +371,14 @@ class homeController extends Controller
         Session::put('email',$user->email);
         Session::put('login',TRUE);
 
-        return redirect("profile");
+        if ( isset($redirect))
+        {
+            return redirect(url($redirect));
+        }
+        else
+        {
+            return redirect("profile");
+        }
     }
 
     
