@@ -95,6 +95,7 @@
 				margin-top: 20px;
 			}
 
+			table tr td { vertical-align: top; }
 
 			@media (max-width: 768px) {
 			    .call-cv .tombol{
@@ -165,21 +166,29 @@
                  @if($talent)
 
                  	@php
-						$name = explode(" ",$talent->talent_name) ; 
-						if ( count($name) > 0 )
-						{
-							$panggilan = $name[0];
-							$nama =  $name[0]." (".$talent->talent_id.")";
+			        	if ( Request::segment(2) != '' )
+			        	{
+							$name = explode(" ",$talent->talent_name) ; 
+							if ( count($name) > 0 )
+							{
+								$nama = $name[0];
+								$nama =  $name[0]." (".$talent->talent_id.")";
+							}
+							else
+							{
+								$nama = $name ; 
+								$nama = " (".$talent->talent_id.")"; 
+							}
 						}
 						else
 						{
-							$panggilan = $name ; 
-							$nama = " (".$talent->talent_id.")"; 
+							$nama = $talent->talent_name;
 						}
+						
 					@endphp
 					
 					<p style="text-align: justify">
-						Hi, perkenalkan nama saya <b>{{ $panggilan }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
+						Hi, perkenalkan nama saya <b>{{ $nama }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
 					</p>
 
 
@@ -189,7 +198,7 @@
 							<tr>
 								<td width="40%"><strong>Nama & Kode</strong></td>
 								<td><strong>:&nbsp</strong></td>
-								<td style="font-weight: bold">
+								<td style="font-weight: bold;">
 									{{$nama}}
 								</td>
 							</tr>
@@ -772,7 +781,7 @@
 
 			@if ( Request::segment(2) == '') 
 				<div style="padding: 20px; text-align: center;">
-					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
+					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Start Interview</a>
 				</div>
 			@endif
 
