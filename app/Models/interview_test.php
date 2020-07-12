@@ -11,7 +11,7 @@ class interview_test extends Model
 	protected $fillable = ['it_id', 'it_tq_id','it_talent_id', 'it_answer'];
     public $timestamps = false;
     
- /*   function talent()
+    function talent()
     {
         return $this->hasOne("App\Models\Talent");
     }
@@ -20,7 +20,7 @@ class interview_test extends Model
 	{	
 		return $this->hasMany('App\Models\Talent' ,'talent_id', 'it_tq_id');
     }
-    */
+    
 
 
     public  function interview_question()
@@ -28,12 +28,12 @@ class interview_test extends Model
 		return $this->hasMany('App\models\QuestionModels', 'question_id', 'it_tq_id');
     }
     
-    /*
+    
     public function interview_test()
-{
-	return $this->belongsTo('App\Models\interview_test');
-}
-*/
+    {
+    	return $this->belongsTo('App\Models\interview_test');
+    }
+
 
 
 }

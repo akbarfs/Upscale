@@ -456,7 +456,7 @@ class MemberController extends Controller
                     $certif->certif_desc = $request->desc[$i] ? $request->desc[$i] : "";
                     $certif->certif_number = $request->number[$i] ? $request->number[$i] : ""; 
                     $certif->certif_expired = $request->expired[$i] ? $request->expired[$i] : ""; 
-                    $certif->certif_file = $request->file[$i] ? $request->file[$i] : ""; 
+                    // $certif->certif_file = $request->file[$i] ? $request->file[$i] : ""; 
                     $certif->save() ; 
                 }
                 
