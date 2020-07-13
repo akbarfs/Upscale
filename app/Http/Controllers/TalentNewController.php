@@ -38,26 +38,60 @@ class TalentNewController extends Controller
         $talent = Talent::findOrFail($talent_id);
         return view("admin.talent.mail", compact('talent'));
     }
-    public function index(Request $request)
+
+
+    public function paginate_mail(Request $request)
     {
 
+
+        $talent_logs = DB::table('talent_logs')->orderBy('id', 'DESC')->paginate(5);
+
         if ($request->ajax()) {
-            $talent_logs = Talent_log::orderBy("tl_talent_id", "DESC");
-
-            if ($request->tl_name) {
-                $talent_logs->where("tl_name", "LIKE", "%" . $request->tl_name . "%");
-            }
-            if ($request->tl_email) {
-                $talent_logs->where("tl_email", "LIKE", "%" . $request->tl_email . "%");
-            }
-            if ($request->tl_phone) {
-                $talent_logs->where("tl_phone", "LIKE", "%" . $request->tl_phone . "%");
-            }
-           
-            $talent_logs = $talent_logs->paginate(5);
-            return view('admin.talent.mail.{id}', compact('talent_logs'))->render();        
+            return view('admin.talent.mail.{id}', compact('talent_logs'));
         }
+        return view('admin.talent.mail.{id}', compact('talent_logs'));
 
+
+        // if ($request->ajax()) {
+        //$talent_logs = Talent_log::query();
+        // $talent_logs = DB::table('talent_logs')->orderBy("tl_talent_id", "DESC");
+
+        // if ($request->tl_name) {
+        //     $talent_logs->where("tl_name", "LIKE", "%" . $request->tl_name . "%");
+        // }
+        // if ($request->tl_email) {
+        //     $talent_logs->where("tl_email", "LIKE", "%" . $request->tl_email . "%");
+        // }
+        // if ($request->tl_phone) {
+        //     $talent_logs->where("tl_phone", "LIKE", "%" . $request->tl_phone . "%");
+        // }
+
+        // $talent_logs = $talent_logs->paginate(5);
+        // return view('admin.talent.mail.{id}', compact('talent_logs'))->render();
+        //  }
+    }
+
+    function searchDropdown(Request $request)
+    {
+        if (request()->ajax()) {
+            if (!empty($request->filter_type)) {
+                $data = DB::table('talent_logs')
+                    ->select('tl_talent_id', 'tl_type', 'tl_name', 'tl_phone', 'tl_email', 'tl_desc', 'tl_email_status', 'created_at', 'updated_at')
+                    ->where('tl_type', $request->filter_type)
+                    ->get();
+            } else {
+                $data = DB::table('talent_logs')
+                    ->select('tl_talent_id', 'tl_type', 'tl_name', 'tl_phone', 'tl_email', 'tl_desc', 'tl_email_status', 'created_at', 'updated_at')
+                    ->get();
+            }
+            return datatables()->of($data)->make(true);
+        }
+        $tl_type = DB::table('talent_logs')
+            ->select('tl_type')
+            ->groupBy('tl_type')
+            ->orderBy('tl_type', 'ASC')
+            ->get();
+        return view('admin.talent.mail.{id}', compact('country_name'));
     }
 
     function createTypeEmail($id)

@@ -132,12 +132,12 @@
                                     show :
 
                                     <input type="checkbox" name="tl_type" checked="checked"> Type &nbsp;
-                                        <input type="checkbox" name="tl_name" checked="checked"> Name &nbsp;
-                                        <input type="checkbox" name="tl_phone" checked="checked"> Phone &nbsp;
-                                        <input type="checkbox" name="tl_email" checked="checked"> Email &nbsp;
-                                        <input type="checkbox" name="tl_status" checked="checked"> Status Email &nbsp;
-                                        <input type="checkbox" name="tl_desc" checked="checked"> Details &nbsp;
-                                        <input type="checkbox" name="created_at" checked="checked"> Created &nbsp;
+                                    <input type="checkbox" name="tl_name" checked="checked"> Name &nbsp;
+                                    <input type="checkbox" name="tl_phone" checked="checked"> Phone &nbsp;
+                                    <input type="checkbox" name="tl_email" checked="checked"> Email &nbsp;
+                                    <input type="checkbox" name="tl_status" checked="checked"> Status Email &nbsp;
+                                    <input type="checkbox" name="tl_desc" checked="checked"> Details &nbsp;
+                                    <input type="checkbox" name="created_at" checked="checked"> Created &nbsp;
                                 </div>
                                 <div>
                                     <button class="btn btn-outline-primary" type="submit" id="search">Search</button>
@@ -167,9 +167,9 @@
                         <th scope="col" name="tl_name">Name</th>
                         <th scope="col" name="tl_phone">Phone </th>
                         <th scope="col" name="tl_email">Email</th>
-                        <th scope="col" name="tl_status">Status Email </th>
+                        <th scope="col" name="tl_email_status">Status Email </th>
                         <th scope="col" name="tl_desc">Details </th>
-                        <th scope="col" name="created_at">Created </th>
+                        <th scope="col" name="tl_created_at">Created </th>
                         <!-- <th scope="col" name="updated_at">Updated </th> -->
                     </tr>
                 </thead>
@@ -197,69 +197,94 @@
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
 
 
     </div>
 </div>
+{{$talent->links()}}
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
 
 <script type="text/javascript">
+    loadTable("{{url('/admin/talent/list/mail/{id}/paginate_mail?page=1')}}");
+
+    //klik pagination , diambil urlnya langsung di load ajax
+    $(document).on("click", ".page-link", function(event) {
+        $("body").scrollTop(0);
+        var url = $(this).attr("href");
+        loadTable(url);
+        event.preventDefault(); //ini biar ga keredirect ke halaman lain 
+    });
+
+    //search 
+			$("#form-search").submit(function() {
+				loadTable("{{url('/admin/talent/list/mail/{id}/paginate_mail?page=1')}}");
+				return false;
+			});
+
     $(document).ready(function() {
-        var export_url;
-        //mengambil data tanggal
-        $("#datepicker").datepicker();
 
-        //function load table
-        function loadTable(url) {
-            var param = $("#form-search").serialize();
+        fill_datatable();
 
-            $('#loading').show();
-            $("#pembungkus").html('');
-            export_url = "{{url('admin/talent/list/export_excel?page=1')}}&" + param;
-
-            $.ajax({
-                url: url + "&" + param,
-                method: "GET",
-                success: function(data) {
-                    $('#loading').hide();
-                    $("#pembungkus").html(data);
-                }
+        function fill_datatable(filter_type = '') {
+            var dataTable = $('#log_data').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ url('/admin/talent/mail/{id}') }}",
+                    data: {
+                        filter_type: filter_type,
+                    }
+                },
+                columns: [{
+                        data: 'tl_talent_id',
+                        name: 'tl_talent_id'
+                    },
+                    {
+                        data: 'tl_type',
+                        name: 'tl_type'
+                    },
+                    {
+                        data: 'tl_name',
+                        name: 'tl_name'
+                    },
+                    {
+                        data: 'tl_phone',
+                        name: 'tl_phone'
+                    },
+                    {
+                        data: 'tl_email',
+                        name: 'tl_email'
+                    },
+                    {
+                        data: 'tl_email_status',
+                        name: 'tl_email_status'
+                    },
+                    {
+                        data: 'tl_desc',
+                        name: 'tl_desc'
+                    },
+                    {
+                        data: 'tl_created_at',
+                        name: 'tl_created_at'
+                    }
+                ]
             });
         }
-        //klik export_excel
-        $("#export").click(function(e) {
-            if (confirm("export")) {
-                location.replace(export_url);
-                return false;
+
+        $('#filter').click(function() {
+            var filter_type = $('#custom-select').val();
+
+            if (filter_type != '' && filter_type != '') {
+                $('#log_data').DataTable().destroy();
+                fill_datatable(filter_type);
+            } else {
+                alert('Select filter option');
             }
-
-        });
-
-
-
-        //load pertama kali
-        loadTable("{{url('/admin/talent/mail/{id}index?page=1')}}");
-
-        //klik pagination , diambil urlnya langsung di load ajax
-        $(document).on("click", ".page-link", function(event) {
-            $("body").scrollTop(0);
-            var url = $(this).attr("href");
-            loadTable(url);
-            event.preventDefault(); //ini biar ga keredirect ke halaman lain 
-        });
-
-        //search 
-        $("#form-search").submit(function() {
-            loadTable("{{url('/admin/talent/mail/{id}index?page=1')}}");
-            return false;
-        });
-
-        $("#mass_del").click(function() {
-            return confirm("delete selected ?");
         });
 
     });
