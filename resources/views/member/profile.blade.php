@@ -572,9 +572,10 @@
 			</div>
 			
 			<div id="animatedModal">
-				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal"></div>
-				<div class="modal-content">
-					<div class="row">
+				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal" ></div>
+				@foreach($talent->talent_portfolio()->get() as $row )
+				<div class="modal-content" style="margin-bottom:20px; margin-left:20px; margin-right:20px;">
+					<div class="row" >
 						<div class="col-md-7 col-sm-7">
 							@php $random = date("his") @endphp	
 							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%" >
@@ -609,11 +610,20 @@
 						</div>
 					</div>
 				</div>
+				@endforeach
 			</div>
 
 			<script>
-	            $(".popupimage").animatedModal();
-	        </script>
+
+					$(".popupimage").animatedModal({
+					color:'#37517e'}
+				);
+
+								
+			</script>
+
+
+			
 		
 		</section>
 
