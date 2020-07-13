@@ -60,7 +60,7 @@
                             </div>  
                            
                             <div >
-                              <textarea rows="3" name="project[]" class="form-control" value="">
+                              <textarea rows="3" name="answer[]" class="form-control" value="">
                               {{ $row->it_answer }}
                               </textarea>
                           
@@ -75,12 +75,12 @@
          
  
       </div>
-  </form>
-
       <div align="right">
           <a class="btn btn-primary" href="/profile" ><font color="#FFFFFF">Cancel</font></a>
           <button type="submit" class="btn btn-primary">SAVE</button>
       </div>
+  </form>
+
 </section>
 
 

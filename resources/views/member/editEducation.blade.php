@@ -6,7 +6,7 @@
   <form action="" method="post" id="register-talent">
     @csrf
 
-    <div class="section-header"> <h2>Work Experience</h2> </div>
+    <div class="section-header"> <h2>Education</h2> </div>
     
       <div class="card mt-5">
 

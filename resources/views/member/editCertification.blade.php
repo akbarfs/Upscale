@@ -128,7 +128,7 @@
                       <div class="col-md-4"><label for="Name">Certification File</label></div>
                       <p>{{$row->certif_file}}</p>
                       <div class="col-md-8">
-                      <input type="file" name="certif_file" class="form-control" accept=".pdf|.png|.jpg|.jpeg" value="{{$row->certif_file}}">
+                      <input type="file" name="file" class="form-control" accept=".pdf|.png|.jpg|.jpeg" value="{{$row->certif_file}}">
                       
                       <br>
                       </div>
@@ -200,7 +200,7 @@
              <div class="row">
                 <div class="col-md-4"><label for="Name">Certification Name</label></div>
                 <div class="col-md-8">
-                   <input type="text" name="edu_name[]" class="form-control" placeholder="Certification Name" value="">
+                   <input type="text" name="name[]" class="form-control" placeholder="Certification Name" value="">
                 </div>
              </div>
           </div>
@@ -209,7 +209,7 @@
              <div class="row">
                 <div class="col-md-4"><label for="Name">Certification Years</label></div>
                 <div class="col-md-8">
-                   <input type="text" name="edu_name[]" class="form-control" placeholder="Certification Years" value="">
+                   <input type="text" name="years[]" class="form-control" placeholder="Certification Years" value="">
                    </input>
                 </div>
              </div>
@@ -219,7 +219,7 @@
              <div class="row">
                 <div class="col-md-4"><label for="Name">Certification Company</label></div>
                 <div class="col-md-8">
-                   <input type="text" name="edu_name[]" class="form-control" placeholder="Certification Company" value="">
+                   <input type="text" name="company[]" class="form-control" placeholder="Certification Company" value="">
                 </div>
              </div>
           </div>
@@ -237,7 +237,7 @@
              <div class="row">
                 <div class="col-md-4"><label for="Name">Certification Number</label></div>
                 <div class="col-md-8">
-                   <input type="text" name="edu_name[]" class="form-control" placeholder="Certification Number" value="">
+                   <input type="text" name="number[]" class="form-control" placeholder="Certification Number" value="">
                 </div>
              </div>
           </div>
@@ -247,7 +247,7 @@
              <div class="row">
                 <div class="col-md-4"><label for="Name">Certification Expired</label></div>
                 <div class="col-md-8">
-                  <input type="text" name="edu_start_date[]" class="form-control" placeholder="contoh: 1 januari 2020" value="">
+                  <input type="text" name="expired[]" class="form-control" placeholder="contoh: 1 januari 2020" value="">
                 </div>
              </div>
           </div>
@@ -256,7 +256,7 @@
             <div class="row">
                <div class="col-md-4"><label for="Name">Certification File</label></div>
                <div class="col-md-8">
-                  <input type="file" name="certif_file" class="form-control" accept=".pdf|.png|.jpg|.jpeg" value=""><br>
+                  <input type="file" name="file" class="form-control" accept=".pdf|.png|.jpg|.jpeg" value=""><br>
             `</div>
          `</div>
          </div>
