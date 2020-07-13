@@ -172,6 +172,7 @@ class TalentNewController extends Controller
 public function insertData(Request $request){
 
     
+        
 
 
 
@@ -277,6 +278,10 @@ public function insertData(Request $request){
 
         }
 
+        if (count($errors) > 0)
+        {
+        return redirect('admin/talent/list/insert')->back()->withErrors($validation)->withInput();
+        }
 
 
         return redirect('admin/talent/list/insert')->with('success', 'Talent Data succesfully created.');

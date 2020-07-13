@@ -146,6 +146,8 @@
                 @endif
 
             </div>
+
+
         
         
 
@@ -210,10 +212,9 @@
                             onItemSelect: function($item, itemModel) {
                             $(".fstChoiceRemove").html("x");
                             // $(".fstQueryInput").focus(); 
-                            },
 
-                            });
-                                
+                            },
+                          });   
                     });
                             
                 </script>
@@ -233,21 +234,19 @@
                     <input
                                 id="skill"
                                 type="text"
-                                onItemSelect="setClose()"
                                 multiple
                                 class="tagsInput form-control"
-                                value=""
                                 data-user-option-allowed="true"
                                 data-url="{{url('json/skill')}}"
                                 data-load-once="true"
-                                placeholder="Skill"
                                 name="skill" 
-                                value="{{old('skill')}}" />
+                                value="Codeigniter - CI"
+                                placeholder="" >
 
                             @if($errors->has('skill'))
                             <div class="alert alert-danger">{{ $errors->first('skill') }}
                             </div>
-                @endif
+                            @endif
 
                     </p>
                     </div>
