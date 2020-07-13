@@ -68,7 +68,7 @@
                                         
                                         <a class="nav-link" id="v-pills-portfolio-tab" data-toggle="pill" href="#v-pills-portfolio" role="tab" aria-controls="v-pills-profile" aria-selected="false">Portfolio</a>
                                         <a class="nav-link" id="v-pills-experience-tab" data-toggle="pill" href="#v-pills-experience" role="tab" aria-controls="v-pills-profile" aria-selected="false">Work Experience</a>
-                                        <a class="nav-link " id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-home" aria-selected="false">Certification</a>
+                                        <a class="nav-link " id="v-pills-certification-tab" data-toggle="pill" href="#v-pills-certification" role="tab" aria-controls="v-pills-home" aria-selected="true">Certification</a>
                                         <a class="nav-link" id="v-pills-apply-tab" data-toggle="pill" href="#v-pills-apply" role="tab" aria-controls="v-pills-profile" aria-selected="false">Apply</a>
                                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Skill</a>
                                         <a class="nav-link" id="v-pills-personality-tab" data-toggle="pill" href="#v-pills-personality" role="tab" aria-controls="v-pills-profile" aria-selected="false">Personality</a>
@@ -99,26 +99,6 @@
                                 </h3>
                             </div>
                             <form style="padding-left: 20px; padding-top: 15px;">
-                            <div class="row form-group">
-                                <div class="avatar">
-                                    <div class="col col-md-4">
-                                    <a href="{{url('admin/detail-talent')}}">
-                                    @if ($all->talent_foto)
-                                    @php $random = date("his") @endphp
-                                    <img src="{{url('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar">
-                                    @else
-                                    <img src="{{url('img/images.jpg')}}" alt="avatar">
-                                        <label class=" form-control-label">  </label>
-                                    </div>
-                                    <div class="col-12 col-md-8">
-
-                                      <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
-                                      @endif
-                                    </div>
-                                </div>
-                            </div>
-
-
                                 <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">Name</label>
@@ -479,7 +459,7 @@
                                         <label class=" form-control-label">Talent CV </label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                      <p class="form-control-static" action="" style="margin-bottom: 0px;"><strong>{{$all->talent_cv}}</strong></p>
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv}}</strong></p>
                                     </div>
                                 </div>
 
@@ -519,14 +499,14 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="row form-group">
+                                <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">Talent Skill</label>
                                     </div>
                                     <div class="col-12 col-md-8">
                                       <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_skill}}</strong></p>
                                     </div>
-                                </div> -->
+                                </div>
 
 
 
@@ -660,6 +640,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">LinkedIn</label>
@@ -695,6 +676,7 @@
                                       <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_instagram}}</strong></p>
                                     </div>
                                 </div>
+
 
   
                             </form>
@@ -2089,33 +2071,32 @@
 
 
 
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                        <aside class="profile-nav alt">
-                            <section class="card">
-                                <div class="card-header">
-                                        <strong class="card-title mb-3">Portofolio</strong>
-                                    </div>
-                                <div class="card-body">
-                                    <object data=""></object>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <aside class="profile-nav alt">
+                        <section class="card">
+                            <div class="card-header">
+                                    <strong class="card-title mb-3">Portofolio</strong>
                                 </div>
-                            </section>
-                        </aside>
-                    </div>
+                            <div class="card-body">
+                                <object data=""></object>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
 
-                <div class="tab-pane" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab" style="margin-top:-35%">
+                <div class="tab-pane" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
                     <form id="simpantalent-form" action="{{url('admin/talent/update/'.$all->talent_id)}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="card">
                             <div class="card-header">
                                 <strong>Talent Profile Edit</strong>
                             </div>
-                        <div class="card-body card-block">
-                            <div class="form-group col-md-6">
+                            <div class="card-body card-block">
+                                <div class="form-group col-md-6">
 
-                                <label for="text-input" class=" form-control-label">Foto Profil Talent <span class="badge badge-secondary">.pdf Max 1MB</span></label>
-                                <input value=" " method="POST" enctype="multipart/form-data" type="file" id="inputgambar" name="gambar" placeholder="Your Photo" required="" class="form-control">
-                                {{ csrf_field() }}
-
+                                <label for="text-input" class=" form-control-label">Foto Profil Talent</label>
+                                <input value=" " type="file" id="inputgambar" name="gambar" placeholder="Your Photo" required="" class="form-control">
+                                    
                                 @section('js')
                                 <script type="text/javascript">
 
@@ -2138,6 +2119,10 @@
                                 </script>
 
                                 @stop
+
+
+
+
                                     <label for="text-input" class=" form-control-label">Talent Name</label>
                                     <input value="{{$all->talent_name}}" type="text" id="talent_name" name="talent_name" placeholder="Your Name" required="" class="form-control">
                                     <label for="text-input" class=" form-control-label">Talent Email</label>
@@ -2145,15 +2130,21 @@
                                     <label for="text-input" class=" form-control-label">Talent Phone</label>
                                     <input value="{{$all->talent_phone}}" type="text" id="talent_phone" name="talent_phone" placeholder="Your Phone" required="" class="form-control">
                                     <label for="select" class=" form-control-label">Talent Gender</label>
-                                    <select value="{{$all->talent_gender}}" name="talent_gender" id="talent_gender" class="form-control">
-                                        <option  value="male">Male</option>
-                                        <option value="female">Female</option>
+                                    <select class="custom-select" name="talent_gender">
+                                        <option value="">-- Choose --</option>
+                                        <option value="single" @if($all->talent_gender == 'male') selected="selected" @endif>Male</option>
+                                        <option value="married" @if($all->talent_gender == 'female') selected="selected" @endif>Female</option>
                                     </select>
+                                    @if($errors->has('talent_gender'))
+                                        @foreach ($errors->get('talent_gender') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
                                     <label for="text-input" class=" form-control-label">Place Of Birth</label>
                                     <input type="text" name="talent_place_of_birth" id="talent_place_of_birth" class="form-control" value="{{$all->talent_place_of_birth}}">
                                     <label for="text-input" class=" form-control-label">Birth Day</label>
                                     <input value="{{$all->talent_birth_date}}" type="text" id="talent_birth_date" name="talent_birth_date" placeholder="dd/mm/yyyy" class="form-control">
-                                    
                                     <label for="text-input" class=" form-control-label">Martial Status</label>
                                     <select class="custom-select" name="martial_status">
                                         <option value="">-- Choose --</option>
@@ -2178,7 +2169,6 @@
                                             <option value="{{$c->campus_id}}">{{$c->nama}}</option>
                                         @endforeach
                                     </select>
-
                                     <label for="text-input" class=" form-control-label">Request Talent Status</label>
                                     <select class="custom-select" name="rt_status">
                                         <option value="">-- Choose --</option>
@@ -2191,8 +2181,7 @@
                                             @endforeach
                                         @endif
 
-
-                                    <label for="text-input" class="form-control-label">Talent Status</label>
+                                    <label for="text-input" class=" form-control-label">Talent Status</label>
                                     <select class="custom-select" name="talent_status" >
                                         <option value="">-- Choose --</option>
                                         <option value="worker" @if($all->talent_status == 'worker') selected="selected" @endif>Worker</option>
@@ -2206,7 +2195,6 @@
                                         @endforeach
                                     @endif
 
-
                                     <label for="text-input" class=" form-control-label">Condition</label>
                                     <select name="talent_condition" class="custom-select">
                                     <option value="">-- Choose --</option>
@@ -2219,7 +2207,6 @@
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
-
 
                                     <label for="text-input" class=" form-control-label">Start Career</label>
                                     <input value="{{$all->talent_start_career}}" type="text" id="talent_start_career" name="talent_start_career" placeholder="dd/mm/yyyy" class="form-control">
@@ -2235,11 +2222,10 @@
                                         @foreach ($errors->get('talent_level') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
-                                    @endif                                  
+                                    @endif   
 
                                     <label for="text-input" class=" form-control-label">Date Ready</label>
-                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="dd/mm/yy" class="form-control">
-
+                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="" class="form-control">
 
                                     <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
                                     <select name="talent_onsite_jakarta" class="custom-select">
@@ -2252,10 +2238,9 @@
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
-                                    
 
                                     <label for="text-input" class=" form-control-label">Onsite Jogja</label>
-                                    <select name="talent_onsite_jogja" class="custom-selecet">
+                                    <select name="talent_onsite_jogja" class="custom-select">
                                         <option value="">-- Choose --</option>
                                         <option value="yes" @if($all->talent_onsite_jogja == 'yes') selected="selected" @endif>Yes</option>
                                         <option value="no" @if($all->talent_onsite_jogja == 'no') selected="selected" @endif>No</option>
@@ -2278,6 +2263,8 @@
                                         @endforeach
                                     @endif
 
+
+                                    
                                     <label for="text-input" class=" form-control-label">Bekerja Remote di Luar Kota</label>
                                     <select name="talent_luar_kota" class="custom-select">
                                     <option value="">-- Choose --</option>
@@ -2289,7 +2276,6 @@
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
-
 
                                     <label for="text-input" class=" form-control-label">Focus</label>
                                     <select name="talent_focus" class="custom-select">
@@ -2311,60 +2297,63 @@
                                         @endforeach
                                     @endif
 
-                                    <label for="text-input" class=" form-control-label">Current Work</label>
-                                    <input value="{{$all->talent_current_work}}" type="text" id="talent_current_work" name="talent_current_work" placeholder="Your Current Work" required="" class="form-control">
-
-                                    <label for="text-input" class=" form-control-label">Current Address</label>
-                                    <select value="" name="talent_current_address" id="talent_current_address" class="js-example-basic-single form-control" style="width:100%">
+                                    <label for="text-input" class=" form-control-label">Current Addres</label><br>
+                                    <select value="" name="talent_current_address" id="talent_current_addres" class="js-example-basic-single form-control" style="width:100%">
                                     @if ($all->talent_current_address!=NULL)
                                         <option value="{{$all->talent_current_address}}">{{$all->talent_current_address}}</option>
                                     @endif
                                     @foreach($listKota as $kota)
                                         <option value="{{$kota->type." ".$kota->nama}}">{{$kota->type." ".$kota->nama}}</option>
                                     @endforeach
-                                    </select>
-
+                                    </select><br>
                                     <label for="text-input" class=" form-control-label">Address</label>
-                                    <input value="{{$all->talent_address}}" type="text" id="talent_address" name="talent_address"  placeholder="Your Current City" required="" class="form-control"> 
+                                    <input value="{{$all->talent_address}}" type="text" id="talent_address" name="talent_address"  placeholder="Your Current City" required="" class="form-control">
+
+                                    <label for="text-input" class=" form-control-label">Prefered Location</label>
+                                    <select value="" name="talent_prefered_location" id="talent_prefered_location" class="form-control" style="width:100%">
+                                        @foreach ($locate as $location)
+                                            <option value="{{$location->location_id}}">{{$location->location_name}}</option>
+                                        @endforeach
+                                    </select><br>
+
+                                   
+                                    
 
 
-
-                            
                                 </div>
-
                                 <div class="form-group col-md-6">
                                 <!-- <label for="text-input" class=" form-control-label">Skill</label>
                                     @push('script')
     
-							<script src="{{url('template/upscale/js/tag.js')}}"></script>
-		                    <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
-		                    <script>
-		                        $(document).ready(function()
-		                        {
-		                            $('.tagsInput').fastselect({
+                            <script src="{{url('template/upscale/js/tag.js')}}"></script>
+                            <link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
+                            <script>
+                                $(document).ready(function()
+                                {
+                                    $('.tagsInput').fastselect({
 
-		                                valueDelimiter: ',',
-		                                onItemSelect: function($item, itemModel) {
-		                                    $(".fstChoiceRemove").html("x");
-		                                    // $(".fstQueryInput").focus(); 
-		                                },
+                                        valueDelimiter: ',',
+                                        onItemSelect: function($item, itemModel) {
+                                            $(".fstChoiceRemove").html("x");
+                                            // $(".fstQueryInput").focus(); 
+                                        },
 
-		                            });
-		                            
-		                        });
-		                        
-		                    </script>
+                                    });
+                                    
+                                });
+                                
+                            </script>
 
-							@endpush
+                            @endpush
 
 
-							<style type="text/css">
-								.fstQueryInput  { padding: 0 }
-								.fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
-								.fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
-							</style>
-							<div style="margin: 10px;">
-								<input
+                            <style type="text/css">
+                                .fstQueryInput  { padding: 0 }
+                                .fstControls { padding: 0 !important; min-width: 200px ; height: 35px }
+                                .fstQueryInputExpanded { padding: 0 10px !important; margin: 0 !important }
+                            </style>
+                            <div style="margin: 10px;">
+                                <input
                                 type="text"
                                 onItemSelect="setClose()"
                                 multiple
@@ -2376,15 +2365,9 @@
                                 placeholder="skill"
                                 name="skill"
                                 value="{{$all->talent_skill}}" id="talent_skill">
-							</div> -->
+                            </div> -->
 
-                                    <label for="text-input" class=" form-control-label">Prefered Location</label>
-                                    <select value="" name="talent_prefered_location" id="talent_prefered_location" class="form-control" style="width:100%">
-                                        @foreach ($locate as $location)
-                                            <option value="{{$location->location_id}}">{{$location->location_name}}</option>
-                                        @endforeach
-                                    </select>
-
+                                    
 
                                     <label for="text-input" class=" form-control-label">Prefered City</label>
                                     <select value="" name="talent_prefered_city" id="talent_prefered_city" class="form-control" style="width:100%">
@@ -2392,6 +2375,7 @@
                                             <option value="{{$location->location_id}}">{{$location->location_name}}</option>
                                         @endforeach
                                     </select>
+
 
                                     <label for="text-input" class=" form-control-label">Edukasi ISA</label>
                                     <select name="talent_isa" class="custom-select">
@@ -2404,7 +2388,6 @@
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif 
-
 
                                     <label for="text-input" class=" form-control-label">Bekerja di Luar Negeri</label>
                                     <select name="talent_international" class="custom-select">
@@ -2420,6 +2403,7 @@
 
                                     <label for="text-input" class=" form-control-label">Recomendation Salary</label>
                                     <input value="{{$all->talent_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah" type="text" name="talent_salary" class="form-control" placeholder="Your expected salary" required="">
+                                    
                                     <label for="text-input" class=" form-control-label">Lastest Salary</label>
                                     <input value="{{$all->talent_lastest_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="lastest_salary" class="form-control" placeholder="Lastest salary" required="">
                                     
@@ -2435,7 +2419,7 @@
                                     
                                     <label for="text-input" class=" form-control-label">Freelance hour rate</label>
                                     <input value="{{$all->talent_freelance_hour}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_freelance_hour" class="form-control" placeholder="Freelance hour rate" required="">
-
+                                    
                                     
                                     <label for="text-input" class=" form-control-label">Total Experience</label>
                                     <input value="{{$all->talent_totalexperience}}" id="totalexperience" type="text" name="talent_totalexperience" class="form-control" placeholder="Total Experience Ex: 5 years" >
@@ -2452,6 +2436,7 @@
                                     <label for="text-input" class=" form-control-label">Rate mengajar</label>
                                     <input value="{{$all->talent_ngajar_rate}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_ngajar_rate" class="form-control" placeholder="Mengajar rate" required="">
 
+                                    
                                     <label for="text-input" class=" form-control-label">CV <span class="badge badge-secondary">.pdf Max 1MB</span></label><br>
                                     {{-- <div id="link_cv">
                                             <small>*Link </small><br>
@@ -2466,7 +2451,7 @@
                                         <small>File </small><br>
                                     </div>
                                     <input type="file" value="{{$all->talent_portofolio_file}}" id="talent_portfolio" name="talent_portfolio" placeholder="dd/mm/yyyy" class="form-control" accept=".pdf">
-
+                                    
                                     <label for="text-input" class=" form-control-label">LinkedIn</label>
                                     <input value="{{$all->talent_linkedin}}" type="text" id="talent_linkedin" name="talent_linkedin"  placeholder="Your Linkedin" required="" class="form-control"> 
 
@@ -2478,6 +2463,7 @@
 
                                     <label for="text-input" class=" form-control-label">Twitter</label>
                                     <input value="{{$all->talent_twitter}}" type="text" id="talent_twitter" name="talent_twitter"  placeholder="Your Twitter" required="" class="form-control">  
+                                   
 
                                 </div>
                             </div>
@@ -2489,7 +2475,6 @@
                         </div>
                     </form>
                 </div>
-
 
 
                 {{--         <div class="tab-pane fade" id="v-pills-skill-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
