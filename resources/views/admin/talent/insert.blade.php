@@ -214,12 +214,25 @@
                             // $(".fstQueryInput").focus(); 
 
                             },
-                          });   
+
+
+
+                          });
                     });
                             
                 </script>
 
                 @endpush
+
+
+
+                <script type="text/javascript">
+
+                  function onSkillOldValue(textbox) {
+                  console.log("Old value: " + textbox.oldvalue);
+                  
+                  }
+                </script>
 
 
               <style type="text/css">
@@ -232,6 +245,8 @@
         
                     <p>
                     <input
+
+
                                 id="skill"
                                 type="text"
                                 multiple
@@ -239,9 +254,13 @@
                                 data-user-option-allowed="true"
                                 data-url="{{url('json/skill')}}"
                                 data-load-once="true"
-                                name="skill" 
-                                value="Codeigniter - CI"
-                                placeholder="" >
+                                name="skill"
+                                data-role="tagsinput" 
+                                value="{{old('skill')}}"
+                                data-initial-value=''
+                                placeholder="" 
+                                onfocus="this.oldvalue = this.value;"
+                                onchange="onSkillOldValue(this);this.oldvalue = this.value;"/>
 
                             @if($errors->has('skill'))
                             <div class="alert alert-danger">{{ $errors->first('skill') }}
@@ -249,9 +268,7 @@
                             @endif
 
                     </p>
-                    </div>
-
-
+                    </div>                                                                                                                                                                                                                      
                 <div class="form-group">
                 <label for="salary">Salary</label>
                 <input type="text" class="form-control" id="salary" placeholder="" name="salary" value="{{old('salary')}}">
@@ -625,6 +642,12 @@
         btn.disabled = true;   
         btn.form.submit();
       }
+    </script>
+
+
+    <script type="text/javascript">
+      
+
     </script>
 
 

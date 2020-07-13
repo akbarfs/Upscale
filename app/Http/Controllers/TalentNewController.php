@@ -280,7 +280,7 @@ public function insertData(Request $request){
 
         if (count($errors) > 0)
         {
-        return redirect('admin/talent/list/insert')->back()->withErrors($validation)->withInput();
+        return Redirect::back()->withInput(Input::all());
         }
 
 
