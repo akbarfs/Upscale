@@ -572,9 +572,9 @@
 			</div>
 			
 			<div id="animatedModal">
-				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal" ></div>
+				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal" style= "position: relative; right: 10px;" ></div>
 				@foreach($talent->talent_portfolio()->get() as $row )
-				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin-bottom:20px; margin-left:20px; margin-right:20px;">
+				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin-bottom:10px; margin-left:10px; margin-right:10px; padding:5px">
 					<div class="row" >
 						<div class="col-md-7 col-sm-7">
 							@php $random = date("his") @endphp	
@@ -786,7 +786,7 @@
 
 			@if ( Request::segment(2) == '') 
 				<div style="padding: 20px; text-align: center;">
-					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
+					<a href="{{url('member/personality-test')}}" class="btn btn-success ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
 				</div>
 			@endif
 
@@ -801,7 +801,7 @@
 
 				<div class="item">
 					<div class="row">
-						<div class="col-md-2 col-sm-2 hidden-xs">
+						<div class="col-md-2 col-sm-2 col-sm-12 ">
 							<div class="thumb">
 							@if ( $talent->talent_foto)
 							@php $random = date("his") @endphp
