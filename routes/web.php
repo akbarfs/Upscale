@@ -340,7 +340,7 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/delete/{id}', 'TalentNewController@delete');
 			Route::post('/del', 'TalentNewController@del');
 			//end adi
-
+			Route::post('/list/import', 'TalentNewController@import');
 
 			Route::get('/', 'talentController@index')->name('talent.index');
 
