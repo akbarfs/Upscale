@@ -98,9 +98,43 @@
                                     </div>
                                 </h3>
                             </div>
+
+                            
+                                        <!-- <a href="{{url('admin/detail-talent')}}"></a>
+                                        @if ($all->talent_foto)
+                                        @php $random = date("his") @endphp
+                                        <img src="{{url('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar" width="50px" height="50px">
+                                        @else
+                                        <img src="{{url('img/images.jpg')}}" alt="row">
+                                        <label class=" form-control-label">  </label>
+                                        <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
+                                      @endif
+                            <form style="padding-left: 20px; padding-top: 15px;"> -->
+                                
+                            
                             <form style="padding-left: 20px; padding-top: 15px;">
-                                <div class="row form-group">
+                           <div class="row form-group">
+                                <div class="avatar">
                                     <div class="col col-md-4">
+                                    <a href="{{url('admin/detail-talent')}}"></a>
+                                    @if ($all->talent_foto)
+                                    @php $random = date("his") @endphp
+                                    <img src="{{url('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar">
+                                    @else
+                                    <img src="{{url('img/images.jpg')}}" alt="avatar">
+                                        <label class=" form-control-label">  </label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
+                                      @endif
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4"> 
                                         <label class=" form-control-label">Name</label>
                                     </div>
                                     <div class="col-12 col-md-8">
