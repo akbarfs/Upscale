@@ -555,7 +555,7 @@
                 @foreach($talent->talent_portfolio()->get() as $row )
 				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item"  data-sort="value">
 					<div class="item popupimage" href="#animatedModal">
-						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image">
+						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}">
 							<div class="title">
 								<div class="inner">
 									<h2 >{{ $row->portfolio_name }}</h2>
@@ -574,7 +574,7 @@
 			<div id="animatedModal">
 				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal" ></div>
 				@foreach($talent->talent_portfolio()->get() as $row )
-				<div class="modal-content" style="margin-bottom:20px; margin-left:20px; margin-right:20px;">
+				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin-bottom:20px; margin-left:20px; margin-right:20px;">
 					<div class="row" >
 						<div class="col-md-7 col-sm-7">
 							@php $random = date("his") @endphp	
@@ -616,8 +616,16 @@
 			<script>
 
 					$(".popupimage").animatedModal({
-					color:'#37517e'}
-				);
+						color:'#37517e'
+					});
+
+
+					$(".portos").click(function()
+					{
+						id = $(this).data("id");
+						$(".single-porto").hide(); 
+						$(".porto-"+id).show(); 
+					});
 
 								
 			</script>

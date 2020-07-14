@@ -649,7 +649,7 @@ class MemberController extends Controller
 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
-      
+        $this->lock($talent);
 
         return view("member.editPorto",compact('talent'));
     }
@@ -664,7 +664,7 @@ class MemberController extends Controller
         $id = Session::get("user_id"); 
         $user = User::find($id); 
         $talent = $user->talent()->first(); 
-
+        $this->lock($talent);
 
         $screenshoot = $request->file('screenshoot');
         if ($screenshoot)
