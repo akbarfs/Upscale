@@ -39,37 +39,24 @@ class TalentNewController extends Controller
         return view("admin.talent.mail", compact('talent'));
     }
 
-
-    public function paginate_mail(Request $request)
+    public function paginationMail(Request $request)
     {
+        // $mail_query = "*";
+        // $data = Talent::select(DB::raw($mail_query));
+        // $data->join("talent_logs", "talent.tl_talent", "=", "talent_logs.tl_talent_id", "LEFT");
 
-
-        $talent_logs = DB::table('talent_logs')->orderBy('id', 'DESC')->paginate(5);
-
-        if ($request->ajax()) {
-            return view('admin.talent.mail.{id}', compact('talent_logs'));
+        //     $data = $data->paginate(5);
+        //     return view('admin.talent.datamail', compact('data'));
+        
+        $talent_logs = DB::table('talent')
+        ->join('talent_logs', 'talent.talent_id', '=', 'talent_logs.tl_talent_id')
+        ->select('*')
+        ->get();
+        
+        $talent_logs = $talent_logs->paginate(5);
+        dd($test);
+        return view('admin.talent.datamail', compact('talent_logs'));
         }
-        return view('admin.talent.mail.{id}', compact('talent_logs'));
-
-
-        // if ($request->ajax()) {
-        //$talent_logs = Talent_log::query();
-        // $talent_logs = DB::table('talent_logs')->orderBy("tl_talent_id", "DESC");
-
-        // if ($request->tl_name) {
-        //     $talent_logs->where("tl_name", "LIKE", "%" . $request->tl_name . "%");
-        // }
-        // if ($request->tl_email) {
-        //     $talent_logs->where("tl_email", "LIKE", "%" . $request->tl_email . "%");
-        // }
-        // if ($request->tl_phone) {
-        //     $talent_logs->where("tl_phone", "LIKE", "%" . $request->tl_phone . "%");
-        // }
-
-        // $talent_logs = $talent_logs->paginate(5);
-        // return view('admin.talent.mail.{id}', compact('talent_logs'))->render();
-        //  }
-    }
 
     function searchDropdown(Request $request)
     {

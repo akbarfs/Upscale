@@ -157,7 +157,7 @@
 
 
 
-        <div class="table-responsive" style=" padding: 1% 3%">
+        <!-- <div class="table-responsive" style=" padding: 1% 3%">
             <table id="log_data" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
@@ -170,14 +170,17 @@
                         <th scope="col" name="tl_email_status">Status Email </th>
                         <th scope="col" name="tl_desc">Details </th>
                         <th scope="col" name="tl_created_at">Created </th>
-                        <!-- <th scope="col" name="updated_at">Updated </th> -->
+                        <th scope="col" name="updated_at">Updated </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> -->
+        <div id="table_data">
+            @include('admin.talent.datamail')
+        </div>
 
-                    @foreach ($talent->Talent_log()->get() as $t)
+        <!-- @foreach ($talent->Talent_log()->get() as $t) -->
 
-                    <tr>
+        <!-- <tr>
                         <td>{{$t->id}}</td>
                         <td>{{$t->tl_talent_id}}</td>
                         <td>{{$t->tl_type}}</td>
@@ -191,26 +194,41 @@
                                 {{\Carbon\Carbon::createFromTimeStamp(strtotime($t->created_at))->diffForHumans()}}</b>
                             </span>
                         </td>
-                        <!-- <td>{{$t->updated_at}}</td> -->
+                         <td>{{$t->updated_at}}</td> 
                     </tr>
 
                     @endforeach
                 </tbody>
             </table>
-            
-        </div>
+
+        </div> -->
 
 
     </div>
 </div>
-{{$talent->links()}}
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
+<script>
+    // function loadTable(url) {
+    //     var param = $("#form-search").serialize();
 
+    //     $('#loading').show();
+    //     $("#pembungkus").html('');
+    //     export_url = "{{url('admin/talent/list/export_excel?page=1')}}&" + param;
 
-<script type="text/javascript">
-    loadTable("{{url('/admin/talent/list/mail/{id}/paginate_mail?page=1')}}");
+    //     $.ajax({
+    //         url: url + "&" + param,
+    //         method: "GET",
+    //         success: function(data) {
+    //             $('#loading').hide();
+    //             $("#pembungkus").html(data);
+    //         }
+    //     });
+    // }
+
+    //load pertama kali
+    loadTable("{{url('/admin/talent/mail/paginationMail?page=1')}}");
 
     //klik pagination , diambil urlnya langsung di load ajax
     $(document).on("click", ".page-link", function(event) {
@@ -219,75 +237,5 @@
         loadTable(url);
         event.preventDefault(); //ini biar ga keredirect ke halaman lain 
     });
-
-    //search 
-			$("#form-search").submit(function() {
-				loadTable("{{url('/admin/talent/list/mail/{id}/paginate_mail?page=1')}}");
-				return false;
-			});
-
-    $(document).ready(function() {
-
-        fill_datatable();
-
-        function fill_datatable(filter_type = '') {
-            var dataTable = $('#log_data').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ url('/admin/talent/mail/{id}') }}",
-                    data: {
-                        filter_type: filter_type,
-                    }
-                },
-                columns: [{
-                        data: 'tl_talent_id',
-                        name: 'tl_talent_id'
-                    },
-                    {
-                        data: 'tl_type',
-                        name: 'tl_type'
-                    },
-                    {
-                        data: 'tl_name',
-                        name: 'tl_name'
-                    },
-                    {
-                        data: 'tl_phone',
-                        name: 'tl_phone'
-                    },
-                    {
-                        data: 'tl_email',
-                        name: 'tl_email'
-                    },
-                    {
-                        data: 'tl_email_status',
-                        name: 'tl_email_status'
-                    },
-                    {
-                        data: 'tl_desc',
-                        name: 'tl_desc'
-                    },
-                    {
-                        data: 'tl_created_at',
-                        name: 'tl_created_at'
-                    }
-                ]
-            });
-        }
-
-        $('#filter').click(function() {
-            var filter_type = $('#custom-select').val();
-
-            if (filter_type != '' && filter_type != '') {
-                $('#log_data').DataTable().destroy();
-                fill_datatable(filter_type);
-            } else {
-                alert('Select filter option');
-            }
-        });
-
-    });
 </script>
-
 @endsection
