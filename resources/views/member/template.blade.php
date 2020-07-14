@@ -84,6 +84,7 @@
 				<li><a href="{{url('profile#certification')}}">Certification</a></li> 
 				<li><a href="{{url('profile#interview')}}">Interview</a></li>
 				<li><a href="{{url('profile#works')}}">Portfolio</a></li>
+				<li><a href="{{url('profile#jobs')}}">Jobs Apply History</a></li>
 				<!-- <li><a href="{{url('profile#certification')}}">Certification</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">History Work Apply</a></li> -->
 				<!-- <li><a href="{{url('profile#history')}}">Contact</a></li>	 -->

@@ -482,7 +482,6 @@ class MemberController extends Controller
     }
 
 
-
     public function editWork()
     {
         $id = Session::get("user_id"); 

@@ -218,6 +218,32 @@
                 </div>
 		</section>
 
+		<section id="experience" class="resume">
+			<div class="section-header">
+				<h2>Job Apply History</h2>
+			</div>
+			<div class="row" >
+			@foreach($talent->jobs_apply()->get() as $row )
+						<div class="col-md-12 col-sm-12 col-xs-12" >
+							<div class="top-item resume-item">
+							
+								<h2>
+								@if ( $soal = $row->job_apply()->first() )
+									{{$soal->jobs_title}}<br>
+								@endif
+								</h2>
+							
+								<span> {{$row -> created_date}} </span>
+								<span>{{$row->jobs_apply_location}} </span>
+								<h5>{{$row -> jobs_apply_type_time}}</h5><br>
+							</div>
+						</div>
+			@endforeach
+			</div>
+		</section>
+
+
+
 		<!-- <section id="certification" class="resume">
 			<div class="section-header">
 				<h2>Certification</h2>
