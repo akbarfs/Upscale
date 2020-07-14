@@ -196,6 +196,7 @@ Route::group(['prefix'=>'member'], function()
 
 		});
 
+
 		Route::group(['prefix'=>'jobs'], function(){
 			Route::get('/', 'jobsController@index')->name('index.jobs');
 			Route::get('/all', 'jobsController@all')->name('jobs.all');
@@ -436,6 +437,8 @@ Route::group(['prefix'=>'member'], function()
 			Route::delete('/position/hapus/{id}','MasterDataInterview@hapusposition')->name('position.destroy');
 			Route::resource('preferlocation','MasterDataLocationController');
 			Route::post('/campus/import','MasterDataCampusController@import')->name('campus.import');
+			Route::resource('user','MasterDataUserController');
+
 			// Route::post('/addlocation','MasterDataLocationController@store')->name('location.store');
 	        // Route::get('/editlocation/{id}','MasterDataLocationController@edit')->name('location.edit');
 	        // Route::post('/updatelocation','MasterDataLocationController@update')->name('location.update');

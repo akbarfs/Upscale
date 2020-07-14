@@ -152,4 +152,9 @@ class MasterDataController extends Controller
         ]);
         return redirect()->back()->with('Successkategori','Data Berhasil di pulihkan');
     }
+
+
+    
+
+
 }
