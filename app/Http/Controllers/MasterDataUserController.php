@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use DB;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Database\Eloquent\Builder;
 
 class MasterDataUserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    // Index Master Data Skill
+   
 
     public function index()
     {
@@ -21,27 +18,35 @@ class MasterDataUserController extends Controller
     	return view('admin.user',['users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
 
-    // Create Master Data Skill
-
-    public function create()
+    public function create(Request $request)
     {
+    	$validation = $request->validate([
+            'nama'=>'required|string|max:150',
+            'email'=>'required|string|email|max:100|unique:users',
+            'password'=>'max:150|required|required_with:confirmpass|same:confirmpass',
+            'confirmpass'=>'max:150',
+            'username'=>'required|string|unique:users,username|max:150',
+
+        ]);
+
+        $request->user()->fill([
+            'password' => Hash::make($request->password)
+        ])->save();
+
+        DB::table('users')->insert([
+		'nama' => $request->nama,
+		'email' => $request->email,
+		'password' => $request->password,
+		'username' => $request->username]);
+
+
+		return redirect('/admin/masterdata/user');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    // Store Master Data Skill
+   
 
     public function store(Request $request)
     {
@@ -95,3 +100,4 @@ class MasterDataUserController extends Controller
 
     
 }
+
