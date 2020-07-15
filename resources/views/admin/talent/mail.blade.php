@@ -175,7 +175,7 @@
                 </thead>
                 <tbody> -->
         <div id="table_data">
-            @include('admin.talent.datamail')
+            
         </div>
 
         <!-- @foreach ($talent->Talent_log()->get() as $t) -->
@@ -210,25 +210,25 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 <script>
-    // function loadTable(url) {
-    //     var param = $("#form-search").serialize();
+    function loadTable(url) {
+        var param = $("#form-search").serialize();
 
-    //     $('#loading').show();
-    //     $("#pembungkus").html('');
-    //     export_url = "{{url('admin/talent/list/export_excel?page=1')}}&" + param;
+        $('#loading').show();
+        $("#table_data").html('');
+        export_url = "{{url('admin/talent/list/export_excel?page=1')}}&" + param;
 
-    //     $.ajax({
-    //         url: url + "&" + param,
-    //         method: "GET",
-    //         success: function(data) {
-    //             $('#loading').hide();
-    //             $("#pembungkus").html(data);
-    //         }
-    //     });
-    // }
+        $.ajax({
+            url: url + "&" + param,
+            method: "GET",
+            success: function(data) {
+                $('#loading').hide();
+                $("#table_data").html(data);
+            }
+        });
+    }
 
     //load pertama kali
-    loadTable("{{url('/admin/talent/mail/paginationMail?page=1')}}");
+    loadTable("{{url('/admin/talent/list/mail/table?page=1')}}");
 
     //klik pagination , diambil urlnya langsung di load ajax
     $(document).on("click", ".page-link", function(event) {

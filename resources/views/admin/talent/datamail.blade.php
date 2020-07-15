@@ -23,7 +23,7 @@
     </thead>
 
     <tbody id="container">
-        @foreach($talent->Talent_log()->get() as $tlogs)
+        @foreach( $talent_logs as $tlogs)
 
 
         <tr>
@@ -56,3 +56,5 @@
         @endforeach
     </tbody>
 </table>
+
+{{$talent_logs->links()}}

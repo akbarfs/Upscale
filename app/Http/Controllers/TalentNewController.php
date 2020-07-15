@@ -39,7 +39,7 @@ class TalentNewController extends Controller
         return view("admin.talent.mail", compact('talent'));
     }
 
-    public function paginationMail(Request $request)
+    public function table(Request $request)
     {
         // $mail_query = "*";
         // $data = Talent::select(DB::raw($mail_query));
@@ -50,11 +50,10 @@ class TalentNewController extends Controller
         
         $talent_logs = DB::table('talent')
         ->join('talent_logs', 'talent.talent_id', '=', 'talent_logs.tl_talent_id')
-        ->select('*')
-        ->get();
+        ->select('*');
         
         $talent_logs = $talent_logs->paginate(5);
-        dd($test);
+
         return view('admin.talent.datamail', compact('talent_logs'));
         }
 
