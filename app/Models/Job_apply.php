@@ -16,11 +16,11 @@ class Job_apply extends Model
 
     public function job()
 	{
-	return $this->belongsTo('App\Models\Job');
+	return $this->belongsTo('App\Models\Job','jobs_apply_jobs_id', 'jobs_id');
 	}
 
-	public  function job_apply()
-	{
-		return $this->hasMany('App\models\Job', 'jobs_id', 'jobs_apply_jobs_id');
-    }
+	// public  function job_apply()
+	// {
+	// 	return $this->hasMany('App\models\Job', 'jobs_id', 'jobs_apply_jobs_id');
+ //    }
 }

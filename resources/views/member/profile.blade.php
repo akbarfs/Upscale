@@ -228,7 +228,7 @@
 							<div class="top-item resume-item">
 							
 								<h2>
-								@if ( $soal = $row->job_apply()->first() )
+								@if ( $soal = $row->job()->first() )
 									{{$soal->jobs_title}}<br>
 								@endif
 								</h2>
