@@ -405,9 +405,78 @@ class talentController extends Controller
 
     }
 
-
     public function detail(Request $request)
     {
+      // $this ->validate($request, [
+      //   'talent_name' => 'required',
+      //   'talent_foto' => 'max:500|sometimes|mimes:jpeg,png,jpg,JPG,JPEG',
+      //   'talent_email' => 'required',
+      //   'talent_martial_status' => 'required',
+      //   'talent_phone' => 'required|numeric|min:11',
+      //   'talent_gender' => 'required',
+      // ]);
+
+      // $update = Talent::find($talent->talent_id); 
+      // $photo = $request->file('photo');
+      //   if ($photo)
+      //   {
+      //       $extension = $photo->getClientOriginalExtension(); 
+      //       $filename = 'profile-'.$id.'.'.$extension;
+
+      //       $image_resize = Image::make($photo->getRealPath());              
+      //       $image_resize->resize(600, 600, function ($constraint) {
+      //           $constraint->aspectRatio();
+      //       })->save(public_path('/storage/photo/' .$filename));
+
+      //       $update['talent_foto'] = $filename ; 
+      //   }
+
+      // $talent = Talent::create([
+      //   'talent_name' => $request->talent_name,
+      //   'talent_foto' => $request->talent_foto,
+      //   'talent_email' => $request->talent_email,
+      //   'talent_martial_status' => $request->talent_martial_status,
+      //   'talent_phone' => $request->talent_phone,
+      //   'talent_gender' => $request->talent_gender,
+      // ]);
+
+
+      //   $update['talent_name'] = $request->name ; 
+      //   $update['talent_profile_desc'] = $request->profile_desc ; 
+      //   $update['talent_salary'] = preg_replace('/[^0-9]/', '', $request->salary) ; 
+      //   $update['talent_salary_jogja'] = preg_replace('/[^0-9]/', '', $request->salary_jogja) ; 
+      //   $update['talent_salary_jakarta'] = preg_replace('/[^0-9]/', '', $request->salary_jakarta) ; 
+      //   $update['talent_prefered_city'] = $request->prefered_city ; 
+      //   $update['talent_focus'] = $request->focus ; 
+      //   $update['talent_level'] = $request->level ; 
+      //   $update['talent_phone'] = $request->phone ; 
+      //   $update['talent_address'] = $request->address; 
+      //   $update['talent_gender'] = $request->gender; 
+      //   $update['talent_phone'] = $request->phone; 
+      //   $update['talent_luar_kota'] = $request->luar_kota; 
+      //   $update['talent_onsite_jakarta'] = $request->onsite_jakarta; 
+      //   $update['talent_onsite_jogja'] = $request->onsite_jogja; 
+      //   $update['talent_remote'] = $request->remote; 
+      //   $update['talent_international'] = $request->international; 
+      //   $update['talent_current_work'] = $request->current_work; 
+      //   $update['talent_isa'] = $request->isa; 
+      //   $update['talent_web'] = $request->website ; 
+      //   $update['talent_linkedin'] = $request->linkedin ; 
+      //   $update['talent_facebook'] = $request->facebook ; 
+      //   $update['talent_instagram'] = $request->instagram ; 
+      //   $update['talent_twitter'] = $request->twitter ; 
+      //   $update['talent_freelance_hour'] = preg_replace('/[^0-9]/', '', $request->freelance_hour) ; 
+      //   $update['talent_project_min'] = preg_replace('/[^0-9]/', '', $request->project_min) ; 
+      //   $update['talent_project_max'] = preg_replace('/[^0-9]/', '', $request->project_max) ; 
+      //   $update['talent_konsultasi_rate'] = preg_replace('/[^0-9]/', '', $request->konsultasi_rate) ; 
+      //   $update['talent_ngajar_rate'] = preg_replace('/[^0-9]/', '', $request->ngajar_rate) ; 
+      //   $update->save(); 
+
+      // return back()->with('success', 'save successful');
+
+
+
+      
         //DB::disableQueryLog();
        $response = config('app.json_city');
         
@@ -456,8 +525,8 @@ class talentController extends Controller
                                       ->join('jobs','jobs_apply.jobs_apply_jobs_id','=','jobs.jobs_id')
                                       ->join('talent','jobs_apply_talent_id','=','talent.talent_id')
                                       ->where('jobs_apply_talent_id','=',$id)->get();
-      	$jobs = DB::table('jobs');
-
+        $jobs = DB::table('jobs');
+        
       	$requestt = DB::table('request')->join('company','request.request_company_id','=','company.company_id')->get();
 
       	$list_skill = DB::table('skill')->orderBy('skill_name','asc')->get();
@@ -477,6 +546,7 @@ class talentController extends Controller
             $cvupdate = 'app/public/Curriculum Vitae/Update CV/'.$all->talent_cv;
             $ini = Storage::url($cvupdate);
             $jobs      = Job::all();
+            $fotoupdate = 'app/public/photo/Update foto/'.$all->talent_foto;
             
             
             $ct = DB::table('category_test')->where('ct_id','!=','8')->get();
@@ -613,6 +683,7 @@ class talentController extends Controller
             $cv = 'app/public/Curriculum Vitae/'.$all->talent_cv;
             $ini = Storage::url($cv);
             $jobs      = Job::all();
+            $foto = 'app/public/photo/'.$all->talent_foto;
 
             $ct = DB::table('category_test')->where('ct_id','!=','8')->get();
 
@@ -755,7 +826,8 @@ class talentController extends Controller
                 'ini','cvupdate','listKota','ui_tes',
                 'listprovinsi','ct','ios_tes',
                 'fe_tes','pm_tes','qa_tes','edu','certif','workex',
-                'locate','campus','preferloc'
+                'locate','campus','preferloc','gender'
+
             ));
 
         }
@@ -2005,10 +2077,82 @@ return response()->json($cp);
 
      
      public function detailtalent($id){
-       $talent = DB::table('talent')  
+      // $this ->validate($request, [
+      //   'talent_name' => 'required',
+      //   'talent_foto' => 'max:500|sometimes|mimes:jpeg,png,jpg,JPG,JPEG',
+      //   'talent_email' => 'required',
+      //   'talent_martial_status' => 'required',
+      //   'talent_phone' => 'required|numeric|min:11',
+      //   'talent_gender' => 'required',
+      // ]);
+
+      // $update = Talent::find($talent->talent_id); 
+      // $photo = $request->file('photo');
+      //   if ($photo)
+      //   {
+      //       $extension = $photo->getClientOriginalExtension(); 
+      //       $filename = 'profile-'.$id.'.'.$extension;
+
+      //       $image_resize = Image::make($photo->getRealPath());              
+      //       $image_resize->resize(600, 600, function ($constraint) {
+      //           $constraint->aspectRatio();
+      //       })->save(public_path('/storage/photo/' .$filename));
+
+      //       $update['talent_foto'] = $filename ; 
+      //   }
+
+      // $talent = Talent::create([
+      //   'talent_name' => $request->talent_name,
+      //   'talent_foto' => $request->talent_foto,
+      //   'talent_email' => $request->talent_email,
+      //   'talent_martial_status' => $request->talent_martial_status,
+      //   'talent_phone' => $request->talent_phone,
+      //   'talent_gender' => $request->talent_gender,
+      // ]);
+
+
+      //   $update['talent_name'] = $request->name ; 
+      //   $update['talent_profile_desc'] = $request->profile_desc ; 
+      //   $update['talent_salary'] = preg_replace('/[^0-9]/', '', $request->salary) ; 
+      //   $update['talent_salary_jogja'] = preg_replace('/[^0-9]/', '', $request->salary_jogja) ; 
+      //   $update['talent_salary_jakarta'] = preg_replace('/[^0-9]/', '', $request->salary_jakarta) ; 
+      //   $update['talent_prefered_city'] = $request->prefered_city ; 
+      //   $update['talent_focus'] = $request->focus ; 
+      //   $update['talent_level'] = $request->level ; 
+      //   $update['talent_phone'] = $request->phone ; 
+      //   $update['talent_address'] = $request->address; 
+      //   $update['talent_gender'] = $request->gender; 
+      //   $update['talent_phone'] = $request->phone; 
+      //   $update['talent_luar_kota'] = $request->luar_kota; 
+      //   $update['talent_onsite_jakarta'] = $request->onsite_jakarta; 
+      //   $update['talent_onsite_jogja'] = $request->onsite_jogja; 
+      //   $update['talent_remote'] = $request->remote; 
+      //   $update['talent_international'] = $request->international; 
+      //   $update['talent_current_work'] = $request->current_work; 
+      //   $update['talent_isa'] = $request->isa; 
+      //   $update['talent_web'] = $request->website ; 
+      //   $update['talent_linkedin'] = $request->linkedin ; 
+      //   $update['talent_facebook'] = $request->facebook ; 
+      //   $update['talent_instagram'] = $request->instagram ; 
+      //   $update['talent_twitter'] = $request->twitter ; 
+      //   $update['talent_freelance_hour'] = preg_replace('/[^0-9]/', '', $request->freelance_hour) ; 
+      //   $update['talent_project_min'] = preg_replace('/[^0-9]/', '', $request->project_min) ; 
+      //   $update['talent_project_max'] = preg_replace('/[^0-9]/', '', $request->project_max) ; 
+      //   $update['talent_konsultasi_rate'] = preg_replace('/[^0-9]/', '', $request->konsultasi_rate) ; 
+      //   $update['talent_ngajar_rate'] = preg_replace('/[^0-9]/', '', $request->ngajar_rate) ; 
+      //   $update->save(); 
+
+
+
+      // return back()->with('success', 'save successful');
+
+
+        $talent = DB::table('talent')  
             ->join('campus','campus.campus_id','=','talent.talent_campus')          
             ->where('talent_id',$id)->first();
        return response()->json($talent);
+
+
      }
 
     public function notify(){
@@ -2068,4 +2212,8 @@ return response()->json($cp);
         }
         echo '<h1>DONE</h1>';
     }
+
+
+
+
 }

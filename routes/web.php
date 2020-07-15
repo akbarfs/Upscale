@@ -402,6 +402,7 @@ Route::group(['prefix'=>'member'], function()
 			Route::post('/changestatusassign', 'talentController@changeStatus')->name('talent.changestatusassign');
 			Route::post('/changestatusquarantine', 'talentController@changeStatusQuarantine')->name('talent.changestatusquarantine');
 			Route::get('/detail', 'talentController@detail')->name('talent.detail');
+			// Route::get('/detailpost', 'talentController@detailpost')->name('talent.detail.post');
 			// Route::get('/detail/{id}', 'talentController@detail')->name('talent.detail');
 			Route::get('/delete', 'talentController@delete')->name('talent.delete');
 			Route::get('/move', 'talentController@move')->name('talent.move');
