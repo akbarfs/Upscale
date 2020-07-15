@@ -553,7 +553,7 @@
 			
 			<div class="item-outer row clearfix">
                 @foreach($talent->talent_portfolio()->get() as $row )
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item"  data-sort="value">
+				<div class="col-md-4 col-sm-6 col-xs-6 filtr-item"  data-sort="value">
 					<div class="item popupimage" href="#animatedModal">
 						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}">
 							<div class="title">
@@ -572,17 +572,17 @@
 			</div>
 			
 			<div id="animatedModal">
-				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal" style= "position: relative; right: 10px;" ></div>
 				@foreach($talent->talent_portfolio()->get() as $row )
-				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin-bottom:10px; margin-left:10px; margin-right:10px; padding:5px">
-					<div class="row" >
+				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin:10px; padding:5px">
+				<div id="btn-close-modal" class=" fa fa-close fa-lg close-animatedModal" style= "color:rgb(55, 81, 126)" ></div>
+					<div class="row" style=" padding:30px 20px 20px 20px">
 						<div class="col-md-7 col-sm-7">
 							@php $random = date("his") @endphp	
-							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%" >
+							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%; margin-top: -30px" >
 						</div>
-						<div class="col-md-5 col-sm-5 col-xs-12">
+						<div class="col-md-5 col-sm-5 col-xs-12" style="text-align: justify; margin-top: -5px">
 							<h2>{{ $row->portfolio_name }}</h2>
-							<table>
+							<table >
 								<tr>
 									<td><strong>Technology Used</strong></td>
 									<td><strong>:</strong></td>
