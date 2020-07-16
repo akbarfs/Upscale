@@ -66,19 +66,14 @@
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="email" name="talent_email">
+                                <input type="text" class="form-control" placeholder="email" name="tl_name">
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="phone" name="talent_phone">
+                                <input type="text" class="form-control" placeholder="phone" name="tl_phone">
                             </div>
 
-                            <div class="col-md-2" style="margin-top: 10px">
-                                <select class="custom-select" name="order">
-                                    <option value="">--categories--</option>
-                                    <option value="all" selected="selected">--categories--</option>
-                                    <option value="invitation">Join Invitation</option>
-                                    <option value="regular">Regular</option>
-                                </select>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="mail type" name="mailtype">
                             </div>
 
 
@@ -175,7 +170,7 @@
                 </thead>
                 <tbody> -->
         <div id="table_data">
-            
+
         </div>
 
         <!-- @foreach ($talent->Talent_log()->get() as $t) -->
@@ -236,6 +231,11 @@
         var url = $(this).attr("href");
         loadTable(url);
         event.preventDefault(); //ini biar ga keredirect ke halaman lain 
+    });
+
+    $("#form-search").submit(function() {
+        loadTable("{{url('/admin/talent/list/mail/table?page=1')}}");
+        return false;
     });
 </script>
 @endsection

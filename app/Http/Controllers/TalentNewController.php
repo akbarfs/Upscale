@@ -41,43 +41,31 @@ class TalentNewController extends Controller
 
     public function table(Request $request)
     {
-        // $mail_query = "*";
-        // $data = Talent::select(DB::raw($mail_query));
-        // $data->join("talent_logs", "talent.tl_talent", "=", "talent_logs.tl_talent_id", "LEFT");
 
-        //     $data = $data->paginate(5);
-        //     return view('admin.talent.datamail', compact('data'));
-        
         $talent_logs = DB::table('talent')
-        ->join('talent_logs', 'talent.talent_id', '=', 'talent_logs.tl_talent_id')
-        ->select('*');
+            ->join('talent_logs', 'talent.talent_id', '=', 'talent_logs.tl_talent_id')
+            ->select('*');
         
+
+        if ($request->mailtype) // klo type kosong , ga masuk , klo isi masuk 
+        {
+            $talent_logs->where("tl_type", "LIKE", "%" . $request->mailtype . "%");
+        }
+        
+        
+        // if ($request->tl_phone) {
+        //     $talent_logs->where("tl_phone", "LIKE", "%" . $request->tl_phone . "%");
+        // }
+        // if ($request->tl_email) {
+        //     $talent_logs->where("tl_email", "LIKE", "%" . $request->tl_email . "%");
+        // }
+
         $talent_logs = $talent_logs->paginate(5);
+        
+
+
 
         return view('admin.talent.datamail', compact('talent_logs'));
-        }
-
-    function searchDropdown(Request $request)
-    {
-        if (request()->ajax()) {
-            if (!empty($request->filter_type)) {
-                $data = DB::table('talent_logs')
-                    ->select('tl_talent_id', 'tl_type', 'tl_name', 'tl_phone', 'tl_email', 'tl_desc', 'tl_email_status', 'created_at', 'updated_at')
-                    ->where('tl_type', $request->filter_type)
-                    ->get();
-            } else {
-                $data = DB::table('talent_logs')
-                    ->select('tl_talent_id', 'tl_type', 'tl_name', 'tl_phone', 'tl_email', 'tl_desc', 'tl_email_status', 'created_at', 'updated_at')
-                    ->get();
-            }
-            return datatables()->of($data)->make(true);
-        }
-        $tl_type = DB::table('talent_logs')
-            ->select('tl_type')
-            ->groupBy('tl_type')
-            ->orderBy('tl_type', 'ASC')
-            ->get();
-        return view('admin.talent.mail.{id}', compact('country_name'));
     }
 
     function createTypeEmail($id)
