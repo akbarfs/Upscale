@@ -582,7 +582,7 @@ li {
 
 .works .item-outer .filtr-item {
     display: inline-block;
-    padding: 0 1px;
+    padding: 5px 10px;
 }
 
 .works .item-outer .item {

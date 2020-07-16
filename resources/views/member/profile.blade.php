@@ -63,6 +63,10 @@
 			  padding-top: 10px;
 			}
 
+			td { 
+					padding-right: 10px;
+				}
+
 			/*.b-container > [class*='col-'] {
 			  display: flex;
 			  flex-direction: column;
@@ -622,9 +626,9 @@
 			
 			<div class="item-outer row clearfix">
                 @foreach($talent->talent_portfolio()->get() as $row )
-				<div class="col-md-4 col-sm-6 col-xs-6 filtr-item"  data-sort="value">
+				<div class="col-md-4 col-sm-6 col-xs-6 filtr-item" data-sort="value">
 					<div class="item popupimage" href="#animatedModal">
-						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}">
+						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}" > 
 							<div class="title">
 								<div class="inner">
 									<h2 >{{ $row->portfolio_name }}</h2>
@@ -649,7 +653,7 @@
 							@php $random = date("his") @endphp	
 							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%; margin-top: -30px" >
 						</div>
-						<div class="col-md-5 col-sm-5 col-xs-12" style="text-align: justify; margin-top: -5px">
+						<div class="col-md-5 col-sm-5 col-xs-12" style="text-align: justify; margin-top: -10px; padding :10px 30px 0px 30px">
 							<h2>{{ $row->portfolio_name }}</h2>
 							<table >
 								<tr>
