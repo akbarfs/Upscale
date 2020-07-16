@@ -36,10 +36,11 @@ class MasterDataUserController extends Controller
         ])->save();
 
         DB::table('users')->insert([
-		'nama' => $request->nama,
+		'name' => $request->nama,
 		'email' => $request->email,
 		'password' => $request->password,
-		'username' => $request->username]);
+		'username' => $request->username,
+		'level' => isset($request->level)?$request->level:"undefined",]);
 
 
 		return redirect('/admin/masterdata/user');
@@ -72,7 +73,8 @@ class MasterDataUserController extends Controller
      */
     public function edit($id)
     {
-       
+       $UserEdit = DB::table('users')->where('id',$id)->first();
+        return response()->json($UserEdit);
     }
 
     /**
@@ -84,6 +86,29 @@ class MasterDataUserController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	$validation = $request->validate([
+            'namaEdit'=>'required|string|max:150',
+            'emailEdit'=>'required|string|email|max:100|unique:users',
+            'passwordEdit'=>'max:150|required|required_with:confirmpass|same:confirmpass',
+            'confirmpassEdit'=>'max:150',
+            'usernameEdit'=>'required|string|unique:users,username|max:150',
+
+        ]);
+
+        $request->user()->fill([
+            'passwordEdit' => Hash::make($request->password)
+        ])->save();
+
+        DB::table('users')->where('id',$request->id)->update([
+		'name' => $request->namaEdit,
+		'email' => $request->emailEdit,
+		'password' => $request->passwordEdit,
+		'username' => $request->usernameEdit,
+		'level' => isset($request->levelEdit)?$request->level:"undefined",
+	]);
+
+
+		return redirect('/admin/masterdata/user');
         
     }
 
@@ -93,11 +118,14 @@ class MasterDataUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        
+        DB::table('users')->where('id',$id)->delete();
+		return redirect('/admin/masterdata/user');
     }
 
     
 }
+
+
 

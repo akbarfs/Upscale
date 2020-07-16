@@ -439,8 +439,9 @@ Route::group(['prefix'=>'member'], function()
 			Route::post('/campus/import','MasterDataCampusController@import')->name('campus.import');
 			Route::resource('user','MasterDataUserController');
 			Route::post('/user/useradd','MasterDataUserController@create')->name('user.create');
-			Route::get('/user/edit/{id}','MasterDataUserController@update')->name('user.update');
-			Route::get('/user/delete/{id}','MasterDataUserController@delete')->name('user.delete');
+			Route::get('/user/edit/{id}','MasterDataUserController@edit')->name('user.edit');
+			Route::post('/user/update/{id}','MasterDataUserController@update')->name('user.update');
+			Route::post('/user/delete/{id}','MasterDataUserController@delete')->name('user.delete');
 
 
 			// Route::post('/addlocation','MasterDataLocationController@store')->name('location.store');
