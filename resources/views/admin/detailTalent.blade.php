@@ -2166,8 +2166,8 @@
                                     <label for="select" class=" form-control-label">Talent Gender</label>
                                     <select class="custom-select" name="talent_gender">
                                         <option value="">-- Choose --</option>
-                                        <option value="single" @if($all->talent_gender == 'male') selected="selected" @endif>Male</option>
-                                        <option value="married" @if($all->talent_gender == 'female') selected="selected" @endif>Female</option>
+                                        <option value="male" @if($all->talent_gender == 'male') selected="selected" @endif>Male</option>
+                                        <option value="female" @if($all->talent_gender == 'female') selected="selected" @endif>Female</option>
                                     </select>
                                     @if($errors->has('talent_gender'))
                                         @foreach ($errors->get('talent_gender') as $error)
