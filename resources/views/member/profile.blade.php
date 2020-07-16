@@ -577,9 +577,9 @@
 			
 			<div class="item-outer row clearfix">
                 @foreach($talent->talent_portfolio()->get() as $row )
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item"  data-sort="value">
-					<div class="item"  id="demo01" href="#animatedModal">
-					<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image"></a>
+				<div class="col-md-4 col-sm-6 col-xs-6 filtr-item"  data-sort="value">
+					<div class="item popupimage" href="#animatedModal">
+						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}">
 							<div class="title">
 								<div class="inner">
 									<h2 >{{ $row->portfolio_name }}</h2>
@@ -594,33 +594,68 @@
                 </div>
                 @endforeach
 			</div>
+			
 			<div id="animatedModal">
-				<div id="btn-close-modal" class="fa fa-close fa-2x close-animatedModal">
-					
-				</div>
-					
-				<div class="modal-content">
-					<div class="row">
+				@foreach($talent->talent_portfolio()->get() as $row )
+				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin:10px; padding:5px">
+				<div id="btn-close-modal" class=" fa fa-close fa-lg close-animatedModal" style= "color:rgb(55, 81, 126)" ></div>
+					<div class="row" style=" padding:30px 20px 20px 20px">
 						<div class="col-md-7 col-sm-7">
 							@php $random = date("his") @endphp	
-							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%" >
+							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%; margin-top: -30px" >
 						</div>
-						<div class="col-md-5 col-sm-5 col-xs-12">
+						<div class="col-md-5 col-sm-5 col-xs-12" style="text-align: justify; margin-top: -5px">
 							<h2>{{ $row->portfolio_name }}</h2>
-							<h4>{{ $row->portfolio_startdate}} - {{ $row->portfolio_enddate }} </h4>
-							<h6>Technology Used : {{ $row->portfolio_tech }}</h6>
-							<h6>Project Type : {{ $row->portfolio_tipe_project }}</h6>
-							<h6>Project Type : {{ $row->portfolio_namacompany }}</h6>
+							<table >
+								<tr>
+									<td><strong>Technology Used</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_tech }}</td>
+								</tr>
+								<tr>
+									<td><strong>Project Type</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_tipe_project }}</td>
+								</tr>
+								<tr>
+									<td><strong>Company Name</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_namacompany }}</td>
+								</tr>
+								@if ( $row->portfolio_link)
+								<tr>
+									<td><strong>Link</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_link }}</td>
+								</tr>
+								@endif
+							</table> <br>
 							<span>{{ $row->portfolio_desc }}</span>
 						</div>
 					</div>
+				</div>
+				@endforeach
 			</div>
 
-				<script>
-            $("#demo01").animatedModal();
+			<script>
 
-        </script>
-		</div>
+					$(".popupimage").animatedModal({
+						color:'#37517e'
+					});
+
+
+					$(".portos").click(function()
+					{
+						id = $(this).data("id");
+						$(".single-porto").hide(); 
+						$(".porto-"+id).show(); 
+					});
+
+								
+			</script>
+
+
+			
 		
 		</section>
 
@@ -793,7 +828,7 @@
 
 			@if ( Request::segment(2) == '') 
 				<div style="padding: 20px; text-align: center;">
-					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
+					<a href="{{url('member/personality-test')}}" class="btn btn-success ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
 				</div>
 			@endif
 
@@ -808,7 +843,7 @@
 
 				<div class="item">
 					<div class="row">
-						<div class="col-md-2 col-sm-2 hidden-xs">
+						<div class="col-md-2 col-sm-2 col-sm-12 ">
 							<div class="thumb">
 							@if ( $talent->talent_foto)
 							@php $random = date("his") @endphp
