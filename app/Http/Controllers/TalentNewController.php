@@ -107,15 +107,30 @@ class TalentNewController extends Controller
 
     public function paginate_data(Request $request)
     {
+        //DB::enableQueryLog();
+
         // if ($request->ajax()) {
 
             //SELECT BUILDER START
             $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
+            
+            if ( $request->jumlah_apply_jobs)
+            {
+                $default_query .=", COUNT(jobs_apply_id) as jumlah_apply_jobs"; 
+            }
+            else
+            {
+                $default_query .=", '-' as jumlah_apply_jobs"; 
+            }
             $data = Talent::select(DB::raw($default_query));
             //SELECT BUILDER END 
 
             //JOIN BUILDER START
             $data->join("users","talent.user_id","=","users.id","LEFT");
+            if ( $request->jumlah_apply_jobs || $request->apply == 'yes')
+            {
+                $data->join('jobs_apply','jobs_apply.jobs_apply_talent_id','=','talent.talent_id',"LEFT");
+            }
             //JOIN BULDER END 
 
             if ( $request->talent_name ) {$data->where("talent_name","LIKE","%".$request->talent_name."%"); }
@@ -135,6 +150,12 @@ class TalentNewController extends Controller
             {
                 $data->where("users.email","=",null);
             }
+
+            if ( $request->apply == 'yes' )
+            {
+                $data->having(DB::raw('COUNT(jobs_apply_id)'),'>',0);
+            }
+
             if ( $request->order != '' )
             {
                 $ar = explode(",",$request->order);
@@ -147,8 +168,10 @@ class TalentNewController extends Controller
             {
                 $data->orderBy("talent_id","DESC");
             }
-
+            $data->groupBy("talent_id");
             $data = $data->paginate(10);
+
+            //$query = DB::getQueryLog(); dd($query);
 
             return view('admin.talent.table',compact('data'))->render();
         // }

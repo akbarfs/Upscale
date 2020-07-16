@@ -102,6 +102,14 @@
 							</div>
 
 							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="apply">
+									<option value="">-- apply jobs? --</option>
+									<option value="yes">yes</option>
+									<option value="no">no</option>
+								</select>
+							</div>
+
+							<div class="col-md-2" style="margin-top: 10px">
 								<select class="custom-select" name="order">
 									<option value="">-- order? --</option>
 									<option value="talent_id">DB ID</option>
@@ -109,7 +117,9 @@
 									<option value="talent_date_ready">date ready</option>
 									<option value="talent_created_date">DB Created</option>
 									<option value="member_date">register as member</option>
+									<option value="jumlah_apply_jobs">jobs apply</option>
 									<option value="talent_mail_invitation">mail invitation</option>
+									<option value="talent_mail_regular">mail regular</option>
 									<option value="talent_mail_regular">mail regular</option>
 								</select>
 							</div>
@@ -190,6 +200,7 @@
 									<input type="checkbox" name="mail_invitation"> mail invitation &nbsp
 									<input type="checkbox" name="mail_regular"> mail regular &nbsp
 									<input type="checkbox" name="member_date"> member date &nbsp
+									<input type="checkbox" name="jumlah_apply_jobs"> Jumlah Apply Jobs &nbsp
 								</div>
 								<div>
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
