@@ -111,7 +111,7 @@ class Talent extends Model
 
    /* public  function talent_question()
 	{
-		return $this->hasMany('App\models\QuestionModels', 'it_talent_id', 'talent_id');
+		return $this->hasMany('App\Models\QuestionModels', 'it_talent_id', 'talent_id');
 	}
 	*/
 

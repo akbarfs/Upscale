@@ -24,12 +24,12 @@ class interview_test extends Model
 
     public  function interview_question()
 	{
-		return $this->hasMany('App\models\QuestionModels', 'question_id', 'it_tq_id');
+		return $this->hasMany('App\Models\QuestionModels', 'question_id', 'it_tq_id');
     }
 
     public function test_question()
     {
-        return $this->belongsTo('App\models\TestQuestion','it_tq_id','tq_id');
+        return $this->belongsTo('App\Models\TestQuestion','it_tq_id','tq_id');
     }
     
     public function interview_test()
