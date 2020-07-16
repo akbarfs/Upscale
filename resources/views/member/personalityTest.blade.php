@@ -37,8 +37,11 @@
             @foreach ( $test as $row )
             <div class="form-group">
                <div class="row">
-                  <div class="col-md-12" style="padding: 20px ; font-weight: bold;">
+                  <div class="col-md-12" style="padding: 20px 20px 10px 20px;font-weight:bold;">
                   		{{$row->question_text}}
+                  </div>
+                  <div style="padding: 20px">
+                      {{$row->question_desc}}
                   </div>
                   <div class="col-md-12">
                     

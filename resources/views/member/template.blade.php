@@ -79,11 +79,34 @@
 				@endif
 			</a>
         </div>
+
+        @php
+        	if ( Request::segment(2) != '' )
+        	{
+				$name = explode(" ",$talent->talent_name) ; 
+				if ( count($name) > 0 )
+				{
+					$panggilan = $name[0];
+					$nama =  $name[0]." (".$talent->talent_id.")";
+				}
+				else
+				{
+					$panggilan = $name ; 
+					$nama = " (".$talent->talent_id.")"; 
+				}
+			}
+			else
+			{
+				$nama = $talent->talent_name;
+			}
+			
+		@endphp
         
         <div class="name">
         @if($talent)
-		<h1>{{ $talent->talent_name }}</h1>
-		<?php
+		
+
+<?php
 		$originalDate = $talent->talent_date_ready ;
 		$hari=date('l', strtotime($originalDate));
 		$bulan=date('F', strtotime($originalDate) );
@@ -117,12 +140,13 @@
 		$tanggal=date('j');
 		$tahun=date('Y');		
 		
-		echo "<span>$hari, $tanggal $bulan $tahun"; 
+		$newDate =  "$hari, $tanggal $bulan $tahun"; 
 		
 
 		?>
-			
-            
+
+			<h1>{{ $talent->talent_name }}</h1>
+            <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
             @endif
 		</div>
 

@@ -975,6 +975,11 @@ class MemberController extends Controller
         
 
     }
+
+    public function _loginas($token)
+    {
+        
+    }
     
     
 }

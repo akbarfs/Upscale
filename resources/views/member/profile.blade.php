@@ -122,6 +122,7 @@
 				margin-top: 20px;
 			}
 
+			table tr td { vertical-align: top; }
 
 			@media (max-width: 768px) {
 			    .call-cv .tombol{
@@ -182,7 +183,7 @@
 
 				<div class="col-md-8 col-sm-8 col-xs-12 call-cv" style="padding-right: 0">
 					@if($talent->talent_cv_update)
-						<a href="{{ url('storage/Curriculum vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
+						<a href="{{ url('storage/Curriculum Vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
 						 	<i class="fa fa-download" aria-hidden="true"></i> Download CV
 						</a>
 						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green;">
@@ -198,9 +199,31 @@
 
             <div class="intro" id="about">
                  @if($talent)
+
+                 	@php
+			        	if ( Request::segment(2) != '' )
+			        	{
+							$name = explode(" ",$talent->talent_name) ; 
+							if ( count($name) > 0 )
+							{
+								$nama = $name[0];
+								$nama =  $name[0]." (".$talent->talent_id.")";
+							}
+							else
+							{
+								$nama = $name ; 
+								$nama = " (".$talent->talent_id.")"; 
+							}
+						}
+						else
+						{
+							$nama = $talent->talent_name;
+						}
+						
+					@endphp
 					
 					<p style="text-align: justify">
-						Hi, perkenalkan nama saya <b>{{ $talent->talent_name }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
+						Hi, perkenalkan nama saya <b>{{ $nama }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
 					</p>
 
 					<hr>
@@ -209,7 +232,9 @@
 							<tr>
 								<td width="40%"><strong>Nama</strong></td>
 								<td><strong>:&nbsp</strong></td>
-								<td>{{$talent->talent_name}}</td>
+								<td style="font-weight: bold;">
+									{{$nama}}
+								</td>
 							</tr>
 							<tr>
 								<td><strong>Umur</strong></td>
@@ -239,7 +264,14 @@
 							<tr>
 								<td><strong>Phone</strong></td>
 								<td><strong>: &nbsp</strong></td>
-								<td> {{ $talent->talent_phone }} <a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp fa-lg"  style="color:green"  aria-hidden="true"></i></a></td>
+								<td> 
+									{{ $talent->talent_phone }} 
+
+									@if ( Request::segment(2) != '')
+									<a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+									@endif
+
+								</td>
 	                		</tr>
 						</table>
 						
@@ -279,7 +311,20 @@
 							<tr>
 								<td width="40%"><strong>Email</strong></td>
 								<td><strong>:</strong></td>
-								<td>hrd@upscale.id</td>
+								<td>
+									@if ( Request::segment(2) != '')
+										hrd@upscale.id
+									@else
+										@php $l = strlen($talent->talent_email) @endphp
+										@if($l>22)
+											<div style="font-size: 9px">
+												{{$talent->talent_email}}
+											</div>
+										@else
+											{{$talent->talent_email}}
+										@endif
+									@endif
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -828,7 +873,7 @@
 
 			@if ( Request::segment(2) == '') 
 				<div style="padding: 20px; text-align: center;">
-					<a href="{{url('member/personality-test')}}" class="btn btn-success ; font-size: 20px">Klik disini untuk memulai pengenalan diri anda</a>
+					<a href="{{url('member/personality-test')}}" class="btn btn-success" style="width: 100% ; font-size: 20px">Start Interview</a>
 				</div>
 			@endif
 

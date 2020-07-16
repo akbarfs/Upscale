@@ -140,6 +140,7 @@ class TalentNewController extends Controller
             if ( $request->talent_onsite_jogja ) {$data->where("talent_onsite_jogja",$request->talent_onsite_jogja); }
             if ( $request->talent_onsite_jakarta ) {$data->where("talent_onsite_jakarta",$request->talent_onsite_jakarta); }
             if ( $request->talent_isa ) {$data->where("talent_isa",$request->talent_isa); }
+            if ( $request->talent_focus ) {$data->where("talent_focus","LIKE","%".$request->talent_focus."%"); }
 
             if ( $request->status_member == "member" )
             {

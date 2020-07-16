@@ -75,6 +75,10 @@
 							</div>
 
 							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="focus" name="talent_focus">
+							</div>
+
+							<div class="col-md-2">
 								<select class="custom-select" name="talent_onsite_jogja">
 									<option value="">-- jogja? --</option>
 									<option value="unset">unset</option>
@@ -83,7 +87,7 @@
 								</select>
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-md-2" style="margin-top: 10px">
 								<select class="custom-select" name="talent_onsite_jakarta">
 									<option value="">-- jakarta? --</option>
 									<option value="unset">unset</option>
@@ -179,6 +183,8 @@
                                 name="skill"/>
 							</div>
 
+							
+
 
 
 						</div>
@@ -201,6 +207,7 @@
 									<input type="checkbox" name="mail_regular"> mail regular &nbsp
 									<input type="checkbox" name="member_date"> member date &nbsp
 									<input type="checkbox" name="jumlah_apply_jobs"> Jumlah Apply Jobs &nbsp
+									<input type="checkbox" name="focus"> Focus &nbsp
 								</div>
 								<div>
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
