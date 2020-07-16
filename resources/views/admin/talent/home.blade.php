@@ -223,6 +223,25 @@
 	</div>
 	@endif
 
+
+			<!-- notif import -->
+			{{-- notifikasi form validasi --}}
+		@if ($errors->has('file'))
+		<span class="invalid-feedback" role="alert">
+			<strong>{{ $errors->first('file') }}</strong>
+		</span>
+		@endif
+ 
+		{{-- notifikasi sukses --}}
+		@if ($sukses = Session::get('sukses'))
+		<div class="alert alert-success alert-block">
+			<button type="button" class="close" data-dismiss="alert">×</button> 
+			<strong>{{ $sukses }}</strong>
+		</div>
+		@endif
+
+
+		
 	<form action="{{ url('admin/talent/del') }}" method="post">
 		{{csrf_field()}}
 	
@@ -237,24 +256,12 @@
 
 		<!-- LOAD CONTENT -->
 		<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
+
+
 	
 	</form>
 
-	<!-- notif import -->
-	{{-- notifikasi form validasi --}}
-		@if ($errors->has('file'))
-		<span class="invalid-feedback" role="alert">
-			<strong>{{ $errors->first('file') }}</strong>
-		</span>
-		@endif
- 
-		{{-- notifikasi sukses --}}
-		@if ($sukses = Session::get('sukses'))
-		<div class="alert alert-success alert-block">
-			<button type="button" class="close" data-dismiss="alert">×</button> 
-			<strong>{{ $sukses }}</strong>
-		</div>
-		@endif
+
  
 	
  
