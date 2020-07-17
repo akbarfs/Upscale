@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Redirect;
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -31,10 +32,6 @@ class MasterDataUserController extends Controller
 
         ]);
 
-        $request->user()->fill([
-            'password' => Hash::make($request->password)
-        ])->save();
-
         DB::table('users')->insert([
 		'name' => $request->nama,
 		'email' => $request->email,
@@ -43,7 +40,7 @@ class MasterDataUserController extends Controller
 		'level' => isset($request->level)?$request->level:"undefined",]);
 
 
-		return redirect('/admin/masterdata/user');
+		return redirect('/admin/masterdata/user')->with('success', 'User Data succesfully created.');
 
     }
 
@@ -73,8 +70,9 @@ class MasterDataUserController extends Controller
      */
     public function edit($id)
     {
-       $UserEdit = DB::table('users')->where('id',$id)->first();
-        return response()->json($UserEdit);
+       $users = DB::table('users')->where('id',$id)->get();
+       return view('admin.userDetail',['users' => $users]);
+
     }
 
     /**
@@ -84,31 +82,27 @@ class MasterDataUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
     	$validation = $request->validate([
-            'namaEdit'=>'required|string|max:150',
-            'emailEdit'=>'required|string|email|max:100|unique:users',
-            'passwordEdit'=>'max:150|required|required_with:confirmpass|same:confirmpass',
-            'confirmpassEdit'=>'max:150',
-            'usernameEdit'=>'required|string|unique:users,username|max:150',
+            'nama'=>'required|string|max:150',
+            'email'=>'required|string|email|max:100',
+            'password'=>'max:150|required|required_with:confirmpass|same:confirmpass',
+            'confirmpass'=>'max:150',
+            'username'=>'required|string|max:150',
 
         ]);
 
-        $request->user()->fill([
-            'passwordEdit' => Hash::make($request->password)
-        ])->save();
-
         DB::table('users')->where('id',$request->id)->update([
-		'name' => $request->namaEdit,
-		'email' => $request->emailEdit,
-		'password' => $request->passwordEdit,
-		'username' => $request->usernameEdit,
-		'level' => isset($request->levelEdit)?$request->level:"undefined",
+		'name' => $request->nama,
+		'email' => $request->email,
+		'password' => $request->password,
+		'username' => $request->username,
+		'level' => isset($request->level)?$request->level:"undefined",
 	]);
 
 
-		return redirect('/admin/masterdata/user');
+		return Redirect::back()->with('success', 'User Data succesfully edited.');
         
     }
 
@@ -121,7 +115,7 @@ class MasterDataUserController extends Controller
     public function delete($id)
     {
         DB::table('users')->where('id',$id)->delete();
-		return redirect('/admin/masterdata/user');
+		return redirect('/admin/masterdata/user')->with('success', 'User Data succesfully deleted.');
     }
 
     

@@ -29,9 +29,16 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            @if($errors->any())
-                            <div class="alert alert-danger">Insert Data Error</div>
+                            @if(session()->has('success'))
+                            <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                            </div>
                             @endif
+
+                            @if($errors->any())
+                             <div class="alert alert-danger">Insert Data Error</div>
+                            @endif
+
                             <h3>
                                 <strong class="card-title mb-3">User</strong>
                                 <div class="nav nav-pills pull-right">
@@ -64,9 +71,9 @@
                                         <td>{{ $p->email }}</td>
                                         <td>{{ $p->level }}</td>
                                         <td>
-                                            <a href="#edit-User" class="btn btn-primary btn-sm tb" data-idUser="{{$p->id}}" data-toggle="modal" data-target="#ModalUpdate" type="button" class="btn-info btn">Edit</a>
+                                            <a href="/admin/masterdata/user/edit/{{$p->id}}" class="btn btn-primary btn-sm tb" data-idUser="{{$p->id}}" type="button" class="btn-info btn">Edit</a>
                 
-                                            <a href="/admin/masterdata/user/delete/{{ $p->id }}" class="btn btn-danger btn-sm tb" onclick="return confirm('Are you sure to delete this?')">Hapus</a>
+                                            <a href="/admin/masterdata/user/delete/{{$p->id}}" class="btn btn-danger btn-sm tb" onclick="return confirm('Are you sure to delete this?')">Hapus</a>
                                         </td>
                                         @endforeach
                                         </tr>
@@ -165,131 +172,14 @@
 
 
         </div>
-      <div class="modal-footer">
+
+        <div class="modal-footer">
         <input type="submit" class="btn btn-primary" value="Tambah User" />
-      </div>
+        </div>
       </form>
-
-
     </div>
   </div>
 </div>
-
-
-
-
-
-<!-- Modal Insert Edit -->
-<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="ModalUpdate" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Edit User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form style="margin:0; padding: 0" method="post" action="/admin/masterdata/user/update/{id}">
-      <div class="modal-body">
-        {{ csrf_field() }}
-        
-
-            <div class="form-group">
-                <label for="namaEdit">Nama</label>
-                <input type="text" class="form-control" id="namaEdit" name="namaEdit" value="{{old('namaEdit')}}">
-            </div>
-
-
-            @if($errors->has('namaEdit'))
-            <div class="alert alert-danger">{{ $errors->first('namaEdit') }}</div>
-            @endif
-        
-        
-            <div class="form-group">
-                <label for="emailEdit">Email</label>
-                <input type="text" class="form-control" id="emailEdit" name="emailEdit" placeholder="" value="{{old('emailEdit')}}">
-            </div>
-
-
-            @if($errors->has('emailEdit'))
-            <div class="alert alert-danger">{{ $errors->first('emailEdit') }}</div>
-            @endif
-
-            <div class="form-group">
-                <label for="usernameEdit">Username</label>
-                <input type="text" class="form-control" id="usernameEdit" name="usernameEdit" placeholder="" value="{{old('usernameEdit')}}">
-            </div>
-
-
-            @if($errors->has('usernameEdit'))
-            <div class="alert alert-danger">{{ $errors->first('usernameEdit') }}</div>
-            @endif
-
-
-            <div class="form-group">
-                <label for="passwordEdit">Password</label>
-                <input type="password" class="form-control" id="passwordEdit" placeholder="" name="passwordEdit" value="{{old('passwordEdit')}}">
-            </div>
-
-
-            @if($errors->has('passwordEdit'))
-            <div class="alert alert-danger">{{ $errors->first('passwordEdit') }}</div>
-            @endif
-
-
-            <div class="form-group">
-                <label for="confirmpassEdit">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmpassEdit" placeholder="" name="confirmpassEdit" value="">
-            </div>
-
-            @if($errors->has('confirmpassEdit'))
-            <div class="alert alert-danger">{{ $errors->first('confirmpassEdit') }}</div>
-            @endif
-
-            <div class="form-group">
-            <label for="levelEdit">Level</label>
-            <select id="levelEdit" class="custom-select" name="levelEdit">
-                    <option selected  > </option>
-                    <option value="1" {{old('levelEdit') == 1 ? 'selected' : ''}}>admin</option>
-                    <option value="2" {{old('levelEdit') == 2 ? 'selected' : ''}}>user</option>
-                    <option value="3" {{old('levelEdit') == 3 ? 'selected' : ''}}>talent</option>
-                    <option value="4" {{old('levelEdit') == 4 ? 'selected' : ''}}>client</option>
-                    <option value="5" {{old('levelEdit') == 5 ? 'selected' : ''}}>cowork</option>
-            </select>
-            </div>
-
-
-
-      </div>
-      <div class="modal-footer">
-        <input type="submit" class="btn btn-primary" value="Edit User" />
-      </div>
-      </form>
-
-
-    </div>
-  </div>
-</div>
-
- @push('script')
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $(document).on('click','a[href="#edit-User"]',function (e) {
-                var id = $(this).data('idUser');
-                    $.ajax({
-                        headers:{ 'csrftoken' : '{{ csrf_token() }}' },
-                        url:'/admin/masterdata/user/edit/'+id,
-                        type:'GET',
-                        dataType:'json',
-                        success:function(data){
-                            $('#namaEdit').val(data.name);
-                            $('#emailEdit').val(data.email);
-                        }
-                    });
-              });
-</script>
-
-@endpush
 
 
 
