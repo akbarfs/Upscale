@@ -85,6 +85,8 @@
                                         <div class="form-group">
                                             <label for="password">Change New Password</label>
                                             <input type="password" class="form-control" id="password" placeholder="" name="password" value="{{old('password')}}">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" placeholder="" name="password" value="">
                                         </div>
 
 
