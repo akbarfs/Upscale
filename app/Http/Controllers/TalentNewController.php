@@ -45,14 +45,33 @@ class TalentNewController extends Controller
         $talent_logs = DB::table('talent')
             ->join('talent_logs', 'talent.talent_id', '=', 'talent_logs.tl_talent_id')
             ->select('*');
-        
+
 
         if ($request->mailtype) // klo type kosong , ga masuk , klo isi masuk 
         {
             $talent_logs->where("tl_type", "LIKE", "%" . $request->mailtype . "%");
         }
-        
-        
+
+        if ($request->phonenum) // klo type kosong , ga masuk , klo isi masuk 
+        {
+            $talent_logs->where("tl_phone", "LIKE", "%" . $request->phonenum . "%");
+        }
+
+        if ($request->email_tl) // klo type kosong , ga masuk , klo isi masuk 
+        {
+            $talent_logs->where("tl_email", "LIKE", "%" . $request->email_tl . "%");
+        }
+
+        if ($request->order != '') {
+            $ar = explode(",", $request->order);
+            foreach ($ar as $row) {
+                $talent_logs->orderBy($row, "DESC");
+            }
+        } else {
+            $talent_logs->orderBy("tl_talent_id", "DESC");
+        }
+
+
         // if ($request->tl_phone) {
         //     $talent_logs->where("tl_phone", "LIKE", "%" . $request->tl_phone . "%");
         // }
@@ -61,7 +80,7 @@ class TalentNewController extends Controller
         // }
 
         $talent_logs = $talent_logs->paginate(5);
-        
+
 
 
 

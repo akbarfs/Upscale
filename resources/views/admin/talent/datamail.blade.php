@@ -2,8 +2,6 @@
     <thead>
 
         <tr>
-            <th scope="col">Id</th>
-
             <th scope="col">Talent ID</th>
 
             @if (Request::input('tl_email') )
@@ -40,9 +38,7 @@
         @foreach( $talent_logs as $tlogs)
 
 
-        <tr>
-            <td>{{ $tlogs->id }}</td>
-            
+        <tr>            
             <td>{{ $tlogs->tl_talent_id }}</td>
             
             @if (Request::input('tl_type') )

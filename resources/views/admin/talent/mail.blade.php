@@ -52,7 +52,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <form style="margin:0; padding: 0" method="post" action="" id="form-search">
+                    <form style="margin-top:10; padding: 0" method="post" action="" id="form-search">
                         <div class="row">
                             <div class="col-md-2">
                                 <select class="custom-select" name="status_member">
@@ -66,16 +66,22 @@
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="email" name="tl_name">
+                                <input type="text" class="form-control" placeholder="email" name="email_tl">
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="phone" name="tl_phone">
+                                <input type="text" class="form-control" placeholder="phone number" name="phonenum">
                             </div>
 
                             <div class="col-md-2">
                                 <input type="text" class="form-control" placeholder="mail type" name="mailtype">
                             </div>
 
+                            <div class="col-md-2">
+                                <select class="custom-select" name="order">
+                                    <option value="">-- order? --</option>
+                                    <option value="created_at">Email Sent</option>
+                                </select>
+                            </div>
 
 
                             @push('script')
@@ -126,13 +132,13 @@
                                 <div style="padding: 10px;">
                                     show :
 
-                                    <input type="checkbox" name="tl_type" checked="checked"> Type &nbsp;
-                                    <input type="checkbox" name="tl_name" checked="checked"> Name &nbsp;
-                                    <input type="checkbox" name="tl_phone" checked="checked"> Phone &nbsp;
-                                    <input type="checkbox" name="tl_email" checked="checked"> Email &nbsp;
-                                    <input type="checkbox" name="tl_status" checked="checked"> Status Email &nbsp;
-                                    <input type="checkbox" name="tl_desc" checked="checked"> Details &nbsp;
-                                    <input type="checkbox" name="created_at" checked="checked"> Created &nbsp;
+                                    <input type="checkbox" name="tl_type" checked="checked"> Type &nbsp
+                                    <input type="checkbox" name="tl_name" checked="checked"> Name &nbsp
+                                    <input type="checkbox" name="tl_phone" checked="checked"> Phone &nbsp
+                                    <input type="checkbox" name="tl_email" checked="checked"> Email &nbsp
+                                    <input type="checkbox" name="tl_status" checked="checked"> Status Email &nbsp
+                                    <input type="checkbox" name="tl_desc" checked="checked"> Details &nbsp
+                                    <input type="checkbox" name="created_at" checked="checked"> Created &nbsp
                                 </div>
                                 <div>
                                     <button class="btn btn-outline-primary" type="submit" id="search">Search</button>
