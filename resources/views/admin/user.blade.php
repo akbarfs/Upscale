@@ -138,6 +138,19 @@
 
 
             <div class="form-group">
+            <label for="level">Level</label>
+            <select id="level" class="custom-select" name="level">
+                    <option selected  > </option>
+                    <option value="1" {{old('level') == 1 ? 'selected' : ''}}>admin</option>
+                    <option value="2" {{old('level') == 2 ? 'selected' : ''}}>user</option>
+                    <option value="3" {{old('level') == 3 ? 'selected' : ''}}>talent</option>
+                    <option value="4" {{old('level') == 4 ? 'selected' : ''}}>client</option>
+                    <option value="5" {{old('level') == 5 ? 'selected' : ''}}>cowork</option>
+            </select>
+            </div>
+
+
+            <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="" name="password" value="{{old('password')}}">
             </div>
@@ -158,19 +171,6 @@
             @endif
 
 
-            <div class="form-group">
-            <label for="level">Level</label>
-            <select id="level" class="custom-select" name="level">
-                    <option selected  > </option>
-                    <option value="1" {{old('level') == 1 ? 'selected' : ''}}>admin</option>
-                    <option value="2" {{old('level') == 2 ? 'selected' : ''}}>user</option>
-                    <option value="3" {{old('level') == 3 ? 'selected' : ''}}>talent</option>
-                    <option value="4" {{old('level') == 4 ? 'selected' : ''}}>client</option>
-                    <option value="5" {{old('level') == 5 ? 'selected' : ''}}>cowork</option>
-            </select>
-            </div>
-
-
         </div>
 
         <div class="modal-footer">
@@ -180,7 +180,6 @@
     </div>
   </div>
 </div>
-@endsection
 
 
 

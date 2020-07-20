@@ -50,6 +50,7 @@
                                     @foreach($users as $p)
                                     <form style="margin:0; padding: 0" method="post" action="/admin/masterdata/user/update">
                                         {{ csrf_field() }}
+                                        <input type="hidden" name="id" value="{{$p->id}}"> <br/>
                                         <div class="form-group">
                                             <label for="name">Nama</label>
                                             <input type="text" class="form-control" id="name" name="name" value="{{old('nama', $p->name)}}">
@@ -81,14 +82,23 @@
                                         <div class="alert alert-danger">{{ $errors->first('username') }}</div>
                                         @endif
 
+                                        <div class="form-group">
+                                        <label for="level">Level</label>
+                                        <select id="level" class="custom-select" name="level">
+                                                <option selected  value="1"> </option>
+                                                <option value="1" {{old('level') == 1 ? 'selected' : ''}} <?php if($p->level=="admin") echo 'selected="selected"'; ?>>admin</option>
+                                                <option value="2" {{old('level') == 2 ? 'selected' : ''}} <?php if($p->level=="user") echo 'selected="selected"'; ?>>user</option>
+                                                <option value="3" {{old('level') == 3 ? 'selected' : ''}} <?php if($p->level=="talent") echo 'selected="selected"'; ?>>talent</option>
+                                                <option value="4" {{old('level') == 4 ? 'selected' : ''}} <?php if($p->level=="client") echo 'selected="selected"'; ?>>client</option>
+                                                <option value="5" {{old('level') == 5 ? 'selected' : ''}} <?php if($p->level=="cowork") echo 'selected="selected"'; ?>>cowork</option>
+                                        </select>
+                                        </div>
+
 
                                         <div class="form-group">
                                             <label for="password">Change New Password</label>
-                                            <input type="password" class="form-control" id="password" placeholder="" name="password" value="{{old('password')}}">
-                                            <label for="password">Password</label>
                                             <input type="password" class="form-control" id="password" placeholder="" name="password" value="">
                                         </div>
-
 
                                         @if($errors->has('password'))
                                         <div class="alert alert-danger">{{ $errors->first('password') }}</div>
@@ -104,18 +114,6 @@
                                         <div class="alert alert-danger">{{ $errors->first('confirmpass') }}</div>
                                         @endif
 
-
-                                        <div class="form-group">
-                                        <label for="level">Level</label>
-                                        <select id="level" class="custom-select" name="level">
-                                                <option selected  value="1"> </option>
-                                                <option value="1" {{old('level') == 1 ? 'selected' : ''}} <?php if($p->level=="admin") echo 'selected="selected"'; ?>>admin</option>
-                                                <option value="2" {{old('level') == 2 ? 'selected' : ''}} <?php if($p->level=="user") echo 'selected="selected"'; ?>>user</option>
-                                                <option value="3" {{old('level') == 3 ? 'selected' : ''}} <?php if($p->level=="talent") echo 'selected="selected"'; ?>>talent</option>
-                                                <option value="4" {{old('level') == 4 ? 'selected' : ''}} <?php if($p->level=="client") echo 'selected="selected"'; ?>>client</option>
-                                                <option value="5" {{old('level') == 5 ? 'selected' : ''}} <?php if($p->level=="cowork") echo 'selected="selected"'; ?>>cowork</option>
-                                        </select>
-                                        </div>
 
                                     @endforeach
 

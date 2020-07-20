@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use App\User;
 use App\Http\Controllers\Controller;
-use Redirect;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -88,7 +88,6 @@ class MasterDataUserController extends Controller
     public function update(Request $request)
     {
 
-
     	$validation = $request->validate([
             'name'=>'required|string|max:150',
             'email'=>'required|string|email|max:100',
@@ -100,15 +99,17 @@ class MasterDataUserController extends Controller
 
         $hashedPassword = Hash::make($request->password);
 
-        DB::table('users')->where('id',$request->id)->update([
-		'name' => $request->name,
-		'email' => $request->email,
-		'password' => $hashedPassword,
-		'username' => $request->username,
-		'level' => isset($request->level)?$request->level:"undefined",
-	]);
-        
-		return redirect('/admin/masterdata/user')->with('success', 'User Data succesfully edited.');
+        DB::table('users')->where('id',$request->id)->update(array(
+            'name' => $request->name,
+			'email' => $request->email,
+			'password' => $hashedPassword,
+			'username' => $request->username,
+			'level' => isset($request->level)?$request->level:"undefined",
+	));
+
+
+
+		return redirect()->back()->with('success', 'User Data succesfully edited.');
         
     }
 
