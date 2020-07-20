@@ -46,14 +46,13 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active">
+                                    <div class="col-md-12">
+                                    @foreach($users as $p)
                                     <form style="margin:0; padding: 0" method="post" action="/admin/masterdata/user/update">
-
-                                        @foreach($users as $p)
-                                        <div class="card">
                                         {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label for="nama">Nama</label>
-                                            <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama', $p->name)}}">
+                                            <label for="name">Nama</label>
+                                            <input type="text" class="form-control" id="name" name="name" value="{{old('nama', $p->name)}}">
                                         </div>
 
 
@@ -84,8 +83,8 @@
 
 
                                         <div class="form-group">
-                                            <label for="password">Password</label>
-                                            <input type="password" class="form-control" id="password" placeholder="" name="password" value="{{old('password', $p->password)}}">
+                                            <label for="password">Change New Password</label>
+                                            <input type="password" class="form-control" id="password" placeholder="" name="password" value="{{old('password')}}">
                                         </div>
 
 
@@ -95,7 +94,7 @@
 
 
                                         <div class="form-group">
-                                            <label for="confirmpass">Confirm Password</label>
+                                            <label for="confirmpass">Confirm New Password</label>
                                             <input type="password" class="form-control" id="confirmpass" placeholder="" name="confirmpass" value="">
                                         </div>
 
@@ -107,23 +106,23 @@
                                         <div class="form-group">
                                         <label for="level">Level</label>
                                         <select id="level" class="custom-select" name="level">
-                                                <option selected  > </option>
-                                                <option value="1" {{old('level') == 1 ? 'selected' : ''}}>admin</option>
-                                                <option value="2" {{old('level') == 2 ? 'selected' : ''}}>user</option>
-                                                <option value="3" {{old('level') == 3 ? 'selected' : ''}}>talent</option>
-                                                <option value="4" {{old('level') == 4 ? 'selected' : ''}}>client</option>
-                                                <option value="5" {{old('level') == 5 ? 'selected' : ''}}>cowork</option>
+                                                <option selected  value="1"> </option>
+                                                <option value="1" {{old('level') == 1 ? 'selected' : ''}} <?php if($p->level=="admin") echo 'selected="selected"'; ?>>admin</option>
+                                                <option value="2" {{old('level') == 2 ? 'selected' : ''}} <?php if($p->level=="user") echo 'selected="selected"'; ?>>user</option>
+                                                <option value="3" {{old('level') == 3 ? 'selected' : ''}} <?php if($p->level=="talent") echo 'selected="selected"'; ?>>talent</option>
+                                                <option value="4" {{old('level') == 4 ? 'selected' : ''}} <?php if($p->level=="client") echo 'selected="selected"'; ?>>client</option>
+                                                <option value="5" {{old('level') == 5 ? 'selected' : ''}} <?php if($p->level=="cowork") echo 'selected="selected"'; ?>>cowork</option>
                                         </select>
                                         </div>
 
                                     @endforeach
-                                    </div>
 
                                     <div class="modal-footer">
                                     <input type="submit" class="btn btn-primary" value="Edit User" />
                                      <a href="/admin/masterdata/user" class="btn btn-danger")>Keluar</a>
                                     </div>
                                  </form>
+                                </div>
                                 </div>
                             </div>
                         </div>

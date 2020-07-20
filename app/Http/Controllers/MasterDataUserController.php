@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Redirect;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Database\Eloquent\Builder;
 
@@ -32,10 +33,12 @@ class MasterDataUserController extends Controller
 
         ]);
 
+        $hashedPassword = Hash::make($request->password);
+
         DB::table('users')->insert([
 		'name' => $request->nama,
 		'email' => $request->email,
-		'password' => $request->password,
+		'password' => $hashedPassword,
 		'username' => $request->username,
 		'level' => isset($request->level)?$request->level:"undefined",]);
 
@@ -84,25 +87,28 @@ class MasterDataUserController extends Controller
      */
     public function update(Request $request)
     {
+
+
     	$validation = $request->validate([
-            'nama'=>'required|string|max:150',
+            'name'=>'required|string|max:150',
             'email'=>'required|string|email|max:100',
-            'password'=>'max:150|required|required_with:confirmpass|same:confirmpass',
+            'password'=>'max:150|required_with:confirmpass|same:confirmpass',
             'confirmpass'=>'max:150',
             'username'=>'required|string|max:150',
 
         ]);
 
+        $hashedPassword = Hash::make($request->password);
+
         DB::table('users')->where('id',$request->id)->update([
-		'name' => $request->nama,
+		'name' => $request->name,
 		'email' => $request->email,
-		'password' => $request->password,
+		'password' => $hashedPassword,
 		'username' => $request->username,
 		'level' => isset($request->level)?$request->level:"undefined",
 	]);
-
-
-		return Redirect::back()->with('success', 'User Data succesfully edited.');
+        
+		return redirect('/admin/masterdata/user')->with('success', 'User Data succesfully edited.');
         
     }
 
@@ -117,9 +123,9 @@ class MasterDataUserController extends Controller
         DB::table('users')->where('id',$id)->delete();
 		return redirect('/admin/masterdata/user')->with('success', 'User Data succesfully deleted.');
     }
-
-    
 }
+
+
 
 
 
