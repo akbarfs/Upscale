@@ -180,10 +180,7 @@
     </div>
   </div>
 </div>
-
-
-
-
+@endsection
 
 
 
