@@ -59,6 +59,7 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 
 Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
 
+Route::get("/profile/{talent_id}", "MemberController@profile");  //other profile
 
 Route::group(['middleware'=>'cek'],function(){
 
@@ -67,54 +68,54 @@ Route::group(['middleware'=>'cek'],function(){
 	// 	Route::get('/dashboard', 'userController@index')->name('user.dashboard');
 	// });
 
-/////////////////////////////
-Route::get("/profile", "MemberController@profile"); //my profile
-Route::get("/profile/{talent_id}", "MemberController@profile");  //other profile
+	/////////////////////////////
+	Route::get("/profile", "MemberController@profile"); //my profile
 
-Route::group(['prefix'=>'member'], function()
-{
-	Route::get("edit-basic-profile", "MemberController@editBasic");
-	Route::post("edit-basic-profile", "MemberController@editBasicPost");
 
-	Route::get("crop-photo", "MemberController@cropPhoto");
-	Route::post("crop-photo", "MemberController@cropPhotoPost");
+	Route::group(['prefix'=>'member'], function()
+	{
+		Route::get("edit-basic-profile", "MemberController@editBasic");
+		Route::post("edit-basic-profile", "MemberController@editBasicPost");
 
-	Route::get("edit-work", "MemberController@editWork");
-	Route::post("edit-work", "MemberController@editWorkPost");
-	Route::get("edit-work-delete/{id}", "MemberController@editWorkDelete");
+		Route::get("crop-photo", "MemberController@cropPhoto");
+		Route::post("crop-photo", "MemberController@cropPhotoPost");
 
-	Route::get("edit-education", "MemberController@editEducation");
-	Route::post("edit-education", "MemberController@editEducationPost");
-	Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
+		Route::get("edit-work", "MemberController@editWork");
+		Route::post("edit-work", "MemberController@editWorkPost");
+		Route::get("edit-work-delete/{id}", "MemberController@editWorkDelete");
 
-	Route::get("edit-interview", "MemberController@editInterview");
-	Route::post("edit-interview", "MemberController@editInterviewPost");
+		Route::get("edit-education", "MemberController@editEducation");
+		Route::post("edit-education", "MemberController@editEducationPost");
+		Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
 
-	Route::get("edit-skill", "MemberController@editSkill");
-	Route::post("edit-skill", "MemberController@editSkillPost");
-	Route::post("update-level", "MemberController@updateSkill");
+		Route::get("edit-interview", "MemberController@editInterview");
+		Route::post("edit-interview", "MemberController@editInterviewPost");
 
-	Route::get("edit-cv", "MemberController@editCv");
-	Route::post("post-cv", "MemberController@postCv");
+		Route::get("edit-skill", "MemberController@editSkill");
+		Route::post("edit-skill", "MemberController@editSkillPost");
+		Route::post("update-level", "MemberController@updateSkill");
 
-	Route::get("crop-porto/{id}", "MemberController@cropPorto");
-	Route::post("crop-porto/{id}", "MemberController@cropPortoPost");
+		Route::get("edit-cv", "MemberController@editCv");
+		Route::post("post-cv", "MemberController@postCv");
 
-	Route::get("edit-porto", "MemberController@editPorto");
-	Route::post("post-porto", "MemberController@postPorto");
-	Route::get("delete-porto/{id}", "MemberController@portoDelete");
-	Route::get("update-porto/{id}", "MemberController@portoUpdate");
-	Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
+		Route::get("crop-porto/{id}", "MemberController@cropPorto");
+		Route::post("crop-porto/{id}", "MemberController@cropPortoPost");
 
-	Route::get("personality-test", "MemberController@personalityTest");
-	Route::post("personality-test", "MemberController@personalityTestPost");
+		Route::get("edit-porto", "MemberController@editPorto");
+		Route::post("post-porto", "MemberController@postPorto");
+		Route::get("delete-porto/{id}", "MemberController@portoDelete");
+		Route::get("update-porto/{id}", "MemberController@portoUpdate");
+		Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
+
+		Route::get("personality-test", "MemberController@personalityTest");
+		Route::post("personality-test", "MemberController@personalityTestPost");
 
 	Route::get("skill-test/{type_soal_id}", "MemberController@skillTest");
 	Route::post("skill-test/", "MemberController@skillTestPost");
 
 });
 
-////////////////////////////
+	////////////////////////////
 
 
 	Route::get('/blast', 'jobsapplyController@blast_show')->name('blast');
@@ -343,7 +344,7 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/delete/{id}', 'TalentNewController@delete');
 			Route::post('/del', 'TalentNewController@del');
 			//end adi
-
+			Route::post('/list/import', 'TalentNewController@import');
 
 			Route::get('/', 'talentController@index')->name('talent.index');
 
@@ -598,4 +599,4 @@ $this->post('register', 'Auth\RegisterController@register');
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
 
 //MEMBER PROFILE
-Route::get('/profile/{id}','MemberController@CV');
+// Route::get('/profile/{id}','MemberController@CV');

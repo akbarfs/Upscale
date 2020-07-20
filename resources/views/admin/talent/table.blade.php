@@ -18,7 +18,7 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th><input type="checkbox" id="all-checkbox"></th>
+			<th><input type="checkbox" id="all-checkbox" class="select-all"></th>
 			<th scope="col">id</th>
 			<th scope="col">Name</th>
 			@if (Request::input('contact') )
@@ -73,38 +73,40 @@
 			<th scope="col">Apply</th>
 			@endif
 
-			<th scope="col">Action</th>
-		</tr>
-	</thead>
-	<tbody id="container">
-		
-		@foreach($data as $talent)
-		<tr>
-		  <td><input type="checkbox" name="delid[]" class="talent_id"  value="{{$talent->talent_id}}"> </td> 
-		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-			<script>
-				$(document).ready(function(){
-					
-					$(".btnmail").hide();
-					$(".talent_id").click(function()
-					{
-						jumlah = $('input[name="delid[]"]:checked').length;
-						if (jumlah > 0) 
+			  <th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody id="container">
+			
+			@foreach($data as $talent)
+			<tr>
+			  <td>
+			  	<input type="checkbox" name="delid[]" class="talent_id pilih id-{{$talent->talent_id}}"
+			  	value="{{$talent->talent_id}}" onclick="pilih('{{$talent->talent_id}}')" data-id="{{$talent->talent_id}}">
+			  </td> 			  
+				<script>
+					$(document).ready(function(){
+						
+						$(".btnmail").hide();
+						$(".talent_id").click(function()
 						{
-							$("#mass_del").show();
-							$(".btnmail").show();
-							// console.log(jumlah);
-						}
-						else
-						{
-							$("#mass_del").hide();
-							$(".btnmail").hide();
-							// console.log(jumlah);
-						}
+							jumlah = $('input[name="delid[]"]:checked').length;
+							if (jumlah > 0) 
+							{
+								$("#mass_del").show();
+								$(".btnmail").show();
+								// console.log(jumlah);
+							}
+							else
+							{
+								$("#mass_del").hide();
+								$(".btnmail").hide();
+								// console.log(jumlah);
+							}
+						});
+					  
 					});
-				  
-				});
-			</script>
+				</script>
 
 
 		  <th scope="row">{{$talent->talent_id}}</th>
@@ -293,6 +295,25 @@
 			});
 		});	
 	});
+
+	list.forEach(function(item,index)
+    {
+        $(".id-"+item).prop('checked', true);
+    });
+
+    $(".select-all").click(function()
+    {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+        $(".pilih").each(function()
+        {
+            id  = $(this).data("id");
+            pilih(id);
+           
+        });
+    });
+
+
+
 </script>
 <style type="text/css">
 	.wa-pilih { margin-bottom: 10px; }

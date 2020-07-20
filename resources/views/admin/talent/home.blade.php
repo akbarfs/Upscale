@@ -241,17 +241,79 @@
 	</div>
 	@endif
 
+
+			<!-- notif import -->
+			{{-- notifikasi form validasi --}}
+		@if ($errors->has('file'))
+		<span class="invalid-feedback" role="alert">
+			<strong>{{ $errors->first('file') }}</strong>
+		</span>
+		@endif
+ 
+		{{-- notifikasi sukses --}}
+		@if ($sukses = Session::get('sukses'))
+		<div class="alert alert-success alert-block">
+			<button type="button" class="close" data-dismiss="alert">×</button> 
+			<strong>{{ $sukses }}</strong>
+		</div>
+		@endif
+
+
+		
 	<form action="{{ url('admin/talent/del') }}" method="post">
 		{{csrf_field()}}
+	
 		<a href="list/insert" class="btn btn-success btn-sm tb"> Tambah Talent </a>
 		<a id="export" class="btn btn-success btn-sm tb"> Export </a>
+		<a type="button" class="btn btn-primary btn-sm tb" data-toggle="modal" data-target="#importExcel">
+			IMPORT EXCEL
+		</a>
 		<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
 		<a class="btn btn-success btn-sm tb btnmail" data-toggle="modal" 
 		data-target="#myModal"> Send Email </a>
 
 		<!-- LOAD CONTENT -->
+		<div class="list-box" style="display: none; margin-bottom: 20px">
+            <span>Selected : </span>
+            <span class="list"></span>
+            <a href="#" class="clear btn btn-sm"> Clear Selected </a>
+        </div>
 		<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
+
+
+	
 	</form>
+
+
+ 
+	
+ 
+		<!-- Import Excel -->
+		<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form method="post" action="{{ url('admin/talent/list/import') }}" enctype="multipart/form-data">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+						</div>
+						<div class="modal-body">
+ 
+							{{ csrf_field() }}
+ 
+							<label>Pilih file excel</label>
+							<div class="form-group">
+								<input type="file" name="file" required="required">
+							</div>
+ 
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Import</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 
 	<!-- Modal -->
 
@@ -474,9 +536,48 @@
 				$("select[name='status_member']").val("all");
 				$("#search").click();
 			});
-
-
 		});
+
+		function refreshId()
+	    {
+	        $(".list").html(list.join(","));
+
+	        if ( list.length > 0)
+	        {
+	            $(".list-box").show();
+	        }
+	        else
+	        {
+	            $(".list-box").hide();
+	        }
+	    }
+
+	    list = [] ;
+	    function pilih(id)
+	    {
+	        id = parseInt(id); 
+	        if ( list.includes(id) ) 
+	        {
+	            const index = list.indexOf(id);
+	            if (index !== -1) list.splice(index, 1);
+	            refreshId();
+	        }
+	        else
+	        {
+	            list.push(id); 
+	            refreshId();
+	        }
+	        
+	    }
+
+	    $(".clear").click(function()
+	    {
+	        list = [] ; 
+	        $(".pilih").prop('checked',false);
+	        $(".select-all").prop('checked',false);
+	        refreshId();
+	    });
+
 	</script>
 	<!-- 
 	<script>
