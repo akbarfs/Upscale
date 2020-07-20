@@ -15,7 +15,7 @@ use App\Models\Talent_log;
 use App\User;
 use App\Imports\TalentImport;
 use Session;
-
+use File;
 use App\Exports\TalentExport;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -306,11 +306,17 @@ public function insertData(Request $request){
 		$file->move('file_importExcel',$nama_file);
  
 		// import data
-		Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file));
+		if(Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file))){
+            File::delete(public_path('file_importExcel/'.$nama_file));
+        }
  
 		// notifikasi dengan session
 		Session::flash('sukses','Data Excel Berhasil Diimport!');
  
+        // File::delete(public_path('data_file/'.$nama_file->file));
+      
+
+
 		// alihkan halaman kembali
 		return view('admin.talent.home');
 	}
