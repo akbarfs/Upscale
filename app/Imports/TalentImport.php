@@ -17,14 +17,14 @@ class TalentImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Talent([
-            'talent_name' => $row['nama_talent'],
+            'talent_name' => $row['nama'],
             'talent_phone' => $row['no_wa'],
             'talent_email' => $row['email'],
             'talent_web' => $row['website'],
             'talent_skill' => $row['keahlian'],
             'talent_current_adress' => $row['location'],
             'talent_linkedin' => $row['link_linkedin'],
-            'talent_current_work' => $row['pekerjaan_skrng'],
+            'talent_current_work' => $row['pekerjaan_skrg'],
             'talent_start_career' => $row['dari_thn'],
             'talent_totalexperience' => $row['pengalaman_kerja'],
         ]);

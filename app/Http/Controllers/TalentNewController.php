@@ -14,6 +14,7 @@ use App\Models\Skill;
 use App\Models\Talent_log;
 use App\User;
 use App\Imports\TalentImport;
+use Session;
 
 use App\Exports\TalentExport;
 
@@ -311,7 +312,7 @@ public function insertData(Request $request){
 		Session::flash('sukses','Data Excel Berhasil Diimport!');
  
 		// alihkan halaman kembali
-		return redirect('admin.talent.home');
+		return view('admin.talent.home');
 	}
 
 }
