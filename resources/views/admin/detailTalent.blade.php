@@ -459,7 +459,9 @@
                                         <label class=" form-control-label">Talent CV </label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv}}</strong></p>
+                                    @if ( $all->talent_cv )
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>yes</strong></p>
+                                    @endif
                                     </div>
                                 </div>
 
@@ -468,7 +470,9 @@
                                         <label class=" form-control-label">Talent CV update</label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_cv_update}}</strong></p>
+                                      @if ( $all->talent_cv_update)
+                                        <p class="form-control-static" style="margin-bottom: 0px;"><strong>yes</strong></p>
+                                      @endif
                                     </div>
                                 </div>
 
