@@ -18,7 +18,7 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th><input type="checkbox" id="all-checkbox"></th>
+			<th><input type="checkbox" id="all-checkbox" class="select-all"></th>
 			<th scope="col">id</th>
 			<th scope="col">Name</th>
 			@if (Request::input('contact') )
@@ -70,7 +70,10 @@
 			
 			@foreach($data as $talent)
 			<tr>
-			  <td><input type="checkbox" name="delid[]" class="talent_id"  value="{{$talent->talent_id}}"> </td> 
+			  <td>
+			  	<input type="checkbox" name="delid[]" class="talent_id pilih id-{{$talent->talent_id}}"
+			  	value="{{$talent->talent_id}}" onclick="pilih('{{$talent->talent_id}}')" data-id="{{$talent->talent_id}}">
+			  </td> 
 			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 				<script>
 					$(document).ready(function(){
@@ -275,6 +278,25 @@
 			});
 		});	
 	});
+
+	list.forEach(function(item,index)
+    {
+        $(".id-"+item).prop('checked', true);
+    });
+
+    $(".select-all").click(function()
+    {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+        $(".pilih").each(function()
+        {
+            id  = $(this).data("id");
+            pilih(id);
+           
+        });
+    });
+
+
+
 </script>
 <style type="text/css">
 	.wa-pilih { margin-bottom: 10px; }

@@ -236,6 +236,11 @@
 		data-target="#myModal"> Send Email </a>
 
 		<!-- LOAD CONTENT -->
+		<div class="list-box" style="display: none; margin-bottom: 20px">
+            <span>Selected : </span>
+            <span class="list"></span>
+            <a href="#" class="clear btn btn-sm"> Clear Selected </a>
+        </div>
 		<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
 	
 	</form>
@@ -506,9 +511,48 @@
 				$("select[name='status_member']").val("all");
 				$("#search").click();
 			});
-
-
 		});
+
+		function refreshId()
+	    {
+	        $(".list").html(list.join(","));
+
+	        if ( list.length > 0)
+	        {
+	            $(".list-box").show();
+	        }
+	        else
+	        {
+	            $(".list-box").hide();
+	        }
+	    }
+
+	    list = [] ;
+	    function pilih(id)
+	    {
+	        id = parseInt(id); 
+	        if ( list.includes(id) ) 
+	        {
+	            const index = list.indexOf(id);
+	            if (index !== -1) list.splice(index, 1);
+	            refreshId();
+	        }
+	        else
+	        {
+	            list.push(id); 
+	            refreshId();
+	        }
+	        
+	    }
+
+	    $(".clear").click(function()
+	    {
+	        list = [] ; 
+	        $(".pilih").prop('checked',false);
+	        $(".select-all").prop('checked',false);
+	        refreshId();
+	    });
+
 	</script>
 	<!-- 
 	<script>
