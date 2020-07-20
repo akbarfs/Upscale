@@ -487,6 +487,16 @@
                                     </div>
                                 </div>
 
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Request Talent Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static"style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_rt_status}}</strong></p>
+                                    </div>
+                                </div>
+
+
 
                                 <div class="row form-group">
                                     <div class="col col-md-4">
@@ -2204,23 +2214,24 @@
                                         @endforeach
                                     </select>
                                     <label for="text-input" class=" form-control-label">Request Talent Status</label>
-                                    <select class="custom-select" name="rt_status">
+                                    <select class="custom-select" name="talent_rt">
                                         <option value="">-- Choose --</option>
-                                        <option value="notyet" @if($all->talent_rt_status == 'notyet') selected="selected" @endif>Not Yet</option>
-                                        <option value="done" @if($all->talent_rt_status == 'done') selected="selected" @endif>Done</option>
+                                        <option value="NOT YET" @if($all->talent_rt_status == 'NOT YET') selected="selected" @endif>Not Yet</option>
+                                        <option value="DONE" @if($all->talent_rt_status == 'DONE') selected="selected" @endif>Done</option>
                                     </select>
-                                        @if($errors->has('rt_status'))
-                                            @foreach ($errors->get('rt_status') as $error)
+                                        @if($errors->has('talent_rt'))
+                                            @foreach ($errors->get('talent_rt') as $error)
                                             <div class="alert alert-danger"><i>{{$error}}</i></div>
                                             @endforeach
                                         @endif
-
+                                        
                                     <label for="text-input" class=" form-control-label">Talent Status</label>
-                                    <select class="custom-select" name="talent_status" >
+                                    <select class="custom-select" name="status" >
                                         <option value="">-- Choose --</option>
+                                        <option value="student" @if($all->talent_status == 'student') selected="selected" @endif>Student</option>
                                         <option value="worker" @if($all->talent_status == 'worker') selected="selected" @endif>Worker</option>
+                                        <option value="freelance" @if($all->talent_status == 'freelance') selected="selected" @endif>Freelance</option>
                                         <option value="free" @if($all->talent_status == 'free') selected="selected" @endif>Free</option>
-                                        <option value="edu" @if($all->talent_status == 'edu') selected="selected" @endif>Edu</option>
                                     </select>
 
                                     @if($errors->has('talent_status'))
@@ -2262,37 +2273,37 @@
                                     <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="" class="form-control">
 
                                     <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
-                                    <select name="talent_onsite_jakarta" class="custom-select">
+                                    <select name="onsite_jakarta" class="custom-select">
                                         <option value="">-- Choose --</option>
                                         <option value="yes" @if($all->talent_onsite_jakarta == 'yes') selected="selected" @endif>Yes</option>
                                         <option value="no" @if($all->talent_onsite_jakarta == 'no') selected="selected" @endif>No</option>
                                     </select> 
-                                    @if ($errors->has('talent_onsite_jakarta'))
-                                        @foreach ($errors->get('talent_onsite_jakarta') as $error)
+                                    @if ($errors->has('onsite_jakarta'))
+                                        @foreach ($errors->get('onsite_jakarta') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
 
                                     <label for="text-input" class=" form-control-label">Onsite Jogja</label>
-                                    <select name="talent_onsite_jogja" class="custom-select">
+                                    <select name="onsite_jogja" class="custom-select">
                                         <option value="">-- Choose --</option>
                                         <option value="yes" @if($all->talent_onsite_jogja == 'yes') selected="selected" @endif>Yes</option>
                                         <option value="no" @if($all->talent_onsite_jogja == 'no') selected="selected" @endif>No</option>
                                     </select> 
-                                    @if ($errors->has('talent_onsite_jogja'))
-                                        @foreach ($errors->get('talent_onsite_jogja') as $error)
+                                    @if ($errors->has('onsite_jogja'))
+                                        @foreach ($errors->get('onsite_jogja') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
 
                                     <label for="text-input" class=" form-control-label">Remote</label>
-                                    <select name="talent_remote" class="custom-select">
+                                    <select name="remote" class="custom-select">
                                         <option value="">-- Choose --</option>
                                         <option value="yes" @if($all->talent_remote == 'yes') selected="selected" @endif>Yes</option>
                                         <option value="no" @if($all->talent_remote == 'no') selected="selected" @endif>No</option>
                                     </select> 
-                                    @if ($errors->has('talent_remote'))
-                                        @foreach ($errors->get('talent_remote') as $error)
+                                    @if ($errors->has('remote'))
+                                        @foreach ($errors->get('remote') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
@@ -2300,19 +2311,19 @@
 
                                     
                                     <label for="text-input" class=" form-control-label">Bekerja Remote di Luar Kota</label>
-                                    <select name="talent_luar_kota" class="custom-select">
+                                    <select name="luar_kota" class="custom-select">
                                     <option value="">-- Choose --</option>
                                         <option value="yes" @if($all->talent_luar_kota == 'yes') selected="selected" @endif>Yes</option>
                                         <option value="no" @if($all->talent_luar_kota == 'no') selected="selected" @endif>No</option>
                                     </select> 
-                                    @if ($errors->has('talent_luar_kota'))
-                                        @foreach ($errors->get('talent_luar_kota') as $error)
+                                    @if ($errors->has('luar_kota'))
+                                        @foreach ($errors->get('luar_kota') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
 
                                     <label for="text-input" class=" form-control-label">Focus</label>
-                                    <select name="talent_focus" class="custom-select">
+                                    <select name="focus" class="custom-select">
                                         <option value="">-- Choose --</option>
                                         <option value="Frontend" @if($all->talent_focus == 'Frontend') selected="selected" @endif>Frontend Web</option>
                                         <option value="Backend web" @if($all->talent_focus == 'Backend web') selected="selected" @endif>Backend Web</option>
@@ -2325,8 +2336,8 @@
                                         <option value="PM" @if($all->talent_focus == 'PM') selected="selected" @endif>Project/Product Manager</option>
                                         <option value="Other" @if($all->talent_focus == 'Other') selected="selected" @endif>Other</option>
                                     </select> 
-                                    @if ($errors->has('talent_focus'))
-                                        @foreach ($errors->get('talent_focus') as $error)
+                                    @if ($errors->has('focus'))
+                                        @foreach ($errors->get('focus') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif
@@ -2412,25 +2423,25 @@
 
 
                                     <label for="text-input" class=" form-control-label">Edukasi ISA</label>
-                                    <select name="talent_isa" class="custom-select">
+                                    <select name="isa" class="custom-select">
                                         <option value="">-- Choose --</option>
                                         <option value="yes" @if($all->talent_isa == 'yes') selected="selected" @endif>Yes</option>
                                         <option value="no" @if($all->talent_isa == 'no') selected="selected" @endif>No</option>
                                     </select> 
-                                    @if ($errors->has('talent_isa'))
-                                        @foreach ($errors->get('talent_isa') as $error)
+                                    @if ($errors->has('isa'))
+                                        @foreach ($errors->get('isa') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif 
 
                                     <label for="text-input" class=" form-control-label">Bekerja di Luar Negeri</label>
-                                    <select name="talent_international" class="custom-select">
+                                    <select name="international" class="custom-select">
                                         <option value="">-- Choose --</option>
                                         <option value="yes" @if($all->talent_international == 'yes') selected="selected" @endif>Yes</option>
                                         <option value="no" @if($all->talent_international == 'no') selected="selected" @endif>No</option>
                                     </select> 
-                                    @if ($errors->has('talent_international'))
-                                        @foreach ($errors->get('talent_international') as $error)
+                                    @if ($errors->has('international'))
+                                        @foreach ($errors->get('international') as $error)
                                         <div class="alert alert-danger"><i>{{$error}}</i></div>
                                         @endforeach
                                     @endif

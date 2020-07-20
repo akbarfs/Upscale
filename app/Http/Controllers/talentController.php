@@ -183,11 +183,20 @@ class talentController extends Controller
         $talent->talent_campus= $request->campus;
         $talent->talent_current_address = $request->talent_current_address;
         $talent->talent_martial_status = $request->martial_status;
+        $talent->talent_rt_status   = $request->talent_rt;
+        $talent->talent_status   = $request->status;
+        $talent->talent_level = $request->talent_level;
+        $talent->talent_onsite_jakarta = $request->onsite_jakarta;
+        $talent->talent_onsite_jogja = $request->onsite_jogja;
+        $talent->talent_remote = $request->remote;
+        $talent->talent_luar_kota = $request->luar_kota;
+        $talent->talent_focus = $request->focus;
+        $talent->talent_isa = $request->isa;
+        $talent->talent_international = $request->international;
         $talent->talent_rec_salary = $request->recomendation_salary;
         $talent->talent_lastest_salary = $request->lastest_salary;
         $talent->talent_condition = $request->talent_condition;
         $talent->talent_totalexperience = $request->talent_totalexperience;
-        $talent->talent_rt_status   = $request->rt_status;
         $talent->tupdated_date = $now;
         if($nophone===NULL){
             $talent->talent_phone= $request->talent_phone;
@@ -345,7 +354,7 @@ class talentController extends Controller
     }
 
     public function all() {
-    	$data = DB::table('talent')->select('talent_id','talent_address', 'talent_apply', 'talent_created_date', 'talent_name','talent_phone','talent_email','talent_gender','talent_condition', 'talent_date_ready', 'talent_available')
+    	$data = DB::table('talent')->select('talent_id','talent_address', 'talent_apply', 'talent_created_date', 'talent_name','talent_phone','talent_email','talent_gender', 'talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa', 'talent_international','talent_date_ready', 'talent_available')
     							   ->orderBy('talent_id','DESC')->get();
 
       return Datatables::of($data)
@@ -858,11 +867,11 @@ class talentController extends Controller
         $update['talent_salary_jogja'] = preg_replace('/[^0-9]/', '', $request->salary_jogja) ; 
         $update['talent_salary_jakarta'] = preg_replace('/[^0-9]/', '', $request->salary_jakarta) ; 
         $update['talent_prefered_city'] = $request->prefered_city ; 
-        $update['talent_focus'] = $request->focus ; 
-        $update['talent_level'] = $request->level ; 
-        $update['talent_phone'] = $request->phone ; 
+        $update['talent_focus'] = $request->focus; 
+        $update['talent_level'] = $request->talent_level; 
+        $update['talent_phone'] = $request->phone; 
         $update['talent_address'] = $request->address; 
-        $update['talent_rt_status'] = $request->rt_status;
+        $update['talent_rt_status'] = $request->talent_rt_status;
         $update['talent_status'] = $request->status;
         $update['talent_gender'] = $request->gender; 
         $update['talent_phone'] = $request->phone; 
@@ -1237,7 +1246,7 @@ return response()->json($cp);
     public function allAssign() {
 
     	$data = DB::table('talent')
-    	                    ->select('talent.talent_id','talent_address','talent_name','talent_phone','talent_email','talent_gender','talent_condition','talent_date_ready','talent_available','assign_status','assign_desc', 'assign_request.created_at', 'assign_request.request_id', 'company_name', 'request_name', 'request_location', 'assign_request_id','assign_request_status','assign_status_date')
+    	                    ->select('talent.talent_id','talent_address','talent_name','talent_phone','talent_email','talent_gender','talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa','talent_international','talent_date_ready','talent_available','assign_status','assign_desc', 'assign_request.created_at', 'assign_request.request_id', 'company_name', 'request_name', 'request_location', 'assign_request_id','assign_request_status','assign_status_date')
                             ->join('assign_request','assign_request.talent_id','=','talent.talent_id')
                             ->join('request','request.request_id','=','assign_request.request_id')
                             ->join('company','company.company_id','=','request.request_company_id')
