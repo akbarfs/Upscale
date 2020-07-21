@@ -330,7 +330,7 @@ Route::group(['middleware'=>'cek'],function(){
 			Route::get('/list/search','TalentNewController@search');
 			Route::get('/list/filter','TalentNewController@filter');
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
-			Route::get('/mail/{id}','TalentNewController@mail');
+			Route::get('/mail','TalentNewController@mail');
 			Route::get('/mail-backup/{id}','TalentNewController@mailBackup');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			Route::post('/mail-send','TalentNewController@mailSend');

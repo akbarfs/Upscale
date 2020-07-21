@@ -98,9 +98,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-sm-2" style="margin-top:18px;">
-                            <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-success" type="submit" id="search">New Email</button></a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -124,7 +122,7 @@
                     </thead>
                     <tbody>
                 
-                    @foreach ($talent->Talent_log()->orderBy('id','desc')->get() as $t)
+                    @foreach ($talent_log as $t)
                          
                         <tr>
                             <td>{{$t->id}}</td>
@@ -156,9 +154,8 @@
                     @endforeach
                     </tbody>
                 </table>
+                 {{$talent_log->appends(['id' => Request::get('id')])->links()}}
             </div>
-    
-           
       </div>
    </div>
 

@@ -235,7 +235,7 @@
 		  			<i class="fa fa-user-o"></i>
 		  		</a>
 
-		  		<a href="{{url('/admin/talent/mail/'.$talent->talent_id)}}" 
+		  		<a href="{{url('/admin/talent/mail/?id='.$talent->talent_id)}}" 
 		  		class="btn btn-sm btn-primary" target="_blank">
 		  			<i class="fa fa-envelope"></i>
 		  		</a>
