@@ -118,8 +118,8 @@
                                     @endforeach
 
                                     <div class="modal-footer">
-                                    <input type="submit" class="btn btn-primary" value="Edit User" />
-                                     <a href="/admin/masterdata/user" class="btn btn-danger")>Keluar</a>
+                                    <a href="/admin/masterdata/user" class="btn btn-danger")>Back</a>
+                                    <input type="submit" class="btn btn-primary" value="Submit Edit" />
                                     </div>
                                  </form>
                                 </div>

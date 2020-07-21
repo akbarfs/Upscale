@@ -16,7 +16,7 @@ class MasterDataUserController extends Controller
 
     public function index()
     {
-       $users = DB::table('users')->get();
+       $users = DB::table('users')->paginate(10);
     	return view('admin.user',['users' => $users]);
     }
 
@@ -125,6 +125,8 @@ class MasterDataUserController extends Controller
 		return redirect('/admin/masterdata/user')->with('success', 'User Data succesfully deleted.');
     }
 }
+
+
 
 
 

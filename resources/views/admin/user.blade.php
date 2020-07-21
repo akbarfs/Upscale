@@ -20,9 +20,6 @@
     </div>
 </div>
 
-
-
-
 <div class="content mt-3">
         <div class="animated fadeIn">
             <div class="row">
@@ -38,20 +35,30 @@
                             @if($errors->any())
                              <div class="alert alert-danger">Insert Data Error</div>
                             @endif
-
                             <h3>
                                 <strong class="card-title mb-3">User</strong>
                                 <div class="nav nav-pills pull-right">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalInsert">
-                                Insert User Baru
-                                </button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalInsert">
+                                    Insert User Baru
+                                    </button>
                                 </div>
                             </h3>
+
+
+                            <div class="col-md-12">
+                                    Show :
+                                    <input type="checkbox" name="filterUser1" value="admin">
+                                    <label for="admin"> admin</label>
+                                    <input type="checkbox" name="filterUser2" value="user">
+                                    <label for="user"> user </label>
+                            </div>
+
+
                         </div>
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active">
-                                    <table id="user-table" class="table table-striped table-bordered" width="100%">
+                                    <table id="usertable" name="usertable" class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -64,7 +71,10 @@
                                         </thead>
                                         <tbody>
                                         @foreach($users as $p)
-                                        <tr>
+
+
+                                        @if($p->level == 'admin')
+                                        <tr class="admin">
                                         <td>{{ $p->id }}</td>
                                         <td>{{ $p->name }}</td>
                                         <td>{{ $p->username }}</td>
@@ -75,10 +85,27 @@
                 
                                             <a href="/admin/masterdata/user/delete/{{$p->id}}" class="btn btn-danger btn-sm tb" onclick="return confirm('Are you sure to delete this?')">Hapus</a>
                                         </td>
-                                        @endforeach
                                         </tr>
+
+                                        @elseif ($p->level == 'user')
+                                        <tr class="user">
+                                        <td>{{ $p->id }}</td>
+                                        <td>{{ $p->name }}</td>
+                                        <td>{{ $p->username }}</td>
+                                        <td>{{ $p->email }}</td>
+                                        <td>{{ $p->level }}</td>
+                                        <td>
+                                            <a href="/admin/masterdata/user/edit/{{$p->id}}" class="btn btn-primary btn-sm tb" data-idUser="{{$p->id}}" type="button" class="btn-info btn">Edit</a>
+                
+                                            <a href="/admin/masterdata/user/delete/{{$p->id}}" class="btn btn-danger btn-sm tb" onclick="return confirm('Are you sure to delete this?')">Hapus</a>
+                                        </td>
+                                        </tr>
+                                        @endif
+                                        @endforeach
                                         </tbody>
+                                        {{$users->links()}}
                                     </table>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -180,6 +207,25 @@
     </div>
   </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+$(document.body).on('change', "#filterUser1", function() {
+  $("#usertable tr.admin").toggle(this.checked);
+});
+
+$(document.body).on('change', "#filterUser2", function() {
+  $("#usertable tr.user").toggle(this.checked);
+});
+
+</script>
+
+
+
+
+
 
 
 
