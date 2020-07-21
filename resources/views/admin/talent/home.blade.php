@@ -341,16 +341,18 @@
 							var i = 0 ;
 							$(".mailsend").click(function() 
 							{
-								var list_id = [] ; 
-								i = 0 ; 
+								// var list_id = [] ; 
+								// i = 0 ; 
 
-								$('input[name="delid[]"]:checked').each(function() 
-								{
-									list_id.push(this.value); 
-								}); 
+								// $('input[name="delid[]"]:checked').each(function() 
+								// {
+								// 	list_id.push(this.value); 
+								// }); 
 
+								// console.log(list); 
+								// return false ; 
 								$(".mailreport").prepend("<b> send email start process.. <br>");
-								sendMail(list_id,0);
+								sendMail(list,0);
 							});
 
 							function sendMail(list,urutan)
