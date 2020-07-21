@@ -28,6 +28,7 @@ class MemberController extends Controller
     	return view("talent.profile",compact('user','talent'));
     }
 
+
     public function loadRegisterTalent()
     {
         return view("front.register_talent"); 
@@ -322,6 +323,8 @@ class MemberController extends Controller
         $update = Talent::find($talent->talent_id); 
         $update['talent_name'] = $request->name ; 
         $update['talent_phone'] = $request->phone ; 
+        $update['talent_profile_desc'] = $request->about ;
+        $update['talent_foto'] = $request->foto ; 
         $update->save(); 
 
         return back()->with("message","berhasil mengupdate"); 
@@ -346,6 +349,7 @@ class MemberController extends Controller
         $user = User::find($id); 
         $talent = $user->talent()->first();
         $interview = $talent->talent_interviewtest();
+        //dd($user);
         //dd($talent->talent_id);
         //$question = $talent->talent_question();
 

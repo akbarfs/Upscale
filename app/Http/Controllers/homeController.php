@@ -180,6 +180,7 @@ class homeController extends Controller
             
         }
 
+
         // return view('homebase', compact('categories'));
         return view('front.home3');
     }

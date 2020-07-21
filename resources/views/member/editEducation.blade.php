@@ -96,7 +96,7 @@
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Tanggal Mulai</label></div>
                       <div class="col-md-8">
-                        <input type="text" name="edu_start_date[]" class="form-control" placeholder="contoh: 1 januari 2020" value="{{$row->edu_datestart}}">
+                        <input type="month" name="edu_start_date[]" class="form-control" placeholder="contoh: 1 januari 2020" value="{{$row->edu_datestart}}">
                       </div>
                    </div>
                 </div>
@@ -105,7 +105,7 @@
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Tanggal Selesai</label></div>
                       <div class="col-md-8">
-                         <input type="text" name="edu_end_date[]" class="form-control" placeholder="contoh: 1 januari 2020" value="{{$row->edu_dateend}}">
+                         <input type="month" name="edu_end_date[]" class="form-control" placeholder="contoh: 1 januari 2020" value="{{$row->edu_dateend}}">
                       </div>
                    </div>
                 </div>

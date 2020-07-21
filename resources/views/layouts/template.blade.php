@@ -528,7 +528,7 @@
                                     <li class="dropdown">
                                         <a href="{{Request::url()}}">
                                             <!-- <img src="{{url('template/upscale/media/profile.png')}}" alt="" /> -->
-                                            Hello,
+                                            Hello, 
                                         </a>
 
                                         <ul>
