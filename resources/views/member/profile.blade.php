@@ -285,7 +285,25 @@
 								<td><strong>Pengalaman</strong></td>
 								<td><strong>:&nbsp</strong></td>
 								<td>
-									{{Carbon\Carbon::parse($talent->talent_start_career)->age}} Tahun
+									@php 
+
+										if ( $talent->talent_start_career == NULL || $talent->talent_start_career == "0000-00-00")
+										{
+											echo "-";
+										}
+										else
+										{
+											$pengalaman = Carbon\Carbon::parse($talent->talent_start_career)->age ; 
+											if ( $pengalaman == 0 )
+											{
+												echo "< 0 Tahun";
+											}
+											else
+											{
+												echo $pengalaman." Tahun" ; 
+											}
+										}
+									@endphp 
 								</td>
 							</tr>
 	                		<tr>
@@ -791,9 +809,9 @@
 					@if ( $row->test_question->tq_ct_id == 3 )
 						
 						<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px; margin-bottom: 10px; ">
-							<div class="top-item resume-item">
+							<div class="top-item">
 								<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
-								<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
+								<h2 style="font-size: 16px; font-weight: bold">{{$row->test_question->pertanyaan->question_text}}</h2>
 								<p><param>{!! $row->it_answer !!}</param></p>
 							</div>
 						</div>
@@ -849,9 +867,9 @@
 							@if ( $row->test_question->tq_ct_id == $cat->ct_id )
 								
 								<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px;margin-bottom: 10px; ">
-									<div class="top-item resume-item">
+									<div class="top-item">
 										<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
-										<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
+										<h2 style="font-size: 16px; font-weight: bold">{{$row->test_question->pertanyaan->question_text}}</h2>
 										<p><param>{!! $row->it_answer !!}</param></p>
 									</div>
 								</div>

@@ -82,14 +82,17 @@ class TalentNewController extends Controller
         $content = str_replace("#name#",$talent->talent_name, $request->content); 
         $data['content'] = str_replace("#nama#",$talent->talent_name, $content); 
 
+        $insert = new Talent_log; 
+        $id = $insert->log($request->type,$talent_id,['desc'=>'dikirim dari new list talent']); 
+        $data['id'] = $id ; 
+
         Mail::send($view, $data, function ($message) use ($talent,$request,$judul) {
             $message->from('dodi@upscale.id', $request->sender);
             $message->to($talent->talent_email); 
             $message->subject($judul);
         });
 
-        $insert = new Talent_log; 
-        $insert->log($request->type,$talent_id,['desc'=>'dikirim dari new list talent']); 
+        
 
         return response()->json(['status'=>1,'email'=>$talent->talent_email,'message'=>'send berhasil']);
         
@@ -102,9 +105,10 @@ class TalentNewController extends Controller
         //dummy database 
         $talent = (object) [
             'talent_name' => 'Dodi Prakoso Wibowo',
-            'talent_email' => 'dodi@gmail.com',
+            'talent_email' => 'dodi@gmail.com'
         ];
-        return view('mail.'.$view,compact('talent'));
+        $id = 0 ; 
+        return view('mail.'.$view,compact('talent','id'));
     }
 
     public function paginate_data(Request $request)

@@ -33,6 +33,7 @@ Route::get('/help-talent', 'homeController@helpTalent')->name('help-talent');
 Route::get('/faq', 'homeController@faq')->name('faq');
 Route::post('/send-inquiry', 'homeController@sendInquiry')->name('send-inquiry');
 Route::get("/track","homeController@track")->name("mail-tracking");
+Route::get("/log","homeController@log")->name("mail-log");
 
 Route::get('/mailSends','TalentNewController@mailSends');
 
