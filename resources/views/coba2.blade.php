@@ -4,6 +4,8 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{{asset('/admin/css/bootstrap.min.css')}}"> -->
     <title>Document</title>
     <style>
         table {
@@ -12,8 +14,22 @@
     </style>
 </head>
 <body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
-<div class="container">
-                <center><img src="logo-suitcareer.png" alt="" width="20%"></center>  <br>
+<div style="padding:40px;">
+                                                <center>
+                                                @if ($all->talent_foto)
+                                                    @php $random = date("his") @endphp
+                                                    <img src="{{public_path('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar">
+                                                    @else
+                                                    <img src="{{url('img/images.jpg')}}" alt="avatar">
+                                                        <label class=" form-control-label">  </label>
+                                                    </div>
+                                                    <div class="col-12 col-md-8">
+
+                                                    <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
+                                                    @endif                                                 
+                                                </center>
+
+                <!-- <center><img src="logo-suitcareer.png" alt="" width="20%"></center>  <br> -->
                 <p align="center" style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
                     <b>REPORT TALENT</b>
                 </p>
@@ -57,7 +73,7 @@
                         <td id="pengalamankerja">{{$all->talent_totalexperience}}</td>
                     </tr>
                     <tr>
-                        <td ><strong style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><b>NOTICE PERIOD</b></strong></td>
+                        <td ><strong style="padding-left: 10px; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><b>NOTICE PERIOD</b></strong></td>
                         <td id="noticeperiode">
                             @if ($all->talent_available=="no")
                                 {{ucfirst($all->talent_available)}}
@@ -74,10 +90,11 @@
                 </table>
                 </div>
 
-                <p  style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+
+                <p  style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>TALENT SKILL OVERVIEW</b>
                 </p>
-                <table  width="100%"  border="1" id="teknologidanlevel">
+                                                        <table  width="100%"  border="1" id="teknologidanlevel">
                                                                 <tr style="background-color: #ABB4BD">
                                                                     <td align="center"><strong>TECHNOLOGY STACK</strong> </td>
                                                                     <td align="center" width="50%"><strong>LEVEL</strong></td>
@@ -89,53 +106,43 @@
                                                                     </tr>
                                                                 @endforeach
                                                         </table>
-                </div>
+           
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>EXPERIENCE HIGHLIGHT</b>
                 </p>
+
                 <div  id="experiencehighlight">
                                                             @php
                                                                 $getData = DB::table('work_experience')->where('workex_talent_id',$all->talent_id)->get();
                                                             @endphp
                                                             @foreach ($getData as $exper)
                                                         <table width="100%" border="1">
-                                                        
+                                                    
                                                                 <tr>
-                                                                <th scope="col">Office</th>
-                                                                <td>:</td>
-                                                                <td>
-                                                                <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
+                                                                <th style="width:29%; background-color: #ABB4BD">Office</th>
+                                                                <td style="width:70%;  background-color: #ABB4BD">
                                                                     {{$exper->workex_office}}
-                                                                <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                 <th scope="col">Posisition</th>
-                                                                <td>:</td>
                                                                 <td>
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                     {{$exper->workex_position}}
-                                                                    <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                 <th scope="col">Description</th>
-                                                                <td>:</td>
                                                                 <td>
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                      {!! $exper->workex_desc !!}
-                                                                    <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                 <th scope="col">Start Date & End Date</th>
-                                                                <th>:</th>
                                                                 <td>        
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                    
                                                                     @php
                                                                         $start = explode(' ',$exper->workex_startdate);
@@ -146,17 +153,13 @@
                                                                             echo $exper->workex_startdate." - ".$exper->workex_enddate."<br>";
                                                                         }
                                                                     @endphp
-                                                                    <!-- </p> -->
                                                                 </td>
                                                                 </tr>
 
                                                                 <tr>
                                                                 <th scope="col">Project Handled</th>
-                                                                <td>:</td>
                                                                 <td>
-                                                                    <!-- <p style="font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"> -->
                                                                     {!!$exper->workex_handle_project!!}
-                                                                    <!-- </p> -->
                                                                 </tr>
                                                             </table>
                     
@@ -164,33 +167,97 @@
                                                             @endforeach
                                                         </div>  
 
+                                                        <!-- <div  id="experiencehighlight">
+                                                    
+                                                    <table width="100%" border="1">
+                                                  
+                                                        <thead align="center" > 
+                                                            <tr style="background-color: #ABB4BD">
+                                                            <th scope="col">Office</th>
+                                                            <th scope="col">Posisition</th>
+                                                            <th scope="col">Description</th>
+                                                            <th scope="col">Start Date & End Date</th>
+                                                            <th scope="col">Project Handled</th> 
+                                                            </tr>
+                                                        </thead>
+                                                        @php
+                                                            $getData = DB::table('work_experience')->where('workex_talent_id',$all->talent_id)->get();
+                                                        @endphp
+                                                        @foreach ($getData as $exper)
+                                                        <tbody>
+                                                            <tr>
+                                                            <td>
+                                                                {{$exper->workex_office}}
+                                                         
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                {{$exper->workex_position}}
+                                                          
+                                                            </td>
+
+                                                            <td>
+                                                                 {!! $exper->workex_desc !!}
+                                                             
+                                                            </td>
+
+                                                            <td>        
+                                                               
+                                                                @php
+                                                                    $start = explode(' ',$exper->workex_startdate);
+                                                                    $end = explode(' ',$exper->workex_enddate);
+                                                                    if ($start[0]=='0' && $end[0]=='0') {
+                                                                        echo $start[1]." ".$start[2]." - ".$end[1]." ".$end[2]."<br>";
+                                                                    }else{
+                                                                        echo $exper->workex_startdate." - ".$exper->workex_enddate."<br>";
+                                                                    }
+                                                                @endphp
+                                                                
+                                                           
+                                                            </td>
+
+                                                            <td>
+                                                                {!!$exper->workex_handle_project!!}
+                                                           
+                                                            </td>
+                                                            </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    
+                                                        </table>
+                
+                                                            <br>
+                                                     
+                                                    </div> -->
+
+                     
                                         <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>PROJECT HIGHLIGHT</b>
                 </p>
-                <table width="100%" border="1">
-                                                                    @php
+              
+                <div  id="projecthighlight">
+                                                                @php
                                                                       $getdatapor = DB::table('portfolio')->where('portfolio_talent_id',$all->talent_id)->get();
                                                                     @endphp
                                                                     @foreach ($getdatapor as $por)
 
+                                                                <table width="100%" border="1">
+                                                             
                                                                         <tr>
-                                                                            <td>Project Name</td>
-                                                                            <td>:</td>
-                                                                            <td>
+                                                                        <td style="width:29%; background-color: #ABB4BD">Project Name</td>
+                                                                            <td style="width:70%; background-color: #ABB4BD">
                                                                                 {{$por->portfolio_name}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Project Description</td>
-                                                                            <td>:</td>
                                                                             <td>   
                                                                                 {{$por->portfolio_desc}} 
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Teknology Used</td>
-                                                                            <td>:</td>
                                                                             <td>
                                                                                 {{$por->portfolio_tech}}                                                               
                                                                             </td>
@@ -198,15 +265,56 @@
 
                                                                         <tr>
                                                                             <td>Dated Created</td>
-                                                                            <td>:</td>
                                                                             <td>
                                                                                 {{$por->portfolio_startdate.' - '.$por->portfolio_enddate}}
                                                                             </td>
                                                                         </tr>
-                                                                    @endforeach
-                                                                </table>                                                     
+                                                                
+                                                                </table>
+                                                                <br>
+                                                                @endforeach
+                                                            </div>                                                
+               
+                                                                <!-- <table width="100%" border="1"  align="center">
+                                                                 
+                                                                 <thead align="center" style="background-color: #ABB4BD">
+                                                                     <tr>
+                                                                         <td>Project Name</td>
+                                                                         <td>Project Description</td>
+                                                                         <td>Teknology Used</td>
+                                                                         <td>Dated Created</td>
+                                                                     </tr>
+                                                                 </thead>
+                                                                 @php
+                                                                   $getdatapor = DB::table('portfolio')->where('portfolio_talent_id',$all->talent_id)->get();
+                                                                 @endphp
+                                                                 @foreach ($getdatapor as $por)
+                                                                 <tbody align="center">
+                                                      
+                                                                     <tr>
+                                                                         <td>
+                                                                             {{$por->portfolio_name}}
+                                                                         </td>
+                                                                         
+                                                                         <td>   
+                                                                             {{$por->portfolio_desc}} 
+                                                                         </td>
+                                                                         
+                                                                         <td>
+                                                                             {{$por->portfolio_tech}}                                                               
+                                                                         </td>
+                                                                         
+                                                                         <td>
+                                                                             {{$por->portfolio_startdate.' - '.$por->portfolio_enddate}}
+                                                                         </td>
+                                                                     </tr>
+                                                                 
+                                                                 </tbody>
+                                                                 @endforeach
+                                                             </table> -->
+               
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                         <b>EDUCATIONAL BACKGROUND</b>
                 </p>
                 <div align="center">
@@ -241,7 +349,7 @@
                                                                 </table>
                                                             </div>
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
                     <b>LICENSES & CERTIFICATION</b>
                 </p>
                 <table width="100%" border="1">
@@ -287,8 +395,8 @@
                                                                 </table>
 
                 <hr>
-                <p style=" background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
-                        <b>SUITCAREER NOTES</b>
+                <p style=" color: white; padding-left: 10px; background-color: #053D6E; font: 16px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" class="text-white">
+                        <b>UPSCALE NOTES</b>
                 </p>
                 <?php if( isset($all->talent_notes_report_talent) && $all->talent_notes_report_talent!='' ) { ?>
                     <table width=100% border="1" style="border-color: greenyellow">
@@ -303,7 +411,7 @@
                 <br> <br>
                 <table width=100%>
                          <tr style=" background-color: #053D6E;">
-                                <td style="padding-left: 10px" colspan="2" class="text-white"> Further Information </td>
+                                <td style=" color: white; padding-left: 10px  " colspan="2" class="text-white"> Further Information </td>
                          </tr>
                     <tr style="font-size:12px; vertical-align:middle; padding-top:4px;">
                         <td style="padding-left: 0px;">
@@ -321,6 +429,7 @@
                         </td>
                     </tr>
                 </table>
+                </div>
                 </div>
 </body>
 </html>

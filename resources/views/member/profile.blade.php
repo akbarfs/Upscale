@@ -3,6 +3,33 @@
 		
 		<style type="text/css">
 
+				.popup-overlay {
+				/*Hides pop-up when there is no "active" class*/
+				visibility: hidden;
+				position: absolute;
+				background: #ffffff;
+				border: 3px solid #666666;
+				width: 50%;
+				height: 50%;
+				left: 25%;
+				}
+
+				.popup-overlay.active {
+				/*displays pop-up when "active" class is present*/
+				visibility: visible;
+				text-align: center;
+				}
+
+				.popup-content {
+				/*Hides pop-up content when there is no "active" class */
+				visibility: hidden;
+				}
+
+				.popup-content.active {
+				/*Shows pop-up content when "active" class is present */
+				visibility: visible;
+				}
+
 			.biodata { vertical-align: top }
 			.tombol ,.edit
 			{ 
@@ -105,6 +132,12 @@
 			    #button-pricing { font-size: 18px; }
 			}
 
+			.fa-whatsapp {
+			stroke: black;
+			stroke-width: 10;
+			}
+			
+ }
 		</style>
 
 
@@ -133,7 +166,9 @@
 				});
 
 			});
+
 		</script>
+		
         <section id="about" class="about">
             <div class="section-header">
 
@@ -141,7 +176,7 @@
             		<h2>About Me</h2>
 				</div>
 
-				@if ( !$lock && Request::segment(2) == '') 
+				@if (Request::segment(2) == '') 
 					<a class="edit" style="background: green" href="{{url('/member/edit-cv')}}">upload cv</a>
 					<a class="edit" href="{{url('/member/edit-basic-profile')}}">edit</a>
 				@else 
@@ -151,7 +186,7 @@
 						<a href="{{ url('storage/Curriculum Vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
 						 	<i class="fa fa-download" aria-hidden="true"></i> Download CV
 						</a>
-						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green">
+						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green;">
 							<i class="fa fa-phone" aria-hidden="true"></i> Request Interview
 						</a>
 					@endif
@@ -191,12 +226,11 @@
 						Hi, perkenalkan nama saya <b>{{ $nama }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
 					</p>
 
-
 					<hr>
 					<div class="row biodata" style="padding-left:15px">
 						<table class="col-md-6 col-sm-6 col-xs-12">
 							<tr>
-								<td width="40%"><strong>Nama & Kode</strong></td>
+								<td width="40%"><strong>Nama</strong></td>
 								<td><strong>:&nbsp</strong></td>
 								<td style="font-weight: bold;">
 									{{$nama}}
@@ -251,7 +285,25 @@
 								<td><strong>Pengalaman</strong></td>
 								<td><strong>:&nbsp</strong></td>
 								<td>
-									{{Carbon\Carbon::parse($talent->talent_start_career)->age}} Tahun
+									@php 
+
+										if ( $talent->talent_start_career == NULL || $talent->talent_start_career == "0000-00-00")
+										{
+											echo "-";
+										}
+										else
+										{
+											$pengalaman = Carbon\Carbon::parse($talent->talent_start_career)->age ; 
+											if ( $pengalaman == 0 )
+											{
+												echo "< 0 Tahun";
+											}
+											else
+											{
+												echo $pengalaman." Tahun" ; 
+											}
+										}
+									@endphp 
 								</td>
 							</tr>
 	                		<tr>
@@ -298,7 +350,7 @@
 
 	            @endif
 
-	            @if ( !$lock && Request::segment(2) != '')
+	            @if (Request::segment(2) != '')
 					
 					<hr>
 
@@ -386,10 +438,9 @@
 							</div>
 						</div>
 
-						
+						<hr>
 
 						@if ( $talent->talent_price_jakarta )
-						<hr>
 						<div>
 							Penempatan jakarta<br>
 							<b style="font-size: 18px">	
@@ -495,7 +546,7 @@
 
 					<div class="section-header" style="margin: 20px 0 -20px 15px;">
 			             <h2>Skills</h2>
-			             @if ( !$lock && Request::segment(2) == '') 
+			             @if (Request::segment(2) == '') 
 			             <a class="edit" href="{{url('/member/edit-skill')}}">edit</a>
 			             @endif
 		            </div>
@@ -503,15 +554,15 @@
 		            <div style="clear: both;"></div>
 
                 	@foreach($talent->talent_skill()->orderBy('st_score','DESC')->get() as $row )
-						<?php 
-								$skill = $row->skill()->first();
-								$score = $row->st_score;
-								$percent = round( $score )/5 * 100;
-						?>
-						<div class="col-md-4 col-sm-4 col-xs-6 item " style="height: 100px; padding: 20px">
-							<div class="skill-info clearfix">
-								<h3 class="pull-left"> {{$skill->skill_name}}</h3>
-								<span class="pull-right">{{($percent/10)}}</span>
+					<?php 
+							$skill = $row->skill()->first();
+							$score = $row->st_score;
+							$percent = round( $score )/5 * 100;
+					?>
+					<div class="col-md-4 col-sm-4 col-xs-6 item " style="height: 100px; padding: 20px">
+						<div class="skill-info clearfix">
+							<h3 class="pull-left"> {{$skill->skill_name}}</h3>
+							<span class="pull-right">{{($percent/10)}}</span>
 
 								@if($row->st_skill_verified_date)
 									<br> <i class="fa fa-check" style="color: #379CF4"></i>
@@ -532,26 +583,25 @@
 					@endforeach
 				</div>
              </div>
-
         </section>
 		
 		<section id="experience" class="resume">
 			<div class="section-header" style="margin-left: 0">
 				<h2>Work Experience</h2>
-				@if ( !$lock && Request::segment(2) == '') 
+				@if (Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-work')}}">edit</a>
 				@endif 
 			</div>
 			<div class="row" >
 			@foreach($talent->talent_workex()->get() as $row )
-				<div class="col-md-12 col-sm-12 col-xs-12" >
-					<div class="top-item resume-item">
-						<h2>{{ $row->workex_office }}</h2>
-						<span>{{ $row->workex_position }} |  {{ $row->workex_startdate }} - {{ $row->workex_enddate }}</span>
-						<p><param>{!! $row->workex_desc !!}</param></p>
-						<p><param>{!! $row->workex_handle_project !!}</param></p>
-					</div>
-				</div>
+						<div class="col-md-12 col-sm-12 col-xs-12" >
+							<div class="top-item resume-item">
+								<h2>{{ $row->workex_office }}</h2>
+								<span>{{ $row->workex_position }} |  {{ $row->workex_startdate }} - {{ $row->workex_enddate }}</span>
+								<p><param>{!! $row->workex_desc !!}</param></p>
+								<p><param>{!! $row->workex_handle_project !!}</param></p>
+							</div>
+						</div>
 			@endforeach	
 			</div>
 		</section>
@@ -559,7 +609,7 @@
         <section id="education" class="resume">
 			<div class="section-header" style="margin-left: 0">
 				<h2>Education</h2>
-				@if ( !$lock && Request::segment(2) == '') 
+				@if (Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-education')}}">edit</a>
 				@endif
 			</div>
@@ -576,29 +626,26 @@
 			@endforeach	
 			</div>
         </section>
-
-		
 		
 		<section id="works" class="works clearfix">
 			
 			<div class="section-header" style="margin-left: 0">
 				<h2>Portfolio</h2>
-				@if ( !$lock && Request::segment(2) == '') 
+				@if (Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-porto')}}">edit</a>
 				@endif 
 			</div>
 
 			<div style="clear: both;"></div>
 			
-			
 			<div class="item-outer row clearfix">
                 @foreach($talent->talent_portfolio()->get() as $row )
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1" data-sort="value">
-					<div class="item">
-						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image" target="_blank">
+				<div class="col-md-4 col-sm-6 col-xs-6 filtr-item"  data-sort="value">
+					<div class="item popupimage" href="#animatedModal">
+						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}">
 							<div class="title">
 								<div class="inner">
-									<h2>{{ $row->portfolio_name }}</h2>
+									<h2 >{{ $row->portfolio_name }}</h2>
 									<span>{{ $row->portfolio_tech}}</span>
 								</div>
 							</div>
@@ -609,10 +656,73 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
+			</div>
+			
+			<div id="animatedModal">
+				@foreach($talent->talent_portfolio()->get() as $row )
+				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin:10px; padding:5px">
+				<div id="btn-close-modal" class=" fa fa-close fa-lg close-animatedModal" style= "color:rgb(55, 81, 126)" ></div>
+					<div class="row" style=" padding:30px 20px 20px 20px">
+						<div class="col-md-7 col-sm-7">
+							@php $random = date("his") @endphp	
+							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%; margin-top: -30px" >
+						</div>
+						<div class="col-md-5 col-sm-5 col-xs-12" style="text-align: justify; margin-top: -5px">
+							<h2>{{ $row->portfolio_name }}</h2>
+							<table >
+								<tr>
+									<td><strong>Technology Used</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_tech }}</td>
+								</tr>
+								<tr>
+									<td><strong>Project Type</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_tipe_project }}</td>
+								</tr>
+								<tr>
+									<td><strong>Company Name</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_namacompany }}</td>
+								</tr>
+								@if ( $row->portfolio_link)
+								<tr>
+									<td><strong>Link</strong></td>
+									<td><strong>:</strong></td>
+									<td>{{ $row->portfolio_link }}</td>
+								</tr>
+								@endif
+							</table> <br>
+							<span>{{ $row->portfolio_desc }}</span>
+						</div>
+					</div>
+				</div>
+				@endforeach
+			</div>
+
+			<script>
+
+					$(".popupimage").animatedModal({
+						color:'#37517e'
+					});
+
+
+					$(".portos").click(function()
+					{
+						id = $(this).data("id");
+						$(".single-porto").hide(); 
+						$(".porto-"+id).show(); 
+					});
+
+								
+			</script>
+
+
+			
+		
 		</section>
 
-		@if ( $talent->talent_interviewtest()->count() > 0 )
+@if ( $talent->talent_interviewtest()->count() > 0 )
 
 			<!-- UNTUK NGECEK APAKAH UDAH ADA HASIL PENILAIAN PERSONALITY OLEH ADMIN -->
 			@foreach($talent->talent_interviewtest()->get() as $row)
@@ -699,9 +809,9 @@
 					@if ( $row->test_question->tq_ct_id == 3 )
 						
 						<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px; margin-bottom: 10px; ">
-							<div class="top-item resume-item">
+							<div class="top-item">
 								<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
-								<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
+								<h2 style="font-size: 16px; font-weight: bold">{{$row->test_question->pertanyaan->question_text}}</h2>
 								<p><param>{!! $row->it_answer !!}</param></p>
 							</div>
 						</div>
@@ -757,9 +867,9 @@
 							@if ( $row->test_question->tq_ct_id == $cat->ct_id )
 								
 								<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px;margin-bottom: 10px; ">
-									<div class="top-item resume-item">
+									<div class="top-item">
 										<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
-										<h2>{{$row->test_question->pertanyaan->question_text}}</h2>
+										<h2 style="font-size: 16px; font-weight: bold">{{$row->test_question->pertanyaan->question_text}}</h2>
 										<p><param>{!! $row->it_answer !!}</param></p>
 									</div>
 								</div>
@@ -787,7 +897,56 @@
 
 		@endif
 
-		
+
+		<section id="testimonials" class="testimonials">
+			
+			<div class="section-header">
+				<h2>Testimonials</h2>
+			</div>
+
+				<div class="item">
+					<div class="row">
+						<div class="col-md-2 col-sm-2 col-sm-12 ">
+							<div class="thumb">
+							@if ( $talent->talent_foto)
+							@php $random = date("his") @endphp
+									<img src="{{url('storage/photo/'.$talent->talent_foto)}}?v={{$random}}" alt="testimonial-customer">
+									@else
+									<img src="{{url('img/images.jpg')}}" alt="testimonial-customer">
+									@endif
+							</div>
+						</div>
+						<div class="text col-md-10 col-sm-10 col-xs-12">
+						<p style="text-align: justify">
+						 {!! $talent->talent_notes_report_talent !!}</p>
+							<span class="author">-{{ $talent->talent_name }}-</span>
+						</div>
+					</div>
+			</div>
+		</section>
+
+
+
+
+
+
+	{{--	<section id="personality" class="works clearfix">
+			
+			<div class="section-header" style="margin-left: 0">
+				<h2>Personality</h2> 
+			</div>
+
+			<div style="clear: both;"></div>
+			
+			
+		</section>
+
+		--}}
+
+
+
+
+
 
 		<!-- <section id="certification" class="resume">
 			<div class="section-header">

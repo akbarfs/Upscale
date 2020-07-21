@@ -47,6 +47,17 @@ class homeController extends Controller
         $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
         var_dump($arrayResponse); 
     }
+    function log(Request $request)
+    {
+        $id = $request->id ; 
+        if ( $id > 0 )
+        {   
+            $log = Talent_log::findOrFail($id); 
+            $log->tl_last_respon = date("Y-m-d");
+            $log->save();             
+        }
+
+    }
 
     //tracking email , load di email pake <img src='https://upscale.id/track?email={{Email Address}}'
     function track(Request $request)

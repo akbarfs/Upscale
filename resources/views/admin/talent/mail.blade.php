@@ -117,13 +117,14 @@
                         <th scope="col" name="tl_phone">Phone </th>
                         <th scope="col" name="tl_email">Email</th>
                         <th scope="col" name="tl_status">Status Email </th>
+                        <th scope="col" name="tl_status">response </th>
                         <th scope="col" name="tl_desc">Details </th>
                         <th scope="col" name="date">Date </th>
                         </tr>
                     </thead>
                     <tbody>
                 
-                    @foreach ($talent->Talent_log()->get() as $t)
+                    @foreach ($talent->Talent_log()->orderBy('id','desc')->get() as $t)
                          
                         <tr>
                             <td>{{$t->id}}</td>
@@ -133,7 +134,15 @@
                             <td>{{$t->tl_phone}}</td>
                             <td>{{$t->tl_email}}</td>
                             <td>{{$t->tl_email_status}}</td>
+                            <td>{{$t->tl_last_respon}}</td>
                             <td>{{$t->tl_desc}}</td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($t->created_at)->format('D, d-m-Y') }}<br>
+                                <span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+                                        title="member date">
+                                        {{\Carbon\Carbon::createFromTimeStamp(strtotime($t->created_at))->diffForHumans()}}</b>
+                                </span>
+                            </td>
                         </tr>
                       
                     @endforeach

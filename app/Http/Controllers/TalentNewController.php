@@ -13,6 +13,8 @@ use App\Models\Talent;
 use App\Models\Skill;
 use App\Models\Talent_log;
 use App\User;
+use App\Imports\TalentImport;
+use Session;
 
 use App\Exports\TalentExport;
 
@@ -80,14 +82,17 @@ class TalentNewController extends Controller
         $content = str_replace("#name#",$talent->talent_name, $request->content); 
         $data['content'] = str_replace("#nama#",$talent->talent_name, $content); 
 
+        $insert = new Talent_log; 
+        $id = $insert->log($request->type,$talent_id,['desc'=>'dikirim dari new list talent']); 
+        $data['id'] = $id ; 
+
         Mail::send($view, $data, function ($message) use ($talent,$request,$judul) {
             $message->from('dodi@upscale.id', $request->sender);
             $message->to($talent->talent_email); 
             $message->subject($judul);
         });
 
-        $insert = new Talent_log; 
-        $insert->log($request->type,$talent_id,['desc'=>'dikirim dari new list talent']); 
+        
 
         return response()->json(['status'=>1,'email'=>$talent->talent_email,'message'=>'send berhasil']);
         
@@ -100,9 +105,10 @@ class TalentNewController extends Controller
         //dummy database 
         $talent = (object) [
             'talent_name' => 'Dodi Prakoso Wibowo',
-            'talent_email' => 'dodi@gmail.com',
+            'talent_email' => 'dodi@gmail.com'
         ];
-        return view('mail.'.$view,compact('talent'));
+        $id = 0 ; 
+        return view('mail.'.$view,compact('talent','id'));
     }
 
     public function paginate_data(Request $request)
@@ -312,5 +318,31 @@ class TalentNewController extends Controller
         return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
        
     }
+
+    public function import(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_importExcel di dalam folder public
+		$file->move('file_importExcel',$nama_file);
+ 
+		// import data
+		Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data Excel Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return view('admin.talent.home');
+	}
 
 }
