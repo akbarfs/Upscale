@@ -248,8 +248,7 @@
                                         <label class=" form-control-label"> Start Career</label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                        <p class="form-control-static" style="margin-bottom: 0px;">
-                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                        <p class="form-control-static" style="margin-bottom: 0px;"><strong id='ttl'>
                                                 {{$all->talent_start_career}}
                                             </strong>
                                         </p>
@@ -359,7 +358,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
+                                <!-- <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">date ready</label>
                                     </div>
@@ -370,7 +369,7 @@
                                             </strong>
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row form-group">
                                     <div class="col col-md-4">
@@ -789,7 +788,7 @@
                             <div class="card-body">
                                 <div class="col-md-4">
                                     @if($all->talent_date_ready!=null)
-                                    {{ date("D, d-M-Y", strtotime($all->talent_date_ready)) }}
+                                    {{ date("D, dd/MM/YY", strtotime($all->talent_date_ready)) }}
                                     @elseif($all->talent_date_ready==null)
                                     <strong class="text-danger">Not Set</strong>
                                     @endif
@@ -2270,7 +2269,7 @@
                                     @endif   
 
                                     <label for="text-input" class=" form-control-label">Date Ready</label>
-                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="" class="form-control">
+                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="dd/mm/yyyy" class="form-control">
 
                                     <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
                                     <select name="onsite_jakarta" class="custom-select">
@@ -4291,6 +4290,19 @@ $(document).on('click', 'a[href="#v-pills-talent"]', function(e){
      });
 
 
+     $(document).ready(function(){
+        var tanggal_mulai = "{{$all->talent_start_career}}";
+        $('#ttl').text("{{$all->talent_start_career}}" + ", " + moment(tanggal_mulai, 'YYYY-MM-DD, h:m:s').locale('id').format('MMMM Do YYYY'));
+        $('#jobs_apply_expected_salary').autoNumeric('init');
+        $('#jobs_apply_expected_salary').autoNumeric('set', "{{$all->talent_salary}}");
+    });
+
+     $(function() {
+       $('#talent_start_career').datetimepicker({
+        'format' : "DD/MM/YYYY",
+        });
+     });
+
 
     $(document).on('click', '#save', function(){
 
@@ -4300,9 +4312,10 @@ $(document).on('click', 'a[href="#v-pills-talent"]', function(e){
     var talent_condition      = $('#talent_condition');
     var talent_gender         = $('#talent_gender');
     var talent_salary         = $('#talent_salary');
-    var talent_totalexperience         = $('#talent_totalexperience');
+    var talent_totalexperience = $('#talent_totalexperience');
     var talent_birth_date     = $('#talent_birth_date');
     var talent_place_of_birth = $('#talent_place_of_birth');
+    var talent_start_career   = $('#talent_start_career');
     var talent_address        = $('#talent_address');
     var talent_rt_status      = $('#talent_rt_status');
 
@@ -4568,6 +4581,14 @@ $(document).on('click', '.tambah_skill', function(e){
         'format' : "DD/MM/YYYY",
         });
     </script>
+
+    <script>
+
+    $('#talent_start_career').datetimepicker({
+    'format' : "DD/MM/YYYY",
+    });
+    </script>
+
     <script type="text/javascript">
         $('.js-example-basic-single').select2();
     </script>

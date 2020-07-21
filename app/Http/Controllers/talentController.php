@@ -176,6 +176,7 @@ class talentController extends Controller
         $talent->talent_address= $request->talent_address;
         $talent->talent_prefered_location = $request->talent_prefered_location;
         $talent->talent_birth_date= $request->talent_birth_date;
+        $talent->talent_start_career= $request->talent_start_career;
         $talent->talent_location_id= $request->talent_current_addres;
         $talent->talent_place_of_birth= $request->talent_place_of_birth;
         $talent->talent_gender= $request->talent_gender;
@@ -354,7 +355,7 @@ class talentController extends Controller
     }
 
     public function all() {
-    	$data = DB::table('talent')->select('talent_id','talent_address', 'talent_apply', 'talent_created_date', 'talent_name','talent_phone','talent_email','talent_gender', 'talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa', 'talent_international','talent_date_ready', 'talent_available')
+    	$data = DB::table('talent')->select('talent_id','talent_address', 'talent_apply', 'talent_created_date', 'talent_name','talent_phone','talent_email','talent_gender', 'talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa', 'talent_international','talent_date_ready', 'talent_start_career','talent_available')
     							   ->orderBy('talent_id','DESC')->get();
 
       return Datatables::of($data)
@@ -1246,7 +1247,7 @@ return response()->json($cp);
     public function allAssign() {
 
     	$data = DB::table('talent')
-    	                    ->select('talent.talent_id','talent_address','talent_name','talent_phone','talent_email','talent_gender','talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa','talent_international','talent_date_ready','talent_available','assign_status','assign_desc', 'assign_request.created_at', 'assign_request.request_id', 'company_name', 'request_name', 'request_location', 'assign_request_id','assign_request_status','assign_status_date')
+    	                    ->select('talent.talent_id','talent_address','talent_name','talent_phone','talent_email','talent_gender','talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa','talent_international','talent_date_ready','talent_start_career','talent_available','assign_status','assign_desc', 'assign_request.created_at', 'assign_request.request_id', 'company_name', 'request_name', 'request_location', 'assign_request_id','assign_request_status','assign_status_date')
                             ->join('assign_request','assign_request.talent_id','=','talent.talent_id')
                             ->join('request','request.request_id','=','assign_request.request_id')
                             ->join('company','company.company_id','=','request.request_company_id')
