@@ -134,7 +134,15 @@
                             <td>{{$t->tl_phone}}</td>
                             <td>{{$t->tl_email}}</td>
                             <td>{{$t->tl_email_status}}</td>
-                            <td>{{$t->tl_last_respon}}</td>
+                            <td>
+                                @if ( $t->tl_last_respon)
+                                {{ \Carbon\Carbon::parse($t->tl_last_respon)->format('D, d-m-Y') }}<br>
+                                <span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+                                        title="member date">
+                                        {{\Carbon\Carbon::createFromTimeStamp(strtotime($t->tl_last_respon))->diffForHumans()}}</b>
+                                </span>
+                                @endif
+                            </td>
                             <td>{{$t->tl_desc}}</td>
                             <td>
                                 {{ \Carbon\Carbon::parse($t->created_at)->format('D, d-m-Y') }}<br>

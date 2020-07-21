@@ -14,7 +14,7 @@ class UpgradeMailLog extends Migration
     public function up()
     {
          Schema::table('talent_logs', function (Blueprint $table) {
-            $table->date('tl_last_respon')->after('tl_email_status')->nullable();
+            $table->datetime('tl_last_respon')->after('tl_email_status')->nullable();
         });
     }
 
