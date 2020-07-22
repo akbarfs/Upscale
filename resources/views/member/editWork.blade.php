@@ -80,7 +80,7 @@
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Tanggal Mulai</label></div>
                       <div class="col-md-8">
-                         <input type="date" name="tglmulai[]" class="form-control" placeholder="contoh : 1 januari 2000" value="{{$row->workex_startdate}}">
+                         <input type="text" name="tglmulai[]" class="form-control" placeholder="contoh : 1 januari 2000" value="{{$row->workex_startdate}}">
                       </div>
                    </div>
                 </div>
@@ -89,7 +89,7 @@
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Tanggal Selesai</label></div>
                       <div class="col-md-8">
-                         <input type="date" name="tglselesai[]" class="form-control" placeholder="contoh : 1 januari 2010" value="{{$row->workex_enddate}}">
+                         <input type="text" name="tglselesai[]" class="form-control" placeholder="contoh : 1 januari 2010" value="{{$row->workex_enddate}}">
                       </div>
                    </div>
                 </div>

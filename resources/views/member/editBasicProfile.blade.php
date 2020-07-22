@@ -35,7 +35,7 @@
                <div class="row">
                   <div class="col-md-4"><label for="Name">Photo</label></div>
                   <div class="col-md-8">
-                        <input type="image" id="myFile" name="foto"  style="width:220px">
+                        <input type="file" id="myFile" name="filename"  style="width:220px">
                         @if ($errors->has('filename'))
                             @foreach ($errors->get('filename') as $error)
                             <div class="alert alert-danger"><i>{{$error}}</i></div>
@@ -84,14 +84,6 @@
                   </div>
                </div>
             </div>
-
-            <div class="form-group">
-               <div class="row">
-                  <div class="col-md-4"><label for="Address">About Me</label></div>
-                  <div class="col-md-8"><input type="text" name="about" class="form-control" placeholder="" value="{{ $talent->talent_profile_desc}}"></div>
-               </div>
-            </div>
-
             <div class="form-group">
                <div class="row">
                   <div class="col-md-4"><label for="Number">PHONE</label></div>

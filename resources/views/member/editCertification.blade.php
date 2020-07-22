@@ -24,12 +24,6 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
           <script type="text/javascript">
-
-               $("#datepicker").datepicker( {
-                  format: " yyyy",
-                  viewMode: "years", 
-                  minViewMode: "years"
-               });
             
               $(document).ready(function()
               {
@@ -86,7 +80,7 @@
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Certification Years</label></div>
                       <div class="col-md-8">
-                         <input type="text" id="datepicker" name="years[]" class="form-control" placeholder="Certification Years" value="{{$row->certif_years}}">
+                         <input type="text" name="years[]" class="form-control" placeholder="Certification Years" value="{{$row->certif_years}}">
                          </input>
                       </div>
                    </div>
@@ -124,11 +118,10 @@
                    <div class="row">
                       <div class="col-md-4"><label for="Name">Certification Expired</label></div>
                       <div class="col-md-8">
-                        <input type="text" id="datepicker" name="expired[]" class="form-control" placeholder="contoh: januari 2020" value="{{$row->certif_expired}}">
+                        <input type="text" name="expired[]" class="form-control" placeholder="contoh: januari 2020" value="{{$row->certif_expired}}">
                       </div>
                    </div>
                    </div>
-                   
 
                    <div class="form-group">
                    <div class="row">

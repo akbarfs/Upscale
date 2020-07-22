@@ -55,22 +55,12 @@
         <div class="avatar">
 		<img src="{{url('template/upscale/media/images.jpg')}}" alt="avatar">
         </div>
-
-		<!--
-
-		<div class="avatar">
-		<img src="{{ url('storage/Photo/'.$talent->talent_foto) }}" alt="avatar">
-        </div>
-		-->
         
         <div class="name">
         @if($talent)
 		<?php $originalDate = $talent->talent_date_ready ;
 		$newDate = date("l, j F Y", strtotime($originalDate)); ?>
 			<h1>{{ $talent->talent_name }}</h1>
-			<h1>{{ $talent->talent_foto }}</h1>
-
-			
             <span>Ready : {{ $newDate }}</span>
             @endif
 		</div>

@@ -18,10 +18,7 @@
 
             <div class="intro" id="about">
                  @if($talent)
-				 <p>{{ $talent->talent_profile_desc}}</p>
-				<!--
 				<p>Hello, My name is {{ $talent->talent_name }}. Lorem ipsum dolor sit amet, usu sumo dicant vulputate in. Quando fabellas adipiscing nam an. An vis congue oporteat, no eros facer suavitate eos. An debet affert aliquid ius. Veritus placerat est ea, est ne nominavi suscipit maluisset.</p>
-				-->
 				<br>
 				<div class="row" style="padding-left:15px">
 					<table class="col-md-6 col-sm-6 col-xs-6">
