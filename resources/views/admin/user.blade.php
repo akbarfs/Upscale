@@ -43,14 +43,16 @@
                                     </button>
                                 </div>
                             </h3>
-
-
                             <div class="col-md-12">
-                                    Show :
-                                    <input type="checkbox" name="filterUser1" value="admin">
-                                    <label for="admin"> admin</label>
-                                    <input type="checkbox" name="filterUser2" value="user">
-                                    <label for="user"> user </label>
+                                <form>
+                                    <select id="levelFilter" class="custom-select" name="levelFilter">
+                                    <option selected  > </option>
+                                    <option value="admin">admin</option>
+                                    <option value="user">user</option>
+                                    </select>
+
+                                    <input type="submit" class="btn btn-primary" value="Search" style="float:left;"/>
+                                </form>
                             </div>
 
 
@@ -70,11 +72,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($users as $p)
-
-
-                                        @if($p->level == 'admin')
-                                        <tr class="admin">
+                                        @foreach($users as $p)                                 
                                         <td>{{ $p->id }}</td>
                                         <td>{{ $p->name }}</td>
                                         <td>{{ $p->username }}</td>
@@ -86,21 +84,6 @@
                                             <a href="/admin/masterdata/user/delete/{{$p->id}}" class="btn btn-danger btn-sm tb" onclick="return confirm('Are you sure to delete this?')">Hapus</a>
                                         </td>
                                         </tr>
-
-                                        @elseif ($p->level == 'user')
-                                        <tr class="user">
-                                        <td>{{ $p->id }}</td>
-                                        <td>{{ $p->name }}</td>
-                                        <td>{{ $p->username }}</td>
-                                        <td>{{ $p->email }}</td>
-                                        <td>{{ $p->level }}</td>
-                                        <td>
-                                            <a href="/admin/masterdata/user/edit/{{$p->id}}" class="btn btn-primary btn-sm tb" data-idUser="{{$p->id}}" type="button" class="btn-info btn">Edit</a>
-                
-                                            <a href="/admin/masterdata/user/delete/{{$p->id}}" class="btn btn-danger btn-sm tb" onclick="return confirm('Are you sure to delete this?')">Hapus</a>
-                                        </td>
-                                        </tr>
-                                        @endif
                                         @endforeach
                                         </tbody>
                                         {{$users->links()}}
@@ -212,20 +195,69 @@
 
 
 <script type="text/javascript">
-$(document.body).on('change', "#filterUser1", function() {
-  $("#usertable tr.admin").toggle(this.checked);
-});
+    $(document).ready(function()
+    {
+      //mengambil data tanggal
+      $( "#datepicker" ).datepicker();
 
-$(document.body).on('change', "#filterUser2", function() {
-  $("#usertable tr.user").toggle(this.checked);
-});
+      //function load table
+      function loadTable(url)
+      {
+        var param = $("#form-search").serialize();
+
+        $('#loading').show();
+        $("#pembungkus").html('');
+
+        
+        $.ajax({
+          url:url+"&"+param,
+          method:"GET",
+          success:function(data)
+          {
+            $('#loading').hide();
+            $("#pembungkus").html(data);
+          }
+        });
+      }
+
+      
+      //load pertama kali
+      loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
+
+      //klik pagination , diambil urlnya langsung di load ajax
+      $(document).on("click",".page-link",function(event) {
+        $( "body" ).scrollTop( 0 );
+        var url = $(this).attr("href");
+        loadTable(url);
+        event.preventDefault(); //ini biar ga keredirect ke halaman lain 
+      });
+
+      //search 
+      $("#form-search").submit(function()
+      { 
+        loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
+        return false;
+      });
+
+      //klikk all / non-member / member 
+      $("#non-member").click(function() 
+      {
+        $("select[name='status_member']").val("non-member");
+        $("#form-search").submit();
+      });
+
+      $("#member").click(function() 
+      {
+        $("select[name='status_member']").val("member");
+        $("#form-search").submit();
+      });
+
+      $("#all").click(function() 
+      {
+        $("select[name='status_member']").val("all");
+        $("#form-search").submit();
+      });
+    });
+  });
 
 </script>
-
-
-
-
-
-
-
-

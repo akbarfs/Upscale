@@ -16,7 +16,7 @@ class MasterDataUserController extends Controller
 
     public function index()
     {
-       $users = DB::table('users')->paginate(10);
+       $users = DB::table('users')->paginate(5);
     	return view('admin.user',['users' => $users]);
     }
 

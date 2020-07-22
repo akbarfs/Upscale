@@ -117,9 +117,9 @@
 
                                     @endforeach
 
-                                    <div class="modal-footer">
-                                    <a href="/admin/masterdata/user" class="btn btn-danger")>Back</a>
-                                    <input type="submit" class="btn btn-primary" value="Submit Edit" />
+                                    <div style="padding-top:50px;padding-bottom: 30px;">
+                                    <a href="/admin/masterdata/user" class="btn btn-danger">Back</a>
+                                    <input type="submit" class="btn btn-primary" value="Submit Edit" style="float:right"/>
                                     </div>
                                  </form>
                                 </div>
@@ -133,3 +133,5 @@
         </div> 
 </div>
 @endsection
+
+
