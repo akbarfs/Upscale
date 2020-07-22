@@ -15,6 +15,8 @@ use App\Models\Talent_log;
 use App\User;
 use App\Imports\TalentImport;
 use Session;
+use File;
+use Response;
 
 use App\Exports\TalentExport;
 
@@ -319,6 +321,8 @@ class TalentNewController extends Controller
        
     }
 
+
+
     public function import(Request $request) 
 	{
 		// validasi
@@ -335,14 +339,42 @@ class TalentNewController extends Controller
 		// upload ke folder file_importExcel di dalam folder public
 		$file->move('file_importExcel',$nama_file);
  
+        
 		// import data
-		Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file));
+        try 
+        {
+            $cek = Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file));
+            File::delete(public_path('file_importExcel/'.$nama_file));
+
+            Session::flash('sukses','Data Excel Berhasil Diimport!');
+            
+        } 
+        catch (\Maatwebsite\Excel\Validators\ValidationException $e) 
+        {
+            $failures = $e->failures();
+            foreach ($failures as $failure) 
+            {
+                 // $failure->row(); // row that went wrong
+                 // $failure->attribute(); // either heading key (if using heading row concern) or column index
+                 // $failure->errors(); // Actual error messages from Laravel validator
+                 // $failure->values(); // The values of the row that has failed.
+                // dd($failure->values()['email']) ; 
+                Session::flash('gagal',"gagal import database ".$failure->values()['email']." sudah ada di database");
+            }
+            
+        }
  
-		// notifikasi dengan session
-		Session::flash('sukses','Data Excel Berhasil Diimport!');
- 
+        // File::delete(public_path('data_file/'.$nama_file->file));     
+
 		// alihkan halaman kembali
-		return view('admin.talent.home');
-	}
+		return redirect("admin/talent/list");
+    }
+    
+    public function download(){
+
+        $file=public_path(). "/file_importExcel/template.xlsx";
+
+        return Response::download($file);
+    }
 
 }

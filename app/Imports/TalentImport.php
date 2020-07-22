@@ -6,8 +6,9 @@ use App\Models\Talent;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class TalentImport implements ToModel, WithHeadingRow
+class TalentImport implements ToModel, WithHeadingRow, WithValidation
 {
     /**
     * @param array $row
@@ -34,4 +35,14 @@ class TalentImport implements ToModel, WithHeadingRow
     // {
     //     return 1;
     // }
+
+    public function rules(): array
+    {
+        return [
+            // 'nama' => 'unique:talent,talent_name',
+            // 'no_wa' => 'unique:talent,talent_phone',
+            'email' => 'unique:talent,talent_email',
+        ];
+    }
+
 }

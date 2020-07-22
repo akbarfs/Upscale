@@ -242,21 +242,30 @@
 	@endif
 
 
-			<!-- notif import -->
-			{{-- notifikasi form validasi --}}
-		@if ($errors->has('file'))
-		<span class="invalid-feedback" role="alert">
-			<strong>{{ $errors->first('file') }}</strong>
-		</span>
-		@endif
- 
-		{{-- notifikasi sukses --}}
-		@if ($sukses = Session::get('sukses'))
-		<div class="alert alert-success alert-block">
-			<button type="button" class="close" data-dismiss="alert">×</button> 
-			<strong>{{ $sukses }}</strong>
-		</div>
-		@endif
+	<!-- notif import -->
+	{{-- notifikasi form validasi --}}
+	@if ($errors->has('file'))
+	<span class="invalid-feedback" role="alert">
+		<strong>{{ $errors->first('file') }}</strong>
+	</span>
+	@endif
+
+	{{-- notifikasi gagal --}}
+	@if ($gagal = Session::get('gagal'))
+	<div class="alert alert-danger alert-block">
+	<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong>{{ $gagal }}</strong>
+	</div>
+	@endif
+
+
+	{{-- notifikasi sukses --}}
+	@if ($sukses = Session::get('sukses'))
+	<div class="alert alert-success alert-block">
+		<button type="button" class="close" data-dismiss="alert">×</button> 
+		<strong>{{ $sukses }}</strong>
+	</div>
+	@endif
 
 
 		
@@ -301,10 +310,14 @@
 							{{ csrf_field() }}
  
 							<label>Pilih file excel</label>
+						
 							<div class="form-group">
 								<input type="file" name="file" required="required">
 							</div>
- 
+						
+							<a href="list/download" class="btn btn-large pull-left"> Download Template Excel </a>
+						
+							
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
