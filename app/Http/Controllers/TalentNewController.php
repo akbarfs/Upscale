@@ -37,10 +37,19 @@ class TalentNewController extends Controller
         return view('admin.talent.home');
     }
 
-    function mail($talent_id)
+    function mail(Request $request)
     {
-        $talent = Talent::findOrFail($talent_id);
-        return view("admin.talent.mail",compact('talent'));
+        $talent_id = $request->id ;
+        $talent_log = Talent_log::orderBy("id","DESC");
+
+        if ( $talent_id>0)
+        {
+            $talent_log->where('tl_talent_id',$talent_id);
+        }
+
+        $talent_log = $talent_log->paginate(5); 
+
+        return view("admin.talent.mail",compact('talent_log'));
     }
 
     function createTypeEmail($id)

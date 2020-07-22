@@ -53,7 +53,7 @@ class homeController extends Controller
         if ( $id > 0 )
         {   
             $log = Talent_log::findOrFail($id); 
-            $log->tl_last_respon = date("Y-m-d");
+            $log->tl_last_respon = date("Y-m-d H:i:s");
             $log->save();             
         }
 

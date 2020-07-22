@@ -231,17 +231,15 @@
                 data: $('#talent-update-profile').serialize(),
                 success: function(data)
                 {
-                    $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar, silahkan lengkapi data diri anda agar kami dapat mengenal core kompetensi anda, <a href='{{url('/profile')}}'>klik disini</a> ");
+                    $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar<br><br> Apabila anda sedang mencari kerja silahkan apply di halaman jobs ( <a href='{{url('jobs')}}' target='_blank'>klik disini</a> )<br><br>Untuk mendapatkan oportunity lain, silahkan lengkapi profile anda di <a href='{{url('/profile')}}' target='_blank'> halaman profile</a> agar kami dapat mengenali anda lebih baik");
                     $('#login-form').trigger("reset");
                     $(".modal-footer").hide(); 
                     $(".question_box").removeClass('show_box'); 
                     $(".registerTalent").hide(); 
 
-                    
-
-                    setTimeout(function () {
-                              window.location.href = "{{url('/profile')}}" ; 
-                    }, 3000);
+                    // setTimeout(function () {
+                    //           window.location.href = "{{url('/profile')}}" ; 
+                    // }, 3000);
 
                     // if ( typeof redirect != 'undefined' )
                     // {

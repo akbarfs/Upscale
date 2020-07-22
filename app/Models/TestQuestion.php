@@ -19,11 +19,11 @@ class TestQuestion extends Model
 
     public function pertanyaan()
     {
-        return $this->hasOne('App\models\QuestionModels','question_id','tq_question_id');
+        return $this->hasOne('App\Models\QuestionModels','question_id','tq_question_id');
     }
 
     public function katagori()
     {
-        return $this->hasOne('App\models\CategoryTest','ct_id','tq_ct_id');
+        return $this->hasOne('App\Models\CategoryTest','ct_id','tq_ct_id');
     }
 }

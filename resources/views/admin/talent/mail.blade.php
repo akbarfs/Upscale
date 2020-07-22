@@ -98,9 +98,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-sm-2" style="margin-top:18px;">
-                            <a href="{{url('/admin/talent/mail-backup/'.$talent->talent_id)}}"><button class="btn btn-success" type="submit" id="search">New Email</button></a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -124,7 +122,7 @@
                     </thead>
                     <tbody>
                 
-                    @foreach ($talent->Talent_log()->orderBy('id','desc')->get() as $t)
+                    @foreach ($talent_log as $t)
                          
                         <tr>
                             <td>{{$t->id}}</td>
@@ -134,7 +132,15 @@
                             <td>{{$t->tl_phone}}</td>
                             <td>{{$t->tl_email}}</td>
                             <td>{{$t->tl_email_status}}</td>
-                            <td>{{$t->tl_last_respon}}</td>
+                            <td>
+                                @if ( $t->tl_last_respon)
+                                {{ \Carbon\Carbon::parse($t->tl_last_respon)->format('D, d-m-Y') }}<br>
+                                <span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
+                                        title="member date">
+                                        {{\Carbon\Carbon::createFromTimeStamp(strtotime($t->tl_last_respon))->diffForHumans()}}</b>
+                                </span>
+                                @endif
+                            </td>
                             <td>{{$t->tl_desc}}</td>
                             <td>
                                 {{ \Carbon\Carbon::parse($t->created_at)->format('D, d-m-Y') }}<br>
@@ -148,9 +154,8 @@
                     @endforeach
                     </tbody>
                 </table>
+                 {{$talent_log->appends(['id' => Request::get('id')])->links()}}
             </div>
-    
-           
       </div>
    </div>
 
