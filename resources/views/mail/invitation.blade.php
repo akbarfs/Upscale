@@ -107,7 +107,7 @@
                   <div style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;clear:both;" ></div>
                   <div class="terimakasih" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;float:left;width:50%;" >
                      <br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Terimakasih,<br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ><br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
-                     <img src="https://upscale.id/dodi-small.jpg" 
+                     <img src="https://upscale.id/arief-small.jpg" 
                       
                      align="left" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;border-radius:100%;width:50px;margin-right:20px;-ms-interpolation-mode:bicubic;" >
                      Community Division<br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
