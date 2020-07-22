@@ -16,6 +16,8 @@ use App\User;
 use App\Imports\TalentImport;
 use Session;
 use File;
+use Response;
+
 use App\Exports\TalentExport;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -289,6 +291,8 @@ public function insertData(Request $request){
        
     }
 
+
+
     public function import(Request $request) 
 	{
 		// validasi
@@ -305,13 +309,18 @@ public function insertData(Request $request){
 		// upload ke folder file_importExcel di dalam folder public
 		$file->move('file_importExcel',$nama_file);
  
+        
 		// import data
 		if(Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file))){
             File::delete(public_path('file_importExcel/'.$nama_file));
+            // notifikasi dengan session
+            Session::flash('sukses','Data Excel Berhasil Diimport!');
+        }else{
+            Session::flash('gagal','Data Excel Gagal Diimport!');
         }
  
-		// notifikasi dengan session
-		Session::flash('sukses','Data Excel Berhasil Diimport!');
+		
+		
  
         // File::delete(public_path('data_file/'.$nama_file->file));
       
@@ -319,6 +328,13 @@ public function insertData(Request $request){
 
 		// alihkan halaman kembali
 		return view('admin.talent.home');
-	}
+    }
+    
+    public function download(){
+
+        $file=public_path(). "/file_importExcel/template.xlsx";
+
+        return Response::download($file);
+    }
 
 }

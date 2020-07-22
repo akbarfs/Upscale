@@ -343,6 +343,8 @@ Route::group(['middleware'=>'cek'],function(){
 			//end adi
 			Route::post('/list/import', 'TalentNewController@import');
 
+			Route::get('/list/download', 'TalentNewController@download');
+
 			Route::get('/', 'talentController@index')->name('talent.index');
 
 			//Route Talent List
