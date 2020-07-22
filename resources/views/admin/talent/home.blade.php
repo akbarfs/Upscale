@@ -39,12 +39,12 @@
 
 							<a class="nav-item nav-link" data-toggle="tab" href="#quarantine" role="tab" aria-controls="nav-profile" aria-selected="false" value="quarantine" id="non-member">
 								<strong>Non-Member</strong>
-								<span class="badge badge-primary">99</span>
+								<span class="badge badge-primary">{{$nonmember}}</span>
 							</a>
 
 							<a class="nav-item nav-link show" data-toggle="tab" href="#assign" role="tab" aria-controls="nav-profile" aria-selected="true" value="assign" id="member">
-								<strong>Member</strong>
-								<span class="badge badge-primary">25</span>
+								<strong>Ready</strong>
+								<span class="badge badge-primary">{{$member}}</span>
 							</a>
 
 						</div>
@@ -289,6 +289,10 @@
         </div>
 		<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
 
+		Total : {{$total}}<br>
+		member : {{$member}}<br>
+		non-member : {{$nonmember}}<br>
+		invitation : {{$invitation}}<br>
 
 	
 	</form>
@@ -539,11 +543,21 @@
 			//klikk all / non-member / member 
 			$("#non-member").click(function() {
 				$("select[name='status_member']").val("non-member");
+				$("select[name='order']").val("talent_mail_invitation");
+				$("input[name='mail_invitation']").prop("checked", true);
+				$("input[name='date_ready']").prop("checked", false);
+				$("input[name='active']").prop("checked", false);
+				$("input[name='focus']").prop("checked", false);
 				$("#search").click();
 			});
 
 			$("#member").click(function() {
 				$("select[name='status_member']").val("member");
+				$("input[name='date_ready']").prop("checked", true);
+				$("input[name='active']").prop("checked", true);
+				$("select[name='order']").val("talent_last_active");
+				$("input[name='mail_invitation']").prop("checked", false);
+				$("input[name='focus']").prop("checked", true);
 				$("#search").click();
 			});
 

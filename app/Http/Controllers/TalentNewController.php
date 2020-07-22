@@ -33,8 +33,11 @@ class TalentNewController extends Controller
 
     public function show()
     {
-
-        return view('admin.talent.home');
+        $total  = DB::table('talent')->count();
+        $member  = DB::table('talent')->where("user_id",">","0")->count();
+        $nonmember  = DB::table('talent')->where("user_id","0")->count();
+        $invitation  = DB::table('talent')->where("talent_mail_invitation",">","0")->count();
+        return view('admin.talent.home',compact('total','member','nonmember','invitation'));
     }
 
     function mail(Request $request)
@@ -187,7 +190,7 @@ class TalentNewController extends Controller
                 $data->orderBy("talent_id","DESC");
             }
             $data->groupBy("talent_id");
-            $data = $data->paginate(10);
+            $data = $data->paginate(5);
 
             //$query = DB::getQueryLog(); dd($query);
 
