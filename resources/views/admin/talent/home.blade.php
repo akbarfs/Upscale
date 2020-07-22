@@ -224,30 +224,30 @@
 	@endif
 
 
-			<!-- notif import -->
-			{{-- notifikasi form validasi --}}
-		@if ($errors->has('file'))
-		<span class="invalid-feedback" role="alert">
-			<strong>{{ $errors->first('file') }}</strong>
-		</span>
-		@endif
+	<!-- notif import -->
+	{{-- notifikasi form validasi --}}
+	@if ($errors->has('file'))
+	<span class="invalid-feedback" role="alert">
+		<strong>{{ $errors->first('file') }}</strong>
+	</span>
+	@endif
 
-		{{-- notifikasi gagal --}}
-		@if ($gagal = Session::get('gagal'))
-		<div class="alert alert-danger alert-block">
-		<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong>{{ $gagal }}</strong>
-		</div>
-		@endif
- 
- 
-		{{-- notifikasi sukses --}}
-		@if ($sukses = Session::get('sukses'))
-		<div class="alert alert-success alert-block">
-			<button type="button" class="close" data-dismiss="alert">×</button> 
-			<strong>{{ $sukses }}</strong>
-		</div>
-		@endif
+	{{-- notifikasi gagal --}}
+	@if ($gagal = Session::get('gagal'))
+	<div class="alert alert-danger alert-block">
+	<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong>{{ $gagal }}</strong>
+	</div>
+	@endif
+
+
+	{{-- notifikasi sukses --}}
+	@if ($sukses = Session::get('sukses'))
+	<div class="alert alert-success alert-block">
+		<button type="button" class="close" data-dismiss="alert">×</button> 
+		<strong>{{ $sukses }}</strong>
+	</div>
+	@endif
 
 
 		

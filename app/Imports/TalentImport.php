@@ -38,11 +38,11 @@ class TalentImport implements ToModel, WithHeadingRow, WithValidation
 
     public function rules(): array
     {
-    return [
-        // 'nama' => 'unique:talent,talent_name',
-        // 'no_wa' => 'unique:talent,talent_phone',
-        'email' => 'unique:talent,talent_email',
-    ];
+        return [
+            // 'nama' => 'unique:talent,talent_name',
+            // 'no_wa' => 'unique:talent,talent_phone',
+            'email' => 'unique:talent,talent_email',
+        ];
     }
 
 }

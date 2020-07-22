@@ -311,23 +311,33 @@ public function insertData(Request $request){
  
         
 		// import data
-		if(Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file))){
+        try 
+        {
+            $cek = Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file));
             File::delete(public_path('file_importExcel/'.$nama_file));
-            // notifikasi dengan session
+
             Session::flash('sukses','Data Excel Berhasil Diimport!');
-        }else{
-            Session::flash('gagal','Data Excel Gagal Diimport!');
+            
+        } 
+        catch (\Maatwebsite\Excel\Validators\ValidationException $e) 
+        {
+            $failures = $e->failures();
+            foreach ($failures as $failure) 
+            {
+                 // $failure->row(); // row that went wrong
+                 // $failure->attribute(); // either heading key (if using heading row concern) or column index
+                 // $failure->errors(); // Actual error messages from Laravel validator
+                 // $failure->values(); // The values of the row that has failed.
+                // dd($failure->values()['email']) ; 
+                Session::flash('gagal',"gagal import database ".$failure->values()['email']." sudah ada di database");
+            }
+            
         }
  
-		
-		
- 
-        // File::delete(public_path('data_file/'.$nama_file->file));
-      
-
+        // File::delete(public_path('data_file/'.$nama_file->file));     
 
 		// alihkan halaman kembali
-		return view('admin.talent.home');
+		return redirect("admin/talent/list");
     }
     
     public function download(){
