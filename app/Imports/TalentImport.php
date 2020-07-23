@@ -18,16 +18,16 @@ class TalentImport implements ToModel, WithHeadingRow, WithValidation
     public function model(array $row)
     {
         return new Talent([
-            'talent_name' => $row['nama'],
-            'talent_phone' => $row['no_wa'],
-            'talent_email' => $row['email'],
-            'talent_web' => $row['website'],
-            'talent_skill' => $row['keahlian'],
-            'talent_current_adress' => $row['location'],
-            'talent_linkedin' => $row['link_linkedin'],
-            'talent_current_work' => $row['pekerjaan_skrg'],
-            'talent_start_career' => $row['dari_thn'],
-            'talent_totalexperience' => $row['pengalaman_kerja'],
+            'talent_name' => isset ($row['nama']) ? $row['nama']: '',
+            'talent_phone' => isset ($row['no_wa']) ? $row['no_wa']: '',
+            'talent_email' => isset ($row['email']) ? $row['email']: '',
+            'talent_web' => isset ($row['website']) ? $row['website']: '',
+            'talent_skill' => isset ($row['keahlian']) ? $row['keahlian']: '',
+            'talent_current_adress' => isset ($row['location']) ? $row['location']: '',
+            'talent_linkedin' => isset ($row['link_linkedin']) ? $row['link_linkedin']: '',
+            'talent_current_work' => isset ($row['pekerjaan_skrg']) ? $row['pekerjaan_skrg']: '',
+            'talent_start_career' => isset ($row['dari_thn']) ? $row['dari_thn']: '',
+            'talent_totalexperience' => isset ($row['pengalaman_kerja']) ? $row['pengalaman_kerja']: '',
         ]);
     }
     
@@ -38,11 +38,11 @@ class TalentImport implements ToModel, WithHeadingRow, WithValidation
 
     public function rules(): array
     {
-        return [
-            // 'nama' => 'unique:talent,talent_name',
-            // 'no_wa' => 'unique:talent,talent_phone',
-            'email' => 'unique:talent,talent_email',
-        ];
+    return [
+        // 'nama' => 'unique:talent,talent_name',
+        // 'no_wa' => 'unique:talent,talent_phone',
+        'email' => 'unique:talent,talent_email',
+    ];
     }
 
 }
