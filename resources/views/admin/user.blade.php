@@ -45,13 +45,13 @@
                             </h3>
                             <div class="col-md-12">
                                 <form>
-                                    <select id="levelFilter" class="custom-select" name="levelFilter">
+                                    <select id="levelFilter"  name="levelFilter">
                                     <option selected  > </option>
                                     <option value="admin">admin</option>
                                     <option value="user">user</option>
                                     </select>
 
-                                    <input type="submit" class="btn btn-primary" value="Search" style="float:left;"/>
+                                    <input type="submit" class="btn btn-primary" value="Search"/>
                                 </form>
                             </div>
 
