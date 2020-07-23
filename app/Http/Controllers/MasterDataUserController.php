@@ -17,7 +17,7 @@ class MasterDataUserController extends Controller
     public function index()
     {
        $users = DB::table('users')->paginate(5);
-    	return view('admin.user',['users' => $users]);
+       return view('admin.user',['users' => $users]);
     }
 
     
@@ -124,11 +124,23 @@ class MasterDataUserController extends Controller
         DB::table('users')->where('id',$id)->delete();
 		return redirect('/admin/masterdata/user')->with('success', 'User Data succesfully deleted.');
     }
+
+    public function selectlevel(Request $request)
+	{	   if ( $request->levelFilter == 'all' )
+            {
+               $users = DB::table('users')->get();
+            }
+            else
+            {
+                $users = DB::table('users')->where('level',$request->levelFilter)->get();
+            }
+           
+           return view('admin.user',compact('users'))->render();
+    }
+
+
 }
 
 
-
-
-
-
+ 
 

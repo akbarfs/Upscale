@@ -44,14 +44,19 @@
                                 </div>
                             </h3>
                             <div class="col-md-12">
-                                <form>
+                                Show level :
+                                <form action="/admin/masterdata/user/selectlevel" method="POST">
+                                    {{ csrf_field() }}
                                     <select id="levelFilter"  name="levelFilter">
                                     <option selected  > </option>
+                                    <option value="all">all</option>
                                     <option value="admin">admin</option>
                                     <option value="user">user</option>
+                                    <option value="talent">talent</option>
+                                    <option value="client">client</option>
+                                    <option value="cowork">cowork</option>
                                     </select>
-
-                                    <input type="submit" class="btn btn-primary" value="Search"/>
+                                    <input type="submit" value="Search"/>
                                 </form>
                             </div>
 
@@ -86,7 +91,6 @@
                                         </tr>
                                         @endforeach
                                         </tbody>
-                                        {{$users->links()}}
                                     </table>
                                     
                                 </div>
@@ -190,74 +194,3 @@
     </div>
   </div>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-      //mengambil data tanggal
-      $( "#datepicker" ).datepicker();
-
-      //function load table
-      function loadTable(url)
-      {
-        var param = $("#form-search").serialize();
-
-        $('#loading').show();
-        $("#pembungkus").html('');
-
-        
-        $.ajax({
-          url:url+"&"+param,
-          method:"GET",
-          success:function(data)
-          {
-            $('#loading').hide();
-            $("#pembungkus").html(data);
-          }
-        });
-      }
-
-      
-      //load pertama kali
-      loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
-
-      //klik pagination , diambil urlnya langsung di load ajax
-      $(document).on("click",".page-link",function(event) {
-        $( "body" ).scrollTop( 0 );
-        var url = $(this).attr("href");
-        loadTable(url);
-        event.preventDefault(); //ini biar ga keredirect ke halaman lain 
-      });
-
-      //search 
-      $("#form-search").submit(function()
-      { 
-        loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}"); 
-        return false;
-      });
-
-      //klikk all / non-member / member 
-      $("#non-member").click(function() 
-      {
-        $("select[name='status_member']").val("non-member");
-        $("#form-search").submit();
-      });
-
-      $("#member").click(function() 
-      {
-        $("select[name='status_member']").val("member");
-        $("#form-search").submit();
-      });
-
-      $("#all").click(function() 
-      {
-        $("select[name='status_member']").val("all");
-        $("#form-search").submit();
-      });
-    });
-  });
-
-</script>

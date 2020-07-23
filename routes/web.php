@@ -442,6 +442,7 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/user/edit/{id}','MasterDataUserController@edit')->name('user.edit');
 			Route::get('/user/delete/{id}','MasterDataUserController@delete')->name('user.delete');
 			Route::post('/user/update','MasterDataUserController@update')->name('user.update');
+			Route::post('/user/selectlevel','MasterDataUserController@selectlevel')->name('user.selectlevel');
 			
 
 
