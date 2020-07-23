@@ -23,6 +23,7 @@ class TalentImport implements ToModel, WithHeadingRow, WithValidation
             'talent_email' => $row['email'],
             'talent_web' => $row['website'],
             'talent_skill' => $row['keahlian'],
+            'talent_focus' => isset($row['focus']) ? $row['focus'] : '',
             'talent_current_adress' => $row['location'],
             'talent_linkedin' => $row['link_linkedin'],
             'talent_current_work' => $row['pekerjaan_skrg'],
