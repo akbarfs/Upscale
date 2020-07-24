@@ -46,6 +46,7 @@
                             <div class="col-md-12">
                                 Show level :
                                 <form action="{{route('user.selectlevel')}}" method="GET">
+                                    {{ csrf_field() }}
                                     <select id="levelFilter"  name="levelFilter">
                                     <option selected  > </option>
                                     <option value="all">all</option>

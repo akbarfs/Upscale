@@ -438,11 +438,12 @@ Route::group(['prefix'=>'member'], function()
 			Route::resource('preferlocation','MasterDataLocationController');
 			Route::post('/campus/import','MasterDataCampusController@import')->name('campus.import');
 			Route::resource('user','MasterDataUserController');
-			Route::post('/user/useradd','MasterDataUserController@create')->name('user.create');
 			Route::get('/user/edit/{id}','MasterDataUserController@edit')->name('user.edit');
 			Route::get('/user/delete/{id}','MasterDataUserController@delete')->name('user.delete');
+			Route::get('/','MasterDataUserController@selectlevel')->name('user.selectlevel');
+			Route::post('/user/useradd','MasterDataUserController@create')->name('user.create');
 			Route::post('/user/update','MasterDataUserController@update')->name('user.update');
-			Route::get('/user/selectlevel','MasterDataUserController@selectlevel')->name('user.selectlevel');
+			
 			
 
 
