@@ -45,8 +45,7 @@
                             </h3>
                             <div class="col-md-12">
                                 Show level :
-                                <form action="/admin/masterdata/user/selectlevel" method="POST">
-                                    {{ csrf_field() }}
+                                <form action="{{route('user.selectlevel')}}" method="GET">
                                     <select id="levelFilter"  name="levelFilter">
                                     <option selected  > </option>
                                     <option value="all">all</option>

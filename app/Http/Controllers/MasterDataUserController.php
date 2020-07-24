@@ -136,6 +136,8 @@ class MasterDataUserController extends Controller
             }
            
            return view('admin.user',compact('users'))->render();
+
+          
     }
 
 
