@@ -978,7 +978,7 @@ class MemberController extends Controller
     {
         if ( $talent->talent_notes_report_talent != "" ) 
         {
-            return abort(404); 
+            die("maaf profile anda sudah dilock, untuk update profile silahkan hubungi 087-888-666-531"); 
         }
     }
 

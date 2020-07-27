@@ -582,13 +582,13 @@ li {
 
 .works .item-outer .filtr-item {
     display: inline-block;
-    padding: 0 1px;
+    padding: 5px 10px;
 }
 
 .works .item-outer .item {
     margin-bottom: 2px;
     overflow: hidden;
-    height: 193px;
+    /*height: 193px;*/
     position: relative;
 }
 
@@ -916,7 +916,7 @@ li {
         transform: translateX(260px);
     }
     .works .item-outer .item {
-        height: 280px;
+        /*height: 280px;*/
     }
 }
 

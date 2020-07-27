@@ -63,6 +63,10 @@
 			  padding-top: 10px;
 			}
 
+			td { 
+					padding-right: 10px;
+				}
+
 			/*.b-container > [class*='col-'] {
 			  display: flex;
 			  flex-direction: column;
@@ -130,12 +134,21 @@
 			        margin: 10px 10px 10px 0;
 			    }
 			    #button-pricing { font-size: 18px; }
+
+			    .main-content section .section-header {
+			    	margin-bottom: 0; 
+			    }
+
+			    .porto { margin-bottom: 20px !important; }
 			}
 
 			.fa-whatsapp {
 			stroke: black;
 			stroke-width: 10;
 			}
+
+			.note p { color: #fff }
+			.note ul { margin-top: 10px; margin-left: 20px }
 			
  }
 		</style>
@@ -168,12 +181,14 @@
 			});
 
 		</script>
+
+		
 		
         <section id="about" class="about">
             <div class="section-header">
 
             	<div class="col-md-4 col-sm-4 col-xs-12">
-            		<h2>About Me</h2>
+            		<h2>About</h2>
 				</div>
 
 				@if (Request::segment(2) == '') 
@@ -207,7 +222,8 @@
 							if ( count($name) > 0 )
 							{
 								$nama = $name[0];
-								$nama =  $name[0]." (".$talent->talent_id.")";
+								//$nama =  $name[0]." (".$talent->talent_id.")";
+								$nama =  $name[0];
 							}
 							else
 							{
@@ -354,7 +370,7 @@
 					
 					<hr>
 
-					<div id="button-pricing"> Pricing & Facilities, Click! </div>
+					<div id="button-pricing"> Pricing & Benefit, Click! </div>
 
 					<div class="pricing-box" align="center"> 
 
@@ -365,8 +381,20 @@
 							Pricing Talent a/n 
 							<b style="text-transform: uppercase; ">{{$talent->talent_name}}</b>
 						</div>
-						
+
 						<hr>
+
+						@if ( $talent->talent_notes_report_talent )
+							
+							<div style="color: #fff; padding: 0 20px">
+								<div style="text-align: justify; color:#fff !important" class="note">
+									 {!! $talent->talent_notes_report_talent !!}
+								</div>
+							</div>
+							<hr>
+						@endif
+						
+						
 						<div>
 							Penempatan Onsite Office Upscale Jogja : <br>
 							@if ( $talent->talent_price_jogja)
@@ -505,18 +533,20 @@
 								</div>
 							</div>
 						</div>
-						@endif 
 
 						<hr>
+						@endif 
 
+						
+						@if ( $talent->talent_hh_price)
 						<div>
 							Pricing Head Hunter 
 							<b style="font-size: 18px">	
 								Rp. {{number_format($talent->talent_hh_price)}},-
 							</b> <br> hanya 1x bayar diawal 
 						</div>
-
 						<hr>
+						@endif
 
 						<div>
 
@@ -537,9 +567,6 @@
 
 	            <hr>
 			</div>
-			
-			
-
 
             <div class="skills" id="skill">
 				<div class="row" >
@@ -628,29 +655,28 @@
         </section>
 
 	<section id="experience" class="resume">
-			<div class="section-header">
-				<h2>Certification</h2>
-				@if (Request::segment(2) == '') 
-					<a class="edit" href="{{url('/member/edit-certification')}}">edit</a>
-				@endif 
-			</div>
-			<div class="row" >
+		<div class="section-header" style="margin-left: 0">
+			<h2>Certification</h2>
+			@if (Request::segment(2) == '') 
+				<a class="edit" href="{{url('/member/edit-certification')}}">edit</a>
+			@endif 
+		</div>
+		<div class="row" >
 			@foreach($talent->talent_certification()->get() as $row )
-						<div class="col-md-12 col-sm-12 col-xs-12" >
-							<div class="top-item resume-item">
-								<h2>{{ $row->certif_name }}    |   No. {{$row->certif_number}}</h2>
-								<span>{{$row->certif_company}} |  {{$row->certif_years}} - {{$row->certif_expired}}</span>
-								<p><param>{!! $row->certif_desc !!}</param></p>
-								<p><param></param></p>
-							</div>
-						</div>
+				<div class="col-md-12 col-sm-12 col-xs-12" >
+					<div class="top-item resume-item">
+						<h2>{{ $row->certif_name }}    |   No. {{$row->certif_number}}</h2>
+						<span>{{$row->certif_company}} |  {{$row->certif_years}} - {{$row->certif_expired}}</span>
+						<p><param>{!! $row->certif_desc !!}</param></p>
+						<p><param></param></p>
+					</div>
+				</div>
 			@endforeach	
-			</div>
+		</div>
 	</section>
 
 	<section id="works" class="works clearfix">
-			
-			<div class="section-header" style="margin-left: 0">
+			<div class="section-header porto" style="margin-left: 0">
 				<h2>Portfolio</h2>
 				@if (Request::segment(2) == '') 
 					<a class="edit" href="{{url('/member/edit-porto')}}">edit</a>
@@ -661,9 +687,9 @@
 			
 			<div class="item-outer row clearfix">
                 @foreach($talent->talent_portfolio()->get() as $row )
-				<div class="col-md-4 col-sm-6 col-xs-6 filtr-item"  data-sort="value">
+				<div class="col-md-4 col-sm-6 col-xs-6 filtr-item" data-sort="value">
 					<div class="item popupimage" href="#animatedModal">
-						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}">
+						<a href="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}" class="work-image portos" data-id="{{$row->portfolio_id}}" > 
 							<div class="title">
 								<div class="inner">
 									<h2 >{{ $row->portfolio_name }}</h2>
@@ -684,11 +710,11 @@
 				<div class="modal-content single-porto porto-{{$row->portfolio_id}}" style="margin:10px; padding:5px">
 				<div id="btn-close-modal" class=" fa fa-close fa-lg close-animatedModal" style= "color:rgb(55, 81, 126)" ></div>
 					<div class="row" style=" padding:30px 20px 20px 20px">
-						<div class="col-md-7 col-sm-7">
+						<div class="col-md-6 col-sm-6">
 							@php $random = date("his") @endphp	
 							<img src="{{url('storage/Project Portfolio/'.$row->portfolio_image)}}?v={{$random}}" alt="portfolio" style="width:100%; margin-top: -30px" >
 						</div>
-						<div class="col-md-5 col-sm-5 col-xs-12" style="text-align: justify; margin-top: -5px">
+						<div class="col-md-6 col-sm-6 col-xs-12" style="text-align: justify; margin-top: -10px; padding :10px 30px 0px 30px">
 							<h2>{{ $row->portfolio_name }}</h2>
 							<table >
 								<tr>
@@ -918,39 +944,14 @@
 
 		@endif
 		
-		<section id="works" class="works clearfix">
-			
-			<div class="section-header">
-				<h2>Testimonials</h2>
-			</div>
 
-				<div class="item">
-					<div class="row">
-						<div class="col-md-2 col-sm-2 col-sm-12 ">
-							<div class="thumb">
-							@if ( $talent->talent_foto)
-							@php $random = date("his") @endphp
-									<img src="{{url('storage/photo/'.$talent->talent_foto)}}?v={{$random}}" alt="testimonial-customer">
-									@else
-									<img src="{{url('img/images.jpg')}}" alt="testimonial-customer">
-									@endif
-							</div>
-						</div>
-						<div class="text col-md-10 col-sm-10 col-xs-12">
-						<p style="text-align: justify">
-						 {!! $talent->talent_notes_report_talent !!}</p>
-							<span class="author">-{{ $talent->talent_name }}-</span>
-						</div>
-					</div>
-			</div>
-		</section>
-
-		<section id="experience" class="resume">
-			<div class="section-header">
-				<h2>Job Apply History</h2>
-			</div>
-			<div class="row" >
-			@foreach($talent->jobs_apply()->get() as $row )
+		@if ( Request::segment(2) == '' && $talent->jobs_apply()->count() > 0 ) 
+			<section id="experience" class="resume">
+				<div class="section-header"  style="margin-left: 0">
+					<h2>Job Apply History</h2>
+				</div>
+				<div class="row" >
+					@foreach($talent->jobs_apply()->get() as $row )
 						<div class="col-md-12 col-sm-12 col-xs-12" >
 							<div class="top-item resume-item">
 							
@@ -960,14 +961,15 @@
 								@endif
 								</h2>
 							
-								<span> {{$row -> created_date}} </span>
+								<span> {{$row->created_date}} </span>
 								<span>{{$row->jobs_apply_location}} </span>
-								<h5>{{$row -> jobs_apply_type_time}}</h5><br>
+								<h5>{{$row->jobs_apply_type_time}}</h5><br>
 							</div>
 						</div>
-			@endforeach
-			</div>
-		</section>
+					@endforeach
+				</div>
+			</section>
+		@endif
 
 		<!-- <section id="certification" class="resume">
 			<div class="section-header">

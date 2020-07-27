@@ -145,7 +145,29 @@
 
 		?>
 
-			<h1>{{ $talent->talent_name }}</h1>
+		@php
+        	if ( Request::segment(2) != '' )
+        	{
+				$name = explode(" ",$talent->talent_name) ; 
+				if ( count($name) > 0 )
+				{
+					$nama = $name[0];
+					$nama =  $name[0]." (".$talent->talent_id.")";
+				}
+				else
+				{
+					$nama = $name ; 
+					$nama = " (".$talent->talent_id.")"; 
+				}
+			}
+			else
+			{
+				$nama = $talent->talent_name;
+			}
+			
+		@endphp
+
+			<h1>{{ $nama }}</h1>
             <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
             @endif
 		</div>
@@ -168,7 +190,7 @@
 				<li><a href="{{url('profile#experience')}}">Experience</a></li>
 				<li><a href="{{url('profile#education')}}">Education</a></li>
 				<li><a href="{{url('profile#works')}}">Portfolio</a></li>
-				<li><a href="{{url('profile#jobs')}}">Jobs Apply History</a></li>
+				<!-- <li><a href="{{url('profile#jobs')}}">Jobs Apply History</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">Certification</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">History Work Apply</a></li> -->
 				<!-- <li><a href="{{url('profile#history')}}">Contact</a></li>	 -->
