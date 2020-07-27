@@ -197,14 +197,17 @@
 				@else 
 
 				<div class="col-md-8 col-sm-8 col-xs-12 call-cv" style="padding-right: 0">
-					@if($talent->talent_cv_update)
+
+					@if($talent->talent_cv_update &&  ( Request::segment(2) == '' ) )
 						<a href="{{ url('storage/Curriculum Vitae/'.$talent->talent_cv_update) }}" target="_blank" class="tombol" data-toggle="tooltip" data-placement="bottom" title="Download CV">
 						 	<i class="fa fa-download" aria-hidden="true"></i> Download CV
 						</a>
-						<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green;">
-							<i class="fa fa-phone" aria-hidden="true"></i> Request Interview
-						</a>
 					@endif
+					
+					<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green;">
+						<i class="fa fa-phone" aria-hidden="true"></i> Request Interview
+					</a>
+
 
 					
 				</div>
@@ -281,12 +284,13 @@
 								<td><strong>Phone</strong></td>
 								<td><strong>: &nbsp</strong></td>
 								<td> 
-									{{ $talent->talent_phone }} 
-
-									@if ( Request::segment(2) != '')
-									<a href="https://api.whatsapp.com/send?phone={{ $talent->talent_phone }}&text=halo" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+									@if ( Request::segment(2) != '' )
+										<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green; float: left">
+											<i class="fa fa-whatsapp" aria-hidden="true"></i> &nbsp contact me
+										</a>
+									@else 
+										{{ $talent->talent_phone }} 
 									@endif
-
 								</td>
 	                		</tr>
 						</table>
@@ -550,8 +554,8 @@
 
 						<div>
 
-							Penempatan lokasi lain , requirement dll ? 
-							<br>Customize sesuai kebutuhan anda<br><br>
+							Order, Penempatan lokasi lain , requirement dll ? 
+							<br>Customize sesuai kebutuhan anda, hubungi :<br><br>
 							
 							<a class="btn btn-success" style="font-size: 20px; color: #fff" 
 							target="_blank" href="https://api.whatsapp.com/send?phone=6287888666531&text=halo">
