@@ -45,16 +45,16 @@
                             </h3>
                             <div class="col-md-12">
                                 Show level :
-                                <form action="{{route('user.selectlevel')}}" method="GET">
+                                <form action="/admin/masterdata/user" method="GET">
                                     {{ csrf_field() }}
                                     <select id="levelFilter"  name="levelFilter">
-                                    <option selected  > </option>
+                                    <option selected ></option>
                                     <option value="all">all</option>
                                     <option value="admin">admin</option>
-                                    <option value="user">user</option>
-                                    <option value="talent">talent</option>
-                                    <option value="client">client</option>
-                                    <option value="cowork">cowork</option>
+                                    <option value="user" >user</option>
+                                    <option value="talent" >talent</option>
+                                    <option value="client" >client</option>
+                                    <option value="cowork" >cowork</option>
                                     </select>
                                     <input type="submit" value="Search"/>
                                 </form>
