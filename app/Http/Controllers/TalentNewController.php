@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 use App\Mail\UpscaleEmail;
 use App\Models\Talent;
 use App\Models\Skill;
 use App\Models\Talent_log;
 use App\User;
+use App\Imports\TalentImport;
+use Session;
+use File;
+use Response;
 
 use App\Exports\TalentExport;
 
@@ -28,15 +33,28 @@ class TalentNewController extends Controller
 
     public function show()
     {
-
-        return view('admin.talent.home');
+        $total  = DB::table('talent')->count();
+        $member  = DB::table('talent')->where("user_id",">","0")->count();
+        $nonmember  = DB::table('talent')->where("user_id","0")->count();
+        $invitation  = DB::table('talent')->where("talent_mail_invitation",">","0")->count();
+        return view('admin.talent.home',compact('total','member','nonmember','invitation'));
     }
 
-    public function mail($talent_id)
+    function mail(Request $request)
     {
+        $talent_id = $request->id ;
+        $talent_log = Talent_log::orderBy("id","DESC");
+        $talent = null ; 
 
-        $talent = Talent::findOrFail($talent_id);
-        return view("admin.talent.mail", compact('talent'));
+        if ( $talent_id>0)
+        {
+            $talent = Talent::findOrFail($talent_id);
+            $talent_log->where('tl_talent_id',$talent_id);
+        }
+
+        $talent_log = $talent_log->paginate(5); 
+
+        return view("admin.talent.mail",compact('talent_log','talent'));
     }
 
     public function table(Request $request)
@@ -46,6 +64,12 @@ class TalentNewController extends Controller
             ->join('talent_logs', 'talent.talent_id', '=', 'talent_logs.tl_talent_id')
             ->select('*');
 
+        // dd($request->id) ; 
+
+        if ( $request->talent_id )
+        {
+            $talent_logs->where("tl_talent_id",$request->talent_id);
+        }
 
         if ($request->mailtype) // klo type kosong , ga masuk , klo isi masuk 
         {
@@ -124,14 +148,17 @@ class TalentNewController extends Controller
         $content = str_replace("#name#", $talent->talent_name, $request->content);
         $data['content'] = str_replace("#nama#", $talent->talent_name, $content);
 
-        Mail::send($view, $data, function ($message) use ($talent, $request, $judul) {
+        $insert = new Talent_log; 
+        $id = $insert->log($request->type,$talent_id,['desc'=>'dikirim dari new list talent']); 
+        $data['id'] = $id ; 
+
+        Mail::send($view, $data, function ($message) use ($talent,$request,$judul) {
             $message->from('dodi@upscale.id', $request->sender);
             $message->to($talent->talent_email);
             $message->subject($judul);
         });
 
-        $insert = new Talent_log;
-        $insert->log($request->type, $talent_id, ['desc' => 'dikirim dari new list talent']);
+        
 
         return response()->json(['status' => 1, 'email' => $talent->talent_email, 'message' => 'send berhasil']);
 
@@ -144,7 +171,7 @@ class TalentNewController extends Controller
         //dummy database 
         $talent = (object) [
             'talent_name' => 'Dodi Prakoso Wibowo',
-            'talent_email' => 'dodi@gmail.com',
+            'talent_email' => 'dodi@gmail.com'
         ];
 
         if ($view == 'invitation') {
@@ -159,62 +186,77 @@ class TalentNewController extends Controller
 
     public function paginate_data(Request $request)
     {
+        //DB::enableQueryLog();
+
         // if ($request->ajax()) {
 
-        //SELECT BUILDER START
-        $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
-        $data = Talent::select(DB::raw($default_query));
-
-        //SELECT BUILDER END 
-
-        //JOIN BUILDER START
-        $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
-        //JOIN BULDER END 
-
-        if ($request->talent_name) {
-            $data->where("talent_name", "LIKE", "%" . $request->talent_name . "%");
-        }
-        if ($request->talent_phone) {
-            $data->where("talent_phone", "LIKE", "%" . $request->talent_phone . "%");
-        }
-        if ($request->talent_email) {
-            $data->where("talent_email", "LIKE", "%" . $request->talent_email . "%");
-        }
-        if ($request->talent_address) {
-            $data->where("talent_address", "LIKE", "%" . $request->talent_address . "%");
-        }
-        if ($request->talent_onsite_jogja) {
-            $data->where("talent_onsite_jogja", $request->talent_onsite_jogja);
-        }
-        if ($request->talent_onsite_jakarta) {
-            $data->where("talent_onsite_jakarta", $request->talent_onsite_jakarta);
-        }
-        if ($request->talent_isa) {
-            $data->where("talent_isa", $request->talent_isa);
-        }
-
-        if ($request->status_member == "member") {
-            $data->where("users.email", "!=", "");
-        }
-
-        if ($request->status_member == "non-member") {
-            $data->where("users.email", "=", null);
-        }
-        if ($request->order != '') {
-            $ar = explode(",", $request->order);
-            foreach ($ar as $row) {
-                $data->orderBy($row, "DESC");
+            //SELECT BUILDER START
+            $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
+            
+            if ( $request->jumlah_apply_jobs)
+            {
+                $default_query .=", COUNT(jobs_apply_id) as jumlah_apply_jobs"; 
             }
-        } else {
-            $data->orderBy("talent_id", "DESC");
-        }
+            else
+            {
+                $default_query .=", '-' as jumlah_apply_jobs"; 
+            }
+            $data = Talent::select(DB::raw($default_query));
+            //SELECT BUILDER END 
 
-        $data = $data->paginate(10);
-        return view('admin.talent.table', compact('data'))->render();
+            //JOIN BUILDER START
+            $data->join("users","talent.user_id","=","users.id","LEFT");
+            if ( $request->jumlah_apply_jobs || $request->apply == 'yes')
+            {
+                $data->join('jobs_apply','jobs_apply.jobs_apply_talent_id','=','talent.talent_id',"LEFT");
+            }
+            //JOIN BULDER END 
+
+            if ( $request->talent_name ) {$data->where("talent_name","LIKE","%".$request->talent_name."%"); }
+            if ( $request->talent_phone ) {$data->where("talent_phone","LIKE","%".$request->talent_phone."%"); }
+            if ( $request->talent_email ) {$data->where("talent_email","LIKE","%".$request->talent_email."%"); }
+            if ( $request->talent_address ) {$data->where("talent_address","LIKE","%".$request->talent_address."%"); }
+            if ( $request->talent_onsite_jogja ) {$data->where("talent_onsite_jogja",$request->talent_onsite_jogja); }
+            if ( $request->talent_onsite_jakarta ) {$data->where("talent_onsite_jakarta",$request->talent_onsite_jakarta); }
+            if ( $request->talent_isa ) {$data->where("talent_isa",$request->talent_isa); }
+            if ( $request->talent_focus ) {$data->where("talent_focus","LIKE","%".$request->talent_focus."%"); }
+
+            if ($request->status_member == "member") {
+                $data->where("users.email", "!=", "");
+            }
+
+            if ( $request->status_member == "non-member" )
+            {
+                $data->where("users.email","=",null);
+            }
+
+            if ( $request->apply == 'yes' )
+            {
+                $data->having(DB::raw('COUNT(jobs_apply_id)'),'>',0);
+            }
+
+            if ( $request->order != '' )
+            {
+                $ar = explode(",",$request->order);
+                foreach ( $ar as $row)
+                {
+                    $data->orderBy($row,"DESC");
+                }
+            }
+            else
+            {
+                $data->orderBy("talent_id","DESC");
+            }
+            $data->groupBy("talent_id");
+            $data = $data->paginate(5);
+
+            //$query = DB::getQueryLog(); dd($query);
+
+            return view('admin.talent.table',compact('data'))->render();
         // }
     }
 
-    public function export_excel()
+    public function export_excel ()
     {
         return Excel::download(new TalentExport, 'talent.xlsx');
     }
@@ -233,8 +275,11 @@ class TalentNewController extends Controller
             $talent = Talent::find($row);
 
             //menghapus semua data di table user yg berelasi
-            $user = User::find($talent->user_id);
-            $user->delete();
+            if ( $user = User::find($talent->user_id) ) 
+            {
+
+                $user->delete() ; 
+            } 
 
             //delete 
             Talent::where('talent_id', $row)->delete();
@@ -340,5 +385,63 @@ class TalentNewController extends Controller
 
 
         return redirect('admin/talent/list/insert')->with('success', 'Data Talent Berhasil dimasukkan.');
+       
     }
+
+
+
+    public function import(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_importExcel di dalam folder public
+		$file->move('file_importExcel',$nama_file);
+ 
+        
+		// import data
+        try 
+        {
+            $cek = Excel::import(new TalentImport, public_path('/file_importExcel/'.$nama_file));
+            File::delete(public_path('file_importExcel/'.$nama_file));
+
+            Session::flash('sukses','Data Excel Berhasil Diimport!');
+            
+        } 
+        catch (\Maatwebsite\Excel\Validators\ValidationException $e) 
+        {
+            $failures = $e->failures();
+            foreach ($failures as $failure) 
+            {
+                 // $failure->row(); // row that went wrong
+                 // $failure->attribute(); // either heading key (if using heading row concern) or column index
+                 // $failure->errors(); // Actual error messages from Laravel validator
+                 // $failure->values(); // The values of the row that has failed.
+                // dd($failure->values()['email']) ; 
+                Session::flash('gagal',"gagal import database ".$failure->values()['email']." sudah ada di database");
+            }
+            
+        }
+ 
+        // File::delete(public_path('data_file/'.$nama_file->file));     
+
+		// alihkan halaman kembali
+		return redirect("admin/talent/list");
+    }
+    
+    public function download(){
+
+        $file=public_path(). "/file_importExcel/template.xlsx";
+
+        return Response::download($file);
+    }
+
 }

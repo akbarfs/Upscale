@@ -19,6 +19,7 @@ use App\CrmCompany ;
 use App\CrmCompanyEmail ;
 use Illuminate\Support\Facades\Crypt;
 use Session; 
+use Input ; 
 
 
 class homeController extends Controller
@@ -45,6 +46,17 @@ class homeController extends Controller
        
         $arrayResponse = json_decode($response, true); //decode response dari raja ongkir, json ke array
         var_dump($arrayResponse); 
+    }
+    function log(Request $request)
+    {
+        $id = $request->id ; 
+        if ( $id > 0 )
+        {   
+            $log = Talent_log::findOrFail($id); 
+            $log->tl_last_respon = date("Y-m-d H:i:s");
+            $log->save();             
+        }
+
     }
 
     //tracking email , load di email pake <img src='https://upscale.id/track?email={{Email Address}}'
@@ -359,7 +371,7 @@ class homeController extends Controller
 
     public function loginas($code)
     {
-
+        $redirect = Input::get('redirect');
         $talent_id = (int) decrypt_custom($code);
         $talent = Talent::find($talent_id); 
 
@@ -370,7 +382,14 @@ class homeController extends Controller
         Session::put('email',$user->email);
         Session::put('login',TRUE);
 
-        return redirect("profile");
+        if ( isset($redirect))
+        {
+            return redirect(url($redirect));
+        }
+        else
+        {
+            return redirect("profile");
+        }
     }
 
     

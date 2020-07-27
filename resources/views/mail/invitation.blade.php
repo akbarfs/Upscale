@@ -100,14 +100,14 @@
                      <li style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Kerja Remote</li>
                   </ul>
 
-                  Kami juga berusaha mempromosikan member kami agar mendapatkan pekerjaan secara remote dari perusahaan luar negri dengan average middle salary minimum <b style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >± Rp.10.000.000</b>/bulan <br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ><br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                  <?php /*Kami juga berusaha mempromosikan member kami agar mendapatkan pekerjaan secara remote dari perusahaan luar negri dengan average middle salary minimum <b style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >± Rp.10.000.000</b>/bulan <br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ><br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >*/ ?>
 
-                  <b style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Ingin mendapatkan pekerjaan / pindah kerja / projek / penghasilan tambahan ? ayo daftar sekarang (Gratis) ! agar kami bisa menawarkan opportunity yang sesuai keinginan kamu</b>
+                  <b style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Ingin mendapatkan pekerjaan / pindah kerja / projek / penghasilan tambahan ? segera daftar sekarang (Gratis) ! agar kami bisa menawarkan opportunity yang sesuai keinginan kamu</b>
 
                   <div style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;clear:both;" ></div>
                   <div class="terimakasih" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;float:left;width:50%;" >
                      <br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Terimakasih,<br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" ><br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
-                     <img src="https://upscale.id/dodi-small.jpg" 
+                     <img src="https://upscale.id/arief-small.jpg" 
                       
                      align="left" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;border-radius:100%;width:50px;margin-right:20px;-ms-interpolation-mode:bicubic;" >
                      Community Division<br style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
@@ -120,7 +120,7 @@
 
                   <div style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;clear:both;" ></div>
                   
-                  <a href="https://upscale.id/track?email={{$talent->talent_email}}&name={{$talent->talent_name}}&type=talent" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;border-radius:5px;background-color:#3c6fc7;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;color:#fff;padding-top:15px;padding-bottom:15px;padding-right:30px;padding-left:30px;font-weight:bold;display:block;text-align:center;margin-top:30px;text-decoration:none;" >
+                  <a href="{{url('/')}}?reg=open" target="_blank" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;border-radius:5px;background-color:#3c6fc7;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;color:#fff;padding-top:15px;padding-bottom:15px;padding-right:30px;padding-left:30px;font-weight:bold;display:block;text-align:center;margin-top:30px;text-decoration:none;" >
                      REGISTER
                   </a>
 
@@ -280,7 +280,7 @@
                      </div>
                      <div style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;clear:both;" ></div>
                   </div>
-                  <img src="https://upscale.id/track?email={{$talent->talent_email}}&name={{$talent->talent_name}}" width="1px" height="1px" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-ms-interpolation-mode:bicubic;" >
+                  <img src="{{url('/log')}}?id={{$id}}" width="1px" height="1px" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-ms-interpolation-mode:bicubic;" >
                </div>
 
                <div class="client" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background-image:url(http://upscale.id/mail/images/bg_1.jpg?v=1);background-size:cover;padding-top:4em;padding-bottom:4em;padding-right:0;padding-left:0;text-align:center;" >

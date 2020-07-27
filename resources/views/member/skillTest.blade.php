@@ -5,7 +5,7 @@
   .about select { width: 100%; padding: 10px; }
 </style>
 <section class="about">
-    <div class="section-header"> <h2>Personality Test</h2> </div>
+    <div class="section-header"> <h2> {{ $category->ct_name }}</h2> </div>
     
     <div class="intro">
 
@@ -26,22 +26,19 @@
             </div>
         @endif
 
-        <form action="{{url('member/personality-test')}}" method="post" id="register-talent" enctype="multipart/form-data">
-            
-            
+        <form action="{{url('member/skill-test')}}" method="post" id="register-talent" enctype="multipart/form-data">
              
             @csrf
+
+            <input type="hidden" name="ct_id" value="{{$category->ct_id}}">
 
             <div class="info alert alert-warning" style="display: none"></div>
 
             @foreach ( $test as $row )
             <div class="form-group">
                <div class="row">
-                  <div class="col-md-12" style="padding: 20px 20px 10px 20px;font-weight:bold;">
+                  <div class="col-md-12" style="padding: 20px ; font-weight: bold;">
                   		{{$row->question_text}}
-                  </div>
-                  <div style="padding: 20px">
-                      {{$row->question_desc}}
                   </div>
                   <div class="col-md-12">
                     

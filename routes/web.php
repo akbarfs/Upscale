@@ -327,8 +327,8 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/list/paginate_data','TalentNewController@paginate_data');
 			Route::get('/list/mail','TalentNewController@paginationMail');
 			Route::get('/list/mail/table','TalentNewController@table');
-			//Route::get('/list/mail/fetch_data','TalentNewController@fetch_data');
-			Route::get('/mail/{id}','TalentNewController@mail');
+			//Route::get('/mail/{id}','TalentNewController@mail');
+			Route::get('/mail','TalentNewController@mail');
 			Route::get('/mail-backup/{id}','TalentNewController@mailBackup');
 			Route::get('/mail-send/{id}','TalentNewController@mailSend');
 			Route::post('/mail-send','TalentNewController@mailSend');

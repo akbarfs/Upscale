@@ -39,12 +39,12 @@
 
 							<a class="nav-item nav-link" data-toggle="tab" href="#quarantine" role="tab" aria-controls="nav-profile" aria-selected="false" value="quarantine" id="non-member">
 								<strong>Non-Member</strong>
-								<span class="badge badge-primary">99</span>
+								<span class="badge badge-primary">{{$nonmember}}</span>
 							</a>
 
 							<a class="nav-item nav-link show" data-toggle="tab" href="#assign" role="tab" aria-controls="nav-profile" aria-selected="true" value="assign" id="member">
-								<strong>Member</strong>
-								<span class="badge badge-primary">25</span>
+								<strong>Ready</strong>
+								<span class="badge badge-primary">{{$member}}</span>
 							</a>
 
 						</div>
@@ -75,6 +75,10 @@
 							</div>
 
 							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="focus" name="talent_focus">
+							</div>
+
+							<div class="col-md-2">
 								<select class="custom-select" name="talent_onsite_jogja">
 									<option value="">-- jogja? --</option>
 									<option value="unset">unset</option>
@@ -83,7 +87,7 @@
 								</select>
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-md-2" style="margin-top: 10px">
 								<select class="custom-select" name="talent_onsite_jakarta">
 									<option value="">-- jakarta? --</option>
 									<option value="unset">unset</option>
@@ -102,6 +106,14 @@
 							</div>
 
 							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="apply">
+									<option value="">-- apply jobs? --</option>
+									<option value="yes">yes</option>
+									<option value="no">no</option>
+								</select>
+							</div>
+
+							<div class="col-md-2" style="margin-top: 10px">
 								<select class="custom-select" name="order">
 									<option value="">-- order? --</option>
 									<option value="talent_id">DB ID</option>
@@ -109,7 +121,9 @@
 									<option value="talent_date_ready">date ready</option>
 									<option value="talent_created_date">DB Created</option>
 									<option value="member_date">register as member</option>
+									<option value="jumlah_apply_jobs">jobs apply</option>
 									<option value="talent_mail_invitation">mail invitation</option>
+									<option value="talent_mail_regular">mail regular</option>
 									<option value="talent_mail_regular">mail regular</option>
 								</select>
 							</div>
@@ -169,6 +183,8 @@
                                 name="skill"/>
 							</div>
 
+							
+
 
 
 						</div>
@@ -190,6 +206,8 @@
 									<input type="checkbox" name="mail_invitation"> mail invitation &nbsp
 									<input type="checkbox" name="mail_regular"> mail regular &nbsp
 									<input type="checkbox" name="member_date"> member date &nbsp
+									<input type="checkbox" name="jumlah_apply_jobs"> Jumlah Apply Jobs &nbsp
+									<input type="checkbox" name="focus"> Focus &nbsp
 								</div>
 								<div>
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>
@@ -223,17 +241,96 @@
 	</div>
 	@endif
 
+
+	<!-- notif import -->
+	{{-- notifikasi form validasi --}}
+	@if ($errors->has('file'))
+	<span class="invalid-feedback" role="alert">
+		<strong>{{ $errors->first('file') }}</strong>
+	</span>
+	@endif
+
+	{{-- notifikasi gagal --}}
+	@if ($gagal = Session::get('gagal'))
+	<div class="alert alert-danger alert-block">
+	<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong>{{ $gagal }}</strong>
+	</div>
+	@endif
+
+
+	{{-- notifikasi sukses --}}
+	@if ($sukses = Session::get('sukses'))
+	<div class="alert alert-success alert-block">
+		<button type="button" class="close" data-dismiss="alert">×</button> 
+		<strong>{{ $sukses }}</strong>
+	</div>
+	@endif
+
+
+		
 	<form action="{{ url('admin/talent/del') }}" method="post">
 		{{csrf_field()}}
+	
 		<a href="list/insert" class="btn btn-success btn-sm tb"> Tambah Talent </a>
 		<a id="export" class="btn btn-success btn-sm tb"> Export </a>
+		<a type="button" class="btn btn-primary btn-sm tb" data-toggle="modal" data-target="#importExcel">
+			IMPORT EXCEL
+		</a>
 		<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
 		<a class="btn btn-success btn-sm tb btnmail" data-toggle="modal" 
 		data-target="#myModal"> Send Email </a>
 
 		<!-- LOAD CONTENT -->
+		<div class="list-box" style="display: none; margin-bottom: 20px">
+            <span>Selected : </span>
+            <span class="list"></span>
+            <a href="#" class="clear btn btn-sm"> Clear Selected </a>
+        </div>
 		<div class="container-fluid" id="pembungkus" style="padding: 0"></div>
+
+		Total : {{$total}}<br>
+		member : {{$member}}<br>
+		non-member : {{$nonmember}}<br>
+		invitation : {{$invitation}}<br>
+
+	
 	</form>
+
+
+ 
+	
+ 
+		<!-- Import Excel -->
+		<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<form method="post" action="{{ url('admin/talent/list/import') }}" enctype="multipart/form-data">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+						</div>
+						<div class="modal-body">
+ 
+							{{ csrf_field() }}
+ 
+							<label>Pilih file excel</label>
+						
+							<div class="form-group">
+								<input type="file" name="file" required="required">
+							</div>
+						
+							<a href="list/download" class="btn btn-large pull-left"> Download Template Excel </a>
+						
+							
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Import</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 
 	<!-- Modal -->
 
@@ -261,16 +358,18 @@
 							var i = 0 ;
 							$(".mailsend").click(function() 
 							{
-								var list_id = [] ; 
-								i = 0 ; 
+								// var list_id = [] ; 
+								// i = 0 ; 
 
-								$('input[name="delid[]"]:checked').each(function() 
-								{
-									list_id.push(this.value); 
-								}); 
+								// $('input[name="delid[]"]:checked').each(function() 
+								// {
+								// 	list_id.push(this.value); 
+								// }); 
 
+								// console.log(list); 
+								// return false ; 
 								$(".mailreport").prepend("<b> send email start process.. <br>");
-								sendMail(list_id,0);
+								sendMail(list,0);
 							});
 
 							function sendMail(list,urutan)
@@ -444,11 +543,21 @@
 			//klikk all / non-member / member 
 			$("#non-member").click(function() {
 				$("select[name='status_member']").val("non-member");
+				$("select[name='order']").val("talent_mail_invitation");
+				$("input[name='mail_invitation']").prop("checked", true);
+				$("input[name='date_ready']").prop("checked", false);
+				$("input[name='active']").prop("checked", false);
+				$("input[name='focus']").prop("checked", false);
 				$("#search").click();
 			});
 
 			$("#member").click(function() {
 				$("select[name='status_member']").val("member");
+				$("input[name='date_ready']").prop("checked", true);
+				$("input[name='active']").prop("checked", true);
+				$("select[name='order']").val("talent_last_active");
+				$("input[name='mail_invitation']").prop("checked", false);
+				$("input[name='focus']").prop("checked", true);
 				$("#search").click();
 			});
 
@@ -456,9 +565,48 @@
 				$("select[name='status_member']").val("all");
 				$("#search").click();
 			});
-
-
 		});
+
+		function refreshId()
+	    {
+	        $(".list").html(list.join(","));
+
+	        if ( list.length > 0)
+	        {
+	            $(".list-box").show();
+	        }
+	        else
+	        {
+	            $(".list-box").hide();
+	        }
+	    }
+
+	    list = [] ;
+	    function pilih(id)
+	    {
+	        id = parseInt(id); 
+	        if ( list.includes(id) ) 
+	        {
+	            const index = list.indexOf(id);
+	            if (index !== -1) list.splice(index, 1);
+	            refreshId();
+	        }
+	        else
+	        {
+	            list.push(id); 
+	            refreshId();
+	        }
+	        
+	    }
+
+	    $(".clear").click(function()
+	    {
+	        list = [] ; 
+	        $(".pilih").prop('checked',false);
+	        $(".select-all").prop('checked',false);
+	        refreshId();
+	    });
+
 	</script>
 	<!-- 
 	<script>

@@ -8,7 +8,7 @@ use App\Models\Talent;
 class Talent_log extends Model
 {
     protected $table = 'talent_logs';
-    protected $primaryKey = "tl_talent_id";
+    protected $primaryKey = "id";
     protected $fillable = ['id','tl_type','tl_name','tl_phone','tl_email','tl_email_status','tl_decs'];
 
     public function log($type,$talent_id,$data)
@@ -22,9 +22,9 @@ class Talent_log extends Model
         $insert['tl_email'] = isset($data['email']) ? $data['email'] : $talent->talent_email; 
         $insert['tl_desc'] = isset($data['desc']) ? $data['desc'] : '' ;
         $insert['tl_email_status'] = isset($data['status']) ? $data['status'] : '' ;
-        $insert['created_at'] = date("D, d-m-Y H:i");
-        $insert['updated_at'] = date("Y-m-d g:i:s");
-        DB::table("talent_logs")->insert($insert); 
+        $insert['created_at'] = date("Y-m-d H:i:s");
+        $insert['updated_at'] = date("Y-m-d H:i:s");
+        $id = DB::table("talent_logs")->insertGetId($insert); 
 
         //update last log talent
         if ( $type == 'invitation')
@@ -41,6 +41,7 @@ class Talent_log extends Model
         	$talent->talent_mail_regular = $jumlah;
         	$talent->save(); 
         }
+        return $id ; 
     }
 
 }

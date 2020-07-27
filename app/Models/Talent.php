@@ -20,6 +20,7 @@ class Talent extends Model
 							'talent_birth_date', 
 							'talent_addres', 
 							'talent_salary', 
+							'talent_foto',
 							'talent_cv', 
 							'talent_portfolio', 
 							'talent_portofolio_file', 
@@ -47,7 +48,7 @@ class Talent extends Model
 							'talent_onsite_jakarta',
 							'talent_onsite_jogja',
 							'talent_isa',
-							'talent_luar_kota',
+							'talent_luar_kota',							
 							'talent_remote',
 							'talent_salary_jogja',
 							'talent_salary_jakarta',
@@ -110,7 +111,7 @@ class Talent extends Model
 
    /* public  function talent_question()
 	{
-		return $this->hasMany('App\models\QuestionModels', 'it_talent_id', 'talent_id');
+		return $this->hasMany('App\Models\QuestionModels', 'it_talent_id', 'talent_id');
 	}
 	*/
 

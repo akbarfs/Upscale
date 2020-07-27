@@ -14,6 +14,7 @@
             </ol>
         </nav>
 
+        @if ( $talent )
         <h3 style="margin:2% 3% 0%"> History </h3>
         <br>
         <div class="container-fluid">
@@ -48,6 +49,7 @@
                 </div>
             </div>
         </div>
+        @endif 
 
         <div class="col-md-12">
             <div class="card">
@@ -64,6 +66,9 @@
                                     <option value="member">Letter Offer</option>
                                     <option value="member">Job Offer</option>
                                 </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="talent id" value="{{Request::get('id')}}" name="talent_id">
                             </div>
                             <div class="col-md-2">
                                 <input type="text" class="form-control" placeholder="email" name="email_tl">
@@ -158,55 +163,13 @@
 
 
 
-        <!-- <div class="table-responsive" style=" padding: 1% 3%">
-            <table id="log_data" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col" name="tl_talent_id">Talent Id</th>
-                        <th scope="col" name="tl_type">Type Email</th>
-                        <th scope="col" name="tl_name">Name</th>
-                        <th scope="col" name="tl_phone">Phone </th>
-                        <th scope="col" name="tl_email">Email</th>
-                        <th scope="col" name="tl_email_status">Status Email </th>
-                        <th scope="col" name="tl_desc">Details </th>
-                        <th scope="col" name="tl_created_at">Created </th>
-                        <th scope="col" name="updated_at">Updated </th>
-                    </tr>
-                </thead>
-                <tbody> -->
+       
         <div id="table_data">
 
         </div>
 
-        <!-- @foreach ($talent->Talent_log()->get() as $t) -->
-
-        <!-- <tr>
-                        <td>{{$t->id}}</td>
-                        <td>{{$t->tl_talent_id}}</td>
-                        <td>{{$t->tl_type}}</td>
-                        <td>{{$t->tl_name}}</td>
-                        <td>{{$t->tl_phone}}</td>
-                        <td>{{$t->tl_email}}</td>
-                        <td>{{$t->tl_email_status}}</td>
-                        <td>{{$t->tl_desc}}</td>
-                        <td>{{ \Carbon\Carbon::parse($t->created_at)->format('D, d-m-Y H:i') }}
-                            <span class="badge badge-info" data-toggle="tooltip" data-placement="top" title="member date">
-                                {{\Carbon\Carbon::createFromTimeStamp(strtotime($t->created_at))->diffForHumans()}}</b>
-                            </span>
-                        </td>
-                         <td>{{$t->updated_at}}</td> 
-                    </tr>
-
-                    @endforeach
-                </tbody>
-            </table>
-
-        </div> -->
-
-
-    </div>
-</div>
+      </div>
+   </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
@@ -227,6 +190,7 @@
             }
         });
     }
+
 
     //load pertama kali
     loadTable("{{url('/admin/talent/list/mail/table?page=1')}}");

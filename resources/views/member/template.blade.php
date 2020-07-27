@@ -12,8 +12,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/font-awesome.min.css') }}" media="all">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/magnific-popup.css') }}"  media="all">
 	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
-	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/style.css' )}}" media="all">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/normalize.min.css' )}}" media="all">
+	<link rel="stylesheet" type="text/css" href="{{ asset('/cv/css/animate.min.css' )}}" media="all">
+
 
 	<script type="text/javascript" src="{{ asset('/cv/js/jquery-1.12.3.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/jquery.onepage-scroll.min.js')}}"></script>
@@ -24,10 +25,12 @@
     <script type="text/javascript" src="{{ asset('/cv/bootstrap/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('/cv/js/custom.js')}}"></script>
-    <script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/cv/js/smoothscroll.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/cv/js/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/cv/js/animatedModal.min.js')}}"></script>
+	
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="{{ asset('js/autoNumeric.js') }}"></script>
 
@@ -45,6 +48,12 @@
 	    @media only screen and (max-width:480px){   
 	    }
 
+		#btn-close-modal {
+                width:100%;
+                text-align: right;
+                cursor:pointer;
+                color:#fff;
+            }
 	</style>
 
 </head>   
@@ -70,16 +79,78 @@
 				@endif
 			</a>
         </div>
+
+        @php
+        	if ( Request::segment(2) != '' )
+        	{
+				$name = explode(" ",$talent->talent_name) ; 
+				if ( count($name) > 0 )
+				{
+					$panggilan = $name[0];
+					$nama =  $name[0]." (".$talent->talent_id.")";
+				}
+				else
+				{
+					$panggilan = $name ; 
+					$nama = " (".$talent->talent_id.")"; 
+				}
+			}
+			else
+			{
+				$nama = $talent->talent_name;
+			}
+			
+		@endphp
         
         <div class="name">
         @if($talent)
-		<?php $originalDate = $talent->talent_date_ready ;
-		$newDate = date("l, j F Y", strtotime($originalDate)); ?>
+		
+
+<?php
+		$originalDate = $talent->talent_date_ready ;
+		$hari=date('l', strtotime($originalDate));
+		$bulan=date('F', strtotime($originalDate) );
+
+		switch ($hari) {
+			case"Sunday":$hari="Minggu";break;
+			case"Monday":$hari="Senin";break;
+			case"Tuesday":$hari="Selasa";break;
+			case"Wednesday":$hari="Rabu";break;
+			case"Thursday":$hari="Kamis";break;
+			case"Friday":$hari="Jumat";break;
+			case"Saturday":$hari="Sabtu";break;
+		   }
+		
+		   switch($bulan){
+			case"January":$bulan="Januari";break;
+			case"February":$bulan="Februari";break;
+			case"March":$bulan="Maret";break;
+			case"April":$bulan="April";break;
+			case"May":$bulan="Mei";break;
+			case"June":$bulan="Juni";break;
+			case"July":$bulan="Juli";break;
+			case"August":$bulan="Agustus";break;
+			case"September":$bulan="September";break;
+			case"October":$bulan="Oktober"; break;
+			case"November":$bulan="November";break;
+			case"December":$bulan="Desember";break;
+			
+		}
+
+		$tanggal=date('j');
+		$tahun=date('Y');		
+		
+		$newDate =  "$hari, $tanggal $bulan $tahun"; 
+		
+
+		?>
+
 			<h1>{{ $talent->talent_name }}</h1>
             <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
             @endif
 		</div>
 
+		
         <!-- <div class="social-icons">
 			<ul>
 				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -96,7 +167,6 @@
 				<li><a href="{{url('profile#skill')}}">Skills</a></li>
 				<li><a href="{{url('profile#experience')}}">Experience</a></li>
 				<li><a href="{{url('profile#education')}}">Education</a></li>
-				<!-- <li><a href="{{url('profile#interview')}}">Interview</a></li> -->
 				<li><a href="{{url('profile#works')}}">Portfolio</a></li>
 				<!-- <li><a href="{{url('profile#certification')}}">Certification</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">History Work Apply</a></li> -->
@@ -113,8 +183,8 @@
     </style>
     <div class="main-content pull-right">
     	<div class="main-content pull-right">
-    		@yield("content")
-    	</div>
+			@yield("content")
+    	    	</div>
 	</div>		 
 								          
 </main>
