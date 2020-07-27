@@ -16,24 +16,16 @@ class MasterDataUserController extends Controller
 
     public function index(Request $request)
     {
-    		$users = DB::table('users')->paginate(5);
+    		$users = DB::table('users')->select("*");
 
-    		if ( $request->levelFilter == '' )
+    		if ( $request->levelFilter != 'all' && isset($request->levelFilter)  )
             {
-               return view('admin.user',compact('users'))->render();
+                $users = $users->where('level',$request->levelFilter); 
             }
-            if ( $request->levelFilter == 'all' )
-            {
-               return view('admin.user',compact('users'))->render();
-            }
-            else
-            {
-                $users = DB::table('users')->where('level',$request->levelFilter)->get();
-                return view('admin.user',compact('users'))->render();
-            }
-           
-           
-
+            
+            $users = $users->paginate(10);
+            return view('admin.user',compact('users'));
+            
     }
 
     

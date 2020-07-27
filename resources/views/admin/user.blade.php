@@ -92,7 +92,7 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-                                    
+                                    {{$users->appends(['levelFilter'=>Request::get('levelFilter')])->links()}}
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
             </div>
         </div> 
 </div>
-@endsection
+
 
 
 
@@ -194,3 +194,4 @@
     </div>
   </div>
 </div>
+@endsection
