@@ -584,7 +584,7 @@
 				</div>
              </div>
         </section>
-		
+
 		<section id="experience" class="resume">
 			<div class="section-header" style="margin-left: 0">
 				<h2>Work Experience</h2>
@@ -626,8 +626,29 @@
 			@endforeach	
 			</div>
         </section>
-		
-		<section id="works" class="works clearfix">
+
+	<section id="experience" class="resume">
+			<div class="section-header">
+				<h2>Certification</h2>
+				@if (Request::segment(2) == '') 
+					<a class="edit" href="{{url('/member/edit-certification')}}">edit</a>
+				@endif 
+			</div>
+			<div class="row" >
+			@foreach($talent->talent_certification()->get() as $row )
+						<div class="col-md-12 col-sm-12 col-xs-12" >
+							<div class="top-item resume-item">
+								<h2>{{ $row->certif_name }}    |   No. {{$row->certif_number}}</h2>
+								<span>{{$row->certif_company}} |  {{$row->certif_years}} - {{$row->certif_expired}}</span>
+								<p><param>{!! $row->certif_desc !!}</param></p>
+								<p><param></param></p>
+							</div>
+						</div>
+			@endforeach	
+			</div>
+	</section>
+
+	<section id="works" class="works clearfix">
 			
 			<div class="section-header" style="margin-left: 0">
 				<h2>Portfolio</h2>
@@ -721,8 +742,8 @@
 			
 		
 		</section>
-
-@if ( $talent->talent_interviewtest()->count() > 0 )
+		
+		@if ( $talent->talent_interviewtest()->count() > 0 )
 
 			<!-- UNTUK NGECEK APAKAH UDAH ADA HASIL PENILAIAN PERSONALITY OLEH ADMIN -->
 			@foreach($talent->talent_interviewtest()->get() as $row)
@@ -896,9 +917,8 @@
 			@endif
 
 		@endif
-
-
-		<section id="testimonials" class="testimonials">
+		
+		<section id="works" class="works clearfix">
 			
 			<div class="section-header">
 				<h2>Testimonials</h2>
@@ -925,28 +945,29 @@
 			</div>
 		</section>
 
-
-
-
-
-
-	{{--	<section id="personality" class="works clearfix">
-			
-			<div class="section-header" style="margin-left: 0">
-				<h2>Personality</h2> 
+		<section id="experience" class="resume">
+			<div class="section-header">
+				<h2>Job Apply History</h2>
 			</div>
-
-			<div style="clear: both;"></div>
-			
-			
+			<div class="row" >
+			@foreach($talent->jobs_apply()->get() as $row )
+						<div class="col-md-12 col-sm-12 col-xs-12" >
+							<div class="top-item resume-item">
+							
+								<h2>
+								@if ( $soal = $row->job()->first() )
+									{{$soal->jobs_title}}<br>
+								@endif
+								</h2>
+							
+								<span> {{$row -> created_date}} </span>
+								<span>{{$row->jobs_apply_location}} </span>
+								<h5>{{$row -> jobs_apply_type_time}}</h5><br>
+							</div>
+						</div>
+			@endforeach
+			</div>
 		</section>
-
-		--}}
-
-
-
-
-
 
 		<!-- <section id="certification" class="resume">
 			<div class="section-header">
@@ -1019,4 +1040,7 @@
 		      <input type="submit" name="submit" id="submit" value="Send Message" class="btn btn-default pull-left">
 		   </form>
 		</section> -->
+
+	
+        
 @endsection

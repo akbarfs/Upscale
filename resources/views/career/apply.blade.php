@@ -184,9 +184,9 @@
                                         *</span></label>
                                         <div>
                                         <select id="job-type" class="form-control" name="type" required="" title="Select Job Type" onchange="jobType()">
-                                            <option value="fulltime">Fulltime</option>
-                                            <option id="internship" value="internship">Internship</option>
-                                            <option value="partime">Partime</option>
+                                            <option value="Fulltime">Fulltime</option>
+                                            <option id="internship" value="Internship">Internship</option>
+                                            <option value="Partime">Partime</option>
                                         </select>
                                         </div>
                                         

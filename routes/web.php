@@ -87,6 +87,10 @@ Route::group(['prefix'=>'member'], function()
 	Route::post("edit-education", "MemberController@editEducationPost");
 	Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
 
+	Route::get("edit-certification", "MemberController@editCertification");
+	Route::post("edit-certification", "MemberController@editCertificationPost");
+	Route::get("edit-certification-delete/{id}", "MemberController@editCertificationDelete");
+
 	Route::get("edit-interview", "MemberController@editInterview");
 	Route::post("edit-interview", "MemberController@editInterviewPost");
 
@@ -108,7 +112,8 @@ Route::group(['prefix'=>'member'], function()
 
 	Route::get("personality-test", "MemberController@personalityTest");
 	Route::post("personality-test", "MemberController@personalityTestPost");
-
+    Route::get("skill-test/{type_soal_id}", "MemberController@skillTest");
+    Route::post("skill-test/", "MemberController@skillTestPost");
 });
 
 ////////////////////////////

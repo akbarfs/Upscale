@@ -1345,14 +1345,17 @@ LANGUAGE MENU - NAVIGATION MENU
 }
 
 .lan-menu li a, .lan-menu .dropdown > ul > li > a {
-    padding-left: 40px;
+    padding-left: 33px;
     color: #444;
     text-decoration: none;
     line-height: 50px;
-    font-size: 13px;
+    font-size: 16px;
     display: block;
     transition: all .5s;
 }
+
+
+
 
 nav:not(.menu-transparent) .lan-menu > li:hover > a, nav:not(.menu-transparent) .menu-mini .lan-menu > li:hover > a, .lan-menu .dropdown > ul > li:hover > a {
     color: #FFF;

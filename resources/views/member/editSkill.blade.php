@@ -169,10 +169,15 @@
                 </div>
             </div>
         </div>
-
-
-
       </div>
+
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="/profile" ><font color="#FFFFFF">Cancel</font></a>
+        <button type="submit" class="btn btn-primary">SAVE</button>
+    </div>
+
+
+
     </form>
 </section>
 @endsection

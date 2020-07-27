@@ -20,6 +20,7 @@ class interview_test extends Model
 	{	
 		return $this->hasMany('App\Models\Talent' ,'talent_id', 'it_tq_id');
     }
+    
 
 
     public  function interview_question()
@@ -33,9 +34,10 @@ class interview_test extends Model
     }
     
     public function interview_test()
-{
-	return $this->belongsTo('App\Models\interview_test');
-}
+    {
+    	return $this->belongsTo('App\Models\interview_test');
+    }
+
 
 
 }

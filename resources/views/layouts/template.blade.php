@@ -114,7 +114,6 @@
 
         .modal { z-index: 100000000000 !important ; }
 
-
         .minht {min-height: 550px;}
         @media only screen and (max-width:1200px){
             .m { display: none !important }
@@ -525,15 +524,15 @@
                                 
                                 <div class="menu-right">
                         
-                                <ul  style="text-align: center;">
+                                <ul  class="lan-menu">
                                     <li class="dropdown">
-                                        <a href="{{Request::url()}}?lang=en">
+                                        <a href="{{Request::url()}}">
                                             <!-- <img src="{{url('template/upscale/media/profile.png')}}" alt="" /> -->
                                             Hello,
                                         </a>
 
                                         <ul>
-                                            <li><a href="{{url('/profile')}}">Profile</a></li>
+                                            <li ><a href="{{url('/profile')}}">Profile</a></li>
                                             
                                             <li><a  href="{{url('member/logout')}}">Logout</a></li>
                                             

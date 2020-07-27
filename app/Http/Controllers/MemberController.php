@@ -18,6 +18,8 @@ use App\Models\portfolio;
 use App\Models\CategoryTest; 
 use Storage ;
 use Image ; 
+use App\Models\certification;
+use App\Models\interview_test;
 
 class MemberController extends Controller
 {
@@ -402,16 +404,6 @@ class MemberController extends Controller
         }
     }
 
-    public function editInterviewPost(Request $request)
-    {
-        $id = Session::get("user_id"); 
-        $user = User::find($id); 
-        $talent = $user->talent()->first(); 
-
-        $update->save(); 
-        return back()->with("message","berhasil mengupdate"); 
-    }
-
     public function editEducation()
     {
         $id = Session::get("user_id"); 
@@ -440,6 +432,24 @@ class MemberController extends Controller
 
        
         //return view("member.editInterview",compact('talent','interview','question'));
+
+    }
+
+    public function editInterviewPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+        $user = User::find($id); 
+        $talent = $user->talent()->first(); 
+        $interview = $talent->talent_interviewtest();
+
+       // $update->save(); 
+       // return back()->with("message","berhasil mengupdate"); 
+
+        $update = interview_test::find($talent->it_talent_id); 
+        $update['it_answer'] = $request->answer ;
+
+        return back()->with("message","berhasil mengupdate"); 
+
 
     }
 
@@ -475,7 +485,7 @@ class MemberController extends Controller
                     $education->save() ; 
                 }
                 
-            }
+            } 
         }
         return back()->with("message","berhasil mengupdate"); ;
     }
@@ -486,6 +496,68 @@ class MemberController extends Controller
         $education->delete(); 
         return back()->with("message","berhasil menghapus") ; 
     }
+
+    public function editCertification()
+    {
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+        $certification = $talent->talent_certification();
+        
+        //dd($certification->certif_talent_id);
+        //dd($talent->talent_id);
+
+        return view("member.editCertification", compact('talent', 'certification'));
+    }
+
+    public function editCertificationPost(Request $request)
+    {
+        $id = Session::get("user_id"); 
+
+        $user = User::find($id); 
+        $talent = $user->talent()->first();
+
+        $jumlah = count($request->name);
+        if ( $jumlah > 0 )
+        {
+            $this->validate($request, [
+                'name.*' => 'required|min:3'
+            ]);
+
+            //hpaus semua 
+            certification::where("certif_talent_id",$talent->talent_id)->delete(); 
+            //work_experience::where("workex_talent_id",$talent->talent_id)->delete(); 
+            //insert baru   
+            for ( $i=0 ; $i<$jumlah ; $i++)
+            {
+                if ( isset($request->name[$i]) && $request->name[$i] != '' )
+                {
+                    $certif = New certification; 
+                    $certif->certif_talent_id = $talent->talent_id ; 
+                    $certif->certif_name  = $request->name[$i] ? $request->name[$i] : "" ; 
+                    $certif->certif_years = $request->years[$i] ? $request->years[$i] : "" ; 
+                    $certif->certif_company = $request->company[$i] ? $request->company[$i] : "";
+                    $certif->certif_desc = $request->desc[$i] ? $request->desc[$i] : "";
+                    $certif->certif_number = $request->number[$i] ? $request->number[$i] : ""; 
+                    $certif->certif_expired = $request->expired[$i] ? $request->expired[$i] : ""; 
+                    // $certif->certif_file = $request->file[$i] ? $request->file[$i] : ""; 
+                    $certif->save() ; 
+                }
+
+            }
+        }
+        return back()->with("message","berhasil mengupdate"); ;
+
+    }
+
+    public function editCertificationDelete($id)
+    {
+        $certif = certification::find($id); 
+        $certif->delete(); 
+        return back()->with("message","berhasil menghapus") ; 
+    }
+
 
     public function editWork()
     {
