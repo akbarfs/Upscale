@@ -18,4 +18,8 @@ class VerifyCsrfToken extends Middleware
         '/login/member',
         '/send-inquiry'
     ];
+
 }
+
+
+

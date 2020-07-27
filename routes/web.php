@@ -203,6 +203,7 @@ Route::group(['prefix'=>'member'], function()
 
 		});
 
+
 		Route::group(['prefix'=>'jobs'], function(){
 			Route::get('/', 'jobsController@index')->name('index.jobs');
 			Route::get('/all', 'jobsController@all')->name('jobs.all');
@@ -447,6 +448,16 @@ Route::group(['prefix'=>'member'], function()
 			Route::delete('/position/hapus/{id}','MasterDataInterview@hapusposition')->name('position.destroy');
 			Route::resource('preferlocation','MasterDataLocationController');
 			Route::post('/campus/import','MasterDataCampusController@import')->name('campus.import');
+			Route::resource('user','MasterDataUserController');
+			Route::get('/user/edit/{id}','MasterDataUserController@edit')->name('user.edit');
+			Route::get('/user/delete/{id}','MasterDataUserController@delete')->name('user.delete');
+			Route::get('/','MasterDataUserController@selectlevel')->name('user.selectlevel');
+			Route::post('/user/useradd','MasterDataUserController@create')->name('user.create');
+			Route::post('/user/update','MasterDataUserController@update')->name('user.update');
+			
+			
+
+
 			// Route::post('/addlocation','MasterDataLocationController@store')->name('location.store');
 	        // Route::get('/editlocation/{id}','MasterDataLocationController@edit')->name('location.edit');
 	        // Route::post('/updatelocation','MasterDataLocationController@update')->name('location.update');

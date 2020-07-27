@@ -131,7 +131,7 @@
                             <li title="Campus"><i class=""></i><a href="{{ route('campus.index') }}"> Campus</a></li>
                             <li title="Prefered Location"><i class=""></i><a href="{{ route('preferlocation.index') }}"> Prefered Location</a></li>
                             <li title="Interview"><i class=""></i><a href="{{ route('interview.index') }}"> Interview</a></li>
-                            <li title="User"><i class=""></i><a href=""> User</a></li>
+                            <li title="User"><i class=""></i><a href="{{ route('user.index') }}"> User</a></li>
                         </ul>
                     </li>
 

@@ -295,11 +295,17 @@ class TalentNewController extends Controller
     public function insertData(Request $request)
     {
 
+    
+        
+
 
 
         $validation = $request->validate([
-            'nama' => 'required|string|max:150',
-            'email' => 'required|string|email|max:100|unique:users',
+            'nama'=>'required|string|max:150',
+            'email'=>'required|string|email|max:100|unique:users',
+            'password'=>'max:150|required|required_with:confirmpass|same:confirmpass',
+            'confirmpass'=>'max:150',
+            'username'=>'required|string|unique:users,username|max:150',
             // 'gender'=>'required',
             // 'alamat'=>'required',
             // 'phone'=>'required|string|max:30',
@@ -329,19 +335,30 @@ class TalentNewController extends Controller
 
         ]);
 
+        
+
+        $user_id = DB::table('users')->insertGetId([
+                'name' => $request->nama,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => $request->password,
+                'level' => isset($request->level)?$request->level:"undefined",
+        ]);
 
 
+        
 
-        DB::table('talent')->insert([
+        $idTalent = DB::table('talent')->insertGetId([
+            'user_id' => $user_id ,
             'talent_name' => $request->nama,
             'talent_email' => $request->email,
-            'talent_gender' => $request->gender,
+            'talent_gender' => isset($request->gender) ? $request->gender : '',
             'talent_address' => $request->alamat,
             'talent_phone' => isset($request->phone) ? $request->phone : '',
             'talent_birth_date' => $request->birthdate,
             'talent_place_of_birth' => $request->birthplace,
-            'talent_martial_status' => $request->martialstatus,
-            'talent_current_address' => isset($request->currentaddress) ? $request->currentaddress : '',
+            'talent_martial_status' => isset($request->martialstatus) ? $request->martialstatus : '',
+            'talent_current_address' => isset($request->currentaddress)?$request->currentaddress:'',
             'talent_condition' => $request->condition,
             'talent_salary' => $request->salary,
             'talent_focus' => $request->focus,
