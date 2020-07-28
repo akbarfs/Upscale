@@ -489,9 +489,15 @@
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">Portofolio File</label>
                                     </div>
-                                    <div class="col-12 col-md-8">
-                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_portofolio_file}}</strong></p>
-                                    </div>
+                                    @if ( $all->talent_portofolio_file )
+                                        <div class="col-12 col-md-8">
+                                            <p class="form-control-static" style="margin-bottom: 0px;">
+                                                <strong>yes</strong>
+                                            </p>
+                                        </div>
+                                    @else
+                                        -
+                                    @endif
                                 </div>
 
                                 <div class="row form-group">
