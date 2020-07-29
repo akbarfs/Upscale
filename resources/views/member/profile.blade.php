@@ -376,7 +376,7 @@
 
 					<div id="button-pricing"> Pricing & Benefit, Click! </div>
 
-					<div class="pricing-box" align="center"> 
+					<div class="pricing-box" style="display: none" align="center"> 
 
 						<a style="float: right; color: #fff; cursor: pointer; margin: -10px 10px 0 0;" id="close">x</a>
 
