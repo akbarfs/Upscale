@@ -60,6 +60,9 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
 
 
+Route::get("/profile", "MemberController@profile"); //my profile
+Route::get("/profile/{talent_id}", "MemberController@profile");  //other profile
+
 Route::group(['middleware'=>'cek'],function(){
 
 
@@ -68,8 +71,7 @@ Route::group(['middleware'=>'cek'],function(){
 	// });
 
 /////////////////////////////
-Route::get("/profile", "MemberController@profile"); //my profile
-Route::get("/profile/{talent_id}", "MemberController@profile");  //other profile
+
 
 Route::group(['prefix'=>'member'], function()
 {
@@ -616,4 +618,4 @@ $this->post('register', 'Auth\RegisterController@register');
 Route::get('/startproject', 'homeController@startProject')->name('startProject');
 
 //MEMBER PROFILE
-Route::get('/profile/{id}','MemberController@CV');
+// Route::get('/profile/{id}','MemberController@CV');

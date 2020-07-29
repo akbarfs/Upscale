@@ -293,9 +293,11 @@ class MemberController extends Controller
 
     public function profile($id="")
     {
+
         if ( $id == "" )
         {
             $id = Session::get("user_id"); 
+            if ( !$id ){ die('tidak dapat akses'); }
         }
         else
         {
