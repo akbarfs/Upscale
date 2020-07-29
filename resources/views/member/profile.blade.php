@@ -316,7 +316,7 @@
 											$pengalaman = Carbon\Carbon::parse($talent->talent_start_career)->age ; 
 											if ( $pengalaman == 0 )
 											{
-												echo "< 1 Tahun";
+												echo "< 0 Tahun";
 											}
 											else
 											{
@@ -383,7 +383,7 @@
 
 						<div style="margin-bottom: 10px; font-size: 18px">
 							Pricing Talent a/n 
-							<b style="text-transform: uppercase; ">{{$name}}</b>
+							<b style="text-transform: uppercase; ">{{$nama}}</b>
 						</div>
 
 						<hr>
@@ -542,7 +542,7 @@
 						@endif 
 
 						
-						@if ( $talent->talent_hh_price )
+						@if ( $talent->talent_hh_price)
 						<div>
 							Pricing Head Hunter 
 							<b style="font-size: 18px">	
