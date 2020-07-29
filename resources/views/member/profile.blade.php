@@ -920,7 +920,9 @@
 								<div class="col-md-12 col-sm-12 col-xs-12" style="border-bottom: solid 1px #e2e2e2; padding-bottom: 10px;margin-bottom: 10px; ">
 									<div class="top-item">
 										<span>Soal tentang : {{$row->test_question->katagori->ct_name}}</span>
-										<h2 style="font-size: 16px; font-weight: bold">{{$row->test_question->pertanyaan->question_text}}</h2>
+										<h2 style="font-size: 16px; font-weight: bold">
+											{!! nl2br($row->test_question->pertanyaan->question_text) !!}
+										</h2>
 										<p><param>{!! $row->it_answer !!}</param></p>
 									</div>
 								</div>
