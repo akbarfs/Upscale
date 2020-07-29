@@ -36,6 +36,7 @@ class Talent extends Model
 			                'talent_ngajar_rate',
 							'portofolio_update',
 							'talent_address',
+							'talent_rt_status',
 			                'talent_prefered_location',
 			                'talent_prefered_city',
 			                'talent_date_ready',

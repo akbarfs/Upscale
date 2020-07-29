@@ -23,6 +23,9 @@ use App\Mail\progressMail;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use File;
+use Session;
+use lock;
+
 class talentController extends Controller
 {
   public function __construct()
@@ -82,9 +85,11 @@ class talentController extends Controller
         $reqcv = $request->talent_cv;
         $reqpp = $request->talent_portfolio;
         $coba = str_split($request->talent_phone);
+        // $test = $request->talent_photo;
         $hariini = Carbon::now()->format('dmY');
         if($reqcv!==null){
             $cv = $request->file('talent_cv');
+            // $foto = $request->file('talent_foto');
             $namecv = 'Applier_CV_'.$request->talent_name."_".$hariini.'.'.$cv->getClientOriginalExtension();
             $namepp = NULL;
             if($coba[0]==='0'){
@@ -92,12 +97,14 @@ class talentController extends Controller
                 $hilang0 = preg_replace($patternzero,'',$request->talent_phone);
                 $request = $request;
                 $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
+                // $testi = $foto->storeAs('public/photo', $namefoto);
                 // $path2 = $pp->storeAs('Portfolio/Update Portfolio',$namepp);
                 $this->updatestalent($id,$request,$namepp,$namecv,$hilang0);
             }else if($coba[0]==='+'){
                 $pattern='/^\+?\d.\s?/m';
                 $request = $request;
                 $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
+                $testi = $foto->storeAs('public/photo', $namefoto);
                 // $path2 = $pp->storeAs('Portfolio/Update Portfolio',$namepp);
                 $hilang = preg_replace($pattern,'',$request->talent_phone);
                 $this->updatestalent($id,$request,$namepp,$namecv,$hilang);
@@ -105,6 +112,7 @@ class talentController extends Controller
                 $null = NULL;
                 $request = $request;
                 $path = $cv->storeAs('public/Curriculum Vitae',$namecv);
+                $testi = $foto->storeAs('public/photo', $namefoto);
                 // $path2 = $pp->storeAs('Portfolio/Update Portfolio',$namepp);
                 $this->updatestalent($id,$request,$namepp,$namecv,$null);
             }
@@ -168,6 +176,7 @@ class talentController extends Controller
         $talent->talent_address= $request->talent_address;
         $talent->talent_prefered_location = $request->talent_prefered_location;
         $talent->talent_birth_date= $request->talent_birth_date;
+        $talent->talent_start_career= $request->talent_start_career;
         $talent->talent_location_id= $request->talent_current_addres;
         $talent->talent_place_of_birth= $request->talent_place_of_birth;
         $talent->talent_gender= $request->talent_gender;
@@ -175,22 +184,39 @@ class talentController extends Controller
         $talent->talent_campus= $request->campus;
         $talent->talent_current_address = $request->talent_current_address;
         $talent->talent_martial_status = $request->martial_status;
+        $talent->talent_rt_status   = $request->talent_rt;
+        $talent->talent_status   = $request->status;
+        $talent->talent_level = $request->talent_level;
+        $talent->talent_onsite_jakarta = $request->onsite_jakarta;
+        $talent->talent_onsite_jogja = $request->onsite_jogja;
+        $talent->talent_remote = $request->remote;
+        $talent->talent_luar_kota = $request->luar_kota;
+        $talent->talent_focus = $request->focus;
+        $talent->talent_isa = $request->isa;
+        $talent->talent_international = $request->international;
         $talent->talent_rec_salary = $request->recomendation_salary;
         $talent->talent_lastest_salary = $request->lastest_salary;
         $talent->talent_condition = $request->talent_condition;
         $talent->talent_totalexperience = $request->talent_totalexperience;
-        $talent->talent_rt_status   = $request->talent_rt_status;
         $talent->tupdated_date = $now;
         if($nophone===NULL){
             $talent->talent_phone= $request->talent_phone;
         }else{
             $talent->talent_phone= $nophone;
         }
+
+        // if($testi===NULL){
+        //   $talent->talent_foto= $request->talent_foto;
+        // }else{
+        //   $talent->talent_foto= $testi;
+        // }
+
         if($namecv!=null){
             $talent->talent_cv_update = $namecv;
         }else if($namepp!=null){
             $talent->talent_portofolio_file = $namepp;
         }
+
         if($request->link_portfolio===NULL){
             $talent->talent_portfolio=NULL;
         }else{
@@ -329,7 +355,7 @@ class talentController extends Controller
     }
 
     public function all() {
-    	$data = DB::table('talent')->select('talent_id','talent_address', 'talent_apply', 'talent_created_date', 'talent_name','talent_phone','talent_email','talent_gender','talent_condition', 'talent_date_ready', 'talent_available')
+    	$data = DB::table('talent')->select('talent_id','talent_address', 'talent_apply', 'talent_created_date', 'talent_name','talent_phone','talent_email','talent_gender', 'talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa', 'talent_international','talent_date_ready', 'talent_start_career','talent_available')
     							   ->orderBy('talent_id','DESC')->get();
 
       return Datatables::of($data)
@@ -405,9 +431,34 @@ class talentController extends Controller
 
     }
 
-
     public function detail(Request $request)
     {
+      // $update = Talent::find($talent->talent_id); 
+      $photo = $request->file('photo');
+        if ($photo)
+        {
+            $extension = $photo->getClientOriginalExtension(); 
+            $filename = 'profile-'.$id.'.'.$extension;
+
+            $image_resize = Image::make($photo->getRealPath());              
+            $image_resize->resize(600, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('/storage/photo/' .$filename));
+
+            $update['talent_foto'] = $filename ; 
+        }
+
+      
+        
+      $id = Session::get("talent_id");
+      // $user = User::find($id);
+      // $talent = $user->talent()->first();
+      $talent = Talent::find($id);
+      
+      // $this->lock($talent);
+      
+      
+
         //DB::disableQueryLog();
        $response = config('app.json_city');
         
@@ -456,8 +507,8 @@ class talentController extends Controller
                                       ->join('jobs','jobs_apply.jobs_apply_jobs_id','=','jobs.jobs_id')
                                       ->join('talent','jobs_apply_talent_id','=','talent.talent_id')
                                       ->where('jobs_apply_talent_id','=',$id)->get();
-      	$jobs = DB::table('jobs');
-
+        $jobs = DB::table('jobs');
+        
       	$requestt = DB::table('request')->join('company','request.request_company_id','=','company.company_id')->get();
 
       	$list_skill = DB::table('skill')->orderBy('skill_name','asc')->get();
@@ -477,6 +528,7 @@ class talentController extends Controller
             $cvupdate = 'app/public/Curriculum Vitae/Update CV/'.$all->talent_cv;
             $ini = Storage::url($cvupdate);
             $jobs      = Job::all();
+            $fotoupdate = 'app/public/photo/Update foto/'.$all->talent_foto;
             
             
             $ct = DB::table('category_test')->where('ct_id','!=','8')->get();
@@ -613,6 +665,7 @@ class talentController extends Controller
             $cv = 'app/public/Curriculum Vitae/'.$all->talent_cv;
             $ini = Storage::url($cv);
             $jobs      = Job::all();
+            $foto = 'app/public/photo/'.$all->talent_foto;
 
             $ct = DB::table('category_test')->where('ct_id','!=','8')->get();
 
@@ -755,11 +808,102 @@ class talentController extends Controller
                 'ini','cvupdate','listKota','ui_tes',
                 'listprovinsi','ct','ios_tes',
                 'fe_tes','pm_tes','qa_tes','edu','certif','workex',
-                'locate','campus','preferloc'
+                'locate','campus','preferloc', 'talent'
+
             ));
 
         }
     }
+
+    public function detailPost(Request $request){
+      $this ->validate($request, [
+          'talent_name' => 'required',
+          'talent_foto' => 'max:500|sometimes|mimes:jpeg,png,jpg,JPG,JPEG',
+          'talent_email' => 'required',
+          'talent_martial_status' => 'required',
+          'talent_phone' => 'required|numeric|min:11',
+          'talent_gender' => 'required',
+          'talent_rt_status' => 'required',
+          'talent_status' => 'required',
+          'talent_level' => 'required',
+          'talent_onsite_jakarta' => 'required',
+          'talent_onsite_jogja' => 'required',
+          'talent_remote' => 'required',
+          'talent_luar_kota' => 'required',
+          'talent_focus' => 'required',
+          'talent_prefered_city' => 'required',
+          'talent_isa' => 'required',
+          'talent_international' => 'required'
+        ]);
+
+        $id = Session::get("talent_id");
+        // $user = User::find($id);
+        // $talent = $user->talent()->first();
+        $talent = Talent::find($id);
+
+        
+        // $this->lock($talent);
+
+        // $update = Talent::find($talent->talent_id); 
+
+        $update = Talent::find($talent->talent_id);
+
+        $photo = $request->file('talent_photo');
+        if($photo){
+          $extension = $photo->getClientOriginalExtensioon();
+          $filename = 'profile-'.$id.'.'.$extension;
+
+          $image_resize = Image::make($photo->getRealPath());
+          $image_resize->rezise(600,600, function($constraint){
+            $constraint->aspectRatio();
+          })->save(public_path('/storage/photo/' .$filename));
+
+          $update['talent_foto'] = $filename;
+        }
+
+
+        $update['talent_name'] = $request->name ; 
+        $update['talent_profile_desc'] = $request->profile_desc ; 
+        $update['talent_salary'] = preg_replace('/[^0-9]/', '', $request->salary) ; 
+        $update['talent_salary_jogja'] = preg_replace('/[^0-9]/', '', $request->salary_jogja) ; 
+        $update['talent_salary_jakarta'] = preg_replace('/[^0-9]/', '', $request->salary_jakarta) ; 
+        $update['talent_prefered_city'] = $request->prefered_city ; 
+        $update['talent_focus'] = $request->focus; 
+        $update['talent_level'] = $request->talent_level; 
+        $update['talent_phone'] = $request->phone; 
+        $update['talent_address'] = $request->address; 
+        $update['talent_rt_status'] = $request->talent_rt_status;
+        $update['talent_status'] = $request->status;
+        $update['talent_gender'] = $request->gender; 
+        $update['talent_phone'] = $request->phone; 
+        $update['talent_luar_kota'] = $request->luar_kota; 
+        $update['talent_onsite_jakarta'] = $request->onsite_jakarta; 
+        $update['talent_onsite_jogja'] = $request->onsite_jogja; 
+        $update['talent_remote'] = $request->remote;
+        $update['talent_prefered_city'] = $request->prefered_city; 
+        $update['talent_international'] = $request->international; 
+        // $update['talent_current_work'] = $request->current_work; 
+        $update['talent_isa'] = $request->isa; 
+        $update['talent_web'] = $request->website ; 
+        $update['talent_linkedin'] = $request->linkedin ; 
+        $update['talent_facebook'] = $request->facebook ; 
+        $update['talent_instagram'] = $request->instagram ; 
+        $update['talent_twitter'] = $request->twitter ; 
+        $update['talent_freelance_hour'] = preg_replace('/[^0-9]/', '', $request->freelance_hour) ; 
+        $update['talent_project_min'] = preg_replace('/[^0-9]/', '', $request->project_min) ; 
+        $update['talent_project_max'] = preg_replace('/[^0-9]/', '', $request->project_max) ; 
+        $update['talent_konsultasi_rate'] = preg_replace('/[^0-9]/', '', $request->konsultasi_rate) ; 
+        $update['talent_ngajar_rate'] = preg_replace('/[^0-9]/', '', $request->ngajar_rate) ; 
+        
+        
+        $update->save(); 
+
+        return back()->with("message", "berhasil update");
+
+
+    }
+
+
 
     public function addSkillTalent(Request $request){
         foreach($request->input('skill_id') as $key => $value) {
@@ -1103,7 +1247,7 @@ return response()->json($cp);
     public function allAssign() {
 
     	$data = DB::table('talent')
-    	                    ->select('talent.talent_id','talent_address','talent_name','talent_phone','talent_email','talent_gender','talent_condition','talent_date_ready','talent_available','assign_status','assign_desc', 'assign_request.created_at', 'assign_request.request_id', 'company_name', 'request_name', 'request_location', 'assign_request_id','assign_request_status','assign_status_date')
+    	                    ->select('talent.talent_id','talent_address','talent_name','talent_phone','talent_email','talent_gender','talent_rt_status','talent_status','talent_condition','talent_onsite_jakarta','talent_onsite_jogja','talent_remote','talent_luar_kota','talent_focus','talent_isa','talent_international','talent_date_ready','talent_start_career','talent_available','assign_status','assign_desc', 'assign_request.created_at', 'assign_request.request_id', 'company_name', 'request_name', 'request_location', 'assign_request_id','assign_request_status','assign_status_date')
                             ->join('assign_request','assign_request.talent_id','=','talent.talent_id')
                             ->join('request','request.request_id','=','assign_request.request_id')
                             ->join('company','company.company_id','=','request.request_company_id')
@@ -2005,10 +2149,82 @@ return response()->json($cp);
 
      
      public function detailtalent($id){
-       $talent = DB::table('talent')  
+      // $this ->validate($request, [
+      //   'talent_name' => 'required',
+      //   'talent_foto' => 'max:500|sometimes|mimes:jpeg,png,jpg,JPG,JPEG',
+      //   'talent_email' => 'required',
+      //   'talent_martial_status' => 'required',
+      //   'talent_phone' => 'required|numeric|min:11',
+      //   'talent_gender' => 'required',
+      // ]);
+
+      // $update = Talent::find($talent->talent_id); 
+      // $photo = $request->file('photo');
+      //   if ($photo)
+      //   {
+      //       $extension = $photo->getClientOriginalExtension(); 
+      //       $filename = 'profile-'.$id.'.'.$extension;
+
+      //       $image_resize = Image::make($photo->getRealPath());              
+      //       $image_resize->resize(600, 600, function ($constraint) {
+      //           $constraint->aspectRatio();
+      //       })->save(public_path('/storage/photo/' .$filename));
+
+      //       $update['talent_foto'] = $filename ; 
+      //   }
+
+      // $talent = Talent::create([
+      //   'talent_name' => $request->talent_name,
+      //   'talent_foto' => $request->talent_foto,
+      //   'talent_email' => $request->talent_email,
+      //   'talent_martial_status' => $request->talent_martial_status,
+      //   'talent_phone' => $request->talent_phone,
+      //   'talent_gender' => $request->talent_gender,
+      // ]);
+
+
+      //   $update['talent_name'] = $request->name ; 
+      //   $update['talent_profile_desc'] = $request->profile_desc ; 
+      //   $update['talent_salary'] = preg_replace('/[^0-9]/', '', $request->salary) ; 
+      //   $update['talent_salary_jogja'] = preg_replace('/[^0-9]/', '', $request->salary_jogja) ; 
+      //   $update['talent_salary_jakarta'] = preg_replace('/[^0-9]/', '', $request->salary_jakarta) ; 
+      //   $update['talent_prefered_city'] = $request->prefered_city ; 
+      //   $update['talent_focus'] = $request->focus ; 
+      //   $update['talent_level'] = $request->level ; 
+      //   $update['talent_phone'] = $request->phone ; 
+      //   $update['talent_address'] = $request->address; 
+      //   $update['talent_gender'] = $request->gender; 
+      //   $update['talent_phone'] = $request->phone; 
+      //   $update['talent_luar_kota'] = $request->luar_kota; 
+      //   $update['talent_onsite_jakarta'] = $request->onsite_jakarta; 
+      //   $update['talent_onsite_jogja'] = $request->onsite_jogja; 
+      //   $update['talent_remote'] = $request->remote; 
+      //   $update['talent_international'] = $request->international; 
+      //   $update['talent_current_work'] = $request->current_work; 
+      //   $update['talent_isa'] = $request->isa; 
+      //   $update['talent_web'] = $request->website ; 
+      //   $update['talent_linkedin'] = $request->linkedin ; 
+      //   $update['talent_facebook'] = $request->facebook ; 
+      //   $update['talent_instagram'] = $request->instagram ; 
+      //   $update['talent_twitter'] = $request->twitter ; 
+      //   $update['talent_freelance_hour'] = preg_replace('/[^0-9]/', '', $request->freelance_hour) ; 
+      //   $update['talent_project_min'] = preg_replace('/[^0-9]/', '', $request->project_min) ; 
+      //   $update['talent_project_max'] = preg_replace('/[^0-9]/', '', $request->project_max) ; 
+      //   $update['talent_konsultasi_rate'] = preg_replace('/[^0-9]/', '', $request->konsultasi_rate) ; 
+      //   $update['talent_ngajar_rate'] = preg_replace('/[^0-9]/', '', $request->ngajar_rate) ; 
+      //   $update->save(); 
+
+
+
+      // return back()->with('success', 'save successful');
+
+
+        $talent = DB::table('talent')  
             ->join('campus','campus.campus_id','=','talent.talent_campus')          
             ->where('talent_id',$id)->first();
        return response()->json($talent);
+
+
      }
 
     public function notify(){
@@ -2068,4 +2284,8 @@ return response()->json($cp);
         }
         echo '<h1>DONE</h1>';
     }
+
+
+
+
 }

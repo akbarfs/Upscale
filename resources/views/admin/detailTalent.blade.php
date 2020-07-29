@@ -98,9 +98,43 @@
                                     </div>
                                 </h3>
                             </div>
+
+                            
+                                        <!-- <a href="{{url('admin/detail-talent')}}"></a>
+                                        @if ($all->talent_foto)
+                                        @php $random = date("his") @endphp
+                                        <img src="{{url('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar" width="50px" height="50px">
+                                        @else
+                                        <img src="{{url('img/images.jpg')}}" alt="row">
+                                        <label class=" form-control-label">  </label>
+                                        <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
+                                      @endif
+                            <form style="padding-left: 20px; padding-top: 15px;"> -->
+                                
+                            
                             <form style="padding-left: 20px; padding-top: 15px;">
-                                <div class="row form-group">
+                           <div class="row form-group">
+                                <div class="avatar">
                                     <div class="col col-md-4">
+                                    <a href="{{url('admin/detail-talent')}}"></a>
+                                    @if ($all->talent_foto)
+                                    @php $random = date("his") @endphp
+                                    <img src="{{url('storage/photo/'.$all->talent_foto)}}?v={{$random}}" alt="avatar">
+                                    @else
+                                    <img src="{{url('img/images.jpg')}}" alt="avatar">
+                                        <label class=" form-control-label">  </label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static"  style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_foto}}</strong></p>
+                                      @endif
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4"> 
                                         <label class=" form-control-label">Name</label>
                                     </div>
                                     <div class="col-12 col-md-8">
@@ -214,8 +248,7 @@
                                         <label class=" form-control-label"> Start Career</label>
                                     </div>
                                     <div class="col-12 col-md-8">
-                                        <p class="form-control-static" style="margin-bottom: 0px;">
-                                            <strong id="jobs_apply_expected_salary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." >
+                                        <p class="form-control-static" style="margin-bottom: 0px;"><strong id='ttl'>
                                                 {{$all->talent_start_career}}
                                             </strong>
                                         </p>
@@ -325,7 +358,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row form-group">
+                                <!-- <div class="row form-group">
                                     <div class="col col-md-4">
                                         <label class=" form-control-label">date ready</label>
                                     </div>
@@ -336,7 +369,7 @@
                                             </strong>
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row form-group">
                                     <div class="col col-md-4">
@@ -452,6 +485,16 @@
                                       <p class="form-control-static"style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_martial_status}}</strong></p>
                                     </div>
                                 </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Request Talent Status</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static"style="margin-bottom: 0px;text-transform: capitalize;"><strong>{{$all->talent_rt_status}}</strong></p>
+                                    </div>
+                                </div>
+
 
 
                                 <div class="row form-group">
@@ -644,6 +687,44 @@
                                     </div>
                                 </div>
 
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">LinkedIn</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_linkedin}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Facebook</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_facebook}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Instagram</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_instagram}}</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-4">
+                                        <label class=" form-control-label">Twitter</label>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                      <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_instagram}}</strong></p>
+                                    </div>
+                                </div>
+
+
   
                             </form>
                         </section>
@@ -711,7 +792,7 @@
                             <div class="card-body">
                                 <div class="col-md-4">
                                     @if($all->talent_date_ready!=null)
-                                    {{ date("D, d-M-Y", strtotime($all->talent_date_ready)) }}
+                                    {{ date("D, dd/MM/YY", strtotime($all->talent_date_ready)) }}
                                     @elseif($all->talent_date_ready==null)
                                     <strong class="text-danger">Not Set</strong>
                                     @endif
@@ -2096,28 +2177,33 @@
                                     <label for="text-input" class=" form-control-label">Talent Phone</label>
                                     <input value="{{$all->talent_phone}}" type="text" id="talent_phone" name="talent_phone" placeholder="Your Phone" required="" class="form-control">
                                     <label for="select" class=" form-control-label">Talent Gender</label>
-                                    <select value="{{$all->talent_gender}}" name="talent_gender" id="talent_gender" class="form-control">
-                                        <option  value="male">Male</option>
-                                        <option value="female">Female</option>
+                                    <select class="custom-select" name="talent_gender">
+                                        <option value="">-- Choose --</option>
+                                        <option value="male" @if($all->talent_gender == 'male') selected="selected" @endif>Male</option>
+                                        <option value="female" @if($all->talent_gender == 'female') selected="selected" @endif>Female</option>
                                     </select>
+                                    @if($errors->has('talent_gender'))
+                                        @foreach ($errors->get('talent_gender') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
                                     <label for="text-input" class=" form-control-label">Place Of Birth</label>
                                     <input type="text" name="talent_place_of_birth" id="talent_place_of_birth" class="form-control" value="{{$all->talent_place_of_birth}}">
                                     <label for="text-input" class=" form-control-label">Birth Day</label>
                                     <input value="{{$all->talent_birth_date}}" type="text" id="talent_birth_date" name="talent_birth_date" placeholder="dd/mm/yyyy" class="form-control">
                                     <label for="text-input" class=" form-control-label">Martial Status</label>
-                                    <select name="martial_status" class="form-control">
-                                        @if ($all->talent_martial_status == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="married" > Married</option>
-                                            <option value="single" > Single</option>
-                                        @elseif($all->talent_martial_status == "single")
-                                            <option value="single" > Single</option>
-                                            <option value="married" > Married</option>
-                                        @elseif($all->talent_martial_status == "married")
-                                            <option value="married" > Married</option>
-                                            <option value="single" > Single</option>
-                                        @endif
+                                    <select class="custom-select" name="martial_status">
+                                        <option value="">-- Choose --</option>
+                                        <option value="single" @if($all->talent_martial_status == 'single') selected="selected" @endif>single</option>
+                                        <option value="married" @if($all->talent_martial_status == 'married') selected="selected" @endif>married</option>
                                     </select>
+                                    @if($errors->has('martial_status'))
+                                        @foreach ($errors->get('martial_status') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
                                     <label for="text-input" class=" form-control-label">Campus</label>
                                     <select name="campus" class="form-control campus2">
                                         @if ($all->talent_campus!=NULL)
@@ -2131,143 +2217,160 @@
                                         @endforeach
                                     </select>
                                     <label for="text-input" class=" form-control-label">Request Talent Status</label>
-                                    <select name="talent_rt_status" id="talent_rt_status" class="form-control">
-                                    @if ($all->talent_rt_status == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="DONE" >DONE</option>
-                                            <option value="NOT YET" >NOT YET</option>
-                                    @elseif($all->talent_rt_status == "DONE")
-                                            <option value="DONE" > DONE</option>
-                                            <option value="NOT YET" > NOT YET</option>
-                                    @elseif($all->talent_rt_status == "NOT YET")
-                                            <option value="NOT YET" > NOT YET</option>
-                                            <option value="DONE" > DONE</option>
-                                    @endif
-                                    </select> 
-
-                                    <label for="text-input" class=" form-control-label">Talent Status</label>
-                                    <select name="talent_status" class="form-control">
-                                        @if ($all->talent_status == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="worker" > Worker</option>
-                                            <option value="alumni" > Alumni</option>
-                                            <option value="edu" > Edu</option>
-                                        @elseif($all->talent_status == "worker")
-                                            <option value="worker" > Worker</option>
-                                            <option value="alumni" > Alumni</option>
-                                            <option value="edu" > Edu</option>
-                                        @elseif($all->talent_status == "alumni")
-                                            <option value="alumni" > Alumni</option>
-                                            <option value="worker" > Worker</option>
-                                            <option value="edu" > Edu</option>
-                                        @elseif($all->talent_status == "edu")
-                                            <option value="edu" > Edu</option>
-                                            <option value="alumni" > Alumni</option>
-                                            <option value="worker" > Worker</option>
-                                        @endif
+                                    <select class="custom-select" name="talent_rt">
+                                        <option value="">-- Choose --</option>
+                                        <option value="NOT YET" @if($all->talent_rt_status == 'NOT YET') selected="selected" @endif>Not Yet</option>
+                                        <option value="DONE" @if($all->talent_rt_status == 'DONE') selected="selected" @endif>Done</option>
                                     </select>
+                                        @if($errors->has('talent_rt'))
+                                            @foreach ($errors->get('talent_rt') as $error)
+                                            <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                            @endforeach
+                                        @endif
+                                        
+                                    <label for="text-input" class=" form-control-label">Talent Status</label>
+                                    <select class="custom-select" name="status" >
+                                        <option value="">-- Choose --</option>
+                                        <option value="student" @if($all->talent_status == 'student') selected="selected" @endif>Student</option>
+                                        <option value="worker" @if($all->talent_status == 'worker') selected="selected" @endif>Worker</option>
+                                        <option value="freelance" @if($all->talent_status == 'freelance') selected="selected" @endif>Freelance</option>
+                                        <option value="free" @if($all->talent_status == 'free') selected="selected" @endif>Free</option>
+                                    </select>
+
+                                    @if($errors->has('talent_status'))
+                                        @foreach($errors->get('talent_status') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Condition</label>
-                                    <select name="talent_condition" class="form-control">
-                                        @if ($all->talent_condition == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="quarantine" > Quarantine</option>
-                                            <option value="assign" > Assign</option>
-                                        @elseif($all->talent_condition == "quarantine")
-                                            <option value="quarantine" > Quarantine</option>
-                                            <option value="assign" > Assign</option>
-                                        @elseif($all->talent_condition == "assign")
-                                            <option value="assign" > Assign</option>
-                                            <option value="quarantine" > Quarantine</option>
-                                        @endif
+                                    <select name="talent_condition" class="custom-select">
+                                    <option value="">-- Choose --</option>
+                                        <option value="quarantine" @if($all->talent_condition == 'quarantine') selected="selected" @endif>Quarantine</option>
+                                        <option value="assign" @if($all->talent_condition == 'assign') selected="selected" @endif>Assign</option>
                                     </select>
+
+                                    @if($errors->has('talent_condition'))
+                                        @foreach($errors->get('talent_condition') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Start Career</label>
                                     <input value="{{$all->talent_start_career}}" type="text" id="talent_start_career" name="talent_start_career" placeholder="dd/mm/yyyy" class="form-control">
 
                                     <label for="text-input" class=" form-control-label">Level</label>
-                                    <select name="talent_status" class="form-control">
-                                        @if ($all->talent_level == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="senior" > Senior</option>
-                                        @elseif($all->talent_level == "undefined")
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="senior" > Senior</option>
-                                        @elseif($all->talent_level == "junior")
-                                            <option value="junior" > Junior</option>
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="senior" > Senior</option>
-                                        @elseif($all->talent_level == "middle")
-                                            <option value="middle" > Middle</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="undefined" > Undefined</option>
-                                            <option value="senior" > Senior</option>
-                                        @elseif($all->talent_level == "senior")
-                                            <option value="senior" > Senior</option>
-                                            <option value="middle" > Middle</option>
-                                            <option value="junior" > Junior</option>
-                                            <option value="undefined" > Undefined</option>
-                                        @endif
-                                    </select>
+                                    <select name="talent_level" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="junior" @if($all->talent_level == 'junior') selected="selected" @endif>Junior</option>
+                                        <option value="middle" @if($all->talent_level == 'middle') selected="selected" @endif>Middle</option>
+                                        <option value="senior" @if($all->talent_level == 'senior') selected="selected" @endif>Senior</option>
+                                    </select> 
+                                    @if ($errors->has('talent_level'))
+                                        @foreach ($errors->get('talent_level') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif   
 
                                     <label for="text-input" class=" form-control-label">Date Ready</label>
-                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="" class="form-control">
+                                    <input value="{{$all->talent_date_ready}}" type="text" id="talent_date_ready" name="talent_date_ready" placeholder="dd/mm/yyyy" class="form-control">
 
                                     <label for="text-input" class=" form-control-label">Onsite Jakarta</label>
-                                    <select name="talent_onsite_jakarta" id="talent_onsite_jakarta" class="form-control">
-                                    @if ($all->talent_onsite_jakarta == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_onsite_jakarta == "Yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                    @elseif($all->talent_onsite_jakarta == "No")
-                                            <option value="no" > No</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="onsite_jakarta" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_onsite_jakarta == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_onsite_jakarta == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('onsite_jakarta'))
+                                        @foreach ($errors->get('onsite_jakarta') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Onsite Jogja</label>
-                                    <select name="talent_onsite_jogja" id="talent_onsite_jogja" class="form-control">
-                                    @if ($all->talent_onsite_jogja == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_onsite_jogja == "Yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                    @elseif($all->talent_onsite_jogja == "No")
-                                            <option value="no" > No</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="onsite_jogja" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_onsite_jogja == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_onsite_jogja == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('onsite_jogja'))
+                                        @foreach ($errors->get('onsite_jogja') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
 
                                     <label for="text-input" class=" form-control-label">Remote</label>
-                                    <select name="talent_remote" id="talent_remote" class="form-control">
-                                    @if ($all->talent_remote == NULL)
-                                            <option value=""> Pilih</option>
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > NO</option>
-                                    @elseif($all->talent_remote == "Yes")
-                                            <option value="yes" > Yes</option>
-                                            <option value="no" > No</option>
-                                    @elseif($all->talent_remote == "No")
-                                            <option value="no" > No</option>
-                                            <option value="yes" > Yes</option>
-                                    @endif
+                                    <select name="remote" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_remote == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_remote == 'no') selected="selected" @endif>No</option>
                                     </select> 
+                                    @if ($errors->has('remote'))
+                                        @foreach ($errors->get('remote') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
+
+                                    
+                                    <label for="text-input" class=" form-control-label">Bekerja Remote di Luar Kota</label>
+                                    <select name="luar_kota" class="custom-select">
+                                    <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_luar_kota == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_luar_kota == 'no') selected="selected" @endif>No</option>
+                                    </select> 
+                                    @if ($errors->has('luar_kota'))
+                                        @foreach ($errors->get('luar_kota') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
+                                    <label for="text-input" class=" form-control-label">Focus</label>
+                                    <select name="focus" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="Frontend" @if($all->talent_focus == 'Frontend') selected="selected" @endif>Frontend Web</option>
+                                        <option value="Backend web" @if($all->talent_focus == 'Backend web') selected="selected" @endif>Backend Web</option>
+                                        <option value="Fullstack web" @if($all->talent_focus == 'Fullstack web') selected="selected" @endif>Fullstack Web</option>
+                                        <option value="Mobile programmer" @if($all->talent_focus == 'Mobile programmer') selected="selected" @endif>Mobile programmer</option>
+                                        <option value="UI UX" @if($all->talent_focus == 'UI UX') selected="selected" @endif>UI UX</option>
+                                        <option value="QA" @if($all->talent_focus == 'QA') selected="selected" @endif>QA</option>
+                                        <option value="Dev Ops" @if($all->talent_focus == 'Dev Ops') selected="selected" @endif>Dev Ops</option>
+                                        <option value="Data science" @if($all->talent_focus == 'Data science') selected="selected" @endif>Data Science</option>
+                                        <option value="PM" @if($all->talent_focus == 'PM') selected="selected" @endif>Project/Product Manager</option>
+                                        <option value="Other" @if($all->talent_focus == 'Other') selected="selected" @endif>Other</option>
+                                    </select> 
+                                    @if ($errors->has('focus'))
+                                        @foreach ($errors->get('focus') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
+                                    <label for="text-input" class=" form-control-label">Current Addres</label><br>
+                                    <select value="" name="talent_current_address" id="talent_current_addres" class="js-example-basic-single form-control" style="width:100%">
+                                    @if ($all->talent_current_address!=NULL)
+                                        <option value="{{$all->talent_current_address}}">{{$all->talent_current_address}}</option>
+                                    @endif
+                                    @foreach($listKota as $kota)
+                                        <option value="{{$kota->type." ".$kota->nama}}">{{$kota->type." ".$kota->nama}}</option>
+                                    @endforeach
+                                    </select><br>
+                                    <label for="text-input" class=" form-control-label">Address</label>
+                                    <input value="{{$all->talent_address}}" type="text" id="talent_address" name="talent_address"  placeholder="Your Current City" required="" class="form-control">
+
+                                    <label for="text-input" class=" form-control-label">Prefered Location</label>
+                                    <select value="" name="talent_prefered_location" id="talent_prefered_location" class="form-control" style="width:100%">
+                                        @foreach ($locate as $location)
+                                            <option value="{{$location->location_id}}">{{$location->location_name}}</option>
+                                        @endforeach
+                                    </select><br>
+
+                                   
+                                    
 
 
                                 </div>
                                 <div class="form-group col-md-6">
-                                <label for="text-input" class=" form-control-label">Skill</label>
+                                <!-- <label for="text-input" class=" form-control-label">Skill</label>
                                     @push('script')
     
                             <script src="{{url('template/upscale/js/tag.js')}}"></script>
@@ -2310,49 +2413,78 @@
                                 placeholder="skill"
                                 name="skill"
                                 value="{{$all->talent_skill}}" id="talent_skill">
-                            </div>
+                            </div> -->
 
-                                    <label for="text-input" class=" form-control-label">Current Addres</label><br>
-                                    <select value="" name="talent_current_address" id="talent_current_addres" class="js-example-basic-single form-control" style="width:100%">
-                                    @if ($all->talent_current_address!=NULL)
-                                        <option value="{{$all->talent_current_address}}">{{$all->talent_current_address}}</option>
-                                    @endif
-                                    @foreach($listKota as $kota)
-                                        <option value="{{$kota->type." ".$kota->nama}}">{{$kota->type." ".$kota->nama}}</option>
-                                    @endforeach
-                                    </select><br>
-                                    <label for="text-input" class=" form-control-label">Address</label>
-                                    <input value="{{$all->talent_address}}" type="text" id="talent_address" name="talent_address"  placeholder="Your Current City" required="" class="form-control"> <br>
-                                    <label for="text-input" class=" form-control-label">Prefered Location</label>
-                                    <select value="" name="talent_prefered_location" id="talent_prefered_location" class="form-control" style="width:100%">
-                                        @foreach ($locate as $location)
-                                            <option value="{{$location->location_id}}">{{$location->location_name}}</option>
-                                        @endforeach
-                                    </select><br>
+                                    
 
                                     <label for="text-input" class=" form-control-label">Prefered City</label>
                                     <select value="" name="talent_prefered_city" id="talent_prefered_city" class="form-control" style="width:100%">
                                         @foreach ($locate as $location)
                                             <option value="{{$location->location_id}}">{{$location->location_name}}</option>
                                         @endforeach
-                                    </select><br>
+                                    </select>
 
-                                    
+
+                                    <label for="text-input" class=" form-control-label">Edukasi ISA</label>
+                                    <select name="isa" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_isa == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_isa == 'no') selected="selected" @endif>No</option>
+                                    </select> 
+                                    @if ($errors->has('isa'))
+                                        @foreach ($errors->get('isa') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif 
+
+                                    <label for="text-input" class=" form-control-label">Bekerja di Luar Negeri</label>
+                                    <select name="international" class="custom-select">
+                                        <option value="">-- Choose --</option>
+                                        <option value="yes" @if($all->talent_international == 'yes') selected="selected" @endif>Yes</option>
+                                        <option value="no" @if($all->talent_international == 'no') selected="selected" @endif>No</option>
+                                    </select> 
+                                    @if ($errors->has('international'))
+                                        @foreach ($errors->get('international') as $error)
+                                        <div class="alert alert-danger"><i>{{$error}}</i></div>
+                                        @endforeach
+                                    @endif
+
+                                    <label for="text-input" class=" form-control-label">Recomendation Salary</label>
                                     <input value="{{$all->talent_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah" type="text" name="talent_salary" class="form-control" placeholder="Your expected salary" required="">
+                                    
                                     <label for="text-input" class=" form-control-label">Lastest Salary</label>
                                     <input value="{{$all->talent_lastest_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="lastest_salary" class="form-control" placeholder="Lastest salary" required="">
-                                    <label for="text-input" class=" form-control-label">Recomendation Salary</label>
+                                    
 
-                                    <label for="text-input" class=" form-control-label">Jakarta Salary</label>
+                                    <label for="text-input" class=" form-control-label">Expected Jakarta Salary</label>
                                     <input value="{{$all->talent_salary_jakarta}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_salary_jakarta" class="form-control" placeholder="Jakarta salary" required="">
 
-                                    <label for="text-input" class=" form-control-label">Jakarta Salary</label>
+                                    <label for="text-input" class=" form-control-label">Expected Yogyakarta Salary</label>
                                     <input value="{{$all->talent_salary_jogja}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_salary_jogja" class="form-control" placeholder="Jogja salary" required="">
 
                                     <label for="text-input" class=" form-control-label">Expected Salary</label>
                                     <input value="{{$all->talent_rec_salary}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah3" type="text" name="recomendation_salary" class="form-control" placeholder="Recomendation salary" required="">
+                                    
+                                    <label for="text-input" class=" form-control-label">Freelance hour rate</label>
+                                    <input value="{{$all->talent_freelance_hour}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_freelance_hour" class="form-control" placeholder="Freelance hour rate" required="">
+                                    
+                                    
                                     <label for="text-input" class=" form-control-label">Total Experience</label>
                                     <input value="{{$all->talent_totalexperience}}" id="totalexperience" type="text" name="talent_totalexperience" class="form-control" placeholder="Total Experience Ex: 5 years" >
+                                    
+                                    <label for="text-input" class=" form-control-label">Project Min</label>
+                                    <input value="{{$all->talent_project_min}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_project_min" class="form-control" placeholder="Project min" required="">
+
+                                    <label for="text-input" class=" form-control-label">Project Max</label>
+                                    <input value="{{$all->talent_project_max}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_project_max" class="form-control" placeholder="Project max" required="">
+                                    
+                                    <label for="text-input" class=" form-control-label">Konsultasi rate</label>
+                                    <input value="{{$all->talent_konsultasi_rate}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_konsultasi_rate" class="form-control" placeholder="Konsultasi rate" required="">
+
+                                    <label for="text-input" class=" form-control-label">Rate mengajar</label>
+                                    <input value="{{$all->talent_ngajar_rate}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_ngajar_rate" class="form-control" placeholder="Mengajar rate" required="">
+
+                                    
                                     <label for="text-input" class=" form-control-label">CV <span class="badge badge-secondary">.pdf Max 1MB</span></label><br>
                                     {{-- <div id="link_cv">
                                             <small>*Link </small><br>
@@ -2368,7 +2500,17 @@
                                     </div>
                                     <input type="file" value="{{$all->talent_portofolio_file}}" id="talent_portfolio" name="talent_portfolio" placeholder="dd/mm/yyyy" class="form-control" accept=".pdf">
                                     
-                                    
+                                    <label for="text-input" class=" form-control-label">LinkedIn</label>
+                                    <input value="{{$all->talent_linkedin}}" type="text" id="talent_linkedin" name="talent_linkedin"  placeholder="Your Linkedin" required="" class="form-control"> 
+
+                                    <label for="text-input" class=" form-control-label">Facebook</label>
+                                    <input value="{{$all->talent_facebook}}" type="text" id="talent_facebook" name="talent_facebook"  placeholder="Your Facebook" required="" class="form-control"> 
+
+                                    <label for="text-input" class=" form-control-label">Instagram</label>
+                                    <input value="{{$all->talent_instagram}}" type="text" id="talent_instagram" name="talent_instagram"  placeholder="Your Instagram" required="" class="form-control">
+
+                                    <label for="text-input" class=" form-control-label">Twitter</label>
+                                    <input value="{{$all->talent_twitter}}" type="text" id="talent_twitter" name="talent_twitter"  placeholder="Your Twitter" required="" class="form-control">  
                                    
 
                                 </div>
@@ -4152,6 +4294,19 @@ $(document).on('click', 'a[href="#v-pills-talent"]', function(e){
      });
 
 
+     $(document).ready(function(){
+        var tanggal_mulai = "{{$all->talent_start_career}}";
+        $('#ttl').text("{{$all->talent_start_career}}" + ", " + moment(tanggal_mulai, 'YYYY-MM-DD, h:m:s').locale('id').format('MMMM Do YYYY'));
+        $('#jobs_apply_expected_salary').autoNumeric('init');
+        $('#jobs_apply_expected_salary').autoNumeric('set', "{{$all->talent_salary}}");
+    });
+
+     $(function() {
+       $('#talent_start_career').datetimepicker({
+        'format' : "DD/MM/YYYY",
+        });
+     });
+
 
     $(document).on('click', '#save', function(){
 
@@ -4161,9 +4316,10 @@ $(document).on('click', 'a[href="#v-pills-talent"]', function(e){
     var talent_condition      = $('#talent_condition');
     var talent_gender         = $('#talent_gender');
     var talent_salary         = $('#talent_salary');
-    var talent_totalexperience         = $('#talent_totalexperience');
+    var talent_totalexperience = $('#talent_totalexperience');
     var talent_birth_date     = $('#talent_birth_date');
     var talent_place_of_birth = $('#talent_place_of_birth');
+    var talent_start_career   = $('#talent_start_career');
     var talent_address        = $('#talent_address');
     var talent_rt_status      = $('#talent_rt_status');
 
@@ -4429,6 +4585,14 @@ $(document).on('click', '.tambah_skill', function(e){
         'format' : "DD/MM/YYYY",
         });
     </script>
+
+    <script>
+
+    $('#talent_start_career').datetimepicker({
+    'format' : "DD/MM/YYYY",
+    });
+    </script>
+
     <script type="text/javascript">
         $('.js-example-basic-single').select2();
     </script>
