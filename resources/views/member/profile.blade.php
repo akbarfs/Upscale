@@ -584,7 +584,7 @@
 
 		            <div style="clear: both;"></div>
 
-                	@foreach($talent->talent_skill()->orderBy('st_score','DESC')->get() as $row )
+                	@foreach($talent->talent_skill()->orderBy('st_score','DESC')->orderBy('st_skill_verified_date','DESC')->get() as $row )
 					<?php 
 							$skill = $row->skill()->first();
 							$score = $row->st_score;
