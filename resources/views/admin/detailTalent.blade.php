@@ -2491,6 +2491,20 @@
                                     <input value="{{$all->talent_ngajar_rate}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_ngajar_rate" class="form-control" placeholder="Mengajar rate" required="">
 
                                     
+
+                                    <label for="text-input" class=" form-control-label">price jakarta</label>
+                                    <input value="{{$all->talent_price_jakarta}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_price_jakarta" class="form-control" placeholder="price jakarta" required="">
+
+                                    <label for="text-input" class=" form-control-label">price usd</label>
+                                    <input value="{{$all->talent_price_usd}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_price_usd" class="form-control" placeholder="price usd" required="">
+
+                                    <label for="text-input" class=" form-control-label">price jogja</label>
+                                    <input value="{{$all->talent_price_jogja}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_price_jogja" class="form-control" placeholder="price jogja" required="">
+
+                                    <label for="text-input" class=" form-control-label">price headhunter</label>
+                                    <input value="{{$all->talent_hh_price}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_hh_price" class="form-control" placeholder="pricing headhunter" required="">
+
+                                    
                                     <label for="text-input" class=" form-control-label">CV <span class="badge badge-secondary">.pdf Max 1MB</span></label><br>
                                     {{-- <div id="link_cv">
                                             <small>*Link </small><br>
@@ -4309,7 +4323,7 @@ $(document).on('click', 'a[href="#v-pills-talent"]', function(e){
 
      $(function() {
        $('#talent_start_career').datetimepicker({
-        'format' : "DD/MM/YYYY",
+        'format' : "YYYY-MM-DD",
         });
      });
 
@@ -4588,14 +4602,14 @@ $(document).on('click', '.tambah_skill', function(e){
     <script>
 
        $('#talent_birth_date').datetimepicker({
-        'format' : "DD/MM/YYYY",
+        'format' : "YYYY-MM-DD",
         });
     </script>
 
     <script>
 
     $('#talent_start_career').datetimepicker({
-    'format' : "DD/MM/YYYY",
+    'format' : "YYYY-MM-DD",
     });
     </script>
 

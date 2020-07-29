@@ -199,9 +199,18 @@ class talentController extends Controller
         $talent->talent_condition = $request->talent_condition;
         $talent->talent_totalexperience = $request->talent_totalexperience;
         $talent->tupdated_date = $now;
-        if($nophone===NULL){
+
+        $talent->talent_price_jakarta = $request->talent_price_jakarta ; 
+        $talent->talent_price_usd = $request->talent_price_usd ; 
+        $talent->talent_price_jogja = $request->talent_price_jogja ; 
+        $talent->talent_hh_price = $request->talent_hh_price ;
+        
+        if($nophone===NULL)
+        {
             $talent->talent_phone= $request->talent_phone;
-        }else{
+        }
+        else
+        {
             $talent->talent_phone= $nophone;
         }
 

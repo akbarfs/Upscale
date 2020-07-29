@@ -64,7 +64,11 @@ class Talent extends Model
 							'talent_linkedin',
 							'talent_facebook',
 							'talent_instagram',
-							'talent_twitter'
+							'talent_twitter',
+							'talent_price_jakarta', 
+							'talent_price_usd', 
+							'talent_price_jogja', 
+							'talent_hh_price'
 						];
 	public $timestamps = false;
 
