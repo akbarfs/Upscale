@@ -316,7 +316,7 @@
 											$pengalaman = Carbon\Carbon::parse($talent->talent_start_career)->age ; 
 											if ( $pengalaman == 0 )
 											{
-												echo "< 0 Tahun";
+												echo "< 1 Tahun";
 											}
 											else
 											{
