@@ -3,7 +3,7 @@
 		
 		<style type="text/css">
 
-				.popup-overlay {
+			.popup-overlay {
 				/*Hides pop-up when there is no "active" class*/
 				visibility: hidden;
 				position: absolute;
@@ -12,23 +12,23 @@
 				width: 50%;
 				height: 50%;
 				left: 25%;
-				}
+			}
 
-				.popup-overlay.active {
+			.popup-overlay.active {
 				/*displays pop-up when "active" class is present*/
 				visibility: visible;
 				text-align: center;
-				}
+			}
 
-				.popup-content {
+			.popup-content {
 				/*Hides pop-up content when there is no "active" class */
 				visibility: hidden;
-				}
+			}
 
-				.popup-content.active {
+			.popup-content.active {
 				/*Shows pop-up content when "active" class is present */
 				visibility: visible;
-				}
+			}
 
 			.biodata { vertical-align: top }
 			.tombol ,.edit
@@ -150,7 +150,7 @@
 			.note p { color: #fff }
 			.note ul { margin-top: 10px; margin-left: 20px }
 			
- }
+ 			.judul { font-size: 20px; }
 		</style>
 
 
@@ -400,7 +400,8 @@
 						
 						
 						<div>
-							Penempatan Onsite Office Upscale Jogja : <br>
+							<b class="judul">OUTSOURCE</b><br>
+							Penempatan di kantor kami (jogja) : <br>
 							@if ( $talent->talent_price_jogja)
 								<b style="font-size: 18px">
 									Rp. {{number_format($talent->talent_price_jogja)}},-
@@ -417,7 +418,7 @@
 									<div class="benefit-box">
 										<i class="fa fa-check"></i>
 										<div class="benefit-desc"> 
-											Talent dedicated fulltime, hanya fokus 	mengerjakan project anda
+											Status karyawan kami yang hanya fokus mengerjakan project anda
 										</div>
 										<div style="clear:both"></div>
 									</div>
@@ -462,7 +463,7 @@
 									<div class="benefit-box">
 										<i class="fa fa-check"></i>
 										<div class="benefit-desc"> 
-											Sudah termasuk pajak & kebutuhan legal lainya
+											Sudah termasuk gaji, pajak & kebutuhan legal lainya
 										</div>
 										<div style="clear:both"></div>
 									</div>
@@ -474,7 +475,8 @@
 
 						@if ( $talent->talent_price_jakarta )
 						<div>
-							Penempatan jakarta<br>
+							<b class="judul">OUTSOURCE</b><br>
+							Penempatan di jakarta: <br>
 							<b style="font-size: 18px">	
 								Rp. {{number_format($talent->talent_price_jakarta)}},-
 							</b> /bulan
@@ -485,7 +487,7 @@
 									<div class="benefit-box">
 										<i class="fa fa-check"></i>
 										<div class="benefit-desc"> 
-											Talent dedicated fulltime, hanya fokus 	mengerjakan project anda
+											Status karyawan kami yang hanya fokus mengerjakan project anda
 										</div>
 										<div style="clear:both"></div>
 									</div>
@@ -512,7 +514,7 @@
 									<div class="benefit-box">
 										<i class="fa fa-check"></i>
 										<div class="benefit-desc"> 
-											Sudah termasuk pajak & kebutuhan legal lainya
+											Sudah termasuk gaji, pajak & kebutuhan legal lainya
 										</div>
 										<div style="clear:both"></div>
 									</div>
@@ -542,12 +544,20 @@
 						@endif 
 
 						
-						@if ( $talent->talent_hh_price)
+						@if ( isset($talent->talent_hh_price) )
 						<div>
-							Pricing Head Hunter 
-							<b style="font-size: 18px">	
-								Rp. {{number_format($talent->talent_hh_price)}},-
-							</b> <br> hanya 1x bayar diawal 
+
+							<b class="judul">REKRUT SEBAGAI KARYAWAN ANDA</b><br>
+							Biaya Head Hunter / Administrasi : <br>
+								
+							@if ( $talent->talent_hh_price == 0 )
+								<b style="font-size: 25px">FREE</b>
+							@else
+								<b style="font-size: 18px">
+									Rp. {{number_format($talent->talent_hh_price)}},-
+									<br> hanya 1x bayar diawal
+								</b>
+							@endif
 						</div>
 						<hr>
 						@endif
