@@ -309,7 +309,7 @@ class MemberController extends Controller
         $talent = $user->talent()->first(); 
 
         $lock = false ; 
-        if ( $talent->talent_notes_report_talent != "" ) 
+        if (isset($talent->talent_notes_report_talent) && $talent->talent_notes_report_talent != "" ) 
         {
             $lock = true ; 
         }
@@ -389,6 +389,7 @@ class MemberController extends Controller
         $update['talent_facebook'] = $request->facebook ; 
         $update['talent_instagram'] = $request->instagram ; 
         $update['talent_twitter'] = $request->twitter ; 
+        $update['talent_start_career'] = $request->start_career ; 
         $update['talent_freelance_hour'] = preg_replace('/[^0-9]/', '', $request->freelance_hour) ; 
         $update['talent_project_min'] = preg_replace('/[^0-9]/', '', $request->project_min) ; 
         $update['talent_project_max'] = preg_replace('/[^0-9]/', '', $request->project_max) ; 

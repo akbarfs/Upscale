@@ -137,6 +137,16 @@
                       yearRange: "1970:2015"
                   });
 
+                  $('.start_career').datepicker(
+                   {
+                      // showOn: "button",
+                      // buttonText: "set date",
+                      dateFormat: 'yy-mm-dd',
+                      changeMonth: true,
+                      changeYear: true,
+                      yearRange: "2000:2020"
+                  });
+
                   $('.readykerja').datepicker(
                    {
                       // showOn: "button",
@@ -157,7 +167,7 @@
                     <label for="Name">Start Career</label>
                   </div>
                   <div class="col-md-8">
-                        <input type="text" name="start_career" class="form-control date" placeholder="" value="@if(old('start_career')) {{old('start_career')}} @else{{$talent->talent_start_career}}@endif">
+                        <input type="text" name="start_career" class="form-control start_career" placeholder="" value="@if(old('start_career')) {{old('start_career')}} @else{{$talent->talent_start_career}}@endif">
                         @if ($errors->has('start_career'))
                             @foreach ($errors->get('start_career') as $error)
                             <div class="alert alert-danger"><i>{{$error}}</i></div>
