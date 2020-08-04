@@ -34,7 +34,7 @@
     </form>
     
     @if ( $talent->talent_cv_update)
-    <iframe src="{{url('storage/Curriculum Vitae/'.$talent->talent_cv_update)}}" 
+    <iframe src="{{url('storage/Curriculum Vitae/'.$talent->talent_cv_update)}}?v={{date('H:i:s')}}" 
         style="height:500px;width:100%;"></iframe>
     @endif 
 
