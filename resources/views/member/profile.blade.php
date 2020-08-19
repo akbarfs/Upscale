@@ -398,7 +398,7 @@
 							<hr>
 						@endif
 						
-						
+						@if ( $talent->talent_price_jogja )
 						<div>
 							<b class="judul">OUTSOURCE</b><br>
 							Penempatan di kantor kami (jogja) : <br>
@@ -472,6 +472,7 @@
 						</div>
 
 						<hr>
+						@endif
 
 						@if ( $talent->talent_price_jakarta )
 						<div>
@@ -668,6 +669,9 @@
 			</div>
         </section>
 
+    @if ( Request::segment(2) != '' && $talent->talent_certification()->count() ==  0  )
+
+    @else
 	<section id="experience" class="resume">
 		<div class="section-header" style="margin-left: 0">
 			<h2>Certification</h2>
@@ -691,6 +695,7 @@
 			@endforeach	
 		</div>
 	</section>
+	@endif
 
 	<section id="works" class="works clearfix">
 			<div class="section-header porto" style="margin-left: 0">
