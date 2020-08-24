@@ -37,6 +37,10 @@
 			<th scope="col">Ready</th>
 			@endif
 
+			@if (Request::input('pengalaman') )
+			<th scope="col">pengalaman</th>
+			@endif
+
 			@if (Request::input('ready_jogja') )
 			<th scope="col">Jogja</th>
 			@endif
@@ -109,7 +113,7 @@
 				</script>
 
 
-		  <th scope="row">{{$talent->talent_id}}</th>
+		  <th scope="row">{{$talent->id}}</th>
 		  <td>
 		  		{{$talent->talent_name}}
 		  		@if ( $talent->member_email )
@@ -156,6 +160,23 @@
 		  			{{\Carbon\Carbon::createFromTimeStamp(strtotime($talent->talent_date_ready))->diffForHumans()}}</b>
 		  	</span>
 		  	@endif
+		  </td>
+		  @endif
+
+		  @if (Request::input('pengalaman') )
+		  <td>
+		  	@php
+		  		$tahun = abs($talent->pengalaman) / 365 ; 
+		  		$tahun = number_format($tahun,2);
+		  		if ( $tahun > 0 )
+		  		{
+		  			echo $tahun." th"; 
+		  		}
+		  		else
+		  		{
+		  			$tahun  =''; 
+		  		}
+		  	@endphp
 		  </td>
 		  @endif
 

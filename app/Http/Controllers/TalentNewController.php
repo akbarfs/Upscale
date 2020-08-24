@@ -191,7 +191,7 @@ class TalentNewController extends Controller
         // if ($request->ajax()) {
 
             //SELECT BUILDER START
-            $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date";
+            $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date, DATEDIFF(talent_start_career, now()) as pengalaman";
             
             if ( $request->jumlah_apply_jobs)
             {
