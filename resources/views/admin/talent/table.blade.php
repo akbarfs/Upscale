@@ -281,12 +281,21 @@
 	</tbody>
 </table>
 
+<style type="text/css">
+	.pagination { float: left; }
+</style>
 
 {{$data->links()}}
+
+<input type="button" id="go" value="go" style="margin-left: 10px">
+
+<div style="clear: both;"></div>
 
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		
+		
 		$(".button-wa").click(function()
 		{
 			wa = $(this).data("wa");

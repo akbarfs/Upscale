@@ -490,6 +490,8 @@
 		$(document).ready(function() {
 			var export_url;
 			//mengambil data tanggal
+
+
 			$("#datepicker").datepicker();
 
 			//function load table
@@ -529,6 +531,12 @@
 				var url = $(this).attr("href");
 				loadTable(url);
 				event.preventDefault(); //ini biar ga keredirect ke halaman lain 
+			});
+
+			$(document).on("click","#go",function(event)
+			{
+				var page = prompt();
+				loadTable("{{url('/admin/talent/list/paginate_data?page=')}}"+page);
 			});
 
 			//search 
