@@ -185,11 +185,11 @@
         
         <nav class="main-nav">
 			<ul class="navigation">
-				<li><a href="{{url('profile#about')}}">About Me</a></li>
-				<li><a href="{{url('profile#skill')}}">Skills</a></li>
-				<li><a href="{{url('profile#experience')}}">Experience</a></li>
-				<li><a href="{{url('profile#education')}}">Education</a></li>
-				<li><a href="{{url('profile#works')}}">Portfolio</a></li>
+				<li><a href="#about">About Me</a></li>
+				<li><a href="#skill">Skills</a></li>
+				<li><a href="#experience">Experience</a></li>
+				<li><a href="#education">Education</a></li>
+				<li><a href="#works">Portfolio</a></li>
 				<!-- <li><a href="{{url('profile#jobs')}}">Jobs Apply History</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">Certification</a></li> -->
 				<!-- <li><a href="{{url('profile#certification')}}">History Work Apply</a></li> -->
