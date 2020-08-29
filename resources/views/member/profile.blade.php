@@ -477,9 +477,79 @@
 						@if ( $talent->talent_price_jakarta )
 						<div>
 							<b class="judul">OUTSOURCE</b><br>
-							Penempatan di jakarta: <br>
+							lokasi kerja di jakarta: <br>
 							<b style="font-size: 18px">	
 								Rp. {{number_format($talent->talent_price_jakarta)}},-
+							</b> /bulan
+						</div>
+						<div class="list-benefit">
+							<div class="b-container">
+								<div class="col-md-4 col-sm-6">
+									<div class="benefit-box">
+										<i class="fa fa-check"></i>
+										<div class="benefit-desc"> 
+											Status karyawan kami yang hanya fokus mengerjakan project anda
+										</div>
+										<div style="clear:both"></div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<div class="benefit-box">
+										<i class="fa fa-check"></i>
+										<div class="benefit-desc"> 
+											Sudah termasuk monitoring produktifitas (HRD)
+										</div>
+										<div style="clear:both"></div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<div class="benefit-box">
+										<i class="fa fa-check"></i>
+										<div class="benefit-desc"> 
+											Sudah termasuk pendampingan senior konsultan IT  
+										</div>
+										<div style="clear:both"></div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<div class="benefit-box">
+										<i class="fa fa-check"></i>
+										<div class="benefit-desc"> 
+											Sudah termasuk gaji, pajak & kebutuhan legal lainya
+										</div>
+										<div style="clear:both"></div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<div class="benefit-box" style="background: unset;">
+										<i class="fa fa-close"></i>
+										<div class="benefit-desc" style="color: #acbdda"> 
+											Tidak ada biaya sewa office ke kami karena penempatan dikantor client
+										</div>
+										<div style="clear:both"></div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<div class="benefit-box" style="background: unset;">
+										<i class="fa fa-close"></i>
+										<div class="benefit-desc" style="color: #acbdda"> 
+											Tidak ada overhead seperti listrik, internet dll ke kami
+										</div>
+										<div style="clear:both"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<hr>
+						@endif 
+
+						@if ( $talent->talent_price_bandung )
+						<div>
+							<b class="judul">OUTSOURCE</b><br>
+							Lokasi kerja di Bandung: <br>
+							<b style="font-size: 18px">	
+								Rp. {{number_format($talent->talent_price_bandung)}},-
 							</b> /bulan
 						</div>
 						<div class="list-benefit">
@@ -565,7 +635,7 @@
 
 						<div>
 
-							Order, Penempatan lokasi lain , requirement dll ? 
+							Order, lokasi kerjain lain , requirement dll ? 
 							<br>Customize sesuai kebutuhan anda, hubungi :<br><br>
 							
 							<a class="btn btn-success" style="font-size: 20px; color: #fff" 

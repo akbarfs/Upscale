@@ -2495,6 +2495,9 @@
                                     <label for="text-input" class=" form-control-label">price jakarta</label>
                                     <input value="{{$all->talent_price_jakarta}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_price_jakarta" class="form-control" placeholder="price jakarta" required="">
 
+                                    <label for="text-input" class=" form-control-label">price bandung</label>
+                                    <input value="{{$all->talent_price_bandung}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_price_bandung" class="form-control" placeholder="price jakarta" required="">
+
                                     <label for="text-input" class=" form-control-label">price usd</label>
                                     <input value="{{$all->talent_price_usd}}" data-a-sign="Rp. " data-a-dec="," data-a-sep="." id="rupiah2" type="text" name="talent_price_usd" class="form-control" placeholder="price usd" required="">
 

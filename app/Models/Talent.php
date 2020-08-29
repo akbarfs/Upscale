@@ -66,6 +66,7 @@ class Talent extends Model
 							'talent_instagram',
 							'talent_twitter',
 							'talent_price_jakarta', 
+							'talent_price_bandung', 
 							'talent_price_usd', 
 							'talent_price_jogja', 
 							'talent_hh_price'

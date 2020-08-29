@@ -201,6 +201,7 @@ class talentController extends Controller
         $talent->tupdated_date = $now;
 
         $talent->talent_price_jakarta = $request->talent_price_jakarta ; 
+        $talent->talent_price_bandung = $request->talent_price_bandung ; 
         $talent->talent_price_usd = $request->talent_price_usd ; 
         $talent->talent_price_jogja = $request->talent_price_jogja ; 
         $talent->talent_hh_price = $request->talent_hh_price ;
