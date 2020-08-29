@@ -183,19 +183,28 @@
 			</ul>
         </div> -->
         
-        <nav class="main-nav">
-			<ul class="navigation">
-				<li><a href="#about">About Me</a></li>
-				<li><a href="#skill">Skills</a></li>
-				<li><a href="#experience">Experience</a></li>
-				<li><a href="#education">Education</a></li>
-				<li><a href="#works">Portfolio</a></li>
-				<!-- <li><a href="{{url('profile#jobs')}}">Jobs Apply History</a></li> -->
-				<!-- <li><a href="{{url('profile#certification')}}">Certification</a></li> -->
-				<!-- <li><a href="{{url('profile#certification')}}">History Work Apply</a></li> -->
-				<!-- <li><a href="{{url('profile#history')}}">Contact</a></li>	 -->
-			</ul>
-        </nav>
+        <!-- klo segment 2 ada isinya -->
+        @if ( Request::segment(1) == 'profile' )
+	        <nav class="main-nav">
+				<ul class="navigation">
+					<li><a href="#about">About Me</a></li>
+					<li><a href="#skill">Skills</a></li>
+					<li><a href="#experience">Experience</a></li>
+					<li><a href="#education">Education</a></li>
+					<li><a href="#works">Portfolio</a></li>
+				</ul>
+	        </nav>
+	    @elseif (Request::segment(1) == 'member' )
+	    	<nav class="main-nav">
+				<ul class="navigation">
+					<li><a href="{{url('profile')}}#about">About Me</a></li>
+					<li><a href="{{url('profile')}}#skill">Skills</a></li>
+					<li><a href="{{url('profile')}}#experience">Experience</a></li>
+					<li><a href="{{url('profile')}}#education">Education</a></li>
+					<li><a href="{{url('profile')}}#works">Portfolio</a></li>
+				</ul>
+	        </nav>
+        @endif
 
 		<div class="copyright">
 			<span>© Copyright 2020 UPSCALE.ID</span>
