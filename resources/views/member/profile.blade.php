@@ -524,7 +524,7 @@
 									<div class="benefit-box" style="background: unset;">
 										<i class="fa fa-close"></i>
 										<div class="benefit-desc" style="color: #acbdda"> 
-											Tidak ada biaya sewa office ke kami karena penempatan dikantor client
+											Tanpa Office ( Tidak ada biaya sewa office )
 										</div>
 										<div style="clear:both"></div>
 									</div>
@@ -533,7 +533,7 @@
 									<div class="benefit-box" style="background: unset;">
 										<i class="fa fa-close"></i>
 										<div class="benefit-desc" style="color: #acbdda"> 
-											Tidak ada overhead seperti listrik, internet dll ke kami
+											Tidak ada overhead seperti listrik, internet dll
 										</div>
 										<div style="clear:both"></div>
 									</div>
@@ -594,7 +594,7 @@
 									<div class="benefit-box" style="background: unset;">
 										<i class="fa fa-close"></i>
 										<div class="benefit-desc" style="color: #acbdda"> 
-											Tidak ada biaya sewa office ke kami karena penempatan dikantor client
+											Tanpa Office ( Tidak ada biaya sewa office )
 										</div>
 										<div style="clear:both"></div>
 									</div>
@@ -603,7 +603,7 @@
 									<div class="benefit-box" style="background: unset;">
 										<i class="fa fa-close"></i>
 										<div class="benefit-desc" style="color: #acbdda"> 
-											Tidak ada overhead seperti listrik, internet dll ke kami
+											Tidak ada overhead seperti listrik, internet dll
 										</div>
 										<div style="clear:both"></div>
 									</div>
