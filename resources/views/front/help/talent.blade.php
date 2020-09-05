@@ -198,7 +198,7 @@
     <section class="section-base">
         <div class="container" style="padding-bottom: 0">
             
-            <style>
+            <!-- <style>
                 .talent { margin-top: 20px }
             </style>
 
@@ -245,7 +245,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-6 talent">
+                <div class="col-lg-6 talent">
                     <div class="cnt-box cnt-box-side boxed">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/users/user-3.jpg')}}" alt="" /></a>
                         <div class="caption">
@@ -258,11 +258,11 @@
                             </p>
                         </div>
                     </div>
-                </div> -->
-            </div>
+                </div>
+            </div> -->
 
             @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
-            <hr class="space-lg" />
+            <!-- <hr class="space-lg" /> -->
             <h2 class="align-center">Our Partnership in many regional</h2>
             <p class="align-center width-650">
                 Kami secara aktif akan terus mengembangkan komunitas dan network kami dengan berbagai pihak. Nantikan kami hadir di kota anda.

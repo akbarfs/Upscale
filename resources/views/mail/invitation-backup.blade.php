@@ -229,7 +229,59 @@
 
             <div class="success" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
                
-               
+               <div class="network" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                  <div class="heading-section" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;text-align:center;padding-top:20px;padding-bottom:20px;padding-right:30px;padding-left:30px;" >
+                     <h2 style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:'Poppins', sans-serif;color:#000000;font-size:20px;margin-top:0;line-height:1.4;font-weight:700;text-transform:uppercase;" >Our Exclusive Network</h2>
+                     <p style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Dapatkan opportunity dan jadilah seperti mereka.</p>
+                  </div>
+                  <div class="network_wrap" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                     <div class="netbox" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;float:left;width:33%;" >
+                        <div class="img" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;width:100%;height:auto;position:relative;" >
+                           <div class="imgtalent" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                              <img src="https://upscale.id/template/upscale/media/users/user-1.jpg" alt="" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;width:100%;max-width:600px;height:auto;margin-top:auto;margin-bottom:20px;margin-right:auto;margin-left:auto;display:block;-ms-interpolation-mode:bicubic;" >
+                           </div>
+                        </div>
+                        <div class="desc" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                           <h3 class="name" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:'Poppins', sans-serif;color:#000000;margin-top:0;margin-bottom:0;" >Arief</h3>
+                           <span class="position" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >Director Krafthaus</span>
+                           <p style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:12px;padding-top:0;padding-bottom:0;padding-right:10px;padding-left:10px;" >Berawal dari remote programer international, Kini dipercaya menjadi Managing Director perusahaan australia</p>
+                        </div>
+                     </div>
+                     <div class="netbox" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;float:left;width:33%;" >
+                        <div class="img" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;width:100%;height:auto;position:relative;" >
+                           <div class="imgtalent" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                              <img src="https://upscale.id/template/upscale/media/users/pp.jpg" alt="" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;width:100%;max-width:600px;height:auto;margin-top:auto;margin-bottom:20px;margin-right:auto;margin-left:auto;display:block;-ms-interpolation-mode:bicubic;" >
+                           </div>
+                        </div>
+                        <div class="desc" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                           <h3 class="name" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:'Poppins', sans-serif;color:#000000;margin-top:0;margin-bottom:0;" >Fahrus</h3>
+                           <span class="position" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >CEO Pola Kreatif</span>
+                           <p style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:12px;padding-top:0;padding-bottom:0;padding-right:10px;padding-left:10px;" >
+                              Berawal dari freelance designer & programer, setelah bekerja fulltime beberapa saat kini memiliki agency sendiri.
+                           </p>
+                        </div>
+                     </div>
+                     <div class="netbox" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;float:left;width:33%;" >
+                        <div class="img" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;width:100%;height:auto;position:relative;" >
+                           <div class="imgtalent" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                              <img src="https://upscale.id/template/upscale/media/users/nas.jpg" alt="" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;width:100%;max-width:600px;height:auto;margin-top:auto;margin-bottom:20px;margin-right:auto;margin-left:auto;display:block;-ms-interpolation-mode:bicubic;" >
+                           </div>
+                        </div>
+                        <div class="desc" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >
+                           <h3 class="name" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-family:'Poppins', sans-serif;color:#000000;margin-top:0;margin-bottom:0;" >Nasruri</h3>
+                           <span class="position" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;" >IT Consultant</span>
+                           <p style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:12px;padding-top:0;padding-bottom:0;padding-right:10px;padding-left:10px;" >
+                             
+                              berawal sebagai programer lalu menjadi project manager, 
+                              saat ini sebagai consultant project di beberapa startup
+
+                           </p>
+                        </div>
+                     </div>
+                     <div style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;clear:both;" ></div>
+                  </div>
+                  <img src="{{url('/log')}}?id={{$id}}" width="1px" height="1px" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-ms-interpolation-mode:bicubic;" >
+               </div>
 
                <div class="client" style="-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background-image:url(http://upscale.id/mail/images/bg_1.jpg?v=1);background-size:cover;padding-top:4em;padding-bottom:4em;padding-right:0;padding-left:0;text-align:center;" >
 

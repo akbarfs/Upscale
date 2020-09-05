@@ -181,7 +181,8 @@ class TalentNewController extends Controller
             $content = 'ini adalah halaman content ';
             $sender = 'dodi';
         }
-        return view('mail.' . $view, compact('talent', 'content', 'sender'));
+        $id=0  ;
+        return view('mail.' . $view, compact('talent', 'content', 'sender','id'));
     }
 
     public function paginate_data(Request $request)
