@@ -306,21 +306,25 @@
 				type = $(this).data("type")  ;
 				if ( type == 'say-hai')
 				{
-					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', perkenalkan saya Dodi dari upscale.id'; 
+					text = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', perkenalkan saya Dodi dari upscale.id'; 
 				}
 				else if ( type == 'cv-interview-umum')
 				{
-					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar menjadi member di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  '+link+' %0A %0A Selanjutnya kami perlu tau harapan anda ketika menjadi member upscale, apakah ingin mencari lowongan pekerjaan, mencari project freelance atau mungkin ada harapan lainya.%0A %0A Oleh sebab itu apakah besok / hari ini bisa saya interview via online?'; 
+					text = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar menjadi member di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  '+link+' %0A %0A Selanjutnya kami perlu tau harapan anda ketika menjadi member upscale, apakah ingin mencari lowongan pekerjaan, mencari project freelance atau mungkin ada harapan lainya.%0A %0A Oleh sebab itu apakah besok / hari ini bisa saya interview via online?'; 
 				} 
-				else if ( type == 'cv-interview-jobs')
+				else if ( type == 'personality-test')
 				{
-					link = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya lihat anda mendaftar lowongan kerja di Upscale.id, silahkan lengkapi dulu informasi profile anda berupa : %0A%0A - biodata %0A - skill %0A - pengalaman kerja  %0A - portofolio  %0A - pendidikan %0A - Upload Cv %0A - Foto Profil %0A - Form Interview %0A %0A di link berikut:  '+link+' %0A %0A Selanjutnya apakah besok / hari ini bisa saya interview via online?'; 
+					text = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya admin dari Upscale.id, saya lihat anda mendaftar di Upscale.id dengan profile : %0A%0A'+link+' %0A%0AProses selanjutnya kami perlu melakukan interview via online form terlebih dahulu sebelum interview langsung oleh HRD, %0A%0ASilahkan klik link berikut : %0A%0A1.'+link+'?redirect=member/personality-test %0A %0AApakah '+nama+' masih berminat untuk melanjutkan proses ini ?'; 
 				} 
+				else if ( type == 'personality-backend-test')
+				{
+					text = 'https://api.whatsapp.com/send?phone='+wa+'&text=Halo '+nama+', saya admin dari Upscale.id, saya lihat anda mendaftar di Upscale.id dengan profile : %0A%0A'+link+' %0A%0AProses selanjutnya kami perlu melakukan interview via online form terlebih dahulu sebelum interview langsung oleh HRD, %0A%0ASilahkan isi form berikut : %0A%0A1. '+link+'?redirect=member/personality-test %0A%0A2. '+link+'?redirect=member/skill-test/1 %0A %0AApakah '+nama+' masih berminat untuk melanjutkan proses ini ?';
+				}
 
 				// link = link.replace("#wa#", wa); 
 				// link = link.replace("#nama#", nama);
 				// alert(link); return false ;
-				$(this).attr("href",link); 
+				$(this).attr("href",text); 
 
 			});
 		});	
@@ -367,12 +371,17 @@
 
 				<a href="#" data-type='cv-interview-umum' type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
 					<i class=" fa fa-whatsapp"></i> 
-					Lengkapin CV + interview umum
+					lengkapi data
 				</a>
 
-				<a href="#" data-type='cv-interview-jobs' type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
+				<a href="#" data-type='personality-test' type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
 					<i class=" fa fa-whatsapp"></i> 
-					Lengkapin CV + interview job
+					Personlity test
+				</a>
+
+				<a href="#" data-type='personality-backend-test' type="button" target="_blank" class="btn btn-success btn-sm wa-pilih">
+					<i class=" fa fa-whatsapp"></i> 
+					Personality + Backend Test
 				</a>
 
 			</div>
