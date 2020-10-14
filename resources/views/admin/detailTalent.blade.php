@@ -164,6 +164,12 @@
                                     </div>
                                     <div class="col-12 col-md-8">
                                       <p class="form-control-static" style="margin-bottom: 0px;"><strong>{{$all->talent_phone}}</strong></p>
+
+                                      <?php $wa = preg_replace('/^0?/', '62', $all->talent_phone); ?>
+                <a target="_blank" class="btn btn-success btn-sm button-wa" style="color: #fff"
+                href="https://api.whatsapp.com/send?phone={{ $wa }}&text=halo {{ucwords($all->talent_name)}} ({{$all->talent_email}})"> <i class=" fa fa-whatsapp"></i> </a>
+
+
                                     </div>
                                 </div>
                                 <div class="row form-group">
