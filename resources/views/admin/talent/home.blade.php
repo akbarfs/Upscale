@@ -65,6 +65,9 @@
 								</select>
 							</div>
 							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="id" name="talent_id">
+							</div>
+							<div class="col-md-2">
 								<input type="text" class="form-control" placeholder="name" name="talent_name">
 							</div>
 							<div class="col-md-2">
@@ -170,7 +173,7 @@
 								}
 							</style>
 							<div style="margin: 10px;">
-								<input
+								<!-- <input
                                 type="text"
                                 onItemSelect="setClose()"
                                 multiple
@@ -180,7 +183,7 @@
                                 data-url="{{url('json/skill')}}"
                                 data-load-once="true"
                                 placeholder="skill"
-                                name="skill"/>
+                                name="skill"/> -->
 							</div>
 
 							
