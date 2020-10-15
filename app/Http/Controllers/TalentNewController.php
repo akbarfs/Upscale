@@ -213,7 +213,7 @@ class TalentNewController extends Controller
             }
             //JOIN BULDER END 
 
-            if ( $request->talent_id ) {$data->where("user_id","LIKE","%".$request->talent_id."%"); }
+            if ( $request->talent_id ) {$data->where("talent_id","LIKE","%".$request->talent_id."%"); }
             if ( $request->talent_name ) {$data->where("talent_name","LIKE","%".$request->talent_name."%"); }
             if ( $request->talent_phone ) {$data->where("talent_phone","LIKE","%".$request->talent_phone."%"); }
             if ( $request->talent_email ) {$data->where("talent_email","LIKE","%".$request->talent_email."%"); }

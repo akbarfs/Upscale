@@ -113,7 +113,7 @@
 				</script>
 
 
-		  <th scope="row">{{$talent->id}}</th>
+		  <th scope="row">{{$talent->talent_id}}</th>
 		  <td>
 		  		{{$talent->talent_name}}
 		  		@if ( $talent->member_email )
