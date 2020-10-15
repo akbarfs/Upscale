@@ -232,8 +232,8 @@
                     <div class="cnt-box cnt-box-side boxed">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/users/pp.jpg')}}" alt="" /></a>
                         <div class="caption">
-                            <h2 style="margin-bottom: 0">Fakhrus Syakirin Ramadhan</h2>
-                            <div class="extra-field">Founder Pola Kreatif</div>
+                            <h2 style="margin-bottom: 0">xx</h2>
+                            <div class="extra-field">Founder xx</div>
                             <p>
                                 {!!lang(
                                     'Starts from 2014 as freelance UI/UX, and continue the career as full-time Mobile Developer, after got the skill, experience, and network from our ecosystem, he started his agency, Pola Kreatif in 2019.',
