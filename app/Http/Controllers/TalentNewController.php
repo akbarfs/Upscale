@@ -238,6 +238,11 @@ class TalentNewController extends Controller
                 $data->where("users.email","=",null);
             }
 
+            if ( $request->cv == 'yes' )
+            {
+                $data->where("talent_cv_update","!=",null);
+            }
+
             if ( $request->apply == 'yes' )
             {
                 $data->having(DB::raw('COUNT(jobs_apply_id)'),'>',0);

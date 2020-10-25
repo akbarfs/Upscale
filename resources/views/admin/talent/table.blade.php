@@ -85,6 +85,10 @@
 			<th scope="col">gaji jogja</th>
 			@endif
 
+			@if (Request::input('cv') )
+			<th scope="col">cv</th>
+			@endif
+
 			  <th scope="col">Action</th>
 			</tr>
 		</thead>
@@ -262,6 +266,12 @@
 		  @if (Request::input('gaji_jakarta') )
 		  <td>
 		  	{{$talent->talent_salary_jakarta}}
+		  </td>
+		  @endif
+
+		  @if (Request::input('cv') )
+		  <td>
+		  	{{ $talent->talent_cv_update ? $talent->talent_cv_update : 'no' }}
 		  </td>
 		  @endif
 

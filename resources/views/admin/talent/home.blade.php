@@ -133,6 +133,14 @@
 							</div>
 
 							<div class="col-md-2" style="margin-top: 10px">
+								<select class="custom-select" name="cv">
+									<option value="">-- cv ? --</option>
+									<option value="yes">yes</option>
+									<option value="no">no</option>
+								</select>
+							</div>
+
+							<div class="col-md-2" style="margin-top: 10px">
 								<select class="custom-select" name="order">
 									<option value="">-- order? --</option>
 									<option value="talent_id">DB ID</option>
@@ -228,7 +236,7 @@
 									<input type="checkbox" name="jumlah_apply_jobs"> Jumlah Apply Jobs &nbsp
 									<input type="checkbox" name="focus"> Focus &nbsp
 									<input type="checkbox" name="pengalaman"> Pengalaman &nbsp
-									<input type="checkbox" name="pengalaman"> Pengalaman &nbsp
+									<input type="checkbox" name="cv"> cv &nbsp
 									<input type="checkbox" name="gaji_jogja"> gaji jogja &nbsp
 									<input type="checkbox" name="gaji_jakarta"> gaji jakarta &nbsp
 								</div>
