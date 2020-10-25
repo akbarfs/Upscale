@@ -77,6 +77,14 @@
 			<th scope="col">Apply</th>
 			@endif
 
+			@if (Request::input('gaji_jogja') )
+			<th scope="col">gaji jogja</th>
+			@endif
+
+			@if (Request::input('gaji_jakarta') )
+			<th scope="col">gaji jogja</th>
+			@endif
+
 			  <th scope="col">Action</th>
 			</tr>
 		</thead>
@@ -242,6 +250,18 @@
 		  @if (Request::input('jumlah_apply_jobs') )
 		  <td>
 		  	{{$talent->jumlah_apply_jobs}}
+		  </td>
+		  @endif
+
+		  @if (Request::input('gaji_jogja') )
+		  <td>
+		  	{{$talent->talent_salary_jogja}}
+		  </td>
+		  @endif
+
+		  @if (Request::input('gaji_jakarta') )
+		  <td>
+		  	{{$talent->talent_salary_jakarta}}
 		  </td>
 		  @endif
 

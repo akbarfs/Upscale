@@ -82,6 +82,22 @@
 							</div>
 
 							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="min_pengalaman" name="min_pengalaman">
+							</div>
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="max_pengalaman" name="max_pengalaman">
+							</div>
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="min gaji jogaj" name="min_gaji_jogja">
+							</div>
+
+							<div class="col-md-2">
+								<input type="text" class="form-control" placeholder="max gaji jogja" name="max_gaji_jogja">
+							</div>
+
+							<div class="col-md-2">
 								<select class="custom-select" name="talent_onsite_jogja">
 									<option value="">-- jogja? --</option>
 									<option value="unset">unset</option>
@@ -212,6 +228,9 @@
 									<input type="checkbox" name="jumlah_apply_jobs"> Jumlah Apply Jobs &nbsp
 									<input type="checkbox" name="focus"> Focus &nbsp
 									<input type="checkbox" name="pengalaman"> Pengalaman &nbsp
+									<input type="checkbox" name="pengalaman"> Pengalaman &nbsp
+									<input type="checkbox" name="gaji_jogja"> gaji jogja &nbsp
+									<input type="checkbox" name="gaji_jakarta"> gaji jakarta &nbsp
 								</div>
 								<div>
 									<button class="btn btn-outline-primary" type="submit" id="search">Search</button>

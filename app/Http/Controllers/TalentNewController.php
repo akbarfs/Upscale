@@ -222,6 +222,12 @@ class TalentNewController extends Controller
             if ( $request->talent_onsite_jakarta ) {$data->where("talent_onsite_jakarta",$request->talent_onsite_jakarta); }
             if ( $request->talent_isa ) {$data->where("talent_isa",$request->talent_isa); }
             if ( $request->talent_focus ) {$data->where("talent_focus","LIKE","%".$request->talent_focus."%"); }
+            
+            if ( $request->min_pengalaman ) {$data->where("pengalaman",">",$request->pengalaman); }
+            if ( $request->max_pengalaman ) {$data->where("pengalaman","<",$request->pengalaman); }
+            
+            if ( $request->min_gaji_jogja ) {$data->where("talent_salary_jogja",">=",$request->min_gaji_jogja); }
+            if ( $request->max_gaji_jogja ) {$data->where("talent_salary_jogja","<=",$request->max_gaji_jogja); }
 
             if ($request->status_member == "member") {
                 $data->where("users.email", "!=", "");
