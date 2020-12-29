@@ -500,9 +500,9 @@
                     <ul class="lan-menu" >
                         <li class="dropdown" >
                             @if ( isset($_GET['lang']) && $_GET['lang'] == 'en')
-                                <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />EN </a>
+                                <a href="{{Request::url()}}?lang=en"><img src="{{url('template/upscale/media/en.png')}}" alt="" />&nbsp EN </a>
                             @else
-                                <a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />ID </a>
+                                <a href="{{Request::url()}}?lang=id"><img src="{{url('template/upscale/media/id.png')}}" alt="" />&nbsp ID </a>
                             @endif
 
                             <ul>

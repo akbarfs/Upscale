@@ -182,23 +182,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
     <section class="section-base">
         <div class="container">
             <div class="row">
-                
+
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-top">
-                        <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-9.jpg')}}" alt="" /></a>
+                        <a href="#" class="img-box"><img src="{{url('template/upscale/media/music/image-16.jpg')}}" alt="" /></a>
                         <div class="caption">
-                            <h2>Krafthaus, Corporate Management</h2>
-                            <span class="extra-field" style="animation: none">Digital Agency</span>
+                            <h2>Malaysia Startup, Dedicated Team</h2>
+                            <span class="extra-field" style="animation: none">AI Startup Company</span>
                             <p>
                                 {{lang(
-                                    'Our experienced member has been trusted by Australian Company as a Managing Director to handle Indonesia\'s branch office.',
-                                    'Sejak tahun 2012 talent kami dipercaya oleh perusahaan Australia sebagai Managing Director untuk mengelola cabang di Indonesia'
+                                    'Our dedicated team help one of the startup companies in Malaysia which serves oil and gas companies to data extraction.',
+                                    '2020 kami membantu salah satu startup malaysia yang melayani perusahaan oil & gas untuk entry & extraction data untuk AI Learning'
                                 )}}
                             </p>
-                            <a class="btn-text" href="#">Arief Widyananda</a>
+                            <a class="btn-text" href="#">Data Entry Dedicated Team</a>
                         </div>
                     </div>
                 </div>
+                
+                
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-top">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-10.jpg')}}" alt="" /></a>
@@ -218,6 +220,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
 
                 <div class="col-lg-4">
                     <div class="cnt-box cnt-box-top">
+                        <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-9.jpg')}}" alt="" /></a>
+                        <div class="caption">
+                            <h2>Krafthaus, Corporate Management</h2>
+                            <span class="extra-field" style="animation: none">Digital Agency</span>
+                            <p>
+                                {{lang(
+                                    'Our experienced member has been trusted by Australian Company as a Managing Director to handle Indonesia\'s branch office.',
+                                    'Sejak tahun 2012 telah dipercaya oleh perusahaan Australia sebagai Managing Director untuk mengelola cabang di Indonesia'
+                                )}}
+                            </p>
+                            <a class="btn-text" href="#">Arief Widyananda</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-4">
+                    <div class="cnt-box cnt-box-top">
                         <a href="#" class="img-box"><img src="{{url('template/upscale/media/photo/image-11.jpg')}}" alt="" /></a>
                         <div class="caption">
                             <h2>HOS, Digital Transformation</h2>
@@ -231,11 +250,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                             <a class="btn-text" href="#">Sistemtoko.com</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+                
 
             </div>
             <hr class="space-lg" />
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-6">
                     <img class="margin-23" src="{{url('template/upscale/media/customers-2.png')}}" alt="" />
                     <hr class="space-sm" />
@@ -287,7 +308,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -302,8 +323,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                             'Paket harga dengan konsep yang sederhana & terjangkau untuk semua orang. Baik skala Coorporate, startup sampai dengan UKM'
                         )}}
                     </p>
-                    <hr class="space" />
-                    <table class="table table-grid table-border align-center table-full-sm no-padding-y">
+                    <!-- <hr class="space" /> -->
+                    <!-- <table class="table table-grid table-border align-center table-full-sm no-padding-y">
                         <tbody>
                             <tr>
                                 <td>
@@ -353,7 +374,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e000000', e
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
             </div>
         </div>
