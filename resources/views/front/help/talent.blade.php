@@ -131,23 +131,23 @@
                     <div class="grid-list list-gallery grid-wall-1" data-lightbox-anima="fade-top" data-columns="2">
                         <div class="grid-box">
                             <div class="grid-item">
-                                <a class="img-box" href="{{url('template/upscale/media/music/image-15.jpg')}}">
-                                    <img src="{{url('template/upscale/media/music/image-15.jpg')}}" alt="">
+                                <a class="img-box" href="{{url('template/upscale/media/music/image-15.jpg?v=2')}}">
+                                    <img src="{{url('template/upscale/media/music/image-15.jpg?v=2')}}" alt="">
                                 </a>
                             </div>
                             <div class="grid-item">
-                                <a class="img-box" href="{{url('template/upscale/media/music/image-5.jpg')}}">
-                                    <img src="{{url('template/upscale/media/music/image-5.jpg')}}" alt="">
+                                <a class="img-box" href="{{url('template/upscale/media/music/image-5.jpg?v=2')}}">
+                                    <img src="{{url('template/upscale/media/music/image-5.jpg?v=2')}}" alt="">
                                 </a>
                             </div>
                             <div class="grid-item">
-                                <a class="img-box" href="{{url('template/upscale/media/music/image-11.jpg')}}">
-                                    <img src="{{url('template/upscale/media/music/image-11.jpg')}}" alt="">
+                                <a class="img-box" href="{{url('template/upscale/media/music/image-11.jpg?v=2')}}">
+                                    <img src="{{url('template/upscale/media/music/image-11.jpg?v=2')}}" alt="">
                                 </a>
                             </div>
                             <div class="grid-item">
-                                <a class="img-box" href="{{url('template/upscale/media/music/image-1.jpg')}}">
-                                    <img src="{{url('template/upscale/media/music/image-1.jpg')}}" alt="">
+                                <a class="img-box" href="{{url('template/upscale/media/music/image-1.jpg?v=2')}}">
+                                    <img src="{{url('template/upscale/media/music/image-1.jpg?v=2')}}" alt="">
                                 </a>
                             </div>
                         </div>
