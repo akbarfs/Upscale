@@ -53,7 +53,7 @@
                     @if(!Session::has('login'))
                         <!-- <a href="{{url('jobs')}}" class="btn btn-circle btn-sm" data-target="#ModalRegister" data-toggle="modal" onClick="$('#register-role').val('talent');$('.info').hide()">Join Community</a> -->
 
-                        <a href="#" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin: 0; border-color: #fff !important; color: #fff !important;">
+                        <a href="https://eduwork.id" class="btn btn-circle btn-border light btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin: 0; border-color: #fff !important; color: #fff !important;" target="_blank">
                             Join Community
                         </a>
 
@@ -121,7 +121,7 @@
                         )}}
                     </p>
                     
-                    <a href="#" class="btn btn-circle btn-border btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin-top: 20px">
+                    <a href="https://eduwork.id" class="btn btn-circle btn-border btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="margin-top: 20px" target="_blank">
                         Join Community
                     </a>
 

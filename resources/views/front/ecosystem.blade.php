@@ -52,7 +52,7 @@
                             Visi kami adalah membangun ecosystem yang dapat mendukung semua pelaku industri, baik talent, perusahaan, universitas, 
                             komunitas dan semua pihak lain yang dapat mendukung visi kami. Ayo bergabung untuk meningkatkan kualitas industri indonesia
                         </p>
-                        <a href="#" class="btn btn-border btn-circle btn-sm">Join Community</a>
+                        <a href="https://eduwork.id" class="btn btn-border btn-circle btn-sm">Join Community</a>
                     </div>
                     <div class="col-lg-6">
                         <hr class="space-sm visible-md" />

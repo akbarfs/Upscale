@@ -4,7 +4,7 @@
 
 <main>
     <section class="section-video light">
-        <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-2.jpg')}}">
+        <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-3.jpg')}}">
             <source src="{{url('template/upscale/media/cowork-black.mp4')}}" type="video/mp4">
         </video>
         <div class="container" style="padding-bottom: 100px;">

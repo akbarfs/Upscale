@@ -76,7 +76,7 @@
     {
             background: #37517e;
             padding-left: 0;
-            background-image: url({{url('template/upscale/media/inquiry.jpg')}});
+            background-image: url({{url('template/upscale/media/inquiry.jpg?v=2')}});
             background-position: top;
             background-size: cover;
     }
