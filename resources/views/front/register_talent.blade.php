@@ -1,5 +1,3 @@
-
-
 <script type="text/javascript" src="{{ asset('js/sweetalert2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/validator.js') }}"></script>
 <script type="text/javascript" src="{{asset('js/momment.js')}}"></script>
@@ -191,7 +189,7 @@
                 phone_number : $('#talent-update-profile').find('[name=phone_number]').val(),
                 gender : $('#talent-update-profile').find('[name=gender]').val(),
                 tgl_lahir : $('#talent-update-profile').find('[name=tgl_lahir]').val(),
-                tempat_lahir : $('#talent-update-profile').find('[name=tempat_lahir]').val(),
+                tempat_lahir : $('#talent-update-profile').find('[name=tempat_lahir]').val()
             }
 
             $.ajax({
@@ -225,17 +223,22 @@
             $(".info_reg_talent").html("loading...").show();
 
             url = "{{url('register/talent')}}";
+            console.log('username');
             $.ajax({
                 url: url,
                 type: 'POST',
                 data: $('#talent-update-profile').serialize(),
                 success: function(data)
                 {
-                    $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar<br><br> Apabila anda sedang mencari kerja silahkan apply di halaman jobs ( <a href='{{url('jobs')}}' target='_blank'>klik disini</a> )<br><br>Untuk mendapatkan oportunity lain, silahkan lengkapi profile anda di <a href='{{url('/profile')}}' target='_blank'> halaman profile</a> agar kami dapat mengenali anda lebih baik");
-                    $('#login-form').trigger("reset");
-                    $(".modal-footer").hide(); 
-                    $(".question_box").removeClass('show_box'); 
-                    $(".registerTalent").hide(); 
+                    if(is_apply > 0) {
+                        window.location.href = '{{ url('/') }}/jobs/apply/'+is_apply;
+                    } else {
+                        $(".info_reg_talent").removeClass("alert-warning").addClass("alert-success").html("berhasil mendaftar<br><br> Apabila anda sedang mencari kerja silahkan apply di halaman jobs ( <a href='{{url('jobs')}}' target='_blank'>klik disini</a> )<br><br>Untuk mendapatkan oportunity lain, silahkan lengkapi profile anda di <a href='{{url('/profile')}}' target='_blank'> halaman profile</a> agar kami dapat mengenali anda lebih baik");
+                        $('#login-form').trigger("reset");
+                        $(".modal-footer").hide(); 
+                        $(".question_box").removeClass('show_box'); 
+                        $(".registerTalent").hide();
+                    } 
 
                     // setTimeout(function () {
                     //           window.location.href = "{{url('/profile')}}" ; 

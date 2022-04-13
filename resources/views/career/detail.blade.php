@@ -90,7 +90,7 @@
                     </style>
 
                     <a href="#" class="btn join_community" data-target="#registerTalent" 
-                    data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}'>
+                    data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}' data-action-apply="{{ $id }}">
                         Register & Apply Job
                     </a> 
                     

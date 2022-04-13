@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 use Session; 
 use App\Models\Talent ; 
 use App\Models\Skill ; 
@@ -25,8 +25,9 @@ class MemberController extends Controller
 {
     public function talentDashboard()
     {
+
     	$user_id = Session::get("user_id"); 
-    	$user = User::find($user_id); 
+    	$user = User::find($user_id);   
     	$talent = $user->talent; 
 
     	return view("talent.profile",compact('user','talent'));
@@ -114,7 +115,9 @@ class MemberController extends Controller
             'level'         => 'talent',
         ];
 
-        $result = User::create($user);
+        $result = new User($user);
+
+        $result->save();
 
         if ( isset($request->karir_tahun) && isset($request->karir_bulan) )
         {
@@ -171,7 +174,7 @@ class MemberController extends Controller
                 'talent_last_active'    => date("Y-m-d H:i:s") 
         ];
 
-        $talent = Talent::updateOrCreate(["talent_email"=>$request->email],$data); 
+        $talent = $result->talent()->updateOrCreate(["talent_email"=>$request->email],$data); 
 
         // proses insert skill
         $skill_1 = explode(",",$request->skill_1);
@@ -194,7 +197,7 @@ class MemberController extends Controller
         Session::put('email',$request->email);
         Session::put('level',$request->level);
         Session::put('login',TRUE);
-
+        auth()->login($result);
         return response()->json(array("message"=>"success","status"=>1));
     }
 

@@ -166,6 +166,7 @@
                     //     // action = action+"?redirect="+redirect;
                     //     // // $("#login-form").attr("action",action);
                     // }
+                    is_apply =  $(this).data("action-apply");
                 });
 
                 $("#login-form").submit(function()
@@ -325,7 +326,6 @@
             @csrf
             
             <div class="info alert alert-warning" style="display: none"></div>
-
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4"><label for="Name">Nama</label></div>

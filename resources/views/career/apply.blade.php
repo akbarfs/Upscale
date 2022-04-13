@@ -166,14 +166,14 @@
                                 <label >Jenis Kelamin<span
                                         style="color: red;"> *</span></label>
                                 <div class="input-select">
-                                    <select id="gender" class="form-control validate-required" name="gender" required="" @if( isset($user) && $user->talent->talent_gender ) readonly="readonly" @endif>
+                                    <select id="gender" class="form-control validate-required" name="gender" required="" @if( isset($user) && isset($user->talent) && $user->talent->talent_gender ) readonly @endif>
                                         <option value="">Pilih</option>
                                         <option value="Laki-laki" 
-                                        @if ( isset($user) && $user->talent->talent_gender=='male') 
+                                        @if ( isset($user) && isset($user->talent) && $user->talent->talent_gender=='male') 
                                         selected="selected" 
                                         @endif >Laki-laki</option>
                                         <option value="Perempuan" 
-                                        @if ( isset($user) && $user->talent->talent_gender=='female') 
+                                        @if ( isset($user) && isset($user->talent) && $user->talent->talent_gender=='female') 
                                         selected="selected" 
                                         @endif>Perempuan</option>
                                     </select>
@@ -256,12 +256,12 @@
                                 <label>Apakah saat ini sedang terikat kontrak kerja ?</label>
                                 <select class="form-control" name="kerja" id="kerja">
                                     <option value="tidak"
-                                    @if ( isset($user) && $user->talent->talent_available == 'yes' ) 
+                                    @if ( isset($user) && isset($user->talent) && $user->talent->talent_available == 'yes' ) 
                                     selected
                                     @endif
                                     >tidak</option>
                                     <option value="ya"
-                                    @if ( isset($user) && $user->talent->talent_available == 'no' ) 
+                                    @if ( isset($user) && isset($user->talent) && $user->talent->talent_available == 'no' ) 
                                     selected
                                     @endif
                                     >ya</option>
@@ -271,7 +271,7 @@
                             
 
                             <div class="col-md-6 margin-top" id="div_ready"
-                            @if (!isset($user) || isset($user) && $user->talent->talent_available == 'no' )
+                            @if (!isset($user) || (isset($user) && isset($user->talent) && $user->talent->talent_available == 'no') )
                             style="display: none"
                             @endif>
                                 <label>Siap kerja tanggal berapa ? <span style="color: red;"> *</span></label>
@@ -281,7 +281,7 @@
 
 
                             <div class="col-md-6 margin-top" id="div_selesai_kontrak" 
-                            @if ( isset($user) && $user->talent->talent_available == 'yes')
+                            @if ( isset($user) && isset($user->talent) && $user->talent->talent_available == 'yes')
                             style="display: none"
                             @endif>
                                 <label>Selesai kontrak tanggal berapa ? <span style="color: red;"> *</span></label>

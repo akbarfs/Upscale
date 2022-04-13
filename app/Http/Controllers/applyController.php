@@ -18,17 +18,17 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use App\Rules\Captcha;
 use Session ; 
-use App\User ; 
+use App\Models\User ; 
 
 class applyController extends Controller
 {
     public function index($id)
     {
-        $user = null ; 
-        if ( Session::has("login"))
+        $user = null;
+        if ( Session::has("login") && session('email') && !$user)
         {
-            $user_id   = Session::get("user_id");
-            $user   = User::find($user_id); 
+            $email  = Session::get("email");
+            $user   = User::where('username',session('username'))->first();
         }
 
         $skill     = Skill::all();
