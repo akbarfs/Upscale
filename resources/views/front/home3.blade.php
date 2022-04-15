@@ -41,9 +41,9 @@
 
 
     <section class="section-video light">
-        <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-3.jpg')}}">
-            <source src="{{url('template/upscale/media/repeat-medium.mp4')}}" type="video/mp4">
-        </video>
+        <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-3.jpg?v=1')}}">
++            <source src="{{url('template/upscale/media/repeat-medium.mp4?v=1')}}" type="video/mp4">
+         </video>
         <div class="container" style="padding-bottom: 100px;">
             <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">

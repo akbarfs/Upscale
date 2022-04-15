@@ -353,23 +353,23 @@ class homeController extends Controller
 
 
         $name = $request->company_name; 
-        $email = $request->company_name; 
+        $email = $request->company_email; 
         $message = $message; 
         $phone = $request->phone ; 
         $to_email = 'dodi@upscale.id';
-        $subject = 'Contact '.$name.' email '.$email;
+        $subject = 'Upscale Client Request '.request('company_name');
         $message = $message ; 
-        $headers = 'From: noreply@upscale.id'; //optional
+        $headers = 'From: lead@uspcale.id'; //optional
         mail($to_email,$subject,$message,$headers);
 
         $name = $request->company_name; 
-        $email = $request->company_name; 
+        $email = $request->company_email; 
         $message = $message; 
         $phone = $request->phone ; 
         $to_email = 'bayu@upscale.id';
-        $subject = 'Contact '.$name.' email '.$email;
+        $subject = 'Upscale Client Request '.request('company_name');
         $message = $message ; 
-        $headers = 'From: noreply@upscale.id'; //optional
+        $headers = 'From: lead@uspcale.id'; //optional
         mail($to_email,$subject,$message,$headers);
     }
 

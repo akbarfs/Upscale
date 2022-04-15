@@ -580,7 +580,7 @@
                         </tr>
                         <tr>
                             <td><b>Email</b></td>
-                            <td>sales@upscale.id</td>
+                            <td>dodi@upscale.id</td>
                         </tr>
                     </table>
                 </div>
