@@ -1,9 +1,18 @@
 @extends('layouts.template',['logo'=>'transparent'])
 
-@section("menu_class",'light')
+@section("menu_class",'menu-transparent light')
 
 @section('content')
 
+
+@php
+    $joblo  = DB::table('jobs')->where('jobs_id','=',$job->jobs_id)
+                            ->join('joblo','joblo_jobs_id','jobs_id')
+                            ->join('location','location_id','joblo.joblo_location_id')
+                            ->select('location_name')
+                            ->first();
+
+@endphp
 
 <style>
     
@@ -47,10 +56,11 @@
         <div class="container" style="padding-bottom: 100px;">
             <hr class="space-lg hidden-sm" />
             <div class="row align-items-center" data-anima="fade-in" data-time="1000">
-                <div class="col-lg-6" style="font-size: 25px">
-                    <h1 class="slide slide-title1">
-                         {{lang('Apply as our talent.','Daftar sebagai talent.')}}
-                    </h1>
+                <div class="col-lg-8" style="font-size: 25px">
+                    <h2 class="slide slide-title1">
+                         {{lang('Apply as our talent.','Daftar sebagai talent')}}.
+                    </h2>
+                    <h1>{{$job->jobs_title}} </h1>
                     
                     <!-- <h2 class="slide-title2">
                         {!!lang(
@@ -64,17 +74,43 @@
 
                     <p class="slide-title3" style="margin-bottom: 20px">
                     {!!lang(
-                        'Hire software developers, designers, product manager, finance or administrative team from our exclusive networks. Our talents are available for both on-site or work remotely from our office.<br /><br />Choose from the Full-time or Freelance contract based on your business need.',
-                        'Hire software developers, designers, product manager, finance, atau administratif team dari eksklusif network kami. Talent kami bisa bekerja secara remote maupun on-site.<br /><br />Kontrak full-time maupun freelance yang disesuaikan dengan kebutuhan bisnis Anda.'
+                        "We are looking for talented talent to join Upscale's exclusive ecosystem. We are a company that helps talent find the job they want, from the location of the company, what company they want to work for, to the expected salary expectations.<br /><br />Let's join the exclusive high-end ecosystem, it's FREE!.",
+                        "Kami mencari talent berbakat untuk bergabung dalam ekosistem eklusif Upscale. Kami adalah perusahaan yang membantu talent mendapatkan pekerjaan yang mereka inginkan, baik dari segi lokasi perusahaan, diperusahaan apa mereka ingin bekerja, sampai ekspektasi gaji yang di inginkan.<br /><br />Tidak hanya itu, kami juga mencarikan kamu tambahan penghasilan dari project based, sampai mentoring dll. Mari bergabung dengan ekosistem ekslusif upscale, GRATIS!"
                     )!!}
                     </p>
+
+                    <!-- Bergabung dan dapatkan beberapa manfaat:
+                    <ul class="desc-list-talent" style="padding-top: 15px">
+                        <li>Karir di perusahaan idaman</li>
+                        <li>Project as a freelance</li>
+                        <li>Pasif Income</li>
+                        <li>Free Education</li>
+                        <li>Konsultasi senior programer</li>
+                        <li>Kerja Remote (lokal/International)</li>
+                    </ul> -->
                         
                 </div>
-                <div class="col-lg-6 align-center align-center-md" data-anima="fade-in" data-time="1000">
+                <div class="col-lg-4 align-center align-center-md" data-anima="fade-in" data-time="1000">
 
-                        <a href="#" class="btn btn-circle btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="border-color: #fff !important; color: #fff !important;">
+                       <!--  <a href="#" class="btn btn-circle btn-sm join_community" data-target="#registerTalent" data-toggle="modal" style="border-color: #fff !important; color: #fff !important;">
                             {!!lang('Join as Talent','Daftar Sebagai Talent')!!}
-                        </a>
+                        </a> -->
+
+                        @if ( Session::has("login"))
+                            <a href="{{ url('jobs/apply/'.$job->jobs_id) }}" class="see-more-link" data-function="business">
+                                <button type="button" class="btn btn-sm btn-circle" 
+                                style="width: 100%">
+                                    Join As Talent
+                                </button>
+                            </a>
+                        @else
+                            <a class="see-more-link" data-target="#mustLogin" data-toggle="modal" data-dismiss="modal">
+                                <button type="button" class="btn btn-sm btn-circle" 
+                                style="width: 100%">
+                                    Join As Talent
+                                </button>
+                            </a>
+                        @endif
 
                 </div>
             </div>
@@ -92,9 +128,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Dedicated Team</h2>
+                                <h2>Join Community</h2>
                                 <p>
-                                    {{lang('Hire an outsource talented team to help scale up your business.','Hire talent sebagai karyawan outsource.')}}
+                                    {{lang('Get various benefits as a member.','Dapatkan berbagai benefit sebagai member.')}}
                                 </p>
                             </div>
                         </div>
@@ -102,9 +138,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Freelance Team</h2>
+                                <h2>Career Support</h2>
                                 <p>
-                                    {{lang('Part-time team that work based on the man-hour rate.','Hire talent freelance berbasis man-hour.')}}
+                                    {{lang('find a job according to your expectations.',' Mencarikan pekerjaan sesuai ekspektasimu.')}}
                                 </p>
                             </div>
                         </div>
@@ -112,9 +148,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Head Hunter</h2>
+                                <h2>Project Based</h2>
                                 <p>
-                                    {{lang('Make your recruitment process faster and hassle-free.','Hire talent sebagai karyawan internal anda.')}}
+                                    {{lang('Offer projects for additional income.','Project offer untuk tambahan penghasilan.')}}
                                 </p>
                             </div>
                         </div>
@@ -122,9 +158,9 @@
                     <div class="grid-item">
                         <div class="cnt-box cnt-box-top-icon boxed">
                             <div class="caption">
-                                <h2>Project-Based</h2>
+                                <h2>Free Mentoring</h2>
                                 <p>
-                                    {{lang('A legacy project-based team to finish up your project.','Hire vendor / freelance berbasis project.')}}
+                                    {{lang('Improve skills with free mentoring.','Tingkatkan skill dengan free mentoring.')}}
                                 </p>
                             </div>
                         </div>
@@ -258,35 +294,35 @@
 
             <div class="row">
                 <div class="col-lg-4">
-                    <h2>{{lang('Still not sure which services you should choose?','Recruitment Type.')}}</h2>
+                    <h2>{{lang('We are Difference','Kami Berbeda.')}}</h2>
                     <p>{!!lang(
-                        'This list of services will help you to decide.<br /><br />Don\'t worry if you don\'t need some of our services, all services are customizable based on your needs.',
-                        'Tentukan tipe recruitment anda. Pilihan fasilitas tidak bersifat wajib, sehingga masih dapat disesuaikan kembali sesuai kebutuhan.'
+                        'Our service is different from some existing services. There are several types of services that we might be able to compare such as:',
+                        'Layanan kami berbeda dengan beberapa layanan yang ada. Ada beberapa jenis layanan yang mungkin bisa dibandingkan dengan kami seperti'
                         )!!}
                     </p>
                     <hr class="space-sm" />
                     <ul class="accordion-list">
                         <li>
-                            <a href="#">Dedicated Team / Freelance Team</a>
+                            <a href="#">Upscale Platform</a>
                             <div class="content">
                                 <p>
-                                    {{lang('Find the best-matched talent for your needs. The talent is available to works on-site or remotely, both full-Time or freelance.','Pencarian talent terbaik untuk kebutuhan bisnis Anda. Talent bersedia untuk bekerja on-site maupun remote dan full-time maupun part-time.')}}
+                                    {{lang('A platform that helps us build a career from looking for a dream job, freelance projects to mentoring','Platform yang membantu kami membangun karir dari mencari pekerjaan idaman, project freelance sampai mentoring')}}
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#">Head Hunter</a>
+                            <a href="#">Bootcamp & Penyaluran kerja</a>
                             <div class="content">
                                 <p>
-                                    {{lang('Find the best-matched talent for your needs. The talent will work as your internal team under your contract and company regulation.','Menyediakan fasilitas pencarian talent untuk dijadikan karyawan internal.')}}
+                                    {{lang('Training held by an agency / company to provide training, sometimes there are job distribution facilities.','Pelatihan yang diadakan suatu instansi / perusahaan untuk memberikan pelatihan, terkadang terdapat fasilitas penyaluran kerja.')}}
                                 </p>
                             </div>
                         </li>
                         <li>
-                            <a href="#">Project-Based</a>
+                            <a href="#">Job Portal</a>
                             <div class="content">
                                 <p>
-                                    {{lang('Find the best-matched team or vendor for your project.','Menyediakan fasilitas pencarian vendor untuk menjadi sub-contractor project Anda.')}}
+                                    {{lang('Job vacancies websites like jobstreet.com.','Website lowongan kerja seperti jobstreet.')}}
                                 </p>
                             </div>
                         </li>
@@ -297,9 +333,9 @@
                         <thead>
                             <tr>
                                 <th>{{lang('Services','Fasilitas')}}</th>
-                                <th>Dedicated Team</th>
-                                <th>Head Hunter</th>
-                                <th>Project-Based</th>
+                                <th>Upscale</th>
+                                <th>Bootcamp</th>
+                                <th>Job Portal</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -482,16 +518,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <h3>{{ $job->jobs_title }}</h3>
+                    <h1>{{ $job->jobs_title }}</h1>
 
-                    @php
-                    $joblo      = DB::table('jobs')->where('jobs_id','=',$job->jobs_id)
-                                                                ->join('joblo','joblo_jobs_id','jobs_id')
-                                                                ->join('location','location_id','joblo.joblo_location_id')
-                                                                ->select('location_name')
-                                                                ->first();
-
-                    @endphp
+                    
                                 
                     {{ @$joblo->location_name }},
                             
@@ -520,14 +549,16 @@
                             
                             @if ( Session::has("login"))
                             <a href="{{ url('jobs/apply/'.$job->jobs_id) }}" class="see-more-link" data-function="business">
-                                <button type="button" class="btn btn-lg btn-primary">
+                                <button type="button" class="btn btn-lg btn-primary" 
+                                style="width: 100%">
                                     Apply Job
                                 </button>
                             </a>
                             @else
 
                             <a class="see-more-link" data-target="#mustLogin" data-toggle="modal" data-dismiss="modal">
-                                <button type="button" class="btn btn-lg btn-primary">
+                                <button type="button" class="btn btn-lg btn-primary" 
+                                style="width: 100%">
                                     Apply Job
                                 </button>
                             </a>
@@ -546,7 +577,7 @@
 
     <section class="section-base" id="list-lowker">
         <div class="container" style="padding-bottom: 0">
-            <h2 align="center">
+            <h2 align="left">
                     Currently open roles urgently.
             </h2>
             <hr class="space" />
@@ -555,7 +586,7 @@
             <h3>Web Developer</h3>
             <hr class="space-sm" />
             <div class="row">
-                <div class="col-lg-9">
+                <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-8">
                             <p>
@@ -605,8 +636,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-3">
-                    <a href="{{url('/jobs').param()}}" class="btn btn-sm full-width btn-circle">Apply now</a>
+                <div class="col-lg-4">
+                    <a href="{{url('/jobs').param()}}" class="btn btn-lg btn-primary full-width ">
+                        Apply now
+                    </a>
+
+
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
@@ -616,7 +651,7 @@
             <h3>UI/UX Designer</h3>
             <hr class="space-sm" />
             <div class="row">
-                <div class="col-lg-9">
+                <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-8">
                             <p>
@@ -666,8 +701,10 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-3">
-                    <a href="{{url('/jobs')}}" class="btn btn-sm btn-circle full-width">Apply now</a>
+                <div class="col-lg-4">
+                    <a href="{{url('/jobs').param()}}" class="btn btn-lg btn-primary full-width ">
+                        Apply now
+                    </a>
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
@@ -678,7 +715,7 @@
             <h3>Backend Engineer (Go)</h3>
             <hr class="space-sm" />
             <div class="row">
-                <div class="col-lg-9">
+                <div class="col-lg-8">
                     <div class="row">
                         <div class="col-lg-8">
                             <p>
@@ -728,8 +765,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-lg-3">
-                    <a href="{{url('/jobs')}}" class="btn btn-sm btn-circle full-width">Apply now</a>
+                <div class="col-lg-4">
+
+                    <a href="{{url('/jobs').param()}}" class="btn btn-lg btn-primary full-width ">
+                        Apply now
+                    </a>
+
                     <hr class="space-xs" />
                     <p class="text-xs">Make sure to have all the requirements before contacting us!</p>
                 </div>
