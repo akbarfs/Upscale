@@ -28,7 +28,7 @@
     <section class="section-video light">
         <div style="top: 0;right: 0;left: 0;position: absolute;width: 100%;z-index: 1;height: 100%;background: #000; opacity: 0.7"></div>
         <video autoplay loop muted playsinline poster="{{url('template/upscale/media/video-poster-2.jpg')}}">
-            <source src="{{url('template/upscale/media/talent.mp4')}}" type="video/mp4">
+            <source src="{{url('template/upscale/media/talentx.mp4')}}" type="video/mp4">
         </video>
         <div class="container" style="padding-bottom: 100px;">
             <hr class="space-lg hidden-sm" />
