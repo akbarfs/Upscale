@@ -122,7 +122,7 @@
                 <hr class="space" />
                 <div class="row">
                     <div class="col-lg-9">
-                        <img src="{{url('template/upscale/media/map.png')}}" alt="" />
+                        <img src="{{url('template/upscale/media/map.jpg')}}" alt="" />
                     </div>
                     <div class="col-lg-3">
                         <ul class="icon-list icon-circle align-right align-left-md">

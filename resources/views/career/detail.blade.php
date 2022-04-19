@@ -335,57 +335,57 @@
                                 <th>{{lang('Services','Fasilitas')}}</th>
                                 <th>Upscale</th>
                                 <th>Bootcamp</th>
-                                <th>Job Portal</th>
+                                <th>Portal</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Talent Hunt</td>
+                                <td>Career Assistance</td>
                                 <td><i class="icon-check"></i></td> <!---icon-check-gray-->
-                                <td><i class="icon-check"></i></td>
-                                <td><i class="icon-close"></i></td>
-                            </tr>
-                            <tr>
-                                <td>CoWork Space</td>
-                                <td><i class="icon-check"></i></td>
                                 <td><i class="icon-close"></i></td>
                                 <td><i class="icon-close"></i></td>
                             </tr>
                             <tr>
-                                <td>Remote Worker / On-Site Worker</td>
+                                <td>Pelatihan / mentoring</td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Jaminan kerja</td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                            </tr>
+                            <tr>
+                                <td>List lowker</td>
+                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
+                                <td><i class="icon-check"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Peluang Project as Freelance</td>
                                 <td><i class="icon-check"></i></td>
                                 <td><i class="icon-close"></i></td>
                                 <td><i class="icon-close"></i></td>
                             </tr>
                             <tr>
-                                <td>Resource Operational & Management</td>
-                                <td><i class="icon-check"></i></td>
-                                <td><i class="icon-close"></i></td>
-                                <td><i class="icon-close"></i></td>
-                            </tr>
-                            <tr>
-                                <td>HR Manager</td>
-                                <td><i class="icon-check"></i></td>
-                                <td><i class="icon-close"></i></td>
-                                <td><i class="icon-close"></i></td>
-                            </tr>
-                            <tr>
-                                <td>IT Consultant</td>
+                                <td>Bekerja dengan client International</td>
                                 <td><i class="icon-check"></i></td>
                                 <td></td>
-                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
                             </tr>
                             <tr>
-                                <td>Resource Tax and Legal</td>
+                                <td>Peluang Pasif Income</td>
                                 <td><i class="icon-check"></i></td>
                                 <td></td>
-                                <td><i class="icon-check"></i></td>
+                                <td><i class="icon-close"></i></td>
                             </tr>
                             <tr>
-                                <td>Shared Project Risk & Responsibilty</td>
-                                <td></td>
-                                <td></td>
+                                <td>Bantuan dari expert saat kesulitan</td>
                                 <td><i class="icon-check"></i></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>
@@ -413,27 +413,27 @@
 
             @if ( isset($_GET['lang']) && $_GET['lang'] == 'id' || !isset($_GET['lang']))
             <!-- <hr class="space-lg" /> -->
-            <h2 class="align-center">Our Partnership in many regional</h2>
+            <h2 class="align-center">Bergabung dengan komunitas kami</h2>
             <p class="align-center width-650">
-                Kami secara aktif akan terus mengembangkan komunitas dan network kami dengan berbagai pihak. Nantikan kami hadir di kota anda.
+                Kami secara aktif akan terus mengembangkan komunitas dan network kami dengan berbagai pihak.
             </p>
             <hr class="space" />
             <div class="row">
                 <div class="col-lg-9">
-                    <img src="{{url('template/upscale/media/map.png')}}" alt="" />
+                    <img src="{{url('template/upscale/media/map.jpg')}}" alt="" />
                 </div>
                 <div class="col-lg-3">
                     <ul class="icon-list icon-circle align-right align-left-md">
                         <li>Yogyakarta, Indonesia</li>
-                        <li>Jakarta, soon</li>
-                        <li>Bandung, soon</li>
-                        <li>Malang, soon</li>
-                        <li>Bali, soon</li>
-                        <li>Surabaya, soon</li>
-                        <li>Tangerang, soon</li>
-                        <li>Semarang, soon</li>
-                        <li>Solo, soon</li>
-                        <li>Bogor, soon</li>
+                        <li>Jakarta, Indonesia</li>
+                        <li>Bandung, Indonesia</li>
+                        <li>Malang, Indonesia</li>
+                        <li>Bali, Indonesia</li>
+                        <li>Surabaya, Indonesia</li>
+                        <li>Tangerang, Indonesia</li>
+                        <li>Semarang, Indonesia</li>
+                        <li>Solo, Indonesia</li>
+                        <li>Bogor, Indonesia</li>
                     </ul>
                 </div>
             </div>
@@ -453,12 +453,12 @@
                 <div class="col-lg-6">
                     <h2>{!!lang(
                         'How do we work?<br /> We will work your way.'
-                        ,'Bagaimana prosedur kami ?<br /> Kami bekerja sesuai dengan kebutuhan bisnis Anda'
+                        ,'Bagaimana tahapanya ?<br /> Kami menyesuaikan dengan kebutuhan dan ekspektasi Anda'
                         )!!}</h2>
                     <p>
                         {{lang(
                             'A short consultation with our business specialist will help us understand your business needs and your talent qualification. We will make sure our list of talent will be the best-matched for your needs.',
-                            'Konsultasi singkat dengan konsultan kami akan membantu kami untuk mengetahui kebutuhan bisnis dan talent Anda. Kami pastikan talent yang kami tawarkan adalah talent yang memiliki kualifikasi sesuai dengan kebutuhan.'
+                            'Konsultasi singkat dengan konsultan kami akan membantu kami untuk mengetahui kebutuhan kamu. Kami pastikan kami akan membantu kamu untuk mendapatkan apa yang kamu cari.'
                         )}}
                     </p>
                     <hr class="space-sm" />
@@ -477,10 +477,10 @@
                         <div class="step-item">
                             <span>1</span>
                             <div class="content">
-                                <h3>{{lang('Share your Business Needs','Konsultasikan kebutuhan bisnis Anda')}}</h3>
+                                <h3>{{lang('Join as member','Daftar sebagai member')}}</h3>
                                 <div>
                                     <p>
-                                        {{lang('Our business analyst will help you to determine your talent qualification.','Bisnis analis kami akan membantu Anda dalam menentukan kualifikasi talent.')}}
+                                        {{lang('Register as member to our eklusif network.','Daftarkan dirimu sebagai salah satu member di komunitas eklusif kami')}}
                                     </p>
                                 </div>
                             </div>
@@ -488,10 +488,10 @@
                         <div class="step-item">
                             <span>2</span>
                             <div class="content">
-                                <h3>Talent Assessment</h3>
+                                <h3>Konsultasikan dengan talent care</h3>
                                 <div>
                                     <p>
-                                        {{lang('We looking for the best-matched candidate, we will conduct an interview, psychological test, and online technical test.','Kami akan melakukan pencarian talent sesuai dengan kebutuhan, melakukan interview, test psikolog, dan online technical test.')}}
+                                        {{lang('Our talent care help you get your dream','Talent care kami akan membantu Anda dalam mendapatkan apa yang kamu inginkan')}}
                                     </p>
                                 </div>
                             </div>
@@ -499,10 +499,10 @@
                         <div class="step-item">
                             <span>3</span>
                             <div class="content">
-                                <h3>{{lang('Choose Your Talent','Pilih Talent Anda')}}</h3>
+                                <h3>{{lang('Choose Your Talent','Dapatkan yang kamu inginkan')}}</h3>
                                 <div>
                                     <p>
-                                        {{lang('Your internal assessment based on our best-matched candidates.','Kami akan memberikan list kandidat terbaik, dan Anda dapat melakukan assessment tambahan.')}}
+                                        {{lang('Your internal assessment based on our best-matched candidates.','Kami secara aktif akan mencarikan pekerjaan idaman kamu. Yuk bergabung!')}}
                                     </p>
                                 </div>
                             </div>
@@ -885,7 +885,7 @@
 
                     <a href="#" class="btn join_community" data-target="#registerTalent" 
                     data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}' data-action-apply="{{ $id }}">
-                        Register & Apply Job
+                        Register
                     </a> 
                     
                     &nbsp
@@ -897,7 +897,7 @@
                     <a class="btn login-apply" data-target="#ModalLogin" data-toggle="modal" 
                     style="color: #fff;margin: 0" data-dismiss="modal" 
                     data-redirect='{{url("jobs/apply/".$id)}}'>
-                        Login & Apply Job
+                        Login
                     </a>
                     
                 </div>
