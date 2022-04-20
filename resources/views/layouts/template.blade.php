@@ -250,7 +250,7 @@
                     <div class="col-md-12" style="text-align: right; margin-top: 0">
                         <!-- <div class="menu-custom-area"> Already have account? <a class="CreateModal" data-target="#ModalRegister" data-toggle="modal">Create Here</a> </div> -->
                         <div style="margin-right: 20px;margin-bottom: 10px;float: left;">
-                            Register as talent ? 
+                            {{ lang('Don\'t have an Account','Belum punya Akun') }} ? 
                             <a href="#" class="join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal">
                                 Click
                             </a>

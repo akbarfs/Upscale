@@ -1260,7 +1260,7 @@
                 
                 <!-- <a class="btn btn-primary back" style="float: left; display: none">Back</a> -->
                 <a type="submit" class="btn btn-primary next_question" style="display: none">next</a>
-                <span class="login-apply">Sudah punya akun ?
+                <span class="login-apply">{!! lang('Have an Account','Sudah punya akun') !!} ?
                     <a class="btn login-apply" style="padding-left: 0;background:transparent;color: gray;margin-top: 0;border: 0;" data-target="#ModalLogin" data-toggle="modal" 
                     style="color: #fff;margin: 0" data-dismiss="modal" 
                     >

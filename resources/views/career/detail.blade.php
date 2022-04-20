@@ -557,7 +557,7 @@
                             </a>
                             @else
 
-                            <a class="see-more-link" data-target="#mustLogin" data-toggle="modal" data-dismiss="modal">
+                            <a class="see-more-link join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal">
                                 <button type="button" class="btn btn-lg btn-primary" 
                                 style="width: 100%">
                                     Apply Job
