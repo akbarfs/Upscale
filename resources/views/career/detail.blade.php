@@ -75,7 +75,7 @@
                     <p class="slide-title3" style="margin-bottom: 20px">
                     {!!lang(
                         "We are looking for talented talent to join Upscale's exclusive ecosystem. We are a company that helps talent find the job they want, from the location of the company, what company they want to work for, to the expected salary expectations.<br /><br />Let's join the exclusive high-end ecosystem, it's FREE!.",
-                        "Kami mencari talent berbakat untuk bergabung dalam ekosistem eklusif Upscale. Kami adalah perusahaan yang membantu talent mendapatkan pekerjaan yang mereka inginkan, baik dari segi lokasi perusahaan, diperusahaan apa mereka ingin bekerja, sampai ekspektasi gaji yang di inginkan.<br /><br />Tidak hanya itu, kami juga mencarikan kamu tambahan penghasilan dari project based, sampai mentoring dll. Mari bergabung dengan ekosistem ekslusif upscale, GRATIS!"
+                        "Kami membantu talent mendapatkan pekerjaan yang mereka inginkan, baik dari segi salary, bekerja secara remote atau onsite, lokasi & diperusahaan seperti apa yang mereka ingin bekerja, Baik perusahaan indonesia maupun international.<br /><br />Tidak hanya itu, kami juga mencarikan kamu tambahan penghasilan dari project based, mentoring dll. Mari bergabung dengan ekosistem ekslusif upscale, GRATIS!"
                     )!!}
                     </p>
 
