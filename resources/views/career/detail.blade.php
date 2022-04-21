@@ -104,7 +104,8 @@
                                 </button>
                             </a>
                         @else
-                            <a class="see-more-link" data-target="#mustLogin" data-toggle="modal" data-dismiss="modal">
+                            <a class="see-more-link join_community" data-target="#registerTalent" 
+                    data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}' data-action-apply="{{ $id }}">
                                 <button type="button" class="btn btn-sm btn-circle" 
                                 style="width: 100%">
                                     Join As Talent
@@ -556,7 +557,7 @@
                             </a>
                             @else
 
-                            <a class="see-more-link" data-target="#mustLogin" data-toggle="modal" data-dismiss="modal">
+                            <a class="see-more-link join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal">
                                 <button type="button" class="btn btn-lg btn-primary" 
                                 style="width: 100%">
                                     Apply Job

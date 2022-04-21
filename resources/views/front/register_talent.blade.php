@@ -212,7 +212,7 @@
                             $(".info_reg_talent").append(e+"<br>");
                        });
                     });
-
+                    $('.login-apply').show();
                 }
             });
         });
@@ -1250,6 +1250,9 @@
                     color: #fff !important; margin: 5px !important; ; width: unset !important; 
                 }
                 .back { background: gray; border: none }
+                .login-apply:hover {
+                    box-shadow: none;
+                }
             </style>
 
             <hr style="margin:10px 0">
@@ -1257,8 +1260,14 @@
                 
                 <!-- <a class="btn btn-primary back" style="float: left; display: none">Back</a> -->
                 <a type="submit" class="btn btn-primary next_question" style="display: none">next</a>
-
-                <a type="submit" class="btn btn-primary next">REGISTER</a>
+                <span class="login-apply">{!! lang('Have an Account','Sudah punya akun') !!} ?
+                    <a class="btn login-apply" style="padding-left: 0;background:transparent;color: gray;margin-top: 0;border: 0;" data-target="#ModalLogin" data-toggle="modal" 
+                    style="color: #fff;margin: 0" data-dismiss="modal" 
+                    >
+                        <span style="color: rgb(71, 178, 228);">Login</span>
+                    </a>
+                </span>
+                <a type="submit" class="btn btn-primary next" onclick="$('.login-apply').hide()">REGISTER</a>
                 <a type="submit" class="btn btn-primary registerTalent" style="display: none; display: #000">Submit Registration?</a>    
             </div>
             
