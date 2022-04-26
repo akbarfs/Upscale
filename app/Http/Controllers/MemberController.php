@@ -69,6 +69,9 @@ class MemberController extends Controller
                     'talent_last_active' => date("Y-m-d H:i:s"),
                     'talent_la_type' =>'register step 1'
             ];
+            if(\Illuminate\Support\Facades\Cookie::get('ref')) {
+                $data['ref'] = \Illuminate\Support\Facades\Cookie::get('ref');
+            }
 
             $talent = Talent::create($data); 
 
@@ -290,6 +293,10 @@ class MemberController extends Controller
 
     public function doLogout()
     {
+        if(auth()->check()) {
+            auth()->logout();
+        }
+        
     	Session::flush();
         return redirect("/");
     }

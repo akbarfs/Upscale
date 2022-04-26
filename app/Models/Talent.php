@@ -69,7 +69,8 @@ class Talent extends Model
 							'talent_price_bandung', 
 							'talent_price_usd', 
 							'talent_price_jogja', 
-							'talent_hh_price'
+							'talent_hh_price',
+							'ref'
 						];
 	public $timestamps = false;
 

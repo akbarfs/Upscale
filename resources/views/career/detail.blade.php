@@ -107,7 +107,7 @@
                                         Apply This Position
                                     </button>
                                 </a>
-                                <a href="{{ url('/jobs') }}" style="color: white;">Lihat semua lowongan</a>
+                                <a href="{{ url('/jobs') }}" class="btn btn-sm btn-circle btn-border light btn-block mt-3" target="_blank" style="color: white;">Lihat semua lowongan</a>    
                             </div>
                         @else
                             <div>
@@ -117,7 +117,7 @@
                                         Apply This Position
                                     </button>
                                 </a>
-                                <a href="{{ url('/jobs') }}" style="color: white;">Lihat semua lowongan</a>
+                                <a href="{{ url('/jobs') }}" class="btn btn-sm btn-circle btn-border light btn-block mt-3" target="_blank" style="color: white;">Lihat semua lowongan</a>
                             </div>
                         @endif
 
