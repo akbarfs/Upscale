@@ -69,7 +69,7 @@
                     </p>
                     <!-- <div>Dublin, Ireland</div> -->
                     <div class="wrap-apply" >
-                    	<a href="{{ url('jobs/'.$job->jobs_id) }}" target="_blank" class="btn btn-xs btn-circle reg" style="float: right ; margin-top: 5px">Join</a>
+                    	<a href="{{ url('lowongan-'.$job->jobs_id.'-'.str_replace(' ', '-', $job->jobs_title)) }}" target="_blank" class="btn btn-xs btn-circle reg" style="float: right ; margin-top: 5px">Join</a>
                     </div>
                     <div style="clear: both"></div>
                 </li>

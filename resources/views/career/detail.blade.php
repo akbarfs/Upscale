@@ -78,7 +78,7 @@
                         Not only that, you also have the opportunity to earn additional income as a freelancer, mentoring and others. Let's join the exclusive ecosystem of Upscale, it's FREE!",
                         "Kami membantu talent mendapat pekerjaan yang mereka inginkan. Bekerja secara remote atau onsite, baik perusahaan di Indonesia maupun mancanegara.<br /><br />
 
-                        Tidak hanya itu, kamu juga berpetualang memperoleh penghasilan tambahan sebagai freelancer, mentoring dan lainnya. Mari bergabung dengan ekosistem ekslusif Upscale, GRATIS!"
+                        Tidak hanya itu, kamu juga berkesempatan memperoleh penghasilan tambahan sebagai freelancer, mentoring dan lainnya. Mari bergabung dengan ekosistem ekslusif Upscale, GRATIS!"
                     )!!}
                     </p>
 
@@ -100,20 +100,25 @@
                         </a> -->
 
                         @if ( Session::has("login"))
-                            <a href="{{ url('jobs/apply/'.$job->jobs_id) }}" class="see-more-link" data-function="business">
-                                <button type="button" class="btn btn-sm btn-circle" 
-                                style="width: 100%">
-                                    Join As Talent
-                                </button>
-                            </a>
+                            <div>
+                                <a href="{{ url('jobs/apply/'.$job->jobs_id) }}" class="see-more-link" data-function="business">
+                                    <button type="button" class="btn btn-sm btn-circle" 
+                                    style="width: 100%">
+                                        Apply This Position
+                                    </button>
+                                </a>
+                                <a href="{{ url('/jobs') }}" style="color: white;">Lihat semua lowongan</a>
+                            </div>
                         @else
-                            <a class="see-more-link join_community" data-target="#registerTalent" 
-                    data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}' data-action-apply="{{ $id }}">
-                                <button type="button" class="btn btn-sm btn-circle" 
-                                style="width: 100%">
-                                    Join As Talent
-                                </button>
-                            </a>
+                            <div>
+                                <a class="see-more-link join_community" data-target="#registerTalent" data-toggle="modal" data-dismiss="modal" data-redirect='{{url("jobs/apply/".$id)}}' data-action-apply="{{ $id }}">
+                                    <button type="button" class="btn btn-sm btn-circle" 
+                                    style="width: 100%">
+                                        Apply This Position
+                                    </button>
+                                </a>
+                                <a href="{{ url('/jobs') }}" style="color: white;">Lihat semua lowongan</a>
+                            </div>
                         @endif
 
                 </div>

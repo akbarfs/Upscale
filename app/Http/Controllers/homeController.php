@@ -298,6 +298,14 @@ class homeController extends Controller
         return view('career/detail', compact('job','date','id'));
     }
 
+    public function detailUsingSlug($id,$slug) {
+        // return dd($id);
+        $job = Job::where('jobs_id','=', $id)->whereJobs_title(str_replace('-', ' ', $slug))->firstOrFail();
+        $date = $job->jobs_created_date->diffForHumans();
+
+        return view('career/detail', compact('job','date','id'));
+    }
+
     public function info()
     {
         $bootcamps  = Bootcamp::all();

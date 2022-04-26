@@ -587,6 +587,7 @@ Route::post('/apply/storeinkeep/{id}', 'applyController@storeinkeep')->name('sto
 Route::get('/move/tofile', 'talentController@tofile')->name('tofile');
 
 
+Route::get('/lowongan-{id}-{slug}', 'homeController@detailUsingSlug')->name('detailUsingSlug')->where('slug', '[\w\d\-]+(.*)');;
 Route::get('/jobs', 'homeController@apply')->name('homapply');
 Route::get('/jobs-old', 'homeController@applyOld')->name('homapply');
 Route::get('/jobs/{id}', 'homeController@detail')->name('detail');
