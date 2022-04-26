@@ -67,11 +67,9 @@ class MemberController extends Controller
                     'talent_birth_date'=>$request->tgl_lahir,
                     'talent_gender' => $request->gender,
                     'talent_last_active' => date("Y-m-d H:i:s"),
-                    'talent_la_type' =>'register step 1'
+                    'talent_la_type' =>'register step 1',
+                    'ref' => \Illuminate\Support\Facades\Cookie::get('ref')
             ];
-            if(\Illuminate\Support\Facades\Cookie::get('ref')) {
-                $data['ref'] = \Illuminate\Support\Facades\Cookie::get('ref');
-            }
 
             $talent = Talent::create($data); 
 
@@ -296,7 +294,7 @@ class MemberController extends Controller
         if(auth()->check()) {
             auth()->logout();
         }
-        
+
     	Session::flush();
         return redirect("/");
     }
