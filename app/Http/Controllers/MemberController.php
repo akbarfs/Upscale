@@ -75,7 +75,7 @@ class MemberController extends Controller
 
         }
 
-        return response()->json(array("message"=>"success","status"=>1));
+        return response()->json(array("message"=>"success","status"=>1, 'ref' => \Illuminate\Support\Facades\Cookie::get('ref')));
     }
 
     public function registerTalent(Request $request)
