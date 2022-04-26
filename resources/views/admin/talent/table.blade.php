@@ -128,9 +128,14 @@
 		  <th scope="row">{{$talent->talent_id}}</th>
 		  <td>
 		  		{{$talent->talent_name}}
+		  		<br>
 		  		@if ( $talent->member_email )
 		  			<span class="badge badge-info" data-toggle="tooltip" data-placement="top" 
 		  			title="member">m</span>
+		  		@endif
+		  		@if($talent->ref)
+		  		<span class="badge badge-warning" data-toggle="tooltip" data-placement="top" 
+		  			title="member">{{$talent->ref}}</span>
 		  		@endif
 		  		<br>
 		  </td>
