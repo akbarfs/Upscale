@@ -394,7 +394,7 @@ class homeController extends Controller
         $talent_id = (int) decrypt_custom($code);
         $talent = Talent::find($talent_id); 
 
-        $user = $talent->user()->firstOrFail(); 
+        $user = $talent->user()->firstOrFail();
         
         Session::put('user_id',$user->id);
         Session::put('username',$user->username);
