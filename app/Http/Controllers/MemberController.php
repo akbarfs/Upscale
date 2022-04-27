@@ -51,19 +51,29 @@ class MemberController extends Controller
             'tempat_lahir' => 'required|min:3|max:25',
         ]); 
 
-        //PROSES INSERT DATABASE USER
-        $user = [
-            'name'         => $request->name,
-            'username'     => $request->username,
-            'email'        => $request->email,
-            'password'     => Hash::make($request["password"]),
-            'phone_number' => $request->phone_number,
-            'level'         => 'talent',
-        ];
+        
 
-        $result = new User($user);
+        //PROSES INSERT DATABASE talent
+        $talent = Talent::where('talent_email',$request->email);
+        if ($talent->count() == 0)
+        {
 
-        $result->save();
+            $data = [
+                    'talent_name' =>$request->name,
+                    'talent_condition' =>'unprocess',
+                    'talent_phone'=>$request->phone_number,
+                    'talent_email'=>$request->email, 
+                    'talent_place_of_birth' => $request->tempat_lahir,
+                    'talent_birth_date'=>$request->tgl_lahir,
+                    'talent_gender' => $request->gender,
+                    'talent_last_active' => date("Y-m-d H:i:s"),
+                    'talent_la_type' =>'register step 1',
+                    'ref' => \Illuminate\Support\Facades\Cookie::get('ref')
+            ];
+
+            $talent = Talent::create($data); 
+
+        }
 
         return response()->json(array("message"=>"success","status"=>1));
     }
@@ -72,8 +82,8 @@ class MemberController extends Controller
     {
         $this->validate ($request,[
             'name'         => 'required|min:3|max:25|string',
-            'username'     => 'required|min:3|max:20|string',
-            'email'        => 'required|string|email',
+            'username'     => 'required|min:3|max:20|string|unique:users,username',
+            'email'        => 'required|string|email|unique:users,email',
             'password'     => 'required|min:6|confirmed',
             'phone_number' => 'required|max:15|phone_number|digits_between:5,15',
             'gender' => 'required',
@@ -96,7 +106,19 @@ class MemberController extends Controller
             'ngajar_rate' => 'sometimes|format_rp',
         ]);
 
-        $result = User::whereEmail($request->email)->first();
+        //PROSES INSERT DATABASE USER
+        $user = [
+            'name'         => $request->name,
+            'username'     => $request->username,
+            'email'        => $request->email,
+            'password'     => Hash::make($request["password"]),
+            'phone_number' => $request->phone_number,
+            'level'         => 'talent',
+        ];
+
+        $result = new User($user);
+
+        $result->save();
 
         if ( isset($request->karir_tahun) && isset($request->karir_bulan) )
         {
@@ -106,8 +128,6 @@ class MemberController extends Controller
         {
             $start_career = '0000-00-00'; 
         }
-
-        $talent = $result->talent;
 
         //PROSES INSERT DATABASE TALENT
         $data = [
@@ -124,7 +144,6 @@ class MemberController extends Controller
                 'talent_place_of_birth' => $request->tempat_lahir,
                 'talent_birth_date' => $request->tgl_lahir,
                 'talent_salary' =>  preg_replace('/[^0-9]/', '', $request->fulltime_rate),
-                'ref' => \Illuminate\Support\Facades\Cookie::get('ref'),
 
                 'talent_address' => $request->talent_address,
                 'talent_prefered_city' => $request->talent_prefered_city,
@@ -156,11 +175,13 @@ class MemberController extends Controller
                 'talent_last_active'    => date("Y-m-d H:i:s") 
         ];
 
-        if ($talent == null)
-        {
-            $talent = Talent::create($data); 
+        $talentFound = Talent::whereTalent_email($request->email)->first();
+
+        if($talentFound) {
+            $result->talent()->update(["talent_email"=>$request->email],$data); 
+            $talent = $talentFound;
         } else {
-            $result->talent()->update($data);
+            $talent = Talent::create($data);
         }
 
         // proses insert skill
