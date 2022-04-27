@@ -224,6 +224,7 @@ class homeController extends Controller
         $locations  = Location::all();
         // $bootcamps  = Bootcamp::all(); 
         $jobs       = Job::orderBy('jobs_active','asc')
+                      ->whereJobs_active('Y')
                       ->orderBy('jobs_urgent', 'asc')
                       ->orderBy('jobs_title','asc')
                       ->paginate(20);
