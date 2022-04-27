@@ -176,10 +176,10 @@ class MemberController extends Controller
         $talentFound = Talent::whereTalent_email($request->email)->first();
 
         if($talentFound) {
-            $result->talent()->update(["talent_email"=>$request->email],$data); 
+            $result->talent()->update($data); 
             $talent = $talentFound;
         } else {
-            $talent = Talent::create($data);
+            $talent = $result->talent()->create($data);
         }
 
         // proses insert skill
