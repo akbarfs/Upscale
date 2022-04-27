@@ -116,9 +116,7 @@ class MemberController extends Controller
             'level'         => 'talent',
         ];
 
-        $result = new User($user);
-
-        $result->save();
+        $result = User::create($user);
 
         if ( isset($request->karir_tahun) && isset($request->karir_bulan) )
         {
