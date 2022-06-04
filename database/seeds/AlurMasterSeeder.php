@@ -86,7 +86,8 @@ class AlurMasterSeeder extends Seeder
             'name' => 'profiling3', 
             'response' => 'Tahun pertama bekerja ?', 
             'next' => 10,
-            'type' => 'input_text'
+            'type' => 'input_text',
+            'input_label' => 'Tahun'
         ]);
         // $alurMasters = AlurMaster::create([
         //     'id' => 10,'alur_group_id' => $profilingGroup->id,'name' => 'interview'.uniqid(), 

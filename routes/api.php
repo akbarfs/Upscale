@@ -32,8 +32,9 @@ Route::middleware(['auth.api'])->group(function() {
         Route::post('/get_assistant_respond/via/group', [\App\Http\Controllers\AssistantController::class, 'getAssistantResponseViaGroup']);
         Route::post('/store_user_input', [\App\Http\Controllers\AssistantController::class, 'storeUserInput']);
     });    
-    Route::prefix('skill')->group(function() {
+    Route::prefix('/skill')->group(function() {
         Route::get('/all', [\App\Http\Controllers\Apis\SkillController::class,'all']);
-        Route::post('/get', [\App\Http\Controllers\Apis\SkillController::class,'get']);
+        Route::post('/get_skill', [\App\Http\Controllers\Apis\SkillController::class,'getSkill']);
     });
 });
+

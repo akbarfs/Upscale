@@ -12,18 +12,16 @@ class AssistantController extends Controller
         // $validator = Validator::make(request()->all(), []);
 
         $alurMaster = null;
-        if(request()->lastAssisted > -1) {
-            $alurMaster = AlurMaster::with('group')->whereId(request()->lastAssisted)->first();
-        }else if(request()->lastAssisted === -1) {
+        if(request('lastAssisted') > -1) {
+            $alurMaster = AlurMaster::with('group')->whereId(request('lastAssisted'))->first();
+        }else if(request('lastAssisted') === -1) {
             $alurMaster = AlurMaster::with('group')->first();
         } else {
-            if(request()->has('group') && request()->group > 0) {
-                $alurGroup = AlurGroup::whereId(request()->group)->first();
-                $alurMaster = $alurGroup->flows()->with('group')->first();
-            }
+            $alurGroup = AlurGroup::whereId(request('group'))->first();
+            $alurMaster = $alurGroup->flows()->with('group')->first();
         }
 
-        return response()->json(['msg' => '', 'assist_results' => $alurMaster], 200);
+        return response()->json(['lastAssisted' => request('lastAssisted'),'element' => AlurMaster::with('group')->first(),'valids' => (request('lastAssisted') === -1),'msg' => '', 'assist_results' => $alurMaster], 200);
     }
 
     public function getAssistantResponseViaGroup() {

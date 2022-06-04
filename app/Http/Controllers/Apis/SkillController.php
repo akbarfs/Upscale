@@ -12,7 +12,12 @@ class SkillController extends Controller
     public function all() {
         return Skill::all();
     }
-    public function get() {
-        return Skill::where('skill_name', 'like', '%'.request()->q.'%')->take(5)->get();
+    public function getSkill(Request $request) {
+        $skills = Skill::where('skill_name', 'like', '%'.$request->q.'%')->take(5)->get();
+        return [
+            'msg' => '', 
+            'que' => request('q'),
+            'results' => $skills
+        ];
     }
 }
