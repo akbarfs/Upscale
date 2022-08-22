@@ -8,6 +8,7 @@ class Offer extends Model
 {
     protected $table      = 'offer';
 	protected $primaryKey = 'offer_id';
+	protected $guarded = ['id'];
 
     public function company()
 	{	

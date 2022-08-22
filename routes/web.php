@@ -64,6 +64,7 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 {
 	Route::get("/dashboard","CompaniesController@companyDashboard")->name('company.dashboard');
+	Route::post('/dashboard', "CompaniesController@makeOffer")->name('company.makeoffer');
 }); 
 
 
