@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckTalent;
+use App\Http\Middleware\CheckCompany;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,11 @@ Route::post('/login/process', 'LoginController@processLogin')->name('process.log
 Route::post('/login/member', 'LoginController@doLogin')->name('process.login.member');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
+//LOGIN COMPANY
+Route::get('/login/company', 'LoginController@loginPageCompany')->name('login.company');
+Route::post('/login/company/process', 'LoginController@loginProcessCompany')->name('process.login.company');
+Route::get('/company/logout', 'LoginController@logout')->name('logout.company');
+
 // REGISTER TALENT
 Route::get('/register/talent', 'MemberController@loadRegisterTalent')->name('load.register.talent');
 Route::post('/register/talent/step1', 'MemberController@regTalentStep1')->name('reg.talent.step1');
@@ -53,6 +59,11 @@ Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
 Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 {
 	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
+}); 
+
+Route::prefix("company")->middleware(CheckCompany::class)->group(function()
+{
+	Route::get("/dashboard","CompaniesController@companyDashboard")->name('company.dashboard');
 }); 
 
 

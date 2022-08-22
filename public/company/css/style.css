@@ -1,0 +1,32 @@
+.rect-filter{
+    background-color: lightslategray;
+    height: 100px;
+    padding: 10px;
+    text-align: center;
+    line-height: 80px;
+    cursor: pointer;
+    color: white;
+}
+
+.small-rect-filter{
+    background-color: lightgrey;
+    height: 40px;
+    padding: 10px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.rect-filter:hover{
+    background-color: darkslategray;
+    font-weight: bold;
+}
+
+.small-rect-filter:hover {
+    background-color: gray;
+    font-weight: 500;
+}
+
+.rect-border{
+    border-radius: 5px !important;
+}

@@ -505,5 +505,15 @@ class CompaniesController extends Controller
       ->rawColumns(['company_name', 'action', 'request_name', 'request_status', 'request_qty', 'request_date', 'request_long', 'request_location', 'request_qty'])
       ->make(true);
   }
+
+  public function companyDashboard()
+    {
+
+    	// $user_id = Session::get("user_id"); 
+    	// $user = Company::find($user_id);   
+    	// $talent = $user->talent; 
+
+    	return view("company.dashboard");
+    }
  
 }

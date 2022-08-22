@@ -11,4 +11,9 @@ class Company extends Model
 	protected $fillable   = ['company_name', 'company_email', 'company_phone'];
 	public $timestamps    = false;
 
+	public function offer()
+	{	
+		return $this->hasMany('App\Models\Offer' ,'company_id');
+	}
+
 }

@@ -76,6 +76,11 @@ class Talent extends Model
 
 	protected $dates = ['talent_created_date'];
 
+	public function offer_log()
+	{	
+		return $this->belongsTo('App\Models\OfferLog');
+	}
+
 	public function talent_skill()
 	{	
 		return $this->hasMany('App\Models\SkillTalent' ,'st_talent_id','talent_id');
