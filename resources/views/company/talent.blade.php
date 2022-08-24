@@ -1,5 +1,5 @@
 @extends('company.layout.apps')
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 @section('content')
 <style>
     .btn-xs {
@@ -21,7 +21,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Dashboard</h1>
+                <h1>Talent</h1>
             </div>
         </div>
     </div>
@@ -55,21 +55,6 @@
       </div>
     @endif
     <button type="button" data-toggle="modal" data-target="#modal-add-offer" class="btn btn-success rect-border">Bikin Tawaran</button>
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-3">
-            <div class="rect-filter rect-border">Semua Talent</div>
-        </div>
-        <div class="col-md-3">
-             <div class="rect-filter rect-border">Talent yang Dikirim Tawaran</div>
-        </div>
-        <div class="col-md-3">
-             <div class="rect-filter rect-border">Talent yang Approve Tawaran</div>
-        </div>
-        <div class="col-md-3">
-            <div class="rect-filter rect-border">Talent Verified oleh Upscale</div>
-        </div>
-    </div>
-
     <div class="mt-4">
         <h5>Saring Pencarian</h5>
         <hr>
@@ -144,7 +129,7 @@
         </div>
     </div> --}}
 
-    <div class="container-fluid" id="pembungkus" style="padding:0;"></div>
+    <div class="container-fluid mt-2" id="company-talent" style="padding:0;"></div>
     
 </div> 
 
@@ -160,25 +145,25 @@
             @csrf
             <div class="modal-body">
                 <div class="form-group row">
-                    <label for="position" class="col-sm-3 col-form-label font-weight-bold">Nama Pekerjaan <span class="text-danger">*</span></label>
+                    <label for="name" class="col-sm-3 col-form-label font-weight-bold">Nama Request <span class="text-danger">*</span></label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="position" id="position" placeholder="Posisi Kerja">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Nama Request" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="location" class="col-sm-3 col-form-label font-weight-bold">Lokasi Kerja <span class="text-danger">*</span></label>
-                    <div class="col-sm-9 justify-content-around d-flex">
+                    <div class="col-sm-9 justify-content-between d-flex">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="location" id="location1" value="Onsite">
                             <label class="form-check-label" for="location1">On Site</label>
                         </div>
                         <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="location" id="location2" value="remote">
-                        <label class="form-check-label" for="location2">Remote</label>
+                          <input class="form-check-input" type="radio" name="location" id="location2" value="remote">
+                          <label class="form-check-label" for="location2">Remote</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="location" id="location3" value="hybrid">
-                            <label class="form-check-label" for="location3">Hybrid</label>
+                          <input class="form-check-input" type="radio" name="location" id="location3" value="hybrid">
+                          <label class="form-check-label" for="location3">Hybrid</label>
                         </div>
                     </div>
                 </div>
@@ -218,9 +203,9 @@
                 <div class="form-group row">
                     <label for="salary" class="col-sm-3 col-form-label font-weight-bold">Range Salary <span class="text-danger">*</span></label>
                     <div class="col-sm-9 d-flex justify-content-between">
-                        <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="from" class="form-control rp" placeholder="silahkan ketik angka" value="">
+                        <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="from" class="form-control rp" placeholder="silahkan ketik angka" value="" required>
                         <h3 class="text-center">&nbsp;-&nbsp;</h3>
-                        <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="to" class="form-control rp" placeholder="silahkan ketik angka" value="">
+                        <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="to" class="form-control rp" placeholder="silahkan ketik angka" value="" required>
                     </div>
                 </div>
                 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -263,7 +248,6 @@
                         <input type="number" class="form-control" placeholder="Jumlah Yang Dibutuhkan">
                     </div>
                 </div>
-
 
                 {{-- <div class="form-check" style="border-top: 2px solid #000;">
                     <input class="form-check-input" type="checkbox" id="offer_type" name="type_offer" style="width:1.5rem;height:1.5rem;">
@@ -380,6 +364,7 @@
                         </div>
                     </div>                 
                 </div> --}}
+
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
@@ -392,28 +377,6 @@
     </div>
 </div>
 {{-- End Modal Create Offer --}}
-
-{{-- Modal Offer Langsung --}}
-<div class="modal fade" id="modal-offer">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title">Make</div>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
-                <div class="nav nav-pills pull-right">
-                    <button type="submit" class="btn btn-success rounded">Kirim</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal Offer Langsung --}}
 
 <div id="loading" align="center">
     <div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
@@ -434,34 +397,27 @@
         // Function Salary
         $('.rp').autoNumeric('init', {aSep:'.', aDec:',', mDec:'0'});
 
-        // $('#offer_type').on('change', function(){
-        //     if($(this).is(':checked')){
-        //         $('.filter').show();
-        //     }else{
-        //         $('.filter').hide();
-        //     }
-        // })
-
         //function load table
         function loadTable(url) {
             var param = $("#form-search").serialize();
 
             $('#loading').show();
-            $("#pembungkus").html('');
-            export_url = "{{url('admin/talent/list/export_excel?page=1')}}&" + param;
+            $("#company-talent").html('');
+            // export_url = "{{url('admin/talent/list/export_excel?page=1')}}&" + param;
 
             $.ajax({
                 url: url + "&" + param,
                 method: "GET",
                 success: function(data) {
                     $('#loading').hide();
-                    $("#pembungkus").html(data);
+                    $("#company-talent").html(data);
                 }
             });
         }
         //load pertama kali
-        loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}");
-        //klik pagination , diambil urlnya langsung di load ajax
+        loadTable("{{url('/company/list/paginate_data?page=1')}}");
+        
+        // klik pagination , diambil urlnya langsung di load ajax
         $(document).on("click", ".page-link", function(event) {
             $("body").scrollTop(0);
             var url = $(this).attr("href");
@@ -472,12 +428,12 @@
         $(document).on("click","#go",function(event)
         {
             var page = prompt();
-            loadTable("{{url('/admin/talent/list/paginate_data?page=')}}"+page);
+            loadTable("{{url('/company/list/paginate_data?page=')}}"+page);
         });
 
         //search 
         $("#form-search").submit(function() {
-            loadTable("{{url('/admin/talent/list/paginate_data?page=1')}}");
+            loadTable("{{url('/company/list/paginate_data?page=1')}}");
             return false;
         });
 
@@ -514,7 +470,7 @@
         });
 
     });
-</>
+</script>
 
 <script>
     var i = 1;
@@ -546,7 +502,7 @@
             }
         });
     });
-</>
+</script>
 
 {{-- <script src=//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js charset=utf-8></>
 <script src=//cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js charset=utf-8></script>

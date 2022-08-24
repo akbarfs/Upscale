@@ -24,8 +24,15 @@
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active" title="Dashboard">
+                <li class="@if($active == 'dashboard') active @endif" title="Dashboard">
                     <a href="{{route('company.dashboard')}}"> <i class="menu-icon fa fa-dashboard"></i> Dashboard</a>
+                </li>
+                <li class="@if($active == 'all') active @endif" title="All Database">
+                    <a href="{{route('company.dashboard.talent')}}"><i class="menu-icon fa fa-database"></i> All Database</a>
+                    <ul>
+                        <li class="ml-2" title="Request Active"><a href="{{ route('company.request.active') }}" style="@if($active == 'active') color:white !important; @endif"> Request Active <span id="active">(2)</span></a></li>
+                        <li class="ml-2" title="Request Non Active"><a href="#" style="@if($active == 'nonactive') color:white !important; @endif"> Request Non Active <span id="nonactive">(1)</span></a></li>
+                    </ul>
                 </li>
                 <li title="Bidding">
                     <a href="javascript:void(0)"> <i class="menu-icon fa fa-th-list"></i> Bidding</a>

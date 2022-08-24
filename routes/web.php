@@ -55,16 +55,21 @@ Route::get('/register/talent', 'MemberController@loadRegisterTalent')->name('loa
 Route::post('/register/talent/step1', 'MemberController@regTalentStep1')->name('reg.talent.step1');
 Route::post('/register/talent', 'MemberController@registerTalent')->name('post.register.talent');
 Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
-
 Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 {
 	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
 }); 
 
+// Company/dashboard
 Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 {
-	Route::get("/dashboard","CompaniesController@companyDashboard")->name('company.dashboard');
-	Route::post('/dashboard', "CompaniesController@makeOffer")->name('company.makeoffer');
+	Route::get("/dashboard","CompanyDashboardController@companyDashboard")->name('company.dashboard');
+	Route::get("/dashboard/talents","CompanyDashboardController@allDatabase")->name('company.dashboard.talent');
+	Route::get("/list/paginate_data","CompanyDashboardController@paginate_data");
+	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
+	Route::get("/json/skill/company","CompanyDashboardController@company_json_skill")->name('json.skill.company');
+
+	Route::get('/request/active', "CompanyDashboardController@request_active")->name('company.request.active');
 }); 
 
 

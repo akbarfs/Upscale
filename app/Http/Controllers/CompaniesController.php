@@ -7,9 +7,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 use App\Models\Company;
+use App\Models\education;
 use App\Models\Requestt;
 use App\Models\Location;
+use App\Models\SkillTalent;
 use App\Models\Talent;
+use App\Models\work_experience;
 use App\Offer;
 use App\OfferLog;
 use Validator;
@@ -507,94 +510,6 @@ class CompaniesController extends Controller
       })
       ->rawColumns(['company_name', 'action', 'request_name', 'request_status', 'request_qty', 'request_date', 'request_long', 'request_location', 'request_qty'])
       ->make(true);
-  }
-
-  public function companyDashboard()
-    {
-
-    	// $user_id = Session::get("user_id"); 
-    	// $user = Company::find($user_id);   
-    	// $talent = $user->talent; 
-
-
-
-    	return view("company.dashboard");
-    }
-  
-  public function makeOffer(Request $request)
-  {
-    $company = $request->session()->get('user_id');
-
-    $validateData = $request->validate([
-      'position' => 'required',
-      'description' => 'required',
-      'benefit' => 'required',
-      'salary' => 'required',
-      'duration_contract' => 'required',
-      'type_work' => 'required'
-    ]);
-
-    $validateData['salary'] = preg_replace('/[^0-9]/', '', $request->salary);
-
-    $validateData['type_offer'] = 'all';
-    $validateData['company_id'] = $company;
-
-    // dd($request->all());
-
-    if($request->type_offer === 'on'){
-      $validateData['type_offer'] = 'spesifik';
-
-      // Create Offer
-      // $offer = Offer::create($validateData);
-      // $offer_id = $offer->offer_id;
-
-      // $talent = Talent::select(['talent_id']);
-
-      // // FILTER
-      
-      // // domisili
-      // $talentDomisili = $talent->where(function($q) use($request){
-      //   $q->where('talent_address', 'like', '%'.$request->domisili.'%')->orWhere('talent_current_address', 'like', '%'.$request->domisili.'%')->orWhere('talent_prefered_city','like','%'.$request->domisili.'%');
-      // })->get()->toArray();
-      
-
-      // // ready kerja
-      // $talent_ready = $talent->where('talent_available', 'yes')->get()->toArray();
-      
-      // // userUpdate
-
-      // // experience
-
-      // // skill
-      
-      // // Onsite
-      
-      // // ExpSalary - CurrSalary
-      // $expSalary = (int)$request->expsalary;
-      // $currSalary = (int)$request->currsalary;
-      // $talentSalary = $talent->whereBetween('talent_salary', [$expSalary,$currSalary])->get()->toArray();
-      
-      // // Type = full, part, intern
-
-
-
-      // dd($talentDomisili, $talent_ready, $talentSalary);
-    }
-    // else{
-
-    //   // Create Offer
-    //   $offer = Offer::create($validateData);
-    //   $offer_id = $offer->offer_id;
-
-    //   $allTalent = DB::table('talent')->select(['talent_id'])->get()->toArray();
-    //   foreach($allTalent as $talentId){
-        
-    //   }
-    // }
-
-    $offer = Offer::create($validateData);
-
-    return redirect()->back();
   }
  
 }
