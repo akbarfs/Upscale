@@ -28,7 +28,7 @@
                     <a href="{{route('company.dashboard')}}"> <i class="menu-icon fa fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li class="@if($active == 'all') active @endif" title="All Database">
-                    <a href="{{route('company.dashboard.talent')}}"><i class="menu-icon fa fa-database"></i> All Database</a>
+                    <a href="{{route('company.dashboard.talent')}}"><i class="menu-icon fa fa-database"></i> All Database <span>({{$total}})</span></a>
                     <ul>
                         <li class="ml-2" title="Request Active"><a href="{{ route('company.request.active') }}" style="@if($active == 'active') color:white !important; @endif"> Request Active <span id="active">(2)</span></a></li>
                         <li class="ml-2" title="Request Non Active"><a href="#" style="@if($active == 'nonactive') color:white !important; @endif"> Request Non Active <span id="nonactive">(1)</span></a></li>

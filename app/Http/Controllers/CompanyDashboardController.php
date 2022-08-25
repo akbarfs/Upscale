@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\education;
+use App\Models\portfolio;
 use App\Models\Skill;
 use App\Models\SkillTalent;
 use App\Models\Talent;
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\DB;
 
 class CompanyDashboardController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->total  = DB::table('talent')->count();
+    }
+
     public function companyDashboard()
     {
 
@@ -21,16 +28,16 @@ class CompanyDashboardController extends Controller
         // $user = Company::find($user_id);   
         // $talent = $user->talent; 
 
-
-
         return view("company.dashboard", [
-            'active' => 'dashboard'
+            'active' => 'dashboard',
+            'total' => $this->total
         ]);
     }
   
   public function makeOffer(Request $request)
   {
     $company = $request->session()->get('user_id');
+    dd($request->all());
 
     $validateData = $request->validate([
       'position' => 'required',
@@ -191,7 +198,8 @@ class CompanyDashboardController extends Controller
 
     return view('company.talent', [
         'talents' => $talents,
-        'active' => "all"
+        'active' => "all",
+        'total' => $this->total
     ]);
   }
 
@@ -218,7 +226,8 @@ class CompanyDashboardController extends Controller
   public function request_active(Request $request)
   {
     return view('company.requests.active',[
-        'active' => 'active'
+        'active' => 'active',
+        'total' => $this->total
     ]);
   }
 }

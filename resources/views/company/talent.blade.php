@@ -62,35 +62,48 @@
             
         </form>-->
         <div class="row">
-            <div class="col-md-2 mt-4">
+            <div class="col-md-3 mt-4">
+                <div class="small-rect-filter rect-border">Domisili</div>
+            </div>
+            <div class="col-md-3 mt-4">
                 <div class="small-rect-filter rect-border">Ready Kerja</div>
             </div>
-            <div class="col-md-2 mt-4">
+            <div class="col-md-3 mt-4">
                 <div class="small-rect-filter rect-border">User Terupdate</div>
             </div>
-            <div class="col-md-2 mt-4">
-                <div class="small-rect-filter rect-border">Experience in Years</div>
+            <div class="col-md-3 mt-4">
+                <div class="small-rect-filter rect-border">Experience in years</div>
             </div>
-            <div class="col-md-2 mt-4">
-                <div class="small-rect-filter rect-border">Skill</div>
-            </div>
-            <div class="col-md-2 mt-4">
-                <div class="small-rect-filter rect-border">Ready Onsite</div>
-            </div>
-            <div class="col-md-2 mt-4">
-                <div class="small-rect-filter rect-border">Expektasi Gaji</div>
-            </div>
-            <div class="col-md-2 mt-4">
-                <div class="small-rect-filter rect-border">Current Salary</div>
-            </div>
-            <div class="col-md-2 mt-4">
+            <div class="col-md-3 mt-4">
                 <div class="small-rect-filter rect-border">Education</div>
             </div>
-            <div class="col-md-2 mt-4">
-                <div class="small-rect-filter rect-border">Tipe Pekerjaan</div>
+            <div class="col-md-3 mt-4">
+                <div class="small-rect-filter rect-border">Gaji Sekarang</div>
+            </div>
+            <div class="col-md-3 mt-4">
+                <div class="small-rect-filter rect-border">Ekspetasi Gaji</div>
+            </div>
+            <div class="col-md-3 mt-4">
+                    <select class="small-rect-filter rect-border" name="readyluarkota" id="ready">
+                        <option selected disabled>Ready Luar Kota</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+            </div>
+            <div class="col-md-9 mt-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Skills : </div>
+                    </div>
+                    <select name="skills[]" class="form-control small-rect-filter rect-border">
+                        <option disabled selected>Coba</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 mt-4">
+                <button class="btn btn-info rounded" style="width:100%;">Filter</button>
             </div>
         </div>
-        <button class="btn btn-info rect-border mt-4">Searching</button>
     </div>
 
     {{-- <div class="mt-4">
@@ -128,7 +141,7 @@
             </div>
         </div>
     </div> --}}
-
+    <hr>
     <div class="container-fluid mt-2" id="company-talent" style="padding:0;"></div>
     
 </div> 
@@ -138,7 +151,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Make An Offer</h4>
+          <h4 class="modal-title">Make Request</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <form action="{{ route('company.makeoffer') }}" method="post">
@@ -167,33 +180,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="form-group row">
-                    <label for="contract" class="col-sm-2 col-form-label font-weight-bold">Contract <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <div class="input-group mb-2">
-                            <input type="number" class="form-control" id="contract" placeholder="Durasi Kontrak" name="duration_contract">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">Month</div>
-                            </div>
-                          </div>
-                    </div>
-                </div> --}}
-                {{-- <div class="form-group row">
-                    <label for="job_type" class="col-sm-2 col-form-label font-weight-bold">Job Type <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <select name="type_work" id="job_type" class="form-control">
-                            <option value="offline">Offline</option>
-                            <option value="online">Online</option>
-                            <option value="hybrid">Hybrid</option>
-                        </select>
-                    </div>
-                </div> --}}
-                {{-- <div class="form-group row">
-                    <label for="description" class="col-sm-2 col-form-label font-weight-bold">Description <span class="text-danger">*</span></label>
-                    <div class="col-sm-10">
-                        <textarea name="description" id="description" class="form-control"></textarea>
-                    </div>
-                </div> --}}
                 <div class="form-group row">
                     <label for="benefit" class="col-sm-3 col-form-label font-weight-bold">Benefit <span class="text-danger">*</span></label>
                     <div class="col-sm-9">
@@ -212,7 +198,8 @@
                 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
                 <script>
                     $(document).ready(function(){
-                        $('#skill').select2({
+                        $('.skill').select2({
+                            tags : true,
                             width: 'resolve',
                             ajax: {
                                 url: '{{route("json.skill.company")}}',
@@ -222,7 +209,7 @@
                                     var results = [];
                                     $.each(data, function(index,item){
                                         results.push({
-                                            id : item.id,
+                                            id : item.text,
                                             text: item.value,
                                         });
                                     });
@@ -235,10 +222,11 @@
                         });
                     })
                 </script>
+                
                 <div class="form-group row">
                     <label for="skill" class="col-sm-3 col-form-label font-weight-bold">Skill <span class="text-danger">*</span></label>
                     <div class="col-sm-9">
-                        <select name="skill[]" id="skill" class="form-control" multiple="multiple">
+                        <select name="skill[]" id="skill" class="form-control skill" multiple="multiple">
                         </select>
                     </div>
                 </div>
@@ -384,12 +372,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{{ asset('js/autoNumeric.js') }}"></script>
 <script>
     $(document).ready(function(){
-        // CKEDITOR.replace('description',{
-        //         language:'en-gb'
-        //     });
         CKEDITOR.replace('benefit',{
                 language:'en-gb'
             });
@@ -427,7 +411,7 @@
 
         $(document).on("click","#go",function(event)
         {
-            var page = prompt();
+            var page = prompt('page ?');
             loadTable("{{url('/company/list/paginate_data?page=')}}"+page);
         });
 
@@ -503,11 +487,6 @@
         });
     });
 </script>
-
-{{-- <script src=//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js charset=utf-8></>
-<script src=//cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js charset=utf-8></script>
-<script src=//cdn.jsdelivr.net/npm/fusioncharts@3.12.2/fusioncharts.js charset=utf-8></script>
-<script src=//cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script> --}}
 
 @endpush
 

@@ -61,7 +61,8 @@
         <td>
           <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 50px; height:50px;" alt="">
         </td>
-        <td>{{$talent->name}}</td>
+        <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
+        <td style="max-width: 10rem;">{{$result}}</td>
         <td style="max-width: 400px">
           @foreach ( $talent->talent_skill()->get() as $row ) 
             <?php 
@@ -80,16 +81,19 @@
           @endforeach
         </td>
         <td>
+          {{-- Rp. {{ number_format($talent->gaji) }} --}}
           {{ $talent->gaji }}
         </td>
         <td>
+          {{-- Rp {{ number_format($talent->expetasi) }} --}}
           {{ $talent->expetasi }}
         </td>
         <td style="min-width:200px">
-          <a href="#" class="btn btn-info rounded">
+          <button class="btn btn-info rounded" data-toggle="modal" data-target="#modal-detail-{{$talent->talent_id}}">
             <i class="fa fa-info" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-toggle="modal">Make A Request</a>
+          </button>
+          @include('company.modal-detail')
+          <button class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-id="{{$talent->talent_id}}" data-toggle="modal">Make A Request</button>
         </td>
       </tr>
     @endforeach
@@ -108,10 +112,10 @@
 
 <script>
   $(document).ready(function(){
-    list.forEach(function(item,index)
-    {
-        $(".id-"+item).prop('checked', true);
-    });
+    // list.forEach(function(item,index)
+    // {
+    //     $(".id-"+item).prop('checked', true);
+    // });
 
     $(".select-all").click(function()
     {
@@ -135,9 +139,9 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            <form action="#">
+            <form action="" class="request-offer">
               <div class="form-group">
-                <label for="myrequest">Example select</label>
+                <label for="myrequest">My Request</label>
                 <select class="form-control" id="request">
                   <option>1</option>
                   <option>2</option>
@@ -157,3 +161,16 @@
   </div>
 </div>
 {{-- End Modal Offer Langsung --}}
+
+<script>
+  $(document).ready(function(){
+    $('#modal-offer').on('show.bs.modal', function (e) {
+      var id = e.relatedTarget.dataset.id;
+      var url = "id";
+      $('.request-offer').attr('action', 'https://'+id+'.com');
+      console.log(id);
+      console.log($('.request-offer'));
+      console.log(e.relatedTarget) 
+    })
+  })
+</script>

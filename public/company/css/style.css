@@ -11,10 +11,11 @@
 .small-rect-filter{
     background-color: lightgrey;
     height: 40px;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
     line-height: 20px;
     cursor: pointer;
+    width: 100%;
 }
 
 .rect-filter:hover{
@@ -23,7 +24,7 @@
 }
 
 .small-rect-filter:hover {
-    background-color: gray;
+    /* background-color: gray; */
     font-weight: 500;
 }
 

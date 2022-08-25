@@ -42,9 +42,9 @@
 </div>
 
 <div class="content mt-3">
-    <div class="p-5 my-2 bg-secondary d-flex justify-content-between">
+    <div class="p-5 my-2 bg-white shadow d-flex justify-content-between rounded">
         <h4>React JS <span class="h6">(10 talent pool)</span></h4>
-        <button class="btn btn-light rounded">Detail</button>
+        <button class="btn btn-info rounded">Detail</button>
     </div>
     {{-- <h1 class="d-flex justify-content-center align-items-center my-5">Kosong</h1> --}}
 </div>
