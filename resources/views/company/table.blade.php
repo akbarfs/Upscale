@@ -35,27 +35,27 @@
           <input type="checkbox" name="delid[]" class="talent_id pilih id-{{ $talent->talent_id }}" value="{{ $talent->talent_id }}" onclick="pilih('{{ $talent->talent_id }}')" data-id="{{ $talent->talent_id }}">
         </td> --}}
         <script>
-					$(document).ready(function(){
+					// $(document).ready(function(){
 						
-						$(".btnmail").hide();
-						$(".talent_id").click(function()
-						{
-							jumlah = $('input[name="delid[]"]:checked').length;
-							if (jumlah > 0) 
-							{
-								$("#mass_del").show();
-								$(".btnmail").show();
-								// console.log(jumlah);
-							}
-							else
-							{
-								$("#mass_del").hide();
-								$(".btnmail").hide();
-								// console.log(jumlah);
-							}
-						});
+					// 	$(".btnmail").hide();
+					// 	$(".talent_id").click(function()
+					// 	{
+					// 		jumlah = $('input[name="delid[]"]:checked').length;
+					// 		if (jumlah > 0) 
+					// 		{
+					// 			$("#mass_del").show();
+					// 			$(".btnmail").show();
+					// 			// console.log(jumlah);
+					// 		}
+					// 		else
+					// 		{
+					// 			$("#mass_del").hide();
+					// 			$(".btnmail").hide();
+					// 			// console.log(jumlah);
+					// 		}
+					// 	});
 					  
-					});
+					// });
 				</script>
         <td>{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
         <td>
@@ -89,10 +89,11 @@
           {{ $talent->expetasi }}
         </td>
         <td style="min-width:200px">
-          <button class="btn btn-info rounded" data-toggle="modal" data-target="#modal-detail-{{$talent->talent_id}}">
-            <i class="fa fa-info" aria-hidden="true"></i>
-          </button>
-          @include('company.modal-detail')
+          <a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" 
+            class="btn btn-info" target="_blank">
+              <i class="fa fa-info"></i>
+          </a>
+          {{-- @include('company.modal-detail') --}}
           <button class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-id="{{$talent->talent_id}}" data-toggle="modal">Make A Request</button>
         </td>
       </tr>

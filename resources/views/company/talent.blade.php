@@ -9,11 +9,50 @@
         border-radius: 0.2rem !important;
         -webkit-appearance: unset !important;
     }
-    .select2-container {
+    .col-sm-9 .select2-container {
         width: 100% !important;
     }
     .select2-selection{
         overflow: hidden;
+    }
+    .select2-container--bootstrap .select2-selection--single {
+        height: 40px !important;
+        /* background: lightgray !important; */
+        /* border: 1px solid black !important; */
+    }
+    col-md-3 .select2.select2-container.select2-container--bootstrap
+    {
+        max-width: 16.7rem;
+    }
+    /* .small-rect-filter .select2 .selection .select2-selection {
+        border: 1px solid black;
+    } */
+    #select2-domisili-results .select2-results__option{
+        text-align: center;
+    }
+    #select2-domisili-container{
+        text-align: center;
+        color: #000;
+        font-size: 1rem;
+    }
+    .select2:hover{
+        font-weight: 500;
+    }
+    .small-rect-filter.rect-border.rp::placeholder {
+        color: black;
+        opacity: 1; /* Firefox */
+    }
+    .input-group .select2.select2-container{
+        max-width: 786px !important;
+    }
+    .select2-container--bootstrap .select2-selection--multiple{
+        min-height: 40px !important;
+        /* background-color: lightgray !important; */
+    }
+    @media only screen and (max-width:1300px){
+        .input-group .select2.select2-container{
+        max-width: 687px !important;
+    }
     }
 </style>
 
@@ -54,93 +93,82 @@
         </button>
       </div>
     @endif
-    <button type="button" data-toggle="modal" data-target="#modal-add-offer" class="btn btn-success rect-border">Bikin Tawaran</button>
+    <button type="button" data-toggle="modal" data-target="#modal-add-offer" class="btn btn-primary rect-border mt-3">Bikin Tawaran</button>
     <div class="mt-4">
         <h5>Saring Pencarian</h5>
         <hr>
-        <!--<form action="" method="POST" id="form-search">
-            
-        </form>-->
-        <div class="row">
-            <div class="col-md-3 mt-4">
-                <div class="small-rect-filter rect-border">Domisili</div>
-            </div>
-            <div class="col-md-3 mt-4">
-                <div class="small-rect-filter rect-border">Ready Kerja</div>
-            </div>
-            <div class="col-md-3 mt-4">
-                <div class="small-rect-filter rect-border">User Terupdate</div>
-            </div>
-            <div class="col-md-3 mt-4">
-                <div class="small-rect-filter rect-border">Experience in years</div>
-            </div>
-            <div class="col-md-3 mt-4">
-                <div class="small-rect-filter rect-border">Education</div>
-            </div>
-            <div class="col-md-3 mt-4">
-                <div class="small-rect-filter rect-border">Gaji Sekarang</div>
-            </div>
-            <div class="col-md-3 mt-4">
-                <div class="small-rect-filter rect-border">Ekspetasi Gaji</div>
-            </div>
-            <div class="col-md-3 mt-4">
-                    <select class="small-rect-filter rect-border" name="readyluarkota" id="ready">
-                        <option selected disabled>Ready Luar Kota</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-            </div>
-            <div class="col-md-9 mt-4">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">Skills : </div>
-                    </div>
-                    <select name="skills[]" class="form-control small-rect-filter rect-border">
-                        <option disabled selected>Coba</option>
+        <form action="" method="POST" id="form-search">
+            <div class="row">
+                <div class="col-md-3 mt-4">
+                    <select name="domisili" id="domisili" class="form-control small-rect-filter rect-border">
+                        <option selected>Domisili</option>
+                            @foreach ($domisili as $domisili)
+                                <option value="{{$domisili->location_name}}">{{$domisili->location_name}}</option>
+                            @endforeach
                     </select>
                 </div>
-            </div>
-            <div class="col-md-3 mt-4">
-                <button class="btn btn-info rounded" style="width:100%;">Filter</button>
-            </div>
-        </div>
-    </div>
-
-    {{-- <div class="mt-4">
-        <h5>List Talent</h5>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card bg-light mb-3">
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active">
-                                <table id="all-table" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Name Talent</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Nama</td>
-                                            <td>
-                                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-offer">Tawar Langsung</button>
-                                                <button class="btn btn-secondary btn-sm">Kontak</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                <div class="col-md-3 mt-4">
+                    <select class="small-rect-filter rect-border form-control" name="readykerja" id="readykerja">
+                        <option selected>Ready Kerja</option>
+                        <option value="yes">Siap Kerja</option>
+                        <option value="no">Belum Siap Kerja</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <select class="small-rect-filter rect-border form-control" name="userupdate" id="userupdate">
+                        <option selected>User Terupdate</option>
+                        <option value="yes">User Terupdate</option>
+                        <option value="no">All</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <select name="experience" id="experience" class="small-rect-filter rect-border form-control">
+                        <option selected>Experience In Years</option>
+                        <option value="1">Less Then 1 Years</option> 
+                        <option value="1 - 3">1 - 3 Years</option> 
+                        <option value="3 - 5">3 - 5 Years</option> 
+                        <option value="5 - 10">5 - 10 Years</option> 
+                        <option value="10">More Then 10 Years</option>  
+                    </select>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <select class="small-rect-filter rect-border form-control" name="education" id="education">
+                        <option>Education</option>
+                        <option value="High School">High School</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Bachelor Degree">Bachelor Degree</option>
+                        <option value="Master">Master</option>
+                        <option value="Other">other</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="currsalary" class="small-rect-filter rect-border form-control rp" placeholder="Gaji Sekarang" value=""/>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="expsalary" class="small-rect-filter rect-border form-control rp" placeholder="Expetasi Sekarang" value=""/>
+                </div>
+                <div class="col-md-3 mt-4">
+                        <select class="small-rect-filter rect-border form-control" name="readyluarkota" id="ready">
+                            <option selected disabled>Ready Luar Kota</option>
+                            <option value="yes">Ready Ke Luar Kota</option>
+                            <option value="no">Tidak Ready Ke Luar Kota</option>
+                        </select>
+                </div>
+                <div class="col-md-9 mt-4">
+                    <div class="input-group" style="border-radius: 3px;">
+                        <div class="input-group-prepend border">
+                          <div class="input-group-text" style="height: -webkit-fill-available;">Skills : </div>
                         </div>
+                        <select name="skills[]" class="skill form-control small-rect-filter rect-border form-control" multiple>
+                        </select>
                     </div>
                 </div>
+                <div class="col-md-3 mt-4">
+                    <button class="btn btn-info rounded" style="width:100%;" type="submit">Filter</button>
+                </div>
             </div>
-        </div>
-    </div> --}}
+        </form>
+    </div>
     <hr>
     <div class="container-fluid mt-2" id="company-talent" style="padding:0;"></div>
     
@@ -196,9 +224,37 @@
                 </div>
                 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
                 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css"></script>
                 <script>
                     $(document).ready(function(){
+                        $('#domisili').select2({
+                            theme: "bootstrap"
+                        });
+
                         $('.skill').select2({
+                            theme: "bootstrap",
+                            ajax: {
+                                url: '{{route("json.skill.company")}}',
+                                dataType: 'json',
+                                delay: 250,
+                                processResults: function (data) {
+                                    var results = [];
+                                    $.each(data, function(index,item){
+                                        results.push({
+                                            id : item.id,
+                                            text: item.value,
+                                        });
+                                    });
+                                    return {
+                                        results : results
+                                    }                                                
+                                },
+                                cache: false
+                            }
+                        });
+                        
+                        $('#skill').select2({
                             tags : true,
                             width: 'resolve',
                             ajax: {
@@ -226,7 +282,7 @@
                 <div class="form-group row">
                     <label for="skill" class="col-sm-3 col-form-label font-weight-bold">Skill <span class="text-danger">*</span></label>
                     <div class="col-sm-9">
-                        <select name="skill[]" id="skill" class="form-control skill" multiple="multiple">
+                        <select name="skill[]" id="skill" class="form-control" multiple="multiple">
                         </select>
                     </div>
                 </div>
@@ -237,128 +293,10 @@
                     </div>
                 </div>
 
-                {{-- <div class="form-check" style="border-top: 2px solid #000;">
-                    <input class="form-check-input" type="checkbox" id="offer_type" name="type_offer" style="width:1.5rem;height:1.5rem;">
-                    <label class="form-check-label" for="offer_type">
-                      <h6 style="margin:0.4rem">
-                          Dikirim Ke Spesifik Talent
-                      </h6>
-                    </label>
-                </div> --}}
-
-                {{-- <div class="filter pt-2" style="display: none;">
-                    <div class="form-row justify-content-center mt-2">
-                        <div class="col-sm-6 col-md-2">
-                            <label for="domisili" class="form-control-label">Domisili</label>
-                            <input type="text" id="domisili" name="domisili" class="form-control" placeholde="">
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <label for="readkerja" class="form-control-label">Ready Kerja</label>
-                            <select class="custom-select" name="readkerja" id="readkerja">
-                                <option >None</option>
-                                <option value="yes">Ya</option>
-                                <option value="no">Tidak</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <label for="userupdate" class="form-control-label">User Terupdate</label>
-                            <select class="custom-select" name="userupdate" id="userupdate">
-                                <option >None</option>
-                                <option value="yes">Ya</option>
-                                <option value="no">Tidak</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <label for="experience" class="form-control-label">Experience</label>
-                            <select name="experience" id="experience" class="form-control">
-                                <option value="none">None</option>
-                                <option value="Less Then 1 Years">Less Then 1 Years</option> 
-                                <option value="1 - 3 Years">1 - 3 Years</option> 
-                                <option value="3 - 5 Years">3 - 5 Years</option> 
-                                <option value="5 - 10 Years">5 - 10 Years</option> 
-                                <option value="More Then 10 Years">More Then 10 Years</option>  
-                            </select>
-                        </div>
-                        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-                        <script>
-                            $(document).ready(function(){
-                                $('#skill').select2({
-                                    width: 'resolve',
-                                    ajax: {
-                                        url: '{{route("json.skill.company")}}',
-                                        dataType: 'json',
-                                        delay: 250,
-                                        processResults: function (data) {
-                                            var results = [];
-                                            $.each(data, function(index,item){
-                                                results.push({
-                                                    id : item.id,
-                                                    text: item.value,
-                                                });
-                                            });
-                                            return {
-                                                results : results
-                                            }                                                
-                                        },
-                                        cache: false
-                                    }
-                                });
-                            })
-                        </script>
-                        <div class="col-sm-6 col-md-2" style="display: inline-grid">
-                            <label for="skill" class="form-control-label">Skill</label>
-                            <select name="skill[]" id="skill" class="form-control" multiple="multiple">
-                            </select>
-                        </div>
-                    </div>          
-
-                    <div class="form-row justify-content-center">
-                        <div class="col-sm-6 col-md-2">
-                            <label for="onsite" class="form-control-label">Ready Onsite</label>
-                            <select class="custom-select" name="onsite" id="onsite">
-                                <option >None</option>
-                                <option value="yes">Ya</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <label for="expecsalary" class="form-control-label">Salary From</label>
-                            <input name="expsalary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="salary" class="form-control rp" placeholder="silahkan ketik angka" value="">
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <label for="currsalary" class="form-control-label">To</label>
-                            <input name="currsalary" data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="salary" class="form-control rp" placeholder="silahkan ketik angka" value="">
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <label for="education" class="form-control-label">Education</label>
-                            <select class="custom-select" name="education" id="onsite">
-                                <option>None</option>
-                                <option value="High School">High School</option>
-                                <option value="Diploma">Diploma</option>
-                                <option value="Bachelor Degree">Bachelor Degree</option>
-                                <option value="Master">Master</option>
-                                <option value="Other">other</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6 col-md-2">
-                            <label for="type" class="form-control-label">Tipe Pekerjaan</label>
-                            <select name="type" id="type" class="form-control">
-                                <option value="none">None</option>
-                                <option value="Fulltime">Fulltime</option>
-                                <option value="Parttime">Parttime</option>
-                                <option value="Internship">Internship</option>
-                              </select>
-                        </div>
-                    </div>                 
-                </div> --}}
-
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
-                <div class="nav nav-pills pull-right">
-                    <button type="submit" class="btn btn-success rounded">Kirim</button>
-                </div>
+                <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success rounded">Kirim</button>
             </div>
         </form>
       </div>

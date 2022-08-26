@@ -1,5 +1,5 @@
 .rect-filter{
-    background-color: lightslategray;
+    background-color: white;
     height: 100px;
     padding: 10px;
     text-align: center;
@@ -9,7 +9,7 @@
 }
 
 .small-rect-filter{
-    background-color: lightgrey;
+    background-color: white;
     height: 40px;
     padding: 8px;
     text-align: center;
@@ -19,7 +19,7 @@
 }
 
 .rect-filter:hover{
-    background-color: darkslategray;
+    /* background-color: darkslategray; */
     font-weight: bold;
 }
 

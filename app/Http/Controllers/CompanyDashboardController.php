@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\education;
+use App\Models\Location;
 use App\Models\portfolio;
 use App\Models\Skill;
 use App\Models\SkillTalent;
@@ -195,11 +196,13 @@ class CompanyDashboardController extends Controller
   {
    
     $talents = Talent::orderBy('talent_id', "DESC")->paginate(10);
+    $domisili = DB::table('location')->get();
 
     return view('company.talent', [
         'talents' => $talents,
         'active' => "all",
-        'total' => $this->total
+        'total' => $this->total,
+        'domisili' => $domisili
     ]);
   }
 
@@ -213,9 +216,83 @@ class CompanyDashboardController extends Controller
 
     // Request
 
-    // End Request
+    // filter domisili
+    if($request->domisili != 'Domisili'){
+      $data = $data->where(function($q) use($request){
+        $q->where('talent_address', 'like', '%'.$request->domisili.'%')->orWhere('talent_current_address', 'like', '%'.$request->domisili.'%')->orWhere('talent_prefered_city','like','%'.$request->domisili.'%');
+      });
+    }
+    // end filter domisili
 
-    $data = $data->orderBy('talent_id', "DESC")->groupBy("talent_id");
+    // filter ready kerja
+    if($request->readykerja != "Ready Kerja"){
+      if($request->readykerja == 'yes'){
+        $data = $data->whereIn('talent_available', ['yes','asap']);
+      }else{
+        $data = $data->whereNotIn('talent_available',['yes','asap']);
+      }
+    }
+    // End Filter ready kerja
+    
+    // Filter experience in years
+    if($request->experience != "Experience In Years"){
+      return 'This Filter Still Development';
+      $data->where('talent_start_career', '!=',null)->select(DB::raw('DATEDIFF(now(), talent_start_career) as pengalaman'));
+      // $data->where('talent_start_career', '!=',null)->whereRaw('DATEDIFF(now(), talent_start_career) / 365.25 ',$request->experience );
+      // dd($data->get());
+    }
+    // End Filter experience in years
+
+    // Filter Education
+    if($request->education != "Education"){
+      $data = $data->with(['talent_education'])->whereHas('talent_education', function($q) use($request){
+        $q->where('edu_level', 'like', '%'.$request->education.'%')->groupBy('edu_talent_id');
+      });
+    }
+    // End Filter Education
+
+    // Filter Gaji Sekarang
+    if($request->currsalary != null){
+      $currSalary = (int)preg_replace('/[^0-9]/', '', $request->currsalary);
+      $data = $data->where(function($q) use($request, $currSalary){
+        $q->where('talent_lastest_salary', $currSalary)->orWhere('talent_lastest_salary' , $request->currsalary);
+      });
+    }
+    // End Filter Gaji Sekarang
+
+    // Filter Expetasi Gaji
+    if($request->expsalary != null){
+      $expSalary = (int)preg_replace('/[^0-9]/', '', $request->expsalary);
+      $data = $data->where(function($k) use($request, $expSalary){
+        $k->where('talent_salary', $expSalary)->orWhere('talent_salary', $request->expsalary);
+      });
+    }
+    // End Filter Expetasi Gaji
+
+    // Filter Ready Kerja
+    if($request->readyluarkota != "Ready Luar Kota"){
+      $data = $data->where('talent_luar_kota', $request->readyluarkota);
+    }
+    // End Filter Ready Kerja
+
+    // Filter Skill
+    if($request->skills){
+      $data = $data->whereHas('talent_skill', function($o) use($request){
+        $o->whereIn('st_skill_id', $request->skills);
+      });
+    }
+    // End Filter Skill
+
+    // Filter User terupdate
+    if($request->userupdate == 'yes'){
+      $data = $data->orderBy('tupdated_date', 'DESC');
+    }else{
+      $data = $data->orderBy('talent_id', "DESC");
+    }
+    // End filter user terupdate
+
+    // End Request
+    $data = $data->groupBy("talent_id");
     $data = $data->paginate(5);
 
     return view('company.table', [
