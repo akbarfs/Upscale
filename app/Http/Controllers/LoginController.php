@@ -121,12 +121,12 @@ class LoginController extends Controller
     public function loginProcessCompany(Request $request){
         $username = $request->username;
         $password = $request->password;
-        $data = DB::table('company')->where('company_name',$username)->first();
+        $data = DB::table('company')->where('company_username',$username)->first();
         if($data!=NULL){
             if($data->company_level == 'user'){
                 if(Hash::check($password, $data->company_password)){
                     Session::put("user_id",$data->company_id); 
-                    Session::put('username',$data->company_name);
+                    Session::put('username',$data->company_username);
                     Session::put('level',$data->company_level);
                     Session::put('login',TRUE);
                     return redirect()->route('company.dashboard');
