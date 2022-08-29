@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOfferTable extends Migration
+class CreateCompanyRequestTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateOfferTable extends Migration
      */
     public function up()
     {
-        Schema::create('offer', function (Blueprint $table) {
-            $table->increments('offer_id');
-            $table->string('position');
-            $table->text('description');
-            $table->integer('duration_contract');
+        Schema::create('company_request', function (Blueprint $table) {
+            $table->increments('company_request_id');
+            $table->string('name_request');
             $table->string('type_work');
             $table->text('benefit');
-            $table->integer('salary');
-            $table->string('type_offer');
+            $table->integer('min_salary');
+            $table->integer('max_salary');
+            $table->text('skills');
+            $table->integer('person_needed');
             $table->integer('company_id');
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ class CreateOfferTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offer');
+        Schema::dropIfExists('company_request');
     }
 }

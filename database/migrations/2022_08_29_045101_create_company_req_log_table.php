@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOfferLogTable extends Migration
+class CreateCompanyReqLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateOfferLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('offer_log', function (Blueprint $table) {
-            $table->increments('offer_log_id');
-            $table->integer('offer_id');
+        Schema::create('company_req_log', function (Blueprint $table) {
+            $table->increments('company_req_log_id');
+            $table->integer('company_request_id');
             $table->integer('talent_id');
             $table->string('status');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateOfferLogTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offer_log');
+        Schema::dropIfExists('company_req_log');
     }
 }
