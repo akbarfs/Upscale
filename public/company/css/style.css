@@ -1,4 +1,4 @@
-.rect-filter{
+.rect-filter {
     background-color: white;
     height: 100px;
     padding: 10px;
@@ -8,7 +8,7 @@
     color: white;
 }
 
-.small-rect-filter{
+.small-rect-filter {
     background-color: white;
     height: 40px;
     padding: 8px;
@@ -18,7 +18,7 @@
     width: 100%;
 }
 
-.rect-filter:hover{
+.rect-filter:hover {
     /* background-color: darkslategray; */
     font-weight: bold;
 }
@@ -28,6 +28,154 @@
     font-weight: 500;
 }
 
-.rect-border{
+.rect-border {
     border-radius: 5px !important;
+}
+
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+:root {
+    --col_primary: rgb(244, 244, 244);
+    --col_secondary: rgb(88, 119, 144);
+    --col_black: rgb(26, 26, 26);
+}
+
+body {
+    background-color: var(--col_primary);
+    padding-top: 3.5rem;
+}
+
+.link-login a {
+    color: var(--col_secondary);
+    text-decoration: none;
+}
+
+.link-login a:hover {
+    color: var(--col_secondary);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.bg-custom-primary {
+    background-color: var(--col_primary);
+}
+
+.bg-custom-secondary {
+    background-color: var(--col_secondary);
+}
+
+.rounded-left {
+    border-top-left-radius: 40px !important;
+    border-bottom-left-radius: 40px !important;
+}
+
+.rounded-right {
+    border-top-right-radius: 40px !important;
+    border-bottom-right-radius: 40px !important;
+}
+
+.rounded-all {
+    border-radius: 40px !important;
+}
+
+.judul-login-1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.judul-login-2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+}
+
+.detail-login {
+    text-align: justify;
+    font-size: 18px;
+    padding: 10px 20px 0;
+    font-weight: 600;
+}
+
+.btn-custom {
+    background-color: var(--col_secondary);
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-login.btn-custom {
+    padding: 5px 50px;
+}
+
+.zoom-effect {
+    margin: 0 auto;
+}
+
+.zoom-effect:hover {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.08);
+}
+
+.zoom-effect:hover:active {
+    border: 2px solid white;
+}
+
+.shadow {
+    filter: drop-shadow(5px 10px 20px rgba(0, 0, 0, 0.102));
+    width: auto;
+    height: auto;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.middle {
+    width: 900px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*PHONES SIZE*/
+@media (max-width: 600px) {
+
+    .zoom-effect {
+        margin: 0;
+    }
+
+    img.img-size {
+        width: 250px !important;
+    }
+
+    .margin-custom {
+        margin: 20px auto;
+    }
+
+    .middle {
+        width: 300px;
+        height: 0px;
+        top: 0;
+    }
+
+    .rounded-left,
+    .rounded-right {
+        border-radius: 40px !important;
+    }
+
+    .range-custom {
+        margin: 30px 0;
+        padding: 20px 0;
+    }
+
+    .display-3 {
+        font-size: 4rem !important;
+    }
 }
