@@ -206,8 +206,8 @@
                         <label for="name" class="col-sm-3 col-form-label font-weight-bold">Nama Request <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Nama Request"
-                                required>
+                            <input type="text" class="form-control" name="name_request" id="name"
+                                placeholder="Masukkan nama request" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -215,19 +215,19 @@
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9 justify-content-between d-flex">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="location" id="location1"
-                                    value="Onsite">
-                                <label class="form-check-label" for="location1">On Site</label>
+                                <input class="form-check-input" type="radio" name="type_work" id="type_work1"
+                                    value="onsite" required>
+                                <label class="form-check-label" for="type_work1">On Site</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="location" id="location2"
-                                    value="remote">
-                                <label class="form-check-label" for="location2">Remote</label>
+                                <input class="form-check-input" type="radio" name="type_work" id="type_work2"
+                                    value="remote" required>
+                                <label class="form-check-label" for="type_work2">Remote</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="location" id="location3"
-                                    value="hybrid">
-                                <label class="form-check-label" for="location3">Hybrid</label>
+                                <input class="form-check-input" type="radio" name="type_work" id="type_work3"
+                                    value="hybrid" required>
+                                <label class="form-check-label" for="type_work3">Hybrid</label>
                             </div>
                         </div>
                     </div>
@@ -235,18 +235,19 @@
                         <label for="benefit" class="col-sm-3 col-form-label font-weight-bold">Benefit <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="benefit" name="benefit"></textarea>
+                            <textarea class="form-control" id="benefit" name="benefit" rows="10"
+                                placeholder="Deskripsikan benefit yang didapat" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="salary" class="col-sm-3 col-form-label font-weight-bold">Range Salary <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9 d-flex justify-content-between">
-                            <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="from"
-                                class="form-control rp" placeholder="silahkan ketik angka" value="" required>
+                            <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="min_salary"
+                                class="form-control rp" placeholder="Masukkan minimal gaji" value="" required>
                             <h3 class="text-center">&nbsp;-&nbsp;</h3>
-                            <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="to"
-                                class="form-control rp" placeholder="silahkan ketik angka" value="" required>
+                            <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="max_salary"
+                                class="form-control rp" placeholder="Masukkan maksimal gaji" value="" required>
                         </div>
                     </div>
                     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
@@ -264,7 +265,8 @@
                             });
 
                             $('.skill').select2({
-                                theme: "bootstrap",
+                                tags: true,
+                                width: 'resolve',
                                 ajax: {
                                     url: '{{route("json.skill.company")}}',
                                     dataType: 'json',
@@ -273,7 +275,7 @@
                                         var results = [];
                                         $.each(data, function (index, item) {
                                             results.push({
-                                                id: item.id,
+                                                id: item.text,
                                                 text: item.value,
                                             });
                                         });
@@ -282,7 +284,8 @@
                                         }
                                     },
                                     cache: false
-                                }
+                                },
+                                placeholder: "Silahkan pilih skill"
                             });
 
                             $('#skill').select2({
@@ -305,7 +308,8 @@
                                         }
                                     },
                                     cache: false
-                                }
+                                },
+                                placeholder: "Silahkan pilih skill"
                             });
                         })
                     </script>
@@ -314,7 +318,7 @@
                         <label for="skill" class="col-sm-3 col-form-label font-weight-bold">Skill <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <select name="skill[]" id="skill" class="form-control" multiple="multiple">
+                            <select name="skills[]" id="skill" class="form-control" multiple="multiple">
                             </select>
                         </div>
                     </div>
@@ -322,7 +326,8 @@
                         <label for="orang" class="col-sm-3 col-form-label font-weight-bold">Berapa Orang <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" placeholder="Jumlah Yang Dibutuhkan">
+                            <input type="number" name="person_needed" class="form-control"
+                                placeholder="Jumlah Yang Dibutuhkan">
                         </div>
                     </div>
 
@@ -345,9 +350,9 @@
 
 <script>
     $(document).ready(function () {
-        CKEDITOR.replace('benefit', {
-            language: 'en-gb'
-        });
+        // CKEDITOR.replace('benefit', {
+        //     language: 'en-gb'
+        // });
 
         // Function Salary
         $('.rp').autoNumeric('init', {

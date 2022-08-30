@@ -8,8 +8,8 @@ use App\Models\portfolio;
 use App\Models\Skill;
 use App\Models\SkillTalent;
 use App\Models\Talent;
-use App\Offer;
-use App\OfferLog;
+use App\Models\CompanyRequest;
+use App\Models\CompanyReqLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,12 +23,7 @@ class CompanyDashboardController extends Controller
     }
 
     public function companyDashboard()
-    {
-
-        // $user_id = Session::get("user_id"); 
-        // $user = Company::find($user_id);   
-        // $talent = $user->talent; 
-
+    { 
         return view("company.dashboard", [
             'active' => 'dashboard',
             'total' => $this->total
@@ -37,146 +32,26 @@ class CompanyDashboardController extends Controller
   
   public function makeOffer(Request $request)
   {
-    $company = $request->session()->get('user_id');
-    dd($request->all());
 
     $validateData = $request->validate([
-      'position' => 'required',
-      'description' => 'required',
+      'name_request' => 'required',
+      'type_work' => 'required',
       'benefit' => 'required',
-      'salary' => 'required',
-      'duration_contract' => 'required|integer|min:0',
-      'type_work' => 'required'
+      'min_salary' => 'required',
+      'max_salary' => 'required',
+      'skills' => 'required',
+      'person_needed' => 'required|integer|min:1'
     ]);
+    
+    $validateData['skills'] = implode(',', $request->skills);
+    $validateData['min_salary'] = preg_replace('/[^0-9]/', '', $request->min_salary);
+    $validateData['max_salary'] = preg_replace('/[^0-9]/', '', $request->max_salary);
+    $validateData['company_id'] = session('user_id');
 
-    $validateData['salary'] = preg_replace('/[^0-9]/', '', $request->salary);
+    // dd($validateData);
 
-    $validateData['type_offer'] = 'all';
-    $validateData['company_id'] = $company;
-
-    if($request->type_offer === 'on'){
-      $validateData['type_offer'] = 'spesifik';
-
-      // Create Offer
-      $offer = Offer::create($validateData);
-      $offer_id = $offer->offer_id;
-
-      $talents = Talent::select('talent_id');
-
-      // FILTER
-      
-      // domisili
-        $talentDomisili = [];
-        if($request->domisili){
-          $talentDomisili = Talent::where(function($q) use($request){
-            $q->where('talent_address', 'like', '%'.$request->domisili.'%')->orWhere('talent_current_address', 'like', '%'.$request->domisili.'%')->orWhere('talent_prefered_city','like','%'.$request->domisili.'%');
-          })->pluck('talent_id')->toArray();
-        }
-      // end domisili
-
-      // ready kerja
-        if($request->readkerja == 'yes'){
-          $talentReady = Talent::whereIn('talent_available', ['yes','asap'])->pluck('talent_id')->toArray();
-        }else{
-          $talentReady = Talent::where('talent_available', '!=','yes')->pluck('talent_id')->toArray();
-        }
-      // end ready kerja
-
-      // userUpdate
-        $talentUpdate = [];
-        if($request->userupdate == 'yes'){
-          $talentUpdate = Talent::where('tupdated_date', '>=', Carbon::now()->subMonth(1)->toDateTimeString())->pluck('talent_id')->toArray();
-        }
-      // end userUpdate
-      
-      // // experience
-      // $talentExperience = [];
-      // if($request->experience == 'More Then 10 Years'){
-      //   $talentExperience = Talent::select(['talent_id'])->where('talent_totalexperience', 'like','%'.''.'%')->get()->toArray();
-      // }elseif($request->experience == '5 - 10 Years'){
-      //   return '5-10';
-      // }elseif($request->experience == '3 - 5 Years'){
-      //   return '3-5';
-      // }elseif($request->experience == '1 - 3 Years'){
-      //   return '1-3';
-      // }elseif($request->experience == 'Less Then 1 Years'){
-      //   return '<1';
-      // }
-
-      // dd($talentExperience);
-
-      // skill
-        $skills = $request->skill;
-        
-        $talentSkill = [];
-        if($skills){
-          $talentSkill = SkillTalent::where('st_skill_verified', 'YES')->whereIn('st_skill_id', $skills)->groupBy('st_talent_id')->pluck('st_talent_id')->toArray();
-        }
-      // End Skill
-
-      // Onsite
-        if($request->onsite == 'yes'){
-          $talentOnSite = Talent::where('talent_luar_kota', 'yes')->where(function($q){
-            $q->where('talent_onsite_jakarta', 'yes')->orWhere('talent_onsite_jogja', 'yes');
-          })->pluck('talent_id')->toArray();
-        }else{
-          $talentOnSite = Talent::where(function($q){
-            $q->where('talent_remote', '!=', 'no');
-          })->pluck('talent_id')->toArray();
-        }
-      // End Onsite
-      
-      // ExpSalary - CurrSalary
-        $talentSalary = [];
-        if($request->expsalary && $request->currsalary){
-          $expSalary = (int)preg_replace('/[^0-9]/', '', $request->expsalary);
-          $currSalary = (int)preg_replace('/[^0-9]/', '', $request->currsalary);
-          $talentSalary = Talent::whereBetween('talent_salary', [$expSalary,$currSalary])->pluck('talent_id')->toArray();
-        }
-      // End ExpSalary - CurrSalary       
-
-      // Education
-        $talentEdu = [];
-        if($request->education != 'none'){
-          $talentEdu = education::where('edu_level', 'like','%'.$request->education.'%')->groupBy('edu_talent_id')->pluck('edu_talent_id')->toArray();
-        }
-      // End Education   
-
-      // Type = full, part, intern
-        
-      // End Type
-
-      // Exec offerlog
-        $allTalent = array_merge($talentDomisili,$talentEdu, $talentOnSite, $talentSalary, $talentReady, $talentUpdate, $talentSkill);
-        $allTalent = array_unique($allTalent);
-
-        $allTalent = DB::table('talent')->select(['talent'])->get()->toArray();
-        foreach($allTalent as $tal){
-          OfferLog::create([
-            'offer_id' => $offer_id,
-            'talent_id' => $tal->talent_id
-          ]);
-        }
-      // End Exec Offerlog
-
-      // dd($request->all(),$allTalent);
-    }
-    else{
-
-      // Create Offer
-      $offer = Offer::create($validateData);
-      $offer_id = $offer->offer_id;
-
-      // Create Offer_log
-      $allTalent = DB::table('talent')->select(['talent_id'])->get()->toArray();
-      foreach($allTalent as $talent){
-          OfferLog::create([
-            'offer_id' => $offer_id,
-            'talent_id' => $talent->talent_id
-          ]);
-      }
-    }
-
+    // Create Request
+    $company_req = CompanyRequest::create($validateData);
 
     return redirect()->back();
   }
