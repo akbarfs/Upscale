@@ -20,6 +20,7 @@ class CompanyDashboardController extends Controller
     public function __construct()
     {
       $this->total  = DB::table('talent')->count();
+      $this->total_active_req = DB::table('company_request')->count();
     }
 
     public function companyDashboard()
@@ -46,6 +47,7 @@ class CompanyDashboardController extends Controller
     $validateData['skills'] = implode(',', $request->skills);
     $validateData['min_salary'] = preg_replace('/[^0-9]/', '', $request->min_salary);
     $validateData['max_salary'] = preg_replace('/[^0-9]/', '', $request->max_salary);
+    $validateData['status_request'] = 'active';
     $validateData['company_id'] = session('user_id');
 
     // dd($validateData);

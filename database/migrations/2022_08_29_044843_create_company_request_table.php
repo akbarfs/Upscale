@@ -22,6 +22,7 @@ class CreateCompanyRequestTable extends Migration
             $table->integer('max_salary');
             $table->text('skills');
             $table->integer('person_needed');
+            $table->string('status_request');
             $table->integer('company_id');
             $table->timestamps();
         });
