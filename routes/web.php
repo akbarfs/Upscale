@@ -2,6 +2,10 @@
 
 use App\Http\Middleware\CheckTalent;
 use App\Http\Middleware\CheckCompany;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +74,8 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::get("/json/skill/company","CompanyDashboardController@company_json_skill")->name('json.skill.company');
 
 	Route::get('/request/active', "CompanyDashboardController@request_active")->name('company.request.active');
+	Route::get('/request/active/detail', "CompanyDashboardController@request_detail")->name('company.request.detail');
+	Route::get("/request/talent_data","CompanyDashboardController@table_talent_request");
 }); 
 
 

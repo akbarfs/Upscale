@@ -10,6 +10,7 @@ use App\Models\SkillTalent;
 use App\Models\Talent;
 use App\Models\CompanyRequest;
 use App\Models\CompanyReqLog;
+use App\Models\SkillRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,14 +21,17 @@ class CompanyDashboardController extends Controller
     public function __construct()
     {
       $this->total  = DB::table('talent')->count();
-      $this->total_active_req = DB::table('company_request')->count();
+      $this->total_active_req = DB::table('company_request')->where('status_request','active')->count();
+      $this->total_nonactive_req = DB::table('company_request')->where('status_request','nonactive')->count();
     }
 
     public function companyDashboard()
     { 
         return view("company.dashboard", [
             'active' => 'dashboard',
-            'total' => $this->total
+            'total' => $this->total,
+            'total_active_req' => $this->total_active_req,
+            'total_nonactive_req' => $this->total_nonactive_req
         ]);
     }
   
@@ -40,20 +44,33 @@ class CompanyDashboardController extends Controller
       'benefit' => 'required',
       'min_salary' => 'required',
       'max_salary' => 'required',
-      'skills' => 'required',
       'person_needed' => 'required|integer|min:1'
     ]);
     
-    $validateData['skills'] = implode(',', $request->skills);
     $validateData['min_salary'] = preg_replace('/[^0-9]/', '', $request->min_salary);
     $validateData['max_salary'] = preg_replace('/[^0-9]/', '', $request->max_salary);
     $validateData['status_request'] = 'active';
     $validateData['company_id'] = session('user_id');
 
-    // dd($validateData);
-
-    // Create Request
     $company_req = CompanyRequest::create($validateData);
+
+    $validateData2 = $request->validate([
+      'skills' => 'required',
+      'skill-exp' => 'required'
+    ]);
+
+    $count_skill = count($validateData2['skills']);
+
+    for($i = 0; $i<$count_skill; $i++){
+      $comp_id = session('user_id');
+      $skill_id = $validateData2['skills'][$i];
+      $experience = $validateData2['skill-exp'][$i];
+      $skill_req = SkillRequest::create([
+        'company_request_id' => $comp_id,
+        'skill_id' => $skill_id,
+        'experience' => $experience
+      ]);
+    }
 
     return redirect()->back();
   }
@@ -71,14 +88,14 @@ class CompanyDashboardController extends Controller
   
   public function allDatabase()
   {
-   
-    $talents = Talent::orderBy('talent_id', "DESC")->paginate(10);
+  
     $domisili = DB::table('location')->get();
 
     return view('company.talent', [
-        'talents' => $talents,
         'active' => "all",
         'total' => $this->total,
+        'total_active_req' => $this->total_active_req,
+        'total_nonactive_req' => $this->total_nonactive_req,
         'domisili' => $domisili
     ]);
   }
@@ -170,7 +187,7 @@ class CompanyDashboardController extends Controller
 
     // End Request
     $data = $data->groupBy("talent_id");
-    $data = $data->paginate(5);
+    $data = $data->paginate(10);
 
     return view('company.table', [
         'data' => $data
@@ -179,9 +196,29 @@ class CompanyDashboardController extends Controller
 
   public function request_active(Request $request)
   {
+
+    $company_req = DB::table('company_request')->get();
+
     return view('company.requests.active',[
         'active' => 'active',
-        'total' => $this->total
+        'total' => $this->total,
+        'total_active_req' => $this->total_active_req,
+        'total_nonactive_req' => $this->total_nonactive_req,
+        'data' => $company_req
     ]);
+  }
+
+  public function request_detail(Request $request)
+  {
+    return view('company.requests.detail_request',[
+        'active' => 'active',
+        'total' => $this->total,
+        'total_active_req' => $this->total_active_req,
+        'total_nonactive_req' => $this->total_nonactive_req,
+    ]);
+  }
+
+  public function table_talent_request(Request $request){
+    return view('company.requests.talent-req-table')->render();
   }
 }

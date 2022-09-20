@@ -1,5 +1,5 @@
 @extends('company.layout.apps')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 @section('content')
 <style>
     .btn-xs {
@@ -9,10 +9,12 @@
         border-radius: 0.2rem !important;
         -webkit-appearance: unset !important;
     }
+
     .select2-container {
         width: 100% !important;
     }
-    .select2-selection{
+
+    .select2-selection {
         overflow: hidden;
     }
 </style>
@@ -42,12 +44,122 @@
 </div>
 
 <div class="content mt-3">
+    @if (empty($data))
+    <h1>Belum Ada Request</h1>
+    @else
+    @foreach ($data as $req)
     <div class="p-5 my-2 bg-white shadow d-flex justify-content-between rounded">
-        <h4>React JS <span class="h6">(10 talent pool)</span></h4>
-        <button class="btn btn-info rounded">Detail</button>
+        <h4>{{ $req->name_request }} <span class="h6"><strong>0/{{ $req->person_needed }}</strong> dari
+                <strong>...</strong> Talent Pool</span>
+        </h4>
+        <div>
+            <button type="button" data-toggle="modal" data-target="#modal-edit" class="btn btn-secondary rounded"><i
+                    class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button class="btn btn-danger rounded" type="button" data-toggle="modal" data-target="#modal-edit"><i
+                    class="fa fa-ban" aria-hidden="true"></i></button>
+            <a class="btn btn-info rounded" href="{{ route('company.request.detail') }}"><i class="fa fa-info"
+                    aria-hidden="true"></i></a>
+        </div>
     </div>
-    {{-- <h1 class="d-flex justify-content-center align-items-center my-5">Kosong</h1> --}}
+    @endforeach
+    @endif
 </div>
+
+<div class="modal fade" id="modal-edit">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detail Request</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="{{ route('company.makeoffer') }}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label font-weight-bold">Nama Request <span
+                                class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name_request" id="name"
+                                placeholder="Masukkan nama request" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="location" class="col-sm-3 col-form-label font-weight-bold">Lokasi Kerja <span
+                                class="text-danger">*</span></label>
+                        <div class="col-sm-9 d-flex">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type_work" id="type_work1"
+                                    value="onsite" required>
+                                <label class="form-check-label" for="type_work1">On Site</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type_work" id="type_work2"
+                                    value="remote" required>
+                                <label class="form-check-label" for="type_work2">Remote</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type_work" id="type_work3"
+                                    value="hybrid" required>
+                                <label class="form-check-label" for="type_work3">Hybrid</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="benefit" class="col-sm-3 col-form-label font-weight-bold">Benefit <span
+                                class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="benefit" name="benefit" rows="10"
+                                placeholder="Deskripsikan benefit yang didapat" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="salary" class="col-sm-3 col-form-label font-weight-bold">Range Salary <span
+                                class="text-danger">*</span></label>
+                        <div class="col-sm-9 d-flex justify-content-between">
+                            <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="min_salary"
+                                class="form-control rp" placeholder="Masukkan minimal gaji" value="" required>
+                            <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                            <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="max_salary"
+                                class="form-control rp" placeholder="Masukkan maksimal gaji" value="" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="skill" class="col-sm-3 col-form-label font-weight-bold">Skill <span
+                                class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <button type="button" class="btn btn-secondary btn-sm rect-border mb-3" id="add-skill">Add
+                                Skill</button>
+                            <div id="category-skill">
+                                <div class="d-flex justify-content-between">
+                                    <select name="skills[]" class="form-control skill mr-3" required>
+                                    </select>
+                                    <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                                    <input type="number" name="skill-exp[]" class="form-control"
+                                        placeholder="Masukkan pengalaman skill" required>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="orang" class="col-sm-3 col-form-label font-weight-bold">Berapa Orang <span
+                                class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="number" name="person_needed" class="form-control"
+                                placeholder="Jumlah Yang Dibutuhkan">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success rounded">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -58,7 +170,7 @@
 
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#all-table').DataTable();
     });
 

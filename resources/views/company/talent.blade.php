@@ -1,6 +1,8 @@
 @extends('company.layout.apps')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
 @section('content')
 <style>
     .btn-xs {
@@ -20,7 +22,7 @@
     }
 
     .select2-container--bootstrap .select2-selection--single {
-        height: 40px !important;
+        height: 38px !important;
         /* background: lightgray !important; */
         /* border: 1px solid black !important; */
     }
@@ -93,6 +95,7 @@
 </div>
 
 <div class="content mt-3">
+
     @if($errors->any())
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <ul>
@@ -105,8 +108,9 @@
         </button>
     </div>
     @endif
+
     <button type="button" data-toggle="modal" data-target="#modal-add-offer"
-        class="btn btn-primary rect-border mt-3">Bikin Tawaran</button>
+        class="btn btn-primary rect-border mt-3">Make Request</button>
     <div class="mt-4">
         <h5>Saring Pencarian</h5>
         <hr>
@@ -171,14 +175,8 @@
                     </select>
                 </div>
                 <div class="col-md-9 mt-4">
-                    <div class="input-group" style="border-radius: 3px;">
-                        <div class="input-group-prepend border">
-                            <div class="input-group-text" style="height: -webkit-fill-available;">Skills : </div>
-                        </div>
-                        <select name="skills[]" class="skill form-control small-rect-filter rect-border form-control"
-                            multiple>
-                        </select>
-                    </div>
+                    <select name="skills[]" class="form-control rect-border skill" multiple>
+                    </select>
                 </div>
                 <div class="col-md-3 mt-4">
                     <button class="btn btn-info rounded" style="width:100%;" type="submit">Filter</button>
@@ -186,8 +184,14 @@
             </div>
         </form>
     </div>
-    <hr>
-    <div class="container-fluid mt-2" id="company-talent" style="padding:0;"></div>
+    <div class="mt-4">
+        <h5>List Talent</h5>
+        <hr>
+        <div class="container-fluid mt-2" id="company-talent" style="padding:0;">
+            <!-- ini adalah isi data talent -->
+        </div>
+    </div>
+
 
 </div>
 
@@ -213,7 +217,7 @@
                     <div class="form-group row">
                         <label for="location" class="col-sm-3 col-form-label font-weight-bold">Lokasi Kerja <span
                                 class="text-danger">*</span></label>
-                        <div class="col-sm-9 justify-content-between d-flex">
+                        <div class="col-sm-9 d-flex">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="type_work" id="type_work1"
                                     value="onsite" required>
@@ -250,76 +254,22 @@
                                 class="form-control rp" placeholder="Masukkan maksimal gaji" value="" required>
                         </div>
                     </div>
-                    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-                        rel="stylesheet" />
-                    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-                    <link rel="stylesheet"
-                        href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
-                    <script
-                        src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css">
-                    </script>
-                    <script>
-                        $(document).ready(function () {
-                            $('#domisili').select2({
-                                theme: "bootstrap"
-                            });
-
-                            $('.skill').select2({
-                                tags: true,
-                                width: 'resolve',
-                                ajax: {
-                                    url: '{{route("json.skill.company")}}',
-                                    dataType: 'json',
-                                    delay: 250,
-                                    processResults: function (data) {
-                                        var results = [];
-                                        $.each(data, function (index, item) {
-                                            results.push({
-                                                id: item.text,
-                                                text: item.value,
-                                            });
-                                        });
-                                        return {
-                                            results: results
-                                        }
-                                    },
-                                    cache: false
-                                },
-                                placeholder: "Silahkan pilih skill"
-                            });
-
-                            $('#skill').select2({
-                                tags: true,
-                                width: 'resolve',
-                                ajax: {
-                                    url: '{{route("json.skill.company")}}',
-                                    dataType: 'json',
-                                    delay: 250,
-                                    processResults: function (data) {
-                                        var results = [];
-                                        $.each(data, function (index, item) {
-                                            results.push({
-                                                id: item.text,
-                                                text: item.value,
-                                            });
-                                        });
-                                        return {
-                                            results: results
-                                        }
-                                    },
-                                    cache: false
-                                },
-                                placeholder: "Silahkan pilih skill"
-                            });
-                        })
-                    </script>
-
                     <div class="form-group row">
                         <label for="skill" class="col-sm-3 col-form-label font-weight-bold">Skill <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <select name="skills[]" id="skill" class="form-control" multiple="multiple">
-                            </select>
+                            <button type="button" class="btn btn-secondary btn-sm rect-border mb-3" id="add-skill">Add
+                                Skill</button>
+                            <div id="category-skill">
+                                <div class="d-flex justify-content-between">
+                                    <select name="skills[]" class="form-control skill mr-3" required>
+                                    </select>
+                                    <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                                    <input type="number" name="skill-exp[]" class="form-control"
+                                        placeholder="Masukkan pengalaman skill" required>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="form-group row">
@@ -347,6 +297,75 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var index = 1;
+
+        loadInputSkill();
+
+        $('#domisili').select2({
+            theme: "bootstrap"
+        });
+
+        function loadInputSkill() {
+            $('.skill').select2({
+                tags: true,
+                theme: "bootstrap",
+                ajax: {
+                    url: '{{route("json.skill.company")}}',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        var results = [];
+                        $.each(data, function (index, item) {
+                            results.push({
+                                id: item.id,
+                                text: item.value,
+                            });
+                        });
+                        return {
+                            results: results
+                        }
+                    },
+                    cache: false
+                },
+                placeholder: "Silahkan pilih skill"
+            });
+        }
+
+        function deleteSkill(id) {
+            $('#skill_' + id).remove();
+        }
+
+        $('#add-skill').click(function () {
+
+            var html = `<div class="d-flex justify-content-between mt-4" id="skill_${index}">
+                <select name="skills[]" class="form-control skill mr-3" required>
+                </select>
+                <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                <input type="number" name="skill-exp[]" class="form-control" placeholder="Masukkan pengalaman skill" required>
+                <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                <a class="btn btn-sm btn-danger rect-border remove-skill" href="javascript:void(0)" id="${index}" ><i class="fa fa-trash" style="line-height: 2;" aria-hidden="true"></i></a>
+            </div>`
+
+            $('#category-skill').append(html);
+            loadInputSkill();
+            index += 1;
+
+            $('.remove-skill').click(function () {
+                var id = $(this).attr('id');
+                deleteSkill(id);
+            })
+
+        })
+
+    })
+</script>
 
 <script>
     $(document).ready(function () {
@@ -378,6 +397,7 @@
                 }
             });
         }
+
         //load pertama kali
         loadTable("{{url('/company/list/paginate_data?page=1')}}");
 

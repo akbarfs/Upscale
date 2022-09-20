@@ -28,11 +28,14 @@
                     <a href="{{route('company.dashboard')}}"> <i class="menu-icon fa fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li class="@if($active == 'all') active @endif" title="All Database">
-                    <a href="{{route('company.dashboard.talent')}}"><i class="menu-icon fa fa-database"></i> All Database <span>({{$total}})</span></a>
-                    <ul>
-                        <li class="ml-2" title="Request Active"><a href="{{ route('company.request.active') }}" style="@if($active == 'active') color:white !important; @endif"> Request Active <span id="active">(2)</span></a></li>
-                        <li class="ml-2" title="Request Non Active"><a href="#" style="@if($active == 'nonactive') color:white !important; @endif"> Request Non Active <span id="nonactive">(1)</span></a></li>
-                    </ul>
+                    <a href="{{route('company.dashboard.talent')}}"><i class="menu-icon fa fa-database"></i> All
+                        Database <span>({{$total}})</span></a>
+                <li class="@if($active == 'active') active @endif" title="Request Active"><a
+                        href="{{ route('company.request.active') }}"> <i class="menu-icon fa fa-th-list"></i> Request
+                        Active <span id="active">({{$total_active_req}})</span></a></li>
+                <li class="@if($active == 'nonactive') active @endif" title="Request Unactive"><a href="#"> <i
+                            class="menu-icon fa fa-th-list"></i> Request
+                        Unactive <span id="nonactive">({{$total_nonactive_req}})</span></a></li>
                 </li>
                 <li title="Bidding">
                     <a href="javascript:void(0)"> <i class="menu-icon fa fa-th-list"></i> Bidding</a>
