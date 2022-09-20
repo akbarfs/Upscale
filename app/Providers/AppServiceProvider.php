@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
         Schema::defaultStringLength(191);
 
         Validator::extend('phone_number', function($attribute, $value, $parameters)
