@@ -16,9 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (env('APP_ENV') != 'local') {
+        if (env('APP_ENV') !== 'local') {
             URL::forceScheme('https');
         } 
+        
         Schema::defaultStringLength(191);
 
         Validator::extend('phone_number', function($attribute, $value, $parameters)
