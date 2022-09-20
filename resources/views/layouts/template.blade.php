@@ -33,7 +33,7 @@
     <meta name="description" content="">
     <script src="{{url('template/upscale/themekit/scripts/jquery.min.js')}}"></script>
     <script src="{{url('template/upscale/themekit/scripts/main.js')}}"></script>
-    <link rel="stylesheet" href="{{secure_asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/bootstrap-grid.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/themekit/css/style.css')}}">
     <link rel="stylesheet" href="{{url('template/upscale/css/tooltip.css')}}">
