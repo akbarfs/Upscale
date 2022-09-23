@@ -54,6 +54,8 @@ class CompanyDashboardController extends Controller
 
     $company_req = CompanyRequest::create($validateData);
 
+    $request_id = $company_req->company_request_id;
+
     $validateData2 = $request->validate([
       'skills' => 'required',
       'skill-exp' => 'required'
@@ -62,7 +64,7 @@ class CompanyDashboardController extends Controller
     $count_skill = count($validateData2['skills']);
 
     for($i = 0; $i<$count_skill; $i++){
-      $comp_id = session('user_id');
+      $comp_id = $request_id;
       $skill_id = $validateData2['skills'][$i];
       $experience = $validateData2['skill-exp'][$i];
       $skill_req = SkillRequest::create([
@@ -200,21 +202,36 @@ class CompanyDashboardController extends Controller
     $company_req = DB::table('company_request')->get();
 
     return view('company.requests.active',[
-        'active' => 'active',
-        'total' => $this->total,
-        'total_active_req' => $this->total_active_req,
-        'total_nonactive_req' => $this->total_nonactive_req,
-        'data' => $company_req
+      'active' => 'active',
+      'total' => $this->total,
+      'total_active_req' => $this->total_active_req,
+      'total_nonactive_req' => $this->total_nonactive_req,
+      'data' => $company_req
     ]);
+  }
+
+  public function detail_request($id){
+    $company_req = DB::table('company_request')->where('company_request_id',$id)->first();
+
+    $skill = DB::table('skill_request')
+                ->join('skill','skill_request.skill_id', '=', 'skill.skill_id')
+                ->select('skill.skill_name','skill_request.experience')
+                ->where('skill_request.company_request_id', $id)
+                ->get();
+    return response()->json([
+      'data' =>$company_req,
+      'data2' => $skill
+    ]
+    );
   }
 
   public function request_detail(Request $request)
   {
     return view('company.requests.detail_request',[
-        'active' => 'active',
-        'total' => $this->total,
-        'total_active_req' => $this->total_active_req,
-        'total_nonactive_req' => $this->total_nonactive_req,
+      'active' => 'active',
+      'total' => $this->total,
+      'total_active_req' => $this->total_active_req,
+      'total_nonactive_req' => $this->total_nonactive_req,
     ]);
   }
 

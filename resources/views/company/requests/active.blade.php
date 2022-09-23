@@ -53,8 +53,9 @@
                 <strong>...</strong> Talent Pool</span>
         </h4>
         <div>
-            <button type="button" data-toggle="modal" data-target="#modal-edit" class="btn btn-secondary rounded"><i
-                    class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-secondary rounded edit-request"
+                request="{{ $req->company_request_id }}"><i class="fa fa-pencil-square-o"
+                    aria-hidden="true"></i></button>
             <button class="btn btn-danger rounded" type="button" data-toggle="modal" data-target="#modal-edit"><i
                     class="fa fa-ban" aria-hidden="true"></i></button>
             <a class="btn btn-info rounded" href="{{ route('company.request.detail') }}"><i class="fa fa-info"
@@ -65,7 +66,7 @@
     @endif
 </div>
 
-<div class="modal fade" id="modal-edit">
+<div class="modal" id="edit-modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -117,10 +118,12 @@
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9 d-flex justify-content-between">
                             <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="min_salary"
-                                class="form-control rp" placeholder="Masukkan minimal gaji" value="" required>
+                                class="form-control rp" placeholder="Masukkan minimal gaji" value="" id="min_salary"
+                                required>
                             <h3 class="text-center">&nbsp;-&nbsp;</h3>
                             <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="max_salary"
-                                class="form-control rp" placeholder="Masukkan maksimal gaji" value="" required>
+                                class="form-control rp" placeholder="Masukkan maksimal gaji" value="" id="max_salary"
+                                required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -145,8 +148,20 @@
                         <label for="orang" class="col-sm-3 col-form-label font-weight-bold">Berapa Orang <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <input type="number" name="person_needed" class="form-control"
+                            <input type="number" id="orang" name="person_needed" class="form-control"
                                 placeholder="Jumlah Yang Dibutuhkan">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="deadline" class="col-sm-3 col-form-label font-weight-bold">Dibutuhkan kapan
+                            <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <select class="small-rect-filter text-left rect-border form-control" id="deadline">
+                                <option>Pilih Deadline</option>
+                                <option value="Diploma">Secepatnya</option>
+                                <option value="Bachelor Degree">2 Minggu Mendatang</option>
+                                <option value="Master">1 Bulan Mendatang</option>
+                            </select>
                         </div>
                     </div>
 
@@ -193,6 +208,124 @@
             $(".change-icon2").addClass('fa-plus');
         });
 
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var idx = 1;
+
+        $('.rp').autoNumeric('init', {
+            aSep: '.',
+            aDec: ',',
+            mDec: '0'
+        });
+
+        function loadInputSkill() {
+            $('.skill').select2({
+                tags: true,
+                theme: "bootstrap",
+                ajax: {
+                    url: '{{route("json.skill.company")}}',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        var results = [];
+                        $.each(data, function (index, item) {
+                            results.push({
+                                id: item.id,
+                                text: item.value,
+                            });
+                        });
+                        return {
+                            results: results
+                        }
+                    },
+                    cache: false
+                },
+                placeholder: "Silahkan pilih skill"
+            });
+        }
+
+        function deleteSkill(id) {
+            $('#skill_' + id).remove();
+        }
+
+        $('.edit-request').click(function () {
+
+            var request_id = $(this).attr('request');
+            $.ajax({
+                url: "http://localhost:8000/company/request/detail_data/" + request_id,
+                success: function (response) {
+                    var request = response['data'];
+                    var skill = response['data2'];
+                    $('#name').val(request['name_request']);
+                    $('input:radio[name="type_work"]').filter('[value=' + request[
+                        'type_work'] + ']').attr('checked', true);
+                    $('#benefit').val(request['benefit']);
+                    $('#min_salary').val(request['min_salary']);
+                    $('#max_salary').val(request['max_salary']);
+                    $('#orang').val(request['person_needed']);
+                    $('#category-skill').html('');
+                    skill.forEach((item, index) => {
+                        var html = `<div class="d-flex justify-content-between mt-4" id="skill_${index+1}">
+                            <input type="text" name="skills[]" value="${item['skill_name']}" class="form-control"
+                                placeholder="Masukkan nama skill" required>
+                            <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                            <input type="number" name="skill-exp[]" value="${item['experience']}" class="form-control"
+                                placeholder="Masukkan pengalaman skill" required>
+                            <span class="ml-2 pt-2"> Tahun</span>
+                            <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                            <a class="btn btn-sm btn-danger rect-border remove-skill" href="javascript:void(0)"
+                                id="${index+1}"><i class="fa fa-trash" style="line-height: 2;" aria-hidden="true"></i></a>
+                        </div>`;
+                        if (index == 0) {
+                            html = `<div class="d-flex justify-content-between" id="skill_${index+1}">
+                                <input type="text" name="skills[]" value="${item['skill_name']}" class="form-control"
+                                    placeholder="Masukkan nama skill" required>
+                                <h3 class="text-center">&nbsp;-&nbsp;</h3>
+                                <input type="number" name="skill-exp[]" value="${item['experience']}"
+                                    class="form-control" placeholder="Masukkan pengalaman skill" required>
+                                <span class="ml-2 pt-2"> Tahun</span>
+                            </div>`;
+                        }
+                        $('#category-skill').append(html);
+                        idx = index + 1;
+                    });
+                    $('.remove-skill').click(function () {
+                        var id = $(this).attr('id');
+                        deleteSkill(id);
+                    })
+                    $('#edit-modal').modal('show');
+                }
+            })
+
+        })
+
+        $('#add-skill').click(function () {
+
+            var html = `<div class="d-flex justify-content-between mt-4" id="skill_${idx+1}">
+            <select name="skills[]" class="form-control skill mr-3" required>
+            </select>
+            <h3 class="text-center">&nbsp;-&nbsp;</h3>
+            <input type="number" name="skill-exp[]" class="form-control" placeholder="Masukkan pengalaman skill"
+                required>
+            <span class="ml-2 pt-2"> Tahun</span>
+            <h3 class="text-center">&nbsp;-&nbsp;</h3>
+            <a class="btn btn-sm btn-danger rect-border remove-skill" href="javascript:void(0)" id="${idx+1}"><i
+                    class="fa fa-trash" style="line-height: 2;" aria-hidden="true"></i></a>
+        </div>`
+
+            $('#category-skill').append(html);
+            loadInputSkill();
+            idx += 1;
+
+            $('.remove-skill').click(function () {
+                var id = $(this).attr('id');
+                deleteSkill(id);
+            })
+
+        })
     });
 </script>
 

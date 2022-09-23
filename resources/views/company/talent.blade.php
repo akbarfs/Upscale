@@ -13,6 +13,15 @@
         -webkit-appearance: unset !important;
     }
 
+    select.form-control:not([size]):not([multiple]) {
+        height: auto !important;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
     .col-sm-9 .select2-container {
         width: 100% !important;
     }
@@ -35,11 +44,11 @@
         border: 1px solid black;
     } */
     #select2-domisili-results .select2-results__option {
-        text-align: center;
+        text-align: left;
     }
 
     #select2-domisili-container {
-        text-align: center;
+        text-align: left;
         color: #000;
         font-size: 1rem;
     }
@@ -117,7 +126,7 @@
         <form action="" method="POST" id="form-search">
             <div class="row">
                 <div class="col-md-3 mt-4">
-                    <select name="domisili" id="domisili" class="form-control small-rect-filter rect-border">
+                    <select name="domisili" id="domisili" class="form-control small-rect-filter text-left rect-border">
                         <option selected>Domisili</option>
                         @foreach ($domisili as $domisili)
                         <option value="{{$domisili->location_name}}">{{$domisili->location_name}}</option>
@@ -125,21 +134,24 @@
                     </select>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <select class="small-rect-filter rect-border form-control" name="readykerja" id="readykerja">
+                    <select class="small-rect-filter text-left rect-border form-control" name="readykerja"
+                        id="readykerja">
                         <option selected>Ready Kerja</option>
                         <option value="yes">Siap Kerja</option>
                         <option value="no">Belum Siap Kerja</option>
                     </select>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <select class="small-rect-filter rect-border form-control" name="userupdate" id="userupdate">
+                    <select class="small-rect-filter text-left rect-border form-control" name="userupdate"
+                        id="userupdate">
                         <option selected>User Terupdate</option>
                         <option value="yes">User Terupdate</option>
                         <option value="no">All</option>
                     </select>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <select name="experience" id="experience" class="small-rect-filter rect-border form-control">
+                    <select name="experience" id="experience"
+                        class="small-rect-filter text-left rect-border form-control">
                         <option selected>Experience In Years</option>
                         <option value="1">Less Then 1 Years</option>
                         <option value="1 - 3">1 - 3 Years</option>
@@ -149,7 +161,8 @@
                     </select>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <select class="small-rect-filter rect-border form-control" name="education" id="education">
+                    <select class="small-rect-filter text-left rect-border form-control" name="education"
+                        id="education">
                         <option>Education</option>
                         <option value="High School">High School</option>
                         <option value="Diploma">Diploma</option>
@@ -160,15 +173,17 @@
                 </div>
                 <div class="col-md-3 mt-4">
                     <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="currsalary"
-                        class="small-rect-filter rect-border form-control rp" placeholder="Gaji Sekarang" value="" />
-                </div>
-                <div class="col-md-3 mt-4">
-                    <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="expsalary"
-                        class="small-rect-filter rect-border form-control rp" placeholder="Expetasi Sekarang"
+                        class="small-rect-filter text-left rect-border form-control rp" placeholder="Gaji Sekarang"
                         value="" />
                 </div>
                 <div class="col-md-3 mt-4">
-                    <select class="small-rect-filter rect-border form-control" name="readyluarkota" id="ready">
+                    <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="expsalary"
+                        class="small-rect-filter text-left rect-border form-control rp" placeholder="Expetasi Sekarang"
+                        value="" />
+                </div>
+                <div class="col-md-3 mt-4">
+                    <select class="small-rect-filter text-left rect-border form-control" name="readyluarkota"
+                        id="ready">
                         <option selected disabled>Ready Luar Kota</option>
                         <option value="yes">Ready Ke Luar Kota</option>
                         <option value="no">Tidak Ready Ke Luar Kota</option>
@@ -267,6 +282,7 @@
                                     <h3 class="text-center">&nbsp;-&nbsp;</h3>
                                     <input type="number" name="skill-exp[]" class="form-control"
                                         placeholder="Masukkan pengalaman skill" required>
+                                    <span class="ml-2 pt-2"> Tahun</span>
                                 </div>
                             </div>
 
@@ -280,7 +296,18 @@
                                 placeholder="Jumlah Yang Dibutuhkan">
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label for="deadline" class="col-sm-3 col-form-label font-weight-bold">Dibutuhkan kapan
+                            <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <select class="small-rect-filter text-left rect-border form-control" id="deadline">
+                                <option>Pilih Deadline</option>
+                                <option value="Diploma">Secepatnya</option>
+                                <option value="Bachelor Degree">2 Minggu Mendatang</option>
+                                <option value="Master">1 Bulan Mendatang</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
@@ -349,6 +376,7 @@
                 </select>
                 <h3 class="text-center">&nbsp;-&nbsp;</h3>
                 <input type="number" name="skill-exp[]" class="form-control" placeholder="Masukkan pengalaman skill" required>
+                <span class="ml-2 pt-2"> Tahun</span>
                 <h3 class="text-center">&nbsp;-&nbsp;</h3>
                 <a class="btn btn-sm btn-danger rect-border remove-skill" href="javascript:void(0)" id="${index}" ><i class="fa fa-trash" style="line-height: 2;" aria-hidden="true"></i></a>
             </div>`
