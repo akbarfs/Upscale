@@ -44,8 +44,8 @@
 </div>
 
 <div class="content mt-3">
-    @if (empty($data))
-    <h1>Belum Ada Request</h1>
+    @if (blank($data))
+    <h4>Belum Ada Request</h4>
     @else
     @foreach ($data as $req)
     <div class="p-5 my-2 bg-white shadow d-flex justify-content-between rounded">

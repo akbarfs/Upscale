@@ -21,18 +21,25 @@ class CompanyDashboardController extends Controller
     public function __construct()
     {
       $this->total  = DB::table('talent')->count();
-      $this->total_active_req = DB::table('company_request')->where('status_request','active')->count();
-      $this->total_nonactive_req = DB::table('company_request')->where('status_request','nonactive')->count();
+    }
+
+    public function getTotal($id){
+      $total = [
+        'active' => DB::table('company_request')->where(['status_request' => 'active','company_id' => $id])->count(),
+        'nonactive' => DB::table('company_request')->where(['status_request' => 'nonactive','company_id' => $id])->count(),
+      ];
+      return $total;
     }
 
     public function companyDashboard()
-    { 
-        return view("company.dashboard", [
-            'active' => 'dashboard',
-            'total' => $this->total,
-            'total_active_req' => $this->total_active_req,
-            'total_nonactive_req' => $this->total_nonactive_req
-        ]);
+    {
+      $total = $this->getTotal(session('user_id'));
+      return view("company.dashboard", [
+          'active' => 'dashboard',
+          'total' => $this->total,
+          'total_active_req' => $total['active'],
+          'total_nonactive_req' => $total['nonactive']
+      ]);
     }
   
   public function makeOffer(Request $request)
@@ -92,12 +99,12 @@ class CompanyDashboardController extends Controller
   {
   
     $domisili = DB::table('location')->get();
-
+    $total = $this->getTotal(session('user_id'));
     return view('company.talent', [
         'active' => "all",
         'total' => $this->total,
-        'total_active_req' => $this->total_active_req,
-        'total_nonactive_req' => $this->total_nonactive_req,
+        'total_active_req' => $total['active'],
+        'total_nonactive_req' => $total['nonactive'],
         'domisili' => $domisili
     ]);
   }
@@ -198,14 +205,13 @@ class CompanyDashboardController extends Controller
 
   public function request_active(Request $request)
   {
-
-    $company_req = DB::table('company_request')->get();
-
+    $company_req = DB::table('company_request')->where('company_id',session('user_id'))->get();
+    $total = $this->getTotal(session('user_id'));
     return view('company.requests.active',[
       'active' => 'active',
       'total' => $this->total,
-      'total_active_req' => $this->total_active_req,
-      'total_nonactive_req' => $this->total_nonactive_req,
+      'total_active_req' => $total['active'],
+      'total_nonactive_req' => $total['nonactive'],
       'data' => $company_req
     ]);
   }
@@ -227,11 +233,12 @@ class CompanyDashboardController extends Controller
 
   public function request_detail(Request $request)
   {
+    $total = $this->getTotal(session('user_id'));
     return view('company.requests.detail_request',[
       'active' => 'active',
       'total' => $this->total,
-      'total_active_req' => $this->total_active_req,
-      'total_nonactive_req' => $this->total_nonactive_req,
+      'total_active_req' => $total['active'],
+      'total_nonactive_req' => $total['nonactive'],
     ]);
   }
 
