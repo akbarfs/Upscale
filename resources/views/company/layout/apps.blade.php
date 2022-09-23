@@ -12,6 +12,7 @@
     <meta name="_token" content="{{ csrf_token() }}" />
 
     <script src="{{asset('/admin/js/vendor/jquery-3.3.1.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -150,8 +151,7 @@
         @yield('content')
     </div>
 
-    <script src="{{asset('/admin/js/vendor/jquery-3.3.1.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
     <script src="{{asset('/admin/js/plugins.js')}}"></script>
     <script src="{{asset('/admin/js/main.js')}}"></script>
     <script src="{{asset('/js/bootstrap.min.js')}}"></script>

@@ -54,9 +54,9 @@
         </h4>
         <div>
             <button type="button" class="btn btn-secondary rounded edit-request"
-                request="{{ $req->company_request_id }}"><i class="fa fa-pencil-square-o"
-                    aria-hidden="true"></i></button>
-            <button class="btn btn-danger rounded" type="button" data-toggle="modal" data-target="#modal-edit"><i
+                request="{{ $req->company_request_id }}" data-toggle="modal" data-target="#edit-modal"><i
+                    class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button class="btn btn-danger rounded" type="button" data-toggle="modal" data-target="#closed-request"><i
                     class="fa fa-ban" aria-hidden="true"></i></button>
             <a class="btn btn-info rounded" href="{{ route('company.request.detail') }}"><i class="fa fa-info"
                     aria-hidden="true"></i></a>
@@ -66,7 +66,8 @@
     @endif
 </div>
 
-<div class="modal" id="edit-modal">
+
+<div class="modal fade" id="edit-modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -296,7 +297,7 @@
                         var id = $(this).attr('id');
                         deleteSkill(id);
                     })
-                    $('#edit-modal').modal('show');
+                    // $('#edit-modal').modal('show');
                 }
             })
 
