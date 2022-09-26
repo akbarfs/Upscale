@@ -56,8 +56,9 @@
             <button type="button" class="btn btn-secondary rounded edit-request"
                 request="{{ $req->company_request_id }}" data-toggle="modal" data-target="#edit-modal"><i
                     class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button class="btn btn-danger rounded" type="button" data-toggle="modal" data-target="#closed-request"><i
-                    class="fa fa-ban" aria-hidden="true"></i></button>
+            <button class="btn btn-danger rounded close-request" type="button" data-toggle="modal"
+                data-target="#closed-request" request="{{ $req->company_request_id }}"><i class="fa fa-ban"
+                    aria-hidden="true"></i></button>
             <a class="btn btn-info rounded" href="{{ route('company.request.detail') }}"><i class="fa fa-info"
                     aria-hidden="true"></i></a>
         </div>
@@ -66,6 +67,25 @@
     @endif
 </div>
 
+<div class="modal fade" id="closed-request">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold">Caution Information</h5>
+            </div>
+            <div class="modal-body">
+                <p>Apakah kamu yakin ingin menutup request ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
+                <form id="req-close-form" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-success rounded">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="edit-modal">
     <div class="modal-dialog modal-lg">
@@ -350,6 +370,13 @@
             })
 
         })
+
+        $('.close-request').click(function () {
+            var request_id = $(this).attr('request');
+            const _closeurl = `{{ url('company/request/close/') }}`;
+            $('#req-close-form').attr('action', _closeurl + '/' + request_id);
+        })
+
     });
 </script>
 

@@ -79,6 +79,7 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
 
 	Route::post('/request/update/{id}', "CompanyDashboardController@updateOffer")->name('company.request.update');
+	Route::post('/request/close/{id}', "CompanyDashboardController@closeOffer")->name('company.request.close');
 	Route::delete('/request/skill/delete/{id}', "CompanyDashboardController@removeSkillReq")->name('company.request.skill.delete');
 }); 
 

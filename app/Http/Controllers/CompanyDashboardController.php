@@ -132,6 +132,15 @@ class CompanyDashboardController extends Controller
     ]);
   }
 
+  public function closeOffer($id){
+    $company_req = CompanyRequest::find($id);
+    $company_req->status_request = 'nonactive';
+    $company_req->save();
+    return redirect()->route('company.request.active')->with([
+      'message' => 'Company Request Sudah Ditutup'
+    ]);
+  }
+
   public function company_json_skill(Request $request)
   {
       $skill = Skill::select('skill_id as id' ,'skill_name as text', 'skill_name as value')->when($request->q, function($q) use($request){
@@ -253,7 +262,7 @@ class CompanyDashboardController extends Controller
 
   public function request_active()
   {
-    $company_req = DB::table('company_request')->where('company_id',session('user_id'))->get();
+    $company_req = DB::table('company_request')->where('company_id',session('user_id'))->where('status_request','active')->get();
     $total = $this->getTotal(session('user_id'));
     return view('company.requests.active',[
       'active' => 'active',
