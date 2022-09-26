@@ -74,7 +74,7 @@
                 <h4 class="modal-title">Detail Request</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form action="{{ route('company.makeoffer') }}" method="post">
+            <form method="post" id="req-edit-form">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group row">
@@ -131,7 +131,8 @@
                         <label for="skill" class="col-sm-3 col-form-label font-weight-bold">Skill <span
                                 class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <button type="button" class="btn btn-secondary btn-sm rect-border mb-3" id="add-skill">Add
+                            <button type="button" class="btn btn-secondary btn-sm rect-border mb-3"
+                                style="margin-top:20px;" id="add-skill">Add
                                 Skill</button>
                             <div id="category-skill">
                                 <div class="d-flex justify-content-between">
@@ -142,7 +143,6 @@
                                         placeholder="Masukkan pengalaman skill" required>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="form-group row">
@@ -165,7 +165,6 @@
                             </select>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
@@ -175,8 +174,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <script>
@@ -215,12 +212,19 @@
 <script>
     $(document).ready(function () {
         var idx = 1;
+        var status = `{{session('message')}}`;
+
+        if (status) {
+            alert(status);
+        }
 
         $('.rp').autoNumeric('init', {
             aSep: '.',
             aDec: ',',
             mDec: '0'
         });
+
+
 
         function loadInputSkill() {
             $('.skill').select2({
@@ -255,6 +259,8 @@
         $('.edit-request').click(function () {
 
             var request_id = $(this).attr('request');
+            const _editurl = `{{ url('company/request/update/') }}`;
+            $('#req-edit-form').attr('action', _editurl + '/' + request_id);
             const _url = `{{ url('company/request/detail_data/') }}`;
             $.ajax({
                 url: _url + '/' + request_id,
@@ -270,7 +276,7 @@
                     $('#orang').val(request['person_needed']);
                     $('#category-skill').html('');
                     skill.forEach((item, index) => {
-                        var html = `<div class="d-flex justify-content-between mt-4" id="skill_${index+1}">
+                        var html = `<div class="d-flex justify-content-between" style="margin-top:20px;" id="skill_${index+1}">
                             <input type="text" name="skills[]" value="${item['skill_name']}" class="form-control"
                                 placeholder="Masukkan nama skill" required>
                             <h3 class="text-center">&nbsp;-&nbsp;</h3>
@@ -278,27 +284,43 @@
                                 placeholder="Masukkan pengalaman skill" required>
                             <span class="ml-2 pt-2"> Tahun</span>
                             <h3 class="text-center">&nbsp;-&nbsp;</h3>
-                            <a class="btn btn-sm btn-danger rect-border remove-skill" href="javascript:void(0)"
-                                id="${index+1}"><i class="fa fa-trash" style="line-height: 2;" aria-hidden="true"></i></a>
+                            <a class="btn btn-sm btn-danger rect-border delete-skill" href="javascript:void(0)"
+                                id="${item['skill_request_id']}" skill_id="skill_${index+1}"><i class="fa fa-trash"
+                                    style="line-height: 2;" aria-hidden="true"></i></a>
                         </div>`;
-                        if (index == 0) {
-                            html = `<div class="d-flex justify-content-between" id="skill_${index+1}">
-                                <input type="text" name="skills[]" value="${item['skill_name']}" class="form-control"
-                                    placeholder="Masukkan nama skill" required>
-                                <h3 class="text-center">&nbsp;-&nbsp;</h3>
-                                <input type="number" name="skill-exp[]" value="${item['experience']}"
-                                    class="form-control" placeholder="Masukkan pengalaman skill" required>
-                                <span class="ml-2 pt-2"> Tahun</span>
-                            </div>`;
-                        }
                         $('#category-skill').append(html);
                         idx = index + 1;
                     });
+
                     $('.remove-skill').click(function () {
                         var id = $(this).attr('id');
                         deleteSkill(id);
                     })
-                    // $('#edit-modal').modal('show');
+
+                    $('.delete-skill').click(function () {
+                        var id = $(this).attr('id');
+                        var el_id = $(this).attr('skill_id');
+                        var _token = $('meta[name="_token"]').attr(
+                            'content');
+                        var check = confirm(
+                            'Apakah yakin ingin menghapus skill request?');
+                        if (check) {
+                            const delurl =
+                                `{{ url('company/request/skill/delete') }}/${id}`;
+                            $.ajax({
+                                url: delurl,
+                                type: 'DELETE',
+                                data: {
+                                    "id": id,
+                                    "_token": _token,
+                                },
+                                success: function (response) {
+                                    $('#' + el_id).remove();
+                                    alert(response['message']);
+                                }
+                            });
+                        }
+                    })
                 }
             })
 

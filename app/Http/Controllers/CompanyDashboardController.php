@@ -84,6 +84,54 @@ class CompanyDashboardController extends Controller
     return redirect()->back();
   }
 
+  public function updateOffer(Request $request, $id){
+    $validateData = $request->validate([
+      'name_request' => 'required',
+      'type_work' => 'required',
+      'benefit' => 'required',
+      'min_salary' => 'required',
+      'max_salary' => 'required',
+      'person_needed' => 'required|integer|min:1'
+    ]);
+    
+    $validateData['min_salary'] = preg_replace('/[^0-9]/', '', $request->min_salary);
+    $validateData['max_salary'] = preg_replace('/[^0-9]/', '', $request->max_salary);
+
+    $company_req = CompanyRequest::find($id)->update($validateData);
+
+    $validateData2 = $request->validate([
+      'skills' => 'required',
+      'skill-exp' => 'required'
+    ]);
+
+    $count_skill = count($validateData2['skills']);
+
+    for($i = 0; $i<$count_skill; $i++){
+      $comp_id = $id;
+      $skill_id = $validateData2['skills'][$i]; //bisa jadi string berupa namanya
+      $experience = $validateData2['skill-exp'][$i];
+
+      if(is_numeric($skill_id)){
+        SkillRequest::create([
+          'company_request_id' => $comp_id,
+          'skill_id' => $skill_id,
+          'experience' => $experience
+        ]);
+      }else{
+        $get_id_skill = Skill::select('skill_id')->where('skill_name',$skill_id)->first();
+        $check = SkillRequest::where('skill_id', $get_id_skill->skill_id)->where('company_request_id',$comp_id)->first();
+        $skill_req = SkillRequest::where('skill_request_id',$check->skill_request_id)->update([
+          'skill_id' => $get_id_skill->skill_id,
+          'experience' => $experience
+        ]);
+      }
+    }
+    
+    return redirect()->route('company.request.active')->with([
+      'message' => 'Company Request Berhasil Diedit'
+    ]);
+  }
+
   public function company_json_skill(Request $request)
   {
       $skill = Skill::select('skill_id as id' ,'skill_name as text', 'skill_name as value')->when($request->q, function($q) use($request){
@@ -203,7 +251,7 @@ class CompanyDashboardController extends Controller
     ])->render();
   }
 
-  public function request_active(Request $request)
+  public function request_active()
   {
     $company_req = DB::table('company_request')->where('company_id',session('user_id'))->get();
     $total = $this->getTotal(session('user_id'));
@@ -221,7 +269,7 @@ class CompanyDashboardController extends Controller
 
     $skill = DB::table('skill_request')
                 ->join('skill','skill_request.skill_id', '=', 'skill.skill_id')
-                ->select('skill.skill_name','skill_request.experience')
+                ->select('skill.skill_name','skill_request.experience','skill_request.skill_request_id')
                 ->where('skill_request.company_request_id', $id)
                 ->get();
     return response()->json([
@@ -231,7 +279,7 @@ class CompanyDashboardController extends Controller
     );
   }
 
-  public function request_detail(Request $request)
+  public function request_detail()
   {
     $total = $this->getTotal(session('user_id'));
     return view('company.requests.detail_request',[
@@ -245,4 +293,13 @@ class CompanyDashboardController extends Controller
   public function table_talent_request(Request $request){
     return view('company.requests.talent-req-table')->render();
   }
+
+  public function removeSkillReq($id){
+    $skill = SkillRequest::find($id);
+    $skill->delete();
+    return response()->json([
+      'message' => 'Hapus Skill Request Berhasil'
+    ]);
+  }
+
 }
