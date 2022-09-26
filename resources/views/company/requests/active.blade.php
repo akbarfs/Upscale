@@ -255,8 +255,9 @@
         $('.edit-request').click(function () {
 
             var request_id = $(this).attr('request');
+            const _url = `{{ url('company/request/detail_data/') }}`;
             $.ajax({
-                url: "http://localhost:8000/company/request/detail_data/" + request_id,
+                url: _url + '/' + request_id,
                 success: function (response) {
                     var request = response['data'];
                     var skill = response['data2'];

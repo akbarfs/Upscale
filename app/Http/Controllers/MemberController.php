@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Session; 
+use Illuminate\Support\Facades\Session;
 use App\Models\Talent ; 
 use App\Models\Skill ; 
 use App\Models\SkillTalent ;  
@@ -16,8 +16,8 @@ use App\Models\work_experience;
 use App\Models\education; 
 use App\Models\portfolio; 
 use App\Models\CategoryTest; 
-use Storage ;
-use Image ; 
+use Illuminate\Support\Facades\Storage ;
+use Intervention\Image\Facades\Image ; 
 use App\Models\certification;
 use App\Models\interview_test;
 

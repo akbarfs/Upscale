@@ -71,9 +71,15 @@
             @endif
           </td>
           <td style="min-width:200px">
+            @if (!empty($talent->user_id))
             <a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" class="btn btn-info" target="_blank">
               <i class="fa fa-info"></i>
             </a>
+            @else
+            <button type="button" data-toggle="modal" data-target="#detail-user" class="btn btn-info" target="_blank">
+              <i class="fa fa-info"></i>
+            </button>
+            @endif
             <button class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-id="{{$talent->talent_id}}"
               data-toggle="modal">Make A Request</button>
           </td>
@@ -84,6 +90,21 @@
   </div>
 </div>
 
+<div class="modal fade" id="detail-user">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-bold">Caution Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This account does not have detailed information</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <style>
