@@ -50,7 +50,10 @@
     @foreach ($data as $req)
     <div class="p-5 my-2 bg-white shadow d-flex justify-content-between rounded">
         <h4>{{ $req->name_request }} <span class="h6"><strong>0/{{ $req->person_needed }}</strong> dari
-                <strong>...</strong> Talent Pool</span>
+                <strong>{{ $talentpool[$no] }}</strong> Talent Pool</span>
+            @php
+            $no++;
+            @endphp
         </h4>
         <div>
             <button type="button" class="btn btn-secondary rounded edit-request"
@@ -59,8 +62,8 @@
             <button class="btn btn-danger rounded close-request" type="button" data-toggle="modal"
                 data-target="#closed-request" request="{{ $req->company_request_id }}"><i class="fa fa-ban"
                     aria-hidden="true"></i></button>
-            <a class="btn btn-info rounded" href="{{ route('company.request.detail') }}"><i class="fa fa-info"
-                    aria-hidden="true"></i></a>
+            <a class="btn btn-info rounded" href="{{ route('company.request.detail', [$req->company_request_id] ) }}"><i
+                    class="fa fa-info" aria-hidden="true"></i></a>
         </div>
     </div>
     @endforeach

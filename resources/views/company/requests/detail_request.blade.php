@@ -71,8 +71,8 @@
 </div>
 
 <div class="content mt-3">
-    <div class="d-flex justify-content-between m-2">
-        <h4>My Talent (3/3)</h4>
+    <div class="d-flex justify-content-between mt-2">
+        <h4>My Talent (0/{{ $data->person_needed }})</h4>
         <div class="stright-line"></div>
         <button class="btn btn-primary btn-sm rect-border" data-toggle="collapse" data-target="#collapseOne"
             aria-expanded="true" aria-controls="collapseOne">
@@ -80,33 +80,20 @@
         </button>
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="row justify-content-center">
-            
-            <div class="col-sm-4">
-                <div class="content mt-3">
-                    <div class="p-5 my-2 bg-white shadow-sm rounded">
-                        <h4>Test</h4>
+        <div class="row">
+            @for ($i=0;$i<$data->person_needed;$i++)
+                <div class="col-sm-4">
+                    <div class="mt-4">
+                        <div class="p-5 my-2 bg-white shadow-sm rounded">
+                            <h4>Test</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="content mt-3">
-                    <div class="p-5 my-2 bg-white shadow-sm rounded">
-                        <h4>Test</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="content mt-3">
-                    <div class="p-5 my-2 bg-white shadow-sm rounded">
-                        <h4>Test</h4>
-                    </div>
-                </div>
-            </div>
+                @endfor
         </div>
     </div>
     <div class="mt-4">
-        <div class="row justify-content-center m-2">
+        <div class="row justify-content-center">
             <div class="col-sm-2">
                 <div class="d-flex justify-content-between filter-btn rect-border">All<span>0</span></div>
             </div>
@@ -132,12 +119,20 @@
             <!-- ini adalah isi data talent -->
         </div>
     </div>
+
+    <div id="loading" align="center">
+        <div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
 </div>
 
 
 
 <script>
     $(document).ready(function () {
+        var id_request = `{{ $data->company_request_id }}`;
 
         function loadTable(url) {
             // var param = $("#form-search").serialize();
@@ -148,6 +143,9 @@
             $.ajax({
                 url: url,
                 method: "GET",
+                data: {
+                    id_request: id_request
+                },
                 success: function (data) {
                     $('#loading').hide();
                     $("#talent-request").html(data);
@@ -157,6 +155,14 @@
 
         //load pertama kali
         loadTable("{{url('/company/request/talent_data')}}");
+
+        // klik pagination , diambil urlnya langsung di load ajax
+        $(document).on("click", ".page-link", function (event) {
+            $("body").scrollTop(0);
+            var url = $(this).attr("href");
+            loadTable(url);
+            event.preventDefault(); //ini biar ga keredirect ke halaman lain
+        });
     })
 </script>
 

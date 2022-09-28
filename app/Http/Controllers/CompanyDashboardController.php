@@ -262,15 +262,40 @@ class CompanyDashboardController extends Controller
 
   public function request_active()
   {
+    set_time_limit(300);
     $company_req = DB::table('company_request')->where('company_id',session('user_id'))->where('status_request','active')->get();
+
+    $talentpool = [];
+    foreach ($company_req as $req) {
+      array_push($talentpool, $this->getCountTalent($req->company_request_id));
+    }
+
+    $no = 0;
+
     $total = $this->getTotal(session('user_id'));
     return view('company.requests.active',[
       'active' => 'active',
       'total' => $this->total,
       'total_active_req' => $total['active'],
       'total_nonactive_req' => $total['nonactive'],
-      'data' => $company_req
+      'data' => $company_req,
+      'talentpool' => $talentpool,
+      'no' => $no
     ]);
+  }
+
+  public function getCountTalent($id){
+    $company_req = CompanyRequest::find($id);
+
+    $data = Talent::select('talent.talent_id');
+    
+    $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
+    $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
+
+    $data = $data->where('talent.talent_salary','>=',$company_req->min_salary)->where('talent.talent_salary',"<=",$company_req->max_salary);
+    $data = $data->orWhere('talent.talent_lastest_salary','>=',$company_req->min_salary)->where('talent.talent_lastest_salary',"<=",$company_req->max_salary);
+
+    return $data->count();
   }
 
   public function detail_request($id){
@@ -288,19 +313,44 @@ class CompanyDashboardController extends Controller
     );
   }
 
-  public function request_detail()
+  public function request_detail($id)
   {
+    $company_req = CompanyRequest::find($id);
     $total = $this->getTotal(session('user_id'));
     return view('company.requests.detail_request',[
       'active' => 'active',
       'total' => $this->total,
       'total_active_req' => $total['active'],
       'total_nonactive_req' => $total['nonactive'],
+      'data' => $company_req
     ]);
   }
 
   public function table_talent_request(Request $request){
-    return view('company.requests.talent-req-table')->render();
+    $id_request = $request->id_request;
+    $company_req = CompanyRequest::find($id_request);
+    $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id_request)->get();
+
+    $default_query = "*,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
+
+    $data = Talent::select(DB::raw($default_query));
+    
+    $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
+
+    // $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
+
+    $data = $data->where('talent.talent_salary','>=',$company_req->min_salary)->where('talent.talent_salary',"<=",$company_req->max_salary);
+
+    $data = $data->orWhere('talent.talent_lastest_salary','>=',$company_req->min_salary)->where('talent.talent_lastest_salary',"<=",$company_req->max_salary);
+
+    // $data = $data->orWhere('talent.st_skill_id', 1);
+    
+    $data = $data->groupBy("talent_id");
+    $data = $data->paginate(10);
+
+    return view('company.requests.talent-req-table',[
+      'data' => $data
+    ])->render();
   }
 
   public function removeSkillReq($id){

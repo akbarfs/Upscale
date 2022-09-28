@@ -31,40 +31,63 @@
                 </tr>
             </thead>
             <tbody id="container">
+                @foreach ($data as $talent)
                 <tr>
-                    <td scope="col">1.</td>
-                    <td scope="col">Ini gambar</td>
-                    <td scope="col">Ini nama</td>
-                    <td scope="col">Ini skill</td>
-                    <td scope="col">Ini gaji</td>
-                    <td scope="col">Ini ekspektasi</td>
-                    <td scope="col">Ini status</td>
-                    <td scope="col">Ini note</td>
-                    <td scope="col">Ini aksi</td>
+                    <td>{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
+                    <td>
+                        <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 50px; height:50px;" alt="">
+                    </td>
+                    <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
+                    <td style="max-width: 10rem;">{{$result}}</td>
+                    <td style="max-width: 250px">
+                        @foreach ( $talent->talent_skill()->get() as $row )
+                        <?php 
+                            if ( $row->st_skill_verified == "YES"){$badge = 'success'; }
+                            else{$badge = 'light';}
+                            $skill = $row->skill()->first(); 
+                        ?>
+                        <span class="badge badge-{{$badge}}">{{$skill->skill_name}}</span>
+                        @endforeach
+                    </td>
+                    <td>
+                        @if (!empty($talent->gaji))
+                        {{ $talent->gaji }}
+                        @else
+                        -
+                        @endif
+                    </td>
+                    <td>
+                        @if (!empty($talent->expetasi))
+                        {{ $talent->expetasi }}
+                        @else
+                        -
+                        @endif
+                    </td>
+                    <td scope="col">
+                        <select class="form-control" name="status">
+                            <option value="">Interview</option>
+                            <option value="">Ready</option>
+                            <option value="">Keep</option>
+                            <option value="">Reject</option>
+                        </select>
+                    </td>
+                    <td scope="col">-</td>
+                    <td scope="col">
+                        <button class="btn btn-sm btn-success me-2">Move To Top</button>
+                        <button class="btn btn-sm btn-info">Hire Me!</button>
+                    </td>
                 </tr>
-                <tr>
-                    <td scope="col">2.</td>
-                    <td scope="col">Ini gambar</td>
-                    <td scope="col">Ini nama</td>
-                    <td scope="col">Ini skill</td>
-                    <td scope="col">Ini gaji</td>
-                    <td scope="col">Ini ekspektasi</td>
-                    <td scope="col">Ini status</td>
-                    <td scope="col">Ini note</td>
-                    <td scope="col">Ini aksi</td>
-                </tr>
-                <tr>
-                    <td scope="col">3.</td>
-                    <td scope="col">Ini gambar</td>
-                    <td scope="col">Ini nama</td>
-                    <td scope="col">Ini skill</td>
-                    <td scope="col">Ini gaji</td>
-                    <td scope="col">Ini ekspektasi</td>
-                    <td scope="col">Ini status</td>
-                    <td scope="col">Ini note</td>
-                    <td scope="col">Ini aksi</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
+<style>
+    .pagination {
+        float: right;
+    }
+</style>
+
+{{$data->links()}}
+
+<div style="clear: both;"></div>
