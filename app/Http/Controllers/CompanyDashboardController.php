@@ -331,19 +331,21 @@ class CompanyDashboardController extends Controller
     $company_req = CompanyRequest::find($id_request);
     $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id_request)->get();
 
-    $default_query = "*,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
+    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
 
     $data = Talent::select(DB::raw($default_query));
     
     $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
 
-    // $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
+    $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
 
-    $data = $data->where('talent.talent_salary','>=',$company_req->min_salary)->where('talent.talent_salary',"<=",$company_req->max_salary);
+    // $data = $data->where('talent.talent_salary','>=',$company_req->min_salary)->where('talent.talent_salary',"<=",$company_req->max_salary);
 
-    $data = $data->orWhere('talent.talent_lastest_salary','>=',$company_req->min_salary)->where('talent.talent_lastest_salary',"<=",$company_req->max_salary);
+    // $data = $data->orWhere('talent.talent_lastest_salary','>=',$company_req->min_salary)->where('talent.talent_lastest_salary',"<=",$company_req->max_salary);
 
-    // $data = $data->orWhere('talent.st_skill_id', 1);
+    $data = $data->where('skill_talent.st_skill_id', 1);
+
+    // SELECT * FROM talent LEFT JOIN users on users.id = talent.user_id LEFT JOIN skill_talent on skill_talent.st_talent_id = talent.talent_id WHERE ( talent.talent_salary >= 1000000 AND talent.talent_salary <= 3000000) OR (talent.talent_lastest_salary >= 1000000 AND talent.talent_lastest_salary <= 3000000) AND ( skill_talent.st_skill_id = 1) GROUP BY talent.talent_id LIMIT 10
     
     $data = $data->groupBy("talent_id");
     $data = $data->paginate(10);
