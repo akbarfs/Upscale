@@ -51,14 +51,17 @@
                     </td>
                     <td>
                         @if (!empty($talent->gaji))
-                        {{ $talent->gaji }}
+                        @php
+                        $gaji = (int)preg_replace('/[^0-9]/', '', $talent->gaji);
+                        @endphp
+                        @currency($gaji)
                         @else
                         -
                         @endif
                     </td>
                     <td>
                         @if (!empty($talent->expetasi))
-                        {{ $talent->expetasi }}
+                        @currency($talent->expetasi)
                         @else
                         -
                         @endif

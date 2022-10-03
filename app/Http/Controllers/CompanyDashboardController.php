@@ -267,7 +267,7 @@ class CompanyDashboardController extends Controller
 
     $talentpool = [];
     foreach ($company_req as $req) {
-      array_push($talentpool, $this->getCountTalent($req->company_request_id));
+      array_push($talentpool, $this->getTalentRequest($req->company_request_id, 'count'));
     }
 
     $no = 0;
@@ -284,18 +284,37 @@ class CompanyDashboardController extends Controller
     ]);
   }
 
-  public function getCountTalent($id){
+  public function getTalentRequest($id, $type){
     $company_req = CompanyRequest::find($id);
+    $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id)->get();
 
-    $data = Talent::select('talent.talent_id');
+    if($type === 'count'){
+      $data = Talent::select('talent.talent_id');
+    }
+    else{
+      $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
+      $data = Talent::select(DB::raw($default_query));
+    }
     
     $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
     $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
+    $minSalary = $company_req->min_salary;
+    $maxSalary = $company_req->max_salary;
 
-    $data = $data->where('talent.talent_salary','>=',$company_req->min_salary)->where('talent.talent_salary',"<=",$company_req->max_salary);
-    $data = $data->orWhere('talent.talent_lastest_salary','>=',$company_req->min_salary)->where('talent.talent_lastest_salary',"<=",$company_req->max_salary);
+    foreach($skill_req as $skill){
+        $data = $data->orWhere('st_skill_id', $skill->skill_id)->whereRaw('st_skill_id is not null');
+        $data = $data->where(function($q) use($minSalary, $maxSalary){
+          $q->whereBetween('talent_salary', [$minSalary, $maxSalary])->orWhereBetween('talent_lastest_salary', [$minSalary, $maxSalary]);
+        });
+    }
 
-    return $data->count();
+    if($type==='count'){
+      return $data->count();
+    }
+    else{
+      return $data;
+    }
+    
   }
 
   public function detail_request($id){
@@ -329,31 +348,9 @@ class CompanyDashboardController extends Controller
   public function table_talent_request(Request $request){
     set_time_limit(300);
     $id_request = $request->id_request;
-    $company_req = CompanyRequest::find($id_request);
-    $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id_request)->get();
-
-    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
-
-    $data = Talent::select(DB::raw($default_query));
-    
-    $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
-
-    $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
-
-    foreach($skill_req as $skill){
-        $data = $data->orWhere('st_skill_id', $skill->skill_id)->whereRaw('st_skill_id is not null');
-    }
-
-    $minSalary = $company_req->min_salary;
-    $maxSalary = $company_req->max_salary;
-    
-    $data = $data->where(function($q) use($minSalary, $maxSalary){
-      $q->where('talent_lastest_salary','>=', $minSalary)->where('talent_lastest_salary', '<=', $maxSalary)->orWhere('talent_salary','>=', $minSalary)->where('talent_salary', '<=', $maxSalary);
-    });
-    
+    $data = $this->getTalentRequest($id_request,'talent');
     $data = $data->groupBy("talent_id");
     $data = $data->paginate(10);
-
     return view('company.requests.talent-req-table',[
       'data' => $data
     ])->render();

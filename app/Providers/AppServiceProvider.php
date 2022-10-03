@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
@@ -18,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if (config('app.env') !== 'local') {
             $this->app['request']->server->set('HTTPS', true);
+            URL::forceScheme('https');
         }
 
         Schema::defaultStringLength(191);
@@ -56,6 +58,10 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::replacer('format_rp', function ($message, $attribute, $rule, $parameters) {
             return $attribute." : Format rupiah tidak sesuai";
+        });
+
+        Blade::directive('currency', function ( $expression ) { 
+            return "Rp. <?php echo number_format($expression,0,',','.'); ?>"; 
         });
 
     }
