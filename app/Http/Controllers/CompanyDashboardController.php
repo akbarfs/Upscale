@@ -327,6 +327,7 @@ class CompanyDashboardController extends Controller
   }
 
   public function table_talent_request(Request $request){
+    set_time_limit(300);
     $id_request = $request->id_request;
     $company_req = CompanyRequest::find($id_request);
     $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id_request)->get();
@@ -339,13 +340,16 @@ class CompanyDashboardController extends Controller
 
     $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
 
-    // $data = $data->where('talent.talent_salary','>=',$company_req->min_salary)->where('talent.talent_salary',"<=",$company_req->max_salary);
+    foreach($skill_req as $skill){
+        $data = $data->orWhere('st_skill_id', $skill->skill_id)->whereRaw('st_skill_id is not null');
+    }
 
-    // $data = $data->orWhere('talent.talent_lastest_salary','>=',$company_req->min_salary)->where('talent.talent_lastest_salary',"<=",$company_req->max_salary);
-
-    $data = $data->where('skill_talent.st_skill_id', 1);
-
-    // SELECT * FROM talent LEFT JOIN users on users.id = talent.user_id LEFT JOIN skill_talent on skill_talent.st_talent_id = talent.talent_id WHERE ( talent.talent_salary >= 1000000 AND talent.talent_salary <= 3000000) OR (talent.talent_lastest_salary >= 1000000 AND talent.talent_lastest_salary <= 3000000) AND ( skill_talent.st_skill_id = 1) GROUP BY talent.talent_id LIMIT 10
+    $minSalary = $company_req->min_salary;
+    $maxSalary = $company_req->max_salary;
+    
+    $data = $data->where(function($q) use($minSalary, $maxSalary){
+      $q->where('talent_lastest_salary','>=', $minSalary)->where('talent_lastest_salary', '<=', $maxSalary)->orWhere('talent_salary','>=', $minSalary)->where('talent_salary', '<=', $maxSalary);
+    });
     
     $data = $data->groupBy("talent_id");
     $data = $data->paginate(10);
