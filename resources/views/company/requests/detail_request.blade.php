@@ -81,7 +81,6 @@
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="row">
-            @if (!empty($talents))
             @foreach ($talents as $talent)
             <div class="col-sm-4">
                 <div class="mt-4">
@@ -108,7 +107,6 @@
                 </div>
             </div>
             @endforeach
-            @else
             @for ($i=0;$i<$data->person_needed - $count['keep'] ;$i++)
                 <div class="col-sm-4">
                     <div class="mt-4">
@@ -128,7 +126,7 @@
                     </div>
                 </div>
                 @endfor
-                @endif
+
         </div>
     </div>
     <div class="mt-4">

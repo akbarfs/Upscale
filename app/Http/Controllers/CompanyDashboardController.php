@@ -335,6 +335,7 @@ class CompanyDashboardController extends Controller
   public function request_detail($id)
   {
     $company_req = CompanyRequest::find($id);
+
     $talentpool['unprocess'] = $this->getTalentRequest($id,'count');
     $talentpool['interview'] = CompanyReqLog::where('company_request_id',$id)->where('status','interview')->count();
     $talentpool['prospek'] = CompanyReqLog::where('company_request_id',$id)->where('status','prospek')->count();
@@ -343,9 +344,11 @@ class CompanyDashboardController extends Controller
     $talentpool['reject'] = CompanyReqLog::where('company_request_id',$id)->where('status','reject')->count();
     $talentpool['keep'] = CompanyReqLog::where('company_request_id',$id)->where('status','keep')->count();
 
-    // $talentkeep = CompanyReqLog::select('talent.talent_name','talent.talent_phone','talent.talent_email');
-    // $talentkeep = $talentkeep->join("talent", "talent.talent_id","=","company_reg_log.talent_id");
-    // $talentkeep = $talentkeep->where('company_request_id',$id)->get();
+    $talentkeep = DB::table('company_req_log')
+                ->join('talent','company_req_log.talent_id', '=', 'talent.talent_id')
+                ->select('talent.talent_name','talent.talent_phone','talent.talent_email')
+                ->where('.company_request_id', $id)
+                ->get();
 
     $total = $this->getTotal(session('user_id'));
     return view('company.requests.detail_request',[
@@ -355,7 +358,7 @@ class CompanyDashboardController extends Controller
       'total_nonactive_req' => $total['nonactive'],
       'data' => $company_req,
       'count' => $talentpool,
-      // 'talents' => $talentkeep
+      'talents' => $talentkeep
     ]);
   }
 
