@@ -23,7 +23,7 @@
                     <th scope="col">Image</th>
                     <th scope="col">Name</th>
                     <th scope="col">Skills</th>
-                    <th scope="col">Gaji</th>
+                    <th scope="col">Gaji Sekarang</th>
                     <th scope="col">Expetasi Gaji</th>
                     <th scope="col">Status</th>
                     <th scope="col">Note</th>
@@ -68,16 +68,16 @@
                     </td>
                     <td scope="col">
                         <select class="form-control" name="status">
-                            <option value="">Interview</option>
-                            <option value="">Ready</option>
-                            <option value="">Keep</option>
-                            <option value="">Reject</option>
+                            <option value="interview">Interview</option>
+                            <option value="ready">Ready</option>
+                            <option value="keep">Keep</option>
+                            <option value="reject">Reject</option>
                         </select>
                     </td>
                     <td scope="col">-</td>
                     <td scope="col">
-                        <button class="btn btn-sm btn-success me-2">Move To Top</button>
-                        <button class="btn btn-sm btn-info">Hire Me!</button>
+                        <button class="btn btn-sm btn-success rect-border me-2">Move To Top</button>
+                        <button class="btn btn-sm btn-info rect-border">Hire Me!</button>
                     </td>
                 </tr>
                 @endforeach

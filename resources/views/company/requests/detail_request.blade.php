@@ -81,36 +81,81 @@
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="row">
-            @for ($i=0;$i<$data->person_needed;$i++)
+            @if (!empty($talents))
+            @foreach ($talents as $talent)
+            <div class="col-sm-4">
+                <div class="mt-4">
+                    <div class="p-3 my-2 bg-white shadow-sm rounded">
+                        <div class="row">
+                            <div class="col-md-4 m-auto">
+                                <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 100px;" alt="icon-profile">
+                            </div>
+                            <div class="col-md-8">
+                                <h4>{{ $talent->talent_name }}</h4>
+                                <div class="my-2">{{ $talent->talent_email }}</div>
+                                <div class="my-2">{{ $talent->talent_phone }}</div>
+                                <div class="d-flex">
+                                    <select class="form-control">
+                                        <option value="">Offered</option>
+                                        <option value="">Dropdown</option>
+                                        <option value="">Dropdown</option>
+                                    </select>
+                                    <button class="btn btn-warning btn-sm rect-border ml-2">Move To List</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @else
+            @for ($i=0;$i<$data->person_needed - $count['keep'] ;$i++)
                 <div class="col-sm-4">
                     <div class="mt-4">
-                        <div class="p-5 my-2 bg-white shadow-sm rounded">
-                            <h4>Test</h4>
+                        <div class="p-3 my-2 bg-white shadow-sm rounded">
+                            <div class="row">
+                                <div class="col-md-4 m-auto">
+                                    <img src="{{url('/img/avatar/quest.png')}}" style="width: 100px;"
+                                        alt="icon-profile">
+                                </div>
+                                <div class="col-md-8">
+                                    <hr>
+                                    <hr>
+                                    <hr>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 @endfor
+                @endif
         </div>
     </div>
     <div class="mt-4">
         <div class="row justify-content-center">
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">All<span>0</span></div>
+                <div class="d-flex justify-content-between filter-btn rect-border">
+                    Unprocess<span>{{ $count['unprocess'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">VT<span>0</span></div>
+                <div class="d-flex justify-content-between filter-btn rect-border">
+                    Interview<span>{{ $count['interview'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">Interview<span>0</span></div>
+                <div class="d-flex justify-content-between filter-btn rect-border">
+                    Prospek<span>{{ $count['prospek'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">Offered<span>0</span></div>
+                <div class="d-flex justify-content-between filter-btn rect-border">
+                    Offered<span>{{ $count['offered'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">Ready<span>0</span></div>
+                <div class="d-flex justify-content-between filter-btn rect-border">
+                    Hired<span>{{ $count['hired'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">Keep<span>0</span></div>
+                <div class="d-flex justify-content-between filter-btn rect-border">
+                    Reject<span>{{ $count['reject'] }}</span></div>
             </div>
         </div>
     </div>
