@@ -66,21 +66,29 @@ Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
 
 // Company/dashboard
 Route::prefix("company")->middleware(CheckCompany::class)->group(function()
-{
+{	
+	// page dashboard
 	Route::get("/dashboard","CompanyDashboardController@companyDashboard")->name('company.dashboard');
+
+	//page all talent
 	Route::get("/dashboard/talents","CompanyDashboardController@allDatabase")->name('company.dashboard.talent');
 	Route::get("/list/paginate_data","CompanyDashboardController@paginate_data");
-	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
-	Route::get("/json/skill/company","CompanyDashboardController@company_json_skill")->name('json.skill.company');
 
+	//page request
 	Route::get('/request/active', "CompanyDashboardController@request_active")->name('company.request.active');
 	Route::get('/request/active/detail/{id}', "CompanyDashboardController@request_detail")->name('company.request.detail');
 	Route::get("/request/talent_data","CompanyDashboardController@table_talent_request");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
 
+	// request feature
+	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
 	Route::post('/request/update/{id}', "CompanyDashboardController@updateOffer")->name('company.request.update');
 	Route::post('/request/close/{id}', "CompanyDashboardController@closeOffer")->name('company.request.close');
+
+	// support
+	Route::get("/json/skill/company","CompanyDashboardController@company_json_skill")->name('json.skill.company');
 	Route::delete('/request/skill/delete/{id}', "CompanyDashboardController@removeSkillReq")->name('company.request.skill.delete');
+	
 }); 
 
 
