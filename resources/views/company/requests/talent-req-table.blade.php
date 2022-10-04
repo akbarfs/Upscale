@@ -76,7 +76,13 @@
                     </td>
                     <td scope="col">-</td>
                     <td scope="col">
-                        <button class="btn btn-sm btn-success rect-border me-2">Move To Top</button>
+                        <form
+                            action="{{ route('company.request.keeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
+                            method="POST" class="d-flex">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-success rect-border me-2">MoveTo Top</button>
+                        </form>
+
                         <button class="btn btn-sm btn-info rect-border">Hire Me!</button>
                     </td>
                 </tr>

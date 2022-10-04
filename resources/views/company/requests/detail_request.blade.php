@@ -99,7 +99,14 @@
                                         <option value="">Dropdown</option>
                                         <option value="">Dropdown</option>
                                     </select>
-                                    <button class="btn btn-warning btn-sm rect-border ml-2">Move To List</button>
+                                    <form
+                                        action="{{ route('company.request.unkeeptalent', ['id_request'=>$data->company_request_id, 'id_talent'=>$talent->talent_id] ) }}"
+                                        method="POST" class="d-flex">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-warning rect-border ml-2">MoveTo
+                                            List</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -117,9 +124,10 @@
                                         alt="icon-profile">
                                 </div>
                                 <div class="col-md-8">
-                                    <hr>
-                                    <hr>
-                                    <hr>
+                                    <hr style="margin: 32px 0;">
+                                    <hr style="margin: 32px 0;">
+                                    <hr style="margin: 32px 0;">
+                                    <hr style="margin: 34px 0;">
                                 </div>
                             </div>
                         </div>
@@ -176,6 +184,12 @@
 <script>
     $(document).ready(function () {
         var id_request = `{{ $data->company_request_id }}`;
+
+        var status = `{{session('message')}}`;
+
+        if (status) {
+            alert(status);
+        }
 
         function loadTable(url) {
             // var param = $("#form-search").serialize();

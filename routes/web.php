@@ -84,6 +84,8 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
 	Route::post('/request/update/{id}', "CompanyDashboardController@updateOffer")->name('company.request.update');
 	Route::post('/request/close/{id}', "CompanyDashboardController@closeOffer")->name('company.request.close');
+	Route::post('/request/keeptalent/{id_request}/{id_talent}', "CompanyDashboardController@keepTalent")->name('company.request.keeptalent');
+	Route::delete('/request/unkeeptalent/{id_request}/{id_talent}', "CompanyDashboardController@unkeepTalent")->name('company.request.unkeeptalent');
 
 	// support
 	Route::get("/json/skill/company","CompanyDashboardController@company_json_skill")->name('json.skill.company');

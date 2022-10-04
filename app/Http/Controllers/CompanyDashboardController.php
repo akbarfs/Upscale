@@ -346,8 +346,9 @@ class CompanyDashboardController extends Controller
 
     $talentkeep = DB::table('company_req_log')
                 ->join('talent','company_req_log.talent_id', '=', 'talent.talent_id')
-                ->select('talent.talent_name','talent.talent_phone','talent.talent_email')
-                ->where('.company_request_id', $id)
+                ->select('talent.talent_id','talent.talent_name','talent.talent_phone','talent.talent_email')
+                ->where('company_request_id', $id)
+                ->where('status', 'keep')
                 ->get();
 
     $total = $this->getTotal(session('user_id'));
@@ -369,8 +370,28 @@ class CompanyDashboardController extends Controller
     $data = $data->groupBy("talent_id");
     $data = $data->paginate(10);
     return view('company.requests.talent-req-table',[
-      'data' => $data
+      'data' => $data,
+      'id_request' => $id_request
     ])->render();
+  }
+
+  public function keepTalent(Request $request){
+    CompanyReqLog::create([
+      'company_request_id' => $request->id_request,
+      'talent_id' => $request->id_talent,
+      'status' => 'keep'
+    ]);
+    return redirect()->route('company.request.detail', $request->id_request)->with([
+      'message' => 'Talent Sudah Dikeep'
+    ]);
+  }
+
+  public function unkeepTalent(Request $request){
+    $talentreq = CompanyReqLog::where('company_request_id',$request->id_request)->where('talent_id', $request->id_talent)->first();
+    $talentreq->delete();
+    return redirect()->route('company.request.detail', $request->id_request)->with([
+      'message' => 'Talent Batal Dikeep'
+    ]);
   }
 
   public function removeSkillReq($id){
