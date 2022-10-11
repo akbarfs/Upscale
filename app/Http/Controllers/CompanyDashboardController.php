@@ -342,13 +342,13 @@ class CompanyDashboardController extends Controller
     $talentpool['offered'] = CompanyReqLog::where('company_request_id',$id)->where('status','offered')->count();
     $talentpool['hired'] = CompanyReqLog::where('company_request_id',$id)->where('status','hired')->count();
     $talentpool['reject'] = CompanyReqLog::where('company_request_id',$id)->where('status','reject')->count();
-    $talentpool['keep'] = CompanyReqLog::where('company_request_id',$id)->where('status','keep')->count();
+    $talentpool['bookmark'] = CompanyReqLog::where('company_request_id',$id)->where('bookmark','true')->count();
 
     $talentkeep = DB::table('company_req_log')
                 ->join('talent','company_req_log.talent_id', '=', 'talent.talent_id')
                 ->select('talent.talent_id','talent.talent_name','talent.talent_phone','talent.talent_email')
                 ->where('company_request_id', $id)
-                ->where('status', 'keep')
+                ->where('bookmark', 'true')
                 ->get();
 
     $total = $this->getTotal(session('user_id'));
@@ -379,10 +379,10 @@ class CompanyDashboardController extends Controller
     CompanyReqLog::create([
       'company_request_id' => $request->id_request,
       'talent_id' => $request->id_talent,
-      'status' => 'keep'
+      'bookmark' => 'true'
     ]);
     return redirect()->route('company.request.detail', $request->id_request)->with([
-      'message' => 'Talent Sudah Dikeep'
+      'message' => 'Talent Sudah Dibookmark'
     ]);
   }
 
@@ -390,7 +390,7 @@ class CompanyDashboardController extends Controller
     $talentreq = CompanyReqLog::where('company_request_id',$request->id_request)->where('talent_id', $request->id_talent)->first();
     $talentreq->delete();
     return redirect()->route('company.request.detail', $request->id_request)->with([
-      'message' => 'Talent Batal Dikeep'
+      'message' => 'Talent Batal Dibookmark'
     ]);
   }
 

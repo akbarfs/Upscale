@@ -84,27 +84,31 @@
             @foreach ($talents as $talent)
             <div class="col-sm-4">
                 <div class="mt-4">
-                    <div class="p-3 my-2 bg-white shadow-sm rounded">
+                    <div class="p-3 my-2 bg-white shadow-sm rounded" style="height: 200px;">
                         <div class="row">
                             <div class="col-md-4 m-auto">
                                 <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 100px;" alt="icon-profile">
                             </div>
                             <div class="col-md-8">
                                 <h4>{{ $talent->talent_name }}</h4>
-                                <div class="my-2">{{ $talent->talent_email }}</div>
+                                <div class="my-2" style="overflow-wrap: break-word;">{{ $talent->talent_email }}</div>
                                 <div class="my-2">{{ $talent->talent_phone }}</div>
                                 <div class="d-flex">
-                                    <select class="form-control">
-                                        <option value="">Offered</option>
-                                        <option value="">Dropdown</option>
-                                        <option value="">Dropdown</option>
+                                    <select class="form-control status" name="status">
+                                        <option value="unprocess">Unprocess</option>
+                                        <option value="interview">Interview</option>
+                                        <option value="prospek">Prospek</option>
+                                        <option value="offered">Offered</option>
+                                        <option value="hired">Hired</option>
+                                        <option value="reject">Reject</option>
                                     </select>
                                     <form
                                         action="{{ route('company.request.unkeeptalent', ['id_request'=>$data->company_request_id, 'id_talent'=>$talent->talent_id] ) }}"
-                                        method="POST" class="d-flex">
+                                        method="POST" style="margin-bottom: 0; ">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-warning rect-border ml-2">MoveTo
+                                        <button type="submit" class="btn btn-sm btn-warning rect-border ml-2"
+                                            style="padding-bottom: 10px; ">Move To
                                             List</button>
                                     </form>
                                 </div>
@@ -114,7 +118,7 @@
                 </div>
             </div>
             @endforeach
-            @for ($i=0;$i<$data->person_needed - $count['keep'] ;$i++)
+            @for ($i=0;$i<$data->person_needed - $count['bookmark'] ;$i++)
                 <div class="col-sm-4">
                     <div class="mt-4">
                         <div class="p-3 my-2 bg-white shadow-sm rounded">
@@ -220,6 +224,7 @@
             loadTable(url);
             event.preventDefault(); //ini biar ga keredirect ke halaman lain
         });
+
     })
 </script>
 

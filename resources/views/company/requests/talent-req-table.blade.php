@@ -67,23 +67,27 @@
                         @endif
                     </td>
                     <td scope="col">
-                        <select class="form-control" name="status">
+                        <select class="form-control status" name="status">
+                            <option value="unprocess">Unprocess</option>
                             <option value="interview">Interview</option>
-                            <option value="ready">Ready</option>
-                            <option value="keep">Keep</option>
+                            <option value="prospek">Prospek</option>
+                            <option value="offered">Offered</option>
+                            <option value="hired">Hired</option>
                             <option value="reject">Reject</option>
                         </select>
                     </td>
                     <td scope="col">-</td>
                     <td scope="col">
-                        <form
-                            action="{{ route('company.request.keeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
-                            method="POST" class="d-flex">
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-success rect-border me-2">MoveTo Top</button>
-                        </form>
-
-                        <button class="btn btn-sm btn-info rect-border">Hire Me!</button>
+                        <div class="d-flex">
+                            <form
+                                action="{{ route('company.request.keeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
+                                method="POST" style="margin-bottom: 0;">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-success rect-border me-2">MoveTo
+                                    Top</button>
+                            </form>
+                            <button class="btn btn-sm btn-info rect-border ml-2">Hire Me!</button>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
@@ -100,3 +104,11 @@
 {{$data->links()}}
 
 <div style="clear: both;"></div>
+
+<script>
+    $(document).ready(function () {
+        $('.status').on('change', function () {
+            alert(this.value);
+        });
+    })
+</script>
