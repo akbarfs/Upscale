@@ -276,8 +276,13 @@ class CompanyDashboardController extends Controller
   public function table_talent_request(Request $request){
     set_time_limit(300);
     $id_request = $request->id_request;
-    $data = $this->getTalentRequest($id_request,'talent');
-    $data = $data->groupBy("talent_id");
+    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status";
+    $data = Talent::select(DB::raw($default_query));
+    $data = $data->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id");
+    $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
+    $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
+    $data = $data->where("company_req_log.company_request_id", $id_request);
+    $data = $data->groupBy("talent.talent_id");
     $data = $data->paginate(10);
     return view('company.requests.talent-req-table',[
       'data' => $data,
@@ -290,17 +295,19 @@ class CompanyDashboardController extends Controller
   public function getTalentRequest($id, $type){
     $company_req = CompanyRequest::find($id);
     $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id)->get();
-
-    if($type === 'count'){
-      $data = Talent::select('talent.talent_id');
-    }
-    else{
-      $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
-      $data = Talent::select(DB::raw($default_query));
-    }
+    $data = Talent::select('talent.talent_id');
+    // if($type === 'count'){
+    //   $data = Talent::select('talent.talent_id');
+    // }
+    // else{
+    //   $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
+    //   $data = Talent::select(DB::raw($default_query));
+    // }
     
     $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
     $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
+    // $data = $data->join("company_req_log", "talent.talent_id","=","company_req_log.talent_id","LEFT");
+    // $data = $data->where("company_req_log.company_request_id", $id);
     $minSalary = $company_req->min_salary;
     $maxSalary = $company_req->max_salary;
 

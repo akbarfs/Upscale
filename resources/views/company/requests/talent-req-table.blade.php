@@ -67,13 +67,17 @@
                         @endif
                     </td>
                     <td scope="col">
-                        <select class="form-control status" name="status">
-                            <option value="unprocess">Unprocess</option>
-                            <option value="interview">Interview</option>
-                            <option value="prospek">Prospek</option>
-                            <option value="offered">Offered</option>
-                            <option value="hired">Hired</option>
-                            <option value="reject">Reject</option>
+                        <select class="form-control status" id_talent={{ $talent->talent_id }} name="status">
+                            <option value="unprocess" {{ $talent->status == "unprocess" ? "selected":"" }}>Unprocess
+                            </option>
+                            <option value="interview" {{ $talent->status == "interview" ? "selected":"" }}>Interview
+                            </option>
+                            <option value="prospek" {{ $talent->status == "prospek" ? "selected":"" }}>Prospek
+                            </option>
+                            <option value="offered" {{ $talent->status == "offered" ? "selected":"" }}>Offered
+                            </option>
+                            <option value="hired" {{ $talent->status == "hired" ? "selected":"" }}>Hired</option>
+                            <option value="reject" {{ $talent->status == "reject" ? "selected":"" }}>Reject</option>
                         </select>
                     </td>
                     <td scope="col">-</td>
@@ -83,7 +87,7 @@
                                 action="{{ route('company.request.keeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
                                 method="POST" style="margin-bottom: 0;">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-success rect-border me-2">MoveTo
+                                <button type="submit" class="btn btn-sm btn-success rect-border me-2">Move To
                                     Top</button>
                             </form>
                             <button class="btn btn-sm btn-info rect-border ml-2">Hire Me!</button>
@@ -108,19 +112,26 @@
 <script>
     $(document).ready(function () {
         $('.status').on('change', function () {
+            var id_request = `{{ $id_request }}`;
             var status = this.value;
-            // $.ajax({
-            //     url: url,
-            //     method: "GET",
-            //     data: {
-            //         id_request: id_request,
-            //         status: status
-            //     },
-            //     success: function (data) {
-            //         $('#loading').hide();
-            //         $("#talent-request").html(data);
-            //     }
-            // });
+            var id_talent = $(this).attr('id_talent')
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                url: "{{ route('company.request.changestatus')}}",
+                method: "POST",
+                data: {
+                    id_request: id_request,
+                    status: status,
+                    id_talent: id_talent
+                },
+                success: function (data) {
+                    if (data['status'] == 'success') {
+                        location.reload();
+                    }
+                }
+            });
         });
     })
 </script>
