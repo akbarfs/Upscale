@@ -18,30 +18,46 @@ use Illuminate\Support\Facades\DB;
 class CompanyDashboardController extends Controller
 {
 
-    public function __construct()
-    {
-      $this->total  = DB::table('talent')->count();
-    }
+  public function __construct()
+  {
+    $this->total  = DB::table('talent')->count();
+  }
 
-    public function getTotal($id){
-      $total = [
-        'active' => DB::table('company_request')->where(['status_request' => 'active','company_id' => $id])->count(),
-        'nonactive' => DB::table('company_request')->where(['status_request' => 'nonactive','company_id' => $id])->count(),
-      ];
-      return $total;
-    }
+  public function getTotal($id){
+    $total = [
+      'active' => DB::table('company_request')->where(['status_request' => 'active','company_id' => $id])->count(),
+      'nonactive' => DB::table('company_request')->where(['status_request' => 'nonactive','company_id' => $id])->count(),
+    ];
+    return $total;
+  }
 
-    public function companyDashboard()
-    {
-      $total = $this->getTotal(session('user_id'));
-      return view("company.dashboard", [
-          'active' => 'dashboard',
-          'total' => $this->total,
-          'total_active_req' => $total['active'],
-          'total_nonactive_req' => $total['nonactive']
-      ]);
-    }
+  public function companyDashboard()
+  {
+    $total = $this->getTotal(session('user_id'));
+    return view("company.dashboard", [
+        'active' => 'dashboard',
+        'total' => $this->total,
+        'total_active_req' => $total['active'],
+        'total_nonactive_req' => $total['nonactive']
+    ]);
+  }
+
+    // ALL TALENT
+  public function allDatabase()
+  {
   
+    $domisili = DB::table('location')->get();
+    $total = $this->getTotal(session('user_id'));
+    return view('company.talent', [
+        'active' => "all",
+        'total' => $this->total,
+        'total_active_req' => $total['active'],
+        'total_nonactive_req' => $total['nonactive'],
+        'domisili' => $domisili
+    ]);
+  }
+  
+    // REQUEST FEATURE
   public function makeOffer(Request $request)
   {
 
@@ -74,10 +90,21 @@ class CompanyDashboardController extends Controller
       $comp_id = $request_id;
       $skill_id = $validateData2['skills'][$i];
       $experience = $validateData2['skill-exp'][$i];
-      $skill_req = SkillRequest::create([
+      SkillRequest::create([
         'company_request_id' => $comp_id,
         'skill_id' => $skill_id,
         'experience' => $experience
+      ]);
+    }
+
+    $talents = $this->getTalentRequest($request_id,'talent');
+    $talents = $talents->get();
+    foreach($talents as $talent){
+      CompanyReqLog::create([
+        'company_request_id' => $request_id,
+        'talent_id' => $talent->talent_id,
+        'status' => 'unprocess',
+        'bookmark' => 'false'
       ]);
     }
 
@@ -97,7 +124,7 @@ class CompanyDashboardController extends Controller
     $validateData['min_salary'] = preg_replace('/[^0-9]/', '', $request->min_salary);
     $validateData['max_salary'] = preg_replace('/[^0-9]/', '', $request->max_salary);
 
-    $company_req = CompanyRequest::find($id)->update($validateData);
+    CompanyRequest::find($id)->update($validateData);
 
     $validateData2 = $request->validate([
       'skills' => 'required',
@@ -120,7 +147,7 @@ class CompanyDashboardController extends Controller
       }else{
         $get_id_skill = Skill::select('skill_id')->where('skill_name',$skill_id)->first();
         $check = SkillRequest::where('skill_id', $get_id_skill->skill_id)->where('company_request_id',$comp_id)->first();
-        $skill_req = SkillRequest::where('skill_request_id',$check->skill_request_id)->update([
+        SkillRequest::where('skill_request_id',$check->skill_request_id)->update([
           'skill_id' => $get_id_skill->skill_id,
           'experience' => $experience
         ]);
@@ -140,7 +167,8 @@ class CompanyDashboardController extends Controller
       'message' => 'Company Request Sudah Ditutup'
     ]);
   }
-
+  
+  // GET DATA FUNCTION
   public function company_json_skill(Request $request)
   {
       $skill = Skill::select('skill_id as id' ,'skill_name as text', 'skill_name as value')->when($request->q, function($q) use($request){
@@ -152,19 +180,6 @@ class CompanyDashboardController extends Controller
       return response()->json($skill);
   }
   
-  public function allDatabase()
-  {
-  
-    $domisili = DB::table('location')->get();
-    $total = $this->getTotal(session('user_id'));
-    return view('company.talent', [
-        'active' => "all",
-        'total' => $this->total,
-        'total_active_req' => $total['active'],
-        'total_nonactive_req' => $total['nonactive'],
-        'domisili' => $domisili
-    ]);
-  }
 
   public function paginate_data(Request $request)
   {
@@ -173,8 +188,6 @@ class CompanyDashboardController extends Controller
     $data = Talent::select(DB::raw($default_query));
     
     $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
-
-    // Request
 
     // filter domisili
     if($request->domisili != 'Domisili'){
@@ -260,30 +273,20 @@ class CompanyDashboardController extends Controller
     ])->render();
   }
 
-  public function request_active()
-  {
+  public function table_talent_request(Request $request){
     set_time_limit(300);
-    $company_req = DB::table('company_request')->where('company_id',session('user_id'))->where('status_request','active')->get();
-
-    $talentpool = [];
-    foreach ($company_req as $req) {
-      array_push($talentpool, $this->getTalentRequest($req->company_request_id, 'count'));
-    }
-
-    $no = 0;
-
-    $total = $this->getTotal(session('user_id'));
-    return view('company.requests.active',[
-      'active' => 'active',
-      'total' => $this->total,
-      'total_active_req' => $total['active'],
-      'total_nonactive_req' => $total['nonactive'],
-      'data' => $company_req,
-      'talentpool' => $talentpool,
-      'no' => $no
-    ]);
+    $id_request = $request->id_request;
+    $data = $this->getTalentRequest($id_request,'talent');
+    $data = $data->groupBy("talent_id");
+    $data = $data->paginate(10);
+    return view('company.requests.talent-req-table',[
+      'data' => $data,
+      'id_request' => $id_request
+    ])->render();
   }
 
+
+  // REQUEST ACTIVE FEATURE
   public function getTalentRequest($id, $type){
     $company_req = CompanyRequest::find($id);
     $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id)->get();
@@ -317,6 +320,30 @@ class CompanyDashboardController extends Controller
     
   }
 
+  public function request_active()
+  {
+    set_time_limit(300);
+    $company_req = DB::table('company_request')->where('company_id',session('user_id'))->where('status_request','active')->get();
+
+    $talentpool = [];
+    foreach ($company_req as $req) {
+      array_push($talentpool, $this->getTalentRequest($req->company_request_id, 'count'));
+    }
+
+    $no = 0;
+
+    $total = $this->getTotal(session('user_id'));
+    return view('company.requests.active',[
+      'active' => 'active',
+      'total' => $this->total,
+      'total_active_req' => $total['active'],
+      'total_nonactive_req' => $total['nonactive'],
+      'data' => $company_req,
+      'talentpool' => $talentpool,
+      'no' => $no
+    ]);
+  }
+
   public function detail_request($id){
     $company_req = DB::table('company_request')->where('company_request_id',$id)->first();
 
@@ -325,6 +352,7 @@ class CompanyDashboardController extends Controller
                 ->select('skill.skill_name','skill_request.experience','skill_request.skill_request_id')
                 ->where('skill_request.company_request_id', $id)
                 ->get();
+
     return response()->json([
       'data' =>$company_req,
       'data2' => $skill
@@ -336,7 +364,7 @@ class CompanyDashboardController extends Controller
   {
     $company_req = CompanyRequest::find($id);
 
-    $talentpool['unprocess'] = $this->getTalentRequest($id,'count');
+    $talentpool['unprocess'] = CompanyReqLog::where('company_request_id',$id)->where('status','unprocess')->count();
     $talentpool['interview'] = CompanyReqLog::where('company_request_id',$id)->where('status','interview')->count();
     $talentpool['prospek'] = CompanyReqLog::where('company_request_id',$id)->where('status','prospek')->count();
     $talentpool['offered'] = CompanyReqLog::where('company_request_id',$id)->where('status','offered')->count();
@@ -363,32 +391,35 @@ class CompanyDashboardController extends Controller
     ]);
   }
 
-  public function table_talent_request(Request $request){
-    set_time_limit(300);
-    $id_request = $request->id_request;
-    $data = $this->getTalentRequest($id_request,'talent');
-    $data = $data->groupBy("talent_id");
-    $data = $data->paginate(10);
-    return view('company.requests.talent-req-table',[
-      'data' => $data,
-      'id_request' => $id_request
-    ])->render();
-  }
-
   public function keepTalent(Request $request){
-    CompanyReqLog::create([
-      'company_request_id' => $request->id_request,
-      'talent_id' => $request->id_talent,
-      'bookmark' => 'true'
-    ]);
-    return redirect()->route('company.request.detail', $request->id_request)->with([
-      'message' => 'Talent Sudah Dibookmark'
-    ]);
+    $total_bookmark = CompanyReqLog::where('company_request_id',$request->id_request)->where('bookmark','true')->count();
+    $req_need = CompanyRequest::select('person_needed')->where('company_request_id',$request->id_request)->first();
+    if($total_bookmark < $req_need->person_needed){
+      $talent = CompanyReqLog::where('company_request_id',$request->id_request)->where('talent_id',$request->id_talent)->first();
+      if($talent->bookmark == 'true'){
+        return redirect()->route('company.request.detail', $request->id_request)->with([
+          'message' => 'Talent telah dibookmark'
+        ]);
+      }else{
+        $talent->bookmark = 'true';
+        $talent->save();
+        return redirect()->route('company.request.detail', $request->id_request)->with([
+          'message' => 'Talent dibookmark'
+        ]);
+      }
+    }else{
+      return redirect()->route('company.request.detail', $request->id_request)->with([
+        'message' => 'Bookmark mencapai batas'
+      ]);
+    }
+
+    
   }
 
   public function unkeepTalent(Request $request){
-    $talentreq = CompanyReqLog::where('company_request_id',$request->id_request)->where('talent_id', $request->id_talent)->first();
-    $talentreq->delete();
+    $talent = CompanyReqLog::where('company_request_id',$request->id_request)->where('talent_id', $request->id_talent)->first();
+    $talent->bookmark = 'false';
+    $talent->save();
     return redirect()->route('company.request.detail', $request->id_request)->with([
       'message' => 'Talent Batal Dibookmark'
     ]);
@@ -399,6 +430,15 @@ class CompanyDashboardController extends Controller
     $skill->delete();
     return response()->json([
       'message' => 'Hapus Skill Request Berhasil'
+    ]);
+  }
+
+  public function changeStatusTalent(Request $request){
+    $talent = CompanyReqLog::where('company_request_id',$request->id_request)->where('talent_id', $request->id_talent)->first();
+    $talent->status = $request->status;
+    $talent->save();
+    return response()->json([
+      'status' => 'success'
     ]);
   }
 

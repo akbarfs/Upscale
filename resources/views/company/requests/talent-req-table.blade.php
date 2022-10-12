@@ -107,8 +107,21 @@
 
 <script>
     $(document).ready(function () {
+        var id_request = `{{ $data->company_request_id }}`;
         $('.status').on('change', function () {
-            alert(this.value);
+            var status = this.value;
+            $.ajax({
+                url: url,
+                method: "GET",
+                data: {
+                    id_request: id_request,
+                    status: status
+                },
+                success: function (data) {
+                    $('#loading').hide();
+                    $("#talent-request").html(data);
+                }
+            });
         });
     })
 </script>
