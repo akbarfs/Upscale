@@ -26,7 +26,7 @@
     }
 
     .filter-btn {
-        background-color: darkgray;
+        background-color: gray;
         padding: 10px;
         color: white;
         text-align: center;
@@ -34,11 +34,11 @@
     }
 
     .filter-btn:hover {
-        background-color: gray;
+        background-color: darkgray;
     }
 
     .filter-btn span {
-        background-color: aliceblue;
+        background-color: white;
         font-weight: bold;
         color: black;
         padding: 0 5px;
@@ -86,14 +86,17 @@
                 <div class="mt-4">
                     <div class="p-3 my-2 bg-white shadow-sm rounded" style="height: 200px;">
                         <div class="row">
-                            <div class="col-md-4 m-auto">
-                                <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 100px;" alt="icon-profile">
+                            <div class="col-md-3 m-auto">
+                                <img src="{{url('/img/avatar/noimage.jpg')}}" alt="icon-profile">
                             </div>
-                            <div class="col-md-8">
-                                <h4>{{ $talent->talent_name }}</h4>
-                                <div class="my-2" style="overflow-wrap: break-word;">{{ $talent->talent_email }}</div>
-                                <div class="my-2">{{ $talent->talent_phone }}</div>
-                                <div class="d-flex">
+                            <div class="col-md-9">
+                                <div class="overflow-auto" style="height: 100px;">
+                                    <h5>{{ $talent->talent_name }}</h5>
+                                    <div class="my-1" style="overflow-wrap: break-word;">{{ $talent->talent_email }}
+                                    </div>
+                                    <div class="my-1">{{ $talent->talent_phone }}</div>
+                                </div>
+                                <div class="d-flex mt-4">
                                     <select class="form-control status" name="status">
                                         <option value="unprocess">Unprocess</option>
                                         <option value="interview">Interview</option>

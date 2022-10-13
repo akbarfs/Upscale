@@ -14,13 +14,33 @@
     }
 </style>
 
+<div class="modal fade" id="hire-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center px-5">
+                <i class="fa fa-envelope" aria-hidden="true" style="font-size: 70px;"></i>
+                <div class="form-check m-4">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Saya sudah membaca profile ... dan saya tertarik
+                        dengan talent ini</label>
+                </div>
+                <p>Saya ingin menjadwalkan meet dengan talent tersebut. Tolong hubungi saya</p>
+                <button class="btn btn-success rect-border mt-3">Kirim Permintaan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card rect-border">
     <div class="card-body">
         <table class="table table-striped mt-4 mb-4">
-            <thead>
+            <thead class="text-center">
                 <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Image</th>
+                    <th scope="col" class="text-center">No.</th>
+                    <th scope="col" class="text-center">Image</th>
                     <th scope="col">Name</th>
                     <th scope="col">Skills</th>
                     <th scope="col">Gaji Sekarang</th>
@@ -33,8 +53,8 @@
             <tbody id="container">
                 @foreach ($data as $talent)
                 <tr>
-                    <td>{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
-                    <td>
+                    <td class="text-center">{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
+                    <td class="text-center">
                         <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 50px; height:50px;" alt="">
                     </td>
                     <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
@@ -90,7 +110,8 @@
                                 <button type="submit" class="btn btn-sm btn-success rect-border me-2">Move To
                                     Top</button>
                             </form>
-                            <button class="btn btn-sm btn-info rect-border ml-2">Hire Me!</button>
+                            <button class="btn btn-sm btn-info rect-border ml-2" data-target="#hire-modal"
+                                data-id="{{$talent->talent_id}}" data-toggle="modal">Hire Me!</button>
                         </div>
                     </td>
                 </tr>
