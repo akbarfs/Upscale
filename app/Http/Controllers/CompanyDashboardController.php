@@ -296,6 +296,11 @@ class CompanyDashboardController extends Controller
     $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
     $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
     $data = $data->where("company_req_log.company_request_id", $id_request);
+    
+    if(!empty($request->status)){
+      $data = $data->where("company_req_log.status", $request->status);
+    }
+
     $data = $data->groupBy("talent.talent_id");
     $data = $data->paginate(10);
     return view('company.requests.talent-req-table',[

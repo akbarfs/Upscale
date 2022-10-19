@@ -158,27 +158,27 @@
     <div class="mt-4">
         <div class="row justify-content-center">
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">
+                <div class="d-flex justify-content-between filter-btn rect-border" id="unprocess">
                     Unprocess<span>{{ $count['unprocess'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">
+                <div class="d-flex justify-content-between filter-btn rect-border" id="interview">
                     Interview<span>{{ $count['interview'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">
+                <div class="d-flex justify-content-between filter-btn rect-border" id="prospek">
                     Prospek<span>{{ $count['prospek'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">
+                <div class="d-flex justify-content-between filter-btn rect-border" id="offered">
                     Offered<span>{{ $count['offered'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">
+                <div class="d-flex justify-content-between filter-btn rect-border" id="hired">
                     Hired<span>{{ $count['hired'] }}</span></div>
             </div>
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border">
+                <div class="d-flex justify-content-between filter-btn rect-border" id="reject">
                     Reject<span>{{ $count['reject'] }}</span></div>
             </div>
         </div>
@@ -238,6 +238,13 @@
             loadTable(url);
             event.preventDefault(); //ini biar ga keredirect ke halaman lain
         });
+
+        $('.filter-btn').on('click',function(){
+            var identifier = $(this).attr('id');
+            url = `{{url('/company/request/talent_data?status=${identifier}')}}`
+            loadTable(url);
+            event.preventDefault();
+        })
 
     })
 </script>
