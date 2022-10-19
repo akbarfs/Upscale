@@ -80,7 +80,10 @@
                     </td>
                     <td>
                         @if (!empty($talent->expetasi))
-                        @currency($talent->expetasi)
+                        @php
+                           $expetasi = (int)preg_replace('/[^0-9]/', '', $talent->expetasi);
+                        @endphp
+                        @currency($expetasi)
                         @else
                         -
                         @endif

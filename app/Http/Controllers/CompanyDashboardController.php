@@ -60,7 +60,7 @@ class CompanyDashboardController extends Controller
     // REQUEST FEATURE
   public function makeOffer(Request $request)
   {
-
+    set_time_limit(300);
     $validateData = $request->validate([
       'name_request' => 'required',
       'type_work' => 'required',
@@ -112,6 +112,7 @@ class CompanyDashboardController extends Controller
   }
 
   public function updateOffer(Request $request, $id){
+    set_time_limit(300);
     $validateData = $request->validate([
       'name_request' => 'required',
       'type_work' => 'required',
