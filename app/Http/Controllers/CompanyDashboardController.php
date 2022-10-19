@@ -381,7 +381,7 @@ class CompanyDashboardController extends Controller
 
     $talentkeep = DB::table('company_req_log')
                 ->join('talent','company_req_log.talent_id', '=', 'talent.talent_id')
-                ->select('talent.talent_id','talent.talent_name','talent.talent_phone','talent.talent_email')
+                ->select('talent.talent_id','talent.talent_name','talent.talent_phone','talent.talent_email','status')
                 ->where('company_request_id', $id)
                 ->where('bookmark', 'true')
                 ->get();

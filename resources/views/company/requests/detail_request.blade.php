@@ -97,13 +97,24 @@
                                     <div class="my-1">{{ $talent->talent_phone }}</div>
                                 </div>
                                 <div class="d-flex mt-4">
-                                    <select class="form-control status" name="status">
-                                        <option value="unprocess">Unprocess</option>
-                                        <option value="interview">Interview</option>
-                                        <option value="prospek">Prospek</option>
-                                        <option value="offered">Offered</option>
-                                        <option value="hired">Hired</option>
-                                        <option value="reject">Reject</option>
+                                    <select class="form-control status" name="status"
+                                        id_talent={{ $talent->talent_id }}>
+                                        <option value="unprocess" {{ $talent->status == "unprocess" ? "selected":"" }}>
+                                            Unprocess
+                                        </option>
+                                        <option value="interview" {{ $talent->status == "interview" ? "selected":"" }}>
+                                            Interview
+                                        </option>
+                                        <option value="prospek" {{ $talent->status == "prospek" ? "selected":"" }}>
+                                            Prospek
+                                        </option>
+                                        <option value="offered" {{ $talent->status == "offered" ? "selected":"" }}>
+                                            Offered
+                                        </option>
+                                        <option value="hired" {{ $talent->status == "hired" ? "selected":"" }}>Hired
+                                        </option>
+                                        <option value="reject" {{ $talent->status == "reject" ? "selected":"" }}>Reject
+                                        </option>
                                     </select>
                                     <form
                                         action="{{ route('company.request.unkeeptalent', ['id_request'=>$data->company_request_id, 'id_talent'=>$talent->talent_id] ) }}"

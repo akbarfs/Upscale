@@ -134,7 +134,7 @@
         $('.status').on('change', function () {
             var id_request = `{{ $id_request }}`;
             var status = this.value;
-            var id_talent = $(this).attr('id_talent')
+            var id_talent = $(this).attr('id_talent');
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
