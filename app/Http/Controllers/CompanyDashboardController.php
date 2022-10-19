@@ -153,6 +153,19 @@ class CompanyDashboardController extends Controller
         ]);
       }
     }
+
+    CompanyReqLog::where('company_request_id',$id)->delete();
+    $talents = $this->getTalentRequest($id,'talent');
+    $talents = $talents->get();
+    foreach($talents as $talent){
+      CompanyReqLog::create([
+        'company_request_id' => $id,
+        'talent_id' => $talent->talent_id,
+        'status' => 'unprocess',
+        'bookmark' => 'false'
+      ]);
+    }
+
     
     return redirect()->route('company.request.active')->with([
       'message' => 'Company Request Berhasil Diedit'
