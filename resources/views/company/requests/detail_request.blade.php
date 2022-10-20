@@ -96,10 +96,13 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="overflow-auto" style="height: 100px;">
-                                    <h5>{{ $talent->talent_name }}</h5>
-                                    <div class="my-1" style="overflow-wrap: break-word;">{{ $talent->talent_email }}
+                                    <?php $result = substr($talent->talent_name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->talent_name, 1));?>
+                                    <h5 style="overflow-wrap: break-word;">{{ $result }}</h5>
+                                    <?php $result2 = substr($talent->talent_email, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->talent_email, 1));?>
+                                    <div class="my-1" style="overflow-wrap: break-word;">{{ $result2 }}
                                     </div>
-                                    <div class="my-1">{{ $talent->talent_phone }}</div>
+                                    <?php $result3 = substr($talent->talent_phone, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->talent_phone, 1));?>
+                                    <div class="my-1">{{ $result3 }}</div>
                                 </div>
                                 <div class="d-flex mt-4">
                                     <select class="form-control status" name="status"
