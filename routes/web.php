@@ -69,6 +69,9 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 {	
 	// page dashboard
 	Route::get("/dashboard","CompanyDashboardController@companyDashboard")->name('company.dashboard');
+	Route::get('/dashboard/getInfoReq',"CompanyDashboardController@get_info_req")->name('company.dashboard.getInfoReq');
+	Route::post('/dashboard/addTalentReq',"CompanyDashboardController@addTalentReq");
+
 
 	//page all talent
 	Route::get("/dashboard/talents","CompanyDashboardController@allDatabase")->name('company.dashboard.talent');
@@ -79,7 +82,7 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::get('/request/active/detail/{id}', "CompanyDashboardController@request_detail")->name('company.request.detail');
 	Route::get("/request/talent_data","CompanyDashboardController@table_talent_request");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
-	Route::post('/dashboard/makereq',"CompanyDashboardController@makeReq");
+	
 
 
 	// request feature

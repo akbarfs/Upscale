@@ -12,6 +12,10 @@
   .table thead th {
     height: 50px !important;
   }
+
+  .select2-container {
+  width: 100% !important;
+  }
 </style>
 
 <div class="card rect-border">
@@ -145,13 +149,15 @@
         <div class="modal-title">Add To My Request</div>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <form action="" method="post" enctype="multipart/form-data" class="request-offer">
+      <form method="post" enctype="multipart/form-data" class="request-offer">
       @csrf
       <div class="modal-body">
           <div class="form-group">
-            <label for="myrequest">My Request</label>
-            <div class="mt-4">
-              <select class="form-control" id="request" name="name_request"></select>
+            <p class="text-center" id="note-need"></p>
+            <div class="row justify-content-center mt-4">
+              <div class="col-md-10">
+                <select class="form-control" id="request" name="name_request"></select>
+              </div>
             </div>
           </div>
       </div>
@@ -170,13 +176,21 @@
   $(document).ready(function () {
     $('#modal-offer').on('show.bs.modal', function (e) {
       var talent_id = e.relatedTarget.dataset.id;
-      var url = "id";
-      const _url = `{{ url('company/dashboard/makereq?talent_id=${talent_id}') }}`;
+      const _url = `{{ url('company/dashboard/addTalentReq?talent_id=${talent_id}') }}`;
       $('.request-offer').attr('action', _url);
-      console.log(id);
-      console.log($('.request-offer'));
-      console.log(e.relatedTarget)
     })
+
+    $('#request').on('change', function (e) {
+      var value = $(this).val();
+      const _url = `{{ url('company/dashboard/getInfoReq?id_request=${value}') }}`
+      $.ajax({
+        url: _url,
+        success: function (data) {
+          var content = `<strong>${data['hired']}/${data['need']}</strong> dari total <strong>${data['total']}</strong> Talent`;
+          $("#note-need").html(content);
+        }
+      });
+    });
 
     loadSelect();
 

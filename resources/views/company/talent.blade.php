@@ -397,6 +397,11 @@
 
 <script>
     $(document).ready(function () {
+        var status = `{{session('message')}}`;
+
+        if (status) {
+        alert(status);
+        }
         // CKEDITOR.replace('benefit', {
         //     language: 'en-gb'
         // });

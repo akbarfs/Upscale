@@ -97,7 +97,7 @@ class CompanyDashboardController extends Controller
       ]);
     }
 
-    $talents = $this->getTalentRequest($request_id,'talent');
+    $talents = $this->getTalentRequest($request_id);
     $talents = $talents->get();
     foreach($talents as $talent){
       CompanyReqLog::create([
@@ -156,7 +156,7 @@ class CompanyDashboardController extends Controller
     }
 
     CompanyReqLog::where('company_request_id',$id)->delete();
-    $talents = $this->getTalentRequest($id,'talent');
+    $talents = $this->getTalentRequest($id);
     $talents = $talents->get();
     foreach($talents as $talent){
       CompanyReqLog::create([
@@ -311,22 +311,12 @@ class CompanyDashboardController extends Controller
 
 
   // REQUEST ACTIVE FEATURE
-  public function getTalentRequest($id, $type){
+  public function getTalentRequest($id){
     $company_req = CompanyRequest::find($id);
     $skill_req = SkillRequest::select('skill_id')->where('company_request_id',$id)->get();
     $data = Talent::select('talent.talent_id');
-    // if($type === 'count'){
-    //   $data = Talent::select('talent.talent_id');
-    // }
-    // else{
-    //   $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji";
-    //   $data = Talent::select(DB::raw($default_query));
-    // }
-    
     $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
     $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
-    // $data = $data->join("company_req_log", "talent.talent_id","=","company_req_log.talent_id","LEFT");
-    // $data = $data->where("company_req_log.company_request_id", $id);
     $minSalary = $company_req->min_salary;
     $maxSalary = $company_req->max_salary;
 
@@ -336,14 +326,7 @@ class CompanyDashboardController extends Controller
           $q->whereBetween('talent_salary', [$minSalary, $maxSalary])->orWhereBetween('talent_lastest_salary', [$minSalary, $maxSalary]);
         });
     }
-
-    if($type==='count'){
-      return $data->count();
-    }
-    else{
-      return $data;
-    }
-    
+    return $data;
   }
 
   public function request_active()
@@ -353,7 +336,8 @@ class CompanyDashboardController extends Controller
 
     $talentpool = [];
     foreach ($company_req as $req) {
-      array_push($talentpool, $this->getTalentRequest($req->company_request_id, 'count'));
+      $count = CompanyReqLog::where('company_request_id', $req->company_request_id)->count();
+      array_push($talentpool, $count);
     }
 
     $no = 0;
@@ -467,17 +451,16 @@ class CompanyDashboardController extends Controller
       'status' => 'success'
     ]);
   }
-  public function makeReq(Request $request){
+  public function addTalentReq(Request $request){
     $validateData = $request->validate([
       'name_request' => 'required',
     ]);
 
-    // $talent = Talent::find($talent_id);
     $request_id = $request->name_request;
     $talent = $request->talent_id;
-    $company_req_log = CompanyReqLog::select('company_request_id','talent_id')->first();
+    $check = CompanyReqLog::where('company_request_id', $request_id)->where('talent_id', $talent)->count();
 
-    if($company_req_log->company_request_id == $request_id && $company_req_log->talent_id == $talent){
+    if($check > 0){
       return redirect()->route('company.dashboard.talent')->with([
         'message' => 'Talent sudah ada di list request'
       ]);  
@@ -505,6 +488,18 @@ class CompanyDashboardController extends Controller
 
     $company_req = $company_req->get();
     return response()->json($company_req);
+  }
+
+  public function get_info_req(Request $request){
+    $id = $request->id_request;
+    $company_req = CompanyRequest::select('person_needed')->where('company_request_id',$id)->first();
+    $total_talentpool = CompanyReqLog::where('company_request_id',$id)->count();
+    $total_talenthired = CompanyReqLog::where('status','hired')->where('company_request_id',$id)->count();
+    return response()->json([
+      "need" => $company_req->person_needed,
+      "total" => $total_talentpool,
+      "hired" => $total_talenthired
+    ]);
   }
 
 }
