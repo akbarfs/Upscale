@@ -49,7 +49,8 @@
     @else
     @foreach ($data as $req)
     <div class="p-5 my-2 bg-white shadow d-flex justify-content-between rounded">
-        <h4>{{ $req->name_request }} <span class="h6"><strong>0/{{ $req->person_needed }}</strong> dari
+        <h4>{{ $req->name_request }} <span class="h6"><strong>{{ $talenthired[$no] }}/{{ $req->person_needed }}</strong>
+                dari
                 <strong>{{ $talentpool[$no] }}</strong> Talent Pool</span>
             @php
             $no++;

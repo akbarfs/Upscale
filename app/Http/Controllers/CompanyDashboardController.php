@@ -335,9 +335,12 @@ class CompanyDashboardController extends Controller
     $company_req = DB::table('company_request')->where('company_id',session('user_id'))->where('status_request','active')->get();
 
     $talentpool = [];
+    $talenthired = [];
     foreach ($company_req as $req) {
       $count = CompanyReqLog::where('company_request_id', $req->company_request_id)->count();
       array_push($talentpool, $count);
+      $count2 = CompanyReqLog::where('company_request_id',$req->company_request_id)->where('status','hired')->count();
+      array_push($talenthired, $count2);
     }
 
     $no = 0;
@@ -350,13 +353,14 @@ class CompanyDashboardController extends Controller
       'total_nonactive_req' => $total['nonactive'],
       'data' => $company_req,
       'talentpool' => $talentpool,
+      'talenthired' => $talenthired,
       'no' => $no
     ]);
   }
 
   public function detail_request($id){
     $company_req = DB::table('company_request')->where('company_request_id',$id)->first();
-
+    $company_req = (object)$company_req;
     $skill = DB::table('skill_request')
                 ->join('skill','skill_request.skill_id', '=', 'skill.skill_id')
                 ->select('skill.skill_name','skill_request.experience','skill_request.skill_request_id')
@@ -373,6 +377,7 @@ class CompanyDashboardController extends Controller
   public function request_detail($id)
   {
     $company_req = CompanyRequest::find($id);
+    $company_req['hired'] = CompanyReqLog::where('company_request_id',$id)->where('status','hired')->count();
 
     $talentpool['unprocess'] = CompanyReqLog::where('company_request_id',$id)->where('status','unprocess')->count();
     $talentpool['interview'] = CompanyReqLog::where('company_request_id',$id)->where('status','interview')->count();
@@ -444,11 +449,22 @@ class CompanyDashboardController extends Controller
   }
 
   public function changeStatusTalent(Request $request){
+    $data = CompanyRequest::select('person_needed')->where('company_request_id',$request->id_request)->first();
     $talent = CompanyReqLog::where('company_request_id',$request->id_request)->where('talent_id', $request->id_talent)->first();
+    if($request->status == 'hired'){
+      $hired = CompanyReqLog::where('company_request_id',$request->id_request)->where('status', 'hired')->count();
+      if($hired == $data->person_needed ){
+        return response()->json([
+          'status' => 'failed',
+          'message' => 'Maksimum batas hired telah tercapai',
+        ]);
+      }
+    }
     $talent->status = $request->status;
     $talent->save();
     return response()->json([
-      'status' => 'success'
+      'status' => 'success',
+      'message' => 'Status talent telah diubah'
     ]);
   }
   public function addTalentReq(Request $request){

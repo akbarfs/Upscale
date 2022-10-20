@@ -150,9 +150,8 @@
                     id_talent: id_talent
                 },
                 success: function (data) {
-                    if (data['status'] == 'success') {
-                        location.reload();
-                    }
+                    alert(data['message']);
+                    location.reload();
                 }
             });
         });

@@ -77,7 +77,7 @@
 
 <div class="content mt-3">
     <div class="d-flex justify-content-between mt-2">
-        <h4>My Talent (0/{{ $data->person_needed }})</h4>
+        <h4>My Talent ({{ $data->hired }}/{{ $data->person_needed }})</h4>
         <div class="stright-line"></div>
         <button class="btn btn-primary btn-sm rect-border" data-toggle="collapse" data-target="#collapseOne"
             aria-expanded="true" aria-controls="collapseOne">
