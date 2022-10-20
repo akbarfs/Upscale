@@ -145,25 +145,22 @@
         <div class="modal-title">Add To My Request</div>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+      <form action="" method="post" enctype="multipart/form-data" class="request-offer">
+      @csrf
       <div class="modal-body">
-        <form action="" class="request-offer">
           <div class="form-group">
             <label for="myrequest">My Request</label>
-            <select class="form-control" id="request">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
+            <div class="mt-4">
+              <select class="form-control" id="request" name="name_request"></select>
+            </div>
           </div>
-        </form>
       </div>
       <div class="modal-footer">
         <div class="nav nav-pills pull-right">
           <button type="submit" class="btn btn-success rounded">Add</button>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -172,12 +169,42 @@
 <script>
   $(document).ready(function () {
     $('#modal-offer').on('show.bs.modal', function (e) {
-      var id = e.relatedTarget.dataset.id;
+      var talent_id = e.relatedTarget.dataset.id;
       var url = "id";
-      $('.request-offer').attr('action', 'https://' + id + '.com');
+      const _url = `{{ url('company/dashboard/makereq?talent_id=${talent_id}') }}`;
+      $('.request-offer').attr('action', _url);
       console.log(id);
       console.log($('.request-offer'));
       console.log(e.relatedTarget)
     })
+
+    loadSelect();
+
   })
+
+  function loadSelect() {
+    $("#request").select2({
+      theme: "bootstrap",
+      placeholder: "Pilih Request",
+      ajax:{
+        url: '{{route("json.comp_req.company")}}',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+            var results = [];
+            $.each(data, function (index, item) {
+                results.push({
+                    id: item.id,
+                    text: item.value,
+                });
+            });
+            return {
+                results: results
+            }
+        },
+        cache: false
+      },
+    });
+  }
+
 </script>

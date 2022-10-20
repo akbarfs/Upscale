@@ -79,6 +79,8 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::get('/request/active/detail/{id}', "CompanyDashboardController@request_detail")->name('company.request.detail');
 	Route::get("/request/talent_data","CompanyDashboardController@table_talent_request");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
+	Route::post('/dashboard/makereq',"CompanyDashboardController@makeReq");
+
 
 	// request feature
 	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
@@ -90,6 +92,7 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 
 	// support
 	Route::get("/json/skill/company","CompanyDashboardController@company_json_skill")->name('json.skill.company');
+	Route::get("/json/comp_req/company","CompanyDashboardController@company_json_CompReq")->name('json.comp_req.company');
 	Route::delete('/request/skill/delete/{id}', "CompanyDashboardController@removeSkillReq")->name('company.request.skill.delete');
 	
 }); 

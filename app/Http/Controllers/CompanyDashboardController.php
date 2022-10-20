@@ -467,5 +467,44 @@ class CompanyDashboardController extends Controller
       'status' => 'success'
     ]);
   }
+  public function makeReq(Request $request){
+    $validateData = $request->validate([
+      'name_request' => 'required',
+    ]);
+
+    // $talent = Talent::find($talent_id);
+    $request_id = $request->name_request;
+    $talent = $request->talent_id;
+    $company_req_log = CompanyReqLog::select('company_request_id','talent_id')->first();
+
+    if($company_req_log->company_request_id == $request_id && $company_req_log->talent_id == $talent){
+      return redirect()->route('company.dashboard.talent')->with([
+        'message' => 'Talent sudah ada di list request'
+      ]);  
+    }else{
+      CompanyReqLog::create([
+        'company_request_id' => $request_id,
+        'talent_id' => $talent,
+        'status' => 'unprocess',
+        'bookmark' => 'false'
+      ]);
+  
+      return redirect()->route('company.dashboard.talent')->with([
+        'message' => 'Talent berhasil ditambahkan di request'
+      ]);
+  
+    }
+
+  }
+
+  public function company_json_CompReq(Request $request)
+  {
+    $company_req = CompanyRequest::select('company_request_id as id' ,'name_request as text', 'name_request as value')->where('company_id',session('user_id'))->when($request->q, function($q) use($request){
+      $q->where('name_request','like','%'.$request->q.'%');
+    });
+
+    $company_req = $company_req->get();
+    return response()->json($company_req);
+  }
 
 }
