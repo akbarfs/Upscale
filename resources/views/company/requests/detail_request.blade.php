@@ -26,15 +26,20 @@
     }
 
     .filter-btn {
-        background-color: gray;
+        background-color: skyblue;
         padding: 10px;
         color: white;
         text-align: center;
         cursor: pointer;
+        font-weight: bold;
+    }
+
+    .filter-btn.active{
+        background-color: darkcyan;
     }
 
     .filter-btn:hover {
-        background-color: darkgray;
+        background-color: darkcyan;
     }
 
     .filter-btn span {
@@ -243,6 +248,8 @@
             var identifier = $(this).attr('id');
             url = `{{url('/company/request/talent_data?status=${identifier}')}}`
             loadTable(url);
+            $(".filter-btn").removeClass("active");
+            $('#'+identifier).addClass("active");
             event.preventDefault();
         })
 
