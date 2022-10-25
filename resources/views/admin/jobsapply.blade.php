@@ -12,6 +12,9 @@
     .nav-link {
         padding : 4px 14px !important;
     }
+    .fade{
+        background-color: transparent;
+    }
 </style>
 
 <div class="breadcrumbs">
@@ -25,10 +28,43 @@
     <div class="col-sm-8">
         <div class="page-header float-right">
             <div class="page-title">
-                <ol class="breadcrumb text-right">
+                <ol class="breadcrumb text-right" style="position:relative;">
+                    <div style="cursor:pointer;font-size:16px;margin-right:12px;" data-target="#notification" data-toggle="modal"><i class="fa fa-bell"></i></div>
                     <li><a href="{{route('dashboard')}}">Dashboard</a></li>
                     <li class="active">Jobs Apply</li>
-                </ol>
+
+                    <!-- notif -->
+                    <div class="modal fade" id="notification" style="background-color:transparent;">
+                        <div class="modal-dialog" style="position:absolute;top:15px;right:200px;">
+                            <div class="modal-content" style="width:260px;">
+                                <form method="post" enctype="multipart/form-data" class="hire-talent">
+                                @csrf
+                                <div style="background-color:#b3b3b3;padding:10px;">
+                                    <div>
+                                        <a href="#" style="display:flex;flex-direction:row;gap:9px;">
+                                            <div style="width:31px;height:31px;background-color:#ffffff;"></div>
+                                            <p style="width:176px;font-size:11px;color:#000000;line-height:13px;">Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>Pelita</strong></p>
+                                            <p style="font-size:8px;color:#000000;line-height:10px;">1d</p>
+                                        </a>
+                                        <div style="height:1px;width:100%;background-color:#9b9b9b;margin-bottom:4px;"></div>
+                                    </div>
+                                    <div>
+                                        <a href="#" style="display:flex;flex-direction:row;gap:9px;">
+                                            <div style="width:31px;height:31px;background-color:#ffffff;"></div>
+                                            <p style="width:176px;font-size:11px;color:#000000;line-height:13px;">Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>Pelita</strong></p>
+                                            <p style="font-size:8px;color:#000000;line-height:10px;">1d</p>
+                                        </a>
+                                        <div style="height:1px;width:100%;background-color:#9b9b9b;margin-bottom:4px;"></div>
+                                    </div>
+
+                                    <button style="background-color:#ffffff;color:black;width: 100%;font-size:11px;height:fit-content;border:none;margin-top:14px;">Lihat semua notifikasi</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </ol>                
             </div>
         </div>
     </div>
@@ -90,6 +126,19 @@
                             <button style="margin-left: 3px;" id="delete" name="delete" class="btn btn-danger " type="button"><i class="fa fa-trash"></i> Delete Selected</button>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col">
+                            <div class="row">
+                                <label for="Company">Client : </label>
+                                <input type="text" style="width:147px;margin-left:9px;margin-bottom:9px;">
+                            </div>
+                            <div class="row">
+                                <label for="Talent">Talent : </label>
+                                <input type="text" style="width:147px;margin-left:9px;">                                
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

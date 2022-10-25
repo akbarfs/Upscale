@@ -518,4 +518,16 @@ class CompanyDashboardController extends Controller
     ]);
   }
 
+  public function hireTalent(Request $request){
+    $company_id = session('user_id');
+    $talent_id = $request->talent_id;
+    // $company_request = $request->id_request; 
+
+    return response()->json([
+      'talent_id' => $talent_id,
+      'company_id' => $company_id,
+      // 'company_request' => $company_request,
+    ]);
+  }
+
 }

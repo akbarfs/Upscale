@@ -20,6 +20,8 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+            <form method="post" enctype="multipart/form-data" class="hire-talent">
+            @csrf
             <div class="modal-body text-center px-5">
                 <i class="fa fa-envelope" aria-hidden="true" style="font-size: 70px;"></i>
                 <div class="form-check m-4">
@@ -29,6 +31,7 @@
                 <p>Saya ingin menjadwalkan meet dengan talent tersebut. Tolong hubungi saya</p>
                 <button class="btn btn-success rect-border mt-3" id="send-request" disabled>Kirim Permintaan</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -112,7 +115,7 @@
                                 <button type="submit" class="btn btn-sm btn-success rect-border me-2">Move To
                                     Top</button>
                             </form>
-                            <button class="btn btn-sm btn-info rect-border ml-2 hire" data-target="#hire-modal"
+                            <button class="btn btn-sm btn-info rect-border ml-2 hire" data-target="#hire-modal" data-id="{{$talent->talent_id}}"
                                 name-talent="{{$result}}" data-toggle="modal">Hire Me!</button>
                         </div>
                     </td>
@@ -169,6 +172,13 @@
             } else {
                 $('#send-request').attr('disabled', true)
             }
+        })
+
+        $('#hire-modal').on('show.bs.modal', function (e) {
+            var talent_id = e.relatedTarget.dataset.id;
+            var id_request = `{{ $id_request }}`;
+            const _url = `{{ url('company/dashboard/hireTalent?talent_id=${talent_id}') }}`;
+            $('.hire-talent').attr('action', _url);
         })
 
     })

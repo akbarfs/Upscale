@@ -71,6 +71,7 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::get("/dashboard","CompanyDashboardController@companyDashboard")->name('company.dashboard');
 	Route::get('/dashboard/getInfoReq',"CompanyDashboardController@get_info_req")->name('company.dashboard.getInfoReq');
 	Route::post('/dashboard/addTalentReq',"CompanyDashboardController@addTalentReq");
+	Route::post('/dashboard/hireTalent',"CompanyDashboardController@hireTalent");
 
 
 	//page all talent
