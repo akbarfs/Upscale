@@ -11,6 +11,7 @@ use App\Models\Talent;
 use App\Models\CompanyRequest;
 use App\Models\CompanyReqLog;
 use App\Models\SkillRequest;
+use App\Models\HireTalent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -521,13 +522,34 @@ class CompanyDashboardController extends Controller
   public function hireTalent(Request $request){
     $company_id = session('user_id');
     $talent_id = $request->talent_id;
-    // $company_request = $request->id_request; 
+    //belum diambil id company req
+    $company_request = '2';
+    $check = HireTalent::where('hire_talent_talent_id', $talent_id)->where('hire_talent_company_id', $company_id)->count();
 
-    return response()->json([
-      'talent_id' => $talent_id,
-      'company_id' => $company_id,
-      // 'company_request' => $company_request,
-    ]);
+    if($check > 0){
+      return redirect()->route('company.request.detail', $company_request)->with([
+        'message' => 'Talent sudah di Hire'
+      ]);  
+    }else{
+      HireTalent::create([
+        'hire_talent_talent_id' => $talent_id,
+        'hire_talent_company_id' => $company_id,
+        'hire_talent_company_request_id' => $company_request,
+
+      ]);
+  
+      return redirect()->route('company.request.detail', $company_request)->with([
+        'message' => 'Talent berhasil di Hire'
+      ]);
+  
+    }
+
+
+  //   return response()->json([
+  //     'talent_id' => $talent_id,
+  //     'company_id' => $company_id,
+  //     'company_request' => $company_request,
+  //   ]);
   }
 
 }

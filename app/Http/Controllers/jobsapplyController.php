@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Location;
 use App\Models\Bootcamp;
 use App\Models\Talent;
+use App\Models\HireTalent;
 use Yajra\Datatables\Datatables;
 use App\Models\Job_apply;
 use App\Models\Interview;
@@ -944,5 +945,4 @@ class jobsapplyController extends Controller
       
 
     }
-
 }

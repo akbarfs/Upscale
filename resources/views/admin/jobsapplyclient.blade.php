@@ -35,8 +35,32 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right" style="position:relative;">
+                    <div style="cursor:pointer;font-size:16px;margin-right:12px;" data-target="#notification" data-toggle="modal"><i class="fa fa-bell"></i></div>
                     <li><a href="{{route('dashboard')}}">Dashboard</a></li>
                     <li class="active">Jobs Apply</li>
+
+                    <!-- notif -->
+                    <div class="modal fade" id="notification" style="background-color:transparent;">
+                        <div class="modal-dialog" style="position:absolute;top:15px;right:200px;">
+                            <div class="modal-content" style="width:260px;">
+                                <form method="post" enctype="multipart/form-data" class="hire-talent">
+                                @csrf
+                                <div style="background-color:#b3b3b3;padding:10px;">
+                                    <div>
+                                        <a href="#" style="display:flex;flex-direction:row;gap:9px;" class="id_notif">
+                                            <div style="width:31px;height:31px;background-color:#ffffff;" class="img-company"></div>
+                                            <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;"></p>
+                                            <p style="font-size:8px;color:#000000;line-height:10px;">1d</p>
+                                        </a>
+                                        <div style="height:1px;width:100%;background-color:#9b9b9b;margin-bottom:4px;"></div>
+                                    </div>
+                                    <button style="background-color:#ffffff;color:black;width: 100%;font-size:11px;height:fit-content;border:none;margin-top:14px;">Lihat semua notifikasi</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </ol>                
             </div>
         </div>
@@ -99,6 +123,19 @@
                             <button style="margin-left: 3px;" id="delete" name="delete" class="btn btn-danger " type="button"><i class="fa fa-trash"></i> Delete Selected</button>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col">
+                            <div class="row">
+                                <label for="Company">Client : </label>
+                                <input type="text" style="width:147px;margin-left:9px;margin-bottom:9px;">
+                            </div>
+                            <div class="row">
+                                <label for="Talent">Talent : </label>
+                                <input type="text" style="width:147px;margin-left:9px;" id="talent_id">                                
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -108,30 +145,22 @@
                         <nav>
                           <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
                             
-                            <a class="nav-item nav-link  active" data-toggle="tab" href="#unprocess" role="tab" aria-controls="nav-home" aria-selected="true"><strong>NEW</strong> 
+                            <a class="nav-item nav-link  active" data-toggle="tab" href="#unprocess" role="tab" aria-controls="nav-home" aria-selected="true"><strong>Unprocess</strong> 
                                 <span class="badge badge-primary">{{$countU}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#testonline" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>VT</strong> 
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#testonline" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Interview</strong> 
                                 <span class="badge badge-primary">{{$countTO}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#interview" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Interview</strong> 
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#interview" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Prospek</strong> 
                                  <span class="badge badge-primary">{{$countI}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#tc" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>TC</strong>
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#tc" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Offered</strong>
                                  <span class="badge badge-primary">{{$countTC}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#offered" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Offered</strong> 
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#offered" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Hired</strong> 
                                  <span class="badge badge-primary">{{$countO}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#ready" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Ready</strong> 
-                                <span class="badge badge-primary">{{$countRD}}</span>
-                            </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#keep" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Keep</strong> 
-{{--                                 <span class="badge badge-primary">{{$countK}}</span> --}}
-                            </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#hired" role="tab" aria-controls="nav-contact" aria-selected="false"><strong>Hired</strong> 
-{{--                                 <span class="badge badge-primary">{{$countH}}</span>--}}                            </a>
-                            <a class="nav-item nav-link" data-toggle="tab" href="#reject" role="tab" aria-controls="nav-contact" aria-selected="false"><strong>Rejected</strong> 
+                            <a class="nav-item nav-link" data-toggle="tab" href="#reject" role="tab" aria-controls="nav-contact" aria-selected="false"><strong>Reject</strong> 
 {{--                                 <span class="badge badge-primary">{{$countR}}</span>
  --}}                            </a>
                             <a class="nav-item nav-link" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="false"><strong>All</strong> 
@@ -152,6 +181,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -167,6 +197,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -182,6 +213,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -198,6 +230,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <th>Name</th>
                                                 <th>Contact</th>
@@ -212,6 +245,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -228,6 +262,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -244,6 +279,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -259,6 +295,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -275,6 +312,7 @@
                                             <tr>
                                                 <th></th>
                                                 <th>Position</th>
+                                                <th>Client</th>
                                                 <th>Current City</th>
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
@@ -290,7 +328,7 @@
                                                 <tr>
                                                     <th></th>
                                                     <th>Position</th>
-
+                                                    <th>Client</th>
                                                     <th>Current City</th>
                                                     <!-- <th>Type</th> -->
                                                     <th>Name</th>
@@ -1441,6 +1479,19 @@ $(document).on('click', 'a[href="#offered"]', function(e){
     }
     
 });
+
+$('.fa-bell').on('click', function () {
+    const _url = `{{ url('admin/jobsapplyclient/getInfoTalent') }}`
+      $.ajax({
+        url: _url,
+        success: function (data) {
+            var id= `${data['id_hire_talent']}`;
+            var content = `Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>${data['nama_talent']}</strong>`;
+            $('.notif').html(content);
+            $('.id_notif').attr("href", `{{url('admin/jobsapplyclient/notif?id=${id}')}}`);
+        }
+      });
+})
 
 </script>
 @endpush

@@ -176,8 +176,8 @@
 
         $('#hire-modal').on('show.bs.modal', function (e) {
             var talent_id = e.relatedTarget.dataset.id;
-            var id_request = `{{ $id_request }}`;
-            const _url = `{{ url('company/dashboard/hireTalent?talent_id=${talent_id}') }}`;
+            var company_request_id = `null`;
+            const _url = `{{ url('company/dashboard/hireTalent?talent_id=${talent_id}&company_request_id=${company_request_id}') }}`;
             $('.hire-talent').attr('action', _url);
         })
 

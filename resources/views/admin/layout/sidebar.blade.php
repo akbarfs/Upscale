@@ -32,6 +32,9 @@
                         </ul>
                     </li>
                     <h3 class="menu-title">CAREER</h3><!-- /.menu-title -->
+                    <li title="Job Apply Client">
+                        <a href="{{route('jobsapplyclient')}}"> <i class="menu-icon fa fa-th-list"></i> Job Apply Client</a>
+                    </li>
                     <li title="Job Apply">
                         <a href="{{route('jobsapply')}}"> <i class="menu-icon fa fa-th-list"></i> Job Apply</a>
                     </li>

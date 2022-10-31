@@ -174,6 +174,14 @@ Route::group(['prefix'=>'member'], function()
 		Route::get('/dashboard', 'adminController@index')->name('dashboard');
 		Route::post('/count', 'adminController@count')->name('dashboard.count');
 
+		Route::group(['prefix'=>'jobsapplyclient'], function(){
+			Route::get('/', 'jobsapplyclientController@index')->name('jobsapplyclient');
+			Route::get('/getInfoTalent',"jobsapplyclientController@get_info_talent")->name('company.dashboard.getInfoTalent');
+			Route::get('/notif','jobsapplyclientController@notif')->name('jobsapplyclient.notif');
+
+		});
+
+
 		Route::group(['prefix'=>'jobsapply'], function(){
 			Route::get('/', 'jobsapplyController@index')->name('jobsapply');
 			Route::get('/notify', 'jobsapplyController@notify')->name('jobsapply.notify');
