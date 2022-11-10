@@ -20,7 +20,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form method="post" enctype="multipart/form-data" class="hire-talent">
+            <form action="" method="post" enctype="multipart/form-data" class="hire-talent">
             @csrf
             <div class="modal-body text-center px-5">
                 <i class="fa fa-envelope" aria-hidden="true" style="font-size: 70px;"></i>
@@ -115,8 +115,8 @@
                                 <button type="submit" class="btn btn-sm btn-success rect-border me-2">Move To
                                     Top</button>
                             </form>
-                            <button class="btn btn-sm btn-info rect-border ml-2 hire" data-target="#hire-modal" data-id="{{$talent->talent_id}}"
-                                name-talent="{{$result}}" data-toggle="modal">Hire Me!</button>
+                            <button class="btn btn-sm btn-info rect-border ml-2 hire hire-me" data-target="#hire-modal" data-id="{{$talent->talent_id}}"
+                            id-request="{{$id_request}}" name-talent="{{$result}}" data-toggle="modal">Hire Me!</button>
                         </div>
                     </td>
                 </tr>
@@ -176,8 +176,9 @@
 
         $('#hire-modal').on('show.bs.modal', function (e) {
             var talent_id = e.relatedTarget.dataset.id;
-            var company_request_id = `null`;
-            const _url = `{{ url('company/dashboard/hireTalent?talent_id=${talent_id}&company_request_id=${company_request_id}') }}`;
+            var company_request_id = $('.hire-me').attr('id-request');
+            const uri = `talent_id=${talent_id}&company_request_id=${company_request_id}`;
+            const _url = `{{ url('company/dashboard/hireTalent?${uri}') }}`;
             $('.hire-talent').attr('action', _url);
         })
 

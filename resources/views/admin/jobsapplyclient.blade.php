@@ -21,13 +21,19 @@
     .fade{
         background-color: transparent;
     }
+    .layout-notif{
+        cursor:pointer;
+    }
+    .layout-notif:hover{
+        background-color:#a4a4a4;
+    }
 </style>
 
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Jobs Apply</h1>
+                <h1>Jobs Apply Client</h1>
             </div>
         </div>
     </div>
@@ -35,28 +41,67 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right" style="position:relative;">
-                    <div style="cursor:pointer;font-size:16px;margin-right:12px;" data-target="#notification" data-toggle="modal"><i class="fa fa-bell"></i></div>
+                    <div style="cursor:pointer;font-size:24px;margin-right:16px;position:relative;color:#ffff00;" data-target="#notification" data-toggle="modal">
+                        <i class="fa fa-bell"></i>
+                        <div style="width:20px;height:20px;background-color:#ff0000;top:0;right:-8px;position:absolute;border-radius:50%;color:#fff;text-align:center;font-size:12px;border:3px solid #fff;"><strong>{{$jumlah_data_notif}}</strong></div>
+                    </div>
                     <li><a href="{{route('dashboard')}}">Dashboard</a></li>
-                    <li class="active">Jobs Apply</li>
+                    <li class="active">Jobs Apply Client</li>
 
                     <!-- notif -->
                     <div class="modal fade" id="notification" style="background-color:transparent;">
                         <div class="modal-dialog" style="position:absolute;top:15px;right:200px;">
                             <div class="modal-content" style="width:260px;">
+                            <div id="loading" align="center">
+                                <div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+
+                                <div style="background-color:#b3b3b3;padding:10px;">
+                                @if (4>$jumlah_data_notif)
+                                @foreach($data_talent as $notif)
                                 <form method="post" enctype="multipart/form-data" class="hire-talent">
                                 @csrf
-                                <div style="background-color:#b3b3b3;padding:10px;">
-                                    <div>
-                                        <a href="#" style="display:flex;flex-direction:row;gap:9px;" class="id_notif">
-                                            <div style="width:31px;height:31px;background-color:#ffffff;" class="img-company"></div>
-                                            <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;"></p>
-                                            <p style="font-size:8px;color:#000000;line-height:10px;">1d</p>
+                                    <div class="layout-notif">
+                                        <a href="{{route('jobsapplyclient.notif',['id' => $notif->hire_talent_id])}}" data-id="{{$notif->hire_talent_id}}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif">
+                                            <div style="width:31px;height:31px;background-color:#ffffff;">
+                                            <img src="{{$notif->company_pic}}" alt="" class="company_pic" srcset="">
+                                            </div>
+                                            <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;">
+                                                Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>{{$notif->talent_name}}</strong>
+                                            </p>
+                                            <p style="font-size:8px;color:#000000;line-height:10px;" class="date">{{$notif->created_at}}</p>
                                         </a>
                                         <div style="height:1px;width:100%;background-color:#9b9b9b;margin-bottom:4px;"></div>
                                     </div>
-                                    <button style="background-color:#ffffff;color:black;width: 100%;font-size:11px;height:fit-content;border:none;margin-top:14px;">Lihat semua notifikasi</button>
+                                    </form>
+                                @endforeach
+                                @elseif ($jumlah_data_notif>0)
+                                @foreach($data_talent as $notif)
+                                <form method="post" enctype="multipart/form-data" class="hire-talent">
+                                @csrf
+                                    <div class="layout-notif">
+                                        <a href="{{route('jobsapplyclient.notif',['id' => $notif->hire_talent_id])}}" data-id="{{$notif->hire_talent_id}}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif">
+                                            <div style="width:31px;height:31px;background-color:#ffffff;">
+                                            <img src="{{$notif->company_pic}}" alt="" class="company_pic" srcset="">
+                                            </div>
+                                            <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;">
+                                                Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>{{$notif->talent_name}}</strong>
+                                            </p>
+                                            <p style="font-size:8px;color:#000000;line-height:10px;" class="date">{{$notif->created_at}}</p>
+                                        </a>
+                                        <div style="height:1px;width:100%;background-color:#9b9b9b;margin-bottom:4px;"></div>
+                                    </div>
+                                    </form>
+                                @endforeach
+
+                                {{$data_talent}}
+                                    <button class="see-more" style="cursor:pointer;background-color:#ffffff;color:black;text-align:center;width: 100%;font-size:11px;height:fit-content;border:none;margin-top:14px;">Lihat semua notifikasi</button>
+                                @else
+                                <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;text-align:center;">Tidak ada Notifikasi</p>
+                                @endif
                                 </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -83,11 +128,10 @@
                                 <option value="parttime">Parttime</option>
                             </select>
                             <select id="position" class="form-control">
-                                <option id='job-position-default' selected disabled="">Position</option>
-                                <option value="">All</option>
-                                @foreach($jobs as $job)
+                                <option id='job-position-default' selected disabled="">Request</option>
+                                @foreach($reqs as $req)
                                 
-                                <option value="{{$job->jobs_title}}">{{$job->jobs_title}}</option>
+                                <option value="{{$req->name_request}}">{{$req->name_request}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -127,11 +171,11 @@
                         <div class="col">
                             <div class="row">
                                 <label for="Company">Client : </label>
-                                <input type="text" style="width:147px;margin-left:9px;margin-bottom:9px;">
+                                <input type="text" style="width:147px;margin-left:9px;margin-bottom:9px;" id="client">
                             </div>
                             <div class="row">
                                 <label for="Talent">Talent : </label>
-                                <input type="text" style="width:147px;margin-left:9px;" id="talent_id">                                
+                                <input type="text" style="width:147px;margin-left:9px;" id="talent">                                
                             </div>
                         </div>
                     </div>
@@ -148,21 +192,21 @@
                             <a class="nav-item nav-link  active" data-toggle="tab" href="#unprocess" role="tab" aria-controls="nav-home" aria-selected="true"><strong>Unprocess</strong> 
                                 <span class="badge badge-primary">{{$countU}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#testonline" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Interview</strong> 
-                                <span class="badge badge-primary">{{$countTO}}</span>
-                            </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#interview" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Prospek</strong> 
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#interview" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Interview</strong> 
                                  <span class="badge badge-primary">{{$countI}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#tc" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Offered</strong>
-                                 <span class="badge badge-primary">{{$countTC}}</span>
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#prospek" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Prospek</strong> 
+                                <span class="badge badge-primary">{{$countP}}</span>
                             </a>
-                            <a class="nav-item nav-link"  data-toggle="tab" href="#offered" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Hired</strong> 
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#offered" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Offered</strong> 
                                  <span class="badge badge-primary">{{$countO}}</span>
                             </a>
-                            <a class="nav-item nav-link" data-toggle="tab" href="#reject" role="tab" aria-controls="nav-contact" aria-selected="false"><strong>Reject</strong> 
-{{--                                 <span class="badge badge-primary">{{$countR}}</span>
- --}}                            </a>
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#hired" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Hired</strong> 
+                                <span class="badge badge-primary">{{$countH}}</span>
+                            </a>
+                            <a class="nav-item nav-link"  data-toggle="tab" href="#reject" role="tab" aria-controls="nav-profile" aria-selected="false"><strong>Reject</strong> 
+                                <span class="badge badge-primary">{{$countR}}</span>
+                            </a>
                             <a class="nav-item nav-link" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="false"><strong>All</strong> 
                                 {{--                                 <span class="badge badge-primary">{{$countall}}</span>
                                 --}}                            
@@ -250,31 +294,13 @@
                                                 <!-- <th>Type</th> -->
                                                 <th>Name</th>
                                                 <th>Contact</th>
-                                                <th>Jadwal Interview</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                     </table>
                                 </div>
-                                <div id="tc" class="tab-pane fade">
-                                    <table id="all_tc" class="table table-striped table-bordered ">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Position</th>
-                                                <th>Client</th>
-                                                <th>Current City</th>
-                                                <!-- <th>Type</th> -->
-                                                <th>Name</th>
-                                                <th>Contact</th>
-                                                <th>Jadwal Interview</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                                <div id="testonline" class="tab-pane fade">
-                                    <table id="all_testonline" class="table table-striped table-bordered">
+                                <div id="prospek" class="tab-pane fade">
+                                    <table id="all_prospek" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th></th>
@@ -820,23 +846,16 @@ $(document).on('blur', 'input[name="jobs_apply_label"]', function(e){
 
 var all_unprocessFirstTime = true;
 var all_interviewFirstTime = true;
-var all_tcFirstTime = true;
-var all_reportFirstTime = true;
+var all_prospekFirstTime = true;
+var all_offeredFirstTime = true;
 var all_hiredFirstTime = true;
-var all_keepFirstTime = true;
-var all_readyFirstTime = true;
 var all_rejectFirstTime = true;
 var all_tableFirstTime = true;
-var all_offeredFirstTime = true;
-var all_tableFirstTime = true;
-var all_testonlineFirstTime = true;
 
 var all_unprocess;
 var all_interview;
-var all_report;
 var all_hired;
-var all_keep;
-var all_ready;
+var all_prospek;
 var all_reject;
 var all_table;
 var all_offered;
@@ -858,16 +877,18 @@ $(document).ready(function(){
         paging:true,
         processing:true,
         ajax:{
-            url:"{{route('all.unprocess')}}",
+            url:"{{route('all.unprocess.client')}}",
             type:"GET"
         },
         columns:[
         {data:"checkbox",orderable:false,searchable:false},
-        {data:"jobs_title",defaultColumn:"-",visible:true},
+        {data:"req",defaultColumn:"-",visible:true},
+        // {data:"jobs_title",defaultColumn:"-",visible:true},
+        {data:"company_name",defaultColumn:"-",visible:true},
         {data:"talent_address", defaultColumn:"-",visible:true},
         // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-        {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-        {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
+        {data:"talent_name",defaultColumn:"-",visible:true},
+        {data:"talent_kontak",defaultColumn:"-",visible:true},
         {data:"action",orderable:false,searchable:false},
         ]
     });
@@ -1090,7 +1111,7 @@ $(document).on('click', '#delete', function(){
                     if(id.length > 0)
                     {
                         $.ajax({
-                            url:"{{ route('jobsapply.delete')}}",
+                            url:"{{ route('jobsapplyclient.delete')}}",
                             method: "get",
                             data :{id:id},
                             success:function(response)
@@ -1122,17 +1143,19 @@ $(document).on('click', 'a[href="#unprocess"]', function(e){
             paging:true,
             processing:true,
             ajax:{
-                url:"{{route('all.unprocess')}}",
+                url:"{{route('all.unprocess.client')}}",
                 type:"GET"
             },
             columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
+                {data:"checkbox",orderable:false,searchable:false},
+                {data:"req",defaultColumn:"-",visible:true},
+                // {data:"jobs_title",defaultColumn:"-",visible:true},
+                {data:"company_name",defaultColumn:"-",visible:true},
+                {data:"talent_address", defaultColumn:"-",visible:true},
+                // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
+                {data:"talent_name",defaultColumn:"-",visible:true},
+                {data:"talent_kontak",defaultColumn:"-",visible:true},
+                {data:"action",orderable:false,searchable:false},
             ]
         });
         all_unprocessFirstTime = false;
@@ -1140,37 +1163,6 @@ $(document).on('click', 'a[href="#unprocess"]', function(e){
         reload();
     }
     
-});
-
-$(document).on('click', 'a[href="#testonline"]', function(e){
-    $('.label').show();
-    tab_active = "all_testonline"; 
-    if(all_testonlineFirstTime){
-        all_testonline = $('#all_testonline').DataTable({
-            autoWidth:false,
-            serverSide:true,
-            filter:true,
-            info:false,
-            paging:true,
-            processing:true,
-            ajax:{
-                url:"{{route('all.testonline')}}",
-                type:"GET"
-            },
-            columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
-            ]
-        });
-        all_testonlineFirstTime = false;
-    } else {
-        reload();
-    }
 });
 
 $(document).on('click', 'a[href="#interview"]', function(e){
@@ -1185,49 +1177,50 @@ $(document).on('click', 'a[href="#interview"]', function(e){
             paging:true,
             processing:true,
             ajax:{
-                url:"{{route('all.interview')}}",
+                url:"{{route('all.interview.client')}}",
                 type:"GET"
             },
             columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"interview_schedule",orderable:false,defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
-            ],
-            'columnDefs': [
-                {
-                    // 'targets': 6,
-                    'targets': 5,
-                    'createdCell':  function (td, cellData, rowData, row, col) {
-                        if($(td).text() == "Belum Dijadwalkan") {
-                            $(td).parent().addClass('table-danger');
-                            $(td).css('font-weight','Bold');
-                        } else {
-                        var interview_schedule = moment($(td).text(), 'YYYY-MM-DD, h:m:s');
-                            if(interview_schedule.diff(moment(), "days") <= 2){
-                                $(td).parent().addClass('table-danger');
-
-                                // if(interview_schedule.diff(moment(), "hours") == 0){
-                                //     $(td).text(interview_schedule.diff(moment(), "minutes") + " Menit Lagi");
-                                // } else if(interview_schedule.diff(moment(), "hours") == 1) {
-                                //     $(td).text("Besok");
-                                // } else if(interview_schedule.diff(moment(), "hours") == 2) {
-                                //     $(td).text("Lusa");
-                                // } else {
-                                //     $(td).text(interview_schedule.diff(moment(), "hours") + " Jam Lagi");
-                                // }
-                            } else if(interview_schedule.diff(moment(), "days") > 2 && interview_schedule.diff(moment(), "days") <= 7){ 
-                                $(td).parent().addClass('table-warning');
-                            }
-                            $(td).text(interview_schedule.locale('id').format('dddd') + ", " + interview_schedule.locale('id').format('Do MMMM YYYY, h:mm'));
-                        }
-                    }
-                },
+                {data:"checkbox",orderable:false,searchable:false},
+                {data:"req",defaultColumn:"-",visible:true},
+                // {data:"jobs_title",defaultColumn:"-",visible:true},
+                {data:"company_name",defaultColumn:"-",visible:true},
+                {data:"talent_address", defaultColumn:"-",visible:true},
+                // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
+                {data:"talent_name",defaultColumn:"-",visible:true},
+                {data:"talent_kontak",defaultColumn:"-",visible:true},
+                {data:"action",orderable:false,searchable:false},
             ]
+            // 'columnDefs': [
+            //     {
+            //         // 'targets': 6,
+            //         'targets': 5,
+            //         'createdCell':  function (td, cellData, rowData, row, col) {
+            //             if($(td).text() == "Belum Dijadwalkan") {
+            //                 $(td).parent().addClass('table-danger');
+            //                 $(td).css('font-weight','Bold');
+            //             } else {
+            //             var interview_schedule = moment($(td).text(), 'YYYY-MM-DD, h:m:s');
+            //                 if(interview_schedule.diff(moment(), "days") <= 2){
+            //                     $(td).parent().addClass('table-danger');
+
+            //                     // if(interview_schedule.diff(moment(), "hours") == 0){
+            //                     //     $(td).text(interview_schedule.diff(moment(), "minutes") + " Menit Lagi");
+            //                     // } else if(interview_schedule.diff(moment(), "hours") == 1) {
+            //                     //     $(td).text("Besok");
+            //                     // } else if(interview_schedule.diff(moment(), "hours") == 2) {
+            //                     //     $(td).text("Lusa");
+            //                     // } else {
+            //                     //     $(td).text(interview_schedule.diff(moment(), "hours") + " Jam Lagi");
+            //                     // }
+            //                 } else if(interview_schedule.diff(moment(), "days") > 2 && interview_schedule.diff(moment(), "days") <= 7){ 
+            //                     $(td).parent().addClass('table-warning');
+            //                 }
+            //                 $(td).text(interview_schedule.locale('id').format('dddd') + ", " + interview_schedule.locale('id').format('Do MMMM YYYY, h:mm'));
+            //             }
+            //         }
+            //     },
+            // ]
         });
         all_interviewFirstTime = false;
     } else {
@@ -1236,57 +1229,6 @@ $(document).on('click', 'a[href="#interview"]', function(e){
     
 });
 
-$(document).on('click', 'a[href="#tc"]', function(e){
-    $('.label').show();
-    tab_active = "all_tc";
-    if(all_tcFirstTime){
-        all_tc = $('#all_tc').DataTable({
-            autoWidth:false,
-            serverSide:true,
-            filter:true,
-            info:false,
-            paging:true,
-            processing:true,
-            ajax:{
-                url:"{{route('all.tc')}}",
-                type:"GET"
-            },
-            columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"interview_schedule",orderable:false,defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
-            ],
-            'columnDefs': [
-                {
-                    'targets': 5,
-                    'createdCell':  function (td, cellData, rowData, row, col) {
-                        if($(td).text() == "Belum Dijadwalkan") {
-                            $(td).parent().addClass('table-danger');
-                            $(td).css('font-weight','Bold');
-                        } else {
-                        var interview_schedule = moment($(td).text(), 'YYYY-MM-DD, h:m:s');
-                            if(interview_schedule.diff(moment(), "days") <= 2){
-                                $(td).parent().addClass('table-danger');
-                            } else if(interview_schedule.diff(moment(), "days") > 2 && interview_schedule.diff(moment(), "days") <= 7){ 
-                                $(td).parent().addClass('table-warning');
-                            }
-                            $(td).text(interview_schedule.locale('id').format('dddd') + ", " + interview_schedule.locale('id').format('Do MMMM YYYY, h:mm'));
-                        }
-                    }
-                },
-            ]
-        });
-        all_tcFirstTime = false;
-    } else {
-        reload();
-    }
-    
-});
 
 $(document).on('click', 'a[href="#reject"]', function(e){
     $('.label').hide();
@@ -1300,17 +1242,19 @@ $(document).on('click', 'a[href="#reject"]', function(e){
             paging:true,
             processing:true,
             ajax:{
-                url:"{{route('all.reject')}}",
+                url:"{{route('all.reject.client')}}",
                 type:"GET"
             },
             columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
+                {data:"checkbox",orderable:false,searchable:false},
+                {data:"req",defaultColumn:"-",visible:true},
+                // {data:"jobs_title",defaultColumn:"-",visible:true},
+                {data:"company_name",defaultColumn:"-",visible:true},
+                {data:"talent_address", defaultColumn:"-",visible:true},
+                // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
+                {data:"talent_name",defaultColumn:"-",visible:true},
+                {data:"talent_kontak",defaultColumn:"-",visible:true},
+                {data:"action",orderable:false,searchable:false},
             ]
         });
         all_rejectFirstTime = false;
@@ -1332,85 +1276,22 @@ $(document).on('click', 'a[href="#hired"]', function(e){
             paging:true,
             processing:true,
             ajax:{
-                url:"{{route('all.hired')}}",
+                url:"{{route('all.hired.client')}}",
                 type:"GET"
             },
             columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
+                {data:"checkbox",orderable:false,searchable:false},
+                {data:"req",defaultColumn:"-",visible:true},
+                // {data:"jobs_title",defaultColumn:"-",visible:true},
+                {data:"company_name",defaultColumn:"-",visible:true},
+                {data:"talent_address", defaultColumn:"-",visible:true},
+                // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
+                {data:"talent_name",defaultColumn:"-",visible:true},
+                {data:"talent_kontak",defaultColumn:"-",visible:true},
+                {data:"action",orderable:false,searchable:false},
             ]
         });
         all_hiredFirstTime = false;
-    } else {
-        reload();
-    }
-    
-});
-
-$(document).on('click', 'a[href="#keep"]', function(e){
-    $('.label').hide();
-    tab_active = "all_keep";
-    if(all_keepFirstTime){
-        all_keep = $('#all_keep').DataTable({
-            autoWidth:false,
-            serverSide:true,
-            filter:true,
-            info:false,
-            paging:true,
-            processing:true,
-            ajax:{
-                url:"{{route('all.keep')}}",
-                type:"GET"
-            },
-            columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"jobs_reminder",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
-            ]
-        });
-        all_keepFirstTime = false;
-    } else {
-        reload();
-    }
-    
-});
-
-
-$(document).on('click', 'a[href="#ready"]', function(e){
-    $('.label').hide();
-    tab_active = "all_ready";
-    if(all_readyFirstTime){
-        all_ready = $('#all_ready').DataTable({
-            autoWidth:false,
-            serverSide:true,
-            filter:true,
-            info:false,
-            paging:true,
-            processing:true,
-            ajax:{
-                url:"{{route('all.ready')}}",
-                type:"GET"
-            },
-            columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
-            ]
-        });
-        all_readyFirstTime = false;
     } else {
         reload();
     }
@@ -1429,17 +1310,19 @@ $(document).on('click', 'a[href="#all"]', function(e){
             paging:true,
             processing:true,
             ajax:{
-                url:"{{route('jobsapply.all')}}",
+                url:"{{route('jobsapplyclient.all')}}",
                 type:"GET"
             },
             columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
+                {data:"checkbox",orderable:false,searchable:false},
+                {data:"req",defaultColumn:"-",visible:true},
+                // {data:"jobs_title",defaultColumn:"-",visible:true},
+                {data:"company_name",defaultColumn:"-",visible:true},
+                {data:"talent_address", defaultColumn:"-",visible:true},
+                // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
+                {data:"talent_name",defaultColumn:"-",visible:true},
+                {data:"talent_kontak",defaultColumn:"-",visible:true},
+                {data:"action",orderable:false,searchable:false},
             ]
         });
         all_tableFirstTime = false;
@@ -1460,38 +1343,105 @@ $(document).on('click', 'a[href="#offered"]', function(e){
             paging:true,
             processing:true,
             ajax:{
-                url:"{{route('all.offered')}}",
+                url:"{{route('all.offered.client')}}",
                 type:"GET"
             },
             columns:[
-            {data:"checkbox",orderable:false,searchable:false},
-            {data:"jobs_title",defaultColumn:"-",visible:true},
-            {data:"talent_address", defaultColumn:"-",visible:true},
-            // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_name",defaultColumn:"-",visible:true},
-            {data:"jobs_apply_kontak",defaultColumn:"-",visible:true},
-            {data:"action",orderable:false,searchable:false},
+                {data:"checkbox",orderable:false,searchable:false},
+                {data:"req",defaultColumn:"-",visible:true},
+                // {data:"jobs_title",defaultColumn:"-",visible:true},
+                {data:"company_name",defaultColumn:"-",visible:true},
+                {data:"talent_address", defaultColumn:"-",visible:true},
+                // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
+                {data:"talent_name",defaultColumn:"-",visible:true},
+                {data:"talent_kontak",defaultColumn:"-",visible:true},
+                {data:"action",orderable:false,searchable:false},
             ]
         });
         all_offeredFirstTime = false;
+    } else {
+        reload()
+    }    
+});
+
+$(document).on('click', 'a[href="#prospek"]', function(e){
+    $('.label').show();
+    tab_active = "all_prospek";
+    if(all_prospekFirstTime){
+        all_prospek = $('#all_prospek').DataTable({
+            autoWidth:false,
+            serverSide:true,
+            filter:true,
+            info:false,
+            paging:true,
+            processing:true,
+            ajax:{
+                url:"{{route('all.prospek.client')}}",
+                type:"GET"
+            },
+            columns:[
+                {data:"checkbox",orderable:false,searchable:false},
+                {data:"req",defaultColumn:"-",visible:true},
+                // {data:"jobs_title",defaultColumn:"-",visible:true},
+                {data:"company_name",defaultColumn:"-",visible:true},
+                {data:"talent_address", defaultColumn:"-",visible:true},
+                // {data:"jobs_apply_type_time",defaultColumn:"-",visible:true},
+                {data:"talent_name",defaultColumn:"-",visible:true},
+                {data:"talent_kontak",defaultColumn:"-",visible:true},
+                {data:"action",orderable:false,searchable:false},
+            ]
+        });
+        all_prospekFirstTime = false;
     } else {
         reload()
     }
     
 });
 
-$('.fa-bell').on('click', function () {
-    const _url = `{{ url('admin/jobsapplyclient/getInfoTalent') }}`
-      $.ajax({
-        url: _url,
-        success: function (data) {
-            var id= `${data['id_hire_talent']}`;
-            var content = `Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>${data['nama_talent']}</strong>`;
-            $('.notif').html(content);
-            $('.id_notif').attr("href", `{{url('admin/jobsapplyclient/notif?id=${id}')}}`);
-        }
-      });
+// $(function(){
+//     var $posts = $("#id-notif");
+//     var $ul = $("ul.pagination");
+//     .$ul.hide();
+
+//     $(".see-more").click(function(){
+//         $.get($ul.find("a[rel='next']").attr("href"), function(response){
+//             $posts.append(
+//                 $(response).find("#posts").html()
+//             );
+//         });
+//     });
+// });
+
+
+$(document).ready(function () {
+    var talent = `{{session('talent')}}`;
+    var client = `{{session('company')}}`;
+    $('#client').val(client);
+    $('#talent').val(talent);
+    
+    $('.id_notif').on('click', function () {
+        values = $('#talent').val();
+        var table = $("#"+tab_active).DataTable();
+        table.columns(4).search( values ).draw();
+    });
+    
+    $('#talent').on('input', function () {
+        values = $('#talent').val(); 
+        var table = $("#"+tab_active).DataTable();
+        table.columns(4).search( values ).draw();
+    });
+
+    $('#client').on('input', function () {
+        values = $('#client').val();
+        var table = $("#"+tab_active).DataTable();
+        table.columns(2).search( values ).draw();
+    });
+
+
+
 })
+
+
 
 </script>
 @endpush

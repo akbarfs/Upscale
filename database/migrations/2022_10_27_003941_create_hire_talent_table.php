@@ -18,6 +18,7 @@ class CreateHireTalentTable extends Migration
             $table->integer('hire_talent_talent_id');
             $table->integer('hire_talent_company_id');
             $table->integer('hire_talent_company_request_id');
+            $table->integer('hire_talent_status_notif');
             $table->timestamps();
         });
     }

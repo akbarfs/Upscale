@@ -291,13 +291,13 @@ class CompanyDashboardController extends Controller
   public function table_talent_request(Request $request){
     set_time_limit(300);
     $id_request = $request->id_request;
-    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status";
+    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id";
     $data = Talent::select(DB::raw($default_query));
     $data = $data->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id");
     $data = $data->join("users", "talent.user_id","=","users.id","LEFT");
     $data = $data->join("skill_talent", "talent.talent_id","=","skill_talent.st_talent_id","LEFT");
     $data = $data->where("company_req_log.company_request_id", $id_request);
-    
+
     if(!empty($request->status)){
       $data = $data->where("company_req_log.status", $request->status);
     }
@@ -306,7 +306,7 @@ class CompanyDashboardController extends Controller
     $data = $data->paginate(10);
     return view('company.requests.talent-req-table',[
       'data' => $data,
-      'id_request' => $id_request
+      'id_request' => $id_request,
     ])->render();
   }
 
@@ -522,23 +522,23 @@ class CompanyDashboardController extends Controller
   public function hireTalent(Request $request){
     $company_id = session('user_id');
     $talent_id = $request->talent_id;
-    //belum diambil id company req
-    $company_request = '2';
+    $company_request_id = $request->company_request_id;
+    $company_req_log_id = $request->company_req_log_id;
     $check = HireTalent::where('hire_talent_talent_id', $talent_id)->where('hire_talent_company_id', $company_id)->count();
 
     if($check > 0){
-      return redirect()->route('company.request.detail', $company_request)->with([
+      return redirect()->route('company.request.detail', $company_request_id)->with([
         'message' => 'Talent sudah di Hire'
       ]);  
     }else{
       HireTalent::create([
         'hire_talent_talent_id' => $talent_id,
         'hire_talent_company_id' => $company_id,
-        'hire_talent_company_request_id' => $company_request,
-
+        'hire_talent_company_request_id' => $company_request_id,
+        'hire_talent_status_notif' => '1'
       ]);
   
-      return redirect()->route('company.request.detail', $company_request)->with([
+      return redirect()->route('company.request.detail', $company_request_id)->with([
         'message' => 'Talent berhasil di Hire'
       ]);
   

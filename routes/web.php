@@ -176,9 +176,19 @@ Route::group(['prefix'=>'member'], function()
 
 		Route::group(['prefix'=>'jobsapplyclient'], function(){
 			Route::get('/', 'jobsapplyclientController@index')->name('jobsapplyclient');
-			Route::get('/getInfoTalent',"jobsapplyclientController@get_info_talent")->name('company.dashboard.getInfoTalent');
-			Route::get('/notif','jobsapplyclientController@notif')->name('jobsapplyclient.notif');
+			Route::get('/all-notif',"jobsapplyclientController@allNotif")->name('jobsapplyclient.all-notif');
+			Route::get('/notif/{id}','jobsapplyclientController@notif')->name('jobsapplyclient.notif');
 
+			Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
+
+			//filter Status
+			Route::get('/all', 'jobsapplyclientController@all')->name('jobsapplyclient.all');
+			Route::get('/all/unprocessclient', 'jobsapplyclientController@allUnprocessClient')->name('all.unprocess.client');
+			Route::get('/all/interviewclient', 'jobsapplyclientController@allInterviewClient')->name('all.interview.client');
+			Route::get('/all/rejectclient', 'jobsapplyclientController@allRejectClient')->name('all.reject.client');
+			Route::get('/all/hiredclient', 'jobsapplyclientController@allHiredClient')->name('all.hired.client');
+			Route::get('/all/offeredclient', 'jobsapplyclientController@allOfferedClient')->name('all.offered.client');
+			Route::get('/all/prospekclient', 'jobsapplyclientController@allProspekClient')->name('all.prospek.client');
 		});
 
 
