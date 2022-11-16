@@ -84,7 +84,6 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::get("/request/talent_data","CompanyDashboardController@table_talent_request");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
 	
-	Route::get("/CV", "CompanyDashboardController@cv")->name('cv');
 
 	// request feature
 	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');

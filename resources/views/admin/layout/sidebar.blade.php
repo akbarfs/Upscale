@@ -38,6 +38,11 @@
                     <li title="Job Apply">
                         <a href="{{route('jobsapply')}}"> <i class="menu-icon fa fa-th-list"></i> Job Apply</a>
                     </li>
+                    
+                    <li title="All Talent" class="{{ request()->route()->getName() == 'all-talent.index' ? 'active' : '' }}">
+                        <a href="{{route('all-talent.index')}}"> <i class="menu-icon fa fa-th-list"></i> All Talent</a>
+                    </li>
+
                     <li title="Job List">
                         <a href="{{route('index.jobs')}}"> <i class="menu-icon fa fa-th-list"></i> Job List</a>
                     </li>
