@@ -552,4 +552,8 @@ class CompanyDashboardController extends Controller
   //   ]);
   }
 
+  public function cv(){
+    return view('CV');
+  }
+
 }

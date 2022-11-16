@@ -84,7 +84,7 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::get("/request/talent_data","CompanyDashboardController@table_talent_request");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
 	
-
+	Route::get("/CV", "CompanyDashboardController@cv")->name('cv');
 
 	// request feature
 	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
@@ -189,6 +189,11 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/all/hiredclient', 'jobsapplyclientController@allHiredClient')->name('all.hired.client');
 			Route::get('/all/offeredclient', 'jobsapplyclientController@allOfferedClient')->name('all.offered.client');
 			Route::get('/all/prospekclient', 'jobsapplyclientController@allProspekClient')->name('all.prospek.client');
+
+			//AllNotif
+			Route::get('/all-notif/all', 'jobsapplyclientController@allNotify')->name('all.table-notif');
+			Route::get('/all-notif/unread', 'jobsapplyclientController@allUnread')->name('all.unread.notif');
+			Route::get('/all-notif/read', 'jobsapplyclientController@allRead')->name('all.read');
 		});
 
 
