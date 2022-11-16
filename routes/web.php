@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('talent/test/condition','TalentNewController@condition');
-Route::get('loginas/{code}','homeController@loginas');
+Route::get('talent/test/condition', 'TalentNewController@condition');
+Route::get('loginas/{code}', 'homeController@loginas');
 //end of adi
 Route::get('/', 'homeController@index')->name('index');
 Route::get('/home', 'homeController@index')->name('home');
@@ -37,12 +37,12 @@ Route::get('/help-business', 'homeController@helpBusiness')->name('help-business
 Route::get('/help-talent', 'homeController@helpTalent')->name('help-talent');
 Route::get('/faq', 'homeController@faq')->name('faq');
 Route::post('/send-inquiry', 'homeController@sendInquiry')->name('send-inquiry');
-Route::get("/track","homeController@track")->name("mail-tracking");
+Route::get("/track", "homeController@track")->name("mail-tracking");
 
-Route::get('/mailSends','TalentNewController@mailSends');
+Route::get('/mailSends', 'TalentNewController@mailSends');
 
 // LOGIN ADMIN
-Route::get('/login'.date("dmY"), 'LoginController@index')->name('login');
+Route::get('/login' . date("dmY"), 'LoginController@index')->name('login');
 Route::post('/login/process', 'LoginController@processLogin')->name('process.login');
 
 // LOGIN MEMBER
@@ -58,32 +58,30 @@ Route::get('/company/logout', 'LoginController@logout')->name('logout.company');
 Route::get('/register/talent', 'MemberController@loadRegisterTalent')->name('load.register.talent');
 Route::post('/register/talent/step1', 'MemberController@regTalentStep1')->name('reg.talent.step1');
 Route::post('/register/talent', 'MemberController@registerTalent')->name('post.register.talent');
-Route::get("/json/skill","MemberController@json_skill")->name('json.skill');
-Route::prefix("talent")->middleware(CheckTalent::class)->group(function()
-{
-	Route::get("/dashboard","MemberController@talentDashboard")->name('talent.dashboard');
-}); 
+Route::get("/json/skill", "MemberController@json_skill")->name('json.skill');
+Route::prefix("talent")->middleware(CheckTalent::class)->group(function () {
+	Route::get("/dashboard", "MemberController@talentDashboard")->name('talent.dashboard');
+});
 
 // Company/dashboard
-Route::prefix("company")->middleware(CheckCompany::class)->group(function()
-{	
+Route::prefix("company")->middleware(CheckCompany::class)->group(function () {
 	// page dashboard
-	Route::get("/dashboard","CompanyDashboardController@companyDashboard")->name('company.dashboard');
-	Route::get('/dashboard/getInfoReq',"CompanyDashboardController@get_info_req")->name('company.dashboard.getInfoReq');
-	Route::post('/dashboard/addTalentReq',"CompanyDashboardController@addTalentReq");
-	Route::post('/dashboard/hireTalent',"CompanyDashboardController@hireTalent");
+	Route::get("/dashboard", "CompanyDashboardController@companyDashboard")->name('company.dashboard');
+	Route::get('/dashboard/getInfoReq', "CompanyDashboardController@get_info_req")->name('company.dashboard.getInfoReq');
+	Route::post('/dashboard/addTalentReq', "CompanyDashboardController@addTalentReq");
+	Route::post('/dashboard/hireTalent', "CompanyDashboardController@hireTalent");
 
 
 	//page all talent
-	Route::get("/dashboard/talents","CompanyDashboardController@allDatabase")->name('company.dashboard.talent');
-	Route::get("/list/paginate_data","CompanyDashboardController@paginate_data");
+	Route::get("/dashboard/talents", "CompanyDashboardController@allDatabase")->name('company.dashboard.talent');
+	Route::get("/list/paginate_data", "CompanyDashboardController@paginate_data");
 
 	//page request
 	Route::get('/request/active', "CompanyDashboardController@request_active")->name('company.request.active');
 	Route::get('/request/active/detail/{id}', "CompanyDashboardController@request_detail")->name('company.request.detail');
-	Route::get("/request/talent_data","CompanyDashboardController@table_talent_request");
+	Route::get("/request/talent_data", "CompanyDashboardController@table_talent_request");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
-	
+
 
 
 	// request feature
@@ -95,91 +93,89 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function()
 	Route::post('/request/changestatus', "CompanyDashboardController@changeStatusTalent")->name('company.request.changestatus');
 
 	// support
-	Route::get("/json/skill/company","CompanyDashboardController@company_json_skill")->name('json.skill.company');
-	Route::get("/json/comp_req/company","CompanyDashboardController@company_json_CompReq")->name('json.comp_req.company');
+	Route::get("/json/skill/company", "CompanyDashboardController@company_json_skill")->name('json.skill.company');
+	Route::get("/json/comp_req/company", "CompanyDashboardController@company_json_CompReq")->name('json.comp_req.company');
 	Route::delete('/request/skill/delete/{id}', "CompanyDashboardController@removeSkillReq")->name('company.request.skill.delete');
-	
-}); 
+});
 
 
 
-Route::get("/member/logout","MemberController@doLogout")->name('member.logout');	
+Route::get("/member/logout", "MemberController@doLogout")->name('member.logout');
 
 
 Route::get("/profile", "MemberController@profile"); //my profile
 Route::get("/profile/{talent_id}", "MemberController@profile");  //other profile
 
-Route::group(['middleware'=>'cek'],function(){
+Route::group(['middleware' => 'cek'], function () {
 
 
 	// Route::group(['prefix'=>'admin'], function(){
 	// 	Route::get('/dashboard', 'userController@index')->name('user.dashboard');
 	// });
 
-/////////////////////////////
+	/////////////////////////////
 
 
-Route::group(['prefix'=>'member'], function()
-{
-	Route::get("edit-basic-profile", "MemberController@editBasic");
-	Route::post("edit-basic-profile", "MemberController@editBasicPost");
+	Route::group(['prefix' => 'member'], function () {
+		Route::get("edit-basic-profile", "MemberController@editBasic");
+		Route::post("edit-basic-profile", "MemberController@editBasicPost");
 
-	Route::get("crop-photo", "MemberController@cropPhoto");
-	Route::post("crop-photo", "MemberController@cropPhotoPost");
+		Route::get("crop-photo", "MemberController@cropPhoto");
+		Route::post("crop-photo", "MemberController@cropPhotoPost");
 
-	Route::get("edit-work", "MemberController@editWork");
-	Route::post("edit-work", "MemberController@editWorkPost");
-	Route::get("edit-work-delete/{id}", "MemberController@editWorkDelete");
+		Route::get("edit-work", "MemberController@editWork");
+		Route::post("edit-work", "MemberController@editWorkPost");
+		Route::get("edit-work-delete/{id}", "MemberController@editWorkDelete");
 
-	Route::get("edit-education", "MemberController@editEducation");
-	Route::post("edit-education", "MemberController@editEducationPost");
-	Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
+		Route::get("edit-education", "MemberController@editEducation");
+		Route::post("edit-education", "MemberController@editEducationPost");
+		Route::get("edit-education-delete/{id}", "MemberController@editEducationDelete");
 
-	Route::get("edit-certification", "MemberController@editCertification");
-	Route::post("edit-certification", "MemberController@editCertificationPost");
-	Route::get("edit-certification-delete/{id}", "MemberController@editCertificationDelete");
+		Route::get("edit-certification", "MemberController@editCertification");
+		Route::post("edit-certification", "MemberController@editCertificationPost");
+		Route::get("edit-certification-delete/{id}", "MemberController@editCertificationDelete");
 
-	Route::get("edit-interview", "MemberController@editInterview");
-	Route::post("edit-interview", "MemberController@editInterviewPost");
+		Route::get("edit-interview", "MemberController@editInterview");
+		Route::post("edit-interview", "MemberController@editInterviewPost");
 
-	Route::get("edit-skill", "MemberController@editSkill");
-	Route::post("edit-skill", "MemberController@editSkillPost");
-	Route::post("update-level", "MemberController@updateSkill");
+		Route::get("edit-skill", "MemberController@editSkill");
+		Route::post("edit-skill", "MemberController@editSkillPost");
+		Route::post("update-level", "MemberController@updateSkill");
 
-	Route::get("edit-cv", "MemberController@editCv");
-	Route::post("post-cv", "MemberController@postCv");
+		Route::get("edit-cv", "MemberController@editCv");
+		Route::post("post-cv", "MemberController@postCv");
 
-	Route::get("crop-porto/{id}", "MemberController@cropPorto");
-	Route::post("crop-porto/{id}", "MemberController@cropPortoPost");
+		Route::get("crop-porto/{id}", "MemberController@cropPorto");
+		Route::post("crop-porto/{id}", "MemberController@cropPortoPost");
 
-	Route::get("edit-porto", "MemberController@editPorto");
-	Route::post("post-porto", "MemberController@postPorto");
-	Route::get("delete-porto/{id}", "MemberController@portoDelete");
-	Route::get("update-porto/{id}", "MemberController@portoUpdate");
-	Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
+		Route::get("edit-porto", "MemberController@editPorto");
+		Route::post("post-porto", "MemberController@postPorto");
+		Route::get("delete-porto/{id}", "MemberController@portoDelete");
+		Route::get("update-porto/{id}", "MemberController@portoUpdate");
+		Route::post("update-porto/{id}", "MemberController@portoUpdatePost");
 
-	Route::get("personality-test", "MemberController@personalityTest");
-	Route::post("personality-test", "MemberController@personalityTestPost");
-    Route::get("skill-test/{type_soal_id}", "MemberController@skillTest");
-    Route::post("skill-test/", "MemberController@skillTestPost");
-});
+		Route::get("personality-test", "MemberController@personalityTest");
+		Route::post("personality-test", "MemberController@personalityTestPost");
+		Route::get("skill-test/{type_soal_id}", "MemberController@skillTest");
+		Route::post("skill-test/", "MemberController@skillTestPost");
+	});
 
-////////////////////////////
+	////////////////////////////
 
 
 	Route::get('/blast', 'jobsapplyController@blast_show')->name('blast');
 
-	Route::group(['prefix'=>'admin'], function(){
+	Route::group(['prefix' => 'admin'], function () {
 
 		Route::get('/dashboard', 'adminController@index')->name('dashboard');
 		Route::post('/count', 'adminController@count')->name('dashboard.count');
 
-		Route::group(['prefix'=>'jobsapplyclient'], function(){
+		Route::group(['prefix' => 'jobsapplyclient'], function () {
 			Route::get('/', 'jobsapplyclientController@index')->name('jobsapplyclient');
-			Route::get('/all-notif',"jobsapplyclientController@allNotif")->name('jobsapplyclient.all-notif');
-			Route::get('/notif/{id}','jobsapplyclientController@notif')->name('jobsapplyclient.notif');
+			Route::get('/all-notif', "jobsapplyclientController@allNotif")->name('jobsapplyclient.all-notif');
+			Route::get('/notif/{id}', 'jobsapplyclientController@notif')->name('jobsapplyclient.notif');
 
-			Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
+			// Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
 
 			//filter Status
 			Route::get('/all', 'jobsapplyclientController@all')->name('jobsapplyclient.all');
@@ -192,7 +188,7 @@ Route::group(['prefix'=>'member'], function()
 		});
 
 
-		Route::group(['prefix'=>'jobsapply'], function(){
+		Route::group(['prefix' => 'jobsapply'], function () {
 			Route::get('/', 'jobsapplyController@index')->name('jobsapply');
 			Route::get('/notify', 'jobsapplyController@notify')->name('jobsapply.notify');
 			route::get('/interview/{id}', 'InterviewController@index')->name('jobsapply.interview');
@@ -227,11 +223,20 @@ Route::group(['prefix'=>'member'], function()
 			Route::post('/substeps/checked', 'jobsapplysubsteps@checked')->name('substeps.checked');
 			Route::post('/substeps/unchecked', 'jobsapplysubsteps@unchecked')->name('substeps.unchecked');
 			Route::post('/substeps/note', 'jobsapplysubsteps@note')->name('substeps.note');
-			Route::get('/changestatusapprove','jobsapplyController@changeStatusApprove')->name('jobsapply.changestatusapprove');
-			Route::post('/getreminder','jobsapplyController@getreminder')->name('jobsapply.getreminder');
-			Route::get('/editreminder','jobsapplyController@editreminder')->name('jobsapply.editreminder');
-
+			Route::get('/changestatusapprove', 'jobsapplyController@changeStatusApprove')->name('jobsapply.changestatusapprove');
+			Route::post('/getreminder', 'jobsapplyController@getreminder')->name('jobsapply.getreminder');
+			Route::get('/editreminder', 'jobsapplyController@editreminder')->name('jobsapply.editreminder');
 		});
+
+		Route::name('all-talent.')
+			->prefix('all-talent')
+			->group(function () {
+				Route::get('/', 'Admin\AllTalentController@index')->name('index');
+				Route::get('/condition', 'Admin\AllTalentController@condition')->name('condition');
+				Route::get('/search', 'Admin\AllTalentController@search')->name('search');
+				Route::get('/filter', 'Admin\AllTalentController@filter')->name('filter');
+				Route::get('/paginate_data', 'Admin\AllTalentController@paginate_data')->name('paginate_data');
+			});
 
 		// Route::group(['prefix'=>'talent'], function(){
 		// 	Route::get('/', 'talentController@index')->name('talent.index');
@@ -258,7 +263,7 @@ Route::group(['prefix'=>'member'], function()
 		// 	Route::get('/move/quarantine','talentController@moveQuarantine')->name('talent.quarantine');
 		// });
 
-		Route::group(['prefix'=>'substeps'], function(){
+		Route::group(['prefix' => 'substeps'], function () {
 			Route::post('/add', 'Substeps@add')->name('substeps.add');
 			Route::post('/edit', 'Substeps@edit')->name('substeps.edit');
 			Route::post('/delete', 'Substeps@delete')->name('substeps.delete');
@@ -271,11 +276,10 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/get/offered', 'Substeps@getoffered')->name('get.offered');
 			Route::get('/get/hired', 'Substeps@gethired')->name('get.hired');
 			Route::get('/get/reject', 'Substeps@getreject')->name('get.reject');
-
 		});
 
 
-		Route::group(['prefix'=>'jobs'], function(){
+		Route::group(['prefix' => 'jobs'], function () {
 			Route::get('/', 'jobsController@index')->name('index.jobs');
 			Route::get('/all', 'jobsController@all')->name('jobs.all');
 			Route::get('/delete', 'jobsController@deleteJobs')->name('jobsAll.delete');
@@ -284,11 +288,9 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/create', 'jobsController@create')->name('jobs.create');
 			Route::post('/store', 'jobsController@store')->name('jobs.store');
 			Route::post('/update/{id}', 'jobsController@update');
-
-
 		});
 
-		Route::group(['prefix'=>'others'], function(){
+		Route::group(['prefix' => 'others'], function () {
 			Route::get('/', 'othersController@index')->name('others');
 			Route::get('/locations', 'othersController@locations')->name('locations');
 			Route::get('/campaign', 'CampaignController@campaign')->name('campaign');
@@ -305,10 +307,9 @@ Route::group(['prefix'=>'member'], function()
 			Route::post('/media/edit', 'mediaController@edit')->name('media.edit');
 			Route::post('/media/delete', 'mediaController@delete')->name('media.delete');
 			Route::get('/media/showtable', 'mediaController@showTable')->name('media.showtable');
-
 		});
 
-		Route::group(['prefix'=>'bootcamp'], function(){
+		Route::group(['prefix' => 'bootcamp'], function () {
 			Route::get('/', 'adminController@bootcamp')->name('bootcamp.index');
 			Route::get('/create', 'adminController@createBootcamp')->name('bootcamp.create');
 			Route::get('/all', 'adminController@allBootcamp')->name('bootcamp.all');
@@ -342,7 +343,7 @@ Route::group(['prefix'=>'member'], function()
 			// Route::post('/link/remove', 'jobsapplyController@noteRemove')->name('link.remove');
 			Route::post('/link/get', 'adminController@linkGet')->name('link.get');
 		});
-		Route::group(['prefix'=>'campaign'], function(){
+		Route::group(['prefix' => 'campaign'], function () {
 			Route::get('/', 'CampaignController@index')->name('campaign.index');
 			Route::get('/all', 'CampaignController@all')->name('campaign.all');
 			Route::get('/assign', 'CampaignController@assign')->name('campaign.assign');
@@ -357,61 +358,61 @@ Route::group(['prefix'=>'member'], function()
 			Route::post('/jobs_unchecked', 'CampaignController@jobs_unchecked')->name('campaign.jobs_unchecked');
 		});
 
-		Route::resource('companies','CompaniesController');
-		Route::post('/companies/getdetail','CompaniesController@getdetail')->name('companies.getdetail');
-		Route::get('/companies/request/{id}','CompaniesController@request')->name('companies.request');
+		Route::resource('companies', 'CompaniesController');
+		Route::post('/companies/getdetail', 'CompaniesController@getdetail')->name('companies.getdetail');
+		Route::get('/companies/request/{id}', 'CompaniesController@request')->name('companies.request');
 		Route::post('/companies/addreq', 'CompaniesController@addReq')->name('companies.addReq');
 		Route::post('/companies/addreq2', 'CompaniesController@addReq2')->name('companies.addReq2');
 		Route::post('/companies/getreq', 'CompaniesController@getReq')->name('companies.getReq');
-		Route::delete('/companies/delreq/{id}','CompaniesController@delReq')->name('companies.delReq');
+		Route::delete('/companies/delreq/{id}', 'CompaniesController@delReq')->name('companies.delReq');
 		Route::post('/editreq', 'CompaniesController@editReq')->name('companies.editReq');
 		Route::post('/editreq2', 'CompaniesController@editReq2')->name('companies.editReq2');
-		Route::get('/companyassign','CompaniesController@companyassign')->name('companies.assign');
-		Route::get('/companyassign/{id}','CompaniesController@companyassign')->name('companies.assign');
-		Route::get('/companyassign/allassign/','CompaniesController@allassign')->name('companies.dataassign');
-		Route::get('/companyrequest','CompaniesController@companyrequest')->name('companies.companyrequest');
-		Route::get('/companyrequest/datarequest','CompaniesController@datarequest')->name('companies.datarequest');
+		Route::get('/companyassign', 'CompaniesController@companyassign')->name('companies.assign');
+		Route::get('/companyassign/{id}', 'CompaniesController@companyassign')->name('companies.assign');
+		Route::get('/companyassign/allassign/', 'CompaniesController@allassign')->name('companies.dataassign');
+		Route::get('/companyrequest', 'CompaniesController@companyrequest')->name('companies.companyrequest');
+		Route::get('/companyrequest/datarequest', 'CompaniesController@datarequest')->name('companies.datarequest');
 
 
-		Route::group(['prefix'=>'company'], function(){
+		Route::group(['prefix' => 'company'], function () {
 			Route::get('/', 'companyController@index')->name('company.index');
 			Route::get('/request/{id}', 'companyController@request')->name('company.request');
 			Route::get('/all', 'companyController@all')->name('company.all');
-			Route::get('/detail/{id}','companyController@detail')->name('company.detail');
+			Route::get('/detail/{id}', 'companyController@detail')->name('company.detail');
 			Route::get('/edit', 'companyController@edit')->name('company.edit');
 			Route::post('/update/{id}', 'companyController@update');
 			Route::get('/allrequest', 'companyController@allRequest')->name('company.allrequest');
-			Route::get('/requestttt','companyController@Requesttest')->name('company.requesttest');
+			Route::get('/requestttt', 'companyController@Requesttest')->name('company.requesttest');
 			Route::post('/add', 'companyController@add')->name('company.add');
 			Route::post('/addreq', 'companyController@addReq')->name('company.addReq');
 			Route::post('/editreq', 'companyController@editReq')->name('company.editReq');
 			Route::post('/getreq', 'companyController@getReq')->name('company.getReq');
 		});
 
-		Route::group(['prefix'=>'talent'], function(){
+		Route::group(['prefix' => 'talent'], function () {
 
-			
+
 			// adi
-			Route::get('/list','TalentNewController@show')->name('talent.list');
-			Route::get('/list/condition','TalentNewController@condition');
-			Route::get('/list/search','TalentNewController@search');
-			Route::get('/list/filter','TalentNewController@filter');
-			Route::get('/list/paginate_data','TalentNewController@paginate_data');
-			Route::get('/list/mail','TalentNewController@paginationMail');
-			Route::get('/list/mail/table','TalentNewController@table');
+			Route::get('/list', 'TalentNewController@show')->name('talent.list');
+			Route::get('/list/condition', 'TalentNewController@condition');
+			Route::get('/list/search', 'TalentNewController@search');
+			Route::get('/list/filter', 'TalentNewController@filter');
+			Route::get('/list/paginate_data', 'TalentNewController@paginate_data');
+			Route::get('/list/mail', 'TalentNewController@paginationMail');
+			Route::get('/list/mail/table', 'TalentNewController@table');
 			//Route::get('/mail/{id}','TalentNewController@mail');
-			Route::get('/mail','TalentNewController@mail');
-			Route::get('/mail-backup/{id}','TalentNewController@mailBackup');
-			Route::get('/mail-send/{id}','TalentNewController@mailSend');
-			Route::post('/mail-send','TalentNewController@mailSend');
-			Route::get('/mail-view/{view}','TalentNewController@viewMail');
-			Route::get('/list/export_excel','TalentNewController@export_excel');
+			Route::get('/mail', 'TalentNewController@mail');
+			Route::get('/mail-backup/{id}', 'TalentNewController@mailBackup');
+			Route::get('/mail-send/{id}', 'TalentNewController@mailSend');
+			Route::post('/mail-send', 'TalentNewController@mailSend');
+			Route::get('/mail-view/{view}', 'TalentNewController@viewMail');
+			Route::get('/list/export_excel', 'TalentNewController@export_excel');
 			Route::get('/create-type-email/{id}', 'TalentNewController@createTypeEmail');
 
 			Route::get('/list/insert', 'TalentNewController@insert');
 			Route::get('/list/delete', 'TalentNewController@deleteData');
 			Route::post('/list/insert/data', 'TalentNewController@insertData');
-			
+
 			Route::get('/delete/{id}', 'TalentNewController@delete');
 			Route::post('/del', 'TalentNewController@del');
 			//end adi
@@ -420,7 +421,7 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/', 'talentController@index')->name('talent.index');
 
 			//Route Talent List
-	// 		Route::get('/', 'talentController@talent_list')->name('talent.listall');
+			// 		Route::get('/', 'talentController@talent_list')->name('talent.listall');
 			// Route::get('/request', 'companyController@request')->name('talent.request');
 			Route::get('/all', 'talentController@all')->name('talent.all');
 			Route::get('/edit', 'talentController@edit')->name('talent.edit');
@@ -428,59 +429,59 @@ Route::group(['prefix'=>'member'], function()
 			Route::post('/add', 'talentController@add')->name('talent.add');
 			Route::post('/update/{id}', 'talentController@update');
 			Route::get('/talentskill/{id}', 'talentController@talentskill')->name('talent.talentskill');
-	        Route::get('/portfolio', 'talentController@portfolio')->name('portfolio.talent');
-	        Route::get('/portfolio-delete', 'talentController@portfolioDelete')->name('portfolio.delete');
-	        Route::post('/portfolio-update','talentController@portfolioUpdate')->name('portfolio.update');
+			Route::get('/portfolio', 'talentController@portfolio')->name('portfolio.talent');
+			Route::get('/portfolio-delete', 'talentController@portfolioDelete')->name('portfolio.delete');
+			Route::post('/portfolio-update', 'talentController@portfolioUpdate')->name('portfolio.update');
 			Route::post('/portfolio-insert', 'talentController@portfolioInsert')->name('portfolio.insert');
-			
+
 			//photoprofil
 			Route::get('/photo', 'talentController@photo')->name('photo.talent');
 			Route::get('/photo-delete', 'talentController@photoDelete')->name('photo.delete');
 			Route::post('/photo-update', 'talentController@photoUpdate')->name('photo.update');
 			Route::post('/photo-insert', 'talentController@photoInsert')->name('photo.insert');
 
-	        Route::get('/workexperience','talentController@workex')->name('workex.talent');
-	        Route::post('/workexperience-insert','talentController@workexInsert')->name('workex.insert');
-	        Route::post('/worexperience-update','talentController@workexupdate')->name('workex.update');
-	        Route::get('/workexdetail/{id}','talentController@workexdetail')->name('workex.detail');
-	        Route::get('/workex-delete','talentController@workex_delete')->name('workex.delete2');
-	        Route::post('/workexdelete/{id}','talentController@workexdelete')->name('workex.delete');
+			Route::get('/workexperience', 'talentController@workex')->name('workex.talent');
+			Route::post('/workexperience-insert', 'talentController@workexInsert')->name('workex.insert');
+			Route::post('/worexperience-update', 'talentController@workexupdate')->name('workex.update');
+			Route::get('/workexdetail/{id}', 'talentController@workexdetail')->name('workex.detail');
+			Route::get('/workex-delete', 'talentController@workex_delete')->name('workex.delete2');
+			Route::post('/workexdelete/{id}', 'talentController@workexdelete')->name('workex.delete');
 
-	        Route::resource('pratalent', 'PratalentController');
-			Route::get('/pratalent/datalinkedin','PratalentController@datalinkedin')->name('pratalent.datalinkedin');
-			Route::post('/pratalent/import','PratalentController@import_excel')->name('pratalent.import');
-			Route::post('/pratalent/changestatus','PratalentController@changeStatus')->name('pratalent.changestatus');
-			
+			Route::resource('pratalent', 'PratalentController');
+			Route::get('/pratalent/datalinkedin', 'PratalentController@datalinkedin')->name('pratalent.datalinkedin');
+			Route::post('/pratalent/import', 'PratalentController@import_excel')->name('pratalent.import');
+			Route::post('/pratalent/changestatus', 'PratalentController@changeStatus')->name('pratalent.changestatus');
 
-	        Route::post('/addeducation','talentController@addeducation')->name('education.add');
-	        Route::get('/detaileducation/{id}','talentController@detaileducation')->name('education.detail');
-	        Route::post('/updateeducation/{id}','talentController@updateeducation')->name('education.update');
-	        Route::post('/deleteeducation/{id}','talentController@deleteeducation')->name('education.delete');
 
-	        Route::post('/addcertification', 'talentController@addcertification')->name('certification.add');
-	        Route::get('/detailcertification/{id}','talentController@detailcertification')->name('certification.detail');
-	        Route::post('/updatecertification/{id}','talentController@updatecertification')->name('certification.update');
-	        Route::post('/deletecertification/{id}','talentController@deletecertification')->name('certification.delete');
-			Route::get('/detailtalent/{id}','talentController@detailtalent')->name('detailtalent');
-	        Route::post('/notesreporttalent/{id}','talentController@storenote')->name('notesreporttalent');
-	        Route::get('/viewcertif/{id}','talentController@viewcertif')->name('viewcertif');
-	        Route::get('/vieweducation/{id}','talentController@viewedu')->name('viewedu');
-	        Route::post('/previewreporttalent','ReportTalentPDF@generatePdf')->name('downloadreporttalentnya');
+			Route::post('/addeducation', 'talentController@addeducation')->name('education.add');
+			Route::get('/detaileducation/{id}', 'talentController@detaileducation')->name('education.detail');
+			Route::post('/updateeducation/{id}', 'talentController@updateeducation')->name('education.update');
+			Route::post('/deleteeducation/{id}', 'talentController@deleteeducation')->name('education.delete');
 
-	        Route::get('/all/unprocess', 'talentController@allUnprocess')->name('talent.unprocess');
+			Route::post('/addcertification', 'talentController@addcertification')->name('certification.add');
+			Route::get('/detailcertification/{id}', 'talentController@detailcertification')->name('certification.detail');
+			Route::post('/updatecertification/{id}', 'talentController@updatecertification')->name('certification.update');
+			Route::post('/deletecertification/{id}', 'talentController@deletecertification')->name('certification.delete');
+			Route::get('/detailtalent/{id}', 'talentController@detailtalent')->name('detailtalent');
+			Route::post('/notesreporttalent/{id}', 'talentController@storenote')->name('notesreporttalent');
+			Route::get('/viewcertif/{id}', 'talentController@viewcertif')->name('viewcertif');
+			Route::get('/vieweducation/{id}', 'talentController@viewedu')->name('viewedu');
+			Route::post('/previewreporttalent', 'ReportTalentPDF@generatePdf')->name('downloadreporttalentnya');
+
+			Route::get('/all/unprocess', 'talentController@allUnprocess')->name('talent.unprocess');
 			Route::get('/all/quarantine', 'talentController@allQuarantine')->name('talent.allquarantine');
 			Route::get('/all/assign', 'talentController@allAssign')->name('talent.assign');
 			Route::post('/changestatus', 'talentController@changeStatusAssign')->name('talent.changestatus');
 			Route::post('/changestatusassign', 'talentController@changeStatus')->name('talent.changestatusassign');
 			Route::post('/changestatusquarantine', 'talentController@changeStatusQuarantine')->name('talent.changestatusquarantine');
-			
+
 			Route::get('/detail', 'talentController@detail')->name('talent.detail');
 			// Route::get('/detailpost', 'talentController@detailpost')->name('talent.detail.post');
 			// Route::get('/detail/{id}', 'talentController@detail')->name('talent.detail');
 			Route::get('/delete', 'talentController@delete')->name('talent.delete');
 			Route::get('/move', 'talentController@move')->name('talent.move');
 			Route::get('/skill', 'talentController@skillTalent')->name('talent.skill');
-			Route::get('/deleteskill','talentController@deleteskill')->name('talent.deleteskill');
+			Route::get('/deleteskill', 'talentController@deleteskill')->name('talent.deleteskill');
 			Route::post('/addskill', 'talentController@addSkillTalent')->name('talent.addskill');
 			Route::post('/addsapply', 'talentController@addApplyTalent')->name('talent.addapply');
 			Route::post('/answer/{id}', 'talentController@answer')->name('talent.answer');
@@ -489,129 +490,127 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/assign', 'talentController@assignTalent')->name('talent.assigndata');
 			Route::get('/apply', 'talentController@applyTalent')->name('talent.apply');
 			Route::get('/verified', 'talentController@skillVerified')->name('talent.skillverified');
-			Route::post('/skill/update','talentController@updateSkill')->name('talent.skillupdate');
-			Route::post('/date_ready/update','talentController@updateReady')->name('talent.updateready');
-	        // Route::get('/get/request/{id}','talentController@getRequest')->name('talent.getrequest');
-	        Route::get('/get/request/{idcompany}/talent/{idtalent}',
-	        [ 'uses' =>'talentController@getRequest', 'as' => 'talent-getrequest' ])->name('talent.getrequest');
-			Route::get('/move/quarantine','talentController@moveQuarantine')->name('talent.quarantine');
-			Route::get('/move/unquarantine','talentController@moveunQuarantine')->name('talent.unquarantine');
-			Route::get('/moveStatus','talentController@moveStatus')->name('talent.movestatus');
-			Route::post('/getreminder','talentController@getreminder')->name('talent.getreminder');
-			Route::post('/editreminder','talentController@editreminder')->name('talent.editreminder');
-	        Route::resource('createtalent', 'createtalentController');
-	        
-	        Route::post('/createjobsid','createtalentController@jobsid')->name('talent.createjobsiid');
-	    });
+			Route::post('/skill/update', 'talentController@updateSkill')->name('talent.skillupdate');
+			Route::post('/date_ready/update', 'talentController@updateReady')->name('talent.updateready');
+			// Route::get('/get/request/{id}','talentController@getRequest')->name('talent.getrequest');
+			Route::get(
+				'/get/request/{idcompany}/talent/{idtalent}',
+				['uses' => 'talentController@getRequest', 'as' => 'talent-getrequest']
+			)->name('talent.getrequest');
+			Route::get('/move/quarantine', 'talentController@moveQuarantine')->name('talent.quarantine');
+			Route::get('/move/unquarantine', 'talentController@moveunQuarantine')->name('talent.unquarantine');
+			Route::get('/moveStatus', 'talentController@moveStatus')->name('talent.movestatus');
+			Route::post('/getreminder', 'talentController@getreminder')->name('talent.getreminder');
+			Route::post('/editreminder', 'talentController@editreminder')->name('talent.editreminder');
+			Route::resource('createtalent', 'createtalentController');
 
-	    Route::group(['prefix'=>'masterdata'], function(){
-	        Route::resource('skill','MasterDataController');
-	        Route::post('/addskillcategory','MasterDataController@storecategory')->name('skill.storecategory');
-	        Route::get('/editkategori/{id}','MasterDataController@editcategory')->name('skill.editcategory');
-	        Route::post('/updatekategori','MasterDataController@updatecategory')->name('skill.updatecategory');
-	        Route::post('/deletekategori/{id}','MasterDataController@deletecategory')->name('skill.deletecategory');
-	        Route::get('/restorekategori/{id}','MasterDataController@restorecategory')->name('skill.restorecategory');
-	        Route::resource('personality','MasterDataPersonality');
-	        Route::get('/ubahactive/{id}','MasterDataPersonality@ubahactive')->name('personality.ubahactive');
+			Route::post('/createjobsid', 'createtalentController@jobsid')->name('talent.createjobsiid');
+		});
+
+		Route::group(['prefix' => 'masterdata'], function () {
+			Route::resource('skill', 'MasterDataController');
+			Route::post('/addskillcategory', 'MasterDataController@storecategory')->name('skill.storecategory');
+			Route::get('/editkategori/{id}', 'MasterDataController@editcategory')->name('skill.editcategory');
+			Route::post('/updatekategori', 'MasterDataController@updatecategory')->name('skill.updatecategory');
+			Route::post('/deletekategori/{id}', 'MasterDataController@deletecategory')->name('skill.deletecategory');
+			Route::get('/restorekategori/{id}', 'MasterDataController@restorecategory')->name('skill.restorecategory');
+			Route::resource('personality', 'MasterDataPersonality');
+			Route::get('/ubahactive/{id}', 'MasterDataPersonality@ubahactive')->name('personality.ubahactive');
 			Route::resource('interview', 'MasterDataInterview');
-	        Route::post('/storeposition','MasterDataInterview@storeposition')->name('position.storeposition');
-	        Route::get('/position/edit/{id}','MasterDataInterview@editposition')->name('position.editposition');
-	        Route::post('/position/update/{id}','MasterDataInterview@updateposition')->name('position.updateposition');
-	        Route::resource('campus','MasterDataCampusController');
-			Route::delete('/position/hapus/{id}','MasterDataInterview@hapusposition')->name('position.destroy');
-			Route::resource('preferlocation','MasterDataLocationController');
-			Route::post('/campus/import','MasterDataCampusController@import')->name('campus.import');
-			Route::resource('user','MasterDataUserController');
-			Route::get('/user/edit/{id}','MasterDataUserController@edit')->name('user.edit');
-			Route::get('/user/delete/{id}','MasterDataUserController@delete')->name('user.delete');
-			Route::get('/','MasterDataUserController@selectlevel')->name('user.selectlevel');
-			Route::post('/user/useradd','MasterDataUserController@create')->name('user.create');
-			Route::post('/user/update','MasterDataUserController@update')->name('user.update');
-			
-			
+			Route::post('/storeposition', 'MasterDataInterview@storeposition')->name('position.storeposition');
+			Route::get('/position/edit/{id}', 'MasterDataInterview@editposition')->name('position.editposition');
+			Route::post('/position/update/{id}', 'MasterDataInterview@updateposition')->name('position.updateposition');
+			Route::resource('campus', 'MasterDataCampusController');
+			Route::delete('/position/hapus/{id}', 'MasterDataInterview@hapusposition')->name('position.destroy');
+			Route::resource('preferlocation', 'MasterDataLocationController');
+			Route::post('/campus/import', 'MasterDataCampusController@import')->name('campus.import');
+			Route::resource('user', 'MasterDataUserController');
+			Route::get('/user/edit/{id}', 'MasterDataUserController@edit')->name('user.edit');
+			Route::get('/user/delete/{id}', 'MasterDataUserController@delete')->name('user.delete');
+			Route::get('/', 'MasterDataUserController@selectlevel')->name('user.selectlevel');
+			Route::post('/user/useradd', 'MasterDataUserController@create')->name('user.create');
+			Route::post('/user/update', 'MasterDataUserController@update')->name('user.update');
+
+
 
 
 			// Route::post('/addlocation','MasterDataLocationController@store')->name('location.store');
-	        // Route::get('/editlocation/{id}','MasterDataLocationController@edit')->name('location.edit');
-	        // Route::post('/updatelocation','MasterDataLocationController@update')->name('location.update');
-	        // Route::post('/deletelocation/{id}','MasterDataLocationController@destroy')->name('location.destroy');
-	       	// Route::get('/restorelocation/{id}','MasterDataLocationController@restore')->name('location.restore');
-			Route::resource('mentor','mentorController');
-			Route::post('/addmentor','mentorController@storementor')->name('mentor.store');
-			Route::get('/editmentor/{id}','mentorController@editmentor')->name('mentor.edit');
-			Route::put('/updatementor/{id}','mentorController@updatementor')->name('mentor.update');
-			Route::post('/deletementor/{id}','mentorController@deletementor')->name('mentor.delete');
+			// Route::get('/editlocation/{id}','MasterDataLocationController@edit')->name('location.edit');
+			// Route::post('/updatelocation','MasterDataLocationController@update')->name('location.update');
+			// Route::post('/deletelocation/{id}','MasterDataLocationController@destroy')->name('location.destroy');
+			// Route::get('/restorelocation/{id}','MasterDataLocationController@restore')->name('location.restore');
+			Route::resource('mentor', 'mentorController');
+			Route::post('/addmentor', 'mentorController@storementor')->name('mentor.store');
+			Route::get('/editmentor/{id}', 'mentorController@editmentor')->name('mentor.edit');
+			Route::put('/updatementor/{id}', 'mentorController@updatementor')->name('mentor.update');
+			Route::post('/deletementor/{id}', 'mentorController@deletementor')->name('mentor.delete');
 		});
-
 	});
-    Route::post('admin/jobsapply/interview/uploadReportTalent/{id}', 'InterviewController@uploadrt')->name('uploadrt');
-    Route::get('admin/jobsapply/interview/downloadReportTalent/{id}', 'InterviewController@downloadrt')->name('downloadrt');
+	Route::post('admin/jobsapply/interview/uploadReportTalent/{id}', 'InterviewController@uploadrt')->name('uploadrt');
+	Route::get('admin/jobsapply/interview/downloadReportTalent/{id}', 'InterviewController@downloadrt')->name('downloadrt');
 
-    Route::get('/admin/talent/portfoliodetail/{id}','talentController@portfoliodetailya')->name('portfolio.talentdetailya');
+	Route::get('/admin/talent/portfoliodetail/{id}', 'talentController@portfoliodetailya')->name('portfolio.talentdetailya');
 
-	Route::group(['prefix'=>'inquiry'], function(){
+	Route::group(['prefix' => 'inquiry'], function () {
 		Route::get('/', 'questionController@inquiry')->name('inquiry');
 		Route::post('/storeInquiry', 'questionController@storeInquiry')->name('inquiry.storeInquiry');
-		Route::delete('/destroyInquiry{id}','questionController@destroyInquiry')->name('inquiry.destroyInquiry');
+		Route::delete('/destroyInquiry{id}', 'questionController@destroyInquiry')->name('inquiry.destroyInquiry');
 		Route::get('create', 'questionController@create')->name('inquiry.create');
 		Route::get('create/{id}', 'questionController@create')->name('inquiry.create');
 		Route::post('/storeQuestion', 'questionController@storeQuestion')->name('inquiry.storeQuestion');
-		Route::delete('/destroyQuestion{id}','questionController@destroyQuestion')->name('inquiry.destroyQuestion');
+		Route::delete('/destroyQuestion{id}', 'questionController@destroyQuestion')->name('inquiry.destroyQuestion');
+	});
 
-	}); 
+	Route::group(['prefix' => 'bootcamp'], function () {
 
-	Route::group(['prefix'=>'bootcamp'], function(){
+		Route::get('/class', 'bootcampController@getIndex')->name('class.index');
+		Route::post('/class', 'bootcampController@postIndex')->name('class.postindex');
 
-	Route::get('/class', 'bootcampController@getIndex')->name('class.index');
-	Route::post('/class', 'bootcampController@postIndex')->name('class.postindex');
+		Route::post('/class/new', 'bootcampController@postNew');
+		Route::post('/class/newmateri', 'bootcampController@postNewMateri');
+		Route::post('/class/delete', 'bootcampController@postDelete');
+		Route::get('/class/editclass/{id}', 'bootcampController@getEdit');
+		Route::post('/class/editclass/{id}', 'bootcampController@postEdit')->name('post.edit');
 
-	Route::post('/class/new', 'bootcampController@postNew');
-	Route::post('/class/newmateri', 'bootcampController@postNewMateri');
-	Route::post('/class/delete', 'bootcampController@postDelete');
-	Route::get('/class/editclass/{id}', 'bootcampController@getEdit');
-	Route::post('/class/editclass/{id}', 'bootcampController@postEdit')->name('post.edit');
-
-	Route::get('/materi', 'bootcampController@materiIndex')->name('materi.index');
-	Route::get('/materi/create', 'bootcampController@materiCreate')->name('materi.create');
-	Route::post('/materi/addmainmateri','bootcampController@materiStore')->name('materi.store');
-	Route::get('/materi/editmainmateri/{id}','bootcampController@materiEdit')->name('materi.edit');
-	Route::put('/materi/updatemainmateri','bootcampController@materiUpdate')->name('materi.update');
-	Route::post('/materi/deletemainmateri/{id}','bootcampController@materiDelete')->name('materi.delete');
-	Route::post('/materi/addsubmateri','bootcampController@submateriStore')->name('submateri.store');
-	Route::get('/materi/editsubmateri/{id}','bootcampController@submateriEdit')->name('submateri.edit');
-	Route::put('/materi/updatesubmateri/{id}','bootcampController@submateriUpdate')->name('submateri.update');
-	Route::post('/materi/deletesubmateri/{id}','bootcampController@submateriDelete')->name('submateri.delete');
-	Route::post('/materi/addsoal', 'bootcampController@addSoal')->name('soal.add');
-	Route::get('/materi/editsoal/{id}','bootcampController@editSoal')->name('soal.edit');
-	Route::put('/materi/updatesoal/{id}','bootcampController@upSoal')->name('soal.update');
-	Route::post('/deletesoal/{id}','bootcampController@delSoal')->name('soal.delete');
-	Route::get('/faq', 'bootcampController@faqIndex')->name('faq.index');
-	Route::post('/addfaq','bootcampController@faqStore')->name('faq.store');
-	Route::get('/editfaq/{id}','bootcampController@faqEdit')->name('faq.edit');
-	Route::put('/updatefaq/{id}','bootcampController@faqUpdate')->name('faq.update');
-	Route::post('/deletefaq/{id}','bootcampController@faqDelete')->name('faq.delete');
-	Route::get('/masterdata', 'bootcampController@fasilitasIndex')->name('bmaster.index');
-	Route::post('/addfasilitas','bootcampController@fasilitasStore')->name('fasilitas.store');
-	Route::get('/editfasilitas/{id}','bootcampController@fasilitasEdit')->name('fasilitas.edit');
-	Route::put('/updatefasilitas/{id}','bootcampController@fasilitasUpdate')->name('fasilitas.update');
-	Route::post('/deletefasilitas/{id}','bootcampController@fasilitasDelete')->name('fasilitas.delete');
-	Route::post('/addicon','bootcampController@iconStore')->name('icon.store');
-	Route::get('/editicon/{id}','bootcampController@iconEdit')->name('icon.edit');
-	Route::put('/updateicon/{id}','bootcampController@iconUpdate')->name('icon.update');
-	Route::post('/deleteicon/{id}','bootcampController@iconDelete')->name('icon.delete');
-	Route::post('/addlocation','bootcampController@locationStore')->name('location.store');
-	Route::get('/editlocation/{id}','bootcampController@locationEdit')->name('location.edit');
-	Route::put('/updatelocation/{id}','bootcampController@locationUpdate')->name('location.update');
-	Route::post('/deletelocation/{id}','bootcampController@locationDelete')->name('location.delete');
-	Route::get('/alumni', 'bootcampController@alumni')->name('alumni.index');
-	Route::get('/alumni/all', 'bootcampController@AlumniIndex')->name('alumni.all');
-	Route::post('/addalumni', 'bootcampController@addAlumni')->name('alumni.add');
-	Route::get('/editalumni/{id}', 'bootcampController@editAlumni')->name('alumni.edit');
-	Route::put('/updatealumni/{id}','bootcampController@upAlumni')->name('alumni.update');
-	Route::get('/alumni/move', 'bootcampController@move')->name('alumni.move');
-
-});
-
+		Route::get('/materi', 'bootcampController@materiIndex')->name('materi.index');
+		Route::get('/materi/create', 'bootcampController@materiCreate')->name('materi.create');
+		Route::post('/materi/addmainmateri', 'bootcampController@materiStore')->name('materi.store');
+		Route::get('/materi/editmainmateri/{id}', 'bootcampController@materiEdit')->name('materi.edit');
+		Route::put('/materi/updatemainmateri', 'bootcampController@materiUpdate')->name('materi.update');
+		Route::post('/materi/deletemainmateri/{id}', 'bootcampController@materiDelete')->name('materi.delete');
+		Route::post('/materi/addsubmateri', 'bootcampController@submateriStore')->name('submateri.store');
+		Route::get('/materi/editsubmateri/{id}', 'bootcampController@submateriEdit')->name('submateri.edit');
+		Route::put('/materi/updatesubmateri/{id}', 'bootcampController@submateriUpdate')->name('submateri.update');
+		Route::post('/materi/deletesubmateri/{id}', 'bootcampController@submateriDelete')->name('submateri.delete');
+		Route::post('/materi/addsoal', 'bootcampController@addSoal')->name('soal.add');
+		Route::get('/materi/editsoal/{id}', 'bootcampController@editSoal')->name('soal.edit');
+		Route::put('/materi/updatesoal/{id}', 'bootcampController@upSoal')->name('soal.update');
+		Route::post('/deletesoal/{id}', 'bootcampController@delSoal')->name('soal.delete');
+		Route::get('/faq', 'bootcampController@faqIndex')->name('faq.index');
+		Route::post('/addfaq', 'bootcampController@faqStore')->name('faq.store');
+		Route::get('/editfaq/{id}', 'bootcampController@faqEdit')->name('faq.edit');
+		Route::put('/updatefaq/{id}', 'bootcampController@faqUpdate')->name('faq.update');
+		Route::post('/deletefaq/{id}', 'bootcampController@faqDelete')->name('faq.delete');
+		Route::get('/masterdata', 'bootcampController@fasilitasIndex')->name('bmaster.index');
+		Route::post('/addfasilitas', 'bootcampController@fasilitasStore')->name('fasilitas.store');
+		Route::get('/editfasilitas/{id}', 'bootcampController@fasilitasEdit')->name('fasilitas.edit');
+		Route::put('/updatefasilitas/{id}', 'bootcampController@fasilitasUpdate')->name('fasilitas.update');
+		Route::post('/deletefasilitas/{id}', 'bootcampController@fasilitasDelete')->name('fasilitas.delete');
+		Route::post('/addicon', 'bootcampController@iconStore')->name('icon.store');
+		Route::get('/editicon/{id}', 'bootcampController@iconEdit')->name('icon.edit');
+		Route::put('/updateicon/{id}', 'bootcampController@iconUpdate')->name('icon.update');
+		Route::post('/deleteicon/{id}', 'bootcampController@iconDelete')->name('icon.delete');
+		Route::post('/addlocation', 'bootcampController@locationStore')->name('location.store');
+		Route::get('/editlocation/{id}', 'bootcampController@locationEdit')->name('location.edit');
+		Route::put('/updatelocation/{id}', 'bootcampController@locationUpdate')->name('location.update');
+		Route::post('/deletelocation/{id}', 'bootcampController@locationDelete')->name('location.delete');
+		Route::get('/alumni', 'bootcampController@alumni')->name('alumni.index');
+		Route::get('/alumni/all', 'bootcampController@AlumniIndex')->name('alumni.all');
+		Route::post('/addalumni', 'bootcampController@addAlumni')->name('alumni.add');
+		Route::get('/editalumni/{id}', 'bootcampController@editAlumni')->name('alumni.edit');
+		Route::put('/updatealumni/{id}', 'bootcampController@upAlumni')->name('alumni.update');
+		Route::get('/alumni/move', 'bootcampController@move')->name('alumni.move');
+	});
 });
 
 Route::get('/admin/attend', 'attendController@index')->name('attend.index');
@@ -673,7 +672,7 @@ Route::get('/success', 'SuccessController@index')->name('successapply');
 Route::get('/cek_import_talent', 'talentController@cek_import_talent')->name('cek_imp_talent');
 Route::get('/cek_import_jobsapply', 'talentController@cek_import_jobsapply')->name('cek_imp_jobsapply');
 
-Route::get('debug','homeController@debug');
+Route::get('debug', 'homeController@debug');
 
 
 
