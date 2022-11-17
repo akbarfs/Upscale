@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\CompanyReqLog;
+use App\Models\CompanyRequest;
 use App\Models\Talent;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AllTalentController extends Controller
 {
@@ -115,5 +120,49 @@ class AllTalentController extends Controller
 
         return view('admin.all-talent.table', compact('data'))->render();
         // }
+    }
+
+
+    // company data on add to client
+    public function company_request_list(Request $request)
+    {
+        $company_request = CompanyRequest::join('company', 'company_request.company_id', 'company.company_id')
+            ->select('company_request.company_request_id as id', 'company_request.name_request as text', 'company_request.name_request as value', 'company.company_id', 'company.company_name')->get();
+
+        return response()->json($company_request);
+    }
+
+    public function add_to_client(Request $request)
+    {
+        $request->validate([
+            'name_request' => 'required',
+        ]);
+
+
+        $request_id = $request->name_request;
+        $talent = $request->talent_id;
+        $check = CompanyReqLog::where([
+            'company_request_id' => $request_id,
+            'talent_id' => $talent
+        ])->count();
+
+        if ($check) {
+            Alert::info('Info', 'Talent sudah ada di list request');
+            return redirect()->route('all-talent.index')->with([
+                'message' => 'Talent sudah ada di list request'
+            ]);
+        } else {
+            CompanyReqLog::create([
+                'company_request_id' => $request_id,
+                'talent_id' => $talent,
+                'status' => 'unprocess',
+                'bookmark' => 'false'
+            ]);
+
+            Alert::success('Success', 'Talent berhasil ditambahkan di request');
+            return redirect()->route('all-talent.index')->with([
+                'message' => 'Talent berhasil ditambahkan di request'
+            ]);
+        }
     }
 }
