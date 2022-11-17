@@ -37,8 +37,8 @@
 </div>
 
 <div class="card rect-border">
-    <div class="card-body">
-        <table class="table table-striped mt-4 mb-4">
+    <div class="">
+        <table class="table table-striped mb-4">
             <thead class="text-center">
                 <tr>
                     <th scope="col" class="text-center">No.</th>
@@ -108,11 +108,21 @@
                     <td scope="col">-</td>
                     <td scope="col">
                         <div class="d-flex">
+                        @if (!empty($talent->talent_id))
+                        <a href="{{url('/profile/'.encrypt_custom($talent->talent_id))}}" class="btn btn-info" target="_blank">
+                        <i class="fa fa-info"></i>
+                        </a>
+                        @else
+                        <button type="button" data-toggle="modal" data-target="#detail-user" class="btn btn-info" target="_blank">
+                        <i class="fa fa-info"></i>
+                        </button>
+                        @endif
+
                             <form
                                 action="{{ route('company.request.keeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
                                 method="POST" style="margin-bottom: 0;">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-success rect-border me-2">Move To
+                                <button type="submit" class="btn btn-sm btn-success rect-border ml-2 me-2">Move To
                                     Top</button>
                             </form>
                             <button class="btn btn-sm btn-info rect-border ml-2 hire hire-me" data-target="#hire-modal" data-id="{{$talent->talent_id}}"

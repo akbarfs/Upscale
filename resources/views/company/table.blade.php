@@ -19,11 +19,11 @@
 </style>
 
 <div class="card rect-border">
-  <div class="card-body">
-    <table class="table table-striped mt-4 mb-4">
+  <div class="">
+    <table class="table table-striped mb-4">
       <thead>
         <tr>
-          <th scope="col">No.</th>
+          <th style="text-align:center;" scope="col">No.</th>
           <th scope="col">Image</th>
           <th scope="col">Name</th>
           <th scope="col">Skills</th>
@@ -35,7 +35,7 @@
       <tbody id="container">
         @foreach ($data as $talent)
         <tr>
-          <td>{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
+          <td style="text-align:center;">{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
           <td>
             <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 50px; height:50px;" alt="">
           </td>
@@ -75,8 +75,8 @@
             @endif
           </td>
           <td style="min-width:200px">
-            @if (!empty($talent->user_id))
-            <a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" class="btn btn-info" target="_blank">
+            @if (!empty($talent->talent_id))
+            <a href="{{url('/profile/'.encrypt_custom($talent->talent_id))}}" class="btn btn-info" target="_blank">
               <i class="fa fa-info"></i>
             </a>
             @else

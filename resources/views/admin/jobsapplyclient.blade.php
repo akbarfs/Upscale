@@ -58,8 +58,8 @@
                                 </div>
                             </div>
 
-                                <div style="background-color:#b3b3b3;padding:10px;">
-                                @if (4>$jumlah_data_notif)
+                                <div id="posts" style="background-color:#b3b3b3;padding:10px;">
+                                @if ($jumlah_data_notif>0)
                                 @foreach($data_talent as $notif)
                                 <form method="post" enctype="multipart/form-data" class="hire-talent">
                                 @csrf
@@ -77,30 +77,12 @@
                                     </div>
                                     </form>
                                 @endforeach
-                                @elseif ($jumlah_data_notif>0)
-                                @foreach($data_talent as $notif)
-                                <form method="post" enctype="multipart/form-data" class="hire-talent">
-                                @csrf
-                                    <div class="layout-notif">
-                                        <a href="{{route('jobsapplyclient.notif',['id' => $notif->hire_talent_id])}}" data-id="{{$notif->hire_talent_id}}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif">
-                                            <div style="width:31px;height:31px;background-color:#ffffff;">
-                                            <img src="{{$notif->company_pic}}" alt="" class="company_pic" srcset="">
-                                            </div>
-                                            <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;">
-                                                Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>{{$notif->talent_name}}</strong>
-                                            </p>
-                                            <p style="font-size:8px;color:#000000;line-height:10px;" class="date">{{$notif->created_at}}</p>
-                                        </a>
-                                        <div style="height:1px;width:100%;background-color:#9b9b9b;margin-bottom:4px;"></div>
-                                    </div>
-                                    </form>
-                                @endforeach
-
-                                {{$data_talent}}
-                                    <button class="see-more" style="cursor:pointer;background-color:#ffffff;color:black;text-align:center;width: 100%;font-size:11px;height:fit-content;border:none;margin-top:14px;">Lihat semua notifikasi</button>
                                 @else
-                                <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;text-align:center;">Tidak ada Notifikasi</p>
+                                <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;text-align:center;">Belum ada notifikasi terbaru</p>
                                 @endif
+                                <a href="{{route('jobsapplyclient.all-notif')}}">
+                                    <button class="see-more" style="cursor:pointer;background-color:#ffffff;color:black;text-align:center;width: 100%;font-size:11px;height:fit-content;border:none;margin-top:14px;">Lihat semua notifikasi</button>
+                                </a>
                                 </div>
                             </div>
                         </div>
@@ -1398,31 +1380,32 @@ $(document).on('click', 'a[href="#prospek"]', function(e){
     
 });
 
-// $(function(){
-//     var $posts = $("#id-notif");
-//     var $ul = $("ul.pagination");
-//     .$ul.hide();
-
-//     $(".see-more").click(function(){
-//         $.get($ul.find("a[rel='next']").attr("href"), function(response){
-//             $posts.append(
-//                 $(response).find("#posts").html()
-//             );
-//         });
-//     });
-// });
-
 
 $(document).ready(function () {
     var talent = `{{session('talent')}}`;
     var client = `{{session('company')}}`;
     $('#client').val(client);
     $('#talent').val(talent);
+
+    // var $posts = $("#posts");
+    // var $ul = $("ul.pagination");
+    // $ul.hide(); // Prevent the default Laravel paginator from showing, but we need the links...
+
+    // $(".see-more").click(function() {
+    //     $.get($ul.find("a[rel='next']").attr("href"), function(response) {
+    //         $posts.append(
+    //             $(response).find("#posts").html()
+    //         );
+    //     });
+    // });
     
-    $('.id_notif').on('click', function () {
-        values = $('#talent').val();
+    $('.id_notif').ready(function () {
+        talent_values = $('#talent').val();
+        client_values = $('#client').val();
+
         var table = $("#"+tab_active).DataTable();
-        table.columns(4).search( values ).draw();
+        table.columns(4).search( talent_values ).draw();
+        table.columns(2).search( client_values ).draw();
     });
     
     $('#talent').on('input', function () {

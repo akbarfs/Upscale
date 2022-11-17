@@ -26,7 +26,7 @@
     }
 
     .filter-btn {
-        background-color: skyblue;
+        background-color: #405B74;
         padding: 10px;
         color: white;
         text-align: center;
@@ -35,11 +35,11 @@
     }
 
     .filter-btn.active{
-        background-color: darkcyan;
+        background-color: #80bde3;
     }
 
     .filter-btn:hover {
-        background-color: darkcyan;
+        background-color: #80bde3;
     }
 
     .filter-btn span {
@@ -104,7 +104,8 @@
                                     <?php $result3 = substr($talent->talent_phone, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->talent_phone, 1));?>
                                     <div class="my-1">{{ $result3 }}</div>
                                 </div>
-                                <div class="d-flex mt-4">
+                            </div>
+                                <div class="d-flex w-100 mx-3 mt-4">
                                     <select class="form-control status" name="status"
                                         id_talent={{ $talent->talent_id }}>
                                         <option value="unprocess" {{ $talent->status == "unprocess" ? "selected":"" }}>
@@ -133,7 +134,6 @@
                                             style="padding-bottom: 10px; ">Move To
                                             List</button>
                                     </form>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,15 +146,17 @@
                         <div class="p-3 my-2 bg-white shadow-sm rounded">
                             <div class="row">
                                 <div class="col-md-4 m-auto">
-                                    <img src="{{url('/img/avatar/quest.png')}}" style="width: 100px;"
+                                    <img src="{{url('/img/avatar/quest.png')}}" style="width: 68.58px;"
                                         alt="icon-profile">
                                 </div>
                                 <div class="col-md-8">
                                     <hr style="margin: 32px 0;">
                                     <hr style="margin: 32px 0;">
-                                    <hr style="margin: 32px 0;">
-                                    <hr style="margin: 34px 0;">
+                                    <hr style="margin: 30px 0;">
                                 </div>
+                            </div>
+                            <div>
+                                <hr class="mb-4">
                             </div>
                         </div>
                     </div>

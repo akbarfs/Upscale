@@ -96,7 +96,7 @@ class jobsapplyclientController extends Controller
         ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
         ->select('hire_talent.*','talent.talent_name','company.company_pic')
         ->where('hire_talent.hire_talent_status_notif', '1')
-        ->orderBy('hire_talent.created_at', 'DESC')->paginate($limit);
+        ->orderBy('hire_talent.created_at', 'DESC')->paginate();
 
         $data = DB::table('hire_talent')
         ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
@@ -117,7 +117,22 @@ class jobsapplyclientController extends Controller
         ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
         ->select('hire_talent.*','talent.talent_name','company.company_pic')->orderBy('hire_talent.created_at', 'DESC')->get();
 
-        return compact('data_talent');
+        $countUR = DB::table('hire_talent')
+        ->where([
+          ['hire_talent_status_notif', '=', '1']
+        ])
+        ->get()->count();
+
+        $countR = DB::table('hire_talent')
+        ->where([
+          ['hire_talent_status_notif', '=', '0']
+        ])
+        ->get()->count();
+
+        $countAll = DB::table('hire_talent')
+        ->get()->count();
+
+        return view('admin.all-notif', compact('data_talent', 'countUR', 'countR', 'countAll'));
       }
   
       public function notif(Request $request)
@@ -133,7 +148,7 @@ class jobsapplyclientController extends Controller
         $hire_talent1 = HireTalent::find($id);
 
         $hire_talent1->hire_talent_status_notif = '0';
-        $hire_talent1->update();      
+        $hire_talent1->update();
 
         return redirect()->route('jobsapplyclient')->with([
           "talent" => $hire_talent->talent_name,
@@ -461,5 +476,107 @@ class jobsapplyclientController extends Controller
           return 'deleted';
         }
       }
+      public function allNotify() {
+        $data = DB::table('hire_talent')
+        ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
+        ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
+        ->join('company_request', 'hire_talent.hire_talent_company_request_id', '=', 'company_request.company_request_id')
+        ->select('hire_talent.*','talent.talent_name','company.company_name','company_request.name_request')
+        // ->where('hire_talent.hire_talent_status_notif', '1')
+        ->get();
+
+    
+        return Datatables::of($data)
+        ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" /></center')
+
+        ->addColumn('talent_name', function($data){
+          $text = $data->talent_name;
+          return $text;
+          })
+        ->addColumn('tanggal', function($data){
+          return $data->created_at;
+          })  
+        ->addColumn('company_name', function($data){
+          $text2 = $data->company_name;
+          return $text2;
+          })
+        ->addColumn('req', function($data){
+          return $data->name_request;
+          })  
   
+        ->addColumn('action', function($data){
+        return '<center><a href="'.route('jobsapply.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-share-square-o"></i></a>    <a href="'.route('talent.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-user-o"></i></a>     <a href="" id="'.$data->hire_talent_id.'"data-toggle="modal" data-target="#modal-tambah-catatan" type="button" class="btn btn-warning btn-xs tambah-catatan" data-toggle="tooltip" data-placement="top" title="See Substeps For This Application"><i class="	fa fa-check"></i></a></center>';
+        })
+        ->rawColumns(['talent_name','checkbox','action','req','company_name'])
+        ->make(true);
+      }
+      public function allUnread() {
+        $data = DB::table('hire_talent')
+        ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
+        ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
+        ->join('company_request', 'hire_talent.hire_talent_company_request_id', '=', 'company_request.company_request_id')
+        ->select('hire_talent.*','talent.talent_name','company.company_name','company_request.name_request')
+        ->where('hire_talent.hire_talent_status_notif', '1')
+        ->get();
+
+    
+        return Datatables::of($data)
+        ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" /></center')
+
+        ->addColumn('talent_name', function($data){
+          $text = $data->talent_name;
+          return $text;
+          })
+        ->addColumn('tanggal', function($data){
+          return $data->created_at;
+          })  
+        ->addColumn('company_name', function($data){
+          $text2 = $data->company_name;
+          return $text2;
+          })
+        ->addColumn('req', function($data){
+          return $data->name_request;
+          })  
+  
+        ->addColumn('action', function($data){
+        return '<center><a href="'.route('jobsapply.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-share-square-o"></i></a>    <a href="'.route('talent.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-user-o"></i></a>     <a href="" id="'.$data->hire_talent_id.'"data-toggle="modal" data-target="#modal-tambah-catatan" type="button" class="btn btn-warning btn-xs tambah-catatan" data-toggle="tooltip" data-placement="top" title="See Substeps For This Application"><i class="	fa fa-check"></i></a></center>';
+        })
+        ->rawColumns(['talent_name','checkbox','action','req','company_name'])
+        ->make(true);
+      }
+      public function allRead() {
+        $data = DB::table('hire_talent')
+        ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
+        ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
+        ->join('company_request', 'hire_talent.hire_talent_company_request_id', '=', 'company_request.company_request_id')
+        ->select('hire_talent.*','talent.talent_name','company.company_name','company_request.name_request')
+        ->where('hire_talent.hire_talent_status_notif', '0')
+        ->get();
+
+    
+        return Datatables::of($data)
+        ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" /></center')
+
+        ->addColumn('talent_name', function($data){
+          $text = $data->talent_name;
+          return $text;
+          })
+        ->addColumn('tanggal', function($data){
+          return $data->created_at;
+          })  
+        ->addColumn('company_name', function($data){
+          $text2 = $data->company_name;
+          return $text2;
+          })
+        ->addColumn('req', function($data){
+          return $data->name_request;
+          })  
+  
+        ->addColumn('action', function($data){
+        return '<center><a href="'.route('jobsapply.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-share-square-o"></i></a>    <a href="'.route('talent.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-user-o"></i></a>     <a href="" id="'.$data->hire_talent_id.'"data-toggle="modal" data-target="#modal-tambah-catatan" type="button" class="btn btn-warning btn-xs tambah-catatan" data-toggle="tooltip" data-placement="top" title="See Substeps For This Application"><i class="	fa fa-check"></i></a></center>';
+        })
+        ->rawColumns(['talent_name','checkbox','action','req','company_name'])
+        ->make(true);
+      }
+
 }

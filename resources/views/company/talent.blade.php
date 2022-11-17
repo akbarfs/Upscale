@@ -71,6 +71,9 @@
         min-height: 40px !important;
         /* background-color: lightgray !important; */
     }
+    .skill .select2-default{
+        color: #f00 !important;
+    }
 
     @media only screen and (max-width:1300px) {
         .input-group .select2.select2-container {
@@ -282,7 +285,9 @@
                                     <h3 class="text-center">&nbsp;-&nbsp;</h3>
                                     <input type="number" name="skill-exp[]" class="form-control"
                                         placeholder="Masukkan pengalaman skill" required>
-                                    <span class="ml-2 pt-2"> Tahun</span>
+                                    <span class="ml-2 pt-2">Tahun</span>
+                                    <h3 class="text-center" style="color:transparent;">&nbsp;-&nbsp;</h3>
+                                    <div class="btn btn-sm" style="background-color:transparent;color:transparent;" ><i class="fa fa-trash" style="line-height: 2;" aria-hidden="true"></i></div>
                                 </div>
                             </div>
 

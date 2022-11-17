@@ -83,7 +83,6 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function () {
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
 
 
-
 	// request feature
 	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
 	Route::post('/request/update/{id}', "CompanyDashboardController@updateOffer")->name('company.request.update');
@@ -175,7 +174,7 @@ Route::group(['middleware' => 'cek'], function () {
 			Route::get('/all-notif', "jobsapplyclientController@allNotif")->name('jobsapplyclient.all-notif');
 			Route::get('/notif/{id}', 'jobsapplyclientController@notif')->name('jobsapplyclient.notif');
 
-			// Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
+			Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
 
 			//filter Status
 			Route::get('/all', 'jobsapplyclientController@all')->name('jobsapplyclient.all');
@@ -185,6 +184,11 @@ Route::group(['middleware' => 'cek'], function () {
 			Route::get('/all/hiredclient', 'jobsapplyclientController@allHiredClient')->name('all.hired.client');
 			Route::get('/all/offeredclient', 'jobsapplyclientController@allOfferedClient')->name('all.offered.client');
 			Route::get('/all/prospekclient', 'jobsapplyclientController@allProspekClient')->name('all.prospek.client');
+
+			//AllNotif
+			Route::get('/all-notif/all', 'jobsapplyclientController@allNotify')->name('all.table-notif');
+			Route::get('/all-notif/unread', 'jobsapplyclientController@allUnread')->name('all.unread.notif');
+			Route::get('/all-notif/read', 'jobsapplyclientController@allRead')->name('all.read');
 		});
 
 
@@ -226,21 +230,21 @@ Route::group(['middleware' => 'cek'], function () {
 			Route::get('/changestatusapprove', 'jobsapplyController@changeStatusApprove')->name('jobsapply.changestatusapprove');
 			Route::post('/getreminder', 'jobsapplyController@getreminder')->name('jobsapply.getreminder');
 			Route::get('/editreminder', 'jobsapplyController@editreminder')->name('jobsapply.editreminder');
+
+			Route::name('all-talent.')
+				->prefix('all-talent')
+				->group(function () {
+					Route::get('/', 'Admin\AllTalentController@index')->name('index');
+					Route::get('/condition', 'Admin\AllTalentController@condition')->name('condition');
+					Route::get('/search', 'Admin\AllTalentController@search')->name('search');
+					Route::get('/filter', 'Admin\AllTalentController@filter')->name('filter');
+					Route::get('/paginate_data', 'Admin\AllTalentController@paginate_data')->name('paginate_data');
+
+					// company request list
+					Route::get('/company_request_list', 'Admin\AllTalentController@company_request_list')->name('company_request_list');
+					Route::post('/add_to_client', 'Admin\AllTalentController@add_to_client')->name('add_to_client');
+				});
 		});
-
-		Route::name('all-talent.')
-			->prefix('all-talent')
-			->group(function () {
-				Route::get('/', 'Admin\AllTalentController@index')->name('index');
-				Route::get('/condition', 'Admin\AllTalentController@condition')->name('condition');
-				Route::get('/search', 'Admin\AllTalentController@search')->name('search');
-				Route::get('/filter', 'Admin\AllTalentController@filter')->name('filter');
-				Route::get('/paginate_data', 'Admin\AllTalentController@paginate_data')->name('paginate_data');
-
-				// company request list
-				Route::get('/company_request_list', 'Admin\AllTalentController@company_request_list')->name('company_request_list');
-				Route::post('/add_to_client', 'Admin\AllTalentController@add_to_client')->name('add_to_client');
-			});
 
 		// Route::group(['prefix'=>'talent'], function(){
 		// 	Route::get('/', 'talentController@index')->name('talent.index');
