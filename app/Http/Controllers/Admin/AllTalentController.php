@@ -10,6 +10,7 @@ use App\Models\CompanyRequest;
 use App\Models\Talent;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AllTalentController extends Controller
 {
@@ -146,21 +147,22 @@ class AllTalentController extends Controller
         ])->count();
 
         if ($check) {
+            Alert::info('Info', 'Talent sudah ada di list request');
             return redirect()->route('all-talent.index')->with([
                 'message' => 'Talent sudah ada di list request'
             ]);
+        } else {
+            CompanyReqLog::create([
+                'company_request_id' => $request_id,
+                'talent_id' => $talent,
+                'status' => 'unprocess',
+                'bookmark' => 'false'
+            ]);
+
+            Alert::success('Success', 'Talent berhasil ditambahkan di request');
+            return redirect()->route('all-talent.index')->with([
+                'message' => 'Talent berhasil ditambahkan di request'
+            ]);
         }
-
-
-        CompanyReqLog::create([
-            'company_request_id' => $request_id,
-            'talent_id' => $talent,
-            'status' => 'unprocess',
-            'bookmark' => 'false'
-        ]);
-
-        return redirect()->route('all-talent.index')->with([
-            'message' => 'Talent berhasil ditambahkan di request'
-        ]);
     }
 }

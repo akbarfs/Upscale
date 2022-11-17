@@ -19,6 +19,7 @@
         "laravelcollective/html": "^5.2.0",
         "maatwebsite/excel": "^3.1",
         "mikehaertl/php-pdftk": "^0.4.4",
+        "realrashid/sweet-alert": "^5.1",
         "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {

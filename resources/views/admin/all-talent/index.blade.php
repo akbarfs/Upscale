@@ -161,6 +161,7 @@
 
 							@push('script')
 
+							@include('sweetalert::alert')
 							<script src="{{url('template/upscale/js/tag.js')}}"></script>
 							<link rel="stylesheet" href="{{url('template/upscale/css/tag.css')}}">
 

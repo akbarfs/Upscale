@@ -156,11 +156,14 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-     
+
 
         /*
          * Package Service Providers...
          */
+
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -224,14 +227,16 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Lava' => Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-   
+
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Lava' => Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-        'Charts'=>ConsoleTVs\Charts\ChartsServiceProvider::class,
+        'Charts' => ConsoleTVs\Charts\ChartsServiceProvider::class,
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
-       
+
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
 
     ],
     'debug_blacklist' => [
