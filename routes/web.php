@@ -236,6 +236,10 @@ Route::group(['middleware' => 'cek'], function () {
 				Route::get('/search', 'Admin\AllTalentController@search')->name('search');
 				Route::get('/filter', 'Admin\AllTalentController@filter')->name('filter');
 				Route::get('/paginate_data', 'Admin\AllTalentController@paginate_data')->name('paginate_data');
+
+				// company request list
+				Route::get('/company_request_list', 'Admin\AllTalentController@company_request_list')->name('company_request_list');
+				Route::post('/add_to_client', 'Admin\AllTalentController@add_to_client')->name('add_to_client');
 			});
 
 		// Route::group(['prefix'=>'talent'], function(){

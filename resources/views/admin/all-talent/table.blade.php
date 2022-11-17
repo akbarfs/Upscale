@@ -305,14 +305,13 @@
 		  			<i class="fa fa-sign-in"></i>
 		  		</a>
 				
-                <a class="btn btn-sm btn-secondary text-white" target="_blank" 
+                <a class="btn btn-sm btn-secondary text-white" 
                 data-toggle="modal"
 				data-target="#add-to-client" 
-                data-wa='{{$wa}}' 
-                data-nama='{{$talent->talent_name}}' 
-                data-link="{{url('loginas/'.encrypt_custom($talent->talent_id))}}">
+                data-id="{{$talent->talent_id}}"
+                data-nama='{{$talent->talent_name}}'>
                     <small>Add to Client</small> 
-		  		</a>
+                </a>
 		  </td>
 		</tr>
 		@endforeach
@@ -332,8 +331,6 @@
 <script type="text/javascript">
 	$(document).ready(function()
 	{
-		
-		
 		$(".button-wa").click(function()
 		{
 			wa = $(this).data("wa");
@@ -429,20 +426,81 @@
 </div>
 
 {{-- modal add to client --}}
-<div class="modal fade" id="add-to-client" role="dialog">
-	<div class="modal-dialog">
-
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<h3>Add to Client</h3>
-			</div>
-			<div class="modal-body">
-				
-				<p>test</p>
-
-			</div>
-		</div>
-
-	</div>
+<div class="modal fade" id="add-to-client">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Add To Client</div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form method="POST" enctype="multipart/form-data" class="add-to-client">
+                @csrf
+                <div class="modal-body">
+					<p class="text-center" id="note-need"></p>
+					<div class="row justify-content-center mt-4">
+						<div class="form-group">
+							<select class="" id="client" name="name_request"></select>
+						</div>                        
+					</div>
+                </div>
+                <div class="modal-footer">
+                    <div class="nav nav-pills pull-right">
+                        <button type="submit" class="btn btn-success rounded">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+      $('#add-to-client').on('show.bs.modal', function (e) {
+        var talent_id = e.relatedTarget.dataset.id;
+        const _url = `{{ url('admin/all-talent/add_to_client?talent_id=${talent_id}') }}`;
+        $('.add-to-client').attr('action', _url);
+      })
+  
+      $('#client').on('change', function (e) {
+        var value = $(this).val();
+        const _url = `{{ url('company/dashboard/getInfoReq?id_request=${value}') }}`
+        $.ajax({
+          url: _url,
+          success: function (data) {
+            var content = `<strong>${data['hired']}/${data['need']}</strong> dari total <strong>${data['total']}</strong> Talent`;
+            $("#note-need").html(content);
+          }
+        });
+      });
+  
+      loadSelect();
+
+    })
+  
+    function loadSelect() {
+      $("#client").select2({
+        placeholder: "Pilih Client Request",
+        ajax:{
+          url: '{{route("all-talent.company_request_list")}}',
+          dataType: 'json',
+          delay: 250,
+          processResults: function (data) {
+              var results = [];
+              $.each(data, function (index, item) {
+                  results.push({
+                      id: item.id,
+                      text: item.company_name + ' - ' + item.value,
+                  });
+              });
+              return {
+                  results: results
+              }
+          },
+          cache: false
+        },
+      });
+    }
+  
+</script>

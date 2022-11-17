@@ -293,7 +293,7 @@
 		<a type="button" class="btn btn-primary btn-sm tb" data-toggle="modal" data-target="#importExcel">
 			IMPORT EXCEL
 		</a>
-		<button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button>
+		{{-- <button type="submit" class="btn btn-danger btn-sm tb" id="mass_del"> Delete </button> --}}
 		<a class="btn btn-success btn-sm tb btnmail" data-toggle="modal" 
 		data-target="#myModal"> Send Email </a>
 
