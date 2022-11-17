@@ -39,56 +39,39 @@ class jobsapplyclientController extends Controller
         $countU = DB::table('talent')
                   ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
                   ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
-                  ->join("company","company.company_id","=","company_request.company_id")
-                  // ->where("company_req_log.company_request_id", $id_request)
                   ->where([
                     ['company_req_log.status', '=', 'unprocess']
-                  ])
-                  ->get()->count();
+                  ])->count();
         $countI = DB::table('talent')
                   ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
                   ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
-                  ->join("company","company.company_id","=","company_request.company_id")
-                  // ->where("company_req_log.company_request_id", $id_request)
                   ->where([
                     ['company_req_log.status', '=', 'interview']
-                  ])
-                  ->get()->count();
-      //   $countTC = DB::table('jobs_apply')->select('jobs_apply.jobs_apply_current_address', 'jobs_apply.jobs_apply_type_time', 'jobs.jobs_title', 'jobs_apply.jobs_apply_label', 'jobs_apply.jobs_apply_note', 'jobs_apply.jobs_apply_name', 'jobs_apply.jobs_apply_email', 'jobs_apply.jobs_apply_phone', 'jobs_apply.jobs_apply_id', 'jobs_apply.jobs_apply_status', 'interview.interview_id', 'interview.interview_schedule', 'interview.interview_schedule_status')
+                  ])->count();
         $countP = DB::table('talent')
                   ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
                   ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
-                  ->join("company","company.company_id","=","company_request.company_id")
-                  // ->where("company_req_log.company_request_id", $id_request)
                   ->where([
                     ['company_req_log.status', '=', 'prospek']
-                  ])
-                  ->get()->count();
-  
+                  ])->count();
         $countO = DB::table('talent')
-        ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
-        ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
-        ->join("company","company.company_id","=","company_request.company_id")
-        ->where([
-          ['company_req_log.status', '=', 'offered']
-        ])
-        ->get()->count();
+                  ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
+                  ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
+                  ->where([
+                    ['company_req_log.status', '=', 'offered']
+                  ])->count();
         $countH = DB::table('talent')
-        ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
-        ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
-        ->join("company","company.company_id","=","company_request.company_id")
-        ->where([
-          ['company_req_log.status', '=', 'hired']
-        ])
-        ->get()->count();
+                  ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
+                  ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
+                  ->where([
+                    ['company_req_log.status', '=', 'hired']
+                  ])->count();
         $countR = DB::table('talent')
-        ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
-        ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
-        ->join("company","company.company_id","=","company_request.company_id")
-        ->where([
-          ['company_req_log.status', '=', 'reject']
-        ])
-        ->get()->count();
+                  ->join("company_req_log", "company_req_log.talent_id","=","talent.talent_id")
+                  ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
+                  ->where([
+                    ['company_req_log.status', '=', 'reject']
+                  ])->count();
 
         $limit = 3;
         $data_talent = DB::table('hire_talent')
@@ -96,7 +79,7 @@ class jobsapplyclientController extends Controller
         ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
         ->select('hire_talent.*','talent.talent_name','company.company_pic')
         ->where('hire_talent.hire_talent_status_notif', '1')
-        ->orderBy('hire_talent.created_at', 'DESC')->paginate();
+        ->orderBy('hire_talent.created_at', 'DESC')->paginate($limit);
 
         $data = DB::table('hire_talent')
         ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
@@ -105,10 +88,7 @@ class jobsapplyclientController extends Controller
         ->get();
         $jumlah_data_notif = $data->count("hire_talent_id");
 
-        $today = new \DateTime();
-        $tgl2 = new \DateTime($data_talent['created_at']);
-        $diff = $today->diff($tgl2);
-          return view('admin.jobsapplyclient', compact('reqs', 'locations', 'countU', 'countI','countP', 'countO', 'countH', 'countR', 'data_talent', 'jumlah_data_notif', 'diff'));
+        return view('admin.jobsapplyclient', compact('reqs', 'locations', 'countU', 'countI','countP', 'countO', 'countH', 'countR', 'data_talent', 'jumlah_data_notif'));
       }
 
       public function allNotif(){
@@ -129,10 +109,7 @@ class jobsapplyclientController extends Controller
         ])
         ->get()->count();
 
-        $countAll = DB::table('hire_talent')
-        ->get()->count();
-
-        return view('admin.all-notif', compact('data_talent', 'countUR', 'countR', 'countAll'));
+        return view('admin.all-notif', compact('data_talent', 'countUR', 'countR'));
       }
   
       public function notif(Request $request)
@@ -169,7 +146,7 @@ class jobsapplyclientController extends Controller
         ->where([
           ['company_req_log.status', '=', 'unprocess']
         ])
-        ->groupBy('talent_id')->get();
+        ->get();
     
         return Datatables::of($data)
         ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_id}}"/></center')
@@ -211,7 +188,7 @@ class jobsapplyclientController extends Controller
         ->join("company_request", "company_request.company_request_id","=","company_req_log.company_request_id")
         ->join("company","company.company_id","=","company_request.company_id")
         // ->where("company_req_log.company_request_id", $id_request)
-        ->groupBy('talent_id')->get();
+        ->get();
     
         return Datatables::of($data)
         ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_id}}"/></center')
@@ -256,7 +233,7 @@ class jobsapplyclientController extends Controller
         ->where([
           ['company_req_log.status', '=', 'interview']
         ])
-        ->groupBy('talent_id')->get();
+        ->get();
     
         return Datatables::of($data)
         ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_id}}"/></center')
@@ -301,7 +278,7 @@ class jobsapplyclientController extends Controller
         ->where([
           ['company_req_log.status', '=', 'reject']
         ])
-        ->groupBy('talent_id')->get();
+        ->get();
     
         return Datatables::of($data)
         ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_id}}"/></center')
@@ -346,7 +323,7 @@ class jobsapplyclientController extends Controller
         ->where([
           ['company_req_log.status', '=', 'hired']
         ])
-        ->groupBy('talent_id')->get();
+        ->get();
     
         return Datatables::of($data)
         ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_id}}"/></center')
@@ -391,7 +368,7 @@ class jobsapplyclientController extends Controller
         ->where([
           ['company_req_log.status', '=', 'prospek']
         ])
-        ->groupBy('talent_id')->get();
+        ->get();
     
         return Datatables::of($data)
         ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_id}}"/></center')
@@ -435,7 +412,7 @@ class jobsapplyclientController extends Controller
         ->where([
           ['company_req_log.status', '=', 'offered']
         ])
-        ->groupBy('talent_id')->get();
+        ->get();
     
         return Datatables::of($data)
         ->addColumn('checkbox', '<center><input type="checkbox" name="interview_checkbox[]" class="checkbox" value="{{$talent_id}}|{{$talent_id}}"/></center')
@@ -482,7 +459,6 @@ class jobsapplyclientController extends Controller
         ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
         ->join('company_request', 'hire_talent.hire_talent_company_request_id', '=', 'company_request.company_request_id')
         ->select('hire_talent.*','talent.talent_name','company.company_name','company_request.name_request')
-        // ->where('hire_talent.hire_talent_status_notif', '1')
         ->get();
 
     
@@ -539,11 +515,12 @@ class jobsapplyclientController extends Controller
           })  
   
         ->addColumn('action', function($data){
-        return '<center><a href="'.route('jobsapply.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-share-square-o"></i></a>    <a href="'.route('talent.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-user-o"></i></a>     <a href="" id="'.$data->hire_talent_id.'"data-toggle="modal" data-target="#modal-tambah-catatan" type="button" class="btn btn-warning btn-xs tambah-catatan" data-toggle="tooltip" data-placement="top" title="See Substeps For This Application"><i class="	fa fa-check"></i></a></center>';
+          return '<center><a href="'.route('jobsapply.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-share-square-o"></i></a>    <a href="'.route('talent.detail').'?id='.$data->hire_talent_id.'" type="button" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="See Application Details" target="_blank"><i class="fa fa-user-o"></i></a>     <a href="" id="'.$data->hire_talent_id.'"data-toggle="modal" data-target="#modal-tambah-catatan" type="button" class="btn btn-warning btn-xs tambah-catatan" data-toggle="tooltip" data-placement="top" title="See Substeps For This Application"><i class="	fa fa-check"></i></a></center>';
         })
         ->rawColumns(['talent_name','checkbox','action','req','company_name'])
         ->make(true);
       }
+
       public function allRead() {
         $data = DB::table('hire_talent')
         ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
