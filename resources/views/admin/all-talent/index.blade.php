@@ -2,6 +2,56 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 @section('content')
 
+<style>
+    .btn-xs {
+        padding: 0.1rem 0.25rem;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        border-radius: 0.2rem !important;
+        -webkit-appearance: unset !important;
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .select2-selection {
+        overflow: hidden;
+    }
+
+    .stright-line {
+        background: gray;
+        margin: auto 10px;
+        width: 80%;
+        height: 3px;
+    }
+
+    .filter-btn {
+        background-color: #405B74;
+        padding: 10px;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .filter-btn.active{
+        background-color: #80bde3;
+    }
+
+    .filter-btn:hover {
+        background-color: #80bde3;
+    }
+
+    .filter-btn span {
+        background-color: white;
+        font-weight: bold;
+        color: black;
+        padding: 0 5px;
+        border-radius: 2px;
+    }
+</style>
+
 
 <div class="breadcrumbs">
 	<div class="col-sm-4">
@@ -26,6 +76,27 @@
 <br>
 
 <div class="container-fluid">
+	
+	<div class="content mb-4">
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="d-flex justify-content-between filter-btn rect-border" id="unprocess">
+					Unprocess<span></span>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="d-flex justify-content-between filter-btn rect-border" id="interview">
+					Interview<span></span>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="d-flex justify-content-between filter-btn rect-border" id="verified">
+					Verified<span></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="card" style="margin-bottom: 10px;">
@@ -210,6 +281,7 @@
 									<input type="checkbox" name="contact" checked="checked"> Contact &nbsp
 									<input type="checkbox" name="skill" checked="checked"> Skill &nbsp
 									<input type="checkbox" name="date_ready" checked="checked"> Date Ready &nbsp
+									<input type="checkbox" name="status" checked="status"> Status nbsp
 									<input type="checkbox" name="created" checked="checked"> Created &nbsp
 									<input type="checkbox" name="ready_jogja">
 									ready jogja &nbsp

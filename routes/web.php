@@ -244,6 +244,7 @@ Route::group(['middleware' => 'cek'], function () {
 				// company request list
 				Route::get('/company_request_list', 'Admin\AllTalentController@company_request_list')->name('company_request_list');
 				Route::post('/add_to_client', 'Admin\AllTalentController@add_to_client')->name('add_to_client');
+				Route::post('/change_status', 'Admin\AllTalentController@change_status')->name('change_status');
 			});
 
 		// Route::group(['prefix'=>'talent'], function(){

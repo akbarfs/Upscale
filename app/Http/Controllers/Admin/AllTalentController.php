@@ -25,10 +25,6 @@ class AllTalentController extends Controller
 
     public function paginate_data(Request $request)
     {
-        //DB::enableQueryLog();
-
-        // if ($request->ajax()) {
-
         //SELECT BUILDER START
         $default_query = "*,users.id as user_id, users.email as member_email, users.created_at as member_date, DATEDIFF(talent_start_career, now()) as pengalaman";
 
@@ -164,5 +160,24 @@ class AllTalentController extends Controller
                 'message' => 'Talent berhasil ditambahkan di request'
             ]);
         }
+    }
+
+    public function change_status(Request $request)
+    {
+        $talent = Talent::find($request->id_talent);
+
+        if ($talent) {
+            $talent->talent_process_status = $request->status;
+            $talent->save();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Status talent telah diubah'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Talent tidak valid'
+        ]);
     }
 }

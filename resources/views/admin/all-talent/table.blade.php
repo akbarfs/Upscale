@@ -69,6 +69,10 @@
 			<th scope="col">member date</th>
 			@endif
 
+			@if (Request::input('status') )
+			<th scope="col">Status</th>
+			@endif
+
 			@if (Request::input('created') )
 			<th scope="col">Created</th>
 			@endif
@@ -246,6 +250,19 @@
 		  </td>
 		  @endif
 
+		  @if (Request::input('status') )
+		  <td scope="col">
+			<select class="form-control status" id_talent={{ $talent->talent_id }} name="status">
+				<option value="unprocess" {{ ($talent->talent_process_status == "unprocess" || !$talent->talent_process_status) ? "selected":"" }}>Unprocess
+				</option>
+				<option value="interview" {{ $talent->talent_process_status == "interview" ? "selected":"" }}>Interview
+				</option>
+				<option value="verified" {{ $talent->talent_process_status == "verified" ? "selected":"" }}>Verified
+				</option>
+			</select>
+		</td>
+		  @endif
+
 		  @if (Request::input('created') )
 		  <td>
 		  	{{ \Carbon\Carbon::parse($talent->talent_created_date)->format('D, d-m-Y H:i') }}<br>
@@ -331,6 +348,29 @@
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		// ganti status
+		$('.status').on('change', function () {  
+            var status = this.value;
+            var id_talent = $(this).attr('id_talent');
+            
+			$.ajax({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+				},
+				url: "{{ route('all-talent.change_status')}}",
+				method: "POST",
+				data: {
+					status: status,
+					id_talent: id_talent
+				},
+				success: function (data) {
+					alert(data['message']);
+					location.reload();
+				}
+			});
+        });
+
+
 		$(".button-wa").click(function()
 		{
 			wa = $(this).data("wa");
