@@ -174,7 +174,7 @@ Route::group(['middleware' => 'cek'], function () {
 			Route::get('/all-notif', "jobsapplyclientController@allNotif")->name('jobsapplyclient.all-notif');
 			Route::get('/notif/{id}', 'jobsapplyclientController@notif')->name('jobsapplyclient.notif');
 
-			// Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
+			Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
 
 			//filter Status
 			Route::get('/all', 'jobsapplyclientController@all')->name('jobsapplyclient.all');
@@ -240,18 +240,9 @@ Route::group(['middleware' => 'cek'], function () {
 				Route::get('/search', 'Admin\AllTalentController@search')->name('search');
 				Route::get('/filter', 'Admin\AllTalentController@filter')->name('filter');
 				Route::get('/paginate_data', 'Admin\AllTalentController@paginate_data')->name('paginate_data');
-<<<<<<< HEAD
 			});
 
 
-=======
-
-				// company request list
-				Route::get('/company_request_list', 'Admin\AllTalentController@company_request_list')->name('company_request_list');
-				Route::post('/add_to_client', 'Admin\AllTalentController@add_to_client')->name('add_to_client');
-			});
-
->>>>>>> 4e95cb5d5c8b5a85ada0dbf361d257fcbf3a6c2c
 		// Route::group(['prefix'=>'talent'], function(){
 		// 	Route::get('/', 'talentController@index')->name('talent.index');
 		// 	Route::get('/all', 'talentController@all')->name('talent.all');
