@@ -192,7 +192,7 @@ Route::group(['prefix'=>'member'], function()
 			//AllNotif
 			Route::get('/all-notif/all', 'jobsapplyclientController@allNotify')->name('all.table-notif');
 			Route::get('/all-notif/unread', 'jobsapplyclientController@allUnread')->name('all.unread.notif');
-			Route::get('/all-notif/read', 'jobsapplyclientController@allRead')->name('all.read');
+			Route::get('/all-notif/read', 'jobsapplyclientController@allRead')->name('all.read.notif');
 		});
 
 
@@ -236,6 +236,17 @@ Route::group(['prefix'=>'member'], function()
 			Route::get('/editreminder','jobsapplyController@editreminder')->name('jobsapply.editreminder');
 
 		});
+
+		Route::name('all-talent.')
+			->prefix('all-talent')
+			->group(function () {
+				Route::get('/', 'Admin\AllTalentController@index')->name('index');
+				Route::get('/condition', 'Admin\AllTalentController@condition')->name('condition');
+				Route::get('/search', 'Admin\AllTalentController@search')->name('search');
+				Route::get('/filter', 'Admin\AllTalentController@filter')->name('filter');
+				Route::get('/paginate_data', 'Admin\AllTalentController@paginate_data')->name('paginate_data');
+			});
+
 
 		// Route::group(['prefix'=>'talent'], function(){
 		// 	Route::get('/', 'talentController@index')->name('talent.index');

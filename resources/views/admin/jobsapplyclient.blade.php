@@ -1173,36 +1173,6 @@ $(document).on('click', 'a[href="#interview"]', function(e){
                 {data:"talent_kontak",defaultColumn:"-",visible:true},
                 {data:"action",orderable:false,searchable:false},
             ]
-            // 'columnDefs': [
-            //     {
-            //         // 'targets': 6,
-            //         'targets': 5,
-            //         'createdCell':  function (td, cellData, rowData, row, col) {
-            //             if($(td).text() == "Belum Dijadwalkan") {
-            //                 $(td).parent().addClass('table-danger');
-            //                 $(td).css('font-weight','Bold');
-            //             } else {
-            //             var interview_schedule = moment($(td).text(), 'YYYY-MM-DD, h:m:s');
-            //                 if(interview_schedule.diff(moment(), "days") <= 2){
-            //                     $(td).parent().addClass('table-danger');
-
-            //                     // if(interview_schedule.diff(moment(), "hours") == 0){
-            //                     //     $(td).text(interview_schedule.diff(moment(), "minutes") + " Menit Lagi");
-            //                     // } else if(interview_schedule.diff(moment(), "hours") == 1) {
-            //                     //     $(td).text("Besok");
-            //                     // } else if(interview_schedule.diff(moment(), "hours") == 2) {
-            //                     //     $(td).text("Lusa");
-            //                     // } else {
-            //                     //     $(td).text(interview_schedule.diff(moment(), "hours") + " Jam Lagi");
-            //                     // }
-            //                 } else if(interview_schedule.diff(moment(), "days") > 2 && interview_schedule.diff(moment(), "days") <= 7){ 
-            //                     $(td).parent().addClass('table-warning');
-            //                 }
-            //                 $(td).text(interview_schedule.locale('id').format('dddd') + ", " + interview_schedule.locale('id').format('Do MMMM YYYY, h:mm'));
-            //             }
-            //         }
-            //     },
-            // ]
         });
         all_interviewFirstTime = false;
     } else {
