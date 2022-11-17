@@ -134,6 +134,48 @@
             </tbody>
         </table>
     </div>
+
+
+    {{-- modal hired --}}
+    <div class="modal" id="modal-hired" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">Add To Client</div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form method="POST" enctype="multipart/form-data" class="form-inline hired">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="status" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">Headhunter</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">Dedicated Team</label>
+                                  </div>
+                            </div>
+                        </div>      
+                        <div class="form-group row">
+                            <label for="status" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10">
+                                
+                            </div>
+                        </div>      
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success rounded">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 <style>
     .pagination {
@@ -147,26 +189,33 @@
 
 <script>
     $(document).ready(function () {
-        $('.status').on('change', function () {
+        $('.status').on('change', function () {  
+            
             var id_request = `{{ $id_request }}`;
             var status = this.value;
             var id_talent = $(this).attr('id_talent');
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                },
-                url: "{{ route('company.request.changestatus')}}",
-                method: "POST",
-                data: {
-                    id_request: id_request,
-                    status: status,
-                    id_talent: id_talent
-                },
-                success: function (data) {
-                    alert(data['message']);
-                    location.reload();
-                }
-            });
+            
+            if (status == 'hired'){
+                $('#modal-hired').modal('show')
+                
+            } else {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: "{{ route('company.request.changestatus')}}",
+                    method: "POST",
+                    data: {
+                        id_request: id_request,
+                        status: status,
+                        id_talent: id_talent
+                    },
+                    success: function (data) {
+                        alert(data['message']);
+                        location.reload();
+                    }
+                });
+            }
         });
 
         $('.hire').on('click', function () {

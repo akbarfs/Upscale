@@ -81,17 +81,20 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="d-flex justify-content-between filter-btn rect-border" id="unprocess">
-					Unprocess<span></span>
+					Unprocess
+					<span>{{ $talentpool['unprocess'] }}</span>
 				</div>
 			</div>
 			<div class="col-sm-2">
 				<div class="d-flex justify-content-between filter-btn rect-border" id="interview">
-					Interview<span></span>
+					Interview
+					<span>{{ $talentpool['interview'] }}</span>
 				</div>
 			</div>
 			<div class="col-sm-2">
 				<div class="d-flex justify-content-between filter-btn rect-border" id="verified">
-					Verified<span></span>
+					Verified
+					<span>{{ $talentpool['verified'] }}</span>
 				</div>
 			</div>
 		</div>
@@ -128,6 +131,7 @@
                 {{-- search filter --}}
 				<div class="card-body">
 					<form style="margin:0; padding: 0" method="post" action="" id="form-search">
+						<input type="text" name="process_status" id="process_status" hidden>
 						<div class="row">
 							<div class="col-md-2">
 								<select class="custom-select" name="status_member">
@@ -311,6 +315,12 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="loading" align="center">
+        <div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
 
 
 	<style type="text/css">
@@ -552,14 +562,6 @@
 
 		</div>
 	</div>
-	
-
-	<div id="loading" align="center">
-		<div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
-
 
 
 
@@ -570,6 +572,19 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+
+			// tabs process status
+			$('.filter-btn').on('click',function(){
+				var identifier = $(this).attr('id');
+				$('#process_status').val(identifier);
+				
+				loadTable("{{url('/admin/all-talent/paginate_data?page=1')}}");
+				$(".filter-btn").removeClass("active");
+				$('#'+identifier).addClass("active");
+				event.preventDefault();
+			})
+
+
 			var export_url;
 			//mengambil data tanggal
 			$("#datepicker").datepicker();

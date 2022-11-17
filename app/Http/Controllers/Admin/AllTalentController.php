@@ -20,7 +20,13 @@ class AllTalentController extends Controller
         $member  = DB::table('talent')->where("user_id", ">", "0")->count();
         $nonmember  = DB::table('talent')->where("user_id", "0")->count();
         $invitation  = DB::table('talent')->where("talent_mail_invitation", ">", "0")->count();
-        return view('admin.all-talent.index', compact('total', 'member', 'nonmember', 'invitation'));
+
+        $talentpool['unprocess'] = Talent::where('talent_process_status', 'unprocess')->count();
+        $talentpool['interview'] = Talent::where('talent_process_status', 'interview')->count();
+        $talentpool['verified'] = Talent::where('talent_process_status', 'verified')->count();
+
+
+        return view('admin.all-talent.index', compact('total', 'member', 'nonmember', 'invitation', 'talentpool'));
     }
 
     public function paginate_data(Request $request)
@@ -35,6 +41,10 @@ class AllTalentController extends Controller
         }
         $data = Talent::select(DB::raw($default_query));
         //SELECT BUILDER END 
+
+        // change tab status
+        $request->process_status ? $data->where('talent_process_status', $request->process_status) : '';
+
 
         //JOIN BUILDER START
         $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
@@ -112,11 +122,10 @@ class AllTalentController extends Controller
         $data->groupBy("talent_id");
         $data = $data->paginate(5);
 
-        //$query = DB::getQueryLog(); dd($query);
 
         return view('admin.all-talent.table', compact('data'))->render();
-        // }
     }
+
 
 
     // company data on add to client
