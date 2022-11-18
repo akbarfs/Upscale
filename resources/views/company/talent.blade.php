@@ -192,7 +192,12 @@
                         <option value="no">Tidak Ready Ke Luar Kota</option>
                     </select>
                 </div>
-                <div class="col-md-9 mt-4">
+                <div class="col-md-3 mt-4">
+                    <input type="text" name="nama_talent"
+                        class="small-rect-filter text-left rect-border form-control" placeholder="Masukkan Nama Talent"
+                        value="" />
+                </div>
+                <div class="col-md-6 mt-4">
                     <select name="skills[]" class="form-control rect-border skill" multiple>
                     </select>
                 </div>

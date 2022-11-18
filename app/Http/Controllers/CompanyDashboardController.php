@@ -302,6 +302,11 @@ class CompanyDashboardController extends Controller
       $data = $data->where("company_req_log.status", $request->status);
     }
 
+    else if(!empty($request->nama)){
+      $data = $data->Contains("talent.talent_name", $request->nama);
+    }
+
+
     $data = $data->groupBy("talent.talent_id");
     $data = $data->paginate(10);
     return view('company.requests.talent-req-table',[
