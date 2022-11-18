@@ -205,12 +205,9 @@
         </div>
     </div>
 
-</div>
-
-
-
 <script>
     $(document).ready(function () {
+
         var id_request = `{{ $data->company_request_id }}`;
 
         var status = `{{session('message')}}`;

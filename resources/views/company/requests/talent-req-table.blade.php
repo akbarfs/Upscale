@@ -137,41 +137,54 @@
 
 
     {{-- modal hired --}}
-    <div class="modal" id="modal-hired" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-title">Add To Client</div>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <form method="POST" enctype="multipart/form-data" class="form-inline hired">
+    <!-- Button trigger modal -->
+    <button hidden id="modal-hired-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-hired">
+        Launch demo modal
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="modal-hired" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form method="POST" enctype="multipart/form-data" class="hired" id="hired-form">
+                <div class="modal-body">
                     @csrf
                     <div class="modal-body">
+
+                        <ul id="error_list"></ul>
+
                         <div class="form-group row">
-                            <label for="status" class="col-sm-2 col-form-label">Status</label>
-                            <div class="col-sm-10">
+                            <label for="status" class="col-sm-4 col-form-label">Status</label>
+                            <div class="col-sm-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <input class="form-check-input" type="radio" name="hire_status" id="inlineRadio1" value="headhunter" required>
                                     <label class="form-check-label" for="inlineRadio1">Headhunter</label>
                                   </div>
                                   <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="hire_status" id="inlineRadio2" value="dedicated_team">
                                     <label class="form-check-label" for="inlineRadio2">Dedicated Team</label>
                                   </div>
                             </div>
                         </div>      
                         <div class="form-group row">
-                            <label for="status" class="col-sm-2 col-form-label">Status</label>
-                            <div class="col-sm-10">
-                                
+                            <label for="status" class="col-sm-4 col-form-label">Mulai Kerja</label>
+                            <div class="col-sm-8">
+                                <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" id="work_start_date" name="work_start_date" required>
                             </div>
                         </div>      
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success rounded">Add</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
         </div>
     </div>
 
@@ -189,6 +202,14 @@
 
 <script>
     $(document).ready(function () {
+
+        $(".datepicker").datepicker({
+            dateFormat: 'yy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+        });
+
+
         $('.status').on('change', function () {  
             
             var id_request = `{{ $id_request }}`;
@@ -196,7 +217,11 @@
             var id_talent = $(this).attr('id_talent');
             
             if (status == 'hired'){
-                $('#modal-hired').modal('show')
+                $('#modal-hired-button').click()
+                $('#hired-form').on('submit', function(e){
+                    e.preventDefault()
+                    change_to_hired(id_request, id_talent)
+                })
                 
             } else {
                 $.ajax({
@@ -217,6 +242,31 @@
                 });
             }
         });
+
+
+        // store data when change to hired
+        function change_to_hired(id_request, id_talent){
+            var hire_status = $('input[name="hire_status"]:checked').val();
+            var work_start_date = $('#work_start_date').val()
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                url: "{{ route('company.request.change_to_hired')}}",
+                method: "POST",
+                data: {
+                    id_request: id_request,
+                    id_talent: id_talent,
+                    hire_status: hire_status,
+                    work_start_date: work_start_date
+                },
+                success: function (data) {
+                    alert(data['message']);
+                    location.reload();
+                }
+            });
+        }
 
         $('.hire').on('click', function () {
             var name = $(this).attr('name-talent');
