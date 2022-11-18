@@ -90,6 +90,7 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function () {
 	Route::post('/request/keeptalent/{id_request}/{id_talent}', "CompanyDashboardController@keepTalent")->name('company.request.keeptalent');
 	Route::delete('/request/unkeeptalent/{id_request}/{id_talent}', "CompanyDashboardController@unkeepTalent")->name('company.request.unkeeptalent');
 	Route::post('/request/changestatus', "CompanyDashboardController@changeStatusTalent")->name('company.request.changestatus');
+	Route::post('/request/change_to_hired', "CompanyDashboardController@change_to_hired")->name('company.request.change_to_hired');
 
 	// support
 	Route::get("/json/skill/company", "CompanyDashboardController@company_json_skill")->name('json.skill.company');
