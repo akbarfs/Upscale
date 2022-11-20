@@ -168,7 +168,7 @@
     <div class="mt-4">
         <div class="row justify-content-center">
             <div class="col-sm-2">
-                <div class="d-flex justify-content-between filter-btn rect-border" id="unprocess">
+                <div class="d-flex justify-content-between filter-btn rect-border show active" id="unprocess">
                     Unprocess<span>{{ $count['unprocess'] }}</span></div>
             </div>
             <div class="col-sm-2">
@@ -192,7 +192,15 @@
                     Reject<span>{{ $count['reject'] }}</span></div>
             </div>
         </div>
+        <div class="row">
+        <div class="col-md-3 mt-4">
+        <input type="text" name="nama_talent"
+            class="small-rect-filter text-left rect-border form-control nama-talent" placeholder="Masukkan Nama Talent"
+            />
+        </div>
+        </div>
     </div>
+
     <div class="mt-4">
         <div class="container-fluid mt-2" id="talent-request" style="padding:0;">
             <!-- ini adalah isi data talent -->
@@ -245,6 +253,17 @@
             loadTable(url);
             event.preventDefault(); //ini biar ga keredirect ke halaman lain
         });
+
+        var identifier = 'unprocess';
+        url = `{{url('/company/request/talent_data?status=${identifier}')}}`
+        loadTable(url);
+
+        $('.nama-talent').on('input',function(){
+            var nama = $(this).val();
+            url = `{{url('/company/request/talent_data?nama=${nama}')}}`
+            loadTable(url);
+            event.preventDefault();
+        })
 
         $('.filter-btn').on('click',function(){
             var identifier = $(this).attr('id');
