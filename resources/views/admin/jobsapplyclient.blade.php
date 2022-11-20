@@ -102,13 +102,15 @@
                     <div class="form-group">
                         <div class="col">
                             <span data-toggle="tooltip" data-placement="top" title="Hooray!">Filter :</span>
-                            <select id="job-type" class="form-control">
+                            
+                            {{-- <select id="job-type" class="form-control">
                                 <option id='job-type-default' selected disabled="">Type Time</option>
                                 <option value="">All</option>
                                 <option value="fulltime">Fulltime</option>
                                 <option value="internship">Internship</option>
                                 <option value="parttime">Parttime</option>
-                            </select>
+                            </select> --}}
+
                             <select id="position" class="form-control">
                                 <option id='job-position-default' selected disabled="">Request</option>
                                 @foreach($reqs as $req)
@@ -118,7 +120,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <div class="col">
                             <span>Status to :</span>
                             <select id="status" name="status" class="form-control form-control biarpas">
@@ -142,7 +144,7 @@
                                 </select>
                                 </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <div class="col">
                             <!-- <span>Delete selected :</span> -->
