@@ -37,7 +37,13 @@
         <tr>
           <td style="text-align:center;">{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
           <td>
-            <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 50px; height:50px;" alt="">
+            <div class="avatar-wrapper">
+              <img src="{{url('/img/avatar/noimage.jpg')}}" alt="Avatar" class="avatar">
+              @if ($talent->talent_process_status == 'verified')
+              <div class="verified-avatar-icon">✓</div>
+              @endif
+            </div>
+
           </td>
           <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
           <td style="max-width: 10rem;">{{$result}}</td>
