@@ -496,6 +496,7 @@ class CompanyDashboardController extends Controller
     ])->first();
 
     $talent->status = 'hired';
+    $talent->hire_status = $request->hire_status;
     $talent->work_start_date = $request->work_start_date;
     $talent->save();
     return response()->json([

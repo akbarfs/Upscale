@@ -92,7 +92,7 @@
                         @endif
                     </td>
                     <td scope="col">
-                        <select class="form-control status" id_talent={{ $talent->talent_id }} name="status">
+                        <select class="form-control status" nama_talent="{{ $talent->name }}" id_talent={{ $talent->talent_id }} name="status">
                             <option value="unprocess" {{ $talent->status == "unprocess" ? "selected":"" }}>Unprocess
                             </option>
                             <option value="interview" {{ $talent->status == "interview" ? "selected":"" }}>Interview
@@ -139,7 +139,7 @@
     {{-- modal hired --}}
     <!-- Button trigger modal -->
     <button hidden id="modal-hired-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-hired">
-        Launch demo modal
+        Hired
     </button>
     
     <!-- Modal -->
@@ -147,7 +147,7 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="title-modal-hired">Modal title</h5>
             <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -175,7 +175,7 @@
                         <div class="form-group row">
                             <label for="status" class="col-sm-4 col-form-label">Mulai Kerja</label>
                             <div class="col-sm-8">
-                                <input placeholder="masukkan tanggal Akhir" type="text" class="form-control datepicker" id="work_start_date" name="work_start_date" required>
+                                <input placeholder="masukkan tanggal mulai kerja" type="text" class="form-control datepicker" id="work_start_date" name="work_start_date" required>
                             </div>
                         </div>      
                     </div>
@@ -211,13 +211,19 @@
 
 
         $('.status').on('change', function () {  
-            
             var id_request = `{{ $id_request }}`;
             var status = this.value;
             var id_talent = $(this).attr('id_talent');
             
             if (status == 'hired'){
+                // show modal
                 $('#modal-hired-button').click()
+
+                // change modal title
+                var title = 'Tambahkan ' + $(this).attr('nama_talent')
+                $('#modal-hired').find('#title-modal-hired').text(title)
+
+                // submit form
                 $('#hired-form').on('submit', function(e){
                     e.preventDefault()
                     change_to_hired(id_request, id_talent)
