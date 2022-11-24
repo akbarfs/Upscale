@@ -48,25 +48,43 @@
     <h4>Belum Ada Request</h4>
     @else
     @foreach ($data as $req)
-    <div class="p-5 my-2 bg-white shadow d-flex justify-content-between rounded">
-        <h4>{{ $req->name_request }} <span class="h6"><strong>{{ $talenthired[$no] }}/{{ $req->person_needed }}</strong>
-                dari
-                <strong>{{ $talentpool[$no] }}</strong> Talent Pool</span>
-            @php
-            $no++;
-            @endphp
-        </h4>
-        <div>
-            <button type="button" class="btn btn-secondary rounded edit-request"
-                request="{{ $req->company_request_id }}" data-toggle="modal" data-target="#edit-modal"><i
-                    class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button class="btn btn-danger rounded close-request" type="button" data-toggle="modal"
-                data-target="#closed-request" request="{{ $req->company_request_id }}"><i class="fa fa-ban"
-                    aria-hidden="true"></i></button>
-            <a class="btn btn-info rounded" href="{{ route('company.request.detail', [$req->company_request_id] ) }}"><i
-                    class="fa fa-info" aria-hidden="true"></i></a>
+    
+    <div class="card shadow my-2">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-10">
+                    <a href="{{ route('company.request.detail', [$req->company_request_id] ) }}">
+                        <div class="p-5">
+                            <h4 class="text-dark">{{ $req->name_request }} <span class="h6"><strong>{{ $talenthired[$no] }}/{{ $req->person_needed }}</strong>
+                                dari
+                                <strong>{{ $talentpool[$no] }}</strong> yang siap di interview</span>
+                            @php
+                            $no++;
+                            @endphp
+                            </h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-2">
+                    <div class="py-5 px-3">
+                        <button type="button" class="btn btn-secondary rounded edit-request"
+                            request="{{ $req->company_request_id }}" data-toggle="modal" data-target="#edit-modal"> 
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                        
+                        <button class="btn btn-danger rounded close-request" type="button" data-toggle="modal"
+                            data-target="#closed-request" request="{{ $req->company_request_id }}"><i class="fa fa-ban" aria-hidden="true"></i>
+                        </button>
+                        
+                        <a class="btn btn-info rounded" href="{{ route('company.request.detail', [$req->company_request_id] ) }}">
+                            <i class="fa fa-info" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
     @endforeach
     @endif
 </div>
