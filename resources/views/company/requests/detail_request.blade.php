@@ -79,91 +79,6 @@
     <div class="d-flex justify-content-between mt-2">
         <h4>My Talent ({{ $data->hired }}/{{ $data->person_needed }})</h4>
         <div class="stright-line"></div>
-        <button class="btn btn-primary btn-sm rect-border" data-toggle="collapse" data-target="#collapseOne"
-            aria-expanded="true" aria-controls="collapseOne">
-            <i class="fa fa-arrow-up change-icon1" aria-hidden="true"></i>
-        </button>
-    </div>
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="row">
-            @foreach ($talents as $talent)
-            <div class="col-sm-4">
-                <div class="mt-4">
-                    <div class="p-3 my-2 bg-white shadow-sm rounded" style="height: 200px;">
-                        <div class="row">
-                            <div class="col-md-3 m-auto">
-                                <img src="{{url('/img/avatar/noimage.jpg')}}" alt="icon-profile">
-                            </div>
-                            <div class="col-md-9">
-                                <div class="overflow-auto" style="height: 100px;">
-                                    <?php $result = substr($talent->talent_name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->talent_name, 1));?>
-                                    <h5 style="overflow-wrap: break-word;">{{ $result }}</h5>
-                                    <?php $result2 = substr($talent->talent_email, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->talent_email, 1));?>
-                                    <div class="my-1" style="overflow-wrap: break-word;">{{ $result2 }}
-                                    </div>
-                                    <?php $result3 = substr($talent->talent_phone, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->talent_phone, 1));?>
-                                    <div class="my-1">{{ $result3 }}</div>
-                                </div>
-                            </div>
-                                <div class="d-flex w-100 mx-3 mt-4">
-                                    <select class="form-control status" name="status"
-                                        id_talent={{ $talent->talent_id }}>
-                                        <option value="unprocess" {{ $talent->status == "unprocess" ? "selected":"" }}>
-                                            Unprocess
-                                        </option>
-                                        <option value="interview" {{ $talent->status == "interview" ? "selected":"" }}>
-                                            Interview
-                                        </option>
-                                        <option value="prospek" {{ $talent->status == "prospek" ? "selected":"" }}>
-                                            Prospek
-                                        </option>
-                                        <option value="offered" {{ $talent->status == "offered" ? "selected":"" }}>
-                                            Offered
-                                        </option>
-                                        <option value="hired" {{ $talent->status == "hired" ? "selected":"" }}>Hired
-                                        </option>
-                                        <option value="reject" {{ $talent->status == "reject" ? "selected":"" }}>Reject
-                                        </option>
-                                    </select>
-                                    <form
-                                        action="{{ route('company.request.unkeeptalent', ['id_request'=>$data->company_request_id, 'id_talent'=>$talent->talent_id] ) }}"
-                                        method="POST" style="margin-bottom: 0; ">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-warning rect-border ml-2"
-                                            style="padding-bottom: 10px; ">Move To
-                                            List</button>
-                                    </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            @for ($i=0;$i<$data->person_needed - $count['bookmark'] ;$i++)
-                <div class="col-sm-4">
-                    <div class="mt-4">
-                        <div class="p-3 my-2 bg-white shadow-sm rounded">
-                            <div class="row">
-                                <div class="col-md-4 m-auto">
-                                    <img src="{{url('/img/avatar/quest.png')}}" style="width: 68.58px;"
-                                        alt="icon-profile">
-                                </div>
-                                <div class="col-md-8">
-                                    <hr style="margin: 32px 0;">
-                                    <hr style="margin: 32px 0;">
-                                    <hr style="margin: 30px 0;">
-                                </div>
-                            </div>
-                            <div>
-                                <hr class="mb-4">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endfor
-
-        </div>
     </div>
     <div class="mt-4">
         <div class="row justify-content-center">
@@ -192,13 +107,6 @@
                     Reject<span>{{ $count['reject'] }}</span></div>
             </div>
         </div>
-        <div class="row">
-        <div class="col-md-3 mt-4">
-        <input type="text" name="nama_talent"
-            class="small-rect-filter text-left rect-border form-control nama-talent" placeholder="Masukkan Nama Talent"
-            />
-        </div>
-        </div>
     </div>
 
     <div class="mt-4">
@@ -218,14 +126,9 @@
 
         var id_request = `{{ $data->company_request_id }}`;
 
-        var status = `{{session('message')}}`;
-
-        if (status) {
-            alert(status);
-        }
+        console.log(id_request);
 
         function loadTable(url) {
-            // var param = $("#form-search").serialize();
 
             $('#loading').show();
             $("#talent-request").html('');

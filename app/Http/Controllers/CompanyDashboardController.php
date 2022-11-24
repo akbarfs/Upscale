@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CompanyDashboardController extends Controller
 {
@@ -296,7 +297,7 @@ class CompanyDashboardController extends Controller
   {
     set_time_limit(300);
     $id_request = $request->id_request;
-    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id";
+    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id, company_req_log.bookmark";
     $data = Talent::select(DB::raw($default_query));
     $data = $data->join("company_req_log", "company_req_log.talent_id", "=", "talent.talent_id");
     $data = $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
@@ -305,14 +306,12 @@ class CompanyDashboardController extends Controller
 
     if (!empty($request->status)) {
       $data = $data->where("company_req_log.status", $request->status);
-    }
-
-    else if(!empty($request->nama)){
+    } else if (!empty($request->nama)) {
       $data = $data->Contains("talent.talent_name", $request->nama);
     }
 
 
-    $data = $data->groupBy("talent.talent_id");
+    $data = $data->groupBy("talent.talent_id")->orderBy('company_req_log.bookmark', 'desc');
     $data = $data->paginate(10);
     return view('company.requests.talent-req-table', [
       'data' => $data,
@@ -420,6 +419,8 @@ class CompanyDashboardController extends Controller
     ]);
   }
 
+
+  // bookmark
   public function keepTalent(Request $request)
   {
     $total_bookmark = CompanyReqLog::where('company_request_id', $request->id_request)->where('bookmark', 'true')->count();
@@ -433,14 +434,13 @@ class CompanyDashboardController extends Controller
       } else {
         $talent->bookmark = 'true';
         $talent->save();
-        return redirect()->route('company.request.detail', $request->id_request)->with([
-          'message' => 'Talent dibookmark'
-        ]);
+
+        alert()->success('Success', 'Talent dibookmark');
+        return redirect()->route('company.request.detail', $request->id_request);
       }
     } else {
-      return redirect()->route('company.request.detail', $request->id_request)->with([
-        'message' => 'Bookmark mencapai batas'
-      ]);
+      alert()->warning('Warning', 'Bookmark mencapai batas');
+      return redirect()->route('company.request.detail', $request->id_request);
     }
   }
 
@@ -449,9 +449,8 @@ class CompanyDashboardController extends Controller
     $talent = CompanyReqLog::where('company_request_id', $request->id_request)->where('talent_id', $request->id_talent)->first();
     $talent->bookmark = 'false';
     $talent->save();
-    return redirect()->route('company.request.detail', $request->id_request)->with([
-      'message' => 'Talent Batal Dibookmark'
-    ]);
+    Alert::info('Info', 'Talent Batal Dibookmark');
+    return redirect()->route('company.request.detail', $request->id_request);
   }
 
   public function removeSkillReq($id)
