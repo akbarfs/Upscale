@@ -68,15 +68,16 @@
                 <div class="col-sm-2">
                     <div class="py-5 px-3">
                         <button type="button" class="btn btn-secondary rounded edit-request"
-                            request="{{ $req->company_request_id }}" data-toggle="modal" data-target="#edit-modal"> 
+                            request="{{ $req->company_request_id }}" data-toggle="modal" data-target="#edit-modal" data-toggle="tooltip" data-placement="top" title="Edit Request"> 
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </button>
                         
                         <button class="btn btn-danger rounded close-request" type="button" data-toggle="modal"
-                            data-target="#closed-request" request="{{ $req->company_request_id }}"><i class="fa fa-ban" aria-hidden="true"></i>
+                            data-target="#closed-request" request="{{ $req->company_request_id }}" data-toggle="tooltip" data-placement="top" title="Hapus Request">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
                         </button>
                         
-                        <a class="btn btn-info rounded" href="{{ route('company.request.detail', [$req->company_request_id] ) }}">
+                        <a class="btn btn-info rounded" href="{{ route('company.request.detail', [$req->company_request_id] ) }}" data-toggle="tooltip" data-placement="top" title="Detail Request">
                             <i class="fa fa-info" aria-hidden="true"></i>
                         </a>
                     </div>
