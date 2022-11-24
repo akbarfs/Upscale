@@ -27,6 +27,7 @@
           <th scope="col">Image</th>
           <th scope="col">Name</th>
           <th scope="col">Skills</th>
+          <th scope="col">Ready to Work</th>
           <th scope="col">Gaji</th>
           <th scope="col">Expetasi Gaji</th>
           <th scope="col">Action</th>
@@ -66,6 +67,7 @@
             </span>
             @endforeach
           </td>
+          <td>{{ $talent->talent_date_ready ? $talent->talent_date_ready : '-' }}</td>
           <td>
             @if (!empty($talent->gaji))
             {{ $talent->gaji }}
@@ -80,9 +82,9 @@
             -
             @endif
           </td>
-          <td style="min-width:200px">
+          <td style="min-width:250px">
             @if (!empty($talent->talent_id))
-            <a href="{{url('/profile/'.encrypt_custom($talent->talent_id))}}" class="btn btn-info" target="_blank">
+            <a href="{{url('/profile/'.encrypt_custom($talent->talent_id))}}" class="btn btn-info" target="_blank" data-toggle="tooltip" data-placement="top" title="Profile Talent">
               <i class="fa fa-info"></i>
             </a>
             @else
@@ -90,8 +92,7 @@
               <i class="fa fa-info"></i>
             </button>
             @endif
-            <button class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-id="{{$talent->talent_id}}"
-              data-toggle="modal">Make A Request</button>
+            <button class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-id="{{$talent->talent_id}}" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Add to My Request Talent">Add to My Request Talent</button>
           </td>
         </tr>
         @endforeach
