@@ -78,8 +78,35 @@
 <div class="content mt-3">
     <div class="d-flex justify-content-between mt-2">
         <h4>My Talent ({{ $data->hired }}/{{ $data->person_needed }})</h4>
+        <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-pencil"></i>
+        </button>
         <div class="stright-line"></div>
     </div>
+
+    {{-- modal update person needed --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Edit Jumlah yang Dibutuhkan</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('company.request.detail.change-person-needed', $data->company_request_id) }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="person_nedeed" name="person_needed" aria-describedby="emailHelp" placeholder="Masukkan jumlah orang yang dibutuhkan" value="{{ $data->person_needed }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary rect-border float-right">Update</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <div class="mt-4">
         <div class="row justify-content-center">
             <div class="col-sm-2">

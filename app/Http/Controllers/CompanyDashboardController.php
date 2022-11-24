@@ -420,6 +420,16 @@ class CompanyDashboardController extends Controller
   }
 
 
+  public function updatePersonNeeded(Request $request, $company_request_id)
+  {
+    $request->validate(['person_needed' => 'required',]);
+    CompanyRequest::find($company_request_id)->update(['person_needed' => $request->person_needed]);
+
+    alert()->success('Success', 'Person Needed Berhasil Diupdate');
+    return redirect()->route('company.request.detail', $company_request_id);
+  }
+
+
   // bookmark
   public function keepTalent(Request $request)
   {
