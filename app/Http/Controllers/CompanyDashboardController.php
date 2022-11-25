@@ -297,7 +297,7 @@ class CompanyDashboardController extends Controller
   {
     set_time_limit(300);
     $id_request = $request->id_request;
-    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id, company_req_log.bookmark";
+    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id, company_req_log.bookmark, company_req_log.note";
     $data = Talent::select(DB::raw($default_query));
     $data = $data->join("company_req_log", "company_req_log.talent_id", "=", "talent.talent_id");
     $data = $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
@@ -317,6 +317,22 @@ class CompanyDashboardController extends Controller
       'data' => $data,
       'id_request' => $id_request,
     ])->render();
+  }
+
+
+  // add note
+  public function addNote(Request $request)
+  {
+    $request->validate(['note' => 'required']);
+
+    $req_log = CompanyReqLog::find($request->log_id);
+    $req_log->update(['note' => $request->note]);
+    return response()->json('Note berhasil ditambahkan', 200);
+  }
+
+  public function updateNote()
+  {
+    # code...
   }
 
 
@@ -501,9 +517,6 @@ class CompanyDashboardController extends Controller
       'work_start_date' => 'required',
     ]);
 
-
-
-
     $talent = CompanyReqLog::where([
       'company_request_id' => $request->id_request,
       'talent_id' => $request->id_talent
@@ -596,13 +609,6 @@ class CompanyDashboardController extends Controller
         'message' => 'Talent berhasil di Hire'
       ]);
     }
-
-
-    //   return response()->json([
-    //     'talent_id' => $talent_id,
-    //     'company_id' => $company_id,
-    //     'company_request' => $company_request,
-    //   ]);
   }
 
   public function cv()

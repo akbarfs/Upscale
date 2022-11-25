@@ -28,7 +28,7 @@ class AddHireStatusToCompanyReqLogTable extends Migration
     {
         if (Schema::hasColumn('company_req_log', 'hire_status')) {
             Schema::table('company_req_log', function (Blueprint $table) {
-                $table->dropColumn('talent_process_hire_statusstatus');
+                $table->dropColumn('hire_status');
             });
         }
         if (Schema::hasColumn('company_req_log', 'work_start_date')) {

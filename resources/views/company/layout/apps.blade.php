@@ -140,6 +140,8 @@
             transform: rotate(180deg);
         }
     </style>
+
+    @stack('style')
     <!-- </head> -->
 </head>
 
@@ -179,6 +181,8 @@
     <script src="{{asset('/js/moment-with-locales.min.js')}}"></script>
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    @include('sweetalert::alert')
 
     <script type="text/javascript">
         $(function () {

@@ -122,7 +122,7 @@
     @endif
 
     <button type="button" data-toggle="modal" data-target="#modal-add-offer"
-        class="btn btn-primary rect-border mt-3">Make Request</button>
+        class="btn btn-primary rect-border mt-3" data-toggle="tooltip" data-placement="top" title="Request Talent">Request Talent</button>
     <div class="mt-4">
         <h5>Saring Pencarian</h5>
         <hr>
@@ -192,11 +192,11 @@
                         <option value="no">Tidak Ready Ke Luar Kota</option>
                     </select>
                 </div>
-                <div class="col-md-3 mt-4">
+                {{-- <div class="col-md-3 mt-4">
                     <input type="text" name="nama_talent"
                         class="small-rect-filter text-left rect-border form-control" placeholder="Masukkan Nama Talent"
                         value="" />
-                </div>
+                </div> --}}
                 <div class="col-md-6 mt-4">
                     <select name="skills[]" class="form-control rect-border skill" multiple>
                     </select>
@@ -208,7 +208,7 @@
         </form>
     </div>
     <div class="mt-4">
-        <h5>List Talent</h5>
+        <h5>List Talent ({{ $total }})</h5>
         <hr>
         <div class="container-fluid mt-2" id="company-talent" style="padding:0;">
             <!-- ini adalah isi data talent -->

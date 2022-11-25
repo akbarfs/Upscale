@@ -14,4 +14,9 @@ class CompanyRequest extends Model
     {
         return $this->belongsTo(Company::class, 'company_id', 'company_id');
     }
+
+    public function company_request_log()
+    {
+        return $this->hasMany(CompanyReqLog::class, 'company_request_id', 'company_request_id');
+    }
 }

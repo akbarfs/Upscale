@@ -77,8 +77,8 @@
 
 <div class="content mt-3">
     <div class="d-flex justify-content-between mt-2">
-        <h4>My Talent ({{ $data->hired }}/{{ $data->person_needed }})</h4>
-        <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#exampleModal">
+        <h4 class="mx-0">My Talent ({{ $data->hired }}/{{ $data->person_needed }})</h4>
+        <button type="button" class="btn mx-0 btn-xs btn-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-pencil"></i>
         </button>
         <div class="stright-line"></div>
@@ -152,8 +152,6 @@
     $(document).ready(function () {
 
         var id_request = `{{ $data->company_request_id }}`;
-
-        console.log(id_request);
 
         function loadTable(url) {
 

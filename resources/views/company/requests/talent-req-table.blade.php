@@ -57,7 +57,7 @@
                 <tr>
                     <td class="text-center">{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
                     <td class="text-center">
-                        <img src="{{url('/img/avatar/noimage.jpg')}}" style="width: 50px; height:50px;" alt="">
+                        <img src="{{url('/img/avatar/noimage.jpg')}}" class="rounded-circle" style="width: 50px; height:50px;" alt="">
                     </td>
                     <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
                     <td style="max-width: 10rem;">{{$result}}</td>
@@ -105,27 +105,54 @@
                             <option value="reject" {{ $talent->status == "reject" ? "selected":"" }}>Reject</option>
                         </select>
                     </td>
-                    <td scope="col">-</td>
+                    <td scope="col">
+                        @if ($talent->note)
+                        {{ $talent->note }}
+                        <button id="button-edit-note" class="btn btn-xs btn-outline-dark button-add-note button-edit-note" data-toggle="modal" note_value= "{{ $talent->note }}" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
+                            Edit note
+                        </button>
+                        @else
+                            <button id="button-add-note" class="btn btn-xs btn-outline-dark button-add-note" data-toggle="modal" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
+                                + Add note
+                            </button>
+                        @endif
+                    </td>
                     <td scope="col">
                         <div class="d-flex">
-                        @if (!empty($talent->talent_id))
-                        <a href="{{url('/profile/'.encrypt_custom($talent->talent_id))}}" class="btn btn-info" target="_blank">
-                        <i class="fa fa-info"></i>
-                        </a>
+                            @if (!empty($talent->talent_id))
+                            <a href="{{url('/profile/'.encrypt_custom($talent->talent_id))}}" class="btn btn-info" target="_blank">
+                                <i class="fa fa-info"></i>
+                            </a>
                         @else
                         <button type="button" data-toggle="modal" data-target="#detail-user" class="btn btn-info" target="_blank">
-                        <i class="fa fa-info"></i>
+                            <i class="fa fa-info"></i>
                         </button>
                         @endif
 
-                            <form
-                                action="{{ route('company.request.keeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
-                                method="POST" style="margin-bottom: 0;">
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-success rect-border ml-2 me-2">Move To
-                                    Top</button>
-                            </form>
-                            <button class="btn btn-sm btn-info rect-border ml-2 hire hire-me" data-target="#hire-modal" data-id="{{$talent->talent_id}}"
+                        @if ($talent->bookmark == 'true')
+                        <form
+                            action="{{ route('company.request.unkeeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
+                            method="POST" style="margin-bottom: 0;">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-outline-success mx-2" data-toggle="tooltip" data-placement="top" title="Unbookmark">
+                                <i class="fa fa-star"></i>
+                            </button>
+                        </form>
+                        
+                        @else
+                        <form
+                            action="{{ route('company.request.keeptalent', ['id_request'=>$id_request, 'id_talent'=>$talent->talent_id] ) }}"
+                            method="POST" style="margin-bottom: 0;">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-secondary mx-2" data-toggle="tooltip" data-placement="top" title="Bookmark">
+                                <i class="fa fa-star"></i>
+                            </button>
+                        </form>
+                            
+                        @endif
+
+                            <button class="btn btn-sm btn-info rect-border hire hire-me" data-target="#hire-modal" data-id="{{$talent->talent_id}}"
                             id-request="{{$id_request}}" name-talent="{{$result}}" data-toggle="modal">Hire Me!</button>
                         </div>
                     </td>
@@ -136,13 +163,38 @@
     </div>
 
 
-    {{-- modal hired --}}
+    {{-- modal add note --}}
+    <div class="modal fade" id="modal-add-note" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title-modal-add-note">Tambah Catatan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-body">
+                    <form method="POST" id="add-note-form">
+                        @csrf
+                        <div class="form-group">
+                            <textarea class="form-control" name="note" id="note-textarea" rows="3"></textarea>
+                        </div>         
+                        <button type="submit" class="btn btn-sm btn-primary rect-border float-right">+ Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
     <!-- Button trigger modal -->
     <button hidden id="modal-hired-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-hired">
         Hired
     </button>
     
-    <!-- Modal -->
+    {{-- modal hired --}}
     <div class="modal fade" id="modal-hired" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -202,6 +254,42 @@
 
 <script>
     $(document).ready(function () {
+
+        // add note
+        $('.button-add-note').on('click', function () {
+            var log_id = $(this).attr('log_id');
+            updateNote($('#note-textarea').val(), log_id) 
+        })
+        
+        // edit note
+        $('.button-edit-note').on('click', function () {
+            var log_id = $(this).attr('log_id');
+            updateNote($(this).attr('note_value'), log_id) 
+        })
+
+        function updateNote(note, log_id) {
+            $('#note-textarea').val(note)
+
+            // submit form add note
+            $('#add-note-form').on('submit', function(e){
+                e.preventDefault()
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: "{{ route('company.request.add_note')}}",
+                    method: "POST",
+                    data: {
+                        log_id: log_id,
+                        note: $('#note-textarea').val()
+                    },
+                    success: function (data) {
+                        alert(data);
+                        location.reload();
+                    }
+                });
+            })
+        }
 
         $(".datepicker").datepicker({
             dateFormat: 'yy-mm-dd',
