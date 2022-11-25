@@ -107,13 +107,13 @@
                     </td>
                     <td scope="col">
                         @if ($talent->note)
-                        {{ $talent->note }}
+                        {{ \Illuminate\Support\Str::limit($talent->note, 50, $end='...') }}
                         <button id="button-edit-note" class="btn btn-xs btn-outline-dark button-add-note button-edit-note" data-toggle="modal" note_value= "{{ $talent->note }}" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
-                            Edit note
+                            <i class="fa fa-pencil"></i>
                         </button>
                         @else
                             <button id="button-add-note" class="btn btn-xs btn-outline-dark button-add-note" data-toggle="modal" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
-                                + Add note
+                                <i class="fa fa-plus"></i>
                             </button>
                         @endif
                     </td>
@@ -135,7 +135,7 @@
                             method="POST" style="margin-bottom: 0;">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-outline-success mx-2" data-toggle="tooltip" data-placement="top" title="Unbookmark">
+                            <button type="submit" class="btn btn-outline-warning mx-2" data-toggle="tooltip" data-placement="top" title="Unbookmark">
                                 <i class="fa fa-star"></i>
                             </button>
                         </form>
