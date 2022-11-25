@@ -74,6 +74,8 @@ class jobsapplyclientController extends Controller
         ['company_req_log.status', '=', 'reject']
       ])->count();
 
+
+    // notif
     $limit = 3;
     $data_talent = DB::table('hire_talent')
       ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
@@ -90,6 +92,68 @@ class jobsapplyclientController extends Controller
     $jumlah_data_notif = $data->count("hire_talent_id");
 
     return view('admin.jobsapplyclient', compact('reqs', 'locations', 'countU', 'countI', 'countP', 'countO', 'countH', 'countR', 'data_talent', 'jumlah_data_notif'));
+  }
+
+  // index page
+  public function index2()
+  {
+    $company_req = CompanyRequest::all();
+    $company_req['hired'] = CompanyReqLog::where('status', 'hired')->count();
+
+    $talentpool['unprocess'] = CompanyReqLog::where('status', 'unprocess')->count();
+    $talentpool['interview'] = CompanyReqLog::where('status', 'interview')->count();
+    $talentpool['prospek'] = CompanyReqLog::where('status', 'prospek')->count();
+    $talentpool['offered'] = CompanyReqLog::where('status', 'offered')->count();
+    $talentpool['hired'] = CompanyReqLog::where('status', 'hired')->count();
+    $talentpool['reject'] = CompanyReqLog::where('status', 'reject')->count();
+    $talentpool['bookmark'] = CompanyReqLog::where('bookmark', 'true')->count();
+
+    return view('admin.jobs-apply-client.index', [
+      'active' => 'active',
+      'data' => $company_req,
+      'count' => $talentpool,
+    ]);
+  }
+
+
+  // table talent request
+  public function table_talent_request(Request $request)
+  {
+    // set_time_limit(300);
+    // $default_query = "talent.talent_id, 
+    // talent.user_id, 
+    // users.id as user_id, 
+    // talent.talent_name as name, 
+    // talent.talent_salary as expetasi, 
+    // talent.talent_lastest_salary as gaji, 
+    // company_req_log.status as status, 
+    // company_req_log.company_req_log_id as log_id";
+
+    // $data = Talent::select(DB::raw($default_query));
+    // $data = $data->join("company_req_log", "company_req_log.talent_id", "=", "talent.talent_id");
+    // $data = $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
+    // $data = $data->join("skill_talent", "talent.talent_id", "=", "skill_talent.st_talent_id", "LEFT");
+    // $data = $data->where("company_req_log.company_request_id", 2);
+
+    // if (!empty($request->status)) {
+    //   $data = $data->where("company_req_log.status", $request->status);
+    // } else if (!empty($request->nama)) {
+    //   $data = $data->Contains("talent.talent_name", $request->nama);
+    // }
+
+
+    // $data = $data->groupBy("talent.talent_id");
+    // $data = $data->paginate(10);
+
+    // $data = CompanyRequest::paginate(10);
+
+    if (!empty($request->status)) {
+      $data = CompanyReqLog::where('status', $request->status)->latest()->paginate(10);
+    } else {
+      $data = CompanyReqLog::latest()->paginate(10);
+    }
+
+    return view('admin.jobs-apply-client.table', ['request_log' => $data])->render();
   }
 
   public function allNotif()

@@ -82,6 +82,8 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function () {
 	Route::get("/request/talent_data", "CompanyDashboardController@table_talent_request");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
 
+	// edit request person needed
+	Route::post('/request/active/detail/person_needed/{company_request_id}', "CompanyDashboardController@updatePersonNeeded")->name('company.request.detail.change-person-needed');
 
 	// request feature
 	Route::post('/dashboard', "CompanyDashboardController@makeOffer")->name('company.makeoffer');
@@ -91,6 +93,10 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function () {
 	Route::delete('/request/unkeeptalent/{id_request}/{id_talent}', "CompanyDashboardController@unkeepTalent")->name('company.request.unkeeptalent');
 	Route::post('/request/changestatus', "CompanyDashboardController@changeStatusTalent")->name('company.request.changestatus');
 	Route::post('/request/change_to_hired', "CompanyDashboardController@change_to_hired")->name('company.request.change_to_hired');
+
+	// note
+	Route::post('/request/add_note', "CompanyDashboardController@addNote")->name('company.request.add_note');
+	Route::post('/request/update_note', "CompanyDashboardController@updateNote")->name('company.request.update_note');
 
 	// support
 	Route::get("/json/skill/company", "CompanyDashboardController@company_json_skill")->name('json.skill.company');
@@ -162,7 +168,6 @@ Route::group(['middleware' => 'cek'], function () {
 
 	////////////////////////////
 
-
 	Route::get('/blast', 'jobsapplyController@blast_show')->name('blast');
 
 	Route::group(['prefix' => 'admin'], function () {
@@ -172,10 +177,17 @@ Route::group(['middleware' => 'cek'], function () {
 
 		Route::group(['prefix' => 'jobsapplyclient'], function () {
 			Route::get('/', 'jobsapplyclientController@index')->name('jobsapplyclient');
+
+			// refactor
+			Route::get('/index', 'jobsapplyclientController@index2')->name('jobsapplyclient.index');
+			Route::get("/table/data", "jobsapplyclientController@table_talent_request")->name('jobsapplyclient.table');
+			Route::post('/changestatus', "CompanyDashboardController@changeStatusTalent")->name('jobsapplyclient.request.changestatus');
+
+
 			Route::get('/all-notif', "jobsapplyclientController@allNotif")->name('jobsapplyclient.all-notif');
 			Route::get('/notif/{id}', 'jobsapplyclientController@notif')->name('jobsapplyclient.notif');
 
-			Route::get('/delete', 'jobsapplyControllerClient@delete')->name('jobsapplyclient.delete');
+			Route::get('/delete', 'jobsapplyclientController@delete')->name('jobsapplyclient.delete');
 
 			//filter Status
 			Route::get('/all', 'jobsapplyclientController@all')->name('jobsapplyclient.all');
