@@ -225,8 +225,6 @@
 							if ( count($name) > 0 )
 							{
 								$nama = $name[0];
-								//$nama =  $name[0]." (".$talent->talent_id.")";
-								$nama =  $name[0];
 							}
 							else
 							{
@@ -241,9 +239,11 @@
 						
 					@endphp
 					
+					@if (Session::get('level') !== 'user')
 					<p style="text-align: justify">
 						Hi, perkenalkan nama saya <b>{{ $nama }}</b>. Sebagai Talent <b>{{$talent->talent_focus}}</b>. {{$talent->talent_profile_desc}}
 					</p>
+					@endif
 
 					<hr>
 					<div class="row biodata" style="padding-left:15px">
@@ -252,7 +252,12 @@
 								<td width="40%"><strong>Nama</strong></td>
 								<td><strong>:&nbsp</strong></td>
 								<td style="font-weight: bold;">
+									@if (Session::get('level') == 'user')
+									{{ substr($nama, 0, 1) . preg_replace('/[^@]/', '*', substr($nama, 1)) }}
+									@else
 									{{$nama}}
+									@endif
+									
 								</td>
 							</tr>
 							<tr>
@@ -284,12 +289,14 @@
 								<td><strong>Phone</strong></td>
 								<td><strong>: &nbsp</strong></td>
 								<td> 
+									@if (Session::get('level') !== 'user')
 									@if ( Request::segment(2) != '' )
 										<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green; float: left">
 											<i class="fa fa-whatsapp" aria-hidden="true"></i> &nbsp contact me
 										</a>
 									@else 
 										{{ $talent->talent_phone }} 
+									@endif
 									@endif
 								</td>
 	                		</tr>
@@ -383,7 +390,13 @@
 
 						<div style="margin-bottom: 10px; font-size: 18px">
 							Pricing Talent a/n 
-							<b style="text-transform: uppercase; ">{{$nama}}</b>
+							<b style="text-transform: uppercase; ">
+								@if (Session::get('level') == 'user')
+								{{ substr($nama, 0, 1) . preg_replace('/[^@]/', '*', substr($nama, 1)) }}
+								@else
+								{{ $nama }}
+								@endif
+							</b>
 						</div>
 
 						<hr>

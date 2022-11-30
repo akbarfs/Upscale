@@ -152,12 +152,11 @@
 				if ( count($name) > 0 )
 				{
 					$nama = $name[0];
-					$nama =  $name[0]." (".$talent->talent_id.")";
+					// $nama =  $name[0]." (".$talent->talent_id.")";
 				}
 				else
 				{
 					$nama = $name ; 
-					$nama = " (".$talent->talent_id.")"; 
 				}
 			}
 			else
@@ -166,10 +165,15 @@
 			}
 			
 		@endphp
-
-			<h1>{{ $nama }}</h1>
+		@if (Session::get('level') == 'user')
+		<h1>
+			{{ substr($nama, 0, 1) . preg_replace('/[^@]/', '*', substr($nama, 1)) }}
+		</h1>
+		@else
+		<h1>{{$nama . " (" . $talent->talent_id . ")" }}</h1>
+		@endif
             <span style="font-size: 12px">Ready kerja:<br> {{ $newDate }}</span>
-            @endif
+			@endif
 		</div>
 
 		
