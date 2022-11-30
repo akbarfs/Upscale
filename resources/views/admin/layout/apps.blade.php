@@ -162,11 +162,7 @@
     @include('admin.layout.sidebar')
 
     <div id="right-panel" class="right-panel">
-
-
-
         @include('admin.layout.header')
-
         @yield('content')
 
 

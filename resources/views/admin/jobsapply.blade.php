@@ -32,14 +32,7 @@
         </div>
     </div>
     <div class="col-sm-8">
-        <div class="page-header float-right">
-            <div class="page-title">
-                <ol class="breadcrumb text-right" style="position:relative;">
-                    <li><a href="{{route('dashboard')}}">Dashboard</a></li>
-                    <li class="active">Jobs Apply</li>
-                </ol>                
-            </div>
-        </div>
+        @include('admin.layout.notification')
     </div>
 </div>
 

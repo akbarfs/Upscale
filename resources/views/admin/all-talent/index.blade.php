@@ -62,14 +62,7 @@
 		</div>
 	</div>
 	<div class="col-sm-8">
-		<div class="page-header float-right">
-			<div class="page-title">
-				<ol class="breadcrumb text-right">
-					<li><a href="">Dashboard</a></li>
-					<li class="active">Talent</li>
-				</ol>
-			</div>
-		</div>
+		@include('admin.layout.notification')
 	</div>
 </div>
 <br>
@@ -316,13 +309,6 @@
 		</div>
 	</div>
 
-	<div id="loading" align="center">
-        <div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-
-
 	<style type="text/css">
 		.tb {
 			margin-bottom: 10px;
@@ -563,6 +549,12 @@
 		</div>
 	</div>
 
+
+	{{-- <div id="loading" align="center">
+		<div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div> --}}
 
 
 
