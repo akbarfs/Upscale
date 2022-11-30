@@ -83,8 +83,8 @@
             @endif
           </td>
           <td style="min-width:250px">
-            @if (!empty($talent->talent_id))
-            <a href="{{url('/profile/'.encrypt_custom($talent->talent_id))}}" class="btn btn-info" target="_blank" data-toggle="tooltip" data-placement="top" title="Profile Talent">
+            @if ($talent->user_id !== 0)
+            <a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" class="btn btn-info" target="_blank" data-toggle="tooltip" data-placement="top" title="Profile Talent">
               <i class="fa fa-info"></i>
             </a>
             @else
