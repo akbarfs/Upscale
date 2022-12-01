@@ -461,11 +461,11 @@ class CompanyDashboardController extends Controller
         $talent->bookmark = 'true';
         $talent->save();
 
-        toast('Talent dibookmark', 'success');
+        toast('Talent dibookmark', 'success')->position('bottom-left');
         return redirect()->route('company.request.detail', $request->id_request);
       }
     } else {
-      toast('Bookmark mencapai batas', 'warning');
+      toast('Bookmark mencapai batas', 'warning')->position('bottom-left');
       return redirect()->route('company.request.detail', $request->id_request);
     }
   }
@@ -475,7 +475,7 @@ class CompanyDashboardController extends Controller
     $talent = CompanyReqLog::where('company_request_id', $request->id_request)->where('talent_id', $request->id_talent)->first();
     $talent->bookmark = 'false';
     $talent->save();
-    toast('Talent Batal Dibookmark', 'error');
+    toast('Talent Batal Dibookmark', 'error')->position('bottom-left');
     return redirect()->route('company.request.detail', $request->id_request);
   }
 
