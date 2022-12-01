@@ -21,7 +21,7 @@ $data = App\Models\HireTalent::where('hire_talent_status_notif', 1)
                         </div>
                     </div>
 
-                        <div id="posts" style="background-color:#b3b3b3;padding:10px;">
+                        <div id="posts" style="background-color:#f0f1f5;padding:10px;">
                         @if (count($data->get())>0)
                         @foreach($data->latest()->take(3)->get() as $notif)
                         <form method="post" enctype="multipart/form-data" class="hire-talent">
