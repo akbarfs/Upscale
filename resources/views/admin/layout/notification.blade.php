@@ -27,7 +27,7 @@ $data = App\Models\HireTalent::where('hire_talent_status_notif', 1)
                         <form method="post" enctype="multipart/form-data" class="hire-talent">
                         @csrf
                             <div class="layout-notif">
-                                <a href="{{route('jobsapplyclient.notif',['id' => $notif->hire_talent_id])}}" data-id="{{$notif->hire_talent_id}}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif">
+                                <a href="{{route('jobsapplyclient.notif',['id' => $notif->hire_talent_id])}}" data-id="{{$notif->hire_talent_id}}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif" data-toggle="tooltip" title="{{ $notif->company->company_name }}">
                                     <div style="width:31px;height:31px;background-color:#ffffff;">
                                     <img src="{{$notif->company_pic}}" alt="" class="company_pic" srcset="">
                                     </div>
