@@ -477,11 +477,10 @@
                 @csrf
                 <div class="modal-body">
 					<p class="text-center" id="note-need"></p>
-					<div class="row justify-content-center mt-4">
-						<div class="form-group">
-							<select class="" id="client" name="name_request"></select>
-						</div>                        
+					<div>
+						<select class="" id="client" name="name_request"  style="width: 100%"></select>
 					</div>
+					
                 </div>
                 <div class="modal-footer">
                     <div class="nav nav-pills pull-right">
@@ -521,7 +520,7 @@
   
     function loadSelect() {
       $("#client").select2({
-        placeholder: "Pilih Client Request",
+		placeholder: "Pilih Client Request",
         ajax:{
           url: '{{route("all-talent.company_request_list")}}',
           dataType: 'json',
