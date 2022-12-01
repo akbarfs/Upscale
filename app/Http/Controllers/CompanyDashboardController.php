@@ -229,10 +229,33 @@ class CompanyDashboardController extends Controller
 
     // Filter experience in years
     if ($request->experience != "Experience In Years") {
-      return 'This Filter Still Development';
-      $data->where('talent_start_career', '!=', null)->select(DB::raw('DATEDIFF(now(), talent_start_career) as pengalaman'));
-      // $data->where('talent_start_career', '!=',null)->whereRaw('DATEDIFF(now(), talent_start_career) / 365.25 ',$request->experience );
-      // dd($data->get());
+      // return 'This Filter Still Development';
+
+      switch ($request->experience) {
+        case '1':
+          $data = $data->whereRaw('FLOOR(DATEDIFF(CURDATE(), talent_start_career) / 365) <= 1');
+          break;
+
+        case '1 - 3':
+          $data = $data->whereRaw('FLOOR(DATEDIFF(CURDATE(), talent_start_career) / 365) BETWEEN 1 AND 3');
+          break;
+
+        case '3 - 5':
+          $data = $data->whereRaw('FLOOR(DATEDIFF(CURDATE(), talent_start_career) / 365) BETWEEN 3 AND 5');
+          break;
+
+        case '5 - 10':
+          $data = $data->whereRaw('FLOOR(DATEDIFF(CURDATE(), talent_start_career) / 365) BETWEEN 5 AND 10');
+          break;
+
+        case '10':
+          $data = $data->whereRaw('FLOOR(DATEDIFF(CURDATE(), talent_start_career) / 365) >= 10');
+          break;
+
+        default:
+          $data = $data->whereNotNull('talent_start_career');
+          break;
+      }
     }
     // End Filter experience in years
 
