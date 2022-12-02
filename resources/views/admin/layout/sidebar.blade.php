@@ -33,12 +33,12 @@
                     </li>
                     <h3 class="menu-title">CAREER</h3><!-- /.menu-title -->
                     
-                    <li title="Job Apply Client" class="{{ request()->route()->getName() == 'jobsapplyclient' ? 'active' : '' }}">
+                    {{-- <li title="Job Apply Client" class="{{ request()->route()->getName() == 'jobsapplyclient' ? 'active' : '' }}">
                         <a href="{{route('jobsapplyclient')}}"> <i class="menu-icon fa fa-th-list"></i> Job Apply Client</a>
-                    </li>
+                    </li> --}}
                     
                     <li title="Job Apply Client" class="{{ request()->route()->getName() == 'jobsapplyclient.index' ? 'active' : '' }}">
-                        <a href="{{route('jobsapplyclient.index')}}"> <i class="menu-icon fa fa-th-list"></i> Job Apply Client 2</a>
+                        <a href="{{route('jobsapplyclient.index')}}"> <i class="menu-icon fa fa-th-list"></i> Job Apply Client</a>
                     </li>
                     
 

@@ -60,7 +60,13 @@
                         <img src="{{url('/img/avatar/noimage.jpg')}}" class="rounded-circle" style="width: 50px; height:50px;" alt="">
                     </td>
                     <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
-                    <td style="max-width: 10rem;">{{$result}}</td>
+                    <td style="max-width: 10rem;">
+                        {{$talent->talent_id . ' - ' . $result}}
+                        @if ($talent->is_hire_requested == 1)
+                        <br>
+                        <span class="my-1 badge badge-info">Requested</span>
+                        @endif
+                    </td>
                     <td style="max-width: 250px">
                         @foreach ( $talent->talent_skill()->get() as $row )
                         <?php 
@@ -153,7 +159,7 @@
                         @endif
 
                             <button class="btn btn-sm btn-info rect-border hire hire-me" data-target="#hire-modal" data-id="{{$talent->talent_id}}"
-                            id-request="{{$id_request}}" name-talent="{{$result}}" data-toggle="modal">Hire Me!</button>
+                            id-request="{{$id_request}}" data-toggle="modal" {{ $talent->is_hire_requested == 1 ? 'disabled' : '' }}>Hire Me!</button>
                         </div>
                     </td>
                 </tr>
@@ -308,7 +314,7 @@
                 $('#modal-hired-button').click()
 
                 // change modal title
-                var title = 'Tambahkan ' + $(this).attr('nama_talent')
+                var title = 'Tambahkan talent dengan kode ' + id_talent
                 $('#modal-hired').find('#title-modal-hired').text(title)
 
                 // submit form

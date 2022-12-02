@@ -67,7 +67,27 @@
             </span>
             @endforeach
           </td>
-          <td>{{ $talent->talent_date_ready ? $talent->talent_date_ready : '-' }}</td>
+          <td>
+            @if ($talent->talent_available == 'yes')
+            <span class="badge badge-success">
+              yes
+            </span>
+            @elseif ($talent->talent_available == 'asap')
+            <span class="badge badge-info">
+              asap
+            </span>
+            @elseif ($talent->talent_available == '1_month')
+            <span class="badge badge-secondary">
+              1 month notice
+            </span>
+            @elseif ($talent->talent_available == 'no')
+            <span class="badge badge-danger">
+              no
+            </span>
+            @else
+            {{ $talent->talent_available }}
+            @endif
+          </td>
           <td>
             @if (!empty($talent->gaji))
             {{ $talent->gaji }}
