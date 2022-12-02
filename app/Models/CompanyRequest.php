@@ -19,4 +19,9 @@ class CompanyRequest extends Model
     {
         return $this->hasMany(CompanyReqLog::class, 'company_request_id', 'company_request_id');
     }
+
+    public function hire_talent()
+    {
+        return $this->hasMany(HireTalent::class, 'hire_talent_company_request_id', 'company_request_id');
+    }
 }

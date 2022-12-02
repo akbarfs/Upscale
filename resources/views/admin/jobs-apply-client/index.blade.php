@@ -65,6 +65,45 @@
 </div>
 
 <div class="content mt-3">
+
+    <div class="my-2">
+        <form action="" method="POST" id="form-search">
+            <div class="row">
+                <div class="col-md-6 mt-4">
+                    <input type="text" name="client"
+                        class="small-rect-filter text-left rect-border form-control " placeholder="Client"
+                        value="" />
+                </div>
+                <div class="col-md-6 mt-4">
+                    <input type="text" name="talent"
+                        class="small-rect-filter text-left rect-border form-control " placeholder="Talent"
+                        value="" />
+                </div>
+
+                <div class="col-md-3 mt-4">
+                    <select name="company_request" id="company_request" class="form-control small-rect-filter text-left rect-border">
+                        <option value="" selected>Company Request</option>
+                        @foreach ($company_req as $req)
+                        <option value="{{$req->company_request_id}}">{{$req->name_request}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <select name="is_hire_requested" id="is_hire_requested" class="form-control small-rect-filter text-left rect-border">
+                        <option value="" selected>Status Request</option>
+                        <option value="1">Requested</option>
+                        <option value="0">Tidak Request</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-3 mt-4">
+                    <button class="btn btn-info rounded" style="width:100%;" type="submit">Filter</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+    </div>
+
     <div class="mt-4">
         <div class="row justify-content-center">
             <div class="col-sm-2">
@@ -92,13 +131,7 @@
                     Reject<span>{{ $count['reject'] }}</span></div>
             </div>
         </div>
-        <div class="row">
-        <div class="col-md-3 mt-4">
-        <input type="text" name="nama_talent"
-            class="small-rect-filter text-left rect-border form-control nama-talent" placeholder="Masukkan Nama Talent"
-            />
-        </div>
-        </div>
+        
     </div>
 
     <div class="mt-4">
@@ -107,11 +140,11 @@
         </div>
     </div>
 
-    <div id="loading" align="center">
+    {{-- <div id="loading" align="center">
         <div class="spinner-border text-primary" id="spinner" role="status" style="text-align: center;">
             <span class="sr-only">Loading...</span>
         </div>
-    </div>
+    </div> --}}
 
 <script>
     $(document).ready(function () {
@@ -121,11 +154,12 @@
         if (status) {alert(status);}
 
         function loadTable(url) {
+            var param = $("#form-search").serialize();
             $('#loading').show();
             $("#talent-request").html('');
 
             $.ajax({
-                url: url,
+                url: url + "&" + param,
                 method: "GET",
                 success: function (data) {
                     $('#loading').hide();
@@ -135,26 +169,26 @@
         }
 
         //load pertama kali
-        loadTable("{{url('/admin/jobsapplyclient/table/data')}}");
-
-        // klik pagination , diambil urlnya langsung di load ajax
-        $(document).on("click", ".page-link", function (event) {
-            $("body").scrollTop(0);
-            var url = $(this).attr("href");
-            loadTable(url);
-            event.preventDefault(); //ini biar ga keredirect ke halaman lain
-        });
-
+        // loadTable("{{url('/admin/jobsapplyclient/table/data?page=1')}}");
         var identifier = 'unprocess';
         url = `{{url('/admin/jobsapplyclient/table/data?status=${identifier}')}}`
         loadTable(url);
 
-        $('.nama-talent').on('input',function(){
-            var nama = $(this).val();
-            url = `{{url('/admin/jobsapplyclient/table/data?nama=${nama}')}}`
+        // klik pagination , diambil urlnya langsung di load ajax
+        $(document).on("click", ".page-link", function (event) {
+            $("body").scrollTop(0);
+            var url = $(this).attr("href") + "&" + `{{ 'status=${identifier}' }}`;
+            console.log(url);
             loadTable(url);
-            event.preventDefault();
-        })
+            event.preventDefault(); //ini biar ga keredirect ke halaman lain
+        });
+
+        // $('.nama-talent').on('input',function(){
+        //     var nama = $(this).val();
+        //     url = `{{url('/admin/jobsapplyclient/table/data?nama=${nama}')}}`
+        //     loadTable(url);
+        //     event.preventDefault();
+        // })
 
         $('.filter-btn').on('click',function(){
             var identifier = $(this).attr('id');
@@ -164,6 +198,13 @@
             $('#'+identifier).addClass("active");
             event.preventDefault();
         })
+
+
+        //search 
+        $("#form-search").submit(function () {
+            loadTable(`{{url('/admin/jobsapplyclient/table/data?status=${identifier}')}}`);
+            return false;
+        });
 
     })
 </script>

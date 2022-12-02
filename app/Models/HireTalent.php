@@ -20,4 +20,9 @@ class HireTalent extends Model
 	{
 		return $this->belongsTo(Company::class, 'hire_talent_company_id', 'company_id');
 	}
+
+	public function company_request()
+	{
+		return $this->belongsTo(CompanyRequest::class, 'hire_talent_company_request_id', 'company_request_id');
+	}
 }

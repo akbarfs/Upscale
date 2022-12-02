@@ -18,9 +18,9 @@ class User extends Authenticatable
     protected $table = 'users';
     protected static $tablename = 'users';
     protected $primaryKey = 'id';
-    
+
     protected $fillable = [
-        'id', 'name', 'username', 'password','email','level'
+        'id', 'name', 'username', 'password', 'email', 'level'
     ];
 
     /**
@@ -34,14 +34,14 @@ class User extends Authenticatable
 
     function talent()
     {
-        return $this->hasOne("App\Models\Talent");
+        return $this->hasOne("App\Models\Talent", 'user_id', 'id');
     }
 
     public function talent_data()
-	{	
-		return $this->hasMany('App\Models\Talent' ,'talent_id', 'id');
+    {
+        return $this->hasMany('App\Models\Talent', 'talent_id', 'id');
     }
-    
+
     public function talent_education()
     {
         return $this->hasMany('App\Models\Education', 'edu_talent_id', 'id');

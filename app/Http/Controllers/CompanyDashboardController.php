@@ -613,19 +613,21 @@ class CompanyDashboardController extends Controller
     $company_id = session('user_id');
     $talent_id = $request->talent_id;
     $company_request_id = $request->company_request_id;
-    $company_req_log_id = $request->company_req_log_id;
-    $check = HireTalent::where('hire_talent_talent_id', $talent_id)->where('hire_talent_company_id', $company_id)->count();
 
-    if ($check > 0) {
+    // update status di company req log table
+    $company_req_log = CompanyReqLog::where([
+      'company_request_id' => $company_request_id,
+      'talent_id' => $talent_id,
+    ])->first();
+
+    if ($company_req_log->is_hire_requested == 1) {
       return redirect()->route('company.request.detail', $company_request_id)->with([
         'message' => 'Talent sudah di Hire'
       ]);
     } else {
-      HireTalent::create([
-        'hire_talent_talent_id' => $talent_id,
-        'hire_talent_company_id' => $company_id,
-        'hire_talent_company_request_id' => $company_request_id,
-        'hire_talent_status_notif' => '1'
+      $company_req_log->update([
+        'is_hire_requested' => 1,
+        'is_read_notif' => 1
       ]);
 
       return redirect()->route('company.request.detail', $company_request_id)->with([

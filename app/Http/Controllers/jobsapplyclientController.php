@@ -84,6 +84,8 @@ class jobsapplyclientController extends Controller
       ->where('hire_talent.hire_talent_status_notif', '1')
       ->orderBy('hire_talent.created_at', 'DESC')->paginate($limit);
 
+    // $data_talent2 = HireTalent::where('hire_talent_status_notif', 1)->latest()->paginate(3);
+
     $data = DB::table('hire_talent')
       ->join('talent', 'hire_talent.hire_talent_talent_id', '=', 'talent.talent_id')
       ->join('company', 'hire_talent.hire_talent_company_id', '=', 'company.company_id')
@@ -154,6 +156,13 @@ class jobsapplyclientController extends Controller
     }
 
     return view('admin.jobs-apply-client.table', ['request_log' => $data])->render();
+  }
+
+
+  // substeps
+  public function getSubsteps(Request $request)
+  {
+    $data = DB::table('jobs_apply')->select('jobs_apply_note')->where('jobs_apply_id', '=', $request->jobs_apply_id)->get();
   }
 
   public function allNotif()

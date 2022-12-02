@@ -79,7 +79,7 @@ class Talent extends Model
 
 	public function talent_skill()
 	{
-		return $this->hasMany('App\Models\SkillTalent', 'st_talent_id', 'talent_id');
+		return $this->hasMany(SkillTalent::class, 'st_talent_id', 'talent_id');
 	}
 
 	public function jobs_apply()

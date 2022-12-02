@@ -178,9 +178,9 @@ Route::group(['middleware' => 'cek'], function () {
 		Route::group(['prefix' => 'jobsapplyclient'], function () {
 			Route::get('/', 'jobsapplyclientController@index')->name('jobsapplyclient');
 
-			// refactor
-			Route::get('/index', 'jobsapplyclientController@index2')->name('jobsapplyclient.index');
-			Route::get("/table/data", "jobsapplyclientController@table_talent_request")->name('jobsapplyclient.table');
+			// refactor jobsapplyclient
+			Route::get('/index', 'Admin\JobsApplyClientController@index2')->name('jobsapplyclient.index');
+			Route::get("/table/data", "Admin\JobsApplyClientController@table_talent_request")->name('jobsapplyclient.table');
 			Route::post('/changestatus', "CompanyDashboardController@changeStatusTalent")->name('jobsapplyclient.request.changestatus');
 
 

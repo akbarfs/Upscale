@@ -56,13 +56,35 @@
                 @foreach ($request_log as $data)
                 <tr>
                     <td class="text-center">{{($request_log->currentPage()-1) * $request_log->perPage() + $loop->iteration}}</td>
-                    <td>{{ $data->company_request->name_request }}</td>
+                    <td>
+                        {{ $data->company_request->name_request }}
+                    </td>
                     <td>{{ $data->company_request->company->company_name }}</td>
                     <td>{{ $data->talent->talent_address }}</td>
-                    <td>{{ $data->talent->talent_name }}</td>
+                    <td>
+                        {{ $data->talent->talent_name }}
+                        @if ($data->is_hire_requested == 1)
+                        <br>
+                        <span class="my-1 badge badge-info">Requested</span>
+                        @endif
+                    </td>
                     <td>
                         {{ $data->talent->talent_email }}
-                        <p class="my-1 text-dark"><small>{{ $data->talent->talent_phone }}</small></p>
+                        <br>
+                        @if ($data->is_hire_requested == 1)
+                        <a href="https://wa.me/62{{ $data->talent->talent_phone }}" target="_blank">
+                            <span class="my-1 badge badge-success">
+                                <i class="fa fa-whatsapp"></i> {{ $data->talent->talent_phone }}
+                            </span>
+                        </a>
+                        @else
+                        <a href="https://wa.me/62{{ $data->talent->talent_phone }}" target="_blank">
+                            <span class="my-1 badge badge-secondary">
+                                <i class="fa fa-whatsapp"></i> {{ $data->talent->talent_phone }}
+                            </span>
+                        </a>
+                        @endif
+                        
                     </td>
                     <td scope="col">
                         <select class="form-control status" company_req_id="{{ $data->company_request_id }}" nama_talent="{{ $data->name }}" id_talent={{ $data->talent_id }} name="status">
@@ -87,7 +109,9 @@
 
 
                         {{-- button modal tambah catatan  --}}
-                        <a href="" id="{{ $data->talent_id }}"data-toggle="modal" data-target="#modal-tambah-catatan" type="button" class="btn btn-warning btn-xs tambah-catatan" data-toggle="tooltip" data-placement="top" title="See Substeps For This Application"><i class="	fa fa-check"></i></a>
+                        <button id="button-substeps" talent_id="{{ $data->talent_id }}" data-toggle="modal" data-target="#modal-substeps" type="button" class="btn btn-warning btn-xs button-substeps" data-toggle="tooltip" data-placement="top" title="See Substeps For This Application">
+                            <i class="	fa fa-check"></i>
+                        </button>
                         
                     </td>
                 </tr>
@@ -103,7 +127,6 @@
         Hired
     </button>
     
-    <!-- Modal -->
     <div class="modal fade" id="modal-hired" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -150,6 +173,41 @@
     </div>
 
 
+    {{-- modal substeps --}}
+    <div class="modal fade" id="modal-substeps" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="judul-panjang">Substeps dan Tambahkan Catatan</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body substeps-modal">
+                <form action="">
+                    <div class="form-group">
+                        <label for="catatan">Catatan</label>
+                        <input type="text" name="jobs_apply_note" class="form-control" id="catatan" placeholder="Masukan Catatan">
+                        <input type="hidden" name="jobs_apply_id" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="catatan">Label</label>
+                        <input type="text" name="jobs_apply_label" class="form-control" id="label" placeholder="Tulis Label Sesingkat Mungkin">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="rush">
+                        <label class="form-check-label" for="rush">
+                            Rush / Potensial
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary rect-border float-right">Simpan</button>
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
 </div>
 <style>
     .pagination {
@@ -169,6 +227,16 @@
             autoclose: true,
             todayHighlight: true,
         });
+
+
+        // substeps
+        $('.button-substeps').on('click', function () {
+            var talent_id = $(this).attr('talent_id');
+            console.log(talent_id);
+            const uri = `talent_id=${talent_id}&company_request_id=${company_request_id}`;
+            const _url = `{{ url('company/dashboard/hireTalent?${uri}') }}`;
+            $('.hire-talent').attr('action', _url);
+        })
 
 
         $('.status').on('change', function () {  
@@ -256,6 +324,14 @@
             const uri = `talent_id=${talent_id}&company_request_id=${company_request_id}`;
             const _url = `{{ url('company/dashboard/hireTalent?${uri}') }}`;
             $('.hire-talent').attr('action', _url);
+        })
+        
+        $('#modal-substeps').on('show.bs.modal', function (e) {
+            // var talent_id = $('.button-substeps').attr('talent_id');
+            console.log('modal-substeps');
+            // const uri = `talent_id=${talent_id}&company_request_id=${company_request_id}`;
+            // const _url = `{{ url('company/dashboard/hireTalent?${uri}') }}`;
+            // $('.hire-talent').attr('action', _url);
         })
 
     })

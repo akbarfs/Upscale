@@ -1,5 +1,5 @@
 @php
-$data = App\Models\HireTalent::where('hire_talent_status_notif', 1)
+$data = App\Models\CompanyReqLog::where('is_read_notif', 1)
 @endphp
 
 <div class="page-header float-right">
@@ -27,12 +27,12 @@ $data = App\Models\HireTalent::where('hire_talent_status_notif', 1)
                         <form method="post" enctype="multipart/form-data" class="hire-talent">
                         @csrf
                             <div class="layout-notif">
-                                <a href="{{route('jobsapplyclient.notif',['id' => $notif->hire_talent_id])}}" data-id="{{$notif->hire_talent_id}}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif" data-toggle="tooltip" title="{{ $notif->company->company_name }}">
+                                <a href="{{ route('jobsapplyclient.notif',['id' => $notif->talent_id]) }}" data-id="{{ $notif->talent_id }}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif" data-toggle="tooltip" title="{{ $notif->company_request->company->company_name }}">
                                     <div style="width:31px;height:31px;background-color:#ffffff;">
-                                    <img src="{{$notif->company_pic}}" alt="" class="company_pic" srcset="">
+                                    <img src="{{ $notif->company_request->company->company_pic }}" alt="" class="company_pic" srcset="">
                                     </div>
                                     <p class="notif" style="width:176px;font-size:11px;color:#000000;line-height:13px;">
-                                        Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>{{$notif->talent_name}}</strong>
+                                        Hi Upscale, tolong hubungi saya, saya tertarik dengan Talent <strong>{{$notif->talent->talent_name}}</strong>
                                     </p>
                                     <p style="font-size:8px;color:#000000;line-height:10px;" class="date">{{$notif->created_at}}</p>
                                 </a>
