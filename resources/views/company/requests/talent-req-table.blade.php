@@ -108,11 +108,11 @@
                     <td scope="col">
                         @if ($talent->note)
                         {{ \Illuminate\Support\Str::limit($talent->note, 50, $end='...') }}
-                        <button id="button-edit-note" class="btn btn-xs btn-outline-dark button-add-note button-edit-note" data-toggle="modal" note_value= "{{ $talent->note }}" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
+                        <button id="button-edit-note" class="btn btn-xs btn-outline-none button-add-note button-edit-note" data-toggle="modal" note_value= "{{ $talent->note }}" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
                             <i class="fa fa-pencil"></i>
                         </button>
                         @else
-                            <button id="button-add-note" class="btn btn-xs btn-outline-dark button-add-note" data-toggle="modal" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
+                            <button id="button-add-note" class="btn btn-xs btn-outline-none button-add-note" data-toggle="modal" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
                                 <i class="fa fa-plus"></i>
                             </button>
                         @endif
