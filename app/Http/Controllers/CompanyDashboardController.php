@@ -219,18 +219,17 @@ class CompanyDashboardController extends Controller
 
     // filter ready kerja
     if ($request->readykerja != "Ready Kerja") {
+      $status_ready = ['yes', 'asap', '1_month'];
       if ($request->readykerja == 'yes') {
-        $data = $data->whereIn('talent_available', ['yes', 'asap']);
+        $data = $data->whereIn('talent_available', $status_ready);
       } else {
-        $data = $data->whereNotIn('talent_available', ['yes', 'asap']);
+        $data = $data->whereNotIn('talent_available', $status_ready);
       }
     }
     // End Filter ready kerja
 
     // Filter experience in years
     if ($request->experience != "Experience In Years") {
-      // return 'This Filter Still Development';
-
       switch ($request->experience) {
         case '1':
           $data = $data->whereRaw('FLOOR(DATEDIFF(CURDATE(), talent_start_career) / 365) <= 1');
@@ -269,19 +268,63 @@ class CompanyDashboardController extends Controller
 
     // Filter Gaji Sekarang
     if ($request->currsalary != null) {
-      $currSalary = (int)preg_replace('/[^0-9]/', '', $request->currsalary);
-      $data = $data->where(function ($q) use ($request, $currSalary) {
-        $q->where('talent_lastest_salary', $currSalary)->orWhere('talent_lastest_salary', $request->currsalary);
-      });
+      $data = $data->whereRaw("talent_lastest_salary IS NOT NULL AND talent_lastest_salary NOT LIKE ''");
+      switch ($request->currsalary) {
+        case '1':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_lastest_salary, 5), '.', '') AS UNSIGNED) <= 1000000");
+          break;
+
+        case '1 - 3':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_lastest_salary, 5), '.', '') AS UNSIGNED) BETWEEN 1000000 AND 3000000");
+          break;
+
+        case '3 - 5':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_lastest_salary, 5), '.', '') AS UNSIGNED) BETWEEN 3000000 AND 5000000");
+          break;
+
+        case '5 - 10':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_lastest_salary, 5), '.', '') AS UNSIGNED) BETWEEN 5000000 AND 10000000");
+          break;
+
+        case '10':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_lastest_salary, 5), '.', '') AS UNSIGNED) >= 10000000");
+          break;
+
+        default:
+          $data = $data->whereNotNull('talent_lastest_salary');
+          break;
+      }
     }
     // End Filter Gaji Sekarang
 
     // Filter Expetasi Gaji
     if ($request->expsalary != null) {
-      $expSalary = (int)preg_replace('/[^0-9]/', '', $request->expsalary);
-      $data = $data->where(function ($k) use ($request, $expSalary) {
-        $k->where('talent_salary', $expSalary)->orWhere('talent_salary', $request->expsalary);
-      });
+      $data = $data->whereRaw("talent_salary IS NOT NULL AND talent_salary NOT LIKE ''");
+      switch ($request->currsalary) {
+        case '1':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_salary, 5), '.', '') AS UNSIGNED) <= 1000000");
+          break;
+
+        case '1 - 3':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_salary, 5), '.', '') AS UNSIGNED) BETWEEN 1000000 AND 3000000");
+          break;
+
+        case '3 - 5':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_salary, 5), '.', '') AS UNSIGNED) BETWEEN 3000000 AND 5000000");
+          break;
+
+        case '5 - 10':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_salary, 5), '.', '') AS UNSIGNED) BETWEEN 5000000 AND 10000000");
+          break;
+
+        case '10':
+          $data = $data->whereRaw("CAST(REPLACE(SUBSTRING(talent_salary, 5), '.', '') AS UNSIGNED) >= 10000000");
+          break;
+
+        default:
+          $data = $data->whereNotNull('talent_salary');
+          break;
+      }
     }
     // End Filter Expetasi Gaji
 
@@ -312,7 +355,7 @@ class CompanyDashboardController extends Controller
     $data = $data->paginate(10);
 
     return view('company.table', [
-      'data' => $data
+      'data' => $data,
     ])->render();
   }
 
@@ -320,7 +363,7 @@ class CompanyDashboardController extends Controller
   {
     set_time_limit(300);
     $id_request = $request->id_request;
-    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id, company_req_log.bookmark, company_req_log.note";
+    $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id, company_req_log.bookmark, company_req_log.note, company_req_log.is_hire_requested";
     $data = Talent::select(DB::raw($default_query));
     $data = $data->join("company_req_log", "company_req_log.talent_id", "=", "talent.talent_id");
     $data = $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
@@ -568,9 +611,8 @@ class CompanyDashboardController extends Controller
     $check = CompanyReqLog::where('company_request_id', $request_id)->where('talent_id', $talent)->count();
 
     if ($check > 0) {
-      return redirect()->route('company.dashboard.talent')->with([
-        'message' => 'Talent sudah ada di list request'
-      ]);
+      alert()->error('Warning', 'Talent sudah ada di list request');
+      return redirect()->route('company.dashboard.talent');
     } else {
       CompanyReqLog::create([
         'company_request_id' => $request_id,
@@ -579,9 +621,8 @@ class CompanyDashboardController extends Controller
         'bookmark' => 'false'
       ]);
 
-      return redirect()->route('company.dashboard.talent')->with([
-        'message' => 'Talent berhasil ditambahkan di request'
-      ]);
+      alert()->success('Success', 'Talent berhasil ditambahkan di request');
+      return redirect()->route('company.dashboard.talent');
     }
   }
 

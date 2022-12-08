@@ -18,108 +18,115 @@
   }
 </style>
 
-<div class="card rect-border">
-  <div class="">
-    <table class="table table-striped mb-4">
-      <thead>
-        <tr>
-          <th style="text-align:center;" scope="col">No.</th>
-          <th scope="col">Image</th>
-          <th scope="col">Name</th>
-          <th scope="col">Skills</th>
-          <th scope="col">Ready to Work</th>
-          <th scope="col">Gaji</th>
-          <th scope="col">Expetasi Gaji</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody id="container">
-        @foreach ($data as $talent)
-        <tr>
-          <td style="text-align:center;">{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
-          <td>
-            <div class="avatar-wrapper">
-              <img src="{{url('/img/avatar/noimage.jpg')}}" alt="Avatar" class="avatar">
-              @if ($talent->talent_process_status == 'verified')
-              <div class="verified-avatar-icon">✓</div>
-              @endif
-            </div>
-
-          </td>
-          <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
-          <td style="max-width: 10rem;">{{$result}}</td>
-          <td style="max-width: 400px">
-            @foreach ( $talent->talent_skill()->get() as $row )
-            <?php 
-              
-              if ( $row->st_skill_verified == "YES")
-              {
-                $badge = 'success'; 
-              }
-              else
-              {
-                $badge = 'light'; 
-              }
-              $skill = $row->skill()->first(); 
-            ?>
-            <span class="badge badge-{{$badge}}">
-              {{$skill->skill_name}}
-            </span>
+<div>
+  <h5>List Talent ({{ $data->total() }})</h5>
+  <hr>
+  <div class="container-fluid mt-2" style="padding:0;">
+    <div class="card rect-border">
+      <div class="">
+        <table class="table table-striped mb-4">
+          <thead>
+            <tr>
+              <th style="text-align:center;" scope="col">No.</th>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Skills</th>
+              <th scope="col">Ready to Work</th>
+              <th scope="col">Gaji</th>
+              <th scope="col">Expetasi Gaji</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="container">
+            @foreach ($data as $talent)
+            <tr>
+              <td style="text-align:center;">{{($data->currentPage()-1) * $data->perPage() + $loop->iteration}}</td>
+              <td>
+                <div class="avatar-wrapper">
+                  <img src="{{url('/img/avatar/noimage.jpg')}}" alt="Avatar" class="avatar">
+                  @if ($talent->talent_process_status == 'verified')
+                  <div class="verified-avatar-icon">✓</div>
+                  @endif
+                </div>
+    
+              </td>
+              <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
+              <td style="max-width: 10rem;">{{$talent->talent_id . ' - ' . $result}}</td>
+              <td style="max-width: 400px">
+                @foreach ( $talent->talent_skill()->get() as $row )
+                <?php 
+                  
+                  if ( $row->st_skill_verified == "YES")
+                  {
+                    $badge = 'success'; 
+                  }
+                  else
+                  {
+                    $badge = 'light'; 
+                  }
+                  $skill = $row->skill()->first(); 
+                ?>
+                <span class="badge badge-{{$badge}}">
+                  {{$skill->skill_name}}
+                </span>
+                @endforeach
+              </td>
+              <td>
+                @if ($talent->talent_available == 'yes')
+                <span class="badge badge-success">
+                  yes
+                </span>
+                @elseif ($talent->talent_available == 'asap')
+                <span class="badge badge-info">
+                  asap
+                </span>
+                @elseif ($talent->talent_available == '1_month')
+                <span class="badge badge-secondary">
+                  1 month notice
+                </span>
+                @elseif ($talent->talent_available == 'no')
+                <span class="badge badge-danger">
+                  no
+                </span>
+                @else
+                {{ $talent->talent_available }}
+                @endif
+              </td>
+              <td>
+                @if (!empty($talent->gaji))
+                {{ $talent->gaji }}
+                @else
+                -
+                @endif
+              </td>
+              <td>
+                @if (!empty($talent->expetasi))
+                {{ $talent->expetasi }}
+                @else
+                -
+                @endif
+              </td>
+              <td style="min-width:250px">
+                @if ($talent->user_id !== 0)
+                <a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" class="btn btn-info" target="_blank" data-toggle="tooltip" data-placement="top" title="Profile Talent">
+                  <i class="fa fa-info"></i>
+                </a>
+                @else
+                <button type="button" data-toggle="modal" data-target="#detail-user" class="btn btn-info" target="_blank">
+                  <i class="fa fa-info"></i>
+                </button>
+                @endif
+                <button class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-id="{{$talent->talent_id}}" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Add to My Request Talent">Add to My Request Talent</button>
+              </td>
+            </tr>
             @endforeach
-          </td>
-          <td>
-            @if ($talent->talent_available == 'yes')
-            <span class="badge badge-success">
-              yes
-            </span>
-            @elseif ($talent->talent_available == 'asap')
-            <span class="badge badge-info">
-              asap
-            </span>
-            @elseif ($talent->talent_available == '1_month')
-            <span class="badge badge-secondary">
-              1 month notice
-            </span>
-            @elseif ($talent->talent_available == 'no')
-            <span class="badge badge-danger">
-              no
-            </span>
-            @else
-            {{ $talent->talent_available }}
-            @endif
-          </td>
-          <td>
-            @if (!empty($talent->gaji))
-            {{ $talent->gaji }}
-            @else
-            -
-            @endif
-          </td>
-          <td>
-            @if (!empty($talent->expetasi))
-            {{ $talent->expetasi }}
-            @else
-            -
-            @endif
-          </td>
-          <td style="min-width:250px">
-            @if ($talent->user_id !== 0)
-            <a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" class="btn btn-info" target="_blank" data-toggle="tooltip" data-placement="top" title="Profile Talent">
-              <i class="fa fa-info"></i>
-            </a>
-            @else
-            <button type="button" data-toggle="modal" data-target="#detail-user" class="btn btn-info" target="_blank">
-              <i class="fa fa-info"></i>
-            </button>
-            @endif
-            <button class="btn btn-sm btn-primary rounded" data-target="#modal-offer" data-id="{{$talent->talent_id}}" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Add to My Request Talent">Add to My Request Talent</button>
-          </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="detail-user">
   <div class="modal-dialog">

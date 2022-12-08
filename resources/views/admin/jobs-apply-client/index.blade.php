@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-md-3 mt-4">
                     <select name="is_hire_requested" id="is_hire_requested" class="form-control small-rect-filter text-left rect-border">
-                        <option value="" selected>Status Request</option>
+                        <option value="" selected>All Status Request</option>
                         <option value="1">Requested</option>
                         <option value="0">Tidak Request</option>
                     </select>

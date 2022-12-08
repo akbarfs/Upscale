@@ -174,15 +174,32 @@
                         <option value="Other">other</option>
                     </select>
                 </div>
-                <div class="col-md-3 mt-4">
+                {{-- <div class="col-md-3 mt-4">
                     <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="currsalary"
                         class="small-rect-filter text-left rect-border form-control rp" placeholder="Gaji Sekarang"
                         value="" />
+                </div> --}}
+                <div class="col-md-3 mt-4">
+                    <select name="currsalary" id="currsalary"
+                        class="small-rect-filter text-left rect-border form-control">
+                        <option value="" selected>Gaji Sekarang</option>
+                        <option value="1">Kurang dari 1 Juta</option>
+                        <option value="1 - 3">1 - 3 Juta</option>
+                        <option value="3 - 5">3 - 5 Juta</option>
+                        <option value="5 - 10">5 - 10 Juta</option>
+                        <option value="10">Lebih dari 10 Juta</option>
+                    </select>
                 </div>
                 <div class="col-md-3 mt-4">
-                    <input data-a-sign="Rp. " data-a-dec="," data-a-sep="." type="text" name="expsalary"
-                        class="small-rect-filter text-left rect-border form-control rp" placeholder="Expetasi Sekarang"
-                        value="" />
+                    <select name="expsalary" id="expsalary"
+                        class="small-rect-filter text-left rect-border form-control">
+                        <option value="" selected>Ekspektasi Gaji</option>
+                        <option value="1">Kurang dari 1 Juta</option>
+                        <option value="1 - 3">1 - 3 Juta</option>
+                        <option value="3 - 5">3 - 5 Juta</option>
+                        <option value="5 - 10">5 - 10 Juta</option>
+                        <option value="10">Lebih dari 10 Juta</option>
+                    </select>
                 </div>
                 <div class="col-md-3 mt-4">
                     <select class="small-rect-filter text-left rect-border form-control" name="readyluarkota"
@@ -202,12 +219,8 @@
             </div>
         </form>
     </div>
-    <div class="mt-4">
-        <h5>List Talent ({{ $total }})</h5>
-        <hr>
-        <div class="container-fluid mt-2" id="company-talent" style="padding:0;">
-            <!-- ini adalah isi data talent -->
-        </div>
+    <div class="mt-4" id="company-talent">
+        <!-- ini adalah isi data talent -->
     </div>
 
 
