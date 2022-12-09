@@ -60,8 +60,12 @@ class JobsApplyClientController extends Controller
         }
 
         // filter status requested (hire)
-        if ($request->is_hire_requested) {
-            $data->where('is_hire_requested', 1);
+        if ($request->is_hire_requested != 'all') {
+            if ($request->is_hire_requested == 1) {
+                $data->where('is_hire_requested', 1);
+            } else {
+                $data->where('is_hire_requested', NULL);
+            }
         }
 
         $data = $data->latest()->paginate(10);

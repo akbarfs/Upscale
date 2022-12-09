@@ -342,6 +342,12 @@ class CompanyDashboardController extends Controller
     }
     // End Filter Skill
 
+    // Filter ID Talent
+    if ($request->talent) {
+      $data = $data->where('talent_id', 'like', '%' . $request->talent . '%');
+    }
+    // End Filter ID Talent
+
     // Filter User terupdate
     if ($request->userupdate == 'yes') {
       $data = $data->orderBy('tupdated_date', 'DESC');
@@ -374,6 +380,15 @@ class CompanyDashboardController extends Controller
       $data = $data->where("company_req_log.status", $request->status);
     } else if (!empty($request->nama)) {
       $data = $data->Contains("talent.talent_name", $request->nama);
+    }
+
+    // filter status requested (hire)
+    if ($request->is_hire_requested != 'all') {
+      if ($request->is_hire_requested == 1) {
+        $data->where('company_req_log.is_hire_requested', 1);
+      } else {
+        $data->where('company_req_log.is_hire_requested', NULL);
+      }
     }
 
 

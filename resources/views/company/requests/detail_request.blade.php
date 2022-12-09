@@ -76,6 +76,27 @@
 </div>
 
 <div class="content mt-3">
+
+
+    <div class="my-2">
+        <form action="" method="POST" id="form-search">
+            <div class="row">
+                <div class="col-md-3 mt-4">
+                    <select name="is_hire_requested" id="is_hire_requested" class="form-control small-rect-filter text-left rect-border">
+                        <option value="all" selected>All Status Request</option>
+                        <option value="1">Requested</option>
+                        <option value="0">Tidak Requested</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-3 mt-4">
+                    <button class="btn btn-info rounded" style="width:100%;" type="submit">Filter</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+    </div>
+
     <div class="d-flex justify-content-between mt-2">
         <h4 class="mx-0">My Talent ({{ $data->hired }}/{{ $data->person_needed }})</h4>
         <button type="button" class="btn mx-0 btn-xs btn-link" data-toggle="modal" data-target="#exampleModal">
@@ -155,11 +176,12 @@
 
         function loadTable(url) {
 
+            var param = $("#form-search").serialize();
             $('#loading').show();
             $("#talent-request").html('');
 
             $.ajax({
-                url: url,
+                url: url + "&" + param,
                 method: "GET",
                 data: {
                     id_request: id_request
@@ -186,13 +208,6 @@
         url = `{{url('/company/request/talent_data?status=${identifier}')}}`
         loadTable(url);
 
-        $('.nama-talent').on('input',function(){
-            var nama = $(this).val();
-            url = `{{url('/company/request/talent_data?nama=${nama}')}}`
-            loadTable(url);
-            event.preventDefault();
-        })
-
         $('.filter-btn').on('click',function(){
             var identifier = $(this).attr('id');
             url = `{{url('/company/request/talent_data?status=${identifier}')}}`
@@ -201,6 +216,12 @@
             $('#'+identifier).addClass("active");
             event.preventDefault();
         })
+
+        //search 
+        $("#form-search").submit(function () {
+            loadTable(`{{url('/company/request/talent_data?status=${identifier}')}}`);
+            return false;
+        });
 
     })
 </script>
