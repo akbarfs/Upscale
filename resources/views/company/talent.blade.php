@@ -139,7 +139,7 @@
                 <div class="col-md-3 mt-4">
                     <select class="small-rect-filter text-left rect-border form-control" name="readykerja"
                         id="readykerja">
-                        <option selected>Ready Kerja</option>
+                        <option value="all" selected>Kesiapan Kerja</option>
                         <option value="yes">Siap Kerja</option>
                         <option value="no">Belum Siap Kerja</option>
                     </select>
@@ -147,9 +147,8 @@
                 <div class="col-md-3 mt-4">
                     <select class="small-rect-filter text-left rect-border form-control" name="userupdate"
                         id="userupdate">
-                        <option selected>User Terupdate</option>
-                        <option value="yes">User Terupdate</option>
-                        <option value="no">All</option>
+                        <option value="no" selected>User Terupdate</option>
+                        <option value="yes">Terlama</option>
                     </select>
                 </div>
                 <div class="col-md-3 mt-4">
@@ -204,7 +203,7 @@
                 <div class="col-md-3 mt-4">
                     <select class="small-rect-filter text-left rect-border form-control" name="readyluarkota"
                         id="ready">
-                        <option selected disabled>Ready Luar Kota</option>
+                        <option value="all" selected>Ready Luar & Dalam Kota</option>
                         <option value="yes">Ready Ke Luar Kota</option>
                         <option value="no">Tidak Ready Ke Luar Kota</option>
                     </select>

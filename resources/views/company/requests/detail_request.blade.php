@@ -88,7 +88,11 @@
                         <option value="0">Tidak Requested</option>
                     </select>
                 </div>
-                
+                <div class="col-md-3 mt-4">
+                    <input type="text" name="talent"
+                        class="small-rect-filter text-left rect-border form-control " placeholder="ID Talent"
+                        value="" />
+                </div>
                 <div class="col-md-3 mt-4">
                     <button class="btn btn-info rounded" style="width:100%;" type="submit">Filter</button>
                 </div>

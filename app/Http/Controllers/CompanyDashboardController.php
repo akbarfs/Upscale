@@ -209,6 +209,8 @@ class CompanyDashboardController extends Controller
 
     $data = $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
 
+    // dd($request->input());
+
     // filter domisili
     if ($request->domisili != 'Domisili') {
       $data = $data->where(function ($q) use ($request) {
@@ -218,7 +220,7 @@ class CompanyDashboardController extends Controller
     // end filter domisili
 
     // filter ready kerja
-    if ($request->readykerja != "Ready Kerja") {
+    if ($request->readykerja != "all") {
       $status_ready = ['yes', 'asap', '1_month'];
       if ($request->readykerja == 'yes') {
         $data = $data->whereIn('talent_available', $status_ready);
@@ -329,7 +331,7 @@ class CompanyDashboardController extends Controller
     // End Filter Expetasi Gaji
 
     // Filter Ready Kerja
-    if ($request->readyluarkota != "Ready Luar Kota") {
+    if ($request->readyluarkota != "all") {
       $data = $data->where('talent_luar_kota', $request->readyluarkota);
     }
     // End Filter Ready Kerja
@@ -351,8 +353,9 @@ class CompanyDashboardController extends Controller
     // Filter User terupdate
     if ($request->userupdate == 'yes') {
       $data = $data->orderBy('tupdated_date', 'DESC');
-    } else {
-      $data = $data->orderBy('talent_id', "DESC");
+    }
+    if ($request->userupdate == 'no') {
+      $data = $data->orderBy('tupdated_date', "ASC");
     }
     // End filter user terupdate
 
@@ -390,6 +393,12 @@ class CompanyDashboardController extends Controller
         $data->where('company_req_log.is_hire_requested', NULL);
       }
     }
+
+    // Filter ID Talent
+    if ($request->talent) {
+      $data = $data->where('company_req_log.talent_id', 'like', '%' . $request->talent . '%');
+    }
+    // End Filter ID Talent
 
 
     $data = $data->groupBy("talent.talent_id")->orderBy('company_req_log.bookmark', 'desc');

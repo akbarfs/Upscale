@@ -74,7 +74,7 @@
                             else{$badge = 'light';}
                             $skill = $row->skill()->first(); 
                         ?>
-                        <span class="badge badge-{{$badge}}">{{$skill->skill_name}}</span>
+                        <span class="badge badge-light">{{$skill->skill_name}}</span>
                         @endforeach
                     </td>
                     <td>
