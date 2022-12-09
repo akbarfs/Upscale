@@ -320,14 +320,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="deadline" class="col-sm-3 col-form-label font-weight-bold">Dibutuhkan kapan
-                            <span class="text-danger">*</span></label>
+                        <label for="deadline" class="col-sm-3 col-form-label font-weight-bold">
+                            Dibutuhkan kapan <span class="text-danger">*</span>
+                        </label>
                         <div class="col-sm-9">
-                            <select class="small-rect-filter text-left rect-border form-control" id="deadline">
+                            <select class="small-rect-filter text-left rect-border form-control" id="deadline" name="deadline">
                                 <option>Pilih Deadline</option>
-                                <option value="Diploma">Secepatnya</option>
-                                <option value="Bachelor Degree">2 Minggu Mendatang</option>
-                                <option value="Master">1 Bulan Mendatang</option>
+                                <option value="1">Secepatnya</option>
+                                <option value="2">2 Minggu Mendatang</option>
+                                <option value="3">1 Bulan Mendatang</option>
                             </select>
                         </div>
                     </div>

@@ -62,6 +62,17 @@
                             $no++;
                             @endphp
                             </h4>
+                            <p>Dibutuhkan 
+                                <b>
+                                    @if ($req->deadline == 1)
+                                    Secepatnya
+                                    @elseif ($req->deadline == 2)
+                                    2 Minggu Mendatang 
+                                    @else
+                                    1 Bulan Mendatang
+                                    @endif
+                                </b>
+                            </p>
                         </div>
                     </a>
                 </div>
@@ -200,11 +211,11 @@
                         <label for="deadline" class="col-sm-3 col-form-label font-weight-bold">Dibutuhkan kapan
                             <span class="text-danger">*</span></label>
                         <div class="col-sm-9">
-                            <select class="small-rect-filter text-left rect-border form-control" id="deadline">
+                            <select class="small-rect-filter text-left rect-border form-control" id="deadline" name="deadline">
                                 <option>Pilih Deadline</option>
-                                <option value="Diploma">Secepatnya</option>
-                                <option value="Bachelor Degree">2 Minggu Mendatang</option>
-                                <option value="Master">1 Bulan Mendatang</option>
+                                <option value="1">Secepatnya</option>
+                                <option value="2">2 Minggu Mendatang</option>
+                                <option value="3">1 Bulan Mendatang</option>
                             </select>
                         </div>
                     </div>
@@ -317,6 +328,7 @@
                     $('#min_salary').val(request['min_salary']);
                     $('#max_salary').val(request['max_salary']);
                     $('#orang').val(request['person_needed']);
+                    $('#deadline').val(request['deadline']);
                     $('#category-skill').html('');
                     skill.forEach((item, index) => {
                         var html = `<div class="d-flex justify-content-between" style="margin-top:20px;" id="skill_${index+1}">

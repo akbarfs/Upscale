@@ -71,7 +71,8 @@ class CompanyDashboardController extends Controller
       'benefit' => 'required',
       'min_salary' => 'required',
       'max_salary' => 'required',
-      'person_needed' => 'required|integer|min:1'
+      'person_needed' => 'required|integer|min:1',
+      'deadline' => 'required|integer'
     ]);
 
     $validateData['min_salary'] = preg_replace('/[^0-9]/', '', $request->min_salary);
@@ -124,7 +125,8 @@ class CompanyDashboardController extends Controller
       'benefit' => 'required',
       'min_salary' => 'required',
       'max_salary' => 'required',
-      'person_needed' => 'required|integer|min:1'
+      'person_needed' => 'required|integer|min:1',
+      'deadline' => 'required|integer'
     ]);
 
     $validateData['min_salary'] = preg_replace('/[^0-9]/', '', $request->min_salary);
@@ -172,10 +174,8 @@ class CompanyDashboardController extends Controller
       ]);
     }
 
-
-    return redirect()->route('company.request.active')->with([
-      'message' => 'Company Request Berhasil Diedit'
-    ]);
+    alert()->success('Success', 'Company Request Berhasil Diedit');
+    return redirect()->route('company.request.active');
   }
 
   public function closeOffer($id)
@@ -440,7 +440,7 @@ class CompanyDashboardController extends Controller
   public function request_active()
   {
     set_time_limit(300);
-    $company_req = DB::table('company_request')->where('company_id', session('user_id'))->where('status_request', 'active')->get();
+    $company_req = DB::table('company_request')->where('company_id', session('user_id'))->where('status_request', 'active')->orderBy('deadline', 'asc')->get();
 
     $talentpool = [];
     $talenthired = [];
