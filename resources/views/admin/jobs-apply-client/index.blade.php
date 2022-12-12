@@ -148,11 +148,6 @@
 
 <script>
     $(document).ready(function () {
-
-        var status = `{{session('message')}}`;
-
-        if (status) {alert(status);}
-
         function loadTable(url) {
             var param = $("#form-search").serialize();
             $('#loading').show();
@@ -169,7 +164,6 @@
         }
 
         //load pertama kali
-        // loadTable("{{url('/admin/jobsapplyclient/table/data?page=1')}}");
         var identifier = 'unprocess';
         url = `{{url('/admin/jobsapplyclient/table/data?status=${identifier}')}}`
         loadTable(url);
@@ -182,13 +176,6 @@
             loadTable(url);
             event.preventDefault(); //ini biar ga keredirect ke halaman lain
         });
-
-        // $('.nama-talent').on('input',function(){
-        //     var nama = $(this).val();
-        //     url = `{{url('/admin/jobsapplyclient/table/data?nama=${nama}')}}`
-        //     loadTable(url);
-        //     event.preventDefault();
-        // })
 
         $('.filter-btn').on('click',function(){
             var identifier = $(this).attr('id');
@@ -205,6 +192,12 @@
             loadTable(`{{url('/admin/jobsapplyclient/table/data?status=${identifier}')}}`);
             return false;
         });
+
+        // from click notif
+        var status = `{{session('identifier')}}`;
+        if (status) {
+            $('#'+status).click();
+        }
 
     })
 </script>

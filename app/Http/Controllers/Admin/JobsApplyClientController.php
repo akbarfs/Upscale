@@ -69,7 +69,23 @@ class JobsApplyClientController extends Controller
         }
 
         $data = $data->latest()->paginate(10);
-        return view('admin.jobs-apply-client.table', ['request_log' => $data])->render();
+        return view('admin.jobs-apply-client.table', [
+            'request_log' => $data,
+        ])->render();
+    }
+
+
+    public function readNotif($company_request_log_id)
+    {
+        $data = CompanyReqLog::findOrFail($company_request_log_id);
+        $data->is_read_notif = 0;
+        $data->save();
+
+        return redirect()->route('jobsapplyclient.index')
+            ->with([
+                "comp_req_log_id" => $company_request_log_id,
+                'identifier' => $data->status
+            ]);
     }
 
 

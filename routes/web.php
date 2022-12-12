@@ -186,6 +186,7 @@ Route::group(['middleware' => 'cek'], function () {
 
 			Route::get('/all-notif', "jobsapplyclientController@allNotif")->name('jobsapplyclient.all-notif');
 			Route::get('/notif/{id}', 'jobsapplyclientController@notif')->name('jobsapplyclient.notif');
+			Route::get('/read-notif/{id}', 'Admin\JobsApplyClientController@readNotif')->name('jobsapplyclient.read.notif');
 
 			Route::get('/delete', 'jobsapplyclientController@delete')->name('jobsapplyclient.delete');
 

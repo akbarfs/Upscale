@@ -27,7 +27,7 @@ $data = App\Models\CompanyReqLog::where('is_read_notif', 1)
                         <form method="post" enctype="multipart/form-data" class="hire-talent">
                         @csrf
                             <div class="layout-notif">
-                                <a href="{{ route('jobsapplyclient.notif',['id' => $notif->talent_id]) }}" data-id="{{ $notif->talent_id }}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif" data-toggle="tooltip" title="{{ $notif->company_request->company->company_name }}">
+                                <a href="{{ route('jobsapplyclient.read.notif',['id' => $notif->company_req_log_id]) }}" data-id="{{ $notif->company_req_log_id }}" style="display:flex;flex-direction:row;gap:9px;" class="id_notif" data-toggle="tooltip" title="{{ $notif->company_request->company->company_name }}">
                                     <div style="width:31px;height:31px;background-color:#ffffff;">
                                     <img src="{{ $notif->company_request->company->company_pic }}" alt="" class="company_pic" srcset="">
                                     </div>
