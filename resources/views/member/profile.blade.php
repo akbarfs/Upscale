@@ -203,10 +203,13 @@
 						 	<i class="fa fa-download" aria-hidden="true"></i> Download CV
 						</a>
 					@endif
-					
+
+					@if (Session::get('level') !== 'user')
 					<a href="https://api.whatsapp.com/send?phone=6287888666531&text=Request Interview untuk talent atas nama {{$talent->talent_name}}" target="_blank" class="tombol" style="background: green;">
 						<i class="fa fa-phone" aria-hidden="true"></i> Request Interview
 					</a>
+					@endif
+
 
 
 					
