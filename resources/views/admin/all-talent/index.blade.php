@@ -73,7 +73,7 @@
 	<div class="content mb-4">
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="d-flex justify-content-between filter-btn rect-border" id="unprocess">
+				<div class="d-flex justify-content-between filter-btn rect-border show active" id="unprocess">
 					Unprocess
 					<span>{{ $talentpool['unprocess'] }}</span>
 				</div>
@@ -124,7 +124,6 @@
                 {{-- search filter --}}
 				<div class="card-body">
 					<form style="margin:0; padding: 0" method="post" action="" id="form-search">
-						<input type="text" name="process_status" id="process_status" hidden>
 						<div class="row">
 							<div class="col-md-2">
 								<select class="custom-select" name="status_member">
@@ -565,18 +564,6 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 
-			// tabs process status
-			$('.filter-btn').on('click',function(){
-				var identifier = $(this).attr('id');
-				$('#process_status').val(identifier);
-				
-				loadTable("{{url('/admin/all-talent/paginate_data?page=1')}}");
-				$(".filter-btn").removeClass("active");
-				$('#'+identifier).addClass("active");
-				event.preventDefault();
-			})
-
-
 			var export_url;
 			//mengambil data tanggal
 			$("#datepicker").datepicker();
@@ -601,6 +588,12 @@
 			}
 
 
+			//load pertama kali
+			var identifier = 'unprocess';
+			url = `{{url('/admin/all-talent/paginate_data?process_status=${identifier}')}}`
+			loadTable(url);
+
+
 			//klik export_excel
 			$("#export").click(function(e) {
 				if (confirm("export")) {
@@ -608,19 +601,27 @@
 					return false;
 				}
 			});
-
-
-
-			//load pertama kali
-			loadTable("{{url('/admin/all-talent/paginate_data?page=1')}}");
+			
 
 			//klik pagination , diambil urlnya langsung di load ajax
 			$(document).on("click", ".page-link", function(event) {
 				$("body").scrollTop(0);
-				var url = $(this).attr("href");
+				var url = $(this).attr("href") + "&" + `{{ 'process_status=${identifier}' }}`;
 				loadTable(url);
 				event.preventDefault(); //ini biar ga keredirect ke halaman lain 
 			});
+
+			// tabs process status
+			$('.filter-btn').on('click',function(){
+				var identifier = $(this).attr('id');
+				$('#process_status').val(identifier);
+				
+				url = `{{url('/admin/all-talent/paginate_data?process_status=${identifier}')}}`;
+				loadTable(url);
+				$(".filter-btn").removeClass("active");
+				$('#'+identifier).addClass("active");
+				event.preventDefault();
+			})
 
 			$(document).on("click","#go",function(event)
 			{

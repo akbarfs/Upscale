@@ -364,7 +364,7 @@
 					id_talent: id_talent
 				},
 				success: function (data) {
-					alert(data['message']);
+					swal('Success', data['message'] ,'success');
 					location.reload();
 				}
 			});

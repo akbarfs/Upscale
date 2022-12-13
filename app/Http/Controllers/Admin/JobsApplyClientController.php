@@ -34,10 +34,8 @@ class JobsApplyClientController extends Controller
     // table talent request
     public function table_talent_request(Request $request)
     {
+        dd($request->input());
         $data = CompanyReqLog::where('status', $request->status);
-
-        // dd($request->all());
-
 
         // filter client
         if ($request->client) {

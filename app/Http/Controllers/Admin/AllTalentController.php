@@ -42,10 +42,6 @@ class AllTalentController extends Controller
         $data = Talent::select(DB::raw($default_query));
         //SELECT BUILDER END 
 
-        // change tab status
-        $request->process_status ? $data->where('talent_process_status', $request->process_status) : '';
-
-
         //JOIN BUILDER START
         $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
         if ($request->jumlah_apply_jobs || $request->apply == 'yes') {
@@ -119,7 +115,8 @@ class AllTalentController extends Controller
         } else {
             $data->orderBy("talent_id", "DESC");
         }
-        $data->groupBy("talent_id");
+
+        $data->where('talent_process_status', $request->process_status)->groupBy("talent_id");
         $data = $data->paginate(5);
 
 
