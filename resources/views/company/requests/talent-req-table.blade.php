@@ -118,9 +118,13 @@
                             <i class="fa fa-pencil"></i>
                         </button>
                         @else
-                            <button id="button-add-note" class="btn btn-xs btn-outline-none button-add-note" data-toggle="modal" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
-                                <i class="fa fa-plus"></i>
-                            </button>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button id="button-add-note" class="btn btn-xs btn-outline-none button-add-note" data-toggle="modal" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
                         @endif
                     </td>
                     <td scope="col">
@@ -290,8 +294,9 @@
                         note: $('#note-textarea').val()
                     },
                     success: function (data) {
-                        alert(data);
+                        swal('Success', data ,'success');
                         location.reload();
+
                     }
                 });
             })
