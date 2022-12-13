@@ -61,7 +61,7 @@
                     </td>
                     <?php $result = substr($talent->name, 0, 1) . preg_replace('/[^@]/', '*', substr($talent->name, 1));?>
                     <td style="max-width: 10rem;">
-                        {{$talent->talent_id . ' - ' . $result}}
+                        {{$talent->talent_id . ' - ' . \Illuminate\Support\Str::limit($result, 6, $end='')}}
                         @if ($talent->is_hire_requested == 1)
                         <br>
                         <span class="my-1 badge badge-info">Requested</span>
