@@ -28,13 +28,13 @@
           <thead>
             <tr>
               <th style="text-align:center;" scope="col">No.</th>
-              <th scope="col">Image</th>
-              <th scope="col">Name</th>
-              <th scope="col">Skills</th>
-              <th scope="col">Ready to Work</th>
-              <th scope="col">Gaji Sekarang</th>
-              <th scope="col">Expetasi Gaji</th>
-              <th scope="col">Action</th>
+              <th class="text-center" scope="col">Image</th>
+              <th class="text-center" scope="col">Name</th>
+              <th class="text-center" scope="col">Skills</th>
+              <th class="text-center" scope="col">Ready to Work</th>
+              <th class="text-center" scope="col">Gaji Sekarang</th>
+              <th class="text-center" scope="col">Expetasi Gaji</th>
+              <th class="text-center" scope="col">Action</th>
             </tr>
           </thead>
           <tbody id="container">
@@ -73,7 +73,7 @@
                 </span>
                 @endforeach
               </td>
-              <td>
+              <td class="text-center">
                 @if ($talent->talent_available == 'yes')
                 <span class="badge badge-success">
                   yes
@@ -94,21 +94,21 @@
                 {{ $talent->talent_available }}
                 @endif
               </td>
-              <td>
+              <td class="text-center">
                 @if (!empty($talent->gaji))
                 {{ $talent->gaji }}
                 @else
                 -
                 @endif
               </td>
-              <td>
+              <td class="text-center">
                 @if (!empty($talent->expetasi))
                 {{ $talent->expetasi }}
                 @else
                 -
                 @endif
               </td>
-              <td style="min-width:250px">
+              <td style="min-width:250px" class="text-center">
                 @if ($talent->user_id !== 0)
                 <a href="{{url('/profile/'.encrypt_custom($talent->user_id))}}" class="btn btn-info" target="_blank" data-toggle="tooltip" data-placement="top" title="Profile Talent">
                   <i class="fa fa-info"></i>
