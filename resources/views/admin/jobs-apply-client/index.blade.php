@@ -1,5 +1,6 @@
 @extends('admin.layout.apps')
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @section('content')
 <style>
     .btn-xs {
@@ -8,14 +9,6 @@
         line-height: 1.3;
         border-radius: 0.2rem !important;
         -webkit-appearance: unset !important;
-    }
-
-    .select2-container {
-        width: 100% !important;
-    }
-
-    .select2-selection {
-        overflow: hidden;
     }
 
     .stright-line {
@@ -48,6 +41,71 @@
         color: black;
         padding: 0 5px;
         border-radius: 2px;
+    }
+
+    select.form-control:not([size]):not([multiple]) {
+        height: auto !important;
+    }
+
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .col-sm-9 .select2-container {
+        width: 100% !important;
+    }
+
+    .select2-selection {
+        overflow: hidden;
+    }
+
+    .select2-container--bootstrap .select2-selection--single {
+        height: 38px !important;
+        /* background: lightgray !important; */
+        /* border: 1px solid black !important; */
+    }
+
+    col-md-3 .select2.select2-container.select2-container--bootstrap {
+        max-width: 16.7rem;
+    }
+
+    #select2-companyrequest-results .select2-results__option {
+        text-align: left;
+    }
+
+    #select2-companyrequest-container {
+        text-align: left;
+        color: #000;
+        font-size: 1rem;
+    }
+
+    .select2:hover {
+        font-weight: 500;
+    }
+
+    .small-rect-filter.rect-border.rp::placeholder {
+        color: black;
+        opacity: 1;
+        /* Firefox */
+    }
+
+    .input-group .select2.select2-container {
+        max-width: 786px !important;
+    }
+
+    .select2-container--bootstrap .select2-selection--multiple {
+        min-height: 40px !important;
+        /* background-color: lightgray !important; */
+    }
+    .skill .select2-default{
+        color: #f00 !important;
+    }
+
+    @media only screen and (max-width:1300px) {
+        .input-group .select2.select2-container {
+            max-width: 687px !important;
+        }
     }
 </style>
 
@@ -84,10 +142,12 @@
                     <select name="company_request" id="company_request" class="form-control small-rect-filter text-left rect-border">
                         <option value="" selected>Company Request</option>
                         @foreach ($company_req as $req)
-                        <option value="{{$req->company_request_id}}">{{$req->name_request}}</option>
+                        <option value="{{$req->company_request_id}}">{{ $req->company->company_name }} - {{ $req->name_request }}</option>
                         @endforeach
                     </select>
                 </div>
+
+
                 <div class="col-md-3 mt-4">
                     <select name="is_hire_requested" id="is_hire_requested" class="form-control small-rect-filter text-left rect-border">
                         <option value="all" selected>All Status Request</option>
@@ -148,6 +208,12 @@
 
 <script>
     $(document).ready(function () {
+
+        // company request select
+        $('#company_request').select2({
+            theme: "bootstrap"
+        });
+
         function loadTable(url) {
             var param = $("#form-search").serialize();
             $('#loading').show();
