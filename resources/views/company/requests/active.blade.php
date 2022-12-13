@@ -55,14 +55,14 @@
                 <div class="col-sm-10">
                     <a href="{{ route('company.request.detail', [$req->company_request_id] ) }}">
                         <div class="p-5">
-                            <h4 class="text-dark">{{ $req->name_request }} <span class="h6"><strong>{{ $talenthired[$no] }}/{{ $req->person_needed }}</strong>
+                            <h4 class="text-dark h4">{{ $req->name_request }} <span class="h5"><strong>{{ $talenthired[$no] }}/{{ $req->person_needed }}</strong>
                                 dari
                                 <strong>{{ $talentpool[$no] }}</strong> yang siap di interview</span>
                             @php
                             $no++;
                             @endphp
                             </h4>
-                            <p>Dibutuhkan 
+                            <p class="text-sm">Dibutuhkan 
                                 <b>
                                     @if ($req->deadline == 1)
                                     Secepatnya
