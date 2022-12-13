@@ -130,7 +130,7 @@
             <div class="row">
                 <div class="col-md-3 mt-4">
                     <select name="domisili" id="domisili" class="form-control small-rect-filter text-left rect-border">
-                        <option selected>Domisili</option>
+                        <option value="Domisili" selected>Semua Domisili</option>
                         @foreach ($domisili as $domisili)
                         <option value="{{$domisili->location_name}}">{{$domisili->location_name}}</option>
                         @endforeach
@@ -235,7 +235,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Make Request</h4>
+                <h4 class="modal-title">Request Talent</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <form action="{{ route('company.makeoffer') }}" method="post">
@@ -333,7 +333,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger rounded" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success rounded">Kirim</button>
                 </div>
             </form>
