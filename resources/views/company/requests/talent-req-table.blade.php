@@ -77,7 +77,7 @@
                         <span class="badge badge-light">{{$skill->skill_name}}</span>
                         @endforeach
                     </td>
-                    <td>
+                    <td class="text-center">
                         @if (!empty($talent->gaji))
                         @php
                         $gaji = (int)preg_replace('/[^0-9]/', '', $talent->gaji);
@@ -98,7 +98,7 @@
                         @endif
                     </td>
                     <td scope="col">
-                        <select class="form-control status" nama_talent="{{ $talent->name }}" id_talent={{ $talent->talent_id }} name="status">
+                        <select class="form-control status" id_talent={{ $talent->talent_id }} name="status">
                             <option value="unprocess" {{ $talent->status == "unprocess" ? "selected":"" }}>Unprocess
                             </option>
                             <option value="interview" {{ $talent->status == "interview" ? "selected":"" }}>Interview
@@ -111,7 +111,7 @@
                             <option value="reject" {{ $talent->status == "reject" ? "selected":"" }}>Reject</option>
                         </select>
                     </td>
-                    <td scope="col">
+                    <td class="text-center" scope="col">
                         @if ($talent->note)
                         {{ \Illuminate\Support\Str::limit($talent->note, 50, $end='...') }}
                         <button id="button-edit-note" class="btn btn-xs btn-outline-none button-add-note button-edit-note" data-toggle="modal" note_value= "{{ $talent->note }}" data-target="#modal-add-note" log_id ="{{ $talent->log_id  }}" >
@@ -162,8 +162,9 @@
                             
                         @endif
 
-                            <button class="btn btn-sm btn-info rect-border hire hire-me" data-target="#hire-modal" data-id="{{$talent->talent_id}}"
-                            id-request="{{$id_request}}" data-toggle="modal" {{ $talent->is_hire_requested == 1 ? 'disabled' : '' }}>Hire Me!</button>
+                            <button class="btn btn-sm btn-info rect-border hire hire-me" data-target="#hire-modal" data-id="{{$talent->talent_id}}" 
+                            id-request="{{$id_request}}" data-toggle="modal" {{ $talent->is_hire_requested == 1 ? 'disabled' : '' }} nama_talent="{{$talent->talent_id . ' - ' . \Illuminate\Support\Str::limit($result, 6, $end='')}}">
+                            Hire Me!</button>
                         </div>
                     </td>
                 </tr>
@@ -341,7 +342,7 @@
                         id_talent: id_talent
                     },
                     success: function (data) {
-                        alert(data['message']);
+                        swal('Success', data['message'] ,'success');
                         location.reload();
                     }
                 });
@@ -367,14 +368,14 @@
                     work_start_date: work_start_date
                 },
                 success: function (data) {
-                    alert(data['message']);
+                    swal('Success', data['message'] ,'success');
                     location.reload();
                 }
             });
         }
 
         $('.hire').on('click', function () {
-            var name = $(this).attr('name-talent');
+            var name = $(this).attr('nama_talent');
             var text = `Saya sudah membaca profile ${name} dan saya tertarik dengan talent ini`;
             $('#hire-talent').text(text);
 
