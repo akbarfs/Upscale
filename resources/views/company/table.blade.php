@@ -32,7 +32,7 @@
               <th scope="col">Name</th>
               <th scope="col">Skills</th>
               <th scope="col">Ready to Work</th>
-              <th scope="col">Gaji</th>
+              <th scope="col">Gaji Sekarang</th>
               <th scope="col">Expetasi Gaji</th>
               <th scope="col">Action</th>
             </tr>
