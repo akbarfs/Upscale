@@ -68,7 +68,7 @@
                                     Secepatnya
                                     @elseif ($req->deadline == 2)
                                     2 Minggu Mendatang 
-                                    @else
+                                    @elseif ($req->deadline == 3)
                                     1 Bulan Mendatang
                                     @endif
                                 </b>
