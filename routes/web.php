@@ -79,7 +79,8 @@ Route::prefix("company")->middleware(CheckCompany::class)->group(function () {
 	//page request
 	Route::get('/request/active', "CompanyDashboardController@request_active")->name('company.request.active');
 	Route::get('/request/active/detail/{id}', "CompanyDashboardController@request_detail")->name('company.request.detail');
-	Route::get("/request/talent_data", "CompanyDashboardController@table_talent_request");
+	// Route::get("/request/talent_data", "CompanyDashboardController@table_talent_request");
+	Route::get("/request/talent_data", "CompanyDashboardController@table_talent_request2");
 	Route::get("/request/detail_data/{id}", "CompanyDashboardController@detail_request")->name('company.request.data');
 
 	// edit request person needed

@@ -371,19 +371,18 @@ class CompanyDashboardController extends Controller
   public function table_talent_request(Request $request)
   {
     set_time_limit(300);
+
     $id_request = $request->id_request;
+
     $default_query = "talent.talent_id,talent.user_id,users.id as user_id, talent.talent_name as name, talent.talent_salary as expetasi, talent.talent_lastest_salary as gaji, company_req_log.status as status, company_req_log.company_req_log_id as log_id, company_req_log.bookmark, company_req_log.note, company_req_log.is_hire_requested";
+
     $data = Talent::select(DB::raw($default_query));
     $data = $data->join("company_req_log", "company_req_log.talent_id", "=", "talent.talent_id");
     $data = $data->join("users", "talent.user_id", "=", "users.id", "LEFT");
     $data = $data->join("skill_talent", "talent.talent_id", "=", "skill_talent.st_talent_id", "LEFT");
     $data = $data->where("company_req_log.company_request_id", $id_request);
 
-    if (!empty($request->status)) {
-      $data = $data->where("company_req_log.status", $request->status);
-    } else if (!empty($request->nama)) {
-      $data = $data->Contains("talent.talent_name", $request->nama);
-    }
+    $data = $data->groupBy("talent.talent_id")->orderBy('company_req_log.bookmark', 'desc');
 
     // filter status requested (hire)
     if ($request->is_hire_requested != 'all') {
@@ -400,13 +399,72 @@ class CompanyDashboardController extends Controller
     }
     // End Filter ID Talent
 
+    // filter status
+    if (!empty($request->status)) {
+      $data = $data->where("company_req_log.status", $request->status);
+    } else if (!empty($request->nama)) {
+      $data = $data->Contains("talent.talent_name", $request->nama);
+    }
 
-    $data = $data->groupBy("talent.talent_id")->orderBy('company_req_log.bookmark', 'desc');
     $data = $data->paginate(10);
+    // dd($data->total());
+
     return view('company.requests.talent-req-table', [
       'data' => $data,
       'id_request' => $id_request,
     ])->render();
+  }
+
+
+
+  public function table_talent_request2(Request $request)
+  {
+    set_time_limit(300);
+    $id_request = $request->id_request;
+
+    $data = CompanyReqLog::where('company_request_id', $id_request);
+
+    // filter status requested (hire)
+    if ($request->is_hire_requested != 'all') {
+      if ($request->is_hire_requested == 1) {
+        $data->where('is_hire_requested', 1);
+      } else {
+        $data->where('is_hire_requested', NULL);
+      }
+    }
+
+    // Filter ID Talent
+    if ($request->talent) {
+      $data = $data->where('talent_id', 'like', '%' . $request->talent . '%');
+    }
+
+    $filter = $data;
+    $filter = $filter->get();
+    $filter_unprocess = $filter->where('status', 'unprocess')->count();
+    $filter_interview = $filter->where('status', 'interview')->count();
+    $filter_prospek = $filter->where('status', 'prospek')->count();
+    $filter_offered = $filter->where('status', 'offered')->count();
+    $filter_hired = $filter->where('status', 'hired')->count();
+    $filter_reject = $filter->where('status', 'reject')->count();
+
+    $filter = [$filter_unprocess, $filter_interview, $filter_prospek, $filter_offered, $filter_hired, $filter_reject];
+
+    if (!empty($request->status)) {
+      $data = $data->where("status", $request->status);
+    }
+
+    $data = $data->paginate(10);
+
+    $view = view('company.requests.talent-req-table-2', [
+      'data' => $data,
+      'id_request' => $id_request,
+      'filter' => $filter,
+    ])->render();
+
+    return response()->json([
+      'view' => $view,
+      'filter' => $filter
+    ], 200);
   }
 
 
