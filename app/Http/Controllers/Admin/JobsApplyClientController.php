@@ -34,7 +34,8 @@ class JobsApplyClientController extends Controller
     // table talent request
     public function table_talent_request(Request $request)
     {
-        $data = CompanyReqLog::where('status', $request->status);
+        // $data = CompanyReqLog::where('status', $request->status);
+        $data = CompanyReqLog::where('status', '!=', NULL);
 
         // filter client
         if ($request->client) {
@@ -65,10 +66,30 @@ class JobsApplyClientController extends Controller
             }
         }
 
+        // count filter data
+        $filter = $data;
+        $filter = $filter->get();
+        $filter_unprocess = $filter->where('status', 'unprocess')->count();
+        $filter_interview = $filter->where('status', 'interview')->count();
+        $filter_prospek = $filter->where('status', 'prospek')->count();
+        $filter_offered = $filter->where('status', 'offered')->count();
+        $filter_hired = $filter->where('status', 'hired')->count();
+        $filter_reject = $filter->where('status', 'reject')->count();
+
+        $filter = [$filter_unprocess, $filter_interview, $filter_prospek, $filter_offered, $filter_hired, $filter_reject];
+
+        // filter status
+        $data = $data->where("status", $request->status);
+
         $data = $data->latest()->paginate(10);
-        return view('admin.jobs-apply-client.table', [
+        $view = view('admin.jobs-apply-client.table', [
             'request_log' => $data,
         ])->render();
+
+        return response()->json([
+            'view' => $view,
+            'filter' => $filter
+        ], 200);
     }
 
 
